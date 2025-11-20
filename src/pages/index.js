@@ -1,10 +1,7 @@
 import Image from "next/image";
-import Page from "./home/page";
-
+import Page from "../pages/home/page"
 export default function Home() {
   return (
-    // <Layout>
-      <Page />
-    // </Layout>
+  <Page/>
   );
 }
