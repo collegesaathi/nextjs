@@ -1,9 +1,11 @@
 import Layout from "../components/Layout";
 import Banner from "./Banner";
+import Blogs from "./Blogs";
 import HelpSection from "./HelpSection";
 import Logo from "./Logo";
 import LogoSlider from "./LogoSlider";
 import Programs from "./Programs";
+import Trending from "./Trending";
 import University from "./University";
 
 function Page() {
@@ -12,9 +14,11 @@ function Page() {
             <Banner />
             <Logo />
             <LogoSlider />
-            <Programs />
+            {/* <Programs />
             <HelpSection />
-            <University/>
+            <University />
+            <Trending />
+            <Blogs/> */}
         </Layout>
     </>);
 }
