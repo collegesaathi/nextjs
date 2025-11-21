@@ -29,8 +29,6 @@ export default function Logo() {
 
     return (
         <div className="lg:pt-[50px]">
-
-            {/* ========== Statistics Section ========== */}
             <div className="max-w-[927px] mx-auto px-4">
                 {/* Desktop */}
                 <div className="hidden lg:block h-[86px]">
@@ -99,25 +97,6 @@ export default function Logo() {
                     </Swiper>
                 </div>
             </div>
-
-            {/* ========== Logos Section (example) ==========
-            <div className="max-w-[1173px] mx-auto pt-[50px] px-4">
-                <Swiper
-                    modules={[Autoplay]}
-                    slidesPerView={4}
-                    spaceBetween={40}
-                    autoplay={{ delay: 2000 }}
-                    loop
-                    className="hidden lg:block"
-                >
-                    {universities.map((u, i) => (
-                        <SwiperSlide key={i} className="flex justify-center">
-                            <img src={u.src} alt={u.alt} className="h-10 object-contain" />
-                        </SwiperSlide>
-                    ))}
-                </Swiper>
-            </div> */}
-
         </div>
     );
 }

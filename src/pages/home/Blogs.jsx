@@ -5,7 +5,6 @@ import { Navigation, A11y } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import BlogCard from '../common/BlogCard';
-
 export default function Blogs() {
     const blogData = [
         { id: 1, title: '15 Top Online MBA Colleges in India....', imageSrc: '/images/sikkim-manipal.jpg', topText: 'A Complete Guide to Sikkim Manipal University Online Programs', date: 'Oct 10, 2024', source: 'Collegesathi' },
@@ -56,16 +55,10 @@ export default function Blogs() {
 
     return (
         <div className="p-8 bg-gray-50 min-h-screen">
-
-            {/* Header, Progress Bar, aur Navigation Controls (Same as before) */}
             <div className="flex justify-between items-center mb-10">
-
-                {/* Title */}
                 <h1 className="text-2xl md:text-3xl font-bold text-gray-900">
                     Explore Our Latest <span className="text-red-600">Blogs</span>
                 </h1>
-
-
                 <div className="flex items-center space-x-4">
                     <div className={`w-[${progressBarTotalWidth}] h-1.5 bg-gray-300 rounded-full overflow-hidden`}>
                         <div

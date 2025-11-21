@@ -3,7 +3,6 @@ import Group from "../asserts/home/Group.png"
 export default function Banner() {
     return (
         <div className="relative">
-            <Navbar />
             <section className="w-full md:h-[400px] lg:h-[426px]">
                 <img
                     src={Group?.src}

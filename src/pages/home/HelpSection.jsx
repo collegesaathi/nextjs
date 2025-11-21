@@ -4,6 +4,9 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, A11y } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
+import Logo2 from "../asserts/icon/1716465446-university-image.jpg"
+import Image from 'next/image';
+
 // Data for the cards
 const helpCards = [
   {
@@ -104,123 +107,134 @@ const HelpSection = () => {
 
 
   return (
-    <section className="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-      <div className="flex justify-between items-center mb-10">
-        <h2 className="text-3xl sm:text-4xl font-bold text-[#282529]">
-          Have Questions? We can <span className="text-[#EC1E24]">help!</span>
-        </h2>
-        <div className="flex items-center space-x-4">
-          <div className={`w-[${progressBarTotalWidth}] h-1.5 bg-gray-300 rounded-full overflow-hidden`}>
-            <div
-              className="h-full bg-[#EC1E24] transition-all duration-300 ease-in-out"
-              style={progressWidthStyle}
-            ></div>
-          </div>
+    <div className="py-8 md:py-12 ">
+      <div className="mx-auto container sm:container md:container lg:container xl:max-w-[1230px]  px-4">
 
-          <div className="flex space-x-2">
-            <button
-              type="button"
-              onClick={navigatePrev}
-              disabled={isBeginning}
-              className={`
+        <div className="flex justify-between items-center mb-10">
+          <h2 className="text-3xl sm:text-4xl font-bold text-[#282529]">
+            Have Questions? We can <span className="text-[#EC1E24]">help!</span>
+          </h2>
+          <div className="flex items-center space-x-4">
+            <div className={`w-[${progressBarTotalWidth}] h-1.5 bg-gray-300 rounded-full overflow-hidden`}>
+              <div
+                className="h-full bg-[#EC1E24] transition-all duration-300 ease-in-out"
+                style={progressWidthStyle}
+              ></div>
+            </div>
+
+            <div className="flex space-x-2">
+              <button
+                type="button"
+                onClick={navigatePrev}
+                disabled={isBeginning}
+                className={`
                         w-8 h-8 rounded-full flex items-center justify-center 
                         transition-all duration-200 flex-shrink-0
                         ${isBeginning
-                  ? 'bg-gray-100 border border-gray-300 cursor-not-allowed text-gray-400 opacity-60'
-                  : 'bg-white border border-[#EC1E24] hover:bg-red-50 cursor-pointer text-[#EC1E24]'
-                }
+                    ? 'bg-gray-100 border border-gray-300 cursor-not-allowed text-gray-400 opacity-60'
+                    : 'bg-white border border-[#EC1E24] hover:bg-red-50 cursor-pointer text-[#EC1E24]'
+                  }
                     `}
-            >
-              {/* Left Arrow Icon (←) */}
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-4 w-4"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth="2"
               >
-                <path strokeLinecap="round" strokeLinejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-              </svg>
-            </button>
+                {/* Left Arrow Icon (←) */}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-4 w-4"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+              </button>
 
-            {/* Custom Next Button (Gray Border when active) */}
-            <button
-              type="button"
-              onClick={navigateNext}
-              disabled={isEnd}
-              className={`
+              {/* Custom Next Button (Gray Border when active) */}
+              <button
+                type="button"
+                onClick={navigateNext}
+                disabled={isEnd}
+                className={`
                         w-8 h-8 rounded-full flex items-center justify-center 
                         transition-all duration-200 flex-shrink-0
                         ${isEnd
-                  ? 'bg-gray-100 border border-gray-300 cursor-not-allowed text-gray-400 opacity-60'
-                  : 'bg-white border border-gray-300 hover:border-[#EC1E24] hover:text-[#EC1E24] cursor-pointer text-gray-500'
-                }
+                    ? 'bg-gray-100 border border-gray-300 cursor-not-allowed text-gray-400 opacity-60'
+                    : 'bg-white border border-gray-300 hover:border-[#EC1E24] hover:text-[#EC1E24] cursor-pointer text-gray-500'
+                  }
                     `}
-            >
-              {/* Right Arrow Icon (→) */}
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-4 w-4"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth="2"
               >
-                <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-              </svg>
-            </button>
+                {/* Right Arrow Icon (→) */}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-4 w-4"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Swiper Carousel */}
-      <Swiper
-        ref={swiperRef}
-        modules={[Navigation, A11y]}
-        spaceBetween={30}
-        slidesPerView={1}
-        // Initialize Swiper and update state
-        onSwiper={(swiper) => {
-          swiperRef.current = { swiper };
-          updateProgress(swiper);
-        }}
-        // Update state on slide change
-        onSlideChange={updateProgress}
+        {/* Swiper Carousel */}
+        <Swiper
+          ref={swiperRef}
+          modules={[Navigation, A11y]}
+          spaceBetween={30}
+          slidesPerView={1}
+          // Initialize Swiper and update state
+          onSwiper={(swiper) => {
+            swiperRef.current = { swiper };
+            updateProgress(swiper);
+          }}
+          // Update state on slide change
+          onSlideChange={updateProgress}
 
-        // Responsive breakpoints for card display
-        breakpoints={{
-          640: {
-            slidesPerView: 2,
-            spaceBetween: 20,
-          },
-          1024: {
-            slidesPerView: 4,
-            spaceBetween: 30,
-          },
-        }}
-        className="mySwiper"
-      >
-        {helpCards && helpCards?.map((card) => (
-          <SwiperSlide >
-            <div className="h-80 border border-[#CECECE] p-6 flex flex-col justify-end bg-white shadow-sm hover:shadow-lg transition-shadow duration-300 rounded-[10px]">
-              <div className="min-h-[50%]">
-                {/* Title */}
-                <h3 className="text-xl font-semibold mb-3 text-[#282529]">
-                  {card.title}
-                </h3>
-                {/* Description (if exists) */}
-                {card.description && (
-                  <p className="text-gray-600">
-                    {card.description}
+          // Responsive breakpoints for card display
+          breakpoints={{
+            640: {
+              slidesPerView: 2,
+              spaceBetween: 20,
+            },
+            1024: {
+              slidesPerView: 4,
+              spaceBetween: 30,
+            },
+          }}
+          className="mySwiper"
+        >
+          {helpCards && helpCards?.map((card) => (
+            <SwiperSlide >
+              <div className="bg-white rounded-xl shadow-md border border-gray-100 transition-all duration-300 hover:shadow-lg">
+
+                {/* Image Section */}
+                <div className="relative h-48 w-full overflow-hidden rounded-t-xl">
+                  <Image
+                    src={Logo2}
+                    alt={card?.title}
+                    layout="fill"
+                    objectFit="cover"
+                    className="w-full h-full"
+                  />
+                </div>
+
+                {/* Content Section */}
+                <div className="p-5">
+
+                  <h3 className="text-xl font-semibold text-gray-800 mb-3">{card?.title}</h3>
+                  <p className="text-gray-600 text-sm mb-4 line-clamp-3">
+                    Online MBA courses are extremely popular in India right now. It is important for working professionals of junior, middle, and senior management levels....
                   </p>
-                )}
+                </div>
               </div>
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
-    </section>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
+    </div>
   );
 };
 
