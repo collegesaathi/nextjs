@@ -5,6 +5,10 @@ import { Navigation, A11y } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import UniversityCard from '../common/UniversityCard';
+import un1 from "../asserts/home/un1.png"
+import logoun from "../asserts/home/logoun.png"
+import Heading from '../common/Heading';
+
 
 export default function University() {
 
@@ -26,22 +30,29 @@ export default function University() {
   const [isEnd, setIsEnd] = useState(false);
 
   const updateProgress = (swiper) => {
-    console.log("swiper", swiper)
-    if (!swiper || swiper.slides.length === 0) return 0;
+    if (!swiper) return;
+
     const totalCards = universityData.length;
     const visibleSlides = swiper.params.slidesPerView;
-    const maxScrollableIndex = totalCards - Math.floor(visibleSlides);
 
-    if (maxScrollableIndex <= 0) {
-      setProgress(100);
-      return;
+    // Beginning arrow logic
+    if (visibleSlides === 3) {
+      setIsBeginning(false); // Desktop: Left arrow always active
+    } else {
+      setIsBeginning(swiper.isBeginning);
     }
 
-    const currentProgress = (swiper.activeIndex / maxScrollableIndex) * 100;
-    setProgress(Math.min(100, Math.max(0, currentProgress)));
+    setIsEnd(swiper.isEnd); // Right arrow normal
 
-    setIsBeginning(swiper.isBeginning);
-    setIsEnd(swiper.isEnd);
+    // Progress = (current visible end position / total items)
+    const currentVisibleEnd = swiper.activeIndex + visibleSlides;
+
+    let progressValue = (currentVisibleEnd / totalCards) * 100;
+
+    // Limit between 0–100
+    progressValue = Math.min(100, Math.max(0, progressValue));
+
+    setProgress(progressValue);
   };
 
   const navigatePrev = () => {
@@ -63,9 +74,7 @@ export default function University() {
     <div className="py-8 md:py-12 ">
       <div className="mx-auto container sm:container md:container lg:container xl:max-w-[1230px]  px-4">
         <div className="flex justify-between items-center mb-6">
-          <h1 className="text-2xl font-bold text-gray-800">
-            Leading Online <span className="text-red-600">DBA</span> Universities
-          </h1>
+          <Heading title={"Leading Online "} midtitle={"DBA"} lattitle={"Universities"} />
           <div className="flex items-center space-x-4">
             <div className={`w-[${progressBarTotalWidth}] h-1.5 bg-gray-300 rounded-full overflow-hidden`}>
               <div
@@ -142,7 +151,7 @@ export default function University() {
               spaceBetween: 20,
             },
             1024: {
-              slidesPerView: 4,
+              slidesPerView: 3,
               spaceBetween: 30,
             },
           }}
@@ -151,8 +160,10 @@ export default function University() {
           {universityData?.map((uni) => (
             <SwiperSlide >
               <UniversityCard
+                image={un1?.src}
                 universityName={uni.name}
                 description={uni.description}
+                logoun={logoun}
               />
             </SwiperSlide>
           ))}

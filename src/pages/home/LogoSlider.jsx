@@ -4,7 +4,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/autoplay";
 import { Autoplay } from "swiper/modules";
-import Group from "../asserts/home/Group.png";
 import Logo1 from "../asserts/icon/1714460449-university-image.jpg"
 import Logo2 from "../asserts/icon/1716465446-university-image.jpg"
 import Logo3 from "../asserts/icon/1737094952-university-image.png"
@@ -37,7 +36,7 @@ export default function LogoSlider() {
           breakpoints={{
             300: { slidesPerView: 2 },
             480: { slidesPerView: 2 },
-            768: { slidesPerView: 4 },
+            768: { slidesPerView: 3 },
             1024: { slidesPerView: 6 },
           }}
           modules={[Autoplay]}

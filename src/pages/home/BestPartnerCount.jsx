@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import Heading from "../common/Heading";
 
 const statsData = [
   {
@@ -72,42 +73,49 @@ export default function BestPartnerCount() {
   };
 
   return (
-    <div ref={sectionRef} className="max-w-7xl mx-auto p-4 md:p-8">
-      {/* Main Red Box */}
-      <div className="bg-red-600 text-white p-6 md:p-10 rounded-xl shadow-2xl">
-        <h2 className="text-center text-xl md:text-2xl font-semibold mb-8">
-          What makes Collegesathi the Best Search Partner for Online University?
-        </h2>
+    <div className="py-8 md:py-12 ">
+      <div ref={sectionRef} className="mx-auto container sm:container md:container lg:container xl:max-w-[1230px]  px-4">
+        <div className="bg-[#EC1E24] text-white p-4 rounded-lg">
+          <h2 className="text-center text-xl md:text-[20px] font-[400] font-poppins mb-8">
+            What makes Collegesathi the Best Search Partner for Online University?
+          </h2>
+          {/* Stats Grid */}
+<div className="grid grid-cols-2 lg:grid-cols-4 divide-y-2  lg:divide-y-0 lg:divide-x-2 divide-[#FFFFFF]">
+            {statsData.map((stat, index) => { 
+              const number = useCounter(stat.count, 2000);
+              return (
+                <div
+                  key={stat.title}
+                  className={`p-4 text-center   ${index < 2 ? "pb-8 lg:pb-4" : ""
+                    } ${index >= 2 ? "pt-8 lg:pt-4" : ""}`}
+                >
+                  {/* Animated Count */}
+                  <h2 className="text-[30px] md:text-[40px] lg:text-[50px] 
+               font-[600] font-poppins 
+               leading-none mb-2">
+                    {number.toLocaleString()}+
+                  </h2>
 
-        {/* Stats Grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 divide-y-2 lg:divide-y-0 lg:divide-x-2 divide-red-500">
-          {statsData.map((stat, index) => {
-            const number = useCounter(stat.count, 2000);
+                  {/* Title */}
+                  <p className="text-[13px] md:text-[16px] 
+              font-[400] 
+              font-poppins leading-none 
+              mb-1">
+                    {stat.title}
+                  </p>
 
-            return (
-              <div
-                key={stat.title}
-                className={`p-4 text-center ${
-                  index < 2 ? "pb-8 lg:pb-4" : ""
-                } ${index >= 2 ? "pt-8 lg:pt-4" : ""}`}
-              >
-                {/* Animated Count */}
-                <p className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-2">
-                  {number.toLocaleString()}+
-                </p>
-
-                {/* Title */}
-                <p className="text-lg md:text-xl font-bold mb-1">
-                  {stat.title}
-                </p>
-
-                {/* Description */}
-                <p className="text-sm opacity-90 leading-snug">
-                  {stat.description}
-                </p>
-              </div>
-            );
-          })}
+                  {/* Description */}
+                  <p className="text-[10px] 
+              font-[400] 
+              font-poppins 
+              text-white text-center 
+              leading-none">
+                    {stat.description}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </div>

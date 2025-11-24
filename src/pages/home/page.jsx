@@ -22,23 +22,25 @@ function Page() {
     return (<>
         <Layout>
             <Banner />
-            <Logo />
+            {/* <Logo />
             <LogoSlider />
-            <Programs />
-            <HelpSection />
-            <AdvantagesSection universities={[{ id: 1, name: "Amity", location: "Noida" }]} />
-            <University />
-            {/* <IndustryExpertsSection />
+            <Programs /> */}
             <BestPartnerCount />
-            <ExploreUniversities />
-            <Confusion />
+
+            {/* <FAQSection />
+            <ContactSection />
+
+            <HelpSection />
+            <University />
+            <Trending />
             <Blogs />
             <MediaCarousel />
             <AwardsCarousel />
             <QuickTipsCarousel />
-            <FAQSection />
-            <ContactSection />
-            <Trending /> */}
+            <AdvantagesSection universities={[{ id: 1, name: "Amity", location: "Noida" }]} />
+            <IndustryExpertsSection />
+            <ExploreUniversities />
+            <Confusion /> */}
         </Layout>
     </>);
 }

@@ -2,6 +2,7 @@
 
 import Aos from 'aos'
 import { useState, useEffect } from 'react'
+import Heading from '../common/Heading'
 
 export default function FAQSection() {
     const [faqs, setFaqs] = useState([
@@ -50,16 +51,9 @@ export default function FAQSection() {
     }, [])
 
     return (
-        <section className="py-16 px-4">
-            <div className="w-full lg:w-[1006px] px-0 md:px-4 mx-auto">
-                <h2
-                    className="text-[26px] font-bold font-poppins mb-10 text-[#363535] lg:text-left text-center"
-                    data-aos="fade-up"
-                    data-aos-duration="600"
-                >
-                    Frequently Asked Questions
-                </h2>
-
+        <div className="py-8 md:py-12 ">
+            <div className="mx-auto container sm:container md:container lg:container xl:max-w-[1230px]  px-4">
+                <Heading title={"Frequently Asked "} midtitle={"Questions"} />
                 {faqs.map((faq, index) => (
                     <div
                         key={index}
@@ -73,12 +67,12 @@ export default function FAQSection() {
                             onClick={() => toggle(index)}
                         >
                             <span
-                                className="font-poppins font-medium text-[14px] lg:text-[20px] md:leading-[100%] tracking-normal text-left text-[#282529] w-[70%] lg:w-[90%] leading-[24px]"
+                                className="font-poppins font-medium text-[12px] lg:text-[14px] md:leading-[100%] tracking-normal text-left text-[#282529] leading-[16px] md:leading-[18px]"
                             >
                                 {faq.question}
                             </span>
                             <span
-                                className={`w-[30px] h-[30px] lg:w-[62px] lg:h-[62px] flex items-center justify-center border border-[#ED2024] rounded-full transform transition-transform duration-200 text-[20px] md:text-[32px] text-[#ED2024] ${faq.open ? 'rotate-45' : ''
+                                className={`w-[30px] h-[30px] lg:w-[45px] lg:h-[45px] flex items-center justify-center border border-[#ED2024] rounded-full transform transition-transform duration-200 text-[20px] md:text-[32px] text-[#ED2024] ${faq.open ? 'rotate-45' : ''
                                     }`}
                             >
                                 <svg
@@ -103,12 +97,12 @@ export default function FAQSection() {
                         {/* Collapsible Content */}
                         <div
                             className={`transition-all duration-300 ease-out overflow-hidden ${faq.open
-                                    ? 'opacity-100 max-h-[500px]'
-                                    : 'opacity-0 max-h-0'
+                                ? 'opacity-100 max-h-[500px]'
+                                : 'opacity-0 max-h-0'
                                 }`}
                         >
                             {faq.open && (
-                                <div className="px-4 pb-4 font-poppins font-medium text-md leading-[100%] tracking-normal text-justify text-[#282529]">
+                                <div className="px-4 py-4 font-poppins font-medium text-[12px] lg:text-[14px] md:leading-[100%] tracking-normal text-left text-[#282529] leading-[16px] md:leading-[18px]">
                                     {faq.answer}
                                 </div>
                             )}
@@ -116,6 +110,6 @@ export default function FAQSection() {
                     </div>
                 ))}
             </div>
-        </section>
+        </div>
     )
 }

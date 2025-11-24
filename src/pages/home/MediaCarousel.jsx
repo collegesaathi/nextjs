@@ -3,6 +3,10 @@ import { useState, useRef, useEffect } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay } from 'swiper/modules'
 import 'swiper/css'
+import Media from "../asserts/home/Media.png"
+import Path from "../asserts/home/Path.png"
+import Heading from '../common/Heading'
+
 
 export default function MediaCarousel() {
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0)
@@ -134,20 +138,16 @@ export default function MediaCarousel() {
   return (
     <>
       {/* Desktop Version */}
-      <section className="py-16 bg-white  ">
-        <div
-          className="container mx-auto px-4"
+      <div className="py-8 md:py-12 ">
+        <div className="mx-auto container sm:container md:container lg:container xl:max-w-[1230px]  px-4"
           data-aos="fade-in"
           data-aos-duration="600"
           data-aos-delay="150"
           data-aos-once="true"
         >
+          <Heading title={""} midtitle={"Collegesathi "} lattitle={"in Media"} classes={"text-center"} />
           {/* Custom Header */}
-          <div className="text-center mb-12">
-            <h2 className="font-poppins text-[28px] md:text-[32px] font-semibold text-[#1D1F2C] leading-tight">
-              <span className="text-[#EC1E24]">Collegesathi</span> in Media
-            </h2>
-          </div>
+
 
           {/* Custom Carousel */}
           <div
@@ -162,7 +162,7 @@ export default function MediaCarousel() {
               centeredSlides={true}
               loop={true}
               autoplay={{
-                delay: 4000,
+                delay: 1000,
                 disableOnInteraction: false,
                 pauseOnMouseEnter: true
               }}
@@ -171,13 +171,13 @@ export default function MediaCarousel() {
               onSlideChange={onSlideChange}
               breakpoints={swiperBreakpoints}
             >
-              {mediaItems.map((item, index) => (
+              {mediaItems && mediaItems?.map((item, index) => (
                 <SwiperSlide key={item.id} className="pt-10">
                   <div
                     className={`
                       media-card w-[359px] rounded-[11px] border border-[#CECECE] bg-white shadow-[0px_4px_10px_0px_#00000014]
                       transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] transform
-                      hover:transform hover:-translate-y-[15px] hover:border-b-[3px] hover:border-[#EC1E24]
+                      hover:transform hover:-translate-y-[15px] hover:border-b-[3px] hover:border-b-[#EC1E24]
                       hover:shadow-[0_15px_25px_-5px_rgba(0,0,0,0.15),0_10px_10px_-5px_rgba(0,0,0,0.1)]
                       ${isMiddleSlide(index) ? 'active-slide border-b-2 border-b-[#EC1E24] transform -translate-y-[30px]' : ''}
                     `}
@@ -185,33 +185,32 @@ export default function MediaCarousel() {
                     {/* Media Image */}
                     <div className="relative overflow-hidden p-2">
                       <img
-                        src={item.image}
+                        src={Media?.src}
                         alt={item.title}
                         className="w-full h-[184px] object-cover transition-transform duration-300 rounded-[8px]"
                       />
                     </div>
 
                     {/* Media Content */}
-                    <div className="pt-2 px-5">
-                      <div className="w-full h-[20px] my-3">
-                        <img src={item.logo} alt="" />
+                    <div className="pt-2 px-3">
+                      <div className="w-full h-[40px] my-3">
+                        <img src={Path?.src} alt="" className='h-[40px]' />
                       </div>
-
                       {/* Title */}
                       <h3
                         className={`
-                          card-title font-semibold text-[18px] tracking-[0px] text-[#282529] mb-3 
+                          card-title font-poppins font-[600] text-[16px] md:text-[18px] tracking-[0px] text-[#282529] mb-3 
                           line-clamp-2 transition-colors duration-300 leading-relaxed
                           ${isMiddleSlide(index) ? 'hover:leading-[1.3]' : ''}
                         `}
                       >
-                        {item.title}
+                        {item?.title}
                       </h3>
 
                       {/* Description */}
                       <p
                         className={`
-                          card-description font-normal text-[14px] tracking-[0px] text-[#282529] mb-4 
+                          card-description font-[400] font-poppins text-[14px] tracking-[0px] text-[#282529] mb-4 
                           line-clamp-3 leading-relaxed
                           ${isMiddleSlide(index) ? 'hover:leading-[1.4]' : ''}
                         `}
@@ -239,7 +238,7 @@ export default function MediaCarousel() {
             </div>
           </div>
         </div>
-      </section>
+      </div>
     </>
   )
 }

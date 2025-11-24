@@ -23,14 +23,20 @@ export default function Programs() {
   };
 
   const navigateNext = () => {
+    console.log("desktop:", desktopSwiperRef.current);
+    console.log("mobile:", mobileSwiperRef.current);
     desktopSwiperRef.current?.slideNext();
     mobileSwiperRef.current?.slideNext();
   };
 
-  // ---------------------------
-  // 📌 Course Categories Data
-  // ---------------------------
+
   const courseCategories = [
+    { title: "Engineering", subtitle: "40 Courses" },
+    { title: "Management", subtitle: "25 Courses" },
+    { title: "Design", subtitle: "18 Courses" },
+    { title: "IT & Software", subtitle: "50 Courses" },
+    { title: "Medical", subtitle: "30 Courses" },
+    { title: "Law", subtitle: "15 Courses" },
     { title: "Engineering", subtitle: "40 Courses" },
     { title: "Management", subtitle: "25 Courses" },
     { title: "Design", subtitle: "18 Courses" },
@@ -39,9 +45,6 @@ export default function Programs() {
     { title: "Law", subtitle: "15 Courses" },
   ];
 
-  // ---------------------------
-  // 📌 Programs Data
-  // ---------------------------
   const onlinePrograms = [
     {
       title: "B.Tech",
@@ -83,7 +86,7 @@ export default function Programs() {
             <button
               type="button"
               onClick={navigatePrev}
-              className="w-[30px] h-[30px] border border-[#C9C9C9] bg-white rounded-full flex items-center justify-center hover:border-red-600"
+              className="cursor-pointer w-[30px] h-[30px] border border-[#C9C9C9] bg-white rounded-full flex items-center justify-center hover:border-red-600"
             >
               <FaCaretLeft size={24} className="!text-red-500 " />
             </button>
@@ -95,25 +98,26 @@ export default function Programs() {
                 spaceBetween={15}
                 loop={true}
                 autoplay={{ delay: 3000, disableOnInteraction: false }}
+                onSlideChange={(swiper) => setActiveCategory(swiper.activeIndex)}
                 onSwiper={(swiper) => (desktopSwiperRef.current = swiper)}
               >
                 {courseCategories.map((cat, i) => (
                   <SwiperSlide key={i} className="!w-auto">
                     <div
                       onClick={() => setActiveCategory(i)}
-                      className={`w-[190px] h-[54px] rounded-[6px] bg-white border transition-all cursor-pointer flex flex-col justify-center items-center ${activeCategory === i
+                      className={`w-[115px] h-[42px] md:w-[190px] md:h-[54px] rounded-[6px] bg-white border transition-all cursor-pointer flex flex-col justify-center items-center ${activeCategory === i
                         ? "border-[#EC1E24] shadow-md"
                         : "border-[#CECECE] hover:border-[#EC1E24]"
                         }`}
                     >
                       <h2
-                        className={`font-semibold text-[16px] ${activeCategory === i ? "text-[#EC1E24]" : "text-black"
+                        className={`font-[600] font-poppins text-[12px] md:text-[16px] ${activeCategory === i ? "text-[#EC1E24]" : "text-black"
                           }`}
                       >
                         {cat.title}
                       </h2>
                       <p
-                        className={`text-[10px] ${activeCategory === i ? "text-[#EC1E24]" : "text-black"
+                        className={`font-[400] font-poppins text-[10px] ${activeCategory === i ? "text-[#EC1E24]" : "text-black"
                           }`}
                       >
                         {cat.subtitle}
@@ -124,29 +128,34 @@ export default function Programs() {
               </Swiper>
             </div>
 
-            {/* Next */}
             <button
               type="button"
               onClick={navigateNext}
-              className="w-[30px] h-[30px] border border-[#C9C9C9] bg-white rounded-full flex items-center justify-center hover:border-red-600"
+              className="cursor-pointer w-[30px] h-[30px] border border-[#C9C9C9] bg-white rounded-full flex items-center justify-center hover:border-red-600"
             >
               <FaCaretRight size={24} className="!text-red-500" />
 
             </button>
           </div>
         </div>
-        <div className="w-full rounded-[25px] bg-[#FFFFFF] shadow-inner p-[28px] relative my-6 md:my-10 border border-[#23232340]/25 ">
+        <div className="w-full rounded-[25px] bg-[#FFFFFF] shadow-inner p-[18px] md:p-[28px] relative my-3 md:my-6 border border-[#23232340]/25 ">
 
           {/* Online Badge */}
-          <div className="absolute w-full flex justify-center -top-3">
-            <div className="w-[92px] h-[22px] bg-red-600 text-white rounded-[11px] flex items-center justify-center">
+          <div className="
+  absolute w-full flex justify-center 
+  -top-3 
+  left-1/2 -translate-x-1/2 
+  lg:left-auto lg:translate-x-0
+">
+            <h4 className="w-[92px] h-[22px] bg-[#EC1E24] text-white rounded-[11px] flex items-center justify-center">
               Online
-            </div>
+            </h4>
           </div>
 
+
           {/* Grid */}
-          <div className="grid grid-cols-2 lg:grid-cols-6 gap-6">
-            {onlinePrograms.map((p, i) => (
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-6">
+            {onlinePrograms && onlinePrograms?.map((p, i) => (
               <div
                 key={i}
                 className="max-w-[168px] h-[147px] rounded-[11px] border border-[#CECECE] flex flex-col justify-between cursor-pointer hover:shadow-lg transition"
@@ -154,7 +163,7 @@ export default function Programs() {
                 {/* Badge */}
                 <div className="flex justify-center ">
                   <div
-                    className={`w-[75px] h-[15px] text-[10px] rounded-bl-md rounded-br-md font-[400] font-[Poppins]  text-center flex items-center justify-center ${p.badge.type === "trending"
+                    className={`w-[75px] h-[15px] text-[10px] rounded-bl-md rounded-br-md font-[400] font-poppins  text-center flex items-center justify-center ${p.badge.type === "trending"
                       ? "bg-[#D9F9A5] text-[#0B8F4F]"
                       : "bg-[#F7F6F6] text-[#282529]"
                       }`}
@@ -165,7 +174,7 @@ export default function Programs() {
 
                 <div className="flex flex-col items-center justify-center space-y-2 mt-3">
                   <Image src={MCA} width={32} height={32} alt={p.title} />
-                  <h2 className=" font-[Poppins]
+                  <h2 className=" font-poppins
           font-[600]
           text-[14px] md:text-[16px]
           leading-[100%]
@@ -175,7 +184,7 @@ export default function Programs() {
                 </div>
 
                 <div className="p-2">
-                  <button className="w-full bg-[#EC1E24] text-white rounded-[12px] font-[400] font-[Poppins] text-[12px] h-[18px] hover:bg-red-700 text-center">
+                  <button className="w-full bg-[#EC1E24] text-white rounded-[12px] font-[400] font-poppins text-[12px] h-[18px] hover:bg-red-700 text-center">
                     View Program
                   </button>
                 </div>

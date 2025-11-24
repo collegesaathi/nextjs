@@ -6,7 +6,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import Logo2 from "../asserts/icon/1716465446-university-image.jpg"
 import Image from 'next/image';
-
+import Heading from '../common/Heading';
 // Data for the cards
 const helpCards = [
   {
@@ -69,28 +69,29 @@ const HelpSection = () => {
   const [isEnd, setIsEnd] = useState(false);
 
   const updateProgress = (swiper) => {
-    console.log("swiper", swiper)
-    // Calculate the progress based on the current slide position
-    if (!swiper || swiper.slides.length === 0) return 0;
+    if (!swiper) return;
 
-    // Use realIndex for progress calculation if loop is enabled, 
-    // but since we are not using 'loop', use the simple index logic:
     const totalCards = helpCards.length;
     const visibleSlides = swiper.params.slidesPerView;
-    const maxScrollableIndex = totalCards - Math.floor(visibleSlides);
 
-    if (maxScrollableIndex <= 0) {
-      setProgress(100);
-      return;
+    if (visibleSlides === 4) {
+      setIsBeginning(false);
+    } else {
+      setIsBeginning(swiper.isBeginning);
     }
 
-    const currentProgress = (swiper.activeIndex / maxScrollableIndex) * 100;
-    setProgress(Math.min(100, Math.max(0, currentProgress)));
+    setIsEnd(swiper.isEnd); 
 
-    // Update navigation states
-    setIsBeginning(swiper.isBeginning);
-    setIsEnd(swiper.isEnd);
+    const currentVisibleEnd = swiper.activeIndex + visibleSlides;
+
+    let progressValue = (currentVisibleEnd / totalCards) * 100;
+
+    // Limit between 0–100
+    progressValue = Math.min(100, Math.max(0, progressValue));
+
+    setProgress(progressValue);
   };
+
 
   const navigatePrev = () => {
     swiperRef.current?.swiper.slidePrev();
@@ -99,7 +100,7 @@ const HelpSection = () => {
   const navigateNext = () => {
     swiperRef.current?.swiper.slideNext();
   };
-  const progressBarTotalWidth = '180px';
+  const progressBarTotalWidth = '220px';
 
   const progressWidthStyle = {
     width: `${progress}%`,
@@ -110,17 +111,20 @@ const HelpSection = () => {
     <div className="py-8 md:py-12 ">
       <div className="mx-auto container sm:container md:container lg:container xl:max-w-[1230px]  px-4">
 
-        <div className="flex justify-between items-center mb-10">
-          <h2 className="text-3xl sm:text-4xl font-bold text-[#282529]">
-            Have Questions? We can <span className="text-[#EC1E24]">help!</span>
-          </h2>
-          <div className="flex items-center space-x-4">
-            <div className={`w-[${progressBarTotalWidth}] h-1.5 bg-gray-300 rounded-full overflow-hidden`}>
+        <div className="flex flex-wrap md:justify-between items-center mb-2 md:mb-0">
+          <Heading title={"Have Questions? We can "} midtitle={"help!"} />
+          <div className="flex items-center space-x-6 md:space-x-4">
+            <div className="flex justify-center w-full">
               <div
-                className="h-full bg-[#EC1E24] transition-all duration-300 ease-in-out"
-                style={progressWidthStyle}
-              ></div>
+                className={`w-[${progressBarTotalWidth}] h-1.5 bg-gray-300 rounded-full overflow-hidden mb-3 md:mb-0`}
+              >
+                <div
+                  className="h-full bg-[#EC1E24] transition-all duration-300 ease-in-out"
+                  style={progressWidthStyle}
+                ></div>
+              </div>
             </div>
+
 
             <div className="flex space-x-2">
               <button
@@ -178,7 +182,6 @@ const HelpSection = () => {
             </div>
           </div>
         </div>
-
         {/* Swiper Carousel */}
         <Swiper
           ref={swiperRef}
@@ -211,7 +214,7 @@ const HelpSection = () => {
               <div className="bg-white rounded-xl shadow-md border border-gray-100 transition-all duration-300 hover:shadow-lg">
 
                 {/* Image Section */}
-                <div className="relative h-48 w-full overflow-hidden rounded-t-xl">
+                <div className="relative md:h-[200px] w-full overflow-hidden rounded-t-xl">
                   <Image
                     src={Logo2}
                     alt={card?.title}
@@ -224,10 +227,9 @@ const HelpSection = () => {
                 {/* Content Section */}
                 <div className="p-5">
 
-                  <h3 className="text-xl font-semibold text-gray-800 mb-3">{card?.title}</h3>
-                  <p className="text-gray-600 text-sm mb-4 line-clamp-3">
-                    Online MBA courses are extremely popular in India right now. It is important for working professionals of junior, middle, and senior management levels....
-                  </p>
+                  <h3 className="text-[16px] md:text-[18px] font-[600] text-[#282529] font-poppins mb-1">{card?.title}</h3>
+                  <p className="text-[12px] md:text-[14px] font-[400] text-[#282529] font-poppins mb-3 line-clamp-3">
+                    {card?.description}                  </p>
                 </div>
               </div>
             </SwiperSlide>

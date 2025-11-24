@@ -3,7 +3,8 @@ import { useState, useRef, useEffect } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay } from 'swiper/modules'
 import 'swiper/css'
-import Group from "../asserts/home/Group.png"
+import Group from "../asserts/home/calling.png"
+import Heading from '../common/Heading'
 
 
 export default function QuickTipsCarousel() {
@@ -107,7 +108,7 @@ export default function QuickTipsCarousel() {
 
   const onSlideChange = (swiper) => {
     setCurrentSlideIndex(swiper.realIndex)
-    
+
     // Force update of middle slide detection
     setTimeout(() => {
       setWindowWidth(window.innerWidth)
@@ -150,27 +151,22 @@ export default function QuickTipsCarousel() {
       video.currentTime = 0 // Reset to beginning
     }
   }
-
-  // Check if slide is the middle/active slide
   const isMiddleSlide = (index) => {
     if (windowWidth >= 1024) {
-      // Desktop: 5 items visible, middle item is at index 2 relative to current position
       const visibleStartIndex = currentSlideIndex
-      const middleOffset = 2 // Middle of 5 items (0,1,2,3,4)
+      const middleOffset = 2 
       const middleIndex = visibleStartIndex + middleOffset
       const normalizedIndex = middleIndex % tipItems.length
       const isActive = index === normalizedIndex
       return isActive
     } else if (windowWidth >= 768) {
-      // Tablet: 3 items visible, middle item is at index 1 relative to current position
       const visibleStartIndex = currentSlideIndex
-      const middleOffset = 1 // Middle of 3 items (0,1,2)
+      const middleOffset = 1 
       const middleIndex = visibleStartIndex + middleOffset
       const normalizedIndex = middleIndex % tipItems.length
       const isActive = index === normalizedIndex
       return isActive
     } else {
-      // Mobile: 1-2 items visible, active item is the current slide or next slide
       const isActive = index === currentSlideIndex || index === (currentSlideIndex + 1) % tipItems.length
       return isActive
     }
@@ -178,96 +174,86 @@ export default function QuickTipsCarousel() {
 
   return (
     <>
-      {/* Desktop Version */}
-      <section className="py-16 hidden lg:block">
-        <div
-          className="mx-auto px-4"
-          data-aos="fade-right"
-          data-aos-duration="500"
-          data-aos-delay="200"
-          data-aos-once="true"
-        >
-          {/* Custom Header */}
-          <div className="text-center mb-12">
-            <h2 className="font-poppins text-[28px] md:text-[32px] font-semibold text-[#1D1F2C] leading-tight">
-              Quick Tips & <span className="text-[#EC1E24]">Insights</span>
-            </h2>
-          </div>
+      <div className="py-8 md:py-12 ">
+        <div className="mx-auto container sm:container md:container lg:container xl:max-w-[1230px]  px-4">
+  <div className="flex justify-between items-center mb-6">
+              <Heading title={"Quick Tips & Insights"} />
+            </div>
+       
 
-          {/* Custom Carousel */}
-          <div 
-            className={`w-full mx-auto ${isAutoplayPaused ? 'carousel-paused' : ''}`}
-            onMouseEnter={pauseAutoplay}
-            onMouseLeave={resumeAutoplay}
+          <div
+            data-aos="fade-right"
+            data-aos-duration="500"
+            data-aos-delay="200"
+            data-aos-once="true"
           >
-            {/* Swiper Container */}
-            <Swiper
-              slidesPerView={5}
-              spaceBetween={20}
-              centeredSlides={false}
-              loop={true}
-              autoplay={{
-                delay: 3000,
-                disableOnInteraction: false,
-                pauseOnMouseEnter: true
-              }}
-              modules={[Autoplay]}
-              onSwiper={onSwiper}
-              onSlideChange={onSlideChange}
-              breakpoints={swiperBreakpoints}
+          
+            {/* Custom Carousel */}
+            <div
+              className={`w-full mx-auto ${isAutoplayPaused ? 'carousel-paused' : ''}`}
+              onMouseEnter={pauseAutoplay}
+              onMouseLeave={resumeAutoplay}
             >
-              {tipItems.map((item, index) => (
-                <SwiperSlide key={item.id} className="pt-10 my-10">
-                  <div
-                    className={`
+              {/* Swiper Container */}
+              <Swiper
+                slidesPerView={5}
+                spaceBetween={20}
+                centeredSlides={false}
+                loop={true}
+                autoplay={{
+                  delay: 3000,
+                  disableOnInteraction: false,
+                  pauseOnMouseEnter: true
+                }}
+                modules={[Autoplay]}
+                onSwiper={onSwiper}
+                onSlideChange={onSlideChange}
+                breakpoints={swiperBreakpoints}
+              >
+                {tipItems.map((item, index) => (
+                  <SwiperSlide key={item.id} className="pt-5 my-5">
+                    <div
+                      className={`
                       tip-card transition-all duration-300 cursor-pointer relative group
                       ${isMiddleSlide(index) ? 'active-slide transform -translate-y-[30px]' : ''}
                     `}
-                  >
-                    {/* Tip Video */}
-                    <div className="relative">
-                      <video
-                        src={item.video}
-                        poster={item.poster}
-                        className="w-full h-auto transition-transform duration-300 relative z-10 rounded-lg"
-                        muted
-                        loop
-                        preload="metadata"
-                        onMouseEnter={playVideo}
-                        onMouseLeave={pauseVideo}
-                      >
-                        Your browser does not support the video tag.
-                      </video>
-
-                      <div 
-                        className={`relative top-[-20px] transition-opacity duration-300 ${
-                          isMiddleSlide(index) ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
-                        }`}
-                      >
-                        <img src="/img/2.svg" alt="" className="w-full h-auto" />
+                    >
+                      {/* Tip Video */}
+                      <div className="relative">
+                        <video
+                          src={item.video}
+                          poster={item.poster}
+                          className="w-full h-auto transition-transform duration-300 relative z-10 rounded-lg"
+                          muted
+                          loop
+                          preload="metadata"
+                          onMouseEnter={playVideo}
+                          onMouseLeave={pauseVideo}
+                        >
+                        </video>
                       </div>
                     </div>
-                  </div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
 
-            {/* Pagination Dots */}
-            <div className="flex justify-center mt-8 space-x-2">
-              {tipItems.slice(0, 5).map((_, index) => (
-                <div
-                  key={`dot-${index}`}
-                  onClick={() => goToSlide(index)}
-                  className={`
+              {/* Pagination Dots */}
+              <div className="flex justify-center mt-8 space-x-2">
+                {tipItems.slice(0, 5).map((_, index) => (
+                  <div
+                    key={`dot-${index}`}
+                    onClick={() => goToSlide(index)}
+                    className={`
                     w-[9px] h-[9px] rounded-full cursor-pointer transition-all duration-300
                     ${currentSlideIndex === index ? 'bg-[#EC1E24]' : 'bg-[#DFDFDF]'}
                   `}
-                ></div>
-              ))}
+                  ></div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
-      </section>
+      </div>
     </>
   )
 }
