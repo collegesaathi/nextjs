@@ -80,7 +80,7 @@ const HelpSection = () => {
       setIsBeginning(swiper.isBeginning);
     }
 
-    setIsEnd(swiper.isEnd); 
+    setIsEnd(swiper.isEnd);
 
     const currentVisibleEnd = swiper.activeIndex + visibleSlides;
 
@@ -106,6 +106,47 @@ const HelpSection = () => {
     width: `${progress}%`,
   };
 
+  const handleAction = (item) => {
+    // Handle action button clicks
+    console.log('Action clicked:', item.action);
+
+    // You can handle routing or other actions here
+    switch (item.action) {
+      case 'emi-options':
+        // Navigate to EMI page or show modal
+        console.log('Navigating to EMI options...');
+        break;
+      case 'budget-help':
+        // Show budget help form
+        console.log('Opening budget help...');
+        break;
+      case 'university-guide':
+        // Navigate to universities page
+        console.log('Opening university guide...');
+        break;
+      case 'placement-info':
+        // Show placement information
+        console.log('Showing placement info...');
+        break;
+      case 'career-guidance':
+        // Open career guidance section
+        console.log('Opening career guidance...');
+        break;
+      case 'scholarship-info':
+        // Show scholarship information
+        console.log('Showing scholarship info...');
+        break;
+      default:
+        break;
+    }
+  };
+
+  const handleKeyDown = (event, item) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      handleAction(item);
+    }
+  };
 
   return (
     <div className="py-8 md:py-12 ">
@@ -209,27 +250,54 @@ const HelpSection = () => {
           }}
           className="mySwiper"
         >
-          {helpCards && helpCards?.map((card) => (
-            <SwiperSlide >
-              <div className="bg-white rounded-xl shadow-md border border-gray-100 transition-all duration-300 hover:shadow-lg">
+          {helpCards && helpCards?.map((item) => (
+            <SwiperSlide key={item.id}>
+              <div className="px-2 py-4"> {/* Add padding to SwiperSlide content */}
+                <div
+                  className="help-card w-full h-[190px] lg:h-[263px] border border-[#CECECE] p-4 flex flex-col justify-between cursor-pointer group relative rounded-lg overflow-visible"
+                  onClick={() => handleAction(item)}
+                  onKeyDown={(e) => handleKeyDown(e, item)}
+                  tabIndex={0}
+                  role="button"
+                  aria-label={`${item.title} - ${item.description}`}
+                >
+                  {/* Icon Section */}
+                  <div className="flex justify-center lg:justify-start mb-2 lg:mb-0">
+                    <img
+                      src={item.icon}
+                      alt={item.title}
+                      className="w-[80px] h-auto lg:w-[121px] transition-transform duration-300 group-hover:scale-110"
+                    />
+                  </div>
 
-                {/* Image Section */}
-                <div className="relative md:h-[200px] w-full overflow-hidden rounded-t-xl">
-                  <Image
-                    src={Logo2}
-                    alt={card?.title}
-                    layout="fill"
-                    objectFit="cover"
-                    className="w-full h-full"
-                  />
-                </div>
+                  {/* Text Content */}
+                  <div className="pb-3 text-center lg:text-left">
+                    <h2 className="font-semibold text-[14px] leading-5 mb-2 lg:text-[18px] lg:leading-6 text-[#282529] lg:mb-3 transition-colors duration-300 group-hover:text-[#EC1E24]">
+                      {item.title}
+                    </h2>
+                    <p className="font-normal text-[10px] lg:text-[14px] leading-relaxed tracking-[0px] text-[#282529] opacity-80 group-hover:opacity-100 transition-opacity duration-300">
+                      {item.description}
+                    </p>
+                  </div>
 
-                {/* Content Section */}
-                <div className="p-5">
+                  {/* Action Button */}
+                  <div className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+                    <div className="w-8 h-8 bg-[#EC1E24] rounded-full flex items-center justify-center text-white text-sm group-hover:bg-gradient-to-br group-hover:from-[#EC1E24] group-hover:to-[#ff4757] group-hover:shadow-lg group-hover:shadow-[#EC1E24]/40">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-4 w-4"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                      </svg>
+                    </div>
+                  </div>
 
-                  <h3 className="text-[16px] md:text-[18px] font-[600] text-[#282529] font-poppins mb-1">{card?.title}</h3>
-                  <p className="text-[12px] md:text-[14px] font-[400] text-[#282529] font-poppins mb-3 line-clamp-3">
-                    {card?.description}                  </p>
+                  {/* Hover Background Effect */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#EC1E24]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-lg" />
                 </div>
               </div>
             </SwiperSlide>

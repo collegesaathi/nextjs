@@ -17,30 +17,30 @@ import Programs from "./Programs";
 import QuickTipsCarousel from "./QuickTipsCarousel";
 import Trending from "./Trending";
 import University from "./University";
+import UnlimitedSection from "./UnlimitesSection";
 
 function Page() {
     return (<>
         <Layout>
             <Banner />
-            {/* <Logo />
+            <Logo />
             <LogoSlider />
-            <Programs /> */}
-            <BestPartnerCount />
-
-            {/* <FAQSection />
-            <ContactSection />
-
+            <Programs />
             <HelpSection />
-            <University />
-            <Trending />
+            <AdvantagesSection universities={[{ id: 1, name: "Amity", location: "Noida" }]} />
+            {/* <University /> */}
+            {/* <IndustryExpertsSection /> */}
+            <ExploreUniversities />
+            <BestPartnerCount />
+            {/* <Trending /> */}
+            <Confusion />
             <Blogs />
-            <MediaCarousel />
+            {/* <MediaCarousel /> */}
             <AwardsCarousel />
             <QuickTipsCarousel />
-            <AdvantagesSection universities={[{ id: 1, name: "Amity", location: "Noida" }]} />
-            <IndustryExpertsSection />
-            <ExploreUniversities />
-            <Confusion /> */}
+            <FAQSection />
+            <ContactSection />
+            <UnlimitedSection />
         </Layout>
     </>);
 }

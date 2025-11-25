@@ -348,36 +348,7 @@ export default function ExploreUniversities() {
             <div className="absolute top-0 left-0 h-[20px] w-full bg-[linear-gradient(90deg,rgba(255,255,255,0.0001)_-57.93%,#FFF6F6_75.86%)] blur-lg"></div>
           </div>
 
-          {/* Mobile Swiper Carousel */}
-          <div className="mt-8">
-            <h3 className="text-center text-xl font-semibold text-[#1D1F2C] mb-6">
-              Featured Universities
-            </h3>
-            <Swiper
-              modules={[Pagination, Autoplay]}
-              spaceBetween={20}
-              slidesPerView={2}
-              pagination={{ clickable: true }}
-              autoplay={{ delay: 3000 }}
-              loop={true}
-              className="mobile-featured-swiper"
-            >
-              {Object.values(shuffledMLogos).filter(logo => logo.logo).map((university, index) => (
-                <SwiperSlide key={index}>
-                  <div className="bg-white rounded-xl p-4 shadow-lg hover:shadow-xl transition-shadow duration-300 h-40 flex flex-col items-center justify-center">
-                    <img 
-                      src={university.logo} 
-                      alt={university.name}
-                      className="max-h-16 max-w-full object-contain mb-3"
-                    />
-                    <h4 className="text-sm font-semibold text-center text-gray-800">
-                      {university.name}
-                    </h4>
-                  </div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          </div>
+       
         </div>
       </section>
     </>

@@ -33,22 +33,21 @@ export default function Logo() {
                 {/* Desktop */}
                 <div className="flex justify-between items-center h-full gap-5">
                     <div className="
-    w-[273px] h-auto 
-    border-2 border-[#FFB8B8] 
-    rounded-[19px] 
-    bg-white 
-    flex flex-col lg:flex-row
-    items-center lg:items-start
-    px-2 py-2
-    md:px-3 md:py-4 gap-2 md:gap-4 
-">
+                            w-[273px] h-auto 
+                            border-2 border-[#FFB8B8] 
+                            rounded-[19px] 
+                            bg-white 
+                            flex flex-col lg:flex-row
+                            items-center lg:items-start
+                            px-2 py-2
+                            md:px-3 md:py-4 gap-2 md:gap-4 ">
                         {/* ICON */}
                         <div className="
-        w-[40px] h-[40px] md:w-[62px] md:h-[62px] 
-        rounded-full 
-        bg-gradient-to-b from-[#AE1014] to-[#EC1E24] 
-        flex items-center justify-center
-    ">
+                            w-[40px] h-[40px] md:w-[62px] md:h-[62px] 
+                            rounded-full 
+                            bg-gradient-to-b from-[#AE1014] to-[#EC1E24] 
+                            flex items-center justify-center
+                                                              ">
                             <svg width="22" height="25" viewBox="0 0 22 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M4.68535 6.23886H16.3625V1.4509H17.5398V5.61014H18.9814V1.4509H20.2549V0H0.792969V1.4509H4.68535V6.23886Z" fill="white" />
                                 <path d="M6.12891 9.16729C6.12891 11.6074 8.10138 13.5925 10.5259 13.5925C12.9503 13.5925 14.9228 11.6074 14.9228 9.16729V7.68994H6.12891V9.16729Z" fill="white" />
@@ -66,13 +65,13 @@ export default function Logo() {
 
 
                     <div className="w-[273px] h-auto 
-    border-2 border-[#FFB8B8] 
-    rounded-[19px] 
-    bg-white 
-    flex flex-col lg:flex-row
-    items-center lg:items-start
-    px-2 py-2
-    md:px-3 md:py-4 gap-2 md:gap-4 ">
+                        border-2 border-[#FFB8B8] 
+                        rounded-[19px] 
+                        bg-white 
+                        flex flex-col lg:flex-row
+                        items-center lg:items-start
+                        px-2 py-2
+                        md:px-3 md:py-4 gap-2 md:gap-4 ">
                         <div className="  w-[40px] h-[40px] md:w-[62px] md:h-[62px] 
         rounded-full 
         bg-gradient-to-b from-[#AE1014] to-[#EC1E24] 
