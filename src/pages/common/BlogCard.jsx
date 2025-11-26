@@ -30,7 +30,7 @@ const BlogCard = ({ title, imageSrc, topText, date, source, views, shares, isAct
             {/* Blog Content Section */}
             <div className="p-1 flex-grow flex flex-col justify-between">
                 <div>
-                    <h3 className="font-poppins font-[600] text-[16px] md:text-[18px] text-[#282529] mt-2  mb-4">
+                    <h3 className="font-poppins           font-semibold text-[16px] md:text-[18px] text-[#282529] mt-2  mb-4">
                         {title}
                     </h3>
                     <p className="font-poppins font-[400] text-[14px] text-[#282529] line-clamp-3 mb-4">

@@ -138,7 +138,7 @@ export default function MediaCarousel() {
   return (
     <>
       {/* Desktop Version */}
-      <div className="py-8 md:py-12 ">
+      <div className="py-4 md:py-8 ">
         <div className="mx-auto container sm:container md:container lg:container xl:max-w-[1230px]  px-4"
           data-aos="fade-in"
           data-aos-duration="600"
@@ -199,7 +199,7 @@ export default function MediaCarousel() {
                       {/* Title */}
                       <h3
                         className={`
-                          card-title font-poppins font-[600] text-[16px] md:text-[18px] tracking-[0px] text-[#282529] mb-3 
+                          card-title font-poppins           font-semibold text-[16px] md:text-[18px] tracking-[0px] text-[#282529] mb-3 
                           line-clamp-2 transition-colors duration-300 leading-relaxed
                           ${isMiddleSlide(index) ? 'hover:leading-[1.3]' : ''}
                         `}

@@ -9,16 +9,13 @@ import ContactSection from "./ContactSection";
 import ExploreUniversities from "./ExploreUniversities";
 import FAQSection from "./FAQSection";
 import HelpSection from "./HelpSection";
-import IndustryExpertsSection from "./IndustryExperts";
 import Logo from "./Logo";
 import LogoSlider from "./LogoSlider";
-import MediaCarousel from "./MediaCarousel";
 import Programs from "./Programs";
 import QuickTipsCarousel from "./QuickTipsCarousel";
-import Trending from "./Trending";
 import University from "./University";
-import UnlimitedSection from "./UnlimitesSection";
-
+import IndustryExpertsSection  from "./IndustryExperts";
+import Trending from "./Trending";
 function Page() {
     return (<>
         <Layout>
@@ -27,20 +24,19 @@ function Page() {
             <LogoSlider />
             <Programs />
             <HelpSection />
-            <AdvantagesSection universities={[{ id: 1, name: "Amity", location: "Noida" }]} />
+            {/* <AdvantagesSection universities={[{ id: 1, name: "Amity", location: "Noida" }]} /> */}
             {/* <University /> */}
             {/* <IndustryExpertsSection /> */}
             <ExploreUniversities />
             <BestPartnerCount />
-            {/* <Trending /> */}
+            <Trending />
             <Confusion />
             <Blogs />
             {/* <MediaCarousel /> */}
-            <AwardsCarousel />
+            {/* <AwardsCarousel /> */}
             <QuickTipsCarousel />
             <FAQSection />
             <ContactSection />
-            <UnlimitedSection />
         </Layout>
     </>);
 }

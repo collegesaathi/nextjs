@@ -138,7 +138,7 @@ export default function AwardsCarousel() {
     return (
         <>
             {/* Desktop Version */}
-            <div className="py-8 md:py-12 ">
+            <div className="py-4 md:py-8 ">
                 <div className="mx-auto container sm:container md:container lg:container xl:max-w-[1230px]  px-4">
 
                     <div className="flex flex-wrap md:justify-between items-center mb-2 md:mb-0">

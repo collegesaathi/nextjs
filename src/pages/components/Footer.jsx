@@ -20,7 +20,7 @@ export default function Footer() {
   return (
     <>
       {/* Desktop Version */}
-      <div className="py-8 md:py-12 bg-[#001136]">
+      <div className="py-4 md:py-8 bg-[#001136]">
         <div className="mx-auto container sm:container md:container lg:container xl:max-w-[1230px]   px-4">
 
            <div class="w-full mx-auto relative h-[108px] block lg:hidden ">
@@ -171,7 +171,7 @@ export default function Footer() {
 
               {/* Company Links */}
               <div className="w-full sm:w-[60%] md:w-[278px]">
-                <h2 className="font-poppins font-[600] text-[16px] md:text-[14px] text-white">Company</h2>
+                <h2 className="font-poppins           font-semibold text-[16px] md:text-[14px] text-white">Company</h2>
                 <div className="w-full bg-[#EC1E24] h-[1px] my-3"></div>
 
                 <ul className="
@@ -205,7 +205,7 @@ export default function Footer() {
 
               {/* Quick Links */}
               <div className="w-full sm:w-[60%] md:w-[278px]">
-                <h2 className="font-poppins font-[600] text-[16px] md:text-[14px] text-white">Quick Links</h2>
+                <h2 className="font-poppins           font-semibold text-[16px] md:text-[14px] text-white">Quick Links</h2>
                 <div className="w-full bg-[#EC1E24] h-[1px] my-3"></div>
 
                 <ul className="
@@ -335,7 +335,7 @@ const SocialIcon = ({ platform }) => {
 // Program Section Component
 const ProgramSection = ({ title, links }) => (
   <div>
-    <h3 className="font-poppins font-[600] text-[14px] tracking-[0px]   leading-[38px] text-white mb-3.5">
+    <h3 className="font-poppins           font-semibold text-[14px] tracking-[0px]   leading-[38px] text-white mb-3.5">
       {title}
     </h3>
     <ul className="font-poppins font-[400] text-[14px] leading-[38px] tracking-[0px] text-white space-y-2">
@@ -357,7 +357,7 @@ const ProgramSection = ({ title, links }) => (
 // Specialization Section Component
 const SpecializationSection = ({ title, links }) => (
   <div>
-    <h4 className="font-poppins font-[600] text-[14px] tracking-[0px]   leading-[38px] text-white mb-3.5">
+    <h4 className="font-poppins           font-semibold text-[14px] tracking-[0px]   leading-[38px] text-white mb-3.5">
       {title}
     </h4>
     <ul className="font-poppins font-[400] text-[14px] leading-[38px] tracking-[0px] text-white space-y-2">
@@ -378,7 +378,7 @@ const SpecializationSection = ({ title, links }) => (
 // Detailed Specialization Section Component
 const DetailedSpecializationSection = ({ title, items }) => (
   <div>
-    <h3 className="font-poppins font-[600] text-[14px]   leading-[38px] tracking-[0px] text-white mb-3.5">
+    <h3 className="font-poppins           font-semibold text-[14px]   leading-[38px] tracking-[0px] text-white mb-3.5">
       {title}
     </h3>
     <ul className="font-poppins font-[400] text-[14px] leading-[38px] tracking-[0px] text-white space-y-2">

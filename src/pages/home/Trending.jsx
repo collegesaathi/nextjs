@@ -9,7 +9,7 @@ import 'swiper/css/navigation';
 import Heading from '../common/Heading';
 import MBA from "../asserts/home/MBA.png"
 export default function Trending() {
-  const [activeIndex, setActiveIndex] = useState(1);
+    const [activeIndex, setActiveIndex] = useState(1);
     const programData = [
         { id: 1, title: 'Data Science', tag: 'Transformative', rating: 5.0, imageSrc: '/images/data-science.jpg' },
         { id: 2, title: 'Project Management', tag: 'Focused', rating: 3.5, imageSrc: '/images/project-management.jpg' },
@@ -27,31 +27,31 @@ export default function Trending() {
     const [isBeginning, setIsBeginning] = useState(true);
     const [isEnd, setIsEnd] = useState(false);
 
-     const updateProgress = (swiper) => {
-    if (!swiper) return;
+    const updateProgress = (swiper) => {
+        if (!swiper) return;
 
-    const totalCards = programData?.length;
-    const visibleSlides = swiper.params.slidesPerView;
+        const totalCards = programData?.length;
+        const visibleSlides = swiper.params.slidesPerView;
 
-    // Beginning arrow logic
-    if (visibleSlides === 3) {
-      setIsBeginning(false); // Desktop: Left arrow always active
-    } else {
-      setIsBeginning(swiper.isBeginning);
-    }
+        // Beginning arrow logic
+        if (visibleSlides === 3) {
+            setIsBeginning(false); // Desktop: Left arrow always active
+        } else {
+            setIsBeginning(swiper.isBeginning);
+        }
 
-    setIsEnd(swiper.isEnd); // Right arrow normal
+        setIsEnd(swiper.isEnd); // Right arrow normal
 
-    // Progress = (current visible end position / total items)
-    const currentVisibleEnd = swiper.activeIndex + visibleSlides;
+        // Progress = (current visible end position / total items)
+        const currentVisibleEnd = swiper.activeIndex + visibleSlides;
 
-    let progressValue = (currentVisibleEnd / totalCards) * 100;
+        let progressValue = (currentVisibleEnd / totalCards) * 100;
 
-    // Limit between 0–100
-    progressValue = Math.min(100, Math.max(0, progressValue));
+        // Limit between 0–100
+        progressValue = Math.min(100, Math.max(0, progressValue));
 
-    setProgress(progressValue);
-  };
+        setProgress(progressValue);
+    };
 
     const navigatePrev = () => {
         swiperRef.current?.swiper.slidePrev();
@@ -60,7 +60,7 @@ export default function Trending() {
     const navigateNext = () => {
         swiperRef.current?.swiper.slideNext();
     };
-    const progressBarTotalWidth = '180px';
+    const progressBarTotalWidth = '120px';
 
     const progressWidthStyle = {
         width: `${progress}%`,
@@ -68,24 +68,25 @@ export default function Trending() {
 
 
     return (
-        <div className="py-8 md:py-12 ">
+        <div className="py-4 md:py-8 ">
             <div className="mx-auto container sm:container md:container lg:container xl:max-w-[1230px]  px-4">
                 <div className="flex justify-between items-center mb-6">
                     <Heading title={"Best Trending Online"} midtitle={"MBA Specializations"} lattitle={"2025"} />
-                    <div className="flex items-center space-x-4">
+                    <div className="flex flex-wrap items-center justify-end md:space-x-4">
                         <div className={`w-[${progressBarTotalWidth}] h-1.5 bg-gray-300 rounded-full overflow-hidden`}>
                             <div
                                 className="h-full bg-[#EC1E24] transition-all duration-300 ease-in-out"
                                 style={progressWidthStyle}
                             ></div>
                         </div>
-                        <div className="flex space-x-2">
+                        <div className="flex  space-x-2 mt-4 md:mt-0">
                             <button
                                 type="button"
                                 onClick={navigatePrev}
                                 disabled={isBeginning}
                                 className={`
-                        w-8 h-8 rounded-full flex items-center justify-center 
+                                    w-6 h-6
+                        md:w-8 md:h-8 rounded-full flex items-center justify-center 
                         transition-all duration-200 flex-shrink-0
                         ${isBeginning
                                         ? 'bg-gray-100 border border-gray-300 cursor-not-allowed text-gray-400 opacity-60'
@@ -110,7 +111,8 @@ export default function Trending() {
                                 onClick={navigateNext}
                                 disabled={isEnd}
                                 className={`
-                        w-8 h-8 rounded-full flex items-center justify-center 
+                             w-6 h-6
+                        md:w-8 md:h-8  rounded-full flex items-center justify-center 
                         transition-all duration-200 flex-shrink-0
                         ${isEnd
                                         ? 'bg-gray-100 border border-gray-300 cursor-not-allowed text-gray-400 opacity-60'
@@ -155,7 +157,7 @@ export default function Trending() {
                     }}
                     className="mySwiper"
                 >
-                    {programData && programData?.map((program ,index) => (
+                    {programData && programData?.map((program, index) => (
                         <SwiperSlide key={program.id}>
                             <MBACard
                                 title={program.title}

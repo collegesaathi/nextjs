@@ -73,14 +73,14 @@ export default function BestPartnerCount() {
   };
 
   return (
-    <div className="py-8 md:py-12 ">
+    <div className="py-4 md:py-8 ">
       <div ref={sectionRef} className="mx-auto container sm:container md:container lg:container xl:max-w-[1230px]  px-4">
-        <div className="bg-[#EC1E24] text-white p-4 rounded-lg">
+        <div className="bg-[#EC1E24] text-white p-4 rounded-[17px]">
           <h2 className="text-center text-xl md:text-[20px] font-[400] font-poppins mb-8">
             What makes Collegesathi the Best Search Partner for Online University?
           </h2>
           {/* Stats Grid */}
-<div className="grid grid-cols-2 lg:grid-cols-4 divide-y-2  lg:divide-y-0 lg:divide-x-2 divide-[#FFFFFF]">
+<div className="grid grid-cols-1 lg:grid-cols-4 divide-y-2  lg:divide-y-0 lg:divide-x-2 divide-[#FFFFFF]">
             {statsData.map((stat, index) => { 
               const number = useCounter(stat.count, 2000);
               return (
@@ -91,7 +91,7 @@ export default function BestPartnerCount() {
                 >
                   {/* Animated Count */}
                   <h2 className="text-[30px] md:text-[40px] lg:text-[50px] 
-               font-[600] font-poppins 
+                         font-semibold font-poppins 
                leading-none mb-2">
                     {number.toLocaleString()}+
                   </h2>
@@ -108,8 +108,8 @@ export default function BestPartnerCount() {
                   <p className="text-[10px] 
               font-[400] 
               font-poppins 
-              text-white text-center 
-              leading-none">
+              text-white flex justify-center items-center text-center 
+              leading-none max-w-[200px]">
                     {stat.description}
                   </p>
                 </div>

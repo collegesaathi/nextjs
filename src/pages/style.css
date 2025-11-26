@@ -6,7 +6,6 @@ body {
 
 .font-poppins {
   font-family: "Poppins", sans-serif !important;
-
 }
 
 .rbc-time-slot span.rbc-label {
@@ -14,7 +13,7 @@ body {
 }
 
 .ready-bg {
-  background: linear-gradient(90deg, #CC2828 4.38%, #661414 151.98%);
+  background: linear-gradient(90deg, #CECECE 4.38%, #661414 151.98%);
 }
 
 html {
@@ -508,10 +507,10 @@ select:focus {
 }
 
 /* Step hover effects */
-.step-hover-effect:hover {
+/* .step-hover-effect:hover {
   background: linear-gradient(135deg, #FFEEEE, #FFF0F0);
   border-color: #EC1E24;
-}
+} */
 
 .step-hover-effect:hover .step-text {
   color: #EC1E24 !important;
@@ -522,7 +521,7 @@ select:focus {
   position: relative;
 }
 
-.autoplay-paused::after {
+/* .autoplay-paused::after {
   content: '';
   position: absolute;
   top: -2px;
@@ -533,7 +532,7 @@ select:focus {
   border-radius: 15px;
   opacity: 0.5;
   animation: pausedIndicator 1s ease-in-out infinite;
-}
+} */
 
 @keyframes pausedIndicator {
 
@@ -693,5 +692,43 @@ select:focus {
   transform: translateY(-8px) scale(1.02);
   box-shadow: 0 20px 40px rgba(236, 30, 36, 0.15), 0 10px 20px rgba(0, 0, 0, 0.1);
   border-color: #EC1E24;
-  z-index: 10; /* Important for overlapping */
+  z-index: 10;
+  /* Important for overlapping */
+}
+
+@keyframes slideLeftToRight {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .search-input {
+    font-size: 12px;
+  }
+}
+
+
+@keyframes letterSlide {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.letter-animate {
+  display: inline-block;
+  opacity: 0;
+  animation: letterSlide 0.25s forwards;
 }

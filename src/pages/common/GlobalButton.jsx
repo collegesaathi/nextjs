@@ -15,8 +15,8 @@ export default function GlobalButton({
     w-full cursor-pointer mb-3 
     h-[40px] min-w-[130px]
     bg-[#EC1E24] text-white 
-    text-[12px] md:text-[14px]
-     font-[600] font-poppins tracking-[-0.04em]
+text-[14px]
+               font-semibold font-poppins tracking-[-0.04em]
     border border-[#EC1E24]
     rounded-full outline-none
     flex items-center justify-center    

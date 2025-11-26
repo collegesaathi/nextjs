@@ -78,7 +78,7 @@ export default function Programs() {
     },
   ];
   return (
-    <div className="py-8 md:py-12 ">
+    <div className="py-4 md:py-8 ">
       <div className="mx-auto container sm:container md:container lg:container xl:max-w-[1230px]  px-4">
         <Heading title={"Explore"} midtitle={"Top-ranked"} lattitle={"Online Programs"} classes={"text-center"} />
         <div className="w-full h-[74px] bg-[#FFF5F5] shadow-inner rounded-[6px]">
@@ -111,7 +111,7 @@ export default function Programs() {
                         }`}
                     >
                       <h2
-                        className={`font-[600] font-poppins text-[12px] md:text-[16px] ${activeCategory === i ? "text-[#EC1E24]" : "text-black"
+                        className={`          font-semibold font-poppins text-[12px] md:text-[16px] ${activeCategory === i ? "text-[#EC1E24]" : "text-black"
                           }`}
                       >
                         {cat.title}
@@ -175,7 +175,7 @@ export default function Programs() {
                 <div className="flex flex-col items-center justify-center space-y-2 mt-3">
                   <Image src={MCA} width={32} height={32} alt={p.title} />
                   <h2 className=" font-poppins
-          font-[600]
+                    font-semibold
           text-[14px] md:text-[16px]
           leading-[100%]
           tracking-[0px]

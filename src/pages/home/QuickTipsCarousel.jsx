@@ -174,7 +174,7 @@ export default function QuickTipsCarousel() {
 
   return (
     <>
-      <div className="py-8 md:py-12 ">
+      <div className="py-4 md:py-8 ">
         <div className="mx-auto container sm:container md:container lg:container xl:max-w-[1230px]  px-4">
   <div className="flex justify-between items-center mb-6">
               <Heading title={"Quick Tips & Insights"} />

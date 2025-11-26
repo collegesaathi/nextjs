@@ -71,7 +71,7 @@ export default function University() {
 
   return (
 
-    <div className="py-8 md:py-12 ">
+    <div className="py-4 md:py-8 bg-[#F9FAFB]">
       <div className="mx-auto container sm:container md:container lg:container xl:max-w-[1230px]  px-4">
         <div className="flex justify-between items-center mb-6">
           <Heading title={"Leading Online "} midtitle={"DBA"} lattitle={"Universities"} />
@@ -148,11 +148,11 @@ export default function University() {
           breakpoints={{
             640: {
               slidesPerView: 2,
-              spaceBetween: 20,
+              spaceBetween: 10,
             },
             1024: {
               slidesPerView: 3,
-              spaceBetween: 30,
+              spaceBetween: 20,
             },
           }}
           className="mySwiper"

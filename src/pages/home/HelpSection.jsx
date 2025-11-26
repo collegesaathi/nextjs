@@ -7,58 +7,53 @@ import 'swiper/css/navigation';
 import Logo2 from "../asserts/icon/1716465446-university-image.jpg"
 import Image from 'next/image';
 import Heading from '../common/Heading';
+import Budget from "../asserts/home/Budget.png";
+import Confusion from "../asserts/home/Confusion.png";
+import EMIOptions from "../asserts/home/EMIOptions.png";
+import Suggestions from "../asserts/home/Suggestions.png";
+import Placements from "../asserts/home/Placements.png"
 // Data for the cards
 const helpCards = [
   {
     title: "Find EMI Facilities for different universities.",
-    description: null, // Card 1 is just the title/action
+    description: "We are here to take care of your finances.", // Card 1 is just the title/action
     id: 1,
+    image: EMIOptions?.src
   },
   {
     title: "Budget constraints?",
     description: "We are here to take care of your finances.",
     id: 2,
+    image: Budget?.src
+
   },
   {
     title: "Too much confusion?",
     description: "Don't worry explore the best universities.",
     id: 3,
+    image: Confusion?.src
+
   },
   {
     title: "Looking for placements?",
     description: "Discover different placement opportunities with us.",
     id: 4,
+    image: Placements?.src
+
   },
   // Add more cards to ensure the carousel is scrollable
   {
     title: "Need expert advice?",
     description: "Talk to our counselors today.",
     id: 5,
+    image: Suggestions?.src
   },
   {
     title: "Admission queries?",
     description: "Get quick answers to all your questions.",
     id: 6,
-  },
-  {
-    title: "Admission queries?",
-    description: "Get quick answers to all your questions.",
-    id: 6,
-  },
-  {
-    title: "Admission queries?",
-    description: "Get quick answers to all your questions.",
-    id: 6,
-  },
-  {
-    title: "Admission queries?",
-    description: "Get quick answers to all your questions.",
-    id: 6,
-  },
-  {
-    title: "Admission queries?",
-    description: "Get quick answers to all your questions.",
-    id: 6,
+    image: Placements?.src
+
   },
 ];
 
@@ -149,9 +144,8 @@ const HelpSection = () => {
   };
 
   return (
-    <div className="py-8 md:py-12 ">
+    <div className="py-4 md:py-8 ">
       <div className="mx-auto container sm:container md:container lg:container xl:max-w-[1230px]  px-4">
-
         <div className="flex flex-wrap md:justify-between items-center mb-2 md:mb-0">
           <Heading title={"Have Questions? We can "} midtitle={"help!"} />
           <div className="flex items-center space-x-6 md:space-x-4">
@@ -245,7 +239,7 @@ const HelpSection = () => {
             },
             1024: {
               slidesPerView: 4,
-              spaceBetween: 30,
+              spaceBetween: 10,
             },
           }}
           className="mySwiper"
@@ -254,7 +248,7 @@ const HelpSection = () => {
             <SwiperSlide key={item.id}>
               <div className="px-2 py-4"> {/* Add padding to SwiperSlide content */}
                 <div
-                  className="help-card w-full h-[190px] lg:h-[263px] border border-[#CECECE] p-4 flex flex-col justify-between cursor-pointer group relative rounded-lg overflow-visible"
+                  className="help-card w-full h-[190px] lg:h-[263px] border border-[#CECECE] p-4 flex flex-col justify-between cursor-pointer group relative  overflow-visible"
                   onClick={() => handleAction(item)}
                   onKeyDown={(e) => handleKeyDown(e, item)}
                   tabIndex={0}
@@ -264,12 +258,11 @@ const HelpSection = () => {
                   {/* Icon Section */}
                   <div className="flex justify-center lg:justify-start mb-2 lg:mb-0">
                     <img
-                      src={item.icon}
+                      src={item.image}
                       alt={item.title}
-                      className="w-[80px] h-auto lg:w-[121px] transition-transform duration-300 group-hover:scale-110"
+                      className="w-[80px] lg:h-[121px] lg:w-[121px] transition-transform duration-300 group-hover:scale-110"
                     />
                   </div>
-
                   {/* Text Content */}
                   <div className="pb-3 text-center lg:text-left">
                     <h2 className="font-semibold text-[14px] leading-5 mb-2 lg:text-[18px] lg:leading-6 text-[#282529] lg:mb-3 transition-colors duration-300 group-hover:text-[#EC1E24]">

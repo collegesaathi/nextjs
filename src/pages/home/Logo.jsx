@@ -28,7 +28,7 @@ export default function Logo() {
     ];
 
     return (
-        <div className="py-8 md:py-12 ">
+        <div className="py-4 md:py-8 ">
             <div className="mx-auto container sm:container md:container lg:container xl:max-w-[900px]  px-4">
                 {/* Desktop */}
                 <div className="flex justify-between items-center h-full gap-5">
@@ -58,7 +58,7 @@ export default function Logo() {
 
                         {/* TEXT */}
                         <div className="text-center lg:text-left">
-                            <h2 className="text-[14px] md:text-[30px] font-poppins font-[600] text-[#282529]">30k+</h2>
+                            <h2 className="text-[14px] md:text-[30px] font-poppins           font-semibold text-[#282529]">30k+</h2>
                             <p className="text-[10px] md:text-[14px] font-poppins text-[#282529]">Students</p>
                         </div>
                     </div>
@@ -85,7 +85,7 @@ export default function Logo() {
                         </div>
                         {/* TEXT */}
                         <div className="text-center lg:text-left">
-                            <h2 className="text-[14px] md:text-[30px] font-poppins font-[600] text-[#282529]">200+</h2>
+                            <h2 className="text-[14px] md:text-[30px] font-poppins           font-semibold text-[#282529]">200+</h2>
                             <p className="text-[10px] md:text-[14px] font-poppins text-[#282529]">Programs</p>
                         </div>
                     </div>
@@ -115,7 +115,7 @@ export default function Logo() {
                         </div>
                         {/* TEXT */}
                         <div className="text-center lg:text-left">
-                            <h2 className="text-[14px] md:text-[30px] font-poppins font-[600] text-[#282529]">4.2 Rating</h2>
+                            <h2 className="text-[14px] md:text-[30px] font-poppins           font-semibold text-[#282529]">4.2 Rating</h2>
                             <p className="text-[10px] md:text-[14px] font-poppins text-[#282529]">By students</p>
                         </div>
                     </div>

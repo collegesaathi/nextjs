@@ -51,7 +51,7 @@ export default function FAQSection() {
     }, [])
 
     return (
-        <div className="py-8 md:py-12 ">
+        <div className="py-4 md:py-8 ">
             <div className="mx-auto container sm:container md:container lg:container xl:max-w-[1230px]  px-4">
                 <Heading title={"Frequently Asked "} midtitle={"Questions"} />
                 {faqs.map((faq, index) => (

@@ -14,7 +14,7 @@ export default function ContactSection() {
     return (
         <>
             {/* Desktop Version */}
-            <div className="py-8 md:py-12 ">
+            <div className="py-4 md:py-8 ">
                 <div className="mx-auto container sm:container md:container lg:container xl:max-w-[1230px]  px-4">
                     <div
                         data-aos="slide-up"
@@ -27,7 +27,7 @@ export default function ContactSection() {
                                 <h2
                                     className={`
                         font-poppins
-                        font-[600]
+                                  font-semibold
                         text-[20px]
                          md:text-[32px]
                         leading-[24px]

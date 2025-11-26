@@ -55,7 +55,7 @@ const MBACard = ({ title, tag, rating, progress, imageSrc, buttontitle, isActive
 
       {/* Content Section */}
       <div className="p-2">
-        <h3 className="font-poppins font-[600] text-[18px] md:text-[20px] text-[#282529] mt-2 mb-3">
+        <h3 className="font-poppins           font-semibold text-[18px] md:text-[20px] text-[#282529] mt-2 mb-3">
           {title}
         </h3>
 

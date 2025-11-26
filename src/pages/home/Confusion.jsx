@@ -7,7 +7,7 @@ import bg from "../asserts/home/bg.avif"
 export default function Confusion() {
     return (
         <>
-            <div className="py-8 md:py-12 bg-gray-50 ">
+            <div className="py-4 md:py-8  ">
                 <div className="mx-auto container sm:container md:container lg:container xl:max-w-[1230px]  px-4">
                     <section className=" lg:block hidden">
                         <div
@@ -33,7 +33,7 @@ export default function Confusion() {
                                     Compare online universities for <span className="font-semibold text-[20px] ps-1.5">Free</span>
                                 </div>
                             </div>
-                            <div className="absolute top-10 -right-[100px] w-[587px]">
+                            <div className="absolute top-13 -right-[30px] w-[587px]">
                                 <img src={br?.src} alt="Blog illustration" className="w-full h-auto" />
                             </div>
                         </div>
