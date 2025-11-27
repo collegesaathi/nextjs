@@ -80,42 +80,37 @@ export default function BestPartnerCount() {
             What makes Collegesathi the Best Search Partner for Online University?
           </h2>
           {/* Stats Grid */}
-<div className="grid grid-cols-1 lg:grid-cols-4 divide-y-2  lg:divide-y-0 lg:divide-x-2 divide-[#FFFFFF]">
-            {statsData.map((stat, index) => { 
+          <div className="grid grid-cols-1 lg:grid-cols-4 divide-y-2 lg:divide-y-0 lg:divide-x-2 divide-[#FFFFFF]">
+            {statsData.map((stat, index) => {
               const number = useCounter(stat.count, 2000);
               return (
                 <div
                   key={stat.title}
-                  className={`p-4 text-center   ${index < 2 ? "pb-8 lg:pb-4" : ""
-                    } ${index >= 2 ? "pt-8 lg:pt-4" : ""}`}
+                  className={`p-4 flex flex-col items-center justify-center text-center
+        ${index < 2 ? "pb-8 lg:pb-4" : ""}
+        ${index >= 2 ? "pt-8 lg:pt-4" : ""}`}
                 >
+
                   {/* Animated Count */}
-                  <h2 className="text-[30px] md:text-[40px] lg:text-[50px] 
-                         font-semibold font-poppins 
-               leading-none mb-2">
+                  <h2 className="text-[50px] font-semibold font-poppins leading-none mb-2">
                     {number.toLocaleString()}+
                   </h2>
 
                   {/* Title */}
-                  <p className="text-[13px] md:text-[16px] 
-              font-[400] 
-              font-poppins leading-none 
-              mb-1">
+                  <p className="text-[16px] font-[400] font-poppins leading-none mb-1">
                     {stat.title}
                   </p>
 
                   {/* Description */}
-                  <p className="text-[10px] 
-              font-[400] 
-              font-poppins 
-              text-white flex justify-center items-center text-center 
-              leading-none max-w-[200px]">
+                  <p className="text-[10px] font-[400] font-poppins text-white leading-none max-w-[200px] text-center">
                     {stat.description}
                   </p>
+
                 </div>
               );
             })}
           </div>
+
         </div>
       </div>
     </div>

@@ -73,23 +73,7 @@ export default function MediaCarousel() {
   ]
 
   // Swiper breakpoints
-  const swiperBreakpoints = {
-    320: {
-      slidesPerView: 1.5,
-      spaceBetween: 30,
-      centeredSlides: true
-    },
-    640: {
-      slidesPerView: 2,
-      spaceBetween: 20,
-      centeredSlides: false
-    },
-    1024: {
-      slidesPerView: 3,
-      spaceBetween: 40,
-      centeredSlides: true
-    },
-  }
+
 
   // Methods
   const onSwiper = (swiper) => {
@@ -157,7 +141,6 @@ export default function MediaCarousel() {
           >
             {/* Swiper Container */}
             <Swiper
-              slidesPerView={3}
               spaceBetween={40}
               centeredSlides={true}
               loop={true}
@@ -169,7 +152,16 @@ export default function MediaCarousel() {
               modules={[Autoplay]}
               onSwiper={onSwiper}
               onSlideChange={onSlideChange}
-              breakpoints={swiperBreakpoints}
+              breakpoints={{
+                640: {
+                  slidesPerView: 2,
+                  spaceBetween: 20,
+                },
+                1024: {
+                  slidesPerView: 3,
+                  spaceBetween: 30,
+                },
+              }}
             >
               {mediaItems && mediaItems?.map((item, index) => (
                 <SwiperSlide key={item.id} className="pt-10">
@@ -199,7 +191,7 @@ export default function MediaCarousel() {
                       {/* Title */}
                       <h3
                         className={`
-                          card-title font-poppins           font-semibold text-[16px] md:text-[18px] tracking-[0px] text-[#282529] mb-3 
+                          card-title font-poppins  font-semibold text-[16px] md:text-[18px] tracking-[0px] text-[#282529] mb-3 
                           line-clamp-2 transition-colors duration-300 leading-relaxed
                           ${isMiddleSlide(index) ? 'hover:leading-[1.3]' : ''}
                         `}

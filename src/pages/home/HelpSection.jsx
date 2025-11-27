@@ -95,7 +95,8 @@ const HelpSection = () => {
   const navigateNext = () => {
     swiperRef.current?.swiper.slideNext();
   };
-  const progressBarTotalWidth = '220px';
+  const progressBarTotalWidth =
+    typeof window !== "undefined" && window.innerWidth >= 1024 ? "180px" : "120px";
 
   const progressWidthStyle = {
     width: `${progress}%`,
@@ -146,36 +147,30 @@ const HelpSection = () => {
   return (
     <div className="py-4 md:py-8 ">
       <div className="mx-auto container sm:container md:container lg:container xl:max-w-[1230px]  px-4">
-        <div className="flex flex-wrap md:justify-between items-center mb-2 md:mb-0">
-          <Heading title={"Have Questions? We can "} midtitle={"help!"} />
-          <div className="flex items-center space-x-6 md:space-x-4">
-            <div className="flex justify-center w-full">
+        <div className="flex justify-between items-center mb-6">
+          <Heading title={"Have Questions? We can"} midtitle={"help!"} />
+          <div className="flex flex-wrap items-center justify-end md:space-x-4">
+            <div className={`w-[${progressBarTotalWidth}] h-1.5 bg-gray-300 rounded-full overflow-hidden`}>
               <div
-                className={`w-[${progressBarTotalWidth}] h-1.5 bg-gray-300 rounded-full overflow-hidden mb-3 md:mb-0`}
-              >
-                <div
-                  className="h-full bg-[#EC1E24] transition-all duration-300 ease-in-out"
-                  style={progressWidthStyle}
-                ></div>
-              </div>
+                className="h-full bg-[#EC1E24] transition-all duration-300 ease-in-out"
+                style={progressWidthStyle}
+              ></div>
             </div>
-
-
-            <div className="flex space-x-2">
+            <div className="flex space-x-2 mt-4 md:mt-0">
               <button
                 type="button"
                 onClick={navigatePrev}
                 disabled={isBeginning}
                 className={`
-                        w-8 h-8 rounded-full flex items-center justify-center 
-                        transition-all duration-200 flex-shrink-0
-                        ${isBeginning
+                                         w-6 h-6
+                             md:w-8 md:h-8 rounded-full flex items-center justify-center 
+                             transition-all duration-200 flex-shrink-0
+                             ${isBeginning
                     ? 'bg-gray-100 border border-gray-300 cursor-not-allowed text-gray-400 opacity-60'
                     : 'bg-white border border-[#EC1E24] hover:bg-red-50 cursor-pointer text-[#EC1E24]'
                   }
-                    `}
+                         `}
               >
-                {/* Left Arrow Icon (←) */}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-4 w-4"
@@ -188,21 +183,20 @@ const HelpSection = () => {
                 </svg>
               </button>
 
-              {/* Custom Next Button (Gray Border when active) */}
               <button
                 type="button"
                 onClick={navigateNext}
                 disabled={isEnd}
                 className={`
-                        w-8 h-8 rounded-full flex items-center justify-center 
-                        transition-all duration-200 flex-shrink-0
-                        ${isEnd
+                                  w-6 h-6
+                             md:w-8 md:h-8  rounded-full flex items-center justify-center 
+                             transition-all duration-200 flex-shrink-0
+                             ${isEnd
                     ? 'bg-gray-100 border border-gray-300 cursor-not-allowed text-gray-400 opacity-60'
                     : 'bg-white border border-gray-300 hover:border-[#EC1E24] hover:text-[#EC1E24] cursor-pointer text-gray-500'
                   }
-                    `}
+                         `}
               >
-                {/* Right Arrow Icon (→) */}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-4 w-4"
@@ -217,6 +211,8 @@ const HelpSection = () => {
             </div>
           </div>
         </div>
+
+
         {/* Swiper Carousel */}
         <Swiper
           ref={swiperRef}
@@ -246,36 +242,46 @@ const HelpSection = () => {
         >
           {helpCards && helpCards?.map((item) => (
             <SwiperSlide key={item.id}>
-              <div className="px-2 py-4"> {/* Add padding to SwiperSlide content */}
+              <div className="px-2 py-4">
                 <div
-                  className="help-card w-full h-[190px] lg:h-[263px] border border-[#CECECE] p-4 flex flex-col justify-between cursor-pointer group relative  overflow-visible"
+                  className="help-card w-full h-[190px] lg:h-[263px] border border-[#CECECE] p-4 
+        flex flex-row lg:flex-col items-center lg:items-start justify-between 
+        cursor-pointer group relative overflow-visible"
                   onClick={() => handleAction(item)}
                   onKeyDown={(e) => handleKeyDown(e, item)}
                   tabIndex={0}
                   role="button"
                   aria-label={`${item.title} - ${item.description}`}
                 >
-                  {/* Icon Section */}
-                  <div className="flex justify-center lg:justify-start mb-2 lg:mb-0">
+
+                  {/* Image */}
+                  <div className="flex justify-center items-center lg:justify-start mb-0 lg:mb-2 w-[40%] lg:w-full">
                     <img
                       src={item.image}
                       alt={item.title}
-                      className="w-[80px] lg:h-[121px] lg:w-[121px] transition-transform duration-300 group-hover:scale-110"
+                      className="w-full h-full object-contain  lg:h-[121px] lg:w-[121px] transition-transform duration-300 group-hover:scale-110"
                     />
                   </div>
-                  {/* Text Content */}
-                  <div className="pb-3 text-center lg:text-left">
-                    <h2 className="font-semibold text-[14px] leading-5 mb-2 lg:text-[18px] lg:leading-6 text-[#282529] lg:mb-3 transition-colors duration-300 group-hover:text-[#EC1E24]">
+
+                  {/* Text */}
+                  <div className="text-left w-[60%] lg:w-full pl-3 lg:pl-0">
+                    <h2 className="font-semibold text-[14px] leading-5 mb-2 lg:text-[18px] 
+          lg:leading-6 text-[#282529] lg:mb-3 transition-colors duration-300 group-hover:text-[#EC1E24]">
                       {item.title}
                     </h2>
-                    <p className="font-normal text-[10px] lg:text-[14px] leading-relaxed tracking-[0px] text-[#282529] opacity-80 group-hover:opacity-100 transition-opacity duration-300">
+
+                    <p className="font-normal text-[10px] lg:text-[14px] leading-relaxed tracking-[0px] 
+          text-[#282529] opacity-80 group-hover:opacity-100 transition-opacity duration-300">
                       {item.description}
                     </p>
                   </div>
 
                   {/* Action Button */}
-                  <div className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
-                    <div className="w-8 h-8 bg-[#EC1E24] rounded-full flex items-center justify-center text-white text-sm group-hover:bg-gradient-to-br group-hover:from-[#EC1E24] group-hover:to-[#ff4757] group-hover:shadow-lg group-hover:shadow-[#EC1E24]/40">
+                  <div className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 
+        transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+                    <div className="w-8 h-8 bg-[#EC1E24] rounded-full flex items-center justify-center text-white text-sm 
+          group-hover:bg-gradient-to-br group-hover:from-[#EC1E24] group-hover:to-[#ff4757] 
+          group-hover:shadow-lg group-hover:shadow-[#EC1E24]/40">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         className="h-4 w-4"
@@ -289,12 +295,15 @@ const HelpSection = () => {
                     </div>
                   </div>
 
-                  {/* Hover Background Effect */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#EC1E24]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-lg" />
+                  {/* Hover BG */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#EC1E24]/5 to-transparent 
+        opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-lg" />
                 </div>
               </div>
             </SwiperSlide>
           ))}
+
+
         </Swiper>
       </div>
     </div>

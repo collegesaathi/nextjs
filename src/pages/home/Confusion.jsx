@@ -45,7 +45,7 @@ export default function Confusion() {
                             <img
                                 src={bg?.src}
                                 alt="Blog background"
-                                className="w-full h-[137px] object-cover rounded-[25px]"
+                                className="w-full h-[200px] object-cover rounded-[25px]"
                             />
                             <div className="absolute top-0 left-0 w-full h-full text-center px-[20px] flex flex-col justify-center items-center space-y-2">
                                 <h2 className="font-semibold text-[20px] tracking-[0px] text-[#282529]">

@@ -14,8 +14,9 @@ import LogoSlider from "./LogoSlider";
 import Programs from "./Programs";
 import QuickTipsCarousel from "./QuickTipsCarousel";
 import University from "./University";
-import IndustryExpertsSection  from "./IndustryExperts";
+import IndustryExpertsSection from "./IndustryExperts";
 import Trending from "./Trending";
+import MediaCarousel from "./MediaCarousel";
 function Page() {
     return (<>
         <Layout>
@@ -24,16 +25,16 @@ function Page() {
             <LogoSlider />
             <Programs />
             <HelpSection />
-            {/* <AdvantagesSection universities={[{ id: 1, name: "Amity", location: "Noida" }]} /> */}
-            {/* <University /> */}
-            {/* <IndustryExpertsSection /> */}
+            <AdvantagesSection universities={[{ id: 1, name: "Amity", location: "Noida" }]} />
+            <University />
+            <IndustryExpertsSection />
             <ExploreUniversities />
             <BestPartnerCount />
             <Trending />
             <Confusion />
             <Blogs />
-            {/* <MediaCarousel /> */}
-            {/* <AwardsCarousel /> */}
+            <MediaCarousel />
+            <AwardsCarousel />
             <QuickTipsCarousel />
             <FAQSection />
             <ContactSection />

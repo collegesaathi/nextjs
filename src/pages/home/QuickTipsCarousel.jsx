@@ -5,7 +5,9 @@ import { Autoplay } from 'swiper/modules'
 import 'swiper/css'
 import Group from "../asserts/home/calling.png"
 import Heading from '../common/Heading'
-
+import 'swiper/css/pagination';
+// import required modules
+import { Pagination } from 'swiper/modules';
 
 export default function QuickTipsCarousel() {
   // Tip items data
@@ -74,12 +76,11 @@ export default function QuickTipsCarousel() {
   const [windowWidth, setWindowWidth] = useState(1024)
   const [isAutoplayPaused, setIsAutoplayPaused] = useState(false)
 
-  const swiperBreakpoints = {
-    320: { slidesPerView: 1.5, spaceBetween: 20, centeredSlides: true },
-    640: { slidesPerView: 2, spaceBetween: 20, centeredSlides: true },
-    768: { slidesPerView: 3, spaceBetween: 20, centeredSlides: true },
-    1024: { slidesPerView: 5, spaceBetween: 20, centeredSlides: false },
-    1280: { slidesPerView: 4.8, spaceBetween: 40, centeredSlides: false },
+  const carouselBreakpoints = {
+    320: { slidesPerView: 1, spaceBetween: 16 },
+    640: { slidesPerView: 2, spaceBetween: 20 },
+    768: { slidesPerView: 3, spaceBetween: 24 },
+    1024: { slidesPerView: 5, spaceBetween: 24 },
   }
 
   // Window resize handler
@@ -154,14 +155,14 @@ export default function QuickTipsCarousel() {
   const isMiddleSlide = (index) => {
     if (windowWidth >= 1024) {
       const visibleStartIndex = currentSlideIndex
-      const middleOffset = 2 
+      const middleOffset = 2
       const middleIndex = visibleStartIndex + middleOffset
       const normalizedIndex = middleIndex % tipItems.length
       const isActive = index === normalizedIndex
       return isActive
     } else if (windowWidth >= 768) {
       const visibleStartIndex = currentSlideIndex
-      const middleOffset = 1 
+      const middleOffset = 1
       const middleIndex = visibleStartIndex + middleOffset
       const normalizedIndex = middleIndex % tipItems.length
       const isActive = index === normalizedIndex
@@ -176,10 +177,10 @@ export default function QuickTipsCarousel() {
     <>
       <div className="py-4 md:py-8 ">
         <div className="mx-auto container sm:container md:container lg:container xl:max-w-[1230px]  px-4">
-  <div className="flex justify-between items-center mb-6">
-              <Heading title={"Quick Tips & Insights"} />
-            </div>
-       
+          <div className="flex justify-between items-center mb-6">
+            <Heading title={"Quick Tips & Insights"} />
+          </div>
+
 
           <div
             data-aos="fade-right"
@@ -187,7 +188,7 @@ export default function QuickTipsCarousel() {
             data-aos-delay="200"
             data-aos-once="true"
           >
-          
+
             {/* Custom Carousel */}
             <div
               className={`w-full mx-auto ${isAutoplayPaused ? 'carousel-paused' : ''}`}
@@ -196,7 +197,6 @@ export default function QuickTipsCarousel() {
             >
               {/* Swiper Container */}
               <Swiper
-                slidesPerView={5}
                 spaceBetween={20}
                 centeredSlides={false}
                 loop={true}
@@ -205,10 +205,11 @@ export default function QuickTipsCarousel() {
                   disableOnInteraction: false,
                   pauseOnMouseEnter: true
                 }}
-                modules={[Autoplay]}
+                modules={[Autoplay ,Pagination]}
                 onSwiper={onSwiper}
                 onSlideChange={onSlideChange}
-                breakpoints={swiperBreakpoints}
+                breakpoints={carouselBreakpoints}
+                pagination={true} 
               >
                 {tipItems.map((item, index) => (
                   <SwiperSlide key={item.id} className="pt-5 my-5">
@@ -238,18 +239,18 @@ export default function QuickTipsCarousel() {
               </Swiper>
 
               {/* Pagination Dots */}
-              <div className="flex justify-center mt-8 space-x-2">
-                {tipItems.slice(0, 5).map((_, index) => (
-                  <div
-                    key={`dot-${index}`}
-                    onClick={() => goToSlide(index)}
-                    className={`
+               {/* <div className="flex justify-center mt-8 space-x-2">
+              {tipItems.map((item, index) => (
+                <div
+                  key={`dot-${index}`}
+                  onClick={() => goToSlide(index)}
+                  className={`
                     w-[9px] h-[9px] rounded-full cursor-pointer transition-all duration-300
                     ${currentSlideIndex === index ? 'bg-[#EC1E24]' : 'bg-[#DFDFDF]'}
                   `}
-                  ></div>
-                ))}
-              </div>
+                ></div>
+              ))}
+            </div> */}
             </div>
           </div>
         </div>

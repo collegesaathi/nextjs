@@ -1,6 +1,5 @@
 'use client';
-
-import React, { useRef, useState, useEffect, useCallback } from 'react';
+import React, { useRef, useState, } from 'react';
 import MBACard from '../common/MBACard';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, A11y } from 'swiper/modules';
@@ -60,7 +59,9 @@ export default function Trending() {
     const navigateNext = () => {
         swiperRef.current?.swiper.slideNext();
     };
-    const progressBarTotalWidth = '120px';
+    const progressBarTotalWidth =
+        typeof window !== "undefined" && window.innerWidth >= 1024 ? "180px" : "120px";
+
 
     const progressWidthStyle = {
         width: `${progress}%`,
@@ -79,7 +80,7 @@ export default function Trending() {
                                 style={progressWidthStyle}
                             ></div>
                         </div>
-                        <div className="flex  space-x-2 mt-4 md:mt-0">
+                        <div className="flex space-x-2 mt-4 md:mt-0">
                             <button
                                 type="button"
                                 onClick={navigatePrev}

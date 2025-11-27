@@ -7,13 +7,11 @@ import { IoMdArrowDropdownCircle } from "react-icons/io";
 import { IoMdCheckmark } from "react-icons/io";
 import Effect from "../asserts/home/effect.avif"
 import Heading from '../common/Heading';
-import { Headset, MessageSquare, Settings, GraduationCap } from 'lucide-react'; // Using lucide-react for icons
 export default function AdvantagesSection() {
   // University Search Functionality
   const [searchQuery, setSearchQuery] = useState('');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [currentTypingText, setCurrentTypingText] = useState('');
-  console.log("currentTypingText", currentTypingText)
   const [typingIndex, setTypingIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
   const [isTyping, setIsTyping] = useState(true);
@@ -21,6 +19,7 @@ export default function AdvantagesSection() {
   // Step carousel functionality
   const [currentStep, setCurrentStep] = useState(0);
   const [isAutoplayPaused, setIsAutoplayPaused] = useState(false);
+
   const searchContainer = useRef(null);
   const searchInput = useRef(null);
   const autoplayInterval = useRef(null);
@@ -107,46 +106,35 @@ export default function AdvantagesSection() {
       );
     });
 
-  const typingRef = useRef(false); // prevents double-run in strict mode
-
+  // Typing animation logic
   const startTypingAnimation = () => {
-    if (typingRef.current) return;  // BLOCK double animation
-    typingRef.current = true;       // lock
+    const currentWord = typingWords[typingIndex];
 
-    const loop = () => {
-      const currentWord = typingWords[typingIndex];
-
-      if (isTyping) {
-        // typing
-        if (charIndex < currentWord.length) {
-          setCurrentTypingText(currentWord.slice(0, charIndex + 1));
-          setCharIndex(prev => prev + 1);
-          setTimeout(loop, 120);
-        } else {
-          setTimeout(() => {
-            setIsTyping(false);
-            setTimeout(loop, 120);
-          }, 800);
-        }
+    if (isTyping) {
+      // Typing phase
+      if (charIndex < currentWord.length) {
+        setCurrentTypingText(currentWord.substring(0, charIndex + 1));
+        setCharIndex(charIndex + 1);
+        setTimeout(startTypingAnimation, 100);
       } else {
-        // deleting
-        if (charIndex > 0) {
-          setCurrentTypingText(currentWord.slice(0, charIndex - 1));
-          setCharIndex(prev => prev - 1);
-          setTimeout(loop, 60);
-        } else {
-          setTypingIndex(prev => (prev + 1) % typingWords.length);
-          setIsTyping(true);
-          setTimeout(loop, 200);
-        }
+        // Pause before deleting
+        setIsTyping(false);
+        setTimeout(startTypingAnimation, 2000);
       }
-    };
-
-    loop(); // start loop
+    } else {
+      // Deleting phase
+      if (charIndex > 0) {
+        setCurrentTypingText(currentWord.substring(0, charIndex - 1));
+        setCharIndex(charIndex - 1);
+        setTimeout(startTypingAnimation, 50);
+      } else {
+        // Move to next word
+        setIsTyping(true);
+        setTypingIndex((typingIndex + 1) % typingWords.length);
+        setTimeout(startTypingAnimation, 100);
+      }
+    }
   };
-
-
-
 
   // Methods
   const toggleDropdown = () => {
@@ -226,7 +214,6 @@ export default function AdvantagesSection() {
     );
   };
 
-  // FIXED: Improved autoplay logic with proper reset
   const startAutoplay = () => {
     if (autoplayInterval.current) {
       clearInterval(autoplayInterval.current);
@@ -234,20 +221,19 @@ export default function AdvantagesSection() {
 
     autoplayInterval.current = setInterval(() => {
       if (!isAutoplayPaused) {
-        setCurrentStep(prev => {
-          if (prev < steps.length - 1) {
-            // Move to next step
+        if (currentStep < steps.length - 1) {
+          setCurrentStep(prev => {
             const newStep = prev + 1;
             updateStepsCompletion(newStep);
             return newStep;
-          } else {
-            // Reset to first step
-            updateStepsCompletion(0);
-            return 0;
-          }
-        });
+          });
+        } else {
+          // Reset to first step when reaching the end
+          setCurrentStep(0);
+          updateStepsCompletion(0);
+        }
       }
-    }, 2000); // autoplay speed - 2 seconds
+    }, 2000); // 2 seconds interval
   };
 
   const pauseAutoplay = () => {
@@ -315,10 +301,34 @@ export default function AdvantagesSection() {
 
   // Lifecycle hooks
   useEffect(() => {
-    let timer = setTimeout(startTypingAnimation, 200);
-    return () => clearTimeout(timer);
-  }, [charIndex, typingIndex, isTyping]);
+    // Start typing animation when component mounts
+    setTimeout(() => {
+      startTypingAnimation();
+    }, 1000); // Start after 1 second delay
 
+    // Add click outside listener
+    document.addEventListener('click', handleClickOutside);
+
+    // Setup services animations
+    setTimeout(() => {
+      setupServicesAnimation();
+    }, 500); // Small delay to ensure DOM is ready
+
+    // Start step autoplay
+    setTimeout(() => {
+      startAutoplay();
+    }, 1500); // Start autoplay after other animations
+
+    return () => {
+      // Clean up event listener
+      document.removeEventListener('click', handleClickOutside);
+
+      // Clean up autoplay interval
+      if (autoplayInterval.current) {
+        clearInterval(autoplayInterval.current);
+      }
+    };
+  }, []);
 
   useEffect(() => {
     if (searchQuery && searchQuery !== currentTypingText) {
@@ -327,25 +337,12 @@ export default function AdvantagesSection() {
     }
   }, [searchQuery, currentTypingText]);
 
-  const IconCircle = ({ Icon, className = '', sizeClass = 'w-16 h-16' }) => (
-    <div className={`
-    ${sizeClass} 
-    flex items-center justify-center 
-    rounded-full bg-white border border-gray-100 
-    shadow-md p-2 transition-transform duration-500 ease-out 
-    hover:scale-110 
-    ${className}`
-    }>
-      <Icon className="text-[#d91e27] w-6 h-6 sm:w-8 sm:h-8" strokeWidth={1.5} />
-    </div>
-  );
-
   return (
     <>
       {/* Desktop version */}
-      <div className="py-4 md:py-8 ">
+      <div className="py-8 md:py-12 ">
         <div className="mx-auto container sm:container md:container lg:container xl:max-w-[1230px]  px-4">
-          <div className="lg:block hidden ">
+          <div className="lg:block hidden py-16">
             <div className="flex justify-between items-center">
               <div className="flex items-start justify-between w-full pb-7">
                 <div>
@@ -406,23 +403,24 @@ export default function AdvantagesSection() {
                   </button>
                 </div>
               </div>
+
             </div>
 
             <div className="flex justify-between items-center">
               {/* Services Card */}
               <div
                 ref={servicesContainer}
-                className="w-[500px] overflow-hidden h-[450px] rounded-[29px] border border-[#FFB8B8] bg-gradient-to-b from-[#FFF6F6] to-white p-6"
+                className="w-[478.26px] overflow-hidden h-[450px] rounded-[29px] border border-[#FFB8B8] bg-gradient-to-b from-[#FFF6F6] to-white p-6"
               >
                 <h2
                   ref={servicesTitle}
-                  className="font-semibold text-[24px] text-[#282529] mb-2  "
+                  className="font-semibold text-[24px] text-[#282529] mb-2 "
                 >
                   Our Services
                 </h2>
                 <p
                   ref={servicesSubtitle}
-                  className="w-[244px] font-[400] text-[16px] tracking-[0px] text-[#282529] mb-4"
+                  className="w-[244px] font-normal text-[16px] tracking-[0px] text-[#282529] mb-4"
                 >
                   Empowering students to make informed decisions.
                 </p>
@@ -454,7 +452,7 @@ export default function AdvantagesSection() {
                 <div className="flex w-full h-[55px] relative">
                   <div
                     ref={serviceItem4}
-                    className="absolute w-[223px] h-[55px] rounded-[28px] border border-[#EC1E24] bg-gradient-to-br from-[#EC1E24] to-[#FF6363] absolute top-0 -left-18 flex items-center justify-end pr-4 services-animate animate-from-bottom"
+                    className="w-[223px] h-[55px] rounded-[28px] border border-[#EC1E24] bg-gradient-to-br from-[#EC1E24] to-[#FF6363] absolute top-0 -left-18 flex items-center justify-end pr-4 services-animate animate-from-bottom"
                   >
                     <h2 className="font-medium text-[18px] tracking-[0px] text-center text-white">
                       24*7 assistance
@@ -508,14 +506,15 @@ export default function AdvantagesSection() {
                           onChange={handleSearchInput}
                           onFocus={handleInputFocus}
                           onBlur={handleInputBlur}
-                          className="w-full h-full relative px-3 z-10 font-poppins font-normal text-[8px] tracking-[0px] text-[#282529] placeholder:text-[#282529] bg-transparent border-none outline-none"
-                          placeholder={searchQuery.length > 0 ? "" : currentTypingText}
-
+                          className="w-full h-full relative px-4 z-10 font-poppins font-normal text-[13px] tracking-[0px] text-[#282529] placeholder:text-[#282529] bg-transparent border-none outline-none"
+                          placeholder={currentTypingText}
                         />
+
+                        {/* Dropdown Options */}
                         {isDropdownOpen && (
                           <div className="absolute top-[48px] left-0 w-full bg-white shadow-[0px_4px_12px_0px_#00000026] max-h-[200px] overflow-y-auto z-30 rounded-bl-[7px] rounded-br-[7px] border border-gray-100">
                             <ul>
-                              {filteredUniversities?.map((university) => (
+                              {filteredUniversities.map((university) => (
                                 <li
                                   key={university.id}
                                   className="h-[40px] flex items-center px-4 cursor-pointer font-poppins font-normal text-[13px] leading-[100%] tracking-[0px] text-[#282529] hover:bg-[#F7F6F6] hover:text-[#EC1E24] transition-all duration-200"
@@ -555,7 +554,7 @@ export default function AdvantagesSection() {
               </div>
             </div>
 
-            <div className="md:mt-8 md:mb-10">
+            <div className="mt-8 mb-10">
               <div
                 className={`flex items-center ${isAutoplayPaused ? 'autoplay-paused' : ''}`}
                 onMouseEnter={pauseAutoplay}
@@ -565,14 +564,11 @@ export default function AdvantagesSection() {
                   <div key={step.id} className="flex items-center">
                     {/* Step Item */}
                     <div
-                      className={`step-item step-hover-effect w-[180px] h-[30px] rounded-[13px] flex items-center space-x-2 px-2 transition-all duration-300 cursor-pointer ${step.completed
+                      className={`step-item step-hover-effect w-[177px] h-[30px] rounded-[13px] flex items-center space-x-2 px-2 transition-all duration-300 cursor-pointer ${step.completed
                         ? 'bg-[#FFEEEE] border border-[#FFEFEF] text-[#EC1E24]'
                         : 'bg-[#FFFFFF] border border-[#CECECE] text-[#CECECE]'
                         } ${currentStep === index ? 'step-active' : ''}`}
                       onClick={() => goToStep(index)}
-                      // FIXED: Remove outline on focus to prevent dashed border
-                      onFocus={(e) => e.target.blur()} // This prevents focus outline
-                      style={{ outline: 'none' }} // Additional safety
                     >
                       <div
                         className={`step-circle rounded-full flex items-center justify-center text-[9px] p-0 w-[20px] h-[20px] transition-all duration-300 ${step.completed
@@ -705,6 +701,7 @@ export default function AdvantagesSection() {
               </div>
             </div>
 
+
           </div>
 
           {/* Mobile version */}
@@ -713,13 +710,14 @@ export default function AdvantagesSection() {
               <p className="font-normal text-[14px] leading-[1.2] tracking-[0px] text-[#282529] mb-3">
                 What Sets Us Apart
               </p>
-              <h2 className="font-poppins           font-semibold text-[20px]">
+              <h2 className="font-poppins font-[600] text-[20px]">
                 Discover the <br />
                 <span className="text-[#EC1E24]">Collegesathi Advantages</span>
               </h2>
             </div>
 
             <div className="w-full flex flex-col items-center gap-6">
+              {/* Services Card - Mobile */}
               <div className="w-full overflow-hidden rounded-[29px] border border-[#FFB8B8] bg-gradient-to-b from-[#FFF6F6] to-white p-6">
                 <h2 className="font-semibold text-[14px] leading-[1.2] text-[#282529] mb-2">Our Services</h2>
                 <p className="w-[244px] font-normal text-[8px] leading-[1.3] tracking-[0px] text-[#282529] mb-4">
@@ -755,17 +753,16 @@ export default function AdvantagesSection() {
                 </div>
               </div>
 
+              {/* University Search Card - Mobile */}
               <div className="w-full h-[300px] rounded-[29px] border border-[#FFB8B8] bg-gradient-to-b from-[#FFEBEB] to-transparent relative flex items-center justify-center">
                 <div className="relative z-10">
                   <h2 className="font-poppins font-semibold text-[14px] leading-[1.3] tracking-[0px] text-center text-[#282529] mb-4">
                     Know About Your Favourite University
                   </h2>
-                  <p
-                    className="font-poppins font-normal text-[8px] leading-[1.4] tracking-[0px] text-center text-[#282529]">
+                  <p className="font-poppins font-normal text-[8px] leading-[1.4] tracking-[0px] text-center text-[#282529]">
                     Check the details of your favourite university <br />
                     and make an informed decision.
                   </p>
-
                   <div className="flex h-[157px]">
                     <div
                       ref={searchContainer}
@@ -794,6 +791,7 @@ export default function AdvantagesSection() {
                           className="w-full h-full relative px-3 z-10 font-poppins font-normal text-[8px] tracking-[0px] text-[#282529] placeholder:text-[#282529] bg-transparent border-none outline-none"
                           placeholder={currentTypingText}
                         />
+
                         {/* Dropdown Options */}
                         {isDropdownOpen && (
                           <div className="absolute top-[27px] left-0 w-full bg-white shadow-[0px_4px_12px_0px_#00000026] max-h-[120px] overflow-y-auto z-30 rounded-bl-[7px] rounded-br-[7px] border border-gray-100">

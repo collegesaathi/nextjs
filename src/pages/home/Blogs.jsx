@@ -56,8 +56,8 @@ export default function Blogs() {
     const navigateNext = () => {
         swiperRef.current?.swiper.slideNext();
     };
-    const progressBarTotalWidth = '180px';
-
+    const progressBarTotalWidth =
+        typeof window !== "undefined" && window.innerWidth >= 1024 ? "180px" : "120px";
     const progressWidthStyle = {
         width: `${progress}%`,
     };
@@ -66,23 +66,24 @@ export default function Blogs() {
         <div className="py-4 md:py-8 ">
             <div className="mx-auto container sm:container md:container lg:container xl:max-w-[1230px]  px-4">
 
-                <div className="flex justify-between items-center mb-6">
+                <div className="flex  md:justify-between md:items-center gap-3 mb-6">
                     <Heading title={" Explore Our Latest"} midtitle={"Blogs"} />
 
-                    <div className="flex items-center space-x-4">
-                        <div className={`w-[${progressBarTotalWidth}] h-1.5 bg-gray-300 rounded-full overflow-hidden`}>
+                    <div className="flex flex-wrap items-center justify-end md:space-x-4">
+<div className="w-[120px] md:w-[150px] lg:w-[180px] h-1.5 bg-gray-300 rounded-full overflow-hidden">
                             <div
                                 className="h-full bg-[#EC1E24] transition-all duration-300 ease-in-out"
                                 style={progressWidthStyle}
                             ></div>
                         </div>
-                        <div className="flex space-x-2">
+                        <div className="flex  space-x-2 mt-1 md:mt-0">
                             <button
                                 type="button"
                                 onClick={navigatePrev}
                                 disabled={isBeginning}
                                 className={`
-                        w-8 h-8 rounded-full flex items-center justify-center 
+                                    w-6 h-6
+                        md:w-8 md:h-8 rounded-full flex items-center justify-center 
                         transition-all duration-200 flex-shrink-0
                         ${isBeginning
                                         ? 'bg-gray-100 border border-gray-300 cursor-not-allowed text-gray-400 opacity-60'
@@ -107,7 +108,8 @@ export default function Blogs() {
                                 onClick={navigateNext}
                                 disabled={isEnd}
                                 className={`
-                        w-8 h-8 rounded-full flex items-center justify-center 
+                             w-6 h-6
+                        md:w-8 md:h-8  rounded-full flex items-center justify-center 
                         transition-all duration-200 flex-shrink-0
                         ${isEnd
                                         ? 'bg-gray-100 border border-gray-300 cursor-not-allowed text-gray-400 opacity-60'
@@ -131,7 +133,7 @@ export default function Blogs() {
                 </div>
                 <Swiper
                     ref={swiperRef}
-                   
+
                     modules={[Navigation, A11y]}
                     spaceBetween={30}
                     slidesPerView={1}

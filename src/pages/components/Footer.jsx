@@ -6,7 +6,6 @@ import Bgfooter from "../asserts/home/shape1.png"
 import logo from "../asserts/home/Logo.png"
 import hand from "../asserts/home/hand.png"
 import grostart from "../asserts/home/Groupstart.png"
-import footerbg from "../asserts/home/footer.jpg"
 export default function Footer() {
   useEffect(() => {
     // AOS initialization (if you're using AOS)

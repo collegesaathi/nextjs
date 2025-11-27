@@ -2,7 +2,7 @@
 
 import { useState, useRef } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { Autoplay } from 'swiper/modules'
+import { Autoplay, Pagination } from 'swiper/modules'
 import 'swiper/css'
 import ABP from "../asserts/home/ABP.svg";
 import Edtech from "../asserts/home/Edtech.svg";
@@ -129,7 +129,9 @@ export default function AwardsCarousel() {
     const navigateNext = () => {
         swiperRef.current?.swiper.slideNext();
     };
-    const progressBarTotalWidth = '220px';
+    const progressBarTotalWidth =
+        typeof window !== "undefined" && window.innerWidth >= 1024 ? "180px" : "120px";
+
 
     const progressWidthStyle = {
         width: `${progress}%`,
@@ -141,28 +143,23 @@ export default function AwardsCarousel() {
             <div className="py-4 md:py-8 ">
                 <div className="mx-auto container sm:container md:container lg:container xl:max-w-[1230px]  px-4">
 
-                    <div className="flex flex-wrap md:justify-between items-center mb-2 md:mb-0">
+                    <div className="flex justify-between items-center mb-6">
                         <Heading title={"  Our Achievements & "} midtitle={"Awards"} />
-                        <div className="flex items-center space-x-6 md:space-x-4">
-                            <div className="flex justify-center w-full">
+                        <div className="flex flex-wrap items-center justify-end md:space-x-4">
+                            <div className={`w-[${progressBarTotalWidth}] h-1.5 bg-gray-300 rounded-full overflow-hidden`}>
                                 <div
-                                    className={`w-[${progressBarTotalWidth}] h-1.5 bg-gray-300 rounded-full overflow-hidden mb-3 md:mb-0`}
-                                >
-                                    <div
-                                        className="h-full bg-[#EC1E24] transition-all duration-300 ease-in-out"
-                                        style={progressWidthStyle}
-                                    ></div>
-                                </div>
+                                    className="h-full bg-[#EC1E24] transition-all duration-300 ease-in-out"
+                                    style={progressWidthStyle}
+                                ></div>
                             </div>
-
-
-                            <div className="flex space-x-2">
+                            <div className="flex space-x-2 mt-4 md:mt-0">
                                 <button
                                     type="button"
                                     onClick={navigatePrev}
                                     disabled={isBeginning}
                                     className={`
-                        w-8 h-8 rounded-full flex items-center justify-center 
+                                    w-6 h-6
+                        md:w-8 md:h-8 rounded-full flex items-center justify-center 
                         transition-all duration-200 flex-shrink-0
                         ${isBeginning
                                             ? 'bg-gray-100 border border-gray-300 cursor-not-allowed text-gray-400 opacity-60'
@@ -170,7 +167,6 @@ export default function AwardsCarousel() {
                                         }
                     `}
                                 >
-                                    {/* Left Arrow Icon (←) */}
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
                                         className="h-4 w-4"
@@ -183,13 +179,13 @@ export default function AwardsCarousel() {
                                     </svg>
                                 </button>
 
-                                {/* Custom Next Button (Gray Border when active) */}
                                 <button
                                     type="button"
                                     onClick={navigateNext}
                                     disabled={isEnd}
                                     className={`
-                        w-8 h-8 rounded-full flex items-center justify-center 
+                             w-6 h-6
+                        md:w-8 md:h-8  rounded-full flex items-center justify-center 
                         transition-all duration-200 flex-shrink-0
                         ${isEnd
                                             ? 'bg-gray-100 border border-gray-300 cursor-not-allowed text-gray-400 opacity-60'
@@ -197,7 +193,6 @@ export default function AwardsCarousel() {
                                         }
                     `}
                                 >
-                                    {/* Right Arrow Icon (→) */}
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
                                         className="h-4 w-4"
@@ -212,6 +207,7 @@ export default function AwardsCarousel() {
                             </div>
                         </div>
                     </div>
+
                     <div
                         data-aos="zoom-in-up"
                         data-aos-duration="500"
@@ -225,7 +221,7 @@ export default function AwardsCarousel() {
                                 delay: 4000,
                                 disableOnInteraction: false,
                             }}
-                            modules={[Autoplay]}
+                            modules={[Autoplay,  Pagination]}
                             onSwiper={(swiper) => {
                                 swiperRef.current = { swiper };
                                 updateProgress(swiper);
@@ -251,7 +247,7 @@ export default function AwardsCarousel() {
                         </Swiper>
 
                         {/* Pagination Dots */}
-                        <div className="flex justify-center mt-8 space-x-2">
+                        {/* <div className="flex justify-center mt-8 space-x-2">
                             {awardItems.slice(0, 4).map((_, index) => (
                                 <div
                                     key={`dot-${index}`}
@@ -262,7 +258,7 @@ export default function AwardsCarousel() {
                 `}
                                 ></div>
                             ))}
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>
