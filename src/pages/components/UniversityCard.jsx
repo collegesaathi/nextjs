@@ -25,28 +25,28 @@ export default function UniversityCard({
     const admissionTag = useMemo(() => {
         if (index < 3) {
             return `
-        <div class='-top-1.5 left-1/2 -translate-x-1/2 flex justify-center text-white w-[132px] h-[25px] absolute'>
+        <div class='-top-1.5 left-1/2 -translate-x-1/2 flex justify-center text-white w-[132px]  h-[25px] absolute'>
           <img src='/images/uni-card-top.svg' class='absolute'/>
           <div class='z-50 leading-tight'>
-            <span class='block text-center'>ADMISSION CLOSING</span>
+            <span class='block text-center '>ADMISSION CLOSING</span>
             <span class='block text-center'>ON ${admissionClosing}</span>
           </div>
         </div>`;
         }
         return `
-      <div class='w-[177px] text-center top-2 right-2 bg-red-600 text-white text-[0.625rem] py-0.5 rounded-full z-10 shadow-md absolute'>
+      <div class='w-[177px] text-center top-2 right-2 text-white text-[0.625rem] py-0.5 rounded-full z-10 shadow-md  absolute bg-[red]'>
         ADMISSION CLOSING ON ${admissionClosing}
       </div>`;
     }, [index, admissionClosing]);
 
     return (
-        <div className="bg-white md:w-[17.25rem] min-h-[27.95rem] rounded-2xl shadow-md relative border border-neutral-200 flex flex-col hover:scale-105 transition-all hover:shadow-[0px_0px_15px_#c2c2c2]">
+        <div className="bg-white w-full h-full rounded-2xl shadow-md relative border border-neutral-200 flex flex-col hover:scale-105 transition-all hover:shadow-[0px_0px_15px_#c2c2c2]">
 
             {/* University Image */}
             <div className="relative">
                 <img
                     src={imageUrl}
-                    alt={universityName}
+                    alt={universityName} 
                     className="w-full md:h-[11.563rem] object-cover p-2 rounded-2xl"
                 />
 
@@ -103,7 +103,7 @@ export default function UniversityCard({
                 <div className="border-t border-neutral-200 pt-4 mt-4 mb-4 text-[0.75rem]">
 
                     <button className="flex items-center justify-center w-full bg-neutral-100 text-neutral-700 px-4 h-[1.815rem] rounded-md hover:bg-neutral-200 mb-3 transition-colors">
-                        <span className="mr-2">⬇️</span> Download Prospectus
+                        <span className="mr-2"><img src="/icons/download.svg" /></span> Download Prospectus
                     </button>
 
                     <button
