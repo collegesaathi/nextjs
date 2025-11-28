@@ -1,5 +1,4 @@
 import Listing from "@/pages/api/Listing";
-import Layout from "@/pages/components/Layout";
 import { useEffect, useState } from "react";
 import AdminLayout from "../../common/AdminLayout";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
