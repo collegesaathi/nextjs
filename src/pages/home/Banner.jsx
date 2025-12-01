@@ -5,10 +5,10 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
-import Group1 from "../asserts/home/Group.png";
-import Group2 from "../asserts/home/Group.png";
-import Group3 from "../asserts/home/Group.png";
-import Groupphone from "../asserts/home/Groupphone.png"
+import Group1 from "../assets/home/Group.png";
+import Group2 from "../assets/home/Group.png";
+import Group3 from "../assets/home/Group.png";
+import Groupphone from "../assets/home/Groupphone.png"
 export default function Banner() {
 
     const [isMobile, setIsMobile] = useState(false);

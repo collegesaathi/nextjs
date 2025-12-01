@@ -2,7 +2,7 @@
 
 import Aos from 'aos'
 import { useState, useEffect } from 'react'
-import Heading from '../common/Heading'
+import Heading from '../../common/Heading'
 
 export default function FAQSection() {
     const [faqs, setFaqs] = useState([

@@ -1,4 +1,4 @@
-import { formatMultiPrice } from "@/components/ValueDataHook";
+import { formatMultiPrice } from "@/common/ValueDataHook";
 import Popup from "./Popup";
 
 export default function ViewLesson({ title, description, price, duration, isOpen, setIsOpen }) {

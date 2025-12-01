@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import Listing from "@/pages/api/Listing";
-import Popup from "@/pages/common/Popup";
+import Popup from "@/common/Popup";
 
 export default function DeleteCourse({ isOpen, onClose, Id, fetchData }) {
   const [loading, setLoading] = useState(false);

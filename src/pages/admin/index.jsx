@@ -8,10 +8,10 @@ import { TbBrandBooking } from "react-icons/tb";
 import { AiFillStar } from 'react-icons/ai';
 import moment from 'moment';
 import Link from 'next/link';
-import { ReviewLoader, TableLoader } from '@/components/Loader';
+import { ReviewLoader, TableLoader } from '@/common/Loader';
 import Image from 'next/image';
 import { IoMdEye } from 'react-icons/io';
-import NoData from './common/NoData';
+import NoData from '../../components/NoData';
 
 
 export default function Index() {

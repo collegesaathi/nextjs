@@ -3,8 +3,8 @@ import { useState, useRef, useEffect } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay } from 'swiper/modules'
 import 'swiper/css'
-import Group from "../asserts/home/calling.png"
-import Heading from '../common/Heading'
+import Group from "../assets/home/calling.png"
+import Heading from '../../common/Heading'
 import 'swiper/css/pagination';
 // import required modules
 import { Pagination } from 'swiper/modules';

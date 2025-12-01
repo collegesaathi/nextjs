@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Listing from "../api/Listing";
 import toast from "react-hot-toast";
 import { MdAdd, MdDelete, MdEdit } from "react-icons/md";
-import Popup from "../common/Popup";
+import Popup from "../../common/Popup";
 
 const FaqManager = () => {
     const [faqs, setFaqs] = useState([]);

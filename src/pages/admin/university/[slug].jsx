@@ -1,28 +1,29 @@
 import React from "react";
 import AdminLayout from "../common/AdminLayout";
-import Budget from "../../asserts/home/Budget.png";
-import Confusion from "../../asserts/home/Confusion.png";
-import EMIOptions from "../../asserts/home/EMIOptions.png";
-import Suggestions from "../../asserts/home/Suggestions.png";
-import Placements from "../../asserts/home/Placements.png"
+import Budget from "../../assets/home/Budget.png";
+import Confusion from "../../assets/home/Confusion.png";
+import EMIOptions from "../../assets/home/EMIOptions.png";
+import Suggestions from "../../assets/home/Suggestions.png";
+import Placements from "../../assets/home/Placements.png"
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, A11y } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import { useRef, useState } from "react";
-import Heading from "@/pages/common/Heading";
+import Heading from "@/common/Heading";
 import Image from "next/image";
-import Facts from "./Facts";
-import UniversityCampusCarousel from "@/components/UniversityCampusCarousel";
-import PlacementPartners from "@/components/PlacementPartners";
-import CareerServices from "@/components/CareerServices";
-import StepsSection from "@/components/StepsSection";
-import Approvals from "../../../components/Approvals";
-import Advantages from "@/components/Advantages";
-import Financial from "@/components/Financial";
-import Ranking from "@/components/Rankings";
-import CourseFess from "@/components/CourseFees";
-import Aboutdetails from "@/components/Aboutdetails";
+import Facts from "../../common/Facts";
+import UniversityCampusCarousel from "@/pages/common/UniversityCampusCarousel";
+import PlacementPartners from "@/pages/common/PlacementPartners";
+import CareerServices from "@/pages/common/CareerServices";
+import StepsSection from "@/pages/common/StepsSection";
+import Approvals from "../../common/Approvals";
+import Advantages from "@/pages/common/Advantages";
+import Financial from "@/pages/common/Financial";
+import Ranking from "@/pages/common/Rankings";
+import CourseFess from "@/pages/common/CourseFees";
+import Aboutdetails from "@/pages/common/Aboutdetails";
+import Reviews from "@/pages/common/Reviews";
 function Details() {
 
     const helpCards = [
@@ -166,14 +167,9 @@ function Details() {
                     {/* Desktop Version */}
                     {/* Title */}
                     <Aboutdetails />
-
                     {/* Updated Fees */}
                     <CourseFess />
-
-
                     <Ranking />
-
-
                     <Approvals />
                     <Advantages />
                     <Facts />
@@ -182,6 +178,7 @@ function Details() {
                     <PlacementPartners />
                     <CareerServices />
                     <StepsSection />
+                    <Reviews />
                 </div>
             </div>
         </AdminLayout>

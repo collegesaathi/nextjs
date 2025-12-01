@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { MdClose, MdOutlinePlayCircle, MdEdit } from "react-icons/md";
 import EmilyCarter from "../Assets/Images/NoVideo.jpg";
-import Listing from "../api/Listing";
+import Listing from "../pages/api/Listing";
 import toast from "react-hot-toast";
 
 function getYouTubeID(url) {

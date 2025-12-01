@@ -3,9 +3,9 @@ import { useState, useRef, useEffect } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay } from 'swiper/modules'
 import 'swiper/css'
-import Media from "../asserts/home/Media.png"
-import Path from "../asserts/home/Path.png"
-import Heading from '../common/Heading'
+import Media from "../assets/home/Media.png"
+import Path from "../assets/home/Path.png"
+import Heading from '../../common/Heading'
 
 
 export default function MediaCarousel() {

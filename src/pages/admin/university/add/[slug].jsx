@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import AdminLayout from "../../common/AdminLayout";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { MdAdd, MdDelete, MdEdit } from "react-icons/md";
-import ReactQuillEditor from "@/components/ReactQuillEditor";
+import ReactQuillEditor from "@/common/ReactQuillEditor";
 import toast from "react-hot-toast";
 function Edit() {
     const [advantages, setAdvantages] = useState([

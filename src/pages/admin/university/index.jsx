@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import AdminLayout from "../common/AdminLayout";
 import Image from "next/image";
-import MCA from "../../asserts/home/Media.png"
+import MCA from "../../assets/home/Media.png"
 import Listing from "@/pages/api/Listing";
 import toast from "react-hot-toast";
 import Delete from "../common/Delete";

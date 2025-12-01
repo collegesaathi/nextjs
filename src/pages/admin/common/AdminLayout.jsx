@@ -1,4 +1,4 @@
-import AuthLayout from '@/pages/common/AuthLayout';
+import AuthLayout from '@/common/AuthLayout';
 import React from 'react'
 import SideBar from './sidebar';
 

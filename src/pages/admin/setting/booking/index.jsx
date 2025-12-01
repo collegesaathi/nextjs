@@ -1,8 +1,8 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import Listing from '@/pages/api/Listing';
 import moment from 'moment';
-import { TableLoader } from '@/components/Loader';
-import NoData from '@/pages/common/NoData';
+import { TableLoader } from '@/common/Loader';
+import NoData from '@/common/NoData';
 import AdminLayout from '../common/AdminLayout';
 import { FiSearch } from "react-icons/fi";
 import Link from 'next/link';

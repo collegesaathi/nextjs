@@ -1,4 +1,4 @@
-import Popup from '@/pages/common/Popup';
+import Popup from '@/common/Popup';
 import React, { useState } from 'react';
 import { IoCloseSharp } from 'react-icons/io5';
 

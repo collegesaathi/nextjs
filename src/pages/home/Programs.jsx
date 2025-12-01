@@ -6,10 +6,10 @@ import { Navigation, Autoplay } from "swiper/modules";
 import { FaCaretRight, FaCaretLeft } from "react-icons/fa";
 import "swiper/css";
 import "swiper/css/navigation";
-import Heading from "../common/Heading";
+import Heading from "../../common/Heading";
 import Image from "next/image";
-import MCA from "../asserts/home/MCA.png"
-import GlobalButton from "../common/GlobalButton";
+import MCA from "../assets/home/MCA.png"
+import GlobalButton from "../../common/GlobalButton";
 export default function Programs() {
 
   const [activeCategory, setActiveCategory] = useState(0);

@@ -4,10 +4,10 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, A11y } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import UniversityCard from '../common/UniversityCard';
-import un1 from "../asserts/home/un1.png"
-import logoun from "../asserts/home/logoun.png"
-import Heading from '../common/Heading';
+import UniversityCard from '../../common/UniversityCard';
+import un1 from "../assets/home/un1.png"
+import logoun from "../assets/home/logoun.png"
+import Heading from '../../common/Heading';
 
 
 export default function University() {

@@ -1,4 +1,4 @@
-import Popup from "@/pages/common/Popup";
+import Popup from "@/common/Popup";
 import React, { useState } from "react";
 import {
   FaVideo,
@@ -11,7 +11,7 @@ import {
   FaEye,
 } from "react-icons/fa";
 import moment from "moment";
-import { formatMultiPrice } from "@/components/ValueDataHook";
+import { formatMultiPrice } from "@/common/ValueDataHook";
 import { MdDownload } from "react-icons/md";
 import { IoMdEye } from "react-icons/io";
 import Listing from "@/pages/api/Listing";

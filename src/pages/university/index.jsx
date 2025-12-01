@@ -8,7 +8,7 @@ import ApprovalCard from '../components/ApprovalCard';
 // import { useFilterStore } from '@/store/filterStore';
 import { Brush, Search } from 'lucide-react';
 import CourseFilters from '../components/CourseFilter';
-import GlobalButton from '../common/GlobalButton';
+import GlobalButton from '../../common/GlobalButton';
 import Layout from "../components/Layout";
 
 // Responsive hook replacement

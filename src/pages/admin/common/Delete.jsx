@@ -3,7 +3,7 @@ import { IoCloseSharp } from "react-icons/io5";
 import { MdDelete } from "react-icons/md";
 import Listing from "../../Api/Listing";
 import toast from "react-hot-toast";
-import Popup from "@/pages/common/Popup";
+import Popup from "@/common/Popup";
 
 export default function Delete({ step, Id, PackageGet, users }) {
     const [isOpen, setIsOpen] = useState(false);

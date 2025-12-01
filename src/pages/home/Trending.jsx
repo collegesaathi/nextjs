@@ -1,12 +1,12 @@
 'use client';
 import React, { useRef, useState, } from 'react';
-import MBACard from '../common/MBACard';
+import MBACard from '../../common/MBACard';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, A11y } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import Heading from '../common/Heading';
-import MBA from "../asserts/home/MBA.png"
+import Heading from '../../common/Heading';
+import MBA from "../assets/home/MBA.png"
 export default function Trending() {
     const [activeIndex, setActiveIndex] = useState(1);
     const programData = [

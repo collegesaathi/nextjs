@@ -4,13 +4,13 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/autoplay";
 import { Autoplay } from "swiper/modules";
-import Logo1 from "../asserts/icon/1714460449-university-image.jpg"
-import Logo2 from "../asserts/icon/1716465446-university-image.jpg"
-import Logo3 from "../asserts/icon/1737094952-university-image.png"
-import Logo4 from "../asserts/icon/1717076333-university-image.png"
-import Logo5 from "../asserts/icon/1717763861-university-image.png"
-import Logo6 from "../asserts/icon/1719322053-university-image.png"
-import Logo7 from "../asserts/icon/1719387404-university-image.png"
+import Logo1 from "../assets/icon/1714460449-university-image.jpg"
+import Logo2 from "../assets/icon/1716465446-university-image.jpg"
+import Logo3 from "../assets/icon/1737094952-university-image.png"
+import Logo4 from "../assets/icon/1717076333-university-image.png"
+import Logo5 from "../assets/icon/1717763861-university-image.png"
+import Logo6 from "../assets/icon/1719322053-university-image.png"
+import Logo7 from "../assets/icon/1719387404-university-image.png"
 
 
 export default function LogoSlider() {

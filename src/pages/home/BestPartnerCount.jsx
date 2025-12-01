@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import Heading from "../common/Heading";
+import Heading from "../../common/Heading";
 
 const statsData = [
   {

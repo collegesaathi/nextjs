@@ -1,4 +1,4 @@
-import Shape from "../asserts/home/shape11.avif";
+import Shape from "../assets/home/shape11.avif";
 
 function UnlimitedSection() {
   return (

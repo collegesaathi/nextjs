@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
-import br from "../asserts/home/br.avif"
-import bg from "../asserts/home/bg.avif"
+import br from "../assets/home/br.avif"
+import bg from "../assets/home/bg.avif"
 
 
 export default function Confusion() {

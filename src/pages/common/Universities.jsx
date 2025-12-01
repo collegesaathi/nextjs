@@ -8,52 +8,52 @@ import ABP from "../assets/home/ABP.svg";
 import Edtech from "../assets/home/Edtech.svg";
 import Outlook from "../assets/home/Outlook-B.svg";
 import The from "../assets/home/The.svg"
-import Heading from '../../common/Heading'
+import Heading from '@/common/Heading'
 
 export default function AwardsCarousel() {
     // Award items data
-    const awardItems = [
+    const compareUniversities = [
         {
-            id: 1,
-            image: ABP?.src,
-            title: 'Award Title 1',
-            year: '2024'
+            name: 'Sharda University',
+            shortName: 'SHARDA',
+            rating: '4.2',
+            reviews: '1.2k',
+            logo: '/img/university/compare/1.png',
         },
         {
-            id: 2,
-            image: Outlook?.src,
-            title: 'Award Title 2',
-            year: '2024'
+            name: 'SRM University',
+            shortName: 'SRM',
+            rating: '4.4',
+            reviews: '2.1k',
+            logo: '/img/university/compare/2.png',
         },
         {
-            id: 3,
-            image: Edtech?.src,
-            title: 'Award Title 3',
-            year: '2024'
+            name: 'Jain University',
+            shortName: 'JAIN',
+            rating: '4.3',
+            reviews: '1.8k',
+            logo: '/img/university/compare/3.png',
         },
         {
-            id: 4,
-            image: The?.src,
-            title: 'Award Title 4',
-            year: '2024'
+            name: 'Manipal University',
+            shortName: 'MANIPAL',
+            rating: '4.5',
+            reviews: '3.2k',
+            logo: '/img/university/compare/4.png',
         },
         {
-            id: 2,
-            image: Outlook?.src,
-            title: 'Award Title 2',
-            year: '2024'
+            name: 'Amity University',
+            shortName: 'AMITY',
+            rating: '4.1',
+            reviews: '2.5k',
+            logo: '/img/university/compare/1.png',
         },
         {
-            id: 3,
-            image: Edtech?.src,
-            title: 'Award Title 3',
-            year: '2024'
-        },
-        {
-            id: 4,
-            image: The?.src,
-            title: 'Award Title 4',
-            year: '2024'
+            name: 'LPU University',
+            shortName: 'LPU',
+            rating: '4.3',
+            reviews: '4.1k',
+            logo: '/img/university/compare/2.png',
         },
     ]
 
@@ -215,32 +215,60 @@ export default function AwardsCarousel() {
                         data-aos-once="true"
                     >
                         <Swiper
-                            slidesPerView={4}
-                            spaceBetween={24}
-                            autoplay={{
-                                delay: 4000,
-                                disableOnInteraction: false,
-                            }}
-                            modules={[Autoplay,  Pagination]}
-                            onSwiper={(swiper) => {
-                                swiperRef.current = { swiper };
-                                updateProgress(swiper);
-                            }}
-                            // Update state on slide change
-                            onSlideChange={updateProgress}
+                            spaceBetween={15}
+                            loop
                             breakpoints={carouselBreakpoints}
                         >
-                            {awardItems.map((item, index) => (
-                                <SwiperSlide key={item.id}>
-                                    <div
-                                        className={`
-                    flex flex-col items-center justify-center transition-all duration-300 cursor-pointer pt-10
-                    ${isActiveSlide(index) ? 'active-slide' : ''}
-                  `}
-                                    >
-                                        <div className="relative mb-4">
-                                            <img src={item.image} alt={item.title} className="w-[243px] h-auto" />
+                            {compareUniversities.map((university, index) => (
+                                <SwiperSlide key={index}>
+                                    <div className="w-full h-[232px] rounded-[10px] border border-[rgba(188,188,188,0.7)] p-3 flex flex-col justify-between items-center">
+
+                                        {/* University Logo */}
+                                        <div className="rounded-[14px] h-[81px] bg-white border border-[rgba(188,188,188,0.3)] shadow-[0px_0px_2px_rgba(0,0,0,0.11)] flex items-center justify-center p-3 text-center">
+                                            <img
+                                                src={university.logo}
+                                                alt={university.name}
+                                                className="w-full object-contain"
+                                            />
                                         </div>
+
+                                        {/* University Name */}
+                                        <h3 className="font-poppins font-semibold text-[17px] leading-[25px] text-[#282529] text-center">
+                                            {university.name}
+                                        </h3>
+
+                                        {/* Student Rating */}
+                                        <div className="space-y-1.5 text-center">
+                                            <p className="font-poppins text-[12px] leading-[18px] text-[#282529] font-light">
+                                                Student Rating
+                                            </p>
+
+                                            <div className="flex justify-center items-center gap-1.5">
+                                                <div className="flex gap-1.5 text-xs">
+                                                    {[...Array(5)].map((_, i) => (
+                                                        <span
+                                                            key={i}
+                                                            className={
+                                                                i < university.rating
+                                                                    ? "text-yellow-400"
+                                                                    : "text-[#DDDDDD]"
+                                                            }
+                                                        >
+                                                            ★
+                                                        </span>
+                                                    ))}
+                                                </div>
+
+                                                <span className="font-poppins text-[8px] leading-[12px] text-[#61ab58] font-light">
+                                                    ({university.reviews} Reviews)
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        {/* Button */}
+                                        <button className="w-[129px] h-[21px] rounded-[6px] bg-[#ec1e24] font-poppins text-[12px] leading-[18px] text-white flex items-center justify-center">
+                                            Add to Compare
+                                        </button>
                                     </div>
                                 </SwiperSlide>
                             ))}

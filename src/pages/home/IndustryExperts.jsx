@@ -1,10 +1,10 @@
-import ExpertCard from "../common/ExpertCard";
+import ExpertCard from "../../common/ExpertCard";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Autoplay } from 'swiper/modules';
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
-import imageUrl from "../asserts/home/person.png"
+import imageUrl from "../assets/home/person.png"
 const expertsData = [
   // Expert Group 1 (Slide 1) - 4 Experts
   { name: "Anil Kamboj", role: "Senior Specialist", quote: "As a technical professional with more than 15 years of experience in the WASH sector, I was founded to enhance my skills...", imageUrl: imageUrl?.src, isSenior: true },

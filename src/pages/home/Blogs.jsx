@@ -4,10 +4,10 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, A11y, Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import BlogCard from '../common/BlogCard';
-import Heading from '../common/Heading';
-import MBA from "../asserts/icon/1716465446-university-image.jpg"
-import GlobalButton from '../common/GlobalButton';
+import BlogCard from '../../common/BlogCard';
+import Heading from '../../common/Heading';
+import MBA from "../assets/icon/1716465446-university-image.jpg"
+import GlobalButton from '../../common/GlobalButton';
 export default function Blogs() {
     const blogData = [
         { id: 1, title: '15 Top Online MBA Colleges in India.... 1', imageSrc: '/images/sikkim-manipal.jpg', topText: 'A Complete Guide to Sikkim Manipal University Online Programs', date: 'Oct 10, 2024', source: 'Collegesathi' },

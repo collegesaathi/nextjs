@@ -1,12 +1,12 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import shape11 from "../asserts/home/Lines.png"
+import shape11 from "../assets/home/Lines.png"
 import { FaArrowRight, FaCaretLeft, FaCaretRight, FaSearch } from 'react-icons/fa';
 import { IoMdArrowDropdownCircle } from "react-icons/io";
 import { IoMdCheckmark } from "react-icons/io";
-import Effect from "../asserts/home/effect.avif"
-import Heading from '../common/Heading';
+import Effect from "../assets/home/effect.avif"
+import Heading from '../../common/Heading';
 export default function AdvantagesSection() {
   // University Search Functionality
   const [searchQuery, setSearchQuery] = useState('');

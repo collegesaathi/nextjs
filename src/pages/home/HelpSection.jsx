@@ -4,14 +4,14 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, A11y } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import Logo2 from "../asserts/icon/1716465446-university-image.jpg"
+import Logo2 from "../assets/icon/1716465446-university-image.jpg"
 import Image from 'next/image';
-import Heading from '../common/Heading';
-import Budget from "../asserts/home/Budget.png";
-import Confusion from "../asserts/home/Confusion.png";
-import EMIOptions from "../asserts/home/EMIOptions.png";
-import Suggestions from "../asserts/home/Suggestions.png";
-import Placements from "../asserts/home/Placements.png"
+import Heading from '../../common/Heading';
+import Budget from "../assets/home/Budget.png";
+import Confusion from "../assets/home/Confusion.png";
+import EMIOptions from "../assets/home/EMIOptions.png";
+import Suggestions from "../assets/home/Suggestions.png";
+import Placements from "../assets/home/Placements.png"
 // Data for the cards
 const helpCards = [
   {

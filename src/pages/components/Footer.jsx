@@ -2,10 +2,10 @@
 
 import Aos from 'aos'
 import { useEffect } from 'react'
-import Bgfooter from "../asserts/home/shape1.png"
-import logo from "../asserts/home/Logo.png"
-import hand from "../asserts/home/hand.png"
-import grostart from "../asserts/home/Groupstart.png"
+import Bgfooter from "../assets/home/shape1.png"
+import logo from "../assets/home/Logo.png"
+import hand from "../assets/home/hand.png"
+import grostart from "../assets/home/Groupstart.png"
 export default function Footer() {
   useEffect(() => {
     // AOS initialization (if you're using AOS)

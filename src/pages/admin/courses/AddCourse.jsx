@@ -1,5 +1,5 @@
 import Listing from "@/pages/api/Listing";
-import Popup from "@/pages/common/Popup";
+import Popup from "@/common/Popup";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 

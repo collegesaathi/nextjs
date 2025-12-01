@@ -1,4 +1,4 @@
-import Popup from "@/pages/common/Popup";
+import Popup from "@/common/Popup";
 import React, { useState } from "react";
 import { BiVideo } from "react-icons/bi";
 import { FaVideo } from "react-icons/fa";

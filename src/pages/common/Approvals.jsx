@@ -1,15 +1,15 @@
-import Heading from "@/pages/common/Heading";
+import Heading from "@/common/Heading";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, A11y } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import { useRef, useState } from "react";
 
-import Budget from "../pages/asserts/home/Budget.png";
-import Confusion from "../pages/asserts/home/Confusion.png";
-import EMIOptions from "../pages/asserts/home/EMIOptions.png";
-import Suggestions from "../pages/asserts/home/Suggestions.png";
-import Placements from "../pages/asserts/home/Placements.png"
+import Budget from "../assets/home/Budget.png";
+import Confusion from "../assets/home/Confusion.png";
+import EMIOptions from "../assets/home/EMIOptions.png";
+import Suggestions from "../assets/home/Suggestions.png";
+import Placements from "../assets/home/Placements.png"
 function Approvals() {
 
     const helpCards = [

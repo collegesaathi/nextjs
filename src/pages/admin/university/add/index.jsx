@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import AdminLayout from "../../common/AdminLayout";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { MdAdd, MdDelete, MdEdit } from "react-icons/md";
-import ReactQuillEditor from "@/components/ReactQuillEditor";
+import ReactQuillEditor from "@/common/ReactQuillEditor";
 import toast from "react-hot-toast";
 
 function Index() {
@@ -2077,7 +2077,7 @@ function Index() {
                         onClick={handleNext}
                         disabled={currentIndex === tabsData.length - 1}
                         className={`flex items-center gap-2 px-6 py-2 rounded-lg font-[Poppins] transition 
-            ${currentIndex === tabsData.length - 1
+                           ${currentIndex === tabsData.length - 1
                                 ? "bg-blue-300 cursor-not-allowed"
                                 : "bg-blue-600 cursor-pointer text-white hover:bg-blue-700"
                             }`}

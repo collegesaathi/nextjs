@@ -2,11 +2,11 @@
 
 import { useState } from 'react'
 import { FaWhatsapp } from 'react-icons/fa'
-import Vector from "../asserts/home/Vector.png"
-import Heading from '../common/Heading'
-import Contactform from '../common/Contactform'
-import shapes from "../asserts/home/shape.svg"
-import WhatsApp from "../asserts/home/whatsapp.svg"
+import Vector from "../assets/home/Vector.png"
+import Heading from '../../common/Heading'
+import Contactform from '../../common/Contactform'
+import shapes from "../assets/home/shape.svg"
+import WhatsApp from "../assets/home/whatsapp.svg"
 
 
 export default function ContactSection() {

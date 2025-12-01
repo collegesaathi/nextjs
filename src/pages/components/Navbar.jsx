@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import Logo  from "../asserts/home/Logo.png"
+import Logo  from "../assets/home/Logo.png"
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
