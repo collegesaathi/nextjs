@@ -6,10 +6,10 @@ import MCA from "../../asserts/home/Media.png"
 import { RiDeleteBin6Line } from "react-icons/ri";
 import Listing from "@/pages/api/Listing";
 import toast from "react-hot-toast";
-import AddUniversity from "./AddUniversity";
 import Delete from "../common/Delete";
 import Link from "next/link";
-import { MdAdd } from "react-icons/md";
+import { MdAdd, MdEdit } from "react-icons/md";
+import Facts from "./facts";
 
 export default function Index() {
 
@@ -95,7 +95,7 @@ export default function Index() {
                     <h1 className="capitalize font-inter text-lg lg:text-2xl font-bold text-[#FF1B1B] tracking-[-0.04em] mb-6">
                         Manage university
                     </h1>
-                    <Link href="/adduniversty "
+                    <Link href="/admin/university/add"
                         className="cursor-pointer text-[#CECECE] h-[30px] w-[30px] bg-[#FF1B1B] bg-opacity-10 hover:bg-opacity-30 rounded inline-flex items-center justify-center"
                     >
                         <MdAdd size={24} />
@@ -121,8 +121,12 @@ export default function Index() {
                                         height={250}
                                         className="w-full h-[220px] object-cover"
                                     />
-                                    <AddUniversity data={item} isEdit={true} />
                                     <Delete step={1} />
+                                    <Link href="/admin/university/add/aaa"
+                                        className="cursor-pointer absolute top-2 left-2 bg-white bg-opacity-80 hover:bg-[#CECECE] p-2 rounded-full shadow-sm transition-all"
+                                    >
+                                        <MdEdit size={24} className="text-red-600 hover:text-red-700" />
+                                    </Link>
                                 </div>
 
                                 {/* Make the inner content stretch to push the button down */}
@@ -145,6 +149,7 @@ export default function Index() {
                                 </div>
                             </div>
                         ))}
+
                 </div>
             </div>
 

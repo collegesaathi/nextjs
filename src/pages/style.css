@@ -695,3 +695,177 @@ select:focus {
   border-color: #EC1E24;
   z-index: 10; /* Important for overlapping */
 }
+
+.ql-container {
+    min-height: 200px !important;
+    max-height: 350px !important;
+    overflow-y: auto !important;
+}
+
+.ql-editor {
+    min-height: 150px !important;
+}
+.editor-wrapper {
+    height: 350px;
+}
+
+
+/* facts   */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes bounceGentle {
+  from {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes lineGrow {
+  from {
+    height: 0;
+  }
+  to {
+    height: 100px;
+  }
+}
+
+/* Utility classes */
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.8s ease forwards;
+}
+
+.animate-bounce-gentle {
+  animation: bounceGentle 0.6s ease forwards;
+}
+
+.animate-line-grow {
+  animation: lineGrow 1s ease forwards;
+}
+
+
+/* Facts one  */
+
+/* campus-card */
+.campus-card {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(0);
+}
+
+.campus-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 
+    0 10px 25px rgba(0, 0, 0, 0.1),
+    0 6px 12px rgba(236, 30, 36, 0.1),
+    0 0 0 1px rgba(236, 30, 36, 0.1);
+  border-color: rgba(236, 30, 36, 0.3);
+}
+
+/* Shine effect on hover */
+.campus-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(236, 30, 36, 0.1) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transition: left 0.5s ease;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.campus-card:hover::before {
+  left: 100%;
+}
+
+/* Enhanced hover effects for mobile */
+@media (max-width: 1024px) {
+  .campus-card:hover {
+    transform: translateY(-2px) scale(1.01);
+  }
+}
+
+/* Accessibility: Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .campus-card,
+  .campus-card:hover,
+  .campus-card::before {
+    transition: none;
+    transform: none;
+    animation: none;
+  }
+}
+
+/* Custom styles for campus selection */
+.transition-shadow {
+  transition: box-shadow 0.3s ease;
+}
+
+/* campus-card Done */
+
+
+/* step Section  */
+/* step Section  */
+.bg-shadow {
+  box-shadow: 2px 2px 4px 0px #00000017;
+}
+
+.step {
+  box-shadow: 2px 2px 4px 0px #00000017;
+  background: #f8f8f8;
+  border-radius: 15px 15px 0 15px;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.step:hover {
+  transform: translateY(-5px);
+  box-shadow: 4px 4px 8px 0px #00000017;
+}
+
+
+
+.step-active:hover {
+  background: #ed2024;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* step Section  Done */
