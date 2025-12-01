@@ -23,7 +23,7 @@ export default function UniversityCard({
     const toggleSelection = "";
 
     const admissionTag = useMemo(() => {
-        if (index < 3) {
+      
             return `
         <div class='-top-1.5 left-1/2 -translate-x-1/2 flex justify-center text-white w-[132px]  h-[25px] absolute'>
           <img src='/images/uni-card-top.svg' class='absolute'/>
@@ -32,11 +32,7 @@ export default function UniversityCard({
             <span class='block text-center'>ON ${admissionClosing}</span>
           </div>
         </div>`;
-        }
-        return `
-      <div class='w-[177px] text-center top-2 right-2 text-white text-[0.625rem] py-0.5 rounded-full z-10 shadow-md  absolute bg-[red]'>
-        ADMISSION CLOSING ON ${admissionClosing}
-      </div>`;
+        
     }, [index, admissionClosing]);
 
     return (
