@@ -176,12 +176,12 @@ function Details() {
                     <Hero />
 
                     <div className="w-full flex items-start pt-10 justify-center h-full relative flex-wrap">
-                        <div
+                        {/* <div
                             className="w-full lg:w-4/12 bg-[#f9fafb] lg:shadow-[4px_4px_4px_rgba(0,0,0,0.06)] h-full overflow-y-auto justify-end flex lg:pr-4 relative animate-slide-fade-right animate-delay-200"
                         >
                             <UniversitySidebar />
                         </div>
-                        <div className="w-full lg:w-8/12 h-full lg:h-[100vh] overflow-y-auto scs">
+                        <div className="w-full lg:w-8/12 h-full lg:h-[100vh] overflow-y-auto scs"> */}
                             <Aboutdetails />
                             <CourseFess />
                             <PlacementPartners />
@@ -200,7 +200,7 @@ function Details() {
                             <SimilarUniversities />
                             <Universities />
                             <Reviews />
-                        </div>
+                        {/* </div> */}
 
                     </div>
                 </div>
