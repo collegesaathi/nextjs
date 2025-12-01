@@ -521,8 +521,8 @@ function Index() {
     const [activeTab, setActiveTab] = useState("card");
 
     const tabsData = [
-        { id: "card", label: "Card Info" },
-        { id: "about", label: "About Info" },
+        { id: "card", label: "Card " },
+        { id: "about", label: "About " },
         { id: "approvals", label: "Approvals" },
         { id: "rankings", label: "Rankings" },
         { id: "advantages", label: "Advantages" },
@@ -571,6 +571,18 @@ function Index() {
                             <h3 className="text-black text-[18px] lg:text-[20px] font-semibold tracking-tight">
                                 {tabsData[currentIndex]?.label}
                             </h3>
+
+                            <FaArrowRight
+                                onClick={currentIndex === currentIndex.length - 1 ? null : handleNext}
+                                className={`
+        text-xl cursor-pointer 
+        ${currentIndex === currentIndex.length - 1
+                                        ? "text-gray-400 cursor-not-allowed"
+                                        : "text-black hover:text-gray-300"
+                                    }
+    `}
+                            />
+
                         </div>
 
                         {/* Center: Tabs */}
