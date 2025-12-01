@@ -12,6 +12,7 @@ import Confusion from "../assets/home/Confusion.png";
 import EMIOptions from "../assets/home/EMIOptions.png";
 import Suggestions from "../assets/home/Suggestions.png";
 import Placements from "../assets/home/Placements.png"
+import BackNext from '../components/BackNext';
 // Data for the cards
 const helpCards = [
   {
@@ -89,11 +90,11 @@ const HelpSection = () => {
 
 
   const navigatePrev = () => {
-    swiperRef.current?.swiper.slidePrev();
+    swiperRef.current?.slidePrev();
   };
 
   const navigateNext = () => {
-    swiperRef.current?.swiper.slideNext();
+    swiperRef.current?.slideNext();
   };
   const progressBarTotalWidth =
     typeof window !== "undefined" && window.innerWidth >= 1024 ? "180px" : "120px";
@@ -147,7 +148,7 @@ const HelpSection = () => {
   return (
     <div className="py-4 md:py-8 ">
       <div className="mx-auto container sm:container md:container lg:container xl:max-w-[1230px]  px-4">
-        <div className="flex justify-between items-center mb-6">
+        {/* <div className="flex justify-between items-center mb-6">
           <Heading title={"Have Questions? We can"} midtitle={"help!"} />
           <div className="flex flex-wrap items-center justify-end md:space-x-4">
             <div className={`w-[${progressBarTotalWidth}] h-1.5 bg-gray-300 rounded-full overflow-hidden`}>
@@ -210,7 +211,17 @@ const HelpSection = () => {
               </button>
             </div>
           </div>
-        </div>
+        </div> */}
+
+<BackNext
+        title=" Have Questions? We can"
+        midtitle="Help !"
+        progress={progress}
+        isBeginning={isBeginning}
+        isEnd={isEnd}
+        onPrev={navigatePrev}
+  onNext={navigateNext}
+      />
 
         {/* Swiper Carousel */}
         <Swiper
@@ -220,7 +231,7 @@ const HelpSection = () => {
           slidesPerView={1}
           // Initialize Swiper and update state
           onSwiper={(swiper) => {
-            swiperRef.current = { swiper };
+            swiperRef.current =  swiper ;
             updateProgress(swiper);
           }}
           // Update state on slide change

@@ -38,6 +38,8 @@ function Home() {
             <QuickTipsCarousel />
             <FAQSection />
             <ContactSection />
+     
+  
         </Layout>
     </>);
 }

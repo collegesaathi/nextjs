@@ -127,8 +127,8 @@ const setCurrentView = useFilterStore(s => s.setCurrentCourseView);
   }
 
   return (
-    <div className="shadow-md transition-all duration-500">
-      <div className="bg-gradient-to-b from-white to-[#EFEFEF] shadow-md rounded-md pt-4 w-full">
+    <div className="bg-gradient-to-b from-white to-[#EFEFEF] shadow-md shadow-neutral-200 rounded-md">
+      <div className="">
 
         {/* Header */}
         <div className="flex justify-center items-center gap-1 text-neutral-600 text-sm mb-4">
