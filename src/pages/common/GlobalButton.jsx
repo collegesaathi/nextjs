@@ -2,7 +2,7 @@ import React from "react";
 import { IconContext } from "react-icons";
 
 export default function GlobalButton({
-    title,
+    children,
     onClick,
     classes = "",
 }) {
@@ -12,19 +12,19 @@ export default function GlobalButton({
             <button
                 onClick={onClick}
                 className="
-    w-full cursor-pointer mb-3 
-    h-[40px] min-w-[130px]
-    bg-[#EC1E24] text-white 
-text-[14px]
-               font-semibold font-poppins tracking-[-0.04em]
-    border border-[#EC1E24]
-    rounded-full outline-none
+    w-[74px] cursor-pointer py-[10px] px-[4.5px]
+    h-[19px] min-w-[74px]
+     text-[black] 
+text-[12px]
+               font-[400] font-poppins tracking-[-0.04em]
+    border border-[gray]
+    rounded-[2px] outline-none
     flex items-center justify-center    
     hover:text-[#EC1E24] hover:bg-white
     transition-all duration-150
   "
             >
-                {title}
+                 {children}
             </button>
 
         </div>

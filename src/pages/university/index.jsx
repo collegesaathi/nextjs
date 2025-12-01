@@ -170,6 +170,10 @@ export default function UniversityGrid() {
         filterStore.cardsToShow += 9;
     };
 
+
+
+
+
     // Watch responsiveness
     useEffect(() => {
         if (isMobile) setRowCount(1);
@@ -186,6 +190,8 @@ export default function UniversityGrid() {
             selectedApproval,
             searchQuery,
         } = filterStore;
+
+
 
         return allUniversityCardsData.filter((card) => {
             if (activeFilter && card.category !== activeFilter) return false;
@@ -244,112 +250,120 @@ export default function UniversityGrid() {
 
     return (
         <Layout>
-            <div className="py-4 md:py-8 ">
-                <div className="mx-auto container sm:container md:container lg:container xl:max-w-[1230px]  px-4 flex flex-col lg:flex-row" >
+            <div className="py-4 md:py-8 md:mt-20 lg:mt-30 ">
+                <div className="mx-auto container sm:container md:container xl:max-w-[1230px]  px-4  " >
+                    <div className="flex flex-wrap md:flex-nowrap  justify-start items-start gap-4 ">
 
-                    {/* Sidebar */}
-                    <div className="w-full lg:w-64 lg:block">
-                        <div className="flex justify-between items-center mb-4 p-2">
-                            <div
-                                className={clsx(
-                                    'flex justify-between items-center px-6',
-                                    (isTablet || isMobile) && 'hidden'
-                                )}
-                            >
-                                <h3 className="text-xl font-semibold text-neutral-800">Filters</h3>
-                            </div>
+                        <div className="w-full md:w-1/4">
 
-                            {/* Toggle Filters */}
-                            <GlobalButton
-                                className={clsx(
-                                    'lg:hidden text-neutral-600 text-sm flex items-center gap-2 transition-all duration-300 transform hover:scale-105 active:scale-95 px-4 py-2 rounded-lg border',
-                                    filterStore.isOpen ? 'bg-[#EC1E24] text-white' : 'bg-white'
-                                )}
-                                onClick={() => filterStore.setIsOpen(!filterStore.isOpen)}
-                            >
-                                <Brush size={15} />
-                                <span>Filters</span>
-                            </GlobalButton>
+                            <div className="flex gap-2 md:flex-wrap  justify-between  items-center mb-4 p-2">
+                                <div
+                                    className={clsx(
+                                        'flex  justify-between items-center px-6',
+                                        (isTablet || isMobile) && 'hidden'
+                                    )}
+                                >
+                                    <h3 className="text-xl font-semibold text-neutral-800">Filters</h3>
+                                </div>
 
-                            {/* Clear All */}
-                            <GlobalButton
-                                className={clsx(
-                                    'text-neutral-600 group text-xs flex items-center gap-2 hover:text-[#EC1E24] transition-all duration-300 transform hover:scale-105 active:scale-95 px-2 py-1 rounded-lg bg-white border',
-                                    !filterStore.isOpen && (isTablet || isMobile) && 'hidden'
-                                )}
-                                onClick={() => {
-                                    filterStore.handleClearAll();
-                                    filterStore.setSearchQuery('');
-                                }}
-                            >
-                                <img src="/icons/normal/clean.svg" className="group-hover:hidden" />
-                                <img
-                                    src="/icons/selected/clean.svg"
-                                    className="group-hover:block hidden"
-                                />
-                                <span>Clear all</span>
-                            </GlobalButton>
+                                {/* Toggle Filters */}
+                                {/* <GlobalButton
+        className={clsx(
+            'lg:hidden text-neutral-600 text-sm flex items-center gap-2 transition-all duration-300 transform hover:scale-105 active:scale-95 px-4 py-2 rounded-lg border',
+            filterStore.isOpen ? 'bg-[#EC1E24] text-white' : 'bg-white'
+        )}
+        onClick={() => filterStore.setIsOpen(!filterStore.isOpen)}
+    >
+        <Brush size={15} />
+        <span>Filters</span>
+    </GlobalButton> */}
 
-                            {/* Search */}
-                            <div
-                                className={clsx(
-                                    'relative px-4 lg:px-3 flex-1',
-                                    (isTablet || isMobile) && !filterStore.isOpen ? 'block' : 'hidden'
-                                )}
-                            >
-                                <input
-                                    type="text"
-                                    placeholder="Search here...."
-                                    value={filterStore.searchQuery}
-                                    onChange={(e) => filterStore.setSearchQuery(e.target.value)}
-                                    className="w-full px-4 py-1.5 text-sm border-2 border-neutral-400 rounded-full focus:outline-none focus:ring-2 focus:ring-[#EC1E24] focus:border-transparent transition-all duration-300 focus:scale-[1.02] focus:shadow-lg"
-                                />
-                                <Search
-                                    size={18}
-                                    className="absolute right-8 top-2 text-neutral-300 transition-all duration-300 hover:text-[#EC1E24] hover:scale-110"
-                                />
-                            </div>
-                        </div>
+                                {/* Clear All */}
+                                <GlobalButton
+                                    className={clsx(
+                                        'text-[black] group text-xs flex items-center justify-center gap-8 hover:text-[#EC1E24] transition-all duration-300 transform hover:scale-105 active:scale-95 px-2 py-1 rounded-lg  border',
+                                        !filterStore.isOpen && (isTablet || isMobile) && 'hidden'
+                                    )}
+                                    onClick={() => {
+                                        filterStore.handleClearAll();
+                                        filterStore.setSearchQuery('');
+                                    }}
+                                >
+                                    <img src="/icons/normal/clean.svg" className="group-hover:hidden" />
+                                    <img
+                                        src="/icons/selected/clean.svg"
+                                        className="group-hover:block hidden"
+                                    />
+                                    <span>Clear all</span>
+                                </GlobalButton>
 
-                        {/* Filters Panel */}
-                        <div
-                            className={clsx((isMobile || isTablet) && !filterStore.isOpen && 'hidden')}
-                        >
-                            <CourseFilters />
-                            <BudgetCard />
-                            <ApprovalCard />
-                            <ClikcPickCard />
-                        </div>
-                    </div>
+                                {/* Search */}
+                                <div
+                                    className={clsx(
+                                        'relative  lg:px-3 flex justify-between ',
+                                        (isTablet || isMobile) && !filterStore.isOpen ? 'block' : 'hidden'
+                                    )}
+                                >
 
-                    {/* University Cards */}
-                    <div className="mx-auto lg:mt-0 mt-6">
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-8 md:gap-6 lg:gap-6">
-                            {filteredCards
-                                .slice(0, filterStore.cardsToShow)
-                                .map((card, index) => (
-                                    <div key={index}>
-                                        <UniversityCard {...card} index={index} />
-                                        {(index + 1) % rowCount === 0 &&
-                                            index !== filteredCards.slice(0, filterStore.cardsToShow).length - 1 && (
-                                                <div className="col-span-full border-b border-gray-300 my-4" />
-                                            )}
+                                    <div className='flex  border-2 border-neutral-400 items-center  rounded-full px-2'>
+                                    <input
+                                        type="text"
+                                        placeholder="Search here...."
+                                        value={filterStore.searchQuery}
+                                        onChange={(e) => filterStore.setSearchQuery(e.target.value)}
+                                        className="w-full px-4 py-1.5 text-xs lg:text-sm focus:outline-none focus:ring-2 focus:ring-[#EC1E24] focus:border-transparent transition-all duration-300 focus:scale-[1.02] focus:shadow-lg"
+                                    />
+                                    <Search
+                                        size={18}
+                                        className="right-8 top-2 text-neutral-300 transition-all duration-300 hover:text-[#EC1E24] hover:scale-110"
+                                    />
                                     </div>
-                                ))}
-                        </div>
+                                    
+                                </div>
+                            </div>
 
-                        {/* View More */}
-                        {filterStore.cardsToShow < filteredCards.length && (
+                            <div
+                                className={clsx()}
+                            >
+                                <CourseFilters />
+                                <BudgetCard />
+                                <ApprovalCard />
+                                <ClikcPickCard />
+                            </div>
+                        </div>
+                        <div className="w-full md:w-2/1">
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3  ">
+                                {filteredCards?.slice(0, filterStore.cardsToShow).map((card, index) => (
+                                    <>
+                                        {/* Card */}
+                                        <div key={`card-${index}`} className=''>
+                                            <UniversityCard {...card} index={index} />
+                                        </div>
+
+                                        {/* Full row border */}
+                                        {((index + 1) % rowCount === 0) &&
+                                            index !== filteredCards.slice(0, filterStore.cardsToShow).length - 1 && (
+                                                <div
+                                                    key={`border-${index}`}
+                                                    className="col-span-full border-b border-gray-300 my-4"
+                                                />
+                                            )}
+                                    </>
+                                ))}
+                            </div>
+
+                            {/* View More */}
+                            {/* {filterStore.cardsToShow < filteredCards.length && ( */}
                             <div className="flex justify-center mt-12 mb-0">
-                                <Button
+                                <button
                                     size="lg"
                                     onClick={handleViewMore}
                                     className="bg-[#EC1E24] text-white h-[29px] w-[130px] text-sm rounded-full hover:bg-[#EC1E24] transition font-semibold"
                                 >
                                     View More &gt;
-                                </Button>
+                                </button>
                             </div>
-                        )}
+                        </div>
                     </div>
                 </div>
             </div>
