@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from "react";
 import AdminLayout from "../common/AdminLayout";
 import Image from "next/image";
-import { FaUndo, FaEdit } from "react-icons/fa";
 import MCA from "../../asserts/home/Media.png"
-import { RiDeleteBin6Line } from "react-icons/ri";
 import Listing from "@/pages/api/Listing";
 import toast from "react-hot-toast";
 import Delete from "../common/Delete";
 import Link from "next/link";
 import { MdAdd, MdEdit } from "react-icons/md";
-import Facts from "./facts";
 
 export default function Index() {
 
@@ -19,7 +16,7 @@ export default function Index() {
             "title": "Web Development Course",
             "description": "Learn full stack web development from scratch including HTML, CSS, JavaScript and React.",
             "thumbnail": "/images/web-dev.jpg",
-            "link": "https://example.com/web-development",
+            "link": "/admin/university/aaa",
             "is_deleted": false
         },
         {
@@ -27,7 +24,8 @@ export default function Index() {
             "title": "Mobile App Development",
             "description": "Build modern mobile applications using React Native and Flutter.",
             "thumbnail": "/images/mobile-dev.jpg",
-            "link": "https://example.com/mobile-development",
+            "link": "/admin/university/aaa",
+
             "is_deleted": false
         },
         {
@@ -35,7 +33,8 @@ export default function Index() {
             "title": "Digital Marketing",
             "description": "Master SEO, social media marketing, and paid ads with real-world projects.",
             "thumbnail": "/images/digital-marketing.jpg",
-            "link": "https://example.com/digital-marketing",
+            "link": "/admin/university/aaa",
+
             "is_deleted": true
         },
         {
@@ -140,7 +139,7 @@ export default function Index() {
 
                                     {/* Keep the button fixed at the bottom */}
                                     <a
-                                        href={item?.link}
+                                        href={"/admin/university/aaa"}
                                         target="_blank"
                                         className="mt-auto block text-center w-full py-2.5 rounded-full bg-[#FF1B1B] hover:bg-[#ad0e0e] text-white font-semibold transition-all"
                                     >
