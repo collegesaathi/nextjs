@@ -586,7 +586,7 @@ function Index() {
                         </div>
 
                         {/* Center: Tabs */}
-                        <div className="w-[400px] md:w-[700px] overflow-x-auto scrollbar-hide">
+                        <div className="w-[400px] md:w-[1300px] overflow-x-auto scrollbar-hide bg-[#2C2C2C] rounded-lg">
                             <div className="flex items-center gap-2 bg-[#2C2C2C] px-2 py-2 rounded-xl">
                                 {tabsData.map((tab) => (
                                     <button

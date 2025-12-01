@@ -5,8 +5,7 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { MdAdd, MdDelete, MdEdit } from "react-icons/md";
 import ReactQuillEditor from "@/common/ReactQuillEditor";
 import toast from "react-hot-toast";
-
-function Index() {
+function Edit() {
     const [advantages, setAdvantages] = useState([
         { title: "", description: "" }
     ]);
@@ -331,7 +330,7 @@ function Index() {
         icon: null,
         cover_image: null,
         position: "",
-        descriptions: [{ text: "" }],
+        description: "",
         about_title: "",
         about_desc: "",
         rankings_point: "",
@@ -357,26 +356,6 @@ function Index() {
     const handleQuillChange = (field, value) => {
         setFormData((prev) => ({ ...prev, [field]: value }));
     };
-
-
-    const addDescription = () => {
-        setFormData(prev => ({
-            ...prev,
-            descriptions: [...prev.descriptions, { text: "" }]
-        }));
-    };
-
-    const handleDescriptionChange = (index, value) => {
-        const updated = [...formData.descriptions];
-        updated[index].text = value;
-        setFormData(prev => ({ ...prev, descriptions: updated }));
-    };
-
-    const deleteDescription = (index) => {
-        const updated = formData.descriptions.filter((_, i) => i !== index);
-        setFormData(prev => ({ ...prev, descriptions: updated }));
-    };
-
 
     // 🔹 Input Change
     const handleChange = (e) => {
@@ -521,8 +500,8 @@ function Index() {
     const [activeTab, setActiveTab] = useState("card");
 
     const tabsData = [
-        { id: "card", label: "Card " },
-        { id: "about", label: "About " },
+        { id: "card", label: "Card Info" },
+        { id: "about", label: "About Info" },
         { id: "approvals", label: "Approvals" },
         { id: "rankings", label: "Rankings" },
         { id: "advantages", label: "Advantages" },
@@ -571,22 +550,10 @@ function Index() {
                             <h3 className="text-black text-[18px] lg:text-[20px] font-semibold tracking-tight">
                                 {tabsData[currentIndex]?.label}
                             </h3>
-
-                            <FaArrowRight
-                                onClick={currentIndex === currentIndex.length - 1 ? null : handleNext}
-                                className={`
-        text-xl cursor-pointer 
-        ${currentIndex === currentIndex.length - 1
-                                        ? "text-gray-400 cursor-not-allowed"
-                                        : "text-black hover:text-gray-300"
-                                    }
-    `}
-                            />
-
                         </div>
 
                         {/* Center: Tabs */}
-                        <div className="w-[400px] md:w-[1300px] overflow-x-auto scrollbar-hide bg-[#2C2C2C] rounded-lg">
+                        <div className="w-[400px] md:w-[700px] overflow-x-auto scrollbar-hide">
                             <div className="flex items-center gap-2 bg-[#2C2C2C] px-2 py-2 rounded-xl">
                                 {tabsData.map((tab) => (
                                     <button
@@ -661,49 +628,25 @@ function Index() {
                                 />
                             </div>
                             {/* Description Field changed to textarea with 300 character limit */}
-
-                            <div className="mb-4">
-                                <div className="flex justify-between items-center mb-3">
-                                    <h2 className="text-xl font-semibold text-[#CC2828]">Multiple Description</h2>
-
-                                    <button
-                                        onClick={addDescription}
-                                        className="border border-[#CC2828] bg-[#CC2828] hover:bg-red-700 text-white px-6 py-2 rounded-[10px] text-base transition"
-                                    >
-                                        + Add More
-                                    </button>
-                                </div>
-
-                                {formData.descriptions.map((desc, index) => (
-                                    <div key={index} className="mb-4">
-                                        <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
-                                            <span>Description {index + 1}</span>
-                                            <span className="text-sm text-gray-500">
-                                                ({desc.text.length}/500)
-                                            </span>
-                                        </label>
-                                        <div className="flex items-start gap-3 mb-4">
-                                            <input
-                                                value={desc.text}
-                                                onChange={(e) => {
-                                                    if (e.target.value.length <= 500)
-                                                        handleDescriptionChange(index, e.target.value);
-                                                }}
-                                                placeholder="Enter description"
-                                                className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
-                                                required
-                                            />
-
-                                            <button
-                                                onClick={() => deleteDescription(index)}
-                                                className="bg-red-500 text-white rounded-md p-3 hover:bg-red-700 flex justify-center items-center"
-                                            >
-                                                <MdDelete size={20} />
-                                            </button>
-                                        </div>
-
-                                    </div>
-                                ))}
+                            <div>
+                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
+                                    <span>Description</span>
+                                    <span className="text-sm text-gray-500">
+                                        ({formData.description.length}/500)
+                                    </span>
+                                </label>
+                                <textarea
+                                    name="description"
+                                    value={formData.description}
+                                    onChange={(e) => {
+                                        if (e.target.value.length <= 500)
+                                            handleChange(e);
+                                    }}
+                                    placeholder="Enter description"
+                                    rows={10}
+                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
+                                    required
+                                />
                             </div>
 
                             <div>
@@ -1267,13 +1210,13 @@ function Index() {
                                 <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
                                     Name{" "}
                                     <span className="text-sm text-gray-500">
-                                        ({formData.patternname?.length}/50)
+                                        ({formData.name?.length}/50)
                                     </span>
                                 </label>
                                 <input
                                     type="text"
-                                    name="patternname"
-                                    value={formData.patternname}
+                                    name="name"
+                                    value={formData.name}
                                     onChange={(e) => {
                                         if (e.target.value.length <= 50) handleChange(e);
                                     }}
@@ -1287,12 +1230,12 @@ function Index() {
                                 <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
                                     <span>Description</span>
                                     <span className="text-sm text-gray-500">
-                                        ({formData.patterndescription?.length}/500)
+                                        ({formData.description.length}/500)
                                     </span>
                                 </label>
                                 <textarea
                                     name="description"
-                                    value={formData.patterndescription}
+                                    value={formData.description}
                                     onChange={(e) => {
                                         if (e.target.value.length <= 500)
                                             handleChange(e);
@@ -1323,7 +1266,7 @@ function Index() {
                                     <div>
                                         <label className="block text-[#CC2828] font-medium mb-2">Image URL</label>
                                         <input
-                                            type="file"
+                                            type="text"
                                             disabled={item?._id}
                                             value={item.image}
                                             onChange={(e) => handlePatternChange(index, "image", e.target.value)}
@@ -2077,17 +2020,18 @@ function Index() {
                         onClick={handleNext}
                         disabled={currentIndex === tabsData.length - 1}
                         className={`flex items-center gap-2 px-6 py-2 rounded-lg font-[Poppins] transition 
-                           ${currentIndex === tabsData.length - 1
+            ${currentIndex === tabsData.length - 1
                                 ? "bg-blue-300 cursor-not-allowed"
                                 : "bg-blue-600 cursor-pointer text-white hover:bg-blue-700"
                             }`}
                     >
                         Next <FaArrowRight />
                     </button>
+
                 </div>
             </div>
         </AdminLayout>
     </>);
 }
 
-export default Index;
+export default Edit;

@@ -587,12 +587,12 @@ function Index() {
 
                         {/* Center: Tabs */}
                         <div className="w-[400px] md:w-[1300px] overflow-x-auto scrollbar-hide bg-[#2C2C2C] rounded-lg">
-                            <div className="flex items-center gap-2 bg-[#2C2C2C] px-2 py-2 rounded-xl">
+                            <div className="flex items-center gap-2  px-2 py-2 rounded-xl">
                                 {tabsData.map((tab) => (
                                     <button
                                         key={tab.id}
                                         onClick={() => setActiveTab(tab.id)}
-                                        className={`px-4 py-2 rounded-lg text-[14px] font-medium transition 
+                                        className={`px-2 py-2 rounded-lg text-[14px] font-medium transition 
                             ${activeTab === tab.id
                                                 ? "bg-white text-black shadow"
                                                 : "text-gray-300 hover:bg-gray-200 hover:text-black"

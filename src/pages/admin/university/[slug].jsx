@@ -170,7 +170,6 @@ function Details() {
     return (<>
         <AdminLayout page={"university"}>
             <div className="py-4 md:py-8 ">
-
                 <div className="mx-auto container sm:container md:container lg:container xl:max-w-[1230px]  px-4">
                     {/* <Approvals />  */}
                     <Hero />
