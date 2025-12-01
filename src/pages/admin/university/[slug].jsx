@@ -24,6 +24,13 @@ import Ranking from "@/pages/common/Rankings";
 import CourseFess from "@/pages/common/CourseFees";
 import Aboutdetails from "@/pages/common/Aboutdetails";
 import Reviews from "@/pages/common/Reviews";
+import Universities from "@/pages/common/Universities";
+import SimilarUniversities from "@/pages/common/SimilarUniversities";
+import FaqManager from "../FaqManager";
+import FAQSection from "@/pages/common/FAQSection";
+import ExaminationPattern from "@/pages/common/ExaminationPattern";
+import SampleCertificate from "@/pages/common/SampleCertificate";
+import CoursesSwiper from "@/pages/common/CoursesSwiper";
 function Details() {
 
     const helpCards = [
@@ -163,21 +170,25 @@ function Details() {
             <div className="py-4 md:py-8 ">
 
                 <div className="mx-auto container sm:container md:container lg:container xl:max-w-[1230px]  px-4">
+                    {/* <Approvals />  */}
 
-                    {/* Desktop Version */}
-                    {/* Title */}
                     <Aboutdetails />
-                    {/* Updated Fees */}
                     <CourseFess />
+                    <PlacementPartners />
+
                     <Ranking />
-                    <Approvals />
+                    <CoursesSwiper />
                     <Advantages />
                     <Facts />
+                    <SampleCertificate />
+                    <ExaminationPattern />
                     <Financial />
                     <UniversityCampusCarousel />
-                    <PlacementPartners />
                     <CareerServices />
                     <StepsSection />
+                    <FAQSection />
+                    <SimilarUniversities />
+                    <Universities />
                     <Reviews />
                 </div>
             </div>

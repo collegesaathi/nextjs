@@ -2,7 +2,7 @@ import React from "react";
 
 function Financial() {
     return (
-        <section className="w-[860px] px-4 lg:px-8 py-8">
+        <>
             <div className="mb-8">
                 <h2 className="font-poppins font-semibold text-[28px] leading-[42px] text-[#282529] mb-4">
                     NMIMS Online MBA Financial Aid
@@ -68,7 +68,7 @@ function Financial() {
                     </tbody>
                 </table>
             </div>
-        </section>
+        </>
     );
 }
 

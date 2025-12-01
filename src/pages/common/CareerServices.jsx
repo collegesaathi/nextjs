@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import Image from "next/image";
+import Imagess from "../assets/home/Budget.png"
 
 // Import images & icons
 
@@ -11,36 +12,36 @@ import Image from "next/image";
 const services = [
     {
         title: "Job Portal Access",
-        icon: "/img/university/showcase/1.png",
-        image: "/img/university/showcase/1.png",
+        icon: Imagess?.src,
+        image: Imagess?.src,
         description:
             "6 months' access to platforms like IIMJobs, Updazz, and Hirist. Find a job, flag your applications, and rank your profile.",
     },
     {
         title: "Coaching",
-        icon: "/img/university/showcase/1.png",
-        image: "/img/university/showcase/1.png",
+        icon: Imagess?.src,
+        image: Imagess?.src,
         description:
             "Work one-on-one with a career coach, who will help you plan and consult about your career strategy and goals to build a clear pathway to success.",
     },
     {
         title: "Profile Development",
-        icon: "/img/university/showcase/1.png",
-        image: "/img/university/showcase/1.png",
+        icon: Imagess?.src,
+        image: Imagess?.src,
         description:
             "Work with an expert to improve your resume, create a solid LinkedIn & social media profile, and develop your personal brand.",
     },
     {
         title: "Mock Interviews",
-        icon: "/img/university/showcase/1.png",
-        image: "/img/university/showcase/1.png",
+        icon: Imagess?.src,
+        image: Imagess?.src,
         description:
             "Participate in mock interview sessions to feel confident about real job interviews, career changes, and internal promotions.",
     },
     {
         title: "Assessment",
-        icon: "/img/university/showcase/1.png",
-        image: "/img/university/showcase/1.png",
+        icon: Imagess?.src,
+        image: Imagess?.src,
         description:
             "Explore your strengths through aptitude and psychometric tests, which will help guide you to optimum career options in marketing or related fields.",
     },
@@ -59,7 +60,7 @@ export default function CareerServices() {
     };
 
     return (
-        <section className="w-full lg:w-[860px] px-4 lg:px-6 py-12 mx-auto">
+        <section >
             {/* Desktop */}
             <div className="">
                 <div className="flex justify-between items-center mb-10">

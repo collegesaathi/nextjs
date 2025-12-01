@@ -869,3 +869,89 @@ select:focus {
 }
 
 /* step Section  Done */
+
+
+
+@media (max-width: 768px) {
+  .text-\[28px\] {
+    font-size: 24px;
+  }
+
+  .text-\[16px\] {
+    font-size: 14px;
+  }
+}
+
+/* Shadow for certificate */
+.shadow-lg {
+  box-shadow:
+    0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+#group {
+  position: absolute;
+  width: 360.17px;
+  height: 355.62px;
+  transform: rotate(180deg) scaleX(-1);
+}
+
+#group {
+  position: absolute;
+  width: 360.17px;
+  height: 355.62px;
+}
+
+#oval {
+  position: absolute;
+  left: 354.65px;
+  top: 116.07px;
+  width: 239.97px;
+  height: 239.55px;
+  background: #f8f8f8;
+  transform: rotate(180deg) scaleX(-1);
+  border-radius: 50%;
+}
+
+#oval {
+  position: absolute;
+  left: 19.99px;
+  top: 191.27px;
+  width: 19.99px;
+  height: 19.95px;
+  background: #ec1e24;
+  transform: rotate(180deg) scaleX(-1);
+  border-radius: 50%;
+}
+
+#oval {
+  position: absolute;
+  left: 335.66px;
+  top: 306.49px;
+  width: 44.47px;
+  height: 44.39px;
+  background: #ec1e24;
+  transform: rotate(180deg) scaleX(-1);
+  border-radius: 50%;
+}
+
+#oval {
+  position: absolute;
+  left: 360.17px;
+  top: 0px;
+  width: 36.64px;
+  height: 36.57px;
+  background: #f8f8f8;
+  transform: rotate(180deg) scaleX(-1);
+  border-radius: 50%;
+}
+
+#path {
+  position: absolute;
+  left: 335.71px;
+  top: 40.8px;
+  width: 313.25px;
+  height: 301.14px;
+  background: #ec1e24;
+  transform: rotate(180deg) scaleX(-1);
+}

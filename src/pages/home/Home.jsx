@@ -7,7 +7,7 @@ import Blogs from "./Blogs";
 import Confusion from "./Confusion";
 import ContactSection from "./ContactSection";
 import ExploreUniversities from "./ExploreUniversities";
-import FAQSection from "./FAQSection";
+import FAQSection from "../common/FAQSection";
 import HelpSection from "./HelpSection";
 import Logo from "./Logo";
 import LogoSlider from "./LogoSlider";
@@ -17,7 +17,7 @@ import University from "./University";
 import IndustryExpertsSection from "./IndustryExperts";
 import Trending from "./Trending";
 import MediaCarousel from "./MediaCarousel";
-function Page() {
+function Home() {
     return (<>
         <Layout>
             <Banner />
@@ -42,4 +42,4 @@ function Page() {
     </>);
 }
 
-export default Page;
+export default Home;
