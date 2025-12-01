@@ -211,8 +211,6 @@ const HelpSection = () => {
             </div>
           </div>
         </div>
-
-
         {/* Swiper Carousel */}
         <Swiper
           ref={swiperRef}
