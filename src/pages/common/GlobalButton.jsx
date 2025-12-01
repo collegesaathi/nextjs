@@ -7,22 +7,22 @@ export default function GlobalButton({
     classes = "",
 }) {
     return (
-        <div className="md:flex flex-wrap justify-between items-center">
+        <div className=" flex justify-between items-center">
 
             <button
                 onClick={onClick}
-                className="
-    w-[74px] cursor-pointer py-[10px] px-[4.5px]
+                className={`
+    w-[74px] cursor-pointer py-[14px] px-[4.5px]
     h-[19px] min-w-[74px]
      text-[black] 
-text-[12px]
+text-[12px] group
                font-[400] font-poppins tracking-[-0.04em]
     border border-[gray]
-    rounded-[2px] outline-none
+    rounded-[8px] outline-none
     flex items-center justify-center    
-    hover:text-[#EC1E24] hover:bg-white
-    transition-all duration-150
-  "
+    hover:text-[#EC1E24] hover:border-[#EC1E24]
+    transition-all duration-300 transform hover:scale-105  ${classes} 
+  `}
             >
                  {children}
             </button>

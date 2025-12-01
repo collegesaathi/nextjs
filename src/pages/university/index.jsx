@@ -10,6 +10,7 @@ import { Brush, Search } from 'lucide-react';
 import CourseFilters from '../components/CourseFilter';
 import GlobalButton from '../common/GlobalButton';
 import Layout from "../components/Layout";
+import { useFilterStore } from '@/store/filterStore';
 
 // Responsive hook replacement
 const useResponsive = () => {
@@ -36,7 +37,7 @@ export default function UniversityGrid() {
     const allUniversityCardsData = [
         {
             universityName: "Manipal Online University",
-            courses: ["Operations", "MS.c"],
+            courses: ["Operations", "MBA"],
             rating: "4.6/5",
             reviews: 178,
             approvals: "AICTE | NAAC | NBA | QS | UGC",
@@ -46,7 +47,7 @@ export default function UniversityGrid() {
             tag: { text: "Trending" },
             budget: 10000,
             admissionClosing: "29 JULY",
-            category: "UG Courses",
+            category: "PG Courses",
         },
         {
             universityName: "Jain Online University",
@@ -159,7 +160,7 @@ export default function UniversityGrid() {
     ]
     const { isMobile, isTablet } = useResponsive();
     // const filterStore = useFilterStore();
-    const filterStore = "";
+    const filterStore = useFilterStore();
 
 
     // Row count state
@@ -219,6 +220,52 @@ export default function UniversityGrid() {
             if (selectedApproval && !card.approvals?.includes(selectedApproval))
                 return false;
 
+
+
+
+            // COURSE MAIN FILTER (UG, PG, etc.)
+            if (filterStore.activeCourseFilter) {
+                if (card.category !== filterStore.activeCourseFilter) return false;
+            }
+
+            // COURSE SUB FILTER (BBA, MBA, BCA...)
+            if (filterStore.activeCourseSubFilter) {
+                if (!card.courses?.includes(filterStore.activeCourseSubFilter)) return false;
+            }
+
+            // SPECIALIZATION FILTER
+            if (filterStore.activeSpecialization) {
+                const specMatch =
+                    card.features?.some(f =>
+                        f.toLowerCase().includes(filterStore.activeSpecialization.toLowerCase())
+                    ) ||
+                    card.courses?.some(c =>
+                        c.toLowerCase().includes(filterStore.activeSpecialization.toLowerCase())
+                    );
+
+                if (!specMatch) return false;
+            }
+
+            // SELECTED COURSE ITEM (same as sub filter but required for your view navigation)
+            if (filterStore.selectedCourseItem) {
+                if (!card.courses?.includes(filterStore.selectedCourseItem)) return false;
+            }
+
+            // COURSE SEARCH BAR FILTER
+            if (filterStore.courseSearchQuery && filterStore.courseSearchQuery.trim()) {
+                const query = filterStore.courseSearchQuery.toLowerCase();
+
+                const match =
+                    card.universityName?.toLowerCase().includes(query) ||
+                    card.category?.toLowerCase().includes(query) ||
+                    card.courses?.some(c => c.toLowerCase().includes(query)) ||
+                    card.features?.some(f => f.toLowerCase().includes(query));
+
+                if (!match) return false;
+            }
+
+
+
             if (searchQuery && searchQuery.trim()) {
                 const query = searchQuery.toLowerCase().trim();
                 const titleMatch = card.universityName?.toLowerCase().includes(query);
@@ -252,11 +299,11 @@ export default function UniversityGrid() {
         <Layout>
             <div className="py-4 md:py-8 md:mt-20 lg:mt-30 ">
                 <div className="mx-auto container sm:container md:container xl:max-w-[1230px]  px-4  " >
-                    <div className="flex flex-wrap md:flex-nowrap  justify-start items-start gap-4 ">
+                    <div className="flex flex-wrap lg:flex-nowrap  justify-start items-start gap-4 ">
 
-                        <div className="w-full md:w-1/4">
+                        <div className="w-full lg:w-1/4">
 
-                            <div className="flex gap-2 md:flex-wrap  justify-between  items-center mb-4 p-2">
+                            <div className="flex gap-2 justify-between  items-center mb-4 p-2">
                                 <div
                                     className={clsx(
                                         'flex  justify-between items-center px-6',
@@ -267,35 +314,62 @@ export default function UniversityGrid() {
                                 </div>
 
                                 {/* Toggle Filters */}
-                                {/* <GlobalButton
-        className={clsx(
-            'lg:hidden text-neutral-600 text-sm flex items-center gap-2 transition-all duration-300 transform hover:scale-105 active:scale-95 px-4 py-2 rounded-lg border',
-            filterStore.isOpen ? 'bg-[#EC1E24] text-white' : 'bg-white'
-        )}
-        onClick={() => filterStore.setIsOpen(!filterStore.isOpen)}
-    >
-        <Brush size={15} />
-        <span>Filters</span>
-    </GlobalButton> */}
+                                <button
+                                    className={clsx(
+                                        'flex lg:hidden text-neutral-600 text-sm items-center gap-2 border px-4 py-2 rounded-lg transition-all duration-300 hover:text-[#EC1E24] hover:border-[#EC1E24] hover:scale-105',
+                                        filterStore.isOpen ? 'bg-[#EC1E24] text-white' : 'bg-white'
+                                    )}
+                                    onClick={() => filterStore.toggleIsOpen()}
+                                >
+                                    <Brush size={15} />
+                                    <span>Filters</span>
+                                </button>
+
+
+
+
+                                {filterStore.isOpen &&
+                                    <button
+                                        className={clsx(
+                                            'text-[black] text-xs flex items-center gap-2 px-2 py-1 rounded-lg border hover:text-[#EC1E24] hover:border-[#EC1E24] transition-all',
+                                            !filterStore.isOpen && (isTablet || isMobile) && 'hidden'
+                                        )}
+                                        onClick={() => {
+                                            filterStore.handleClearAll();
+                                            filterStore.setSearchQuery('');
+                                            filterStore.setCurrentCourseView("main");
+                                        }}
+                                    >
+                                        <img src="/icons/normal/clean.svg" className="group-hover:hidden block" />
+                                        <img src="https://collegesathi.co.in/icons/selected/clean.svg" className="group-hover:block hidden" />
+                                        <span>Clear all</span>
+                                    </button>}
+
 
                                 {/* Clear All */}
-                                <GlobalButton
+                                <button
                                     className={clsx(
-                                        'text-[black] group text-xs flex items-center justify-center gap-8 hover:text-[#EC1E24] transition-all duration-300 transform hover:scale-105 active:scale-95 px-2 py-1 rounded-lg  border',
+                                        '  group hidden lg:block text-[black] text-xs flex items-center justify-center gap-8 hover:text-[#EC1E24] transition-all duration-300 transform hover:scale-105 active:scale-95 px-2 py-1 rounded-lg border',
                                         !filterStore.isOpen && (isTablet || isMobile) && 'hidden'
                                     )}
                                     onClick={() => {
-                                        filterStore.handleClearAll();
+                                        filterStore.handleClearAll()
                                         filterStore.setSearchQuery('');
+                                        filterStore.setCurrentCourseView("main");
+
                                     }}
                                 >
-                                    <img src="/icons/normal/clean.svg" className="group-hover:hidden" />
-                                    <img
-                                        src="/icons/selected/clean.svg"
-                                        className="group-hover:block hidden"
-                                    />
-                                    <span>Clear all</span>
-                                </GlobalButton>
+                                    <div className='flex items-center justify-between gap-2'>
+                                        <img src="/icons/normal/clean.svg" className="group-hover:hidden block" />
+                                        <img
+                                            src="https://collegesathi.co.in/icons/selected/clean.svg"
+                                            className="group-hover:block hidden"
+                                        />
+                                        <span>Clear all</span>
+                                    </div>
+
+                                </button>
+
 
                                 {/* Search */}
                                 <div
@@ -306,32 +380,42 @@ export default function UniversityGrid() {
                                 >
 
                                     <div className='flex  border-2 border-neutral-400 items-center  rounded-full px-2'>
-                                    <input
-                                        type="text"
-                                        placeholder="Search here...."
-                                        value={filterStore.searchQuery}
-                                        onChange={(e) => filterStore.setSearchQuery(e.target.value)}
-                                        className="w-full px-4 py-1.5 text-xs lg:text-sm focus:outline-none focus:ring-2 focus:ring-[#EC1E24] focus:border-transparent transition-all duration-300 focus:scale-[1.02] focus:shadow-lg"
-                                    />
-                                    <Search
-                                        size={18}
-                                        className="right-8 top-2 text-neutral-300 transition-all duration-300 hover:text-[#EC1E24] hover:scale-110"
-                                    />
+                                        <input
+                                            type="text"
+                                            placeholder="Search here...."
+                                            value={filterStore.searchQuery}
+                                            onChange={(e) => filterStore.setSearchQuery(e.target.value)}
+                                            className="w-full px-4 py-1.5 text-xs lg:text-sm focus:outline-none focus:ring-2 focus:ring-[#EC1E24] focus:border-transparent transition-all duration-300 focus:scale-[1.02] focus:shadow-lg"
+                                        />
+                                        <Search
+                                            size={18}
+                                            className="right-8 top-2 text-neutral-300 transition-all duration-300 hover:text-[#EC1E24] hover:scale-110"
+                                        />
                                     </div>
-                                    
+
                                 </div>
                             </div>
 
                             <div
-                                className={clsx()}
+                                className={clsx(
+                                    'lg:block',                      // always open on desktop
+                                    (isMobile || isTablet) &&
+                                    (filterStore.isOpen ? 'block' : 'hidden')  // toggle on mobile/tablet
+                                )}
                             >
+                                {/* Clear all button */}
+
+
+
+
                                 <CourseFilters />
                                 <BudgetCard />
                                 <ApprovalCard />
                                 <ClikcPickCard />
                             </div>
+
                         </div>
-                        <div className="w-full md:w-2/1">
+                        <div className="w-full lg:w-2/1">
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3  ">
                                 {filteredCards?.slice(0, filterStore.cardsToShow).map((card, index) => (
                                     <>
@@ -353,16 +437,17 @@ export default function UniversityGrid() {
                             </div>
 
                             {/* View More */}
-                            {/* {filterStore.cardsToShow < filteredCards.length && ( */}
-                            <div className="flex justify-center mt-12 mb-0">
-                                <button
-                                    size="lg"
-                                    onClick={handleViewMore}
-                                    className="bg-[#EC1E24] text-white h-[29px] w-[130px] text-sm rounded-full hover:bg-[#EC1E24] transition font-semibold"
-                                >
-                                    View More &gt;
-                                </button>
-                            </div>
+                            {filterStore.cardsToShow < filteredCards.length && (
+                                <div className="flex justify-center mt-12 mb-0">
+                                    <button
+                                        size="lg"
+                                        onClick={handleViewMore}
+                                        className="bg-[#EC1E24] text-white h-[29px] w-[130px] text-sm rounded-full hover:bg-[#EC1E24] transition font-semibold"
+                                    >
+                                        View More &gt;
+                                    </button>
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>
