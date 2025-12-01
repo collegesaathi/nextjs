@@ -5,8 +5,6 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { MdAdd, MdDelete, MdEdit } from "react-icons/md";
 import ReactQuillEditor from "@/components/ReactQuillEditor";
 import toast from "react-hot-toast";
-import Facts from "../facts";
-
 function Edit() {
     const [advantages, setAdvantages] = useState([
         { title: "", description: "" }
