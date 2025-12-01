@@ -10,7 +10,7 @@ function Ranking() {
     const WorkIcon = "/assets/icons/work.png";
     return (
         <>
-            <div>
+            <div id="rankings-section">
                 <h2 className="text-[26px] font-bold mb-4 text-[#282529] font-poppins">
                     Rankings of NMIMS CDOE
                 </h2>

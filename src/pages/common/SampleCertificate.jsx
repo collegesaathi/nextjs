@@ -4,7 +4,7 @@ export default function SampleCertificate() {
   return (
     <>
       {/* ================= DESKTOP ================= */}
-      <section className="w-full py-8 mt-28">
+      <section className="w-full py-8 mt-28" id="certificate-section">
         <div className="p-8 relative overflow-hidden">
           <div className="flex items-center justify-between xl:w-[860px] mx-auto">
 

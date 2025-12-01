@@ -4,7 +4,7 @@ function Financial() {
     return (
         <>
             <div className="mb-8">
-                <h2 className="font-poppins font-semibold text-[28px] leading-[42px] text-[#282529] mb-4">
+                <h2 className="font-poppins font-semibold text-[28px] leading-[42px] text-[#282529] mb-4" id="financial-aid-section">
                     NMIMS Online MBA Financial Aid
                 </h2>
                 <p className="font-poppins text-[17px] leading-[25px] text-[#282529]">

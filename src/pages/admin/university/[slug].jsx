@@ -31,6 +31,8 @@ import FAQSection from "@/pages/common/FAQSection";
 import ExaminationPattern from "@/pages/common/ExaminationPattern";
 import SampleCertificate from "@/pages/common/SampleCertificate";
 import CoursesSwiper from "@/pages/common/CoursesSwiper";
+import Hero from "@/pages/common/Hero";
+import UniversitySidebar from "@/pages/common/UniversitySidebar";
 function Details() {
 
     const helpCards = [
@@ -171,25 +173,36 @@ function Details() {
 
                 <div className="mx-auto container sm:container md:container lg:container xl:max-w-[1230px]  px-4">
                     {/* <Approvals />  */}
+                    <Hero />
 
-                    <Aboutdetails />
-                    <CourseFess />
-                    <PlacementPartners />
+                    <div className="w-full flex items-start pt-10 justify-center h-full relative flex-wrap">
+                        <div
+                            className="w-full lg:w-4/12 bg-[#f9fafb] lg:shadow-[4px_4px_4px_rgba(0,0,0,0.06)] h-full overflow-y-auto justify-end flex lg:pr-4 relative animate-slide-fade-right animate-delay-200"
+                        >
+                            <UniversitySidebar />
+                        </div>
+                        <div className="w-full lg:w-8/12 h-full lg:h-[100vh] overflow-y-auto scs">
+                            <Aboutdetails />
+                            <CourseFess />
+                            <PlacementPartners />
 
-                    <Ranking />
-                    <CoursesSwiper />
-                    <Advantages />
-                    <Facts />
-                    <SampleCertificate />
-                    <ExaminationPattern />
-                    <Financial />
-                    <UniversityCampusCarousel />
-                    <CareerServices />
-                    <StepsSection />
-                    <FAQSection />
-                    <SimilarUniversities />
-                    <Universities />
-                    <Reviews />
+                            <Ranking />
+                            <CoursesSwiper />
+                            <Advantages />
+                            <Facts />
+                            <SampleCertificate />
+                            <ExaminationPattern />
+                            <Financial />
+                            <UniversityCampusCarousel />
+                            <CareerServices />
+                            <StepsSection />
+                            <FAQSection />
+                            <SimilarUniversities />
+                            <Universities />
+                            <Reviews />
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </AdminLayout>

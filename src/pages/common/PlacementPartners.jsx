@@ -30,7 +30,7 @@ export default function PlacementPartners() {
 
     return (
         <section className="">
-            <div className=" bg-white space-y-6">
+            <div className=" bg-white space-y-6" >
                 {/* Header */}
                 <div className="flex justify-between items-start">
                     <div className="mb-6">

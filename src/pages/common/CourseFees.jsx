@@ -1,8 +1,11 @@
 function CourseFess() {
     return (<>
-        <h2 className="font-semibold text-[28px] leading-[42px] text-[#282529] mt-8 mb-4">
-            Updated Course Fees for 2025
-        </h2>
+       <h2 
+  className="font-semibold text-[28px] leading-[42px] text-[#282529] mt-8 mb-4"
+  id="fee-section"
+>
+  Updated Course Fees for 2025
+</h2>
 
         {/* Table */}
         <div className="overflow-x-auto rounded-[13px] border-2 border-[#f47c80]">

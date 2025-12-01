@@ -101,7 +101,7 @@ function Approvals() {
     };
     return (<>
 
-        <div className="flex justify-between items-center mb-6">
+        <div className="flex justify-between items-center mb-6" id="approvals-section">
             <Heading title={"Approvals and Accreditations"} />
             <div className="flex flex-wrap items-center justify-end md:space-x-4">
                 <div className={`w-[${progressBarTotalWidth}] h-1.5 bg-gray-300 rounded-full overflow-hidden`}>

@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function ExaminationPattern() {
     return (
         <>
-            <section className="bg-[#f7f6f6] py-10 ">
+            <section className="bg-[#f7f6f6] py-10 " id="examination-section">
                 <div className="w-[860px] mx-auto">
                     <div className="lg:px-6 space-y-6">
 

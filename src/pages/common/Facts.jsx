@@ -32,7 +32,7 @@ function Facts() {
   return (
     <>
       {/* Desktop Version */}
-      <section className="w-full py-8 ">
+      <section className="w-full py-8 " id="facts-section">
         <div className="bg-[#fcf0ee] p-8 h-[750px]">
           <div className="relative z-10 w-full lg:w-[860px]">
             <h2 className="font-poppins font-[600] text-[28px] leading-[42px] text-[#282529] my-8 animate-fade-in-up">

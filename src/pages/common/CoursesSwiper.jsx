@@ -24,10 +24,22 @@ export default function CoursesSwiper() {
 
   return (
     <>
-      {/* ================= DESKTOP ================= */}
-      <section className=" px-8 py-8">
-        <Header progress={progress} />
+      <div className="flex justify-between items-center" id="courses-section">
+        <h2 className="font-semibold text-[28px] text-[#282529]">
+          NMIMS CODE: Courses
+        </h2>
 
+        <div className="flex items-center gap-2">
+          <div className="w-[191px] h-2 bg-gray-200 rounded-full">
+            <div
+              className="h-full bg-red-600 rounded-full transition-all"
+              style={{ width: `${progress}%` }}
+            />
+          </div>
+
+        </div>
+      </div>
+      <section className=" px-8 py-8">
         <Swiper
           onSwiper={(swiper) => {
             swiperRef.current = swiper;
@@ -56,78 +68,12 @@ export default function CoursesSwiper() {
   );
 }
 
-/* ------------------ HEADER ------------------ */
-function Header({ progress }) {
-  return (
-    <div className="flex justify-between items-center">
-      <h2 className="font-semibold text-[28px] text-[#282529]">
-        NMIMS CODE: Courses
-      </h2>
-
-      <div className="flex items-center gap-2">
-        <div className="w-[191px] h-2 bg-gray-200 rounded-full">
-          <div
-            className="h-full bg-red-600 rounded-full transition-all"
-            style={{ width: `${progress}%` }}
-          />
-        </div>
-        <NavButtons />
-      </div>
-    </div>
-  );
-}
-
-/* ------------------ MOBILE HEADER ------------------ */
-function MobileHeader({ progress }) {
-  return (
-    <div className="flex justify-between items-center">
-      <h2 className="font-semibold text-[18px] text-[#282529]">
-        NMIMS CODE: Courses
-      </h2>
-      <div className="flex items-center gap-2">
-        <div className="w-[86px] h-2 bg-gray-200 rounded-full">
-          <div
-            className="h-full bg-red-600 rounded-full"
-            style={{ width: `${progress}%` }}
-          />
-        </div>
-        <NavButtons small />
-      </div>
-    </div>
-  );
-}
-
-/* ------------------ NAV BUTTONS ------------------ */
-function NavButtons({ small }) {
-  return (
-    <>
-      <button
-        onClick={() => document.querySelector(".swiper").swiper.slidePrev()}
-        className={`border border-red-600 rounded-full flex items-center justify-center ${
-          small ? "w-4 h-4 text-xs" : "w-9 h-9"
-        }`}
-      >
-        ←
-      </button>
-      <button
-        onClick={() => document.querySelector(".swiper").swiper.slideNext()}
-        className={`border rounded-full flex items-center justify-center ${
-          small ? "w-4 h-4 text-xs" : "w-9 h-9"
-        }`}
-      >
-        →
-      </button>
-    </>
-  );
-}
-
 /* ------------------ COURSE CARD ------------------ */
 function CourseCard({ course, mobile = false }) {
   return (
     <div
-      className={`bg-[#f7f6f6] border rounded-[14px] p-2 flex flex-col ${
-        mobile ? "h-[270px]" : "h-[290px]"
-      }`}
+      className={`bg-[#f7f6f6] border rounded-[14px] p-2 flex flex-col ${mobile ? "h-[270px]" : "h-[290px]"
+        }`}
     >
       <div className="relative">
         <img
