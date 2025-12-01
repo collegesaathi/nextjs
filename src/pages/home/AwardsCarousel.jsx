@@ -9,6 +9,7 @@ import Edtech from "../assets/home/Edtech.svg";
 import Outlook from "../assets/home/Outlook-B.svg";
 import The from "../assets/home/The.svg"
 import Heading from '../../common/Heading'
+import BackNext from '../components/BackNext'
 
 export default function AwardsCarousel() {
     // Award items data
@@ -118,16 +119,16 @@ export default function AwardsCarousel() {
         progressValue = Math.min(100, Math.max(0, progressValue));
 
         setProgress(progressValue);
-        handleSwiper()
+      
     };
 
 
     const navigatePrev = () => {
-        swiperRef.current?.swiper.slidePrev();
+        swiperRef.current?.slidePrev();
     };
 
     const navigateNext = () => {
-        swiperRef.current?.swiper.slideNext();
+        swiperRef.current?.slideNext();
     };
     const progressBarTotalWidth =
         typeof window !== "undefined" && window.innerWidth >= 1024 ? "180px" : "120px";
@@ -142,7 +143,7 @@ export default function AwardsCarousel() {
             {/* Desktop Version */}
             <div className="py-4 md:py-8 ">
                 <div className="mx-auto container sm:container md:container lg:container xl:max-w-[1230px]  px-4">
-
+{/* 
                     <div className="flex justify-between items-center mb-6">
                         <Heading title={"  Our Achievements & "} midtitle={"Awards"} />
                         <div className="flex flex-wrap items-center justify-end md:space-x-4">
@@ -206,7 +207,17 @@ export default function AwardsCarousel() {
                                 </button>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
+
+<BackNext
+        title=" Our Achievements"
+        midtitle="Awards"
+        progress={progress}
+        isBeginning={isBeginning}
+        isEnd={isEnd}
+        onPrev={navigatePrev}
+  onNext={navigateNext}
+      />
 
                     <div
                         data-aos="zoom-in-up"
@@ -223,7 +234,7 @@ export default function AwardsCarousel() {
                             }}
                             modules={[Autoplay,  Pagination]}
                             onSwiper={(swiper) => {
-                                swiperRef.current = { swiper };
+                                swiperRef.current =  swiper ;
                                 updateProgress(swiper);
                             }}
                             // Update state on slide change

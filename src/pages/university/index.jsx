@@ -8,7 +8,7 @@ import ApprovalCard from '../components/ApprovalCard';
 // import { useFilterStore } from '@/store/filterStore';
 import { Brush, Search } from 'lucide-react';
 import CourseFilters from '../components/CourseFilter';
-import GlobalButton from '../../common/GlobalButton';
+// import GlobalButton from '../../common/GlobalButton';
 import Layout from "../components/Layout";
 import { useFilterStore } from '@/store/filterStore';
 
@@ -299,7 +299,7 @@ export default function UniversityGrid() {
         <Layout>
             <div className="py-4 md:py-8 md:mt-20 lg:mt-30 ">
                 <div className="mx-auto container sm:container md:container xl:max-w-[1230px]  px-4  " >
-                    <div className="flex flex-wrap lg:flex-nowrap  justify-start items-start gap-4 ">
+                    <div className="flex flex-wrap lg:flex-nowrap  justify-start items-start gap-6 ">
 
                         <div className="w-full lg:w-1/4">
 
@@ -398,9 +398,9 @@ export default function UniversityGrid() {
 
                             <div
                                 className={clsx(
-                                    'lg:block',                      // always open on desktop
+                                    'lg:block',                    
                                     (isMobile || isTablet) &&
-                                    (filterStore.isOpen ? 'block' : 'hidden')  // toggle on mobile/tablet
+                                    (filterStore.isOpen ? 'block' : 'hidden')  
                                 )}
                             >
                                 {/* Clear all button */}
@@ -429,7 +429,7 @@ export default function UniversityGrid() {
                                             index !== filteredCards.slice(0, filterStore.cardsToShow).length - 1 && (
                                                 <div
                                                     key={`border-${index}`}
-                                                    className="col-span-full border-b border-gray-300 my-4"
+                                                    className="col-span-full border-b border-gray-300 my-8"
                                                 />
                                             )}
                                     </>

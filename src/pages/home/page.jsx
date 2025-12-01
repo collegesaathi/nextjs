@@ -17,6 +17,8 @@ import University from "./University";
 import IndustryExpertsSection from "./IndustryExperts";
 import Trending from "./Trending";
 import MediaCarousel from "./MediaCarousel";
+
+import TestBackNext from "./TestBackNext";
 function Page() {
     return (<>
         <Layout>
@@ -38,6 +40,8 @@ function Page() {
             <QuickTipsCarousel />
             <FAQSection />
             <ContactSection />
+     
+  
         </Layout>
     </>);
 }

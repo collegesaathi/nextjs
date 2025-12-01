@@ -8,6 +8,10 @@ import BlogCard from '../../common/BlogCard';
 import Heading from '../../common/Heading';
 import MBA from "../assets/icon/1716465446-university-image.jpg"
 import GlobalButton from '../../common/GlobalButton';
+import BackNext from '../components/BackNext';
+
+
+
 export default function Blogs() {
     const blogData = [
         { id: 1, title: '15 Top Online MBA Colleges in India.... 1', imageSrc: '/images/sikkim-manipal.jpg', topText: 'A Complete Guide to Sikkim Manipal University Online Programs', date: 'Oct 10, 2024', source: 'Collegesathi' },
@@ -50,23 +54,19 @@ export default function Blogs() {
 
 
     const navigatePrev = () => {
-        swiperRef.current?.swiper.slidePrev();
+        swiperRef.current?.slidePrev();
     };
 
     const navigateNext = () => {
-        swiperRef.current?.swiper.slideNext();
+        swiperRef.current?.slideNext();
     };
-    const progressBarTotalWidth =
-        typeof window !== "undefined" && window.innerWidth >= 1024 ? "180px" : "120px";
-    const progressWidthStyle = {
-        width: `${progress}%`,
-    };
+  
 
     return (
         <div className="py-4 md:py-8 ">
             <div className="mx-auto container sm:container md:container lg:container xl:max-w-[1230px]  px-4">
 
-                <div className="flex  md:justify-between md:items-center gap-3 mb-6">
+                {/* <div className="flex  md:justify-between md:items-center gap-3 mb-6">
                     <Heading title={" Explore Our Latest"} midtitle={"Blogs"} />
 
                     <div className="flex flex-wrap items-center justify-end md:space-x-4">
@@ -130,7 +130,19 @@ export default function Blogs() {
                             </button>
                         </div>
                     </div>
-                </div>
+                </div> */}
+
+
+<BackNext
+        title="Explore Our Latest"
+        midtitle="Blogs"
+        progress={progress}
+        isBeginning={isBeginning}
+        isEnd={isEnd}
+        onPrev={navigatePrev}
+  onNext={navigateNext}
+      />
+
                 <Swiper
                     ref={swiperRef}
 
@@ -138,7 +150,7 @@ export default function Blogs() {
                     spaceBetween={30}
                     slidesPerView={1}
                     onSwiper={(swiper) => {
-                        swiperRef.current = { swiper };
+                        swiperRef.current = swiper;
                         updateProgress(swiper);
                     }}
                     onSlideChange={updateProgress}
