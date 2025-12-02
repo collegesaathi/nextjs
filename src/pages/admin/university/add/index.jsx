@@ -5,44 +5,38 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { MdAdd, MdDelete, MdEdit } from "react-icons/md";
 import ReactQuillEditor from "@/common/ReactQuillEditor";
 import toast from "react-hot-toast";
+import Linkify from "linkify-react";
+import AdvantagesSection from "./AdvantageSection";
+import FactsSection from "./FactSection";
+import PatternSection from "./PatternSection";
 
 function Index() {
     const [advantages, setAdvantages] = useState([
         { title: "", description: "" }
     ]);
-    const addAdvantage = () => {
-        setAdvantages([...advantages, { title: "", description: "" }]);
-    };
-    const handleAdvantageChange = (index, field, value) => {
-        const updated = [...advantages];
-        updated[index][field] = value;
-        setAdvantages(updated);
-    };
-    const deleteAdvantage = (index) => {
-        setAdvantages(advantages.filter((_, i) => i !== index));
-    };
-    const saveAdvantage = (index) => {
-        console.log("Saving advantage:", advantages[index]);
-    };
 
 
-    const [services, setServices] = useState([
-        { title: "", content: "" }
-    ]);
+    const [services, setServices] = useState([{ title: "", content: "", image: null, icon: null }]);
+
     const addService = () => {
-        setServices([...services, { title: "", content: "" }]);
+        setServices([...services, { title: "", content: "", image: null, icon: null }]);
     };
+
     const handleServiceChange = (index, field, value) => {
         const updated = [...services];
         updated[index][field] = value;
         setServices(updated);
     };
+
     const deleteService = (index) => {
         setServices(services.filter((_, i) => i !== index));
     };
+
     const saveService = (index) => {
         console.log("Saving service:", services[index]);
+        // Add your API call or save logic here
     };
+
 
 
     const approvalOptions = [
@@ -128,7 +122,7 @@ function Index() {
         }
     ]);
     const [faqs, setFaqs] = useState([
-        { question: "", answer: "" }
+        { question: "", answer: "", position: "" }
     ]);
     console.log("faqs", faqs)
     const [onlines, setOnlines] = useState([
@@ -161,7 +155,7 @@ function Index() {
         // Only add if no empty one exists
         const hasEmpty = faqs.some(f => !f.question && !f.answer);
         if (!hasEmpty) {
-            setFaqs([...faqs, { question: "", answer: "" }]);
+            setFaqs([...faqs, { question: "", answer: "", position: "" }]);
         } else {
             toast.error("Please fill in the existing empty FAQ before adding another.");
         }
@@ -261,7 +255,7 @@ function Index() {
 
     const [facts, setFacts] = useState([
         {
-            factname: "",
+            patternName: "",
             description: "",
         }
     ]);
@@ -274,7 +268,7 @@ function Index() {
         setFacts([
             ...facts,
             {
-                factname: "",
+                patternName: "",
                 description: "",
             }
         ]);
@@ -662,49 +656,7 @@ function Index() {
                             </div>
                             {/* Description Field changed to textarea with 300 character limit */}
 
-                            <div className="mb-4">
-                                <div className="flex justify-between items-center mb-3">
-                                    <h2 className="text-xl font-semibold text-[#CC2828]">Multiple Description</h2>
 
-                                    <button
-                                        onClick={addDescription}
-                                        className="border border-[#CC2828] bg-[#CC2828] hover:bg-red-700 text-white px-6 py-2 rounded-[10px] text-base transition"
-                                    >
-                                        + Add More
-                                    </button>
-                                </div>
-
-                                {formData.descriptions.map((desc, index) => (
-                                    <div key={index} className="mb-4">
-                                        <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
-                                            <span>Description {index + 1}</span>
-                                            <span className="text-sm text-gray-500">
-                                                ({desc.text.length}/500)
-                                            </span>
-                                        </label>
-                                        <div className="flex items-start gap-3 mb-4">
-                                            <input
-                                                value={desc.text}
-                                                onChange={(e) => {
-                                                    if (e.target.value.length <= 500)
-                                                        handleDescriptionChange(index, e.target.value);
-                                                }}
-                                                placeholder="Enter description"
-                                                className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
-                                                required
-                                            />
-
-                                            <button
-                                                onClick={() => deleteDescription(index)}
-                                                className="bg-red-500 text-white rounded-md p-3 hover:bg-red-700 flex justify-center items-center"
-                                            >
-                                                <MdDelete size={20} />
-                                            </button>
-                                        </div>
-
-                                    </div>
-                                ))}
-                            </div>
 
                             <div>
                                 <label className="block text-[#FF1B1B] font-medium mb-1">
@@ -767,7 +719,52 @@ function Index() {
                                         />
                                     </div>
                                 )}
-                            </div></>
+                            </div>
+
+                            <div className="mb-4">
+                                <div className="flex justify-between items-center mb-3">
+                                    <h2 className="text-xl font-semibold text-[#CC2828]">Multiple Description</h2>
+
+                                    <button
+                                        onClick={addDescription}
+                                        className="border border-[#CC2828] bg-[#CC2828] hover:bg-red-700 text-white px-6 py-2 rounded-[10px] text-base transition"
+                                    >
+                                        + Add More
+                                    </button>
+                                </div>
+
+                                {formData.descriptions.map((desc, index) => (
+                                    <div key={index} className="mb-4">
+                                        <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
+                                            <span>Description {index + 1}</span>
+                                            <span className="text-sm text-gray-500">
+                                                ({desc.text.length}/500)
+                                            </span>
+                                        </label>
+                                        <div className="flex items-start gap-3 mb-4">
+                                            <input
+                                                value={desc.text}
+                                                onChange={(e) => {
+                                                    if (e.target.value.length <= 500)
+                                                        handleDescriptionChange(index, e.target.value);
+                                                }}
+                                                placeholder="Enter description"
+                                                className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
+                                                required
+                                            />
+
+                                            <button
+                                                onClick={() => deleteDescription(index)}
+                                                className="bg-red-500 text-white rounded-md p-3 hover:bg-red-700 flex justify-center items-center"
+                                            >
+                                                <MdDelete size={20} />
+                                            </button>
+                                        </div>
+
+                                    </div>
+                                ))}
+                            </div>
+                        </>
                     )}
 
                     {activeTab === "about" && (
@@ -793,28 +790,11 @@ function Index() {
                                 />
                             </div>
 
-                            {/* Description Field changed to textarea with 300 character limit */}
-                            <div>
-                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
-                                    <span>Description</span>
-                                    <span className="text-sm text-gray-500">
-                                        ({formData.about_desc.length}/500)
-                                    </span>
-                                </label>
-
-                                <div
-                                    contentEditable
-                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE] min-h-[200px]"
-                                    placeholder="Enter About Description"
-                                    onInput={(e) => {
-                                        const text = e.currentTarget.innerHTML;
-                                        if (text.length <= 500) {
-                                            setFormData({ ...formData, about_desc: text });
-                                        }
-                                    }}
-                                    dangerouslySetInnerHTML={{ __html: formData.about_desc }}
-                                ></div>
-                            </div>
+                            <ReactQuillEditor
+                                label="Description"
+                                desc={formData.about_desc}
+                                handleBioChange={(val) => handleQuillChange("about_desc", val)}
+                            />
 
                         </>
 
@@ -842,28 +822,15 @@ function Index() {
                                     required
                                 />
                             </div>
-
-                            {/* Description Field changed to textarea with 300 character limit */}
                             <div>
-                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
-                                    <span>Description</span>
-                                    <span className="text-sm text-gray-500">
-                                        ({formData.approvals_desc?.length}/500)
-                                    </span>
-                                </label>
-                                <textarea
-                                    name="approvals_desc"
-                                    value={formData.approvals_desc}
-                                    onChange={(e) => {
-                                        if (e.target.value.length <= 500)
-                                            handleChange(e);
-                                    }}
-                                    placeholder="Enter Approvals Description"
-                                    rows={10}
-                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
-                                    required
+
+                                <ReactQuillEditor
+                                    label="Description"
+                                    desc={formData.approvals_desc}
+                                    handleBioChange={(val) => handleQuillChange("approvals_desc", val)}
                                 />
                             </div>
+                            {/* Description Field changed to textarea with 300 character limit */}
                             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
 
                                 {approvalOptions.map((item) => (
@@ -892,6 +859,8 @@ function Index() {
                                 ))}
 
                             </div>
+
+
                         </>
 
                     )}
@@ -920,30 +889,11 @@ function Index() {
                             </div>
 
                             {/* Description Field changed to textarea with 300 character limit */}
-                            <div>
-                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
-                                    <span>Description</span>
-                                    <span className="text-sm text-gray-500">
-                                        ({formData.rankings_description?.length}/500)
-                                    </span>
-                                </label>
-                                <textarea
-                                    name="description"
-                                    value={formData.rankings_description}
-                                    onChange={(e) => {
-                                        if (e.target.value.length <= 500)
-                                            handleChange(e);
-                                    }}
-                                    placeholder="Enter description"
-                                    rows={10}
-                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
-                                    required
-                                />
-                            </div>
+
                             <ReactQuillEditor
-                                label="Privacy Policy"
-                                desc={formData.rankings_point}
-                                handleBioChange={(val) => handleQuillChange("rankings_point", val)}
+                                label="Description"
+                                desc={formData.rankings_description}
+                                handleBioChange={(val) => handleQuillChange("rankings_description", val)}
                             />
 
 
@@ -977,120 +927,14 @@ function Index() {
                                     required
                                 />
                             </div>
-
-                            {/* MAIN DESCRIPTION */}
-                            <div>
-                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
-                                    <span>Description</span>
-                                    <span className="text-sm text-gray-500">
-                                        ({formData.advantagesdescription?.length}/500)
-                                    </span>
-                                </label>
-
-                                <textarea
-                                    name="advantagesdescription"
-                                    value={formData.advantagesdescription}
-                                    onChange={(e) => {
-                                        if (e.target.value.length <= 500) handleChange(e);
-                                    }}
-                                    placeholder="Enter description"
-                                    rows={10}
-                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 
-                focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
-                                    required
+                            <div className="mt-5 mb-5">
+                                <ReactQuillEditor
+                                    label="Description"
+                                    desc={formData.advantagesdescription}
+                                    handleBioChange={(val) => handleQuillChange("advantagesdescription", val)}
                                 />
                             </div>
-                            <div className="flex justify-between items-center mb-5">
-                                <h2 className="text-xl font-semibold text-[#CC2828]">
-                                    Multiple Advantages
-                                </h2>
-                                <button
-                                    onClick={addAdvantage}
-                                    className="w-full max-w-[170px] border border-[#CC2828] 
-                bg-[#CC2828] hover:bg-red-700 text-white py-3 rounded-[10px] 
-                text-base xl:text-lg transition"
-                                >
-                                    + Add More
-                                </button>
-
-                            </div>
-
-                            {/* DYNAMIC ADVANTAGE ITEMS */}
-                            {advantages.map((adv, index) => (
-                                <div key={index} className="grid grid-cols-1 gap-4 items-center">
-
-                                    {/* TITLE */}
-                                    <div>
-                                        <label className="block text-[#CC2828] font-medium mb-2">
-                                            Advantage
-                                        </label>
-                                        <input
-                                            type="text"
-                                            disabled={adv?._id}
-                                            value={adv.title}
-                                            onChange={(e) =>
-                                                handleAdvantageChange(index, "title", e.target.value)
-                                            }
-                                            placeholder="Enter Advantage Title"
-                                            className="w-full bg-[#F4F6F8] text-[#727272] 
-                        border border-[#F4F6F8] rounded-[10px] px-4 py-2 
-                        focus:outline-none"
-                                        />
-                                    </div>
-
-                                    {/* DESCRIPTION */}
-                                    <div>
-                                        <div className="flex justify-between items-center mb-2">
-                                            <label className="block text-[#CC2828] font-medium">
-                                                Description
-                                            </label>
-
-                                            <div className="flex items-center gap-2">
-                                                {adv._id ? (
-                                                    <button
-                                                        onClick={() => openAdvantageEditModal(adv)}
-                                                        className="bg-red-500 text-white rounded-full p-1 hover:bg-red-700"
-                                                        title="Edit Advantage"
-                                                    >
-                                                        <MdEdit />
-                                                    </button>
-                                                ) : (
-                                                    <button
-                                                        onClick={() => saveAdvantage(index)}
-                                                        className="bg-red-500 text-white rounded-full p-1 hover:bg-red-700"
-                                                        title="Save Advantage"
-                                                    >
-                                                        <MdAdd />
-                                                    </button>
-                                                )}
-
-                                                <span className="text-[#b1a9a9]">|</span>
-
-                                                <button
-                                                    onClick={() => deleteAdvantage(index)}
-                                                    className="bg-red-500 text-white rounded-full p-1 hover:bg-red-700"
-                                                    title="Delete Advantage"
-                                                >
-                                                    <MdDelete />
-                                                </button>
-                                            </div>
-                                        </div>
-
-                                        <input
-                                            type="text"
-                                            value={adv.description}
-                                            disabled={adv?._id}
-                                            onChange={(e) =>
-                                                handleAdvantageChange(index, "description", e.target.value)
-                                            }
-                                            placeholder="Enter Description"
-                                            className="w-full bg-[#F4F6F8] text-[#727272] 
-                        border border-[#F4F6F8] rounded-[10px] px-4 py-2 
-                        focus:outline-none"
-                                        />
-                                    </div>
-                                </div>
-                            ))}
+                            <AdvantagesSection advantages={advantages} setAdvantages={setAdvantages} />
 
                             {/* ADD MORE BUTTON */}
 
@@ -1119,78 +963,8 @@ function Index() {
                                 />
                             </div>
 
-                            <div className="flex justify-between items-center mb-5">
-                                <h2 className="text-xl font-semibold text-[#CC2828]">
-                                    Multiple Facts
-                                </h2>
+                            <FactsSection facts={facts} setFacts={setFacts} />
 
-                                <button
-                                    onClick={addFacts}
-                                    className="border border-[#CC2828] bg-[#CC2828] hover:bg-red-700 text-white px-6 py-2 rounded-[10px] text-base transition"
-                                >
-                                    + Add Facts
-                                </button>
-                            </div>
-
-                            {facts?.map((item, index) => (
-                                <div key={index} className="grid grid-cols-1 gap-4 items-center">
-                                    {/* Pattern Name */}
-                                    <div>
-                                        <label className="block text-[#CC2828] font-medium mb-2">Facts Name</label>
-                                        <input
-                                            type="text"
-                                            disabled={item?._id}
-                                            value={item.patternName}
-                                            onChange={(e) => handleFactsChange(index, "factnames", e.target.value)}
-                                            placeholder="Enter Pattern Name"
-                                            className="w-full bg-[#F4F6F8] text-[#727272] border rounded-[10px] px-4 py-2"
-                                        />
-                                    </div>
-
-
-
-                                    {/* Description */}
-                                    <div>
-                                        <div className="flex justify-between items-center mb-2">
-                                            <label className="block text-[#CC2828] font-medium">Facts Description</label>
-
-                                            {/* Buttons */}
-                                            <div className="flex items-center gap-2">
-                                                {item._id ? (
-                                                    <button
-                                                        onClick={() => openfactEdit(item)}
-                                                        className="bg-red-500 text-white rounded-full p-1 hover:bg-red-700"
-                                                    >
-                                                        <MdEdit />
-                                                    </button>
-                                                ) : (
-                                                    <button
-                                                        onClick={() => handlefactsSubmit(index)}
-                                                        className="bg-red-500 text-white rounded-full p-1 hover:bg-red-700"
-                                                    >
-                                                        <MdAdd />
-                                                    </button>
-                                                )}
-                                                <button
-                                                    onClick={() => deleteFacts(index)}
-                                                    className="bg-red-500 text-white rounded-full p-1 hover:bg-red-700"
-                                                >
-                                                    <MdDelete />
-                                                </button>
-                                            </div>
-                                        </div>
-
-                                        <textarea
-                                            rows={4}
-                                            disabled={item?._id}
-                                            value={item.description}
-                                            onChange={(e) => handleFactsChange(index, "description", e.target.value)}
-                                            placeholder="Enter Description"
-                                            className="w-full bg-[#F4F6F8] text-[#727272] border rounded-[10px] px-4 py-2"
-                                        />
-                                    </div>
-                                </div>
-                            ))}
                         </>
 
                     )}
@@ -1218,26 +992,7 @@ function Index() {
                                 />
                             </div>
 
-                            <div>
-                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
-                                    <span>Description</span>
-                                    <span className="text-sm text-gray-500">
-                                        ({formData.certificatedescription?.length}/500)
-                                    </span>
-                                </label>
-                                <textarea
-                                    name="certificatedescription"
-                                    value={formData.certificatedescription}
-                                    onChange={(e) => {
-                                        if (e.target.value.length <= 500)
-                                            handleChange(e);
-                                    }}
-                                    placeholder="Enter description"
-                                    rows={10}
-                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
-                                    required
-                                />
-                            </div>
+
                             <div>
                                 <label className="block text-[#FF1B1B] font-medium mb-1">
                                     Upload Certificate Image
@@ -1259,6 +1014,15 @@ function Index() {
                                     </div>
                                 )}
                             </div>
+                            <div className="mt-5 mb-5">
+                                <ReactQuillEditor
+                                    label="Description"
+                                    desc={formData.certificatedescription}
+                                    handleBioChange={(val) => handleQuillChange("certificatedescription", val)}
+                                />
+
+                            </div>
+
                         </>
 
                     )}
@@ -1285,132 +1049,15 @@ function Index() {
                                 />
                             </div>
 
-                            <div>
-                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
-                                    <span>Description</span>
-                                    <span className="text-sm text-gray-500">
-                                        ({formData.patterndescription?.length}/500)
-                                    </span>
-                                </label>
-                                <textarea
-                                    name="description"
-                                    value={formData.patterndescription}
-                                    onChange={(e) => {
-                                        if (e.target.value.length <= 500)
-                                            handleChange(e);
-                                    }}
-                                    placeholder="Enter description"
-                                    rows={10}
-                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
-                                    required
-                                />
-                            </div>
-                            <div className="flex justify-between items-center mb-5">
-                                <h2 className="text-xl font-semibold text-[#CC2828]">
-                                    Multiple Pattern
-                                </h2>
+                            <ReactQuillEditor
+                                label="Description"
+                                desc={formData.patterndescription}
+                                handleBioChange={(val) => handleQuillChange("patterndescription", val)}
+                            />
 
-                                <button
-                                    onClick={addPattern}
-                                    className="border border-[#CC2828] bg-[#CC2828] hover:bg-red-700 text-white px-6 py-2 rounded-[10px] text-base transition"
-                                >
-                                    + Add Pattern
-                                </button>
-                            </div>
+                            <PatternSection setPatterns={setPatterns} patterns={patterns} />
 
-                            {patterns.map((item, index) => (
-                                <div key={index} className="grid grid-cols-1 gap-4 items-center">
 
-                                    {/* Image URL */}
-                                    <div>
-                                        <label className="block text-[#CC2828] font-medium mb-2">Image URL</label>
-                                        <input
-                                            type="file"
-                                            disabled={item?._id}
-                                            value={item.image}
-                                            onChange={(e) => handlePatternChange(index, "image", e.target.value)}
-                                            placeholder="Enter Image URL"
-                                            className="w-full bg-[#F4F6F8] text-[#727272] border rounded-[10px] px-4 py-2"
-                                        />
-                                    </div>
-
-                                    {/* Preview */}
-                                    {item.image && (
-                                        <img
-                                            src={item.image}
-                                            alt="preview"
-                                            className="w-20 h-20 object-contain"
-                                        />
-                                    )}
-
-                                    {/* Pattern Name */}
-                                    <div>
-                                        <label className="block text-[#CC2828] font-medium mb-2">Pattern Name</label>
-                                        <input
-                                            type="text"
-                                            disabled={item?._id}
-                                            value={item.patternName}
-                                            onChange={(e) => handlePatternChange(index, "patternName", e.target.value)}
-                                            placeholder="Enter Pattern Name"
-                                            className="w-full bg-[#F4F6F8] text-[#727272] border rounded-[10px] px-4 py-2"
-                                        />
-                                    </div>
-
-                                    {/* Percentage */}
-                                    <div>
-                                        <label className="block text-[#CC2828] font-medium mb-2">Percentage</label>
-                                        <input
-                                            type="text"
-                                            disabled={item?._id}
-                                            value={item.percentage}
-                                            onChange={(e) => handlePatternChange(index, "percentage", e.target.value)}
-                                            placeholder="Enter % (example: 30%)"
-                                            className="w-full bg-[#F4F6F8] text-[#727272] border rounded-[10px] px-4 py-2"
-                                        />
-                                    </div>
-
-                                    {/* Description */}
-                                    <div>
-                                        <div className="flex justify-between items-center mb-2">
-                                            <label className="block text-[#CC2828] font-medium">Description</label>
-
-                                            {/* Buttons */}
-                                            <div className="flex items-center gap-2">
-                                                {item._id ? (
-                                                    <button
-                                                        onClick={() => openPatternEdit(item)}
-                                                        className="bg-red-500 text-white rounded-full p-1 hover:bg-red-700"
-                                                    >
-                                                        <MdEdit />
-                                                    </button>
-                                                ) : (
-                                                    <button
-                                                        onClick={() => handlePatternSubmit(index)}
-                                                        className="bg-red-500 text-white rounded-full p-1 hover:bg-red-700"
-                                                    >
-                                                        <MdAdd />
-                                                    </button>
-                                                )}
-                                                <button
-                                                    onClick={() => deletePattern(index)}
-                                                    className="bg-red-500 text-white rounded-full p-1 hover:bg-red-700"
-                                                >
-                                                    <MdDelete />
-                                                </button>
-                                            </div>
-                                        </div>
-
-                                        <textarea
-                                            rows={4}
-                                            disabled={item?._id}
-                                            value={item.description}
-                                            onChange={(e) => handlePatternChange(index, "description", e.target.value)}
-                                            placeholder="Enter Description"
-                                            className="w-full bg-[#F4F6F8] text-[#727272] border rounded-[10px] px-4 py-2"
-                                        />
-                                    </div>
-                                </div>
-                            ))}
 
                         </>
                     )}
@@ -1436,28 +1083,12 @@ function Index() {
                                     required
                                 />
                             </div>
+                            <ReactQuillEditor
+                                label="Description"
+                                desc={formData.financialdescription}
+                                handleBioChange={(val) => handleQuillChange("financialdescription", val)}
+                            />
 
-                            {/* Description Field changed to textarea with 300 character limit */}
-                            <div>
-                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
-                                    <span>Financial Description</span>
-                                    <span className="text-sm text-gray-500">
-                                        ({formData.financialdescription?.length}/500)
-                                    </span>
-                                </label>
-                                <textarea
-                                    name="financialdescription"
-                                    value={formData.financialdescription}
-                                    onChange={(e) => {
-                                        if (e.target.value.length <= 500)
-                                            handleChange(e);
-                                    }}
-                                    placeholder="Enter description"
-                                    rows={10}
-                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
-                                    required
-                                />
-                            </div>
 
                             <div className="flex justify-between items-center mb-5">
                                 <h2 className="text-xl font-semibold text-[#CC2828]">
@@ -1581,6 +1212,7 @@ function Index() {
 
                         </>
                     )}
+
                     {activeTab === "campuses" && (
                         <>
                             <div className="flex justify-between items-center">
@@ -1643,6 +1275,7 @@ function Index() {
                             ))}
                         </>
                     )}
+
                     {activeTab === "partners" && (
                         <>
 
@@ -1665,28 +1298,13 @@ function Index() {
                                     required
                                 />
                             </div>
+                            <ReactQuillEditor
+                                label="Description"
+                                desc={formData.partnersdesc}
+                                handleBioChange={(val) => handleQuillChange("partnersdesc", val)}
+                            />
 
-                            {/* Description Field changed to textarea with 300 character limit */}
-                            <div>
-                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
-                                    <span>Description</span>
-                                    <span className="text-sm text-gray-500">
-                                        ({formData.partnersdesc?.length}/500)
-                                    </span>
-                                </label>
-                                <textarea
-                                    name="partnersdesc"
-                                    value={formData.partnersdesc}
-                                    onChange={(e) => {
-                                        if (e.target.value.length <= 500)
-                                            handleChange(e);
-                                    }}
-                                    placeholder="Enter Partners Description"
-                                    rows={10}
-                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
-                                    required
-                                />
-                            </div>
+
                             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
 
                                 {PartnersOptions.map((item) => (
@@ -1742,109 +1360,90 @@ function Index() {
                                     required
                                 />
                             </div>
+                            <ReactQuillEditor
+                                label="Description"
+                                desc={formData.servicedesc}
+                                handleBioChange={(val) => handleQuillChange("servicedesc", val)}
+                            />
 
-                            {/* DESCRIPTION FIELD */}
-                            <div>
-                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
-                                    <span>Description</span>
-                                    <span className="text-sm text-gray-500">
-                                        ({formData.servicedesc?.length}/500)
-                                    </span>
-                                </label>
 
-                                <textarea
-                                    name="servicedesc"
-                                    value={formData.servicedesc}
-                                    onChange={(e) => {
-                                        if (e.target.value.length <= 500) handleChange(e);
-                                    }}
-                                    placeholder="Enter service description"
-                                    rows={10}
-                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 
-                focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
-                                    required
-                                />
-                            </div>
+
 
                             {/* SERVICES REPEATING SECTION */}
                             <>
                                 <div className="flex justify-between items-center mb-5">
-                                    <h2 className="text-xl font-semibold text-[#CC2828]">
-                                        Services Section
-                                    </h2>
-
+                                    <h2 className="text-xl font-semibold text-[#CC2828]">Services Section</h2>
                                     <button
                                         onClick={addService}
-                                        className="border border-[#CC2828] bg-[#CC2828] hover:bg-red-700 
-                    text-white px-6 py-2 rounded-[10px] text-base transition"
+                                        className="border border-[#CC2828] bg-[#CC2828] hover:bg-red-700 text-white px-6 py-2 rounded-[10px] text-base transition"
                                     >
                                         + Add More Service
                                     </button>
                                 </div>
 
                                 {services.map((service, index) => (
-                                    <div key={index} className="grid grid-cols-1 gap-4 items-center">
+                                    <div key={index} className="grid grid-cols-1 gap-4 items-center border-b border-gray-200 pb-4 mb-4">
 
-                                        {/* TITLE */}
+                                        {/* Title */}
                                         <div>
-                                            <label className="block text-[#CC2828] font-medium mb-2">Title</label>
+                                            <div className="flex justify-between items-center gap-2">
+                                                <label className="block text-[#CC2828] font-medium mb-2">Title</label>
 
+                                                <button
+                                                    onClick={() => deleteService(index)}
+                                                    className="bg-red-500 text-white rounded-full p-1 hover:bg-red-700 mb-2"
+                                                    title="Delete Service"
+                                                >
+                                                    <MdDelete />
+                                                </button>
+                                            </div>
                                             <input
                                                 type="text"
-                                                disabled={service?._id}
                                                 value={service.title}
                                                 onChange={(e) => handleServiceChange(index, "title", e.target.value)}
                                                 placeholder="Enter service title"
-                                                className="w-full bg-[#F4F6F8] text-[#727272] border border-[#F4F6F8] 
-                            rounded-[10px] px-4 py-2 focus:outline-none"
+                                                className="w-full bg-[#F4F6F8] text-[#727272] border rounded-[10px] px-4 py-2 focus:outline-none"
                                             />
                                         </div>
 
-                                        {/* CONTENT */}
+                                        {/* Content */}
                                         <div>
                                             <div className="flex justify-between items-center mb-2">
                                                 <label className="block text-[#CC2828] font-medium">Content</label>
 
-                                                <div className="flex items-center gap-2">
-                                                    {service._id ? (
-                                                        <button
-                                                            onClick={() => openEditModal(service)}
-                                                            className="bg-red-500 text-white rounded-full p-1 hover:bg-red-700"
-                                                            title="Edit Service"
-                                                        >
-                                                            <MdEdit />
-                                                        </button>
-                                                    ) : (
-                                                        <button
-                                                            onClick={() => saveService(index)}
-                                                            className="bg-red-500 text-white rounded-full p-1 hover:bg-red-700"
-                                                            title="Save Service"
-                                                        >
-                                                            <MdAdd />
-                                                        </button>
-                                                    )}
-
-                                                    <span className="text-[#b1a9a9]">|</span>
-
-                                                    <button
-                                                        onClick={() => deleteService(index)}
-                                                        className="bg-red-500 text-white rounded-full p-1 hover:bg-red-700"
-                                                        title="Delete Service"
-                                                    >
-                                                        <MdDelete />
-                                                    </button>
-                                                </div>
                                             </div>
 
                                             <input
                                                 type="text"
                                                 value={service.content}
-                                                disabled={service?._id}
                                                 onChange={(e) => handleServiceChange(index, "content", e.target.value)}
                                                 placeholder="Enter service content"
-                                                className="w-full bg-[#F4F6F8] text-[#727272] border border-[#F4F6F8] 
-                            rounded-[10px] px-4 py-2 focus:outline-none"
+                                                className="w-full bg-[#F4F6F8] text-[#727272] border rounded-[10px] px-4 py-2 focus:outline-none"
                                             />
+                                        </div>
+
+                                        {/* Image */}
+                                        <div>
+                                            <label className="block text-[#CC2828] font-medium mb-2">Image</label>
+                                            <input
+                                                type="file"
+                                                accept="image/*"
+                                                onChange={(e) => handleServiceChange(index, "image", e.target.files[0])}
+                                                className="w-full bg-[#F4F6F8] text-[#727272] border rounded-[10px] px-4 py-2 focus:outline-none"
+                                            />
+                                            {service.image && <p className="text-sm text-gray-500 mt-1">{service.image.name}</p>}
+                                        </div>
+
+                                        {/* Icon */}
+                                        <div>
+                                            <label className="block text-[#CC2828] font-medium mb-2">Icon</label>
+                                            <input
+                                                type="file"
+                                                accept="image/*"
+                                                onChange={(e) => handleServiceChange(index, "icon", e.target.files[0])}
+                                                className="w-full bg-[#F4F6F8] text-[#727272] border rounded-[10px] px-4 py-2 focus:outline-none"
+                                            />
+                                            {service.icon && <p className="text-sm text-gray-500 mt-1">{service.icon.name}</p>}
                                         </div>
 
                                     </div>
@@ -1875,28 +1474,12 @@ function Index() {
                                     required
                                 />
                             </div>
+                            <ReactQuillEditor
+                                label="Description"
+                                desc={formData.onlinedesc}
+                                handleBioChange={(val) => handleQuillChange("onlinedesc", val)}
+                            />
 
-                            {/* Description Field changed to textarea with 300 character limit */}
-                            <div>
-                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
-                                    <span>Description</span>
-                                    <span className="text-sm text-gray-500">
-                                        ({formData.onlinedesc?.length}/500)
-                                    </span>
-                                </label>
-                                <textarea
-                                    name="onlinedesc"
-                                    value={formData.onlinedesc}
-                                    onChange={(e) => {
-                                        if (e.target.value.length <= 500)
-                                            handleChange(e);
-                                    }}
-                                    placeholder="Enter online Description"
-                                    rows={10}
-                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
-                                    required
-                                />
-                            </div>
                             <>
                                 <div className="flex justify-between items-center mb-5">
                                     <h2 className="text-xl font-semibold text-[#CC2828]">
@@ -2005,6 +1588,18 @@ function Index() {
                                             value={faq.question}
                                             onChange={(e) => handleFaqChange(index, 'question', e.target.value)}
                                             placeholder="Enter Question"
+                                            className="w-full bg-[#F4F6F8] text-[#727272] border border-[#F4F6F8] rounded-[10px] px-4 py-2 focus:outline-none"
+                                        />
+                                    </div>
+
+                                    <div>
+                                        <label className="block text-[#CC2828] font-medium mb-2">Position</label>
+                                        <input
+                                            type="number"
+                                            disabled={faq?._id}
+                                            value={faq.question}
+                                            onChange={(e) => handleFaqChange(index, 'position', e.target.value)}
+                                            placeholder="Enter Position"
                                             className="w-full bg-[#F4F6F8] text-[#727272] border border-[#F4F6F8] rounded-[10px] px-4 py-2 focus:outline-none"
                                         />
                                     </div>
