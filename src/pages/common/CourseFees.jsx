@@ -1,11 +1,20 @@
+import Heading from "@/common/Heading";
+
 function CourseFess() {
-    return (<>
-       <h2 
+    return (
+    
+    
+    <>
+
+    <div className="mt-[50px] px-6">
+       {/* <h2 
   className="font-semibold text-[28px] leading-[42px] text-[#282529] mt-8 mb-4"
   id="fee-section"
 >
   Updated Course Fees for 2025
-</h2>
+</h2> */}
+
+<Heading title=" Updated Course Fees for 2025" />
 
         {/* Table */}
         <div className="overflow-x-auto rounded-[13px] border-2 border-[#f47c80]">
@@ -44,7 +53,10 @@ function CourseFess() {
                 </tbody>
             </table>
         </div>
-    </>);
+
+        </div>
+    </>
+    );
 }
 
 export default CourseFess;

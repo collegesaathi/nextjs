@@ -1,11 +1,18 @@
+import Heading from "@/common/Heading";
+
 function Aboutdetails() {
-    return (<>
-        <h1 className="font-poppins font-semibold text-[28px] leading-[42px] text-[#282529] mb-4">
+    return (
+    
+    <>
+       <div className="px-6">
+        {/* <h1 className="font-poppins font-semibold text-[28px] leading-[42px] text-[#282529] mb-4">
             NMIMS CDOE
-        </h1>
+        </h1> */}
+
+        <Heading title="NMIMS CDOE" />
 
         {/* Description */}
-        <p className="font-poppins font-normal text-[17px] leading-[25px] text-[#282529]">
+        <p className="font-poppins font-normal text-[16px] leading-[25px] text-[#282529]">
             <span className="font-semibold">
                 Narsee Monjee Institute of Management Studies (CDOE)
             </span>{" "}
@@ -30,7 +37,11 @@ function Aboutdetails() {
             <span className="font-semibold">NMIMS CDOE</span> is the best choice
             for students.
         </p>
-    </>);
+
+        </div>
+    </>
+    
+    );
 }
 
 export default Aboutdetails;

@@ -18,13 +18,10 @@ export default function BackNext({
       : "120px";
 
   return (
-    <div className="flex justify-between items-center mb-6 w-full">
-      {/* Left Side Heading */}
+    <div className="flex  justify-between items-start mb-[30px] w-full">
       <Heading title={title} midtitle={midtitle} />
 
-      {/* Right Side Nav + Progress */}
       <div className="flex flex-wrap items-center justify-end md:space-x-4">
-        {/* Progress Bar */}
         <div
           className="h-1.5 bg-gray-300 rounded-full overflow-hidden"
           style={{ width: progressBarTotalWidth }}
@@ -35,10 +32,8 @@ export default function BackNext({
           ></div>
         </div>
 
-        {/* Buttons */}
         <div className="flex space-x-2 mt-4 md:mt-0">
 
-          {/* Prev */}
           <button
             type="button"
             onClick={onPrev}
