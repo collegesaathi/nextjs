@@ -10,6 +10,7 @@ import Confusion from "../assets/home/Confusion.png";
 import EMIOptions from "../assets/home/EMIOptions.png";
 import Suggestions from "../assets/home/Suggestions.png";
 import Placements from "../assets/home/Placements.png"
+import BackNext from "../components/BackNext";
 function Approvals() {
 
     const helpCards = [
@@ -87,11 +88,11 @@ function Approvals() {
 
 
     const navigatePrev = () => {
-        swiperRef.current?.swiper.slidePrev();
+        swiperRef.current?.slidePrev();
     };
 
     const navigateNext = () => {
-        swiperRef.current?.swiper.slideNext();
+        swiperRef.current?.slideNext();
     };
     const progressBarTotalWidth =
         typeof window !== "undefined" && window.innerWidth >= 1024 ? "180px" : "120px";
@@ -101,8 +102,8 @@ function Approvals() {
     };
     return (<>
 
-        <div className="flex justify-between items-center mb-6" id="approvals-section">
-            <Heading title={"Approvals and Accreditations"} />
+        <div className="flex justify-between items-center px-6 mt-[50px]" id="approvals-section">
+            {/* <Heading title={"Approvals and Accreditations"} />
             <div className="flex flex-wrap items-center justify-end md:space-x-4">
                 <div className={`w-[${progressBarTotalWidth}] h-1.5 bg-gray-300 rounded-full overflow-hidden`}>
                     <div
@@ -163,11 +164,23 @@ function Approvals() {
                         </svg>
                     </button>
                 </div>
-            </div>
+            </div> */}
+
+<BackNext
+        title="Approvals and Accreditations"
+     
+        progress={progress}
+        isBeginning={isBeginning}
+        isEnd={isEnd}
+        onPrev={navigatePrev}
+  onNext={navigateNext}
+      />
         </div>
 
 
         {/* Swiper Carousel */}
+
+        <div className="px-6">
         <Swiper
             ref={swiperRef}
             modules={[Navigation, A11y]}
@@ -175,7 +188,7 @@ function Approvals() {
             slidesPerView={1}
             // Initialize Swiper and update state
             onSwiper={(swiper) => {
-                swiperRef.current = { swiper };
+                swiperRef.current = swiper;
                 updateProgress(swiper);
             }}
             // Update state on slide change
@@ -192,15 +205,17 @@ function Approvals() {
                     spaceBetween: 10,
                 },
             }}
-            className="mySwiper"
+            className="mySwiper "
+            style={{ scrollbarWidth: "none" }}
         >
             {helpCards && helpCards?.map((item) => (
                 <SwiperSlide key={item.id}>
-                    <div className="px-2 py-4">
+                    <div className="px-2 ">
                         <div
-                            className="help-card w-full h-[190px] lg:h-[263px] border border-[#CECECE] p-4 
+                            className=" w-full h-[190px] lg:h-[202px] shadow-md !bg-[#0000001C] p-4 
             flex flex-row lg:flex-col items-center lg:items-start justify-between 
-            cursor-pointer group relative overflow-visible"
+            cursor-pointer group relative overflow-visible rounded-[20px]"
+        
                             onClick={() => handleAction(item)}
                             onKeyDown={(e) => handleKeyDown(e, item)}
                             tabIndex={0}
@@ -209,18 +224,18 @@ function Approvals() {
                         >
 
                             {/* Image */}
-                            <div className="flex justify-center items-center lg:justify-start mb-0 lg:mb-2 w-[40%] lg:w-full">
+                            <div className="flex justify-center bg-white rounded-[15px] items-center lg:justify-center mb-0 lg:mb-2 w-[40%] lg:w-full">
                                 <img
                                     src={item.image}
                                     alt={item.title}
-                                    className="w-full h-full object-contain  lg:h-[121px] lg:w-[121px] transition-transform duration-300 group-hover:scale-110"
+                                    className="w-full h-full object-contain  lg:h-[70px] lg:w-[70px] transition-transform duration-300 "
                                 />
                             </div>
 
                             {/* Text */}
-                            <div className="text-left w-[60%] lg:w-full pl-3 lg:pl-0">
-                                <h2 className="font-semibold text-[14px] leading-5 mb-2 lg:text-[18px] 
-              lg:leading-6 text-[#282529] lg:mb-3 transition-colors duration-300 group-hover:text-[#EC1E24]">
+                            <div className="text-left md:text-center w-[60%] lg:w-full pl-3 lg:pl-0">
+                                <h2 className=" font-popins text-[14px] leading-5 mb-2 lg:text-[16.5px] 
+              lg:leading-6 text-[#282529] lg:mb-3 transition-colors duration-300 ">
                                     {item.title}
                                 </h2>
                             </div>
@@ -231,6 +246,7 @@ function Approvals() {
 
 
         </Swiper>
+        </div>
     </>);
 }
 

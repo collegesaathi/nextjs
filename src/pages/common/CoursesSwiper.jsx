@@ -3,57 +3,95 @@
 import { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import BackNext from "../components/BackNext";
 
 export default function CoursesSwiper() {
   const swiperRef = useRef(null);
-  const [progress, setProgress] = useState(0);
+  
+
+    const [progress, setProgress] = useState(0);
+    const [isBeginning, setIsBeginning] = useState(true);
+    const [isEnd, setIsEnd] = useState(false);
 
   const courses = [
-    { title: "Executive MBA", image: "/img/university/course/1.png" },
-    { title: "Online MBA", image: "/img/university/course/1.png" },
-    { title: "BCom", image: "/img/university/course/1.png" },
-    { title: "BBA", image: "/img/university/course/1.png" },
-    { title: "MCA", image: "/img/university/course/1.png" },
+    { title: "Executive MBA", image: "/images/university/course/1.png" },
+    { title: "Online MBA", image: "/images/university/course/1.png" },
+    { title: "BCom", image: "/images/university/course/1.png" },
+    { title: "BBA", image: "/images/university/course/1.png" },
+    { title: "MCA", image: "/images/university/course/1.png" },
   ];
 
-  const updateProgress = (swiper) => {
-    const total = swiper.slides.length - (swiper.params.loop ? 2 : 0);
-    const value = ((swiper.realIndex + 1) / total) * 100;
-    setProgress(value);
-  };
+
+
+
+
+
+    const updateProgress = (swiper) => {
+        if (!swiper) return;
+
+        const totalCards = courses.length;
+        const visibleSlides = swiper.params.slidesPerView;
+
+        if (visibleSlides === 4) {
+            setIsBeginning(false);
+        } else {
+            setIsBeginning(swiper.isBeginning);
+        }
+
+        setIsEnd(swiper.isEnd);
+
+        const currentVisibleEnd = swiper.activeIndex + visibleSlides;
+
+        let progressValue = (currentVisibleEnd / totalCards) * 100;
+
+        // Limit between 0–100
+        progressValue = Math.min(100, Math.max(0, progressValue));
+
+        setProgress(progressValue);
+    };
+
+
+    const navigatePrev = () => {
+        swiperRef.current?.slidePrev();
+    };
+
+    const navigateNext = () => {
+        swiperRef.current?.slideNext();
+    };
 
   return (
     <>
-      <div className="flex justify-between items-center" id="courses-section">
-        <h2 className="font-semibold text-[28px] text-[#282529]">
-          NMIMS CODE: Courses
-        </h2>
+      <div className="flex px-6 mt-[50px]" id="courses-section">
+   
 
-        <div className="flex items-center gap-2">
-          <div className="w-[191px] h-2 bg-gray-200 rounded-full">
-            <div
-              className="h-full bg-red-600 rounded-full transition-all"
-              style={{ width: `${progress}%` }}
-            />
-          </div>
+<BackNext
+                  
+                  title="NMIMS CODE: Courses"
+               
+                  progress={progress}
+                  isBeginning={isBeginning}
+                  isEnd={isEnd}
+                  onPrev={navigatePrev}
+            onNext={navigateNext}
+                />
 
-        </div>
+   
       </div>
-      <section className=" px-8 py-8">
+      <section className="px-6">
         <Swiper
           onSwiper={(swiper) => {
             swiperRef.current = swiper;
             updateProgress(swiper);
-          }}
-          onSlideChange={updateProgress}
-          loop
+        }}
+        onSlideChange={updateProgress}
           slidesPerView={1}
           spaceBetween={20}
           breakpoints={{
             640: { slidesPerView: 2, spaceBetween: 30 },
             1024: { slidesPerView: 3, spaceBetween: 40 },
           }}
-          className="mt-10"
+          className=""
+          style={{ scrollbarWidth: "none" }}
         >
           {courses.map((course, index) => (
             <SwiperSlide key={index}>
@@ -84,7 +122,7 @@ function CourseCard({ course, mobile = false }) {
 
         <div className="absolute bottom-0 left-3 translate-y-[50%]">
           <div className="bg-white shadow-md rounded-[5px] w-[102px] h-[34px] flex justify-center items-center">
-            <img src="/img/university/course/logo.png" className="h-5" alt="" />
+            <img src="/images/university/course/logo.png" className="h-5" alt="" />
           </div>
         </div>
       </div>
@@ -111,7 +149,7 @@ function CourseCard({ course, mobile = false }) {
 function EnquiryBox() {
   return (
     <div className="w-[740px] mx-auto h-[287px] grid grid-cols-2 bg-gradient-to-br from-[#fef0f0] to-[#fbdbdc] rounded-[18px] mt-8">
-      <img src="/img/university/course/3.png" alt="" />
+      <img src="/images/university/course/3.png" alt="" />
 
       <FormBox />
     </div>
@@ -135,10 +173,10 @@ function FormBox() {
         <h3 className="font-semibold mb-4">Enquire Now</h3>
 
         <div className="grid grid-cols-2 gap-2 mb-4">
-          <Input label="Your Name" />
-          <Input label="Email" />
-          <Input label="Phone" />
-          <Input label="OTP" />
+          <Input label="Your Name" placeholder="jhon Doe" />
+          <Input label="Email" placeholder= "example@gmail.com"/>
+          <Input label="Phone" placeholder="+91 000 000 0000" />
+          <Input label="OTP" placeholder="xxxx" />
         </div>
 
         <button className="bg-red-600 text-white text-xs px-4 py-1 rounded-full">
@@ -149,11 +187,14 @@ function FormBox() {
   );
 }
 
-function Input({ label }) {
+function Input({ label,placeholder }) {
   return (
     <div>
       <label className="text-[8px] text-gray-600">{label}</label>
-      <input className="w-full h-[26px] rounded-full px-2 text-xs" />
+      <input 
+  className="w-full h-[26px] bg-white text-black border border-gray-600 rounded-full px-2 text-[10px] placeholder:text-black"
+  placeholder={placeholder}
+/>
     </div>
   );
 }

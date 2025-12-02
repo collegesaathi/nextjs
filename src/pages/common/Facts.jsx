@@ -32,18 +32,18 @@ function Facts() {
   return (
     <>
       {/* Desktop Version */}
-      <section className="w-full py-8 " id="facts-section">
-        <div className="bg-[#fcf0ee] p-8 h-[750px]">
+      <section className="w-full px-4 mt-[50px] " id="facts-section">
+        <div className="bg-[#fcf0ee]  h-[750px]">
           <div className="relative z-10 w-full lg:w-[860px]">
             <h2 className="font-poppins font-[600] text-[28px] leading-[42px] text-[#282529] my-8 animate-fade-in-up">
               Facts related to <br /> NMIMS CDOE
             </h2>
 
-            <div className="rounded-[23px] bg-white shadow-[0px_1px_10px_rgba(0,0,0,0.09)] p-8 animate-fade-in-up animate-delay-200">
+            <div className="rounded-[23px] bg-white shadow-[0px_1px_10px_rgba(0,0,0,0.09)]  animate-fade-in-up animate-delay-200">
               <div className="flex justify-between">
 
                 {/* Timeline */}
-                <div className="w-8 flex flex-col items-center pt-4">
+                <div className="w-8 flex flex-col items-center pt-4 ">
                   {[1, 2, 3, 4, 5].map((num, index) => (
                     <React.Fragment key={index}>
                       <div className="w-8 h-8 bg-[#fcf0ee] rounded-full flex items-center justify-center animate-bounce-gentle">

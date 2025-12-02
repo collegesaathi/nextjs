@@ -19,6 +19,7 @@ import Ranking from "../common/Rankings";
 import PlacementPartners from "../common/PlacementPartners";
 import CourseFees from "../common/CourseFees";
 import Aboutdetails from "../common/Aboutdetails";
+import Approvals from "../common/Approvals";
 
 function Index() {
     const router = useRouter();
@@ -33,18 +34,20 @@ function Index() {
                     <div className="w-full flex items-start pt-10 justify-center h-full relative flex-wrap">
                         <div
                             className="w-full lg:w-3/12 bg-[#f9fafb] lg:shadow-[4px_4px_4px_rgba(0,0,0,0.06)] h-full overflow-y-auto justify-end flex lg:pr-4 relative animate-slide-fade-right animate-delay-200"
+                        
                         >
                             <UniversitySidebar />
                         </div>
-                        <div className="w-full lg:w-9/12 h-full lg:h-[100vh] overflow-y-auto scs">
+                        <div className="w-full lg:w-9/12 h-full lg:h-[100vh] overflow-y-auto "  style={{ scrollbarWidth: "none",}}>
                             <Aboutdetails />
-                            <CourseFees />
+                             <CourseFees />
+                             <Approvals />
                             <PlacementPartners />
                             <Ranking />
                             <CoursesSwiper />
-                            <Advantages />
-                            <Facts />
-                            <SampleCertificate />
+                           <Advantages />
+                             <Facts />
+                            {/* <SampleCertificate />
                             <ExaminationPattern />
                             <Financial />
                             <UniversityCampusCarousel />
@@ -53,7 +56,7 @@ function Index() {
                             <FAQSection />
                             <SimilarUniversities />
                             <Universities />
-                            <Reviews />
+                            <Reviews /> */}
                         </div>
 
                     </div>

@@ -1,3 +1,5 @@
+import Heading from "@/common/Heading";
+
 function Advantages() {
 
     const advantages = [
@@ -34,24 +36,28 @@ function Advantages() {
     ];
     return (
 
-        <section className="px-8 py-8 " id="advantages-section">
+        <section className=" mt-[50px] px-6 " id="advantages-section">
             <div className="mb-8">
-                <h2 className="text-[28px] font-semibold text-[#282529] font-poppins mb-4">
+                {/* <h2 className="text-[28px] font-semibold text-[#282529] font-poppins mb-4">
                     NMIMS CDOE Advantages
-                </h2>
+                </h2> */}
+
+<Heading title="NMIMS CDOE Advantages" />
+
+
                 <p className="text-[16px] text-[#363535] font-poppins">
                     The NMIMS CDOE offers a variety of advantages and benefits, helping
                     students transform their lives and careers. These advantages are:
                 </p>
             </div>
 
-            <div className="overflow-hidden">
+            <div className="overflow-hidden mt-[30px]">
                 <div className="flex flex-wrap">
                     {/* Header */}
                     <div className="bg-[#ec1e24] text-white p-4 font-poppins font-semibold text-[17px] border-r-2 border-[#f47c80] h-[65px] flex items-center w-5/12 sm:w-4/12">
                         Advantages
                     </div>
-                    <div className="bg-[#ec1e24] text-white p-4 font-poppins font-semibold text-[16px] h-[65px] flex items-center w-7/12 sm:w-8/12">
+                    <div className="bg-[#ec1e24] text-white p-4 font-poppins font-semibold text-[17px] h-[65px] flex items-center w-7/12 sm:w-8/12">
                         Description
                     </div>
 

@@ -5,14 +5,15 @@ export default function Heading({ lattitle, midtitle, title, classes }) {
       <h2
         className={`
           font-poppins
-          font-semibold
+          font-[600]
           text-[20px]
-           md:text-[32px]
+           md:text-[28px]
           leading-[24px]
           md:leading-[100%]
           tracking-[0px]
           text-[#282529]
-          mb-4 md:mb-6
+          mb-4 md:mb-[30px]
+          w-2/3
           ${classes}
         `}
       >

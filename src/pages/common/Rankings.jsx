@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { useState } from "react";
+import Heading from "@/common/Heading";
 
 function Ranking() {
     const [activeTab, setActiveTab] = useState("indian");
@@ -10,12 +11,14 @@ function Ranking() {
     const WorkIcon = "/assets/icons/work.png";
     return (
         <>
-            <div id="rankings-section">
-                <h2 className="text-[26px] font-bold mb-4 text-[#282529] font-poppins">
+            <div id="rankings-section" className=" px-6 mt-[50px]">
+                {/* <h2 className="text-[26px] font-bold mb-4 text-[#282529] font-poppins">
                     Rankings of NMIMS CDOE
-                </h2>
+                </h2> */}
 
-                <p className="text-[16.5px] font-medium text-[#363535] font-poppins">
+<Heading title={"Rankings of NMIMS CDOE "} /> 
+
+                <p className="text-[16px] font-medium text-[#363535] font-poppins">
                     <strong>NMIMS CDOE</strong> has earned several prestigious rankings and awards that
                     highlight its commitment to delivering quality online education across the globe.
                     Below is an overview of the key achievements:
@@ -34,7 +37,7 @@ function Ranking() {
                         return (
                             <li
                                 key={index}
-                                className="flex items-start text-[#363535] text-[16px] font-poppins gap-2"
+                                className="flex items-start text-[#363535] text-[17px] font-poppins gap-2"
                             >
                                 <Image src={RankingIcon} alt="ranking" width={18} height={18} />
 
