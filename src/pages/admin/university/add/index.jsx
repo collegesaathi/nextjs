@@ -6,10 +6,12 @@ import { MdAdd, MdDelete, MdEdit } from "react-icons/md";
 import ReactQuillEditor from "@/common/ReactQuillEditor";
 import toast from "react-hot-toast";
 import Linkify from "linkify-react";
-import AdvantagesSection from "./AdvantageSection";
-import FactsSection from "./FactSection";
-import PatternSection from "./PatternSection";
+import AdvantagesSection from "../../common/AdvantageSection";
+import FactsSection from "../../common/FactSection";
+import PatternSection from "../../common/PatternSection";
 import ApprovalAndPartner from "@/common/ApprovalAndPartner";
+import Certificate from "../../common/Certificate";
+import FaqSection from "../../common/FaqSection";
 
 function Index() {
 
@@ -49,7 +51,7 @@ function Index() {
 
     const [selectedPartners, setSelectedPartners] = useState([]);
 
-    console.log("selectedPartners" ,selectedPartners)
+    console.log("selectedPartners", selectedPartners)
     const togglePartners = (id) => {
         if (selectedPartners.includes(id)) {
             setSelectedPartners(selectedPartners.filter(a => a !== id));
@@ -897,58 +899,13 @@ function Index() {
 
                     {activeTab === "certificate" && (
                         <>
-
-                            <div>
-                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
-                                    Name{" "}
-                                    <span className="text-sm text-gray-500">
-                                        ({formData.certificatename?.length}/50)
-                                    </span>
-                                </label>
-                                <input
-                                    type="text"
-                                    name="name"
-                                    value={formData.certificatename}
-                                    onChange={(e) => {
-                                        if (e.target.value.length <= 50) handleChange(e);
-                                    }}
-                                    placeholder="Enter name"
-                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
-                                    required
-                                />
-                            </div>
-
-
-                            <div>
-                                <label className="block text-[#FF1B1B] font-medium mb-1">
-                                    Upload Certificate Image
-                                </label>
-                                <input
-                                    type="file"
-                                    accept="image/*"
-                                    onChange={(e) => handleImageChange(e, "certificatemage")}
-                                    className="w-full p-2 bg-gray-100 rounded-md cursor-pointer text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
-                                />
-
-                                {preview && (
-                                    <div className="mt-3">
-                                        <img
-                                            src={preview}
-                                            alt="Preview"
-                                            className="w-full h-48 object-cover rounded-md border"
-                                        />
-                                    </div>
-                                )}
-                            </div>
-                            <div className="mt-5 mb-5">
-                                <ReactQuillEditor
-                                    label="Description"
-                                    desc={formData.certificatedescription}
-                                    handleBioChange={(val) => handleQuillChange("certificatedescription", val)}
-                                />
-
-                            </div>
-
+                            <Certificate
+                                formData={formData}
+                                handleChange={handleChange}
+                                handleImageChange={handleImageChange}
+                                preview={preview}
+                                handleQuillChange={handleQuillChange}
+                            />
                         </>
 
                     )}
@@ -982,8 +939,6 @@ function Index() {
                             />
 
                             <PatternSection setPatterns={setPatterns} patterns={patterns} />
-
-
 
                         </>
                     )}
@@ -1466,97 +1421,7 @@ function Index() {
 
                     )}
                     {activeTab === "faq" && (
-                        <>
-                            <div className="flex justify-between items-center mb-5">
-                                <h2 className="text-xl font-semibold text-[#CC2828]">
-                                    FAQ Section
-                                </h2>
-
-                                <button
-                                    onClick={addFaq}
-
-                                    className="border border-[#CC2828] bg-[#CC2828] hover:bg-red-700 text-white px-6 py-2 rounded-[10px] text-base transition"
-                                >
-                                    + Add More FAQ
-                                </button>
-                            </div>
-                            {faqs.map((faq, index) => (
-                                <div key={index} className="grid grid-cols-1 gap-4 items-center">
-                                    {/* QUESTION */}
-                                    <div>
-                                        <label className="block text-[#CC2828] font-medium mb-2">Question</label>
-                                        <input
-                                            type="text"
-                                            disabled={faq?._id}
-                                            value={faq.question}
-                                            onChange={(e) => handleFaqChange(index, 'question', e.target.value)}
-                                            placeholder="Enter Question"
-                                            className="w-full bg-[#F4F6F8] text-[#727272] border border-[#F4F6F8] rounded-[10px] px-4 py-2 focus:outline-none"
-                                        />
-                                    </div>
-
-                                    <div>
-                                        <label className="block text-[#CC2828] font-medium mb-2">Position</label>
-                                        <input
-                                            type="number"
-                                            disabled={faq?._id}
-                                            value={faq.position}
-                                            onChange={(e) => handleFaqChange(index, 'position', e.target.value)}
-                                            placeholder="Enter Position"
-                                            className="w-full bg-[#F4F6F8] text-[#727272] border border-[#F4F6F8] rounded-[10px] px-4 py-2 focus:outline-none"
-                                        />
-                                    </div>
-
-                                    {/* ANSWER */}
-                                    <div>
-                                        <div className="flex justify-between items-center mb-2">
-                                            <label className="block text-[#CC2828] font-medium">Answer</label>
-
-                                            <div className="flex items-center gap-2">
-                                                {faq._id ? (
-                                                    <button
-                                                        onClick={() => openEditModal(faq)}
-                                                        className="bg-red-500 text-white rounded-full p-1 hover:bg-red-700"
-                                                        title="Edit FAQ"
-                                                    >
-                                                        <MdEdit />
-                                                    </button>
-                                                ) : (
-                                                    <button
-                                                        // onClick={() => handleFaqSubmit(index)}
-                                                        className="bg-red-500 text-white rounded-full p-1 hover:bg-red-700"
-                                                        title="Save FAQ"
-                                                    >
-                                                        <MdAdd />
-                                                    </button>
-                                                )}
-
-                                                <span className="text-[#b1a9a9]">|</span>
-
-                                                <button
-                                                    onClick={() => deleteFaq(index)}
-                                                    className="bg-red-500 text-white rounded-full p-1 hover:bg-red-700"
-                                                    title="Delete FAQ"
-                                                >
-                                                    <MdDelete />
-                                                </button>
-                                            </div>
-                                        </div>
-
-                                        <input
-                                            rows={5}
-                                            type="text"
-                                            value={faq.answer}
-                                            disabled={faq?._id}
-                                            onChange={(e) => handleFaqChange(index, 'answer', e.target.value)}
-                                            placeholder="Enter Answer"
-                                            className="w-full bg-[#F4F6F8] text-[#727272] border border-[#F4F6F8] rounded-[10px] px-4 py-2 focus:outline-none"
-                                        />
-                                    </div>
-                                </div>
-                            ))}
-
-                        </>
+                        <FaqSection faqs={faqs} setFaqs={setFaqs} />
                     )}
                 </form>
                 <div className="flex justify-between mt-8  p-6">

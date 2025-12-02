@@ -5,9 +5,9 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { MdAdd, MdDelete, MdEdit } from "react-icons/md";
 import ReactQuillEditor from "@/common/ReactQuillEditor";
 import toast from "react-hot-toast";
-import AdvantagesSection from "./AdvantageSection";
-import FactsSection from "./FactSection";
-import PatternSection from "./PatternSection";
+import AdvantagesSection from "../../common/AdvantageSection";
+import FactsSection from "../../common/FactSection";
+import PatternSection from "../../common/PatternSection";
 import ApprovalAndPartner from "@/common/ApprovalAndPartner";
 
 function Index() {

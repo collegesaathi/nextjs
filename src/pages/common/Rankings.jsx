@@ -57,7 +57,7 @@ function Ranking() {
                 </ul>
             </div>
 
-           
+
         </>
     );
 }

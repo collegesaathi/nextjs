@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import { MdDelete, MdAdd } from "react-icons/md";
 import dynamic from "next/dynamic";
 import "react-quill-new/dist/quill.snow.css";
+import ReactQuillEditor from "@/common/ReactQuillEditor";
 
 // Dynamic import for Quill editor (SSR safe)
 const ReactQuill = dynamic(() => import("react-quill-new"), { ssr: false });
 
-export default function AdvantagesSection({setAdvantages ,advantages }) {
+export default function AdvantagesSection({ setAdvantages, advantages, htitle, handleChange, formData, handleQuillChange }) {
 
   // Add new advantage
   const addAdvantage = () => {
@@ -54,14 +55,43 @@ export default function AdvantagesSection({setAdvantages ,advantages }) {
 
   return (
     <div>
+
+      {/* MAIN ADVANTAGE NAME */}
+      <div>
+        <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
+          Name{" "}
+          <span className="text-sm text-gray-500">
+            ({formData.advantagesname?.length}/50)
+          </span>
+        </label>
+        <input
+          type="text"
+          name="advantagesname"
+          value={formData.advantagesname}
+          onChange={(e) => {
+            if (e.target.value.length <= 50) handleChange(e);
+          }}
+          placeholder="Enter name"
+          className="w-full p-3 rounded-md bg-gray-100 text-gray-700 
+                focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
+          required
+        />
+      </div>
+      <div className="mt-5 mb-5">
+        <ReactQuillEditor
+          label="Description"
+          desc={formData.advantagesdescription}
+          handleBioChange={(val) => handleQuillChange("advantagesdescription", val)}
+        />
+      </div>
       {/* Header + Add Button */}
       <div className="flex justify-between items-center mb-5">
-        <h2 className="text-xl font-semibold text-[#CC2828]">Advantages Section</h2>
+        <h2 className="text-xl font-semibold text-[#CC2828]">{htitle || "Advantages"} Section</h2>
         <button
           onClick={addAdvantage}
           className="border border-[#CC2828] bg-[#CC2828] hover:bg-red-700 text-white px-6 py-2 rounded-[10px] text-base transition"
         >
-          + Add Advantage
+          + Add More
         </button>
       </div>
 
@@ -106,7 +136,7 @@ export default function AdvantagesSection({setAdvantages ,advantages }) {
             </div>
           </div>
 
-          
+
         </div>
       ))}
     </div>
