@@ -801,19 +801,21 @@ function Index() {
                                         ({formData.about_desc.length}/500)
                                     </span>
                                 </label>
-                                <textarea
-                                    name="about_desc"
-                                    value={formData.about_desc}
-                                    onChange={(e) => {
-                                        if (e.target.value.length <= 500)
-                                            handleChange(e);
-                                    }}
+
+                                <div
+                                    contentEditable
+                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE] min-h-[200px]"
                                     placeholder="Enter About Description"
-                                    rows={10}
-                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
-                                    required
-                                />
+                                    onInput={(e) => {
+                                        const text = e.currentTarget.innerHTML;
+                                        if (text.length <= 500) {
+                                            setFormData({ ...formData, about_desc: text });
+                                        }
+                                    }}
+                                    dangerouslySetInnerHTML={{ __html: formData.about_desc }}
+                                ></div>
                             </div>
+
                         </>
 
                     )}
