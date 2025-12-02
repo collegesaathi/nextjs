@@ -9,8 +9,12 @@ import Linkify from "linkify-react";
 import AdvantagesSection from "./AdvantageSection";
 import FactsSection from "./FactSection";
 import PatternSection from "./PatternSection";
+import ApprovalAndPartner from "@/common/ApprovalAndPartner";
 
 function Index() {
+
+
+
     const [advantages, setAdvantages] = useState([
         { title: "", description: "" }
     ]);
@@ -32,35 +36,7 @@ function Index() {
         setServices(services.filter((_, i) => i !== index));
     };
 
-    const saveService = (index) => {
-        console.log("Saving service:", services[index]);
-        // Add your API call or save logic here
-    };
 
-
-
-    const approvalOptions = [
-        {
-            id: 1,
-            title: "UGC-DEB Approval",
-            image: "/uploads/ugc-deb.png",
-        },
-        {
-            id: 2,
-            title: "AICTE",
-            image: "/uploads/aicte.png",
-        },
-        {
-            id: 3,
-            title: "NAAC",
-            image: "/uploads/naac.png",
-        },
-        {
-            id: 4,
-            title: "MHRD Category 1 University",
-            image: "/uploads/mhrd.png",
-        }
-    ];
     const [selectedApprovals, setSelectedApprovals] = useState([]);
 
     const toggleApproval = (id) => {
@@ -71,31 +47,9 @@ function Index() {
         }
     };
 
-
-    const PartnersOptions = [
-        {
-            id: 1,
-            title: "UGC-DEB Approval",
-            image: "/uploads/ugc-deb.png",
-        },
-        {
-            id: 2,
-            title: "AICTE",
-            image: "/uploads/aicte.png",
-        },
-        {
-            id: 3,
-            title: "NAAC",
-            image: "/uploads/naac.png",
-        },
-        {
-            id: 4,
-            title: "MHRD Category 1 University",
-            image: "/uploads/mhrd.png",
-        }
-    ];
     const [selectedPartners, setSelectedPartners] = useState([]);
 
+    console.log("selectedPartners" ,selectedPartners)
     const togglePartners = (id) => {
         if (selectedPartners.includes(id)) {
             setSelectedPartners(selectedPartners.filter(a => a !== id));
@@ -830,36 +784,8 @@ function Index() {
                                     handleBioChange={(val) => handleQuillChange("approvals_desc", val)}
                                 />
                             </div>
-                            {/* Description Field changed to textarea with 300 character limit */}
-                            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
 
-                                {approvalOptions.map((item) => (
-                                    <label
-                                        key={item.id}
-                                        className="flex items-center gap-3 border p-3 rounded-lg cursor-pointer shadow-sm bg-white"
-                                    >
-                                        {/* Checkbox */}
-                                        <input
-                                            type="checkbox"
-                                            checked={selectedApprovals.includes(item.id)}
-                                            onChange={() => toggleApproval(item.id)}
-                                            className="h-4 w-4"
-                                        />
-
-                                        {/* Image + Title */}
-                                        <div className="flex items-center gap-3">
-                                            <img
-                                                src={item.image}
-                                                alt={item.title}
-                                                className="w-10 h-10 object-contain"
-                                            />
-                                            <span className="text-sm font-medium">{item.title}</span>
-                                        </div>
-                                    </label>
-                                ))}
-
-                            </div>
-
+                            <ApprovalAndPartner step={1} toggleApproval={toggleApproval} selectedApprovals={selectedApprovals} />
 
                         </>
 
@@ -1304,35 +1230,12 @@ function Index() {
                                 handleBioChange={(val) => handleQuillChange("partnersdesc", val)}
                             />
 
+                            <ApprovalAndPartner
+                                selectedPartners={selectedPartners}
+                                togglePartners={togglePartners}
+                                step={2}
+                            />
 
-                            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-
-                                {PartnersOptions.map((item) => (
-                                    <label
-                                        key={item.id}
-                                        className="flex items-center gap-3 border p-3 rounded-lg cursor-pointer shadow-sm bg-white"
-                                    >
-                                        {/* Checkbox */}
-                                        <input
-                                            type="checkbox"
-                                            checked={selectedPartners.includes(item.id)}
-                                            onChange={() => togglePartners(item.id)}
-                                            className="h-4 w-4"
-                                        />
-
-                                        {/* Image + Title */}
-                                        <div className="flex items-center gap-3">
-                                            <img
-                                                src={item.image}
-                                                alt={item.title}
-                                                className="w-10 h-10 object-contain"
-                                            />
-                                            <span className="text-sm font-medium">{item.title}</span>
-                                        </div>
-                                    </label>
-                                ))}
-
-                            </div>
                         </>
 
                     )}
@@ -1597,7 +1500,7 @@ function Index() {
                                         <input
                                             type="number"
                                             disabled={faq?._id}
-                                            value={faq.question}
+                                            value={faq.position}
                                             onChange={(e) => handleFaqChange(index, 'position', e.target.value)}
                                             placeholder="Enter Position"
                                             className="w-full bg-[#F4F6F8] text-[#727272] border border-[#F4F6F8] rounded-[10px] px-4 py-2 focus:outline-none"
