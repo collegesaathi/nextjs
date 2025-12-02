@@ -88,13 +88,13 @@ export default function Index() {
     };
 
     return (
-        <AdminLayout page={"university"}>
+        <AdminLayout page={"specialization"}>
             <div className="min-h-screen p-5 lg:p-[30px]">
                 <div className="flex flex-col md:flex-row justify-between md:items-center mb-4 lg:mb-5">
                     <h1 className="capitalize font-inter text-lg lg:text-2xl font-bold text-[#FF1B1B] tracking-[-0.04em] mb-6">
-                        Manage university
+                        Manage specialization
                     </h1>
-                    <Link href="/admin/university/add"
+                    <Link href="/admin/specialization/add"
                         className="cursor-pointer text-[#CECECE] h-[30px] w-[30px] bg-[#FF1B1B] bg-opacity-10 hover:bg-opacity-30 rounded inline-flex items-center justify-center"
                     >
                         <MdAdd size={24} />
@@ -120,8 +120,8 @@ export default function Index() {
                                         height={250}
                                         className="w-full h-[220px] object-cover"
                                     />
-                                    <Delete step={1} />
-                                    <Link href="/admin/university/add/aaa"
+                                    <Delete step={3} />
+                                    <Link href="/admin/specialization/add/aaa"
                                         className="cursor-pointer absolute top-2 left-2 bg-white bg-opacity-80 hover:bg-[#CECECE] p-2 rounded-full shadow-sm transition-all"
                                     >
                                         <MdEdit size={24} className="text-red-600 hover:text-red-700" />
