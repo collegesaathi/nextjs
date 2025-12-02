@@ -5,6 +5,7 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { MdAdd, MdDelete, MdEdit } from "react-icons/md";
 import ReactQuillEditor from "@/common/ReactQuillEditor";
 import toast from "react-hot-toast";
+import Linkify from "linkify-react";
 import AdvantagesSection from "../../common/AdvantageSection";
 import FactsSection from "../../common/FactSection";
 import PatternSection from "../../common/PatternSection";
@@ -20,7 +21,22 @@ function Index() {
         { title: "", description: "" }
     ]);
 
+
     const [services, setServices] = useState([{ title: "", content: "", image: null, icon: null }]);
+
+    const addService = () => {
+        setServices([...services, { title: "", content: "", image: null, icon: null }]);
+    };
+
+    const handleServiceChange = (index, field, value) => {
+        const updated = [...services];
+        updated[index][field] = value;
+        setServices(updated);
+    };
+
+    const deleteService = (index) => {
+        setServices(services.filter((_, i) => i !== index));
+    };
 
 
     const [selectedApprovals, setSelectedApprovals] = useState([]);
@@ -35,6 +51,7 @@ function Index() {
 
     const [selectedPartners, setSelectedPartners] = useState([]);
 
+    console.log("selectedPartners", selectedPartners)
     const togglePartners = (id) => {
         if (selectedPartners.includes(id)) {
             setSelectedPartners(selectedPartners.filter(a => a !== id));
@@ -63,9 +80,55 @@ function Index() {
     const [faqs, setFaqs] = useState([
         { question: "", answer: "", position: "" }
     ]);
+    console.log("faqs", faqs)
     const [onlines, setOnlines] = useState([
         { title: "", content: "" }
     ]);
+
+    const addOnline = () => {
+        // Only add if no empty one exists
+        const hasEmpty = onlines.some(f => !f.title && !f.content);
+        if (!hasEmpty) {
+            setOnlines([...onlines, { title: "", contet: "" }]);
+        } else {
+            toast.error("Please fill in the existing empty oNLINE before adding another.");
+        }
+    };
+
+    const handleOnlineChange = (index, field, value) => {
+        const updateonline = [...onlines];
+        updateonline[index][field] = value;
+        setOnlines(updateonline);
+    };
+
+    const deleteOnline = (index) => {
+        const updateonline = [...onlines];
+        updateonline.splice(index, 1);
+        setOnlines(updateonline);
+    };
+
+    const addFaq = () => {
+        // Only add if no empty one exists
+        const hasEmpty = faqs.some(f => !f.question && !f.answer);
+        if (!hasEmpty) {
+            setFaqs([...faqs, { question: "", answer: "", position: "" }]);
+        } else {
+            toast.error("Please fill in the existing empty FAQ before adding another.");
+        }
+    };
+
+    const deleteFaq = (index) => {
+        const updatedFaqs = [...faqs];
+        updatedFaqs.splice(index, 1);
+        setFaqs(updatedFaqs);
+    };
+
+    const handleFaqChange = (index, field, value) => {
+        const updatedFaqs = [...faqs];
+        updatedFaqs[index][field] = value;
+        setFaqs(updatedFaqs);
+    };
+
 
     const handleFeesChange = (index, field, value) => {
         const updatedFees = [...fees];
@@ -118,6 +181,33 @@ function Index() {
             description: "",
         }
     ]);
+    const handlePatternChange = (index, field, value) => {
+        const updated = [...patterns];
+        updated[index][field] = value;
+        setPatterns(updated);
+    };
+    const addPattern = () => {
+        setPatterns([
+            ...patterns,
+            {
+                image: "",
+                patternName: "",
+                percentage: "",
+                description: "",
+            }
+        ]);
+    };
+    const handlePatternSubmit = (index) => {
+        const updated = [...patterns];
+        updated[index]._id = Date.now(); // lock row
+        setPatterns(updated);
+    };
+    const deletePattern = (index) => {
+        const updated = [...patterns];
+        updated.splice(index, 1);
+        setPatterns(updated);
+    };
+
 
     const [facts, setFacts] = useState([
         {
@@ -125,6 +215,36 @@ function Index() {
             description: "",
         }
     ]);
+    const handleFactsChange = (index, field, value) => {
+        const updated = [...facts];
+        updated[index][field] = value;
+        setFacts(updated);
+    };
+    const addFacts = () => {
+        setFacts([
+            ...facts,
+            {
+                patternName: "",
+                description: "",
+            }
+        ]);
+    };
+    const handlefactsSubmit = (index) => {
+        const updated = [...facts];
+        updated[index]._id = Date.now(); // lock row
+        setFacts(updated);
+    };
+    const deleteFacts = (index) => {
+        const updated = [...facts];
+        updated.splice(index, 1);
+        setFacts(updated);
+    };
+
+    const handleChanges = (index, field, value) => {
+        const list = [...approvals];
+        list[index][field] = value;
+        setApprovals(list);
+    };
 
     const [campusList, setCampusList] = useState([
         { name: "", image: "" }
@@ -183,6 +303,8 @@ function Index() {
     });
 
     console.log("formData", formData)
+    const handleClose = () => setIsOpen(false);
+    const handleOpen = () => setIsOpen(true);
 
     const handleQuillChange = (field, value) => {
         setFormData((prev) => ({ ...prev, [field]: value }));
@@ -275,6 +397,7 @@ function Index() {
                 });
 
                 setPreview(null);
+                handleClose();
                 fetchData();
             } else {
                 toast.error(response.data.message);
@@ -315,6 +438,7 @@ function Index() {
 
             if (response?.data?.status) {
                 toast.success(response.data.message);
+                handleClose();
                 fetchData();
             } else {
                 toast.error(response.data.message);

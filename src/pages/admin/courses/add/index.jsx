@@ -5,7 +5,6 @@ import { MdAdd, MdDelete, MdEdit } from "react-icons/md";
 import ReactQuillEditor from "@/common/ReactQuillEditor";
 import toast from "react-hot-toast";
 import AdvantagesSection from "../../common/AdvantageSection";
-import FactsSection from "../../common/FactSection";
 import PatternSection from "../../common/PatternSection";
 import ApprovalAndPartner from "@/common/ApprovalAndPartner";
 import AdminLayout from "../../common/AdminLayout";
@@ -54,7 +53,6 @@ function Index() {
 
     const [selectedPartners, setSelectedPartners] = useState([]);
 
-    console.log("selectedPartners", selectedPartners)
     const togglePartners = (id) => {
         if (selectedPartners.includes(id)) {
             setSelectedPartners(selectedPartners.filter(a => a !== id));
@@ -85,33 +83,6 @@ function Index() {
             description: "",
         }
     ]);
-    const handlePatternChange = (index, field, value) => {
-        const updated = [...patterns];
-        updated[index][field] = value;
-        setPatterns(updated);
-    };
-    const addPattern = () => {
-        setPatterns([
-            ...patterns,
-            {
-                image: "",
-                patternName: "",
-                percentage: "",
-                description: "",
-            }
-        ]);
-    };
-    const handlePatternSubmit = (index) => {
-        const updated = [...patterns];
-        updated[index]._id = Date.now(); // lock row
-        setPatterns(updated);
-    };
-    const deletePattern = (index) => {
-        const updated = [...patterns];
-        updated.splice(index, 1);
-        setPatterns(updated);
-    };
-
 
     const [facts, setFacts] = useState([
         {
@@ -119,36 +90,6 @@ function Index() {
             description: "",
         }
     ]);
-    const handleFactsChange = (index, field, value) => {
-        const updated = [...facts];
-        updated[index][field] = value;
-        setFacts(updated);
-    };
-    const addFacts = () => {
-        setFacts([
-            ...facts,
-            {
-                patternName: "",
-                description: "",
-            }
-        ]);
-    };
-    const handlefactsSubmit = (index) => {
-        const updated = [...facts];
-        updated[index]._id = Date.now(); // lock row
-        setFacts(updated);
-    };
-    const deleteFacts = (index) => {
-        const updated = [...facts];
-        updated.splice(index, 1);
-        setFacts(updated);
-    };
-
-    const handleChanges = (index, field, value) => {
-        const list = [...approvals];
-        list[index][field] = value;
-        setApprovals(list);
-    };
 
     const [campusList, setCampusList] = useState([
         { name: "", image: "" }
@@ -210,13 +151,12 @@ function Index() {
         indian: [],
         nri: [],
         creteria: "",
-        semesters_title: ""
+        semesters_title: "",
+        patterndescription: "",
+        patternname: ""
     });
 
     console.log("formData", formData)
-    const handleClose = () => setIsOpen(false);
-    const handleOpen = () => setIsOpen(true);
-
     const handleQuillChange = (field, value) => {
         setFormData((prev) => ({ ...prev, [field]: value }));
     };
@@ -316,7 +256,6 @@ function Index() {
                 });
 
                 setPreview(null);
-                handleClose();
                 fetchData();
             } else {
                 toast.error(response.data.message);
@@ -329,46 +268,7 @@ function Index() {
         setLoading(false);
     };
 
-    // ✅ UPDATE UNIVERSITY
-    const handleUpdate = async (e) => {
-        e.preventDefault();
-        if (loading) return;
 
-        setLoading(true);
-
-        try {
-            const main = new Listing();
-            const payload = new FormData();
-
-            payload.append("slug", formData.slug);
-            payload.append("name", formData.name);
-            payload.append("position", formData.position);
-            payload.append("description", formData.description);
-
-            if (formData.icon instanceof File) {
-                payload.append("icon", formData.icon);
-            }
-
-            if (formData.cover_image instanceof File) {
-                payload.append("cover_image", formData.cover_image);
-            }
-
-            const response = await main.AdminUniversityUpdate(data?._id, payload);
-
-            if (response?.data?.status) {
-                toast.success(response.data.message);
-                handleClose();
-                fetchData();
-            } else {
-                toast.error(response.data.message);
-            }
-
-        } catch (error) {
-            toast.error("Update failed");
-        }
-
-        setLoading(false);
-    };
 
     // ✅ EDIT MODE DATA LOAD
     // useEffect(() => {
@@ -929,7 +829,7 @@ function Index() {
 
                             <div>
                                 <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
-                                  Careers   Name{" "}
+                                    Careers   Name{" "}
                                     <span className="text-sm text-gray-500">
                                         ({formData.carrer_name?.length}/50)
                                     </span>
@@ -955,7 +855,7 @@ function Index() {
                             <CarrerSection Carrers={Careers} setCarrer={setCareers} htitle={"Careers"} />
                         </>
                     )}
-             
+
 
                     {activeTab === "campuses" && (
                         <>
@@ -1061,8 +961,7 @@ function Index() {
                         <ServicesSection services={services} setServices={setServices} handleChange={handleChange} handleQuillChange={handleQuillChange} formData={formData} />
                     )}
                     {activeTab === "online" && (
-                        <OnlineSection formData={formData} handleChange={handleChange} onlines={onlines} setOnlines={setOnlines}  handleQuillChange={handleQuillChange}/>
-
+                        <OnlineSection formData={formData} handleChange={handleChange} onlines={onlines} setOnlines={setOnlines} handleQuillChange={handleQuillChange} />
                     )}
                     {activeTab === "faq" && (
                         <FaqSection faqs={faqs} setFaqs={setFaqs} />
