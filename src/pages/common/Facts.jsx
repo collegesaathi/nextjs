@@ -32,14 +32,14 @@ function Facts() {
   return (
     <>
       {/* Desktop Version */}
-      <section className="w-full px-4 mt-[50px] " id="facts-section">
+      <section className="w-full px-6 mt-[50px] " id="facts-section">
         <div className="bg-[#fcf0ee]  h-[750px]">
           <div className="relative z-10 w-full lg:w-[860px]">
             <h2 className="font-poppins font-[600] text-[28px] leading-[42px] text-[#282529] my-8 animate-fade-in-up">
               Facts related to <br /> NMIMS CDOE
             </h2>
 
-            <div className="rounded-[23px] bg-white shadow-[0px_1px_10px_rgba(0,0,0,0.09)] p-8 animate-fade-in-up animate-delay-200">
+            <div className="rounded-[23px] ml-1 bg-white shadow-[0px_1px_10px_rgba(0,0,0,0.09)] p-8 animate-fade-in-up animate-delay-200">
               <div className="flex justify-between">
 
                 {/* Timeline */}

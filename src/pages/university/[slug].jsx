@@ -47,12 +47,12 @@ function Index() {
                             <CoursesSwiper />
                            <Advantages />
                              <Facts />
-                            {/* <SampleCertificate />
-                            <ExaminationPattern />
-                            <Financial />
+                           <SampleCertificate />
+                              <ExaminationPattern />
+                          <Financial />
                             <UniversityCampusCarousel />
-                            <CareerServices />
-                            <StepsSection />
+                           <CareerServices />
+                             {/*  <StepsSection />
                             <FAQSection />
                             <SimilarUniversities />
                             <Universities />

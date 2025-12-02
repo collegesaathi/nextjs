@@ -1,13 +1,18 @@
 import React from "react";
+import Heading from "@/common/Heading";
 
 function Financial() {
     return (
         <>
-            <div className="mb-8">
-                <h2 className="font-poppins font-semibold text-[28px] leading-[42px] text-[#282529] mb-4" id="financial-aid-section">
+
+        <div className="px-6 mt-[50px]">
+            <div className="">
+                {/* <h2 className="font-poppins font-semibold text-[28px] leading-[42px] text-[#282529] mb-4" id="financial-aid-section">
                     NMIMS Online MBA Financial Aid
-                </h2>
-                <p className="font-poppins text-[17px] leading-[25px] text-[#282529]">
+                </h2> */}
+
+                <Heading title="NMIMS Online MBA Financial Aid" />
+                <p className="font-poppins text-[16px] leading-[25px] text-[#282529]">
                     The University proudly extends special incentives specifically
                     designed for the armed forces and Defense Personnel, as well as their
                     immediate family members. These incentives include a generous 20%
@@ -17,7 +22,7 @@ function Financial() {
                 </p>
             </div>
 
-            <div className="bg-white border-[2px] border-[#ec1e24] overflow-hidden">
+            <div className="bg-white border-[2px] border-[#ec1e24] overflow-hidden mt-[30px]">
 
                 {/* Header */}
                 <div className="bg-[#ec1e24] text-white text-center py-3 h-[65px] flex items-center justify-center">
@@ -27,14 +32,14 @@ function Financial() {
                 </div>
 
                 <table className="min-w-full border-[2px] border-[#ec1e24] text-center">
-                    <thead className="bg-[#ec1e24] text-white">
+                    <thead className="bg-white text-white">
                         <tr>
                             {["Total Fees", "Loan Amount", "Tenure", "Interest", "Monthly EMI"].map((label, i) => (
                                 <th
                                     key={i}
-                                    className="px-4 py-4 border-r border-[#f47c80] last:border-r-0 text-[17px] font-poppins font-semibold"
+                                    className="px-4 py-4 border-b  border-[#f47c80] last:border-r-0 text-[17px] font-poppins font-semibold"
                                 >
-                                    {label}
+                                    <span className="bg-[#ec1e24] px-4  rounded-lg">{label}</span>
                                 </th>
                             ))}
                         </tr>
@@ -67,6 +72,7 @@ function Financial() {
                         ))}
                     </tbody>
                 </table>
+            </div>
             </div>
         </>
     );
