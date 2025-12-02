@@ -60,7 +60,7 @@ function Ranking() {
                 </ul>
             </div>
 
-           
+
         </>
     );
 }

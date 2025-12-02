@@ -5,68 +5,24 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { MdAdd, MdDelete, MdEdit } from "react-icons/md";
 import ReactQuillEditor from "@/common/ReactQuillEditor";
 import toast from "react-hot-toast";
+import AdvantagesSection from "../../common/AdvantageSection";
+import FactsSection from "../../common/FactSection";
+import PatternSection from "../../common/PatternSection";
+import ApprovalAndPartner from "@/common/ApprovalAndPartner";
+import Certificate from "../../common/Certificate";
+import FaqSection from "../../common/FaqSection";
+import OnlineSection from "../../common/OnlineSection";
+import ServicesSection from "../../common/ServicesSection";
 
 function Index() {
+
     const [advantages, setAdvantages] = useState([
         { title: "", description: "" }
     ]);
-    const addAdvantage = () => {
-        setAdvantages([...advantages, { title: "", description: "" }]);
-    };
-    const handleAdvantageChange = (index, field, value) => {
-        const updated = [...advantages];
-        updated[index][field] = value;
-        setAdvantages(updated);
-    };
-    const deleteAdvantage = (index) => {
-        setAdvantages(advantages.filter((_, i) => i !== index));
-    };
-    const saveAdvantage = (index) => {
-        console.log("Saving advantage:", advantages[index]);
-    };
+
+    const [services, setServices] = useState([{ title: "", content: "", image: null, icon: null }]);
 
 
-    const [services, setServices] = useState([
-        { title: "", content: "" }
-    ]);
-    const addService = () => {
-        setServices([...services, { title: "", content: "" }]);
-    };
-    const handleServiceChange = (index, field, value) => {
-        const updated = [...services];
-        updated[index][field] = value;
-        setServices(updated);
-    };
-    const deleteService = (index) => {
-        setServices(services.filter((_, i) => i !== index));
-    };
-    const saveService = (index) => {
-        console.log("Saving service:", services[index]);
-    };
-
-
-    const approvalOptions = [
-        {
-            id: 1,
-            title: "UGC-DEB Approval",
-            image: "/uploads/ugc-deb.png",
-        },
-        {
-            id: 2,
-            title: "AICTE",
-            image: "/uploads/aicte.png",
-        },
-        {
-            id: 3,
-            title: "NAAC",
-            image: "/uploads/naac.png",
-        },
-        {
-            id: 4,
-            title: "MHRD Category 1 University",
-            image: "/uploads/mhrd.png",
-        }
-    ];
     const [selectedApprovals, setSelectedApprovals] = useState([]);
 
     const toggleApproval = (id) => {
@@ -77,29 +33,6 @@ function Index() {
         }
     };
 
-
-    const PartnersOptions = [
-        {
-            id: 1,
-            title: "UGC-DEB Approval",
-            image: "/uploads/ugc-deb.png",
-        },
-        {
-            id: 2,
-            title: "AICTE",
-            image: "/uploads/aicte.png",
-        },
-        {
-            id: 3,
-            title: "NAAC",
-            image: "/uploads/naac.png",
-        },
-        {
-            id: 4,
-            title: "MHRD Category 1 University",
-            image: "/uploads/mhrd.png",
-        }
-    ];
     const [selectedPartners, setSelectedPartners] = useState([]);
 
     const togglePartners = (id) => {
@@ -128,57 +61,11 @@ function Index() {
         }
     ]);
     const [faqs, setFaqs] = useState([
-        { question: "", answer: "" }
+        { question: "", answer: "", position: "" }
     ]);
-    console.log("faqs", faqs)
     const [onlines, setOnlines] = useState([
         { title: "", content: "" }
     ]);
-
-    const addOnline = () => {
-        // Only add if no empty one exists
-        const hasEmpty = onlines.some(f => !f.title && !f.content);
-        if (!hasEmpty) {
-            setOnlines([...onlines, { title: "", contet: "" }]);
-        } else {
-            toast.error("Please fill in the existing empty oNLINE before adding another.");
-        }
-    };
-
-    const handleOnlineChange = (index, field, value) => {
-        const updateonline = [...onlines];
-        updateonline[index][field] = value;
-        setOnlines(updateonline);
-    };
-
-    const deleteOnline = (index) => {
-        const updateonline = [...onlines];
-        updateonline.splice(index, 1);
-        setOnlines(updateonline);
-    };
-
-    const addFaq = () => {
-        // Only add if no empty one exists
-        const hasEmpty = faqs.some(f => !f.question && !f.answer);
-        if (!hasEmpty) {
-            setFaqs([...faqs, { question: "", answer: "" }]);
-        } else {
-            toast.error("Please fill in the existing empty FAQ before adding another.");
-        }
-    };
-
-    const deleteFaq = (index) => {
-        const updatedFaqs = [...faqs];
-        updatedFaqs.splice(index, 1);
-        setFaqs(updatedFaqs);
-    };
-
-    const handleFaqChange = (index, field, value) => {
-        const updatedFaqs = [...faqs];
-        updatedFaqs[index][field] = value;
-        setFaqs(updatedFaqs);
-    };
-
 
     const handleFeesChange = (index, field, value) => {
         const updatedFees = [...fees];
@@ -231,70 +118,13 @@ function Index() {
             description: "",
         }
     ]);
-    const handlePatternChange = (index, field, value) => {
-        const updated = [...patterns];
-        updated[index][field] = value;
-        setPatterns(updated);
-    };
-    const addPattern = () => {
-        setPatterns([
-            ...patterns,
-            {
-                image: "",
-                patternName: "",
-                percentage: "",
-                description: "",
-            }
-        ]);
-    };
-    const handlePatternSubmit = (index) => {
-        const updated = [...patterns];
-        updated[index]._id = Date.now(); // lock row
-        setPatterns(updated);
-    };
-    const deletePattern = (index) => {
-        const updated = [...patterns];
-        updated.splice(index, 1);
-        setPatterns(updated);
-    };
-
 
     const [facts, setFacts] = useState([
         {
-            factname: "",
+            patternName: "",
             description: "",
         }
     ]);
-    const handleFactsChange = (index, field, value) => {
-        const updated = [...facts];
-        updated[index][field] = value;
-        setFacts(updated);
-    };
-    const addFacts = () => {
-        setFacts([
-            ...facts,
-            {
-                factname: "",
-                description: "",
-            }
-        ]);
-    };
-    const handlefactsSubmit = (index) => {
-        const updated = [...facts];
-        updated[index]._id = Date.now(); // lock row
-        setFacts(updated);
-    };
-    const deleteFacts = (index) => {
-        const updated = [...facts];
-        updated.splice(index, 1);
-        setFacts(updated);
-    };
-
-    const handleChanges = (index, field, value) => {
-        const list = [...approvals];
-        list[index][field] = value;
-        setApprovals(list);
-    };
 
     const [campusList, setCampusList] = useState([
         { name: "", image: "" }
@@ -347,12 +177,12 @@ function Index() {
         partnersname: "",
         partnersdesc: "",
         onlinetitle: "",
-        onlinedesc: ""
+        onlinedesc: "",
+        patterndescription: "",
+        patternname: ""
     });
 
     console.log("formData", formData)
-    const handleClose = () => setIsOpen(false);
-    const handleOpen = () => setIsOpen(true);
 
     const handleQuillChange = (field, value) => {
         setFormData((prev) => ({ ...prev, [field]: value }));
@@ -445,7 +275,6 @@ function Index() {
                 });
 
                 setPreview(null);
-                handleClose();
                 fetchData();
             } else {
                 toast.error(response.data.message);
@@ -486,7 +315,6 @@ function Index() {
 
             if (response?.data?.status) {
                 toast.success(response.data.message);
-                handleClose();
                 fetchData();
             } else {
                 toast.error(response.data.message);
@@ -662,49 +490,7 @@ function Index() {
                             </div>
                             {/* Description Field changed to textarea with 300 character limit */}
 
-                            <div className="mb-4">
-                                <div className="flex justify-between items-center mb-3">
-                                    <h2 className="text-xl font-semibold text-[#CC2828]">Multiple Description</h2>
 
-                                    <button
-                                        onClick={addDescription}
-                                        className="border border-[#CC2828] bg-[#CC2828] hover:bg-red-700 text-white px-6 py-2 rounded-[10px] text-base transition"
-                                    >
-                                        + Add More
-                                    </button>
-                                </div>
-
-                                {formData.descriptions.map((desc, index) => (
-                                    <div key={index} className="mb-4">
-                                        <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
-                                            <span>Description {index + 1}</span>
-                                            <span className="text-sm text-gray-500">
-                                                ({desc.text.length}/500)
-                                            </span>
-                                        </label>
-                                        <div className="flex items-start gap-3 mb-4">
-                                            <input
-                                                value={desc.text}
-                                                onChange={(e) => {
-                                                    if (e.target.value.length <= 500)
-                                                        handleDescriptionChange(index, e.target.value);
-                                                }}
-                                                placeholder="Enter description"
-                                                className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
-                                                required
-                                            />
-
-                                            <button
-                                                onClick={() => deleteDescription(index)}
-                                                className="bg-red-500 text-white rounded-md p-3 hover:bg-red-700 flex justify-center items-center"
-                                            >
-                                                <MdDelete size={20} />
-                                            </button>
-                                        </div>
-
-                                    </div>
-                                ))}
-                            </div>
 
                             <div>
                                 <label className="block text-[#FF1B1B] font-medium mb-1">
@@ -767,7 +553,52 @@ function Index() {
                                         />
                                     </div>
                                 )}
-                            </div></>
+                            </div>
+
+                            <div className="mb-4">
+                                <div className="flex justify-between items-center mb-3">
+                                    <h2 className="text-xl font-semibold text-[#CC2828]">Multiple Description</h2>
+
+                                    <button
+                                        onClick={addDescription}
+                                        className="border border-[#CC2828] bg-[#CC2828] hover:bg-red-700 text-white px-6 py-2 rounded-[10px] text-base transition"
+                                    >
+                                        + Add More
+                                    </button>
+                                </div>
+
+                                {formData.descriptions.map((desc, index) => (
+                                    <div key={index} className="mb-4">
+                                        <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
+                                            <span>Description {index + 1}</span>
+                                            <span className="text-sm text-gray-500">
+                                                ({desc.text.length}/500)
+                                            </span>
+                                        </label>
+                                        <div className="flex items-start gap-3 mb-4">
+                                            <input
+                                                value={desc.text}
+                                                onChange={(e) => {
+                                                    if (e.target.value.length <= 500)
+                                                        handleDescriptionChange(index, e.target.value);
+                                                }}
+                                                placeholder="Enter description"
+                                                className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
+                                                required
+                                            />
+
+                                            <button
+                                                onClick={() => deleteDescription(index)}
+                                                className="bg-red-500 text-white rounded-md p-3 hover:bg-red-700 flex justify-center items-center"
+                                            >
+                                                <MdDelete size={20} />
+                                            </button>
+                                        </div>
+
+                                    </div>
+                                ))}
+                            </div>
+                        </>
                     )}
 
                     {activeTab === "about" && (
@@ -793,27 +624,12 @@ function Index() {
                                 />
                             </div>
 
-                            {/* Description Field changed to textarea with 300 character limit */}
-                            <div>
-                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
-                                    <span>Description</span>
-                                    <span className="text-sm text-gray-500">
-                                        ({formData.about_desc.length}/500)
-                                    </span>
-                                </label>
-                                <textarea
-                                    name="about_desc"
-                                    value={formData.about_desc}
-                                    onChange={(e) => {
-                                        if (e.target.value.length <= 500)
-                                            handleChange(e);
-                                    }}
-                                    placeholder="Enter About Description"
-                                    rows={10}
-                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
-                                    required
-                                />
-                            </div>
+                            <ReactQuillEditor
+                                label="Description"
+                                desc={formData.about_desc}
+                                handleBioChange={(val) => handleQuillChange("about_desc", val)}
+                            />
+
                         </>
 
                     )}
@@ -840,56 +656,17 @@ function Index() {
                                     required
                                 />
                             </div>
-
-                            {/* Description Field changed to textarea with 300 character limit */}
                             <div>
-                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
-                                    <span>Description</span>
-                                    <span className="text-sm text-gray-500">
-                                        ({formData.approvals_desc?.length}/500)
-                                    </span>
-                                </label>
-                                <textarea
-                                    name="approvals_desc"
-                                    value={formData.approvals_desc}
-                                    onChange={(e) => {
-                                        if (e.target.value.length <= 500)
-                                            handleChange(e);
-                                    }}
-                                    placeholder="Enter Approvals Description"
-                                    rows={10}
-                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
-                                    required
+
+                                <ReactQuillEditor
+                                    label="Description"
+                                    desc={formData.approvals_desc}
+                                    handleBioChange={(val) => handleQuillChange("approvals_desc", val)}
                                 />
                             </div>
-                            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
 
-                                {approvalOptions.map((item) => (
-                                    <label
-                                        key={item.id}
-                                        className="flex items-center gap-3 border p-3 rounded-lg cursor-pointer shadow-sm bg-white"
-                                    >
-                                        {/* Checkbox */}
-                                        <input
-                                            type="checkbox"
-                                            checked={selectedApprovals.includes(item.id)}
-                                            onChange={() => toggleApproval(item.id)}
-                                            className="h-4 w-4"
-                                        />
+                            <ApprovalAndPartner step={1} toggleApproval={toggleApproval} selectedApprovals={selectedApprovals} />
 
-                                        {/* Image + Title */}
-                                        <div className="flex items-center gap-3">
-                                            <img
-                                                src={item.image}
-                                                alt={item.title}
-                                                className="w-10 h-10 object-contain"
-                                            />
-                                            <span className="text-sm font-medium">{item.title}</span>
-                                        </div>
-                                    </label>
-                                ))}
-
-                            </div>
                         </>
 
                     )}
@@ -918,30 +695,11 @@ function Index() {
                             </div>
 
                             {/* Description Field changed to textarea with 300 character limit */}
-                            <div>
-                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
-                                    <span>Description</span>
-                                    <span className="text-sm text-gray-500">
-                                        ({formData.rankings_description?.length}/500)
-                                    </span>
-                                </label>
-                                <textarea
-                                    name="description"
-                                    value={formData.rankings_description}
-                                    onChange={(e) => {
-                                        if (e.target.value.length <= 500)
-                                            handleChange(e);
-                                    }}
-                                    placeholder="Enter description"
-                                    rows={10}
-                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
-                                    required
-                                />
-                            </div>
+
                             <ReactQuillEditor
-                                label="Privacy Policy"
-                                desc={formData.rankings_point}
-                                handleBioChange={(val) => handleQuillChange("rankings_point", val)}
+                                label="Description"
+                                desc={formData.rankings_description}
+                                handleBioChange={(val) => handleQuillChange("rankings_description", val)}
                             />
 
 
@@ -953,143 +711,12 @@ function Index() {
 
                     {activeTab === "advantages" && (
                         <>
-
-                            {/* MAIN ADVANTAGE NAME */}
-                            <div>
-                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
-                                    Name{" "}
-                                    <span className="text-sm text-gray-500">
-                                        ({formData.advantagesname?.length}/50)
-                                    </span>
-                                </label>
-                                <input
-                                    type="text"
-                                    name="advantagesname"
-                                    value={formData.advantagesname}
-                                    onChange={(e) => {
-                                        if (e.target.value.length <= 50) handleChange(e);
-                                    }}
-                                    placeholder="Enter name"
-                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 
-                focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
-                                    required
-                                />
-                            </div>
-
-                            {/* MAIN DESCRIPTION */}
-                            <div>
-                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
-                                    <span>Description</span>
-                                    <span className="text-sm text-gray-500">
-                                        ({formData.advantagesdescription?.length}/500)
-                                    </span>
-                                </label>
-
-                                <textarea
-                                    name="advantagesdescription"
-                                    value={formData.advantagesdescription}
-                                    onChange={(e) => {
-                                        if (e.target.value.length <= 500) handleChange(e);
-                                    }}
-                                    placeholder="Enter description"
-                                    rows={10}
-                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 
-                focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
-                                    required
-                                />
-                            </div>
-                            <div className="flex justify-between items-center mb-5">
-                                <h2 className="text-xl font-semibold text-[#CC2828]">
-                                    Multiple Advantages
-                                </h2>
-                                <button
-                                    onClick={addAdvantage}
-                                    className="w-full max-w-[170px] border border-[#CC2828] 
-                bg-[#CC2828] hover:bg-red-700 text-white py-3 rounded-[10px] 
-                text-base xl:text-lg transition"
-                                >
-                                    + Add More
-                                </button>
-
-                            </div>
-
-                            {/* DYNAMIC ADVANTAGE ITEMS */}
-                            {advantages.map((adv, index) => (
-                                <div key={index} className="grid grid-cols-1 gap-4 items-center">
-
-                                    {/* TITLE */}
-                                    <div>
-                                        <label className="block text-[#CC2828] font-medium mb-2">
-                                            Advantage
-                                        </label>
-                                        <input
-                                            type="text"
-                                            disabled={adv?._id}
-                                            value={adv.title}
-                                            onChange={(e) =>
-                                                handleAdvantageChange(index, "title", e.target.value)
-                                            }
-                                            placeholder="Enter Advantage Title"
-                                            className="w-full bg-[#F4F6F8] text-[#727272] 
-                        border border-[#F4F6F8] rounded-[10px] px-4 py-2 
-                        focus:outline-none"
-                                        />
-                                    </div>
-
-                                    {/* DESCRIPTION */}
-                                    <div>
-                                        <div className="flex justify-between items-center mb-2">
-                                            <label className="block text-[#CC2828] font-medium">
-                                                Description
-                                            </label>
-
-                                            <div className="flex items-center gap-2">
-                                                {adv._id ? (
-                                                    <button
-                                                        onClick={() => openAdvantageEditModal(adv)}
-                                                        className="bg-red-500 text-white rounded-full p-1 hover:bg-red-700"
-                                                        title="Edit Advantage"
-                                                    >
-                                                        <MdEdit />
-                                                    </button>
-                                                ) : (
-                                                    <button
-                                                        onClick={() => saveAdvantage(index)}
-                                                        className="bg-red-500 text-white rounded-full p-1 hover:bg-red-700"
-                                                        title="Save Advantage"
-                                                    >
-                                                        <MdAdd />
-                                                    </button>
-                                                )}
-
-                                                <span className="text-[#b1a9a9]">|</span>
-
-                                                <button
-                                                    onClick={() => deleteAdvantage(index)}
-                                                    className="bg-red-500 text-white rounded-full p-1 hover:bg-red-700"
-                                                    title="Delete Advantage"
-                                                >
-                                                    <MdDelete />
-                                                </button>
-                                            </div>
-                                        </div>
-
-                                        <input
-                                            type="text"
-                                            value={adv.description}
-                                            disabled={adv?._id}
-                                            onChange={(e) =>
-                                                handleAdvantageChange(index, "description", e.target.value)
-                                            }
-                                            placeholder="Enter Description"
-                                            className="w-full bg-[#F4F6F8] text-[#727272] 
-                        border border-[#F4F6F8] rounded-[10px] px-4 py-2 
-                        focus:outline-none"
-                                        />
-                                    </div>
-                                </div>
-                            ))}
-
+                            {activeTab === "advantages" && (
+                                <>
+                                    <AdvantagesSection advantages={advantages} setAdvantages={setAdvantages}
+                                        htitle={"Advantages"} handleChange={handleChange} handleQuillChange={handleQuillChange} formData={formData} />
+                                </>
+                            )}
                             {/* ADD MORE BUTTON */}
 
                         </>
@@ -1117,300 +744,27 @@ function Index() {
                                 />
                             </div>
 
-                            <div className="flex justify-between items-center mb-5">
-                                <h2 className="text-xl font-semibold text-[#CC2828]">
-                                    Multiple Facts
-                                </h2>
+                            <FactsSection facts={facts} setFacts={setFacts} />
 
-                                <button
-                                    onClick={addFacts}
-                                    className="border border-[#CC2828] bg-[#CC2828] hover:bg-red-700 text-white px-6 py-2 rounded-[10px] text-base transition"
-                                >
-                                    + Add Facts
-                                </button>
-                            </div>
-
-                            {facts?.map((item, index) => (
-                                <div key={index} className="grid grid-cols-1 gap-4 items-center">
-                                    {/* Pattern Name */}
-                                    <div>
-                                        <label className="block text-[#CC2828] font-medium mb-2">Facts Name</label>
-                                        <input
-                                            type="text"
-                                            disabled={item?._id}
-                                            value={item.patternName}
-                                            onChange={(e) => handleFactsChange(index, "factnames", e.target.value)}
-                                            placeholder="Enter Pattern Name"
-                                            className="w-full bg-[#F4F6F8] text-[#727272] border rounded-[10px] px-4 py-2"
-                                        />
-                                    </div>
-
-
-
-                                    {/* Description */}
-                                    <div>
-                                        <div className="flex justify-between items-center mb-2">
-                                            <label className="block text-[#CC2828] font-medium">Facts Description</label>
-
-                                            {/* Buttons */}
-                                            <div className="flex items-center gap-2">
-                                                {item._id ? (
-                                                    <button
-                                                        onClick={() => openfactEdit(item)}
-                                                        className="bg-red-500 text-white rounded-full p-1 hover:bg-red-700"
-                                                    >
-                                                        <MdEdit />
-                                                    </button>
-                                                ) : (
-                                                    <button
-                                                        onClick={() => handlefactsSubmit(index)}
-                                                        className="bg-red-500 text-white rounded-full p-1 hover:bg-red-700"
-                                                    >
-                                                        <MdAdd />
-                                                    </button>
-                                                )}
-                                                <button
-                                                    onClick={() => deleteFacts(index)}
-                                                    className="bg-red-500 text-white rounded-full p-1 hover:bg-red-700"
-                                                >
-                                                    <MdDelete />
-                                                </button>
-                                            </div>
-                                        </div>
-
-                                        <textarea
-                                            rows={4}
-                                            disabled={item?._id}
-                                            value={item.description}
-                                            onChange={(e) => handleFactsChange(index, "description", e.target.value)}
-                                            placeholder="Enter Description"
-                                            className="w-full bg-[#F4F6F8] text-[#727272] border rounded-[10px] px-4 py-2"
-                                        />
-                                    </div>
-                                </div>
-                            ))}
                         </>
 
                     )}
 
                     {activeTab === "certificate" && (
                         <>
-
-                            <div>
-                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
-                                    Name{" "}
-                                    <span className="text-sm text-gray-500">
-                                        ({formData.certificatename?.length}/50)
-                                    </span>
-                                </label>
-                                <input
-                                    type="text"
-                                    name="name"
-                                    value={formData.certificatename}
-                                    onChange={(e) => {
-                                        if (e.target.value.length <= 50) handleChange(e);
-                                    }}
-                                    placeholder="Enter name"
-                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
-                                    required
-                                />
-                            </div>
-
-                            <div>
-                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
-                                    <span>Description</span>
-                                    <span className="text-sm text-gray-500">
-                                        ({formData.certificatedescription?.length}/500)
-                                    </span>
-                                </label>
-                                <textarea
-                                    name="certificatedescription"
-                                    value={formData.certificatedescription}
-                                    onChange={(e) => {
-                                        if (e.target.value.length <= 500)
-                                            handleChange(e);
-                                    }}
-                                    placeholder="Enter description"
-                                    rows={10}
-                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
-                                    required
-                                />
-                            </div>
-                            <div>
-                                <label className="block text-[#FF1B1B] font-medium mb-1">
-                                    Upload Certificate Image
-                                </label>
-                                <input
-                                    type="file"
-                                    accept="image/*"
-                                    onChange={(e) => handleImageChange(e, "certificatemage")}
-                                    className="w-full p-2 bg-gray-100 rounded-md cursor-pointer text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
-                                />
-
-                                {preview && (
-                                    <div className="mt-3">
-                                        <img
-                                            src={preview}
-                                            alt="Preview"
-                                            className="w-full h-48 object-cover rounded-md border"
-                                        />
-                                    </div>
-                                )}
-                            </div>
+                            <Certificate
+                                formData={formData}
+                                handleChange={handleChange}
+                                handleImageChange={handleImageChange}
+                                preview={preview}
+                                handleQuillChange={handleQuillChange}
+                            />
                         </>
 
                     )}
 
                     {activeTab === "pattern" && (
-                        <>
-                            <div>
-                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
-                                    Name{" "}
-                                    <span className="text-sm text-gray-500">
-                                        ({formData.patternname?.length}/50)
-                                    </span>
-                                </label>
-                                <input
-                                    type="text"
-                                    name="patternname"
-                                    value={formData.patternname}
-                                    onChange={(e) => {
-                                        if (e.target.value.length <= 50) handleChange(e);
-                                    }}
-                                    placeholder="Enter name"
-                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
-                                    required
-                                />
-                            </div>
-
-                            <div>
-                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
-                                    <span>Description</span>
-                                    <span className="text-sm text-gray-500">
-                                        ({formData.patterndescription?.length}/500)
-                                    </span>
-                                </label>
-                                <textarea
-                                    name="description"
-                                    value={formData.patterndescription}
-                                    onChange={(e) => {
-                                        if (e.target.value.length <= 500)
-                                            handleChange(e);
-                                    }}
-                                    placeholder="Enter description"
-                                    rows={10}
-                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
-                                    required
-                                />
-                            </div>
-                            <div className="flex justify-between items-center mb-5">
-                                <h2 className="text-xl font-semibold text-[#CC2828]">
-                                    Multiple Pattern
-                                </h2>
-
-                                <button
-                                    onClick={addPattern}
-                                    className="border border-[#CC2828] bg-[#CC2828] hover:bg-red-700 text-white px-6 py-2 rounded-[10px] text-base transition"
-                                >
-                                    + Add Pattern
-                                </button>
-                            </div>
-
-                            {patterns.map((item, index) => (
-                                <div key={index} className="grid grid-cols-1 gap-4 items-center">
-
-                                    {/* Image URL */}
-                                    <div>
-                                        <label className="block text-[#CC2828] font-medium mb-2">Image URL</label>
-                                        <input
-                                            type="file"
-                                            disabled={item?._id}
-                                            value={item.image}
-                                            onChange={(e) => handlePatternChange(index, "image", e.target.value)}
-                                            placeholder="Enter Image URL"
-                                            className="w-full bg-[#F4F6F8] text-[#727272] border rounded-[10px] px-4 py-2"
-                                        />
-                                    </div>
-
-                                    {/* Preview */}
-                                    {item.image && (
-                                        <img
-                                            src={item.image}
-                                            alt="preview"
-                                            className="w-20 h-20 object-contain"
-                                        />
-                                    )}
-
-                                    {/* Pattern Name */}
-                                    <div>
-                                        <label className="block text-[#CC2828] font-medium mb-2">Pattern Name</label>
-                                        <input
-                                            type="text"
-                                            disabled={item?._id}
-                                            value={item.patternName}
-                                            onChange={(e) => handlePatternChange(index, "patternName", e.target.value)}
-                                            placeholder="Enter Pattern Name"
-                                            className="w-full bg-[#F4F6F8] text-[#727272] border rounded-[10px] px-4 py-2"
-                                        />
-                                    </div>
-
-                                    {/* Percentage */}
-                                    <div>
-                                        <label className="block text-[#CC2828] font-medium mb-2">Percentage</label>
-                                        <input
-                                            type="text"
-                                            disabled={item?._id}
-                                            value={item.percentage}
-                                            onChange={(e) => handlePatternChange(index, "percentage", e.target.value)}
-                                            placeholder="Enter % (example: 30%)"
-                                            className="w-full bg-[#F4F6F8] text-[#727272] border rounded-[10px] px-4 py-2"
-                                        />
-                                    </div>
-
-                                    {/* Description */}
-                                    <div>
-                                        <div className="flex justify-between items-center mb-2">
-                                            <label className="block text-[#CC2828] font-medium">Description</label>
-
-                                            {/* Buttons */}
-                                            <div className="flex items-center gap-2">
-                                                {item._id ? (
-                                                    <button
-                                                        onClick={() => openPatternEdit(item)}
-                                                        className="bg-red-500 text-white rounded-full p-1 hover:bg-red-700"
-                                                    >
-                                                        <MdEdit />
-                                                    </button>
-                                                ) : (
-                                                    <button
-                                                        onClick={() => handlePatternSubmit(index)}
-                                                        className="bg-red-500 text-white rounded-full p-1 hover:bg-red-700"
-                                                    >
-                                                        <MdAdd />
-                                                    </button>
-                                                )}
-                                                <button
-                                                    onClick={() => deletePattern(index)}
-                                                    className="bg-red-500 text-white rounded-full p-1 hover:bg-red-700"
-                                                >
-                                                    <MdDelete />
-                                                </button>
-                                            </div>
-                                        </div>
-
-                                        <textarea
-                                            rows={4}
-                                            disabled={item?._id}
-                                            value={item.description}
-                                            onChange={(e) => handlePatternChange(index, "description", e.target.value)}
-                                            placeholder="Enter Description"
-                                            className="w-full bg-[#F4F6F8] text-[#727272] border rounded-[10px] px-4 py-2"
-                                        />
-                                    </div>
-                                </div>
-                            ))}
-
-                        </>
+                        <PatternSection setPatterns={setPatterns} patterns={patterns} formData={formData} handleChange={handleChange} handleQuillChange={handleQuillChange} />
                     )}
                     {/* Action Buttons */}
                     {activeTab === "financial" && (
@@ -1434,28 +788,12 @@ function Index() {
                                     required
                                 />
                             </div>
+                            <ReactQuillEditor
+                                label="Description"
+                                desc={formData.financialdescription}
+                                handleBioChange={(val) => handleQuillChange("financialdescription", val)}
+                            />
 
-                            {/* Description Field changed to textarea with 300 character limit */}
-                            <div>
-                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
-                                    <span>Financial Description</span>
-                                    <span className="text-sm text-gray-500">
-                                        ({formData.financialdescription?.length}/500)
-                                    </span>
-                                </label>
-                                <textarea
-                                    name="financialdescription"
-                                    value={formData.financialdescription}
-                                    onChange={(e) => {
-                                        if (e.target.value.length <= 500)
-                                            handleChange(e);
-                                    }}
-                                    placeholder="Enter description"
-                                    rows={10}
-                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
-                                    required
-                                />
-                            </div>
 
                             <div className="flex justify-between items-center mb-5">
                                 <h2 className="text-xl font-semibold text-[#CC2828]">
@@ -1579,6 +917,7 @@ function Index() {
 
                         </>
                     )}
+
                     {activeTab === "campuses" && (
                         <>
                             <div className="flex justify-between items-center">
@@ -1641,6 +980,7 @@ function Index() {
                             ))}
                         </>
                     )}
+
                     {activeTab === "partners" && (
                         <>
 
@@ -1663,400 +1003,29 @@ function Index() {
                                     required
                                 />
                             </div>
+                            <ReactQuillEditor
+                                label="Description"
+                                desc={formData.partnersdesc}
+                                handleBioChange={(val) => handleQuillChange("partnersdesc", val)}
+                            />
 
-                            {/* Description Field changed to textarea with 300 character limit */}
-                            <div>
-                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
-                                    <span>Description</span>
-                                    <span className="text-sm text-gray-500">
-                                        ({formData.partnersdesc?.length}/500)
-                                    </span>
-                                </label>
-                                <textarea
-                                    name="partnersdesc"
-                                    value={formData.partnersdesc}
-                                    onChange={(e) => {
-                                        if (e.target.value.length <= 500)
-                                            handleChange(e);
-                                    }}
-                                    placeholder="Enter Partners Description"
-                                    rows={10}
-                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
-                                    required
-                                />
-                            </div>
-                            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+                            <ApprovalAndPartner
+                                selectedPartners={selectedPartners}
+                                togglePartners={togglePartners}
+                                step={2}
+                            />
 
-                                {PartnersOptions.map((item) => (
-                                    <label
-                                        key={item.id}
-                                        className="flex items-center gap-3 border p-3 rounded-lg cursor-pointer shadow-sm bg-white"
-                                    >
-                                        {/* Checkbox */}
-                                        <input
-                                            type="checkbox"
-                                            checked={selectedPartners.includes(item.id)}
-                                            onChange={() => togglePartners(item.id)}
-                                            className="h-4 w-4"
-                                        />
-
-                                        {/* Image + Title */}
-                                        <div className="flex items-center gap-3">
-                                            <img
-                                                src={item.image}
-                                                alt={item.title}
-                                                className="w-10 h-10 object-contain"
-                                            />
-                                            <span className="text-sm font-medium">{item.title}</span>
-                                        </div>
-                                    </label>
-                                ))}
-
-                            </div>
                         </>
 
                     )}
                     {activeTab === "services" && (
-                        <>
-
-                            {/* MAIN NAME FIELD */}
-                            <div>
-                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
-                                    Name{" "}
-                                    <span className="text-sm text-gray-500">
-                                        ({formData.servicetitle?.length}/50)
-                                    </span>
-                                </label>
-                                <input
-                                    type="text"
-                                    name="servicetitle"
-                                    value={formData.servicetitle}
-                                    onChange={(e) => {
-                                        if (e.target.value.length <= 50) handleChange(e);
-                                    }}
-                                    placeholder="Enter service name"
-                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 
-                focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
-                                    required
-                                />
-                            </div>
-
-                            {/* DESCRIPTION FIELD */}
-                            <div>
-                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
-                                    <span>Description</span>
-                                    <span className="text-sm text-gray-500">
-                                        ({formData.servicedesc?.length}/500)
-                                    </span>
-                                </label>
-
-                                <textarea
-                                    name="servicedesc"
-                                    value={formData.servicedesc}
-                                    onChange={(e) => {
-                                        if (e.target.value.length <= 500) handleChange(e);
-                                    }}
-                                    placeholder="Enter service description"
-                                    rows={10}
-                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 
-                focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
-                                    required
-                                />
-                            </div>
-
-                            {/* SERVICES REPEATING SECTION */}
-                            <>
-                                <div className="flex justify-between items-center mb-5">
-                                    <h2 className="text-xl font-semibold text-[#CC2828]">
-                                        Services Section
-                                    </h2>
-
-                                    <button
-                                        onClick={addService}
-                                        className="border border-[#CC2828] bg-[#CC2828] hover:bg-red-700 
-                    text-white px-6 py-2 rounded-[10px] text-base transition"
-                                    >
-                                        + Add More Service
-                                    </button>
-                                </div>
-
-                                {services.map((service, index) => (
-                                    <div key={index} className="grid grid-cols-1 gap-4 items-center">
-
-                                        {/* TITLE */}
-                                        <div>
-                                            <label className="block text-[#CC2828] font-medium mb-2">Title</label>
-
-                                            <input
-                                                type="text"
-                                                disabled={service?._id}
-                                                value={service.title}
-                                                onChange={(e) => handleServiceChange(index, "title", e.target.value)}
-                                                placeholder="Enter service title"
-                                                className="w-full bg-[#F4F6F8] text-[#727272] border border-[#F4F6F8] 
-                            rounded-[10px] px-4 py-2 focus:outline-none"
-                                            />
-                                        </div>
-
-                                        {/* CONTENT */}
-                                        <div>
-                                            <div className="flex justify-between items-center mb-2">
-                                                <label className="block text-[#CC2828] font-medium">Content</label>
-
-                                                <div className="flex items-center gap-2">
-                                                    {service._id ? (
-                                                        <button
-                                                            onClick={() => openEditModal(service)}
-                                                            className="bg-red-500 text-white rounded-full p-1 hover:bg-red-700"
-                                                            title="Edit Service"
-                                                        >
-                                                            <MdEdit />
-                                                        </button>
-                                                    ) : (
-                                                        <button
-                                                            onClick={() => saveService(index)}
-                                                            className="bg-red-500 text-white rounded-full p-1 hover:bg-red-700"
-                                                            title="Save Service"
-                                                        >
-                                                            <MdAdd />
-                                                        </button>
-                                                    )}
-
-                                                    <span className="text-[#b1a9a9]">|</span>
-
-                                                    <button
-                                                        onClick={() => deleteService(index)}
-                                                        className="bg-red-500 text-white rounded-full p-1 hover:bg-red-700"
-                                                        title="Delete Service"
-                                                    >
-                                                        <MdDelete />
-                                                    </button>
-                                                </div>
-                                            </div>
-
-                                            <input
-                                                type="text"
-                                                value={service.content}
-                                                disabled={service?._id}
-                                                onChange={(e) => handleServiceChange(index, "content", e.target.value)}
-                                                placeholder="Enter service content"
-                                                className="w-full bg-[#F4F6F8] text-[#727272] border border-[#F4F6F8] 
-                            rounded-[10px] px-4 py-2 focus:outline-none"
-                                            />
-                                        </div>
-
-                                    </div>
-                                ))}
-                            </>
-
-                        </>
+                        <ServicesSection services={services} setServices={setServices} handleChange={handleChange} handleQuillChange={handleQuillChange} formData={formData} />
                     )}
                     {activeTab === "online" && (
-                        <>
-
-                            <div>
-                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
-                                    Name{" "}
-                                    <span className="text-sm text-gray-500">
-                                        ({formData.onlinetitle?.length}/50)
-                                    </span>
-                                </label>
-                                <input
-                                    type="text"
-                                    name="onlinetitle"
-                                    value={formData.onlinetitle}
-                                    onChange={(e) => {
-                                        if (e.target.value.length <= 50) handleChange(e);
-                                    }}
-                                    placeholder="Enter partners name"
-                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
-                                    required
-                                />
-                            </div>
-
-                            {/* Description Field changed to textarea with 300 character limit */}
-                            <div>
-                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
-                                    <span>Description</span>
-                                    <span className="text-sm text-gray-500">
-                                        ({formData.onlinedesc?.length}/500)
-                                    </span>
-                                </label>
-                                <textarea
-                                    name="onlinedesc"
-                                    value={formData.onlinedesc}
-                                    onChange={(e) => {
-                                        if (e.target.value.length <= 500)
-                                            handleChange(e);
-                                    }}
-                                    placeholder="Enter online Description"
-                                    rows={10}
-                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
-                                    required
-                                />
-                            </div>
-                            <>
-                                <div className="flex justify-between items-center mb-5">
-                                    <h2 className="text-xl font-semibold text-[#CC2828]">
-                                        Online Section
-                                    </h2>
-
-                                    <button
-                                        onClick={addOnline}
-
-                                        className="border border-[#CC2828] bg-[#CC2828] hover:bg-red-700 text-white px-6 py-2 rounded-[10px] text-base transition"
-                                    >
-                                        + Add More Online
-                                    </button>
-                                </div>
-                                {onlines.map((faq, index) => (
-                                    <div key={index} className="grid grid-cols-1 gap-4 items-center">
-                                        {/* QUESTION */}
-                                        <div>
-                                            <label className="block text-[#CC2828] font-medium mb-2">Title</label>
-                                            <input
-                                                type="text"
-                                                disabled={onlines?._id}
-                                                value={onlines.question}
-                                                onChange={(e) => handleOnlineChange(index, 'onlines', e.target.value)}
-                                                placeholder="Enter title"
-                                                className="w-full bg-[#F4F6F8] text-[#727272] border border-[#F4F6F8] rounded-[10px] px-4 py-2 focus:outline-none"
-                                            />
-                                        </div>
-
-                                        {/* ANSWER */}
-                                        <div>
-                                            <div className="flex justify-between items-center mb-2">
-                                                <label className="block text-[#CC2828] font-medium">Content</label>
-
-                                                <div className="flex items-center gap-2">
-                                                    {faq._id ? (
-                                                        <button
-                                                            onClick={() => openEditModal(faq)}
-                                                            className="bg-red-500 text-white rounded-full p-1 hover:bg-red-700"
-                                                            title="Edit FAQ"
-                                                        >
-                                                            <MdEdit />
-                                                        </button>
-                                                    ) : (
-                                                        <button
-                                                            // onClick={() => handleFaqSubmit(index)}
-                                                            className="bg-red-500 text-white rounded-full p-1 hover:bg-red-700"
-                                                            title="Save FAQ"
-                                                        >
-                                                            <MdAdd />
-                                                        </button>
-                                                    )}
-
-                                                    <span className="text-[#b1a9a9]">|</span>
-
-                                                    <button
-                                                        onClick={() => deleteOnline(index)}
-                                                        className="bg-red-500 text-white rounded-full p-1 hover:bg-red-700"
-                                                        title="Delete FAQ"
-                                                    >
-                                                        <MdDelete />
-                                                    </button>
-                                                </div>
-                                            </div>
-
-                                            <input
-                                                rows={5}
-                                                type="text"
-                                                value={onlines.content}
-                                                disabled={onlines?._id}
-                                                onChange={(e) => handleOnlineChange(index, 'content', e.target.value)}
-                                                placeholder="Enter content"
-                                                className="w-full bg-[#F4F6F8] text-[#727272] border border-[#F4F6F8] rounded-[10px] px-4 py-2 focus:outline-none"
-                                            />
-                                        </div>
-                                    </div>
-                                ))}
-
-                            </>
-                        </>
-
+                        <OnlineSection formData={formData} handleChange={handleChange} onlines={onlines} setOnlines={setOnlines} handleQuillChange={handleQuillChange} />
                     )}
                     {activeTab === "faq" && (
-                        <>
-                            <div className="flex justify-between items-center mb-5">
-                                <h2 className="text-xl font-semibold text-[#CC2828]">
-                                    FAQ Section
-                                </h2>
-
-                                <button
-                                    onClick={addFaq}
-
-                                    className="border border-[#CC2828] bg-[#CC2828] hover:bg-red-700 text-white px-6 py-2 rounded-[10px] text-base transition"
-                                >
-                                    + Add More FAQ
-                                </button>
-                            </div>
-                            {faqs.map((faq, index) => (
-                                <div key={index} className="grid grid-cols-1 gap-4 items-center">
-                                    {/* QUESTION */}
-                                    <div>
-                                        <label className="block text-[#CC2828] font-medium mb-2">Question</label>
-                                        <input
-                                            type="text"
-                                            disabled={faq?._id}
-                                            value={faq.question}
-                                            onChange={(e) => handleFaqChange(index, 'question', e.target.value)}
-                                            placeholder="Enter Question"
-                                            className="w-full bg-[#F4F6F8] text-[#727272] border border-[#F4F6F8] rounded-[10px] px-4 py-2 focus:outline-none"
-                                        />
-                                    </div>
-
-                                    {/* ANSWER */}
-                                    <div>
-                                        <div className="flex justify-between items-center mb-2">
-                                            <label className="block text-[#CC2828] font-medium">Answer</label>
-
-                                            <div className="flex items-center gap-2">
-                                                {faq._id ? (
-                                                    <button
-                                                        onClick={() => openEditModal(faq)}
-                                                        className="bg-red-500 text-white rounded-full p-1 hover:bg-red-700"
-                                                        title="Edit FAQ"
-                                                    >
-                                                        <MdEdit />
-                                                    </button>
-                                                ) : (
-                                                    <button
-                                                        // onClick={() => handleFaqSubmit(index)}
-                                                        className="bg-red-500 text-white rounded-full p-1 hover:bg-red-700"
-                                                        title="Save FAQ"
-                                                    >
-                                                        <MdAdd />
-                                                    </button>
-                                                )}
-
-                                                <span className="text-[#b1a9a9]">|</span>
-
-                                                <button
-                                                    onClick={() => deleteFaq(index)}
-                                                    className="bg-red-500 text-white rounded-full p-1 hover:bg-red-700"
-                                                    title="Delete FAQ"
-                                                >
-                                                    <MdDelete />
-                                                </button>
-                                            </div>
-                                        </div>
-
-                                        <input
-                                            rows={5}
-                                            type="text"
-                                            value={faq.answer}
-                                            disabled={faq?._id}
-                                            onChange={(e) => handleFaqChange(index, 'answer', e.target.value)}
-                                            placeholder="Enter Answer"
-                                            className="w-full bg-[#F4F6F8] text-[#727272] border border-[#F4F6F8] rounded-[10px] px-4 py-2 focus:outline-none"
-                                        />
-                                    </div>
-                                </div>
-                            ))}
-
-                        </>
+                        <FaqSection faqs={faqs} setFaqs={setFaqs} />
                     )}
                 </form>
                 <div className="flex justify-between mt-8  p-6">

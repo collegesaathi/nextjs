@@ -11,7 +11,6 @@ import Link from 'next/link';
 import { ReviewLoader, TableLoader } from '@/common/Loader';
 import Image from 'next/image';
 import { IoMdEye } from 'react-icons/io';
-import NoData from '../../components/NoData';
 
 
 export default function Index() {

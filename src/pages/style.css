@@ -695,19 +695,19 @@ select:focus {
   border-color: #EC1E24;
   z-index: 10; /* Important for overlapping */
 }
-
+ 
 .ql-container {
-    min-height: 200px !important;
-    max-height: 350px !important;
+    min-height: 300px !important;
+    max-height: 500px !important;
     overflow-y: auto !important;
 }
-
+/*
 .ql-editor {
     min-height: 150px !important;
 }
 .editor-wrapper {
     height: 350px;
-}
+} */
 
 
 /* facts   */

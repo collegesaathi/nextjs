@@ -39,7 +39,7 @@ function Facts() {
               Facts related to <br /> NMIMS CDOE
             </h2>
 
-            <div className="rounded-[23px] bg-white shadow-[0px_1px_10px_rgba(0,0,0,0.09)]  animate-fade-in-up animate-delay-200">
+            <div className="rounded-[23px] bg-white shadow-[0px_1px_10px_rgba(0,0,0,0.09)] p-8 animate-fade-in-up animate-delay-200">
               <div className="flex justify-between">
 
                 {/* Timeline */}

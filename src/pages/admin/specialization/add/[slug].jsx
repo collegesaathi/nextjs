@@ -9,10 +9,6 @@ import AdvantagesSection from "../../common/AdvantageSection";
 import FactsSection from "../../common/FactSection";
 import PatternSection from "../../common/PatternSection";
 import ApprovalAndPartner from "@/common/ApprovalAndPartner";
-import Certificate from "../../common/Certificate";
-import FaqSection from "../../common/FaqSection";
-import OnlineSection from "../../common/OnlineSection";
-import ServicesSection from "../../common/ServicesSection";
 
 function Index() {
 
@@ -20,7 +16,22 @@ function Index() {
         { title: "", description: "" }
     ]);
 
+
     const [services, setServices] = useState([{ title: "", content: "", image: null, icon: null }]);
+
+    const addService = () => {
+        setServices([...services, { title: "", content: "", image: null, icon: null }]);
+    };
+
+    const handleServiceChange = (index, field, value) => {
+        const updated = [...services];
+        updated[index][field] = value;
+        setServices(updated);
+    };
+
+    const deleteService = (index) => {
+        setServices(services.filter((_, i) => i !== index));
+    };
 
 
     const [selectedApprovals, setSelectedApprovals] = useState([]);
@@ -35,6 +46,7 @@ function Index() {
 
     const [selectedPartners, setSelectedPartners] = useState([]);
 
+    console.log("selectedPartners", selectedPartners)
     const togglePartners = (id) => {
         if (selectedPartners.includes(id)) {
             setSelectedPartners(selectedPartners.filter(a => a !== id));
@@ -63,9 +75,55 @@ function Index() {
     const [faqs, setFaqs] = useState([
         { question: "", answer: "", position: "" }
     ]);
+    console.log("faqs", faqs)
     const [onlines, setOnlines] = useState([
         { title: "", content: "" }
     ]);
+
+    const addOnline = () => {
+        // Only add if no empty one exists
+        const hasEmpty = onlines.some(f => !f.title && !f.content);
+        if (!hasEmpty) {
+            setOnlines([...onlines, { title: "", contet: "" }]);
+        } else {
+            toast.error("Please fill in the existing empty oNLINE before adding another.");
+        }
+    };
+
+    const handleOnlineChange = (index, field, value) => {
+        const updateonline = [...onlines];
+        updateonline[index][field] = value;
+        setOnlines(updateonline);
+    };
+
+    const deleteOnline = (index) => {
+        const updateonline = [...onlines];
+        updateonline.splice(index, 1);
+        setOnlines(updateonline);
+    };
+
+    const addFaq = () => {
+        // Only add if no empty one exists
+        const hasEmpty = faqs.some(f => !f.question && !f.answer);
+        if (!hasEmpty) {
+            setFaqs([...faqs, { question: "", answer: "", position: "" }]);
+        } else {
+            toast.error("Please fill in the existing empty FAQ before adding another.");
+        }
+    };
+
+    const deleteFaq = (index) => {
+        const updatedFaqs = [...faqs];
+        updatedFaqs.splice(index, 1);
+        setFaqs(updatedFaqs);
+    };
+
+    const handleFaqChange = (index, field, value) => {
+        const updatedFaqs = [...faqs];
+        updatedFaqs[index][field] = value;
+        setFaqs(updatedFaqs);
+    };
+
 
     const handleFeesChange = (index, field, value) => {
         const updatedFees = [...fees];
@@ -118,6 +176,33 @@ function Index() {
             description: "",
         }
     ]);
+    const handlePatternChange = (index, field, value) => {
+        const updated = [...patterns];
+        updated[index][field] = value;
+        setPatterns(updated);
+    };
+    const addPattern = () => {
+        setPatterns([
+            ...patterns,
+            {
+                image: "",
+                patternName: "",
+                percentage: "",
+                description: "",
+            }
+        ]);
+    };
+    const handlePatternSubmit = (index) => {
+        const updated = [...patterns];
+        updated[index]._id = Date.now(); // lock row
+        setPatterns(updated);
+    };
+    const deletePattern = (index) => {
+        const updated = [...patterns];
+        updated.splice(index, 1);
+        setPatterns(updated);
+    };
+
 
     const [facts, setFacts] = useState([
         {
@@ -125,6 +210,36 @@ function Index() {
             description: "",
         }
     ]);
+    const handleFactsChange = (index, field, value) => {
+        const updated = [...facts];
+        updated[index][field] = value;
+        setFacts(updated);
+    };
+    const addFacts = () => {
+        setFacts([
+            ...facts,
+            {
+                patternName: "",
+                description: "",
+            }
+        ]);
+    };
+    const handlefactsSubmit = (index) => {
+        const updated = [...facts];
+        updated[index]._id = Date.now(); // lock row
+        setFacts(updated);
+    };
+    const deleteFacts = (index) => {
+        const updated = [...facts];
+        updated.splice(index, 1);
+        setFacts(updated);
+    };
+
+    const handleChanges = (index, field, value) => {
+        const list = [...approvals];
+        list[index][field] = value;
+        setApprovals(list);
+    };
 
     const [campusList, setCampusList] = useState([
         { name: "", image: "" }
@@ -177,12 +292,12 @@ function Index() {
         partnersname: "",
         partnersdesc: "",
         onlinetitle: "",
-        onlinedesc: "",
-        patterndescription: "",
-        patternname: ""
+        onlinedesc: ""
     });
 
     console.log("formData", formData)
+    const handleClose = () => setIsOpen(false);
+    const handleOpen = () => setIsOpen(true);
 
     const handleQuillChange = (field, value) => {
         setFormData((prev) => ({ ...prev, [field]: value }));
@@ -275,6 +390,7 @@ function Index() {
                 });
 
                 setPreview(null);
+                handleClose();
                 fetchData();
             } else {
                 toast.error(response.data.message);
@@ -315,6 +431,7 @@ function Index() {
 
             if (response?.data?.status) {
                 toast.success(response.data.message);
+                handleClose();
                 fetchData();
             } else {
                 toast.error(response.data.message);
@@ -711,12 +828,37 @@ function Index() {
 
                     {activeTab === "advantages" && (
                         <>
-                            {activeTab === "advantages" && (
-                                <>
-                                    <AdvantagesSection advantages={advantages} setAdvantages={setAdvantages}
-                                        htitle={"Advantages"} handleChange={handleChange} handleQuillChange={handleQuillChange} formData={formData} />
-                                </>
-                            )}
+
+                            {/* MAIN ADVANTAGE NAME */}
+                            <div>
+                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
+                                    Name{" "}
+                                    <span className="text-sm text-gray-500">
+                                        ({formData.advantagesname?.length}/50)
+                                    </span>
+                                </label>
+                                <input
+                                    type="text"
+                                    name="advantagesname"
+                                    value={formData.advantagesname}
+                                    onChange={(e) => {
+                                        if (e.target.value.length <= 50) handleChange(e);
+                                    }}
+                                    placeholder="Enter name"
+                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 
+                focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
+                                    required
+                                />
+                            </div>
+                            <div className="mt-5 mb-5">
+                                <ReactQuillEditor
+                                    label="Description"
+                                    desc={formData.advantagesdescription}
+                                    handleBioChange={(val) => handleQuillChange("advantagesdescription", val)}
+                                />
+                            </div>
+                            <AdvantagesSection advantages={advantages} setAdvantages={setAdvantages} />
+
                             {/* ADD MORE BUTTON */}
 
                         </>
@@ -752,19 +894,95 @@ function Index() {
 
                     {activeTab === "certificate" && (
                         <>
-                            <Certificate
-                                formData={formData}
-                                handleChange={handleChange}
-                                handleImageChange={handleImageChange}
-                                preview={preview}
-                                handleQuillChange={handleQuillChange}
-                            />
+
+                            <div>
+                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
+                                    Name{" "}
+                                    <span className="text-sm text-gray-500">
+                                        ({formData.certificatename?.length}/50)
+                                    </span>
+                                </label>
+                                <input
+                                    type="text"
+                                    name="name"
+                                    value={formData.certificatename}
+                                    onChange={(e) => {
+                                        if (e.target.value.length <= 50) handleChange(e);
+                                    }}
+                                    placeholder="Enter name"
+                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
+                                    required
+                                />
+                            </div>
+
+
+                            <div>
+                                <label className="block text-[#FF1B1B] font-medium mb-1">
+                                    Upload Certificate Image
+                                </label>
+                                <input
+                                    type="file"
+                                    accept="image/*"
+                                    onChange={(e) => handleImageChange(e, "certificatemage")}
+                                    className="w-full p-2 bg-gray-100 rounded-md cursor-pointer text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
+                                />
+
+                                {preview && (
+                                    <div className="mt-3">
+                                        <img
+                                            src={preview}
+                                            alt="Preview"
+                                            className="w-full h-48 object-cover rounded-md border"
+                                        />
+                                    </div>
+                                )}
+                            </div>
+                            <div className="mt-5 mb-5">
+                                <ReactQuillEditor
+                                    label="Description"
+                                    desc={formData.certificatedescription}
+                                    handleBioChange={(val) => handleQuillChange("certificatedescription", val)}
+                                />
+
+                            </div>
+
                         </>
 
                     )}
 
                     {activeTab === "pattern" && (
-                        <PatternSection setPatterns={setPatterns} patterns={patterns} formData={formData} handleChange={handleChange} handleQuillChange={handleQuillChange} />
+                        <>
+                            <div>
+                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
+                                    Name{" "}
+                                    <span className="text-sm text-gray-500">
+                                        ({formData.patternname?.length}/50)
+                                    </span>
+                                </label>
+                                <input
+                                    type="text"
+                                    name="patternname"
+                                    value={formData.patternname}
+                                    onChange={(e) => {
+                                        if (e.target.value.length <= 50) handleChange(e);
+                                    }}
+                                    placeholder="Enter name"
+                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
+                                    required
+                                />
+                            </div>
+
+                            <ReactQuillEditor
+                                label="Description"
+                                desc={formData.patterndescription}
+                                handleBioChange={(val) => handleQuillChange("patterndescription", val)}
+                            />
+
+                            <PatternSection setPatterns={setPatterns} patterns={patterns} />
+
+
+
+                        </>
                     )}
                     {/* Action Buttons */}
                     {activeTab === "financial" && (
@@ -1019,13 +1237,323 @@ function Index() {
 
                     )}
                     {activeTab === "services" && (
-                        <ServicesSection services={services} setServices={setServices} handleChange={handleChange} handleQuillChange={handleQuillChange} formData={formData} />
+                        <>
+
+                            {/* MAIN NAME FIELD */}
+                            <div>
+                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
+                                    Name{" "}
+                                    <span className="text-sm text-gray-500">
+                                        ({formData.servicetitle?.length}/50)
+                                    </span>
+                                </label>
+                                <input
+                                    type="text"
+                                    name="servicetitle"
+                                    value={formData.servicetitle}
+                                    onChange={(e) => {
+                                        if (e.target.value.length <= 50) handleChange(e);
+                                    }}
+                                    placeholder="Enter service name"
+                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 
+                focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
+                                    required
+                                />
+                            </div>
+                            <ReactQuillEditor
+                                label="Description"
+                                desc={formData.servicedesc}
+                                handleBioChange={(val) => handleQuillChange("servicedesc", val)}
+                            />
+
+
+
+
+                            {/* SERVICES REPEATING SECTION */}
+                            <>
+                                <div className="flex justify-between items-center mb-5">
+                                    <h2 className="text-xl font-semibold text-[#CC2828]">Services Section</h2>
+                                    <button
+                                        onClick={addService}
+                                        className="border border-[#CC2828] bg-[#CC2828] hover:bg-red-700 text-white px-6 py-2 rounded-[10px] text-base transition"
+                                    >
+                                        + Add More Service
+                                    </button>
+                                </div>
+
+                                {services.map((service, index) => (
+                                    <div key={index} className="grid grid-cols-1 gap-4 items-center border-b border-gray-200 pb-4 mb-4">
+
+                                        {/* Title */}
+                                        <div>
+                                            <div className="flex justify-between items-center gap-2">
+                                                <label className="block text-[#CC2828] font-medium mb-2">Title</label>
+
+                                                <button
+                                                    onClick={() => deleteService(index)}
+                                                    className="bg-red-500 text-white rounded-full p-1 hover:bg-red-700 mb-2"
+                                                    title="Delete Service"
+                                                >
+                                                    <MdDelete />
+                                                </button>
+                                            </div>
+                                            <input
+                                                type="text"
+                                                value={service.title}
+                                                onChange={(e) => handleServiceChange(index, "title", e.target.value)}
+                                                placeholder="Enter service title"
+                                                className="w-full bg-[#F4F6F8] text-[#727272] border rounded-[10px] px-4 py-2 focus:outline-none"
+                                            />
+                                        </div>
+
+                                        {/* Content */}
+                                        <div>
+                                            <div className="flex justify-between items-center mb-2">
+                                                <label className="block text-[#CC2828] font-medium">Content</label>
+
+                                            </div>
+
+                                            <input
+                                                type="text"
+                                                value={service.content}
+                                                onChange={(e) => handleServiceChange(index, "content", e.target.value)}
+                                                placeholder="Enter service content"
+                                                className="w-full bg-[#F4F6F8] text-[#727272] border rounded-[10px] px-4 py-2 focus:outline-none"
+                                            />
+                                        </div>
+
+                                        {/* Image */}
+                                        <div>
+                                            <label className="block text-[#CC2828] font-medium mb-2">Image</label>
+                                            <input
+                                                type="file"
+                                                accept="image/*"
+                                                onChange={(e) => handleServiceChange(index, "image", e.target.files[0])}
+                                                className="w-full bg-[#F4F6F8] text-[#727272] border rounded-[10px] px-4 py-2 focus:outline-none"
+                                            />
+                                            {service.image && <p className="text-sm text-gray-500 mt-1">{service.image.name}</p>}
+                                        </div>
+
+                                        {/* Icon */}
+                                        <div>
+                                            <label className="block text-[#CC2828] font-medium mb-2">Icon</label>
+                                            <input
+                                                type="file"
+                                                accept="image/*"
+                                                onChange={(e) => handleServiceChange(index, "icon", e.target.files[0])}
+                                                className="w-full bg-[#F4F6F8] text-[#727272] border rounded-[10px] px-4 py-2 focus:outline-none"
+                                            />
+                                            {service.icon && <p className="text-sm text-gray-500 mt-1">{service.icon.name}</p>}
+                                        </div>
+
+                                    </div>
+                                ))}
+                            </>
+
+                        </>
                     )}
                     {activeTab === "online" && (
-                        <OnlineSection formData={formData} handleChange={handleChange} onlines={onlines} setOnlines={setOnlines} handleQuillChange={handleQuillChange} />
+                        <>
+
+                            <div>
+                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
+                                    Name{" "}
+                                    <span className="text-sm text-gray-500">
+                                        ({formData.onlinetitle?.length}/50)
+                                    </span>
+                                </label>
+                                <input
+                                    type="text"
+                                    name="onlinetitle"
+                                    value={formData.onlinetitle}
+                                    onChange={(e) => {
+                                        if (e.target.value.length <= 50) handleChange(e);
+                                    }}
+                                    placeholder="Enter partners name"
+                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
+                                    required
+                                />
+                            </div>
+                            <ReactQuillEditor
+                                label="Description"
+                                desc={formData.onlinedesc}
+                                handleBioChange={(val) => handleQuillChange("onlinedesc", val)}
+                            />
+
+                            <>
+                                <div className="flex justify-between items-center mb-5">
+                                    <h2 className="text-xl font-semibold text-[#CC2828]">
+                                        Online Section
+                                    </h2>
+
+                                    <button
+                                        onClick={addOnline}
+
+                                        className="border border-[#CC2828] bg-[#CC2828] hover:bg-red-700 text-white px-6 py-2 rounded-[10px] text-base transition"
+                                    >
+                                        + Add More Online
+                                    </button>
+                                </div>
+                                {onlines.map((faq, index) => (
+                                    <div key={index} className="grid grid-cols-1 gap-4 items-center">
+                                        {/* QUESTION */}
+                                        <div>
+                                            <label className="block text-[#CC2828] font-medium mb-2">Title</label>
+                                            <input
+                                                type="text"
+                                                disabled={onlines?._id}
+                                                value={onlines.question}
+                                                onChange={(e) => handleOnlineChange(index, 'onlines', e.target.value)}
+                                                placeholder="Enter title"
+                                                className="w-full bg-[#F4F6F8] text-[#727272] border border-[#F4F6F8] rounded-[10px] px-4 py-2 focus:outline-none"
+                                            />
+                                        </div>
+
+                                        {/* ANSWER */}
+                                        <div>
+                                            <div className="flex justify-between items-center mb-2">
+                                                <label className="block text-[#CC2828] font-medium">Content</label>
+
+                                                <div className="flex items-center gap-2">
+                                                    {faq._id ? (
+                                                        <button
+                                                            onClick={() => openEditModal(faq)}
+                                                            className="bg-red-500 text-white rounded-full p-1 hover:bg-red-700"
+                                                            title="Edit FAQ"
+                                                        >
+                                                            <MdEdit />
+                                                        </button>
+                                                    ) : (
+                                                        <button
+                                                            // onClick={() => handleFaqSubmit(index)}
+                                                            className="bg-red-500 text-white rounded-full p-1 hover:bg-red-700"
+                                                            title="Save FAQ"
+                                                        >
+                                                            <MdAdd />
+                                                        </button>
+                                                    )}
+
+                                                    <span className="text-[#b1a9a9]">|</span>
+
+                                                    <button
+                                                        onClick={() => deleteOnline(index)}
+                                                        className="bg-red-500 text-white rounded-full p-1 hover:bg-red-700"
+                                                        title="Delete FAQ"
+                                                    >
+                                                        <MdDelete />
+                                                    </button>
+                                                </div>
+                                            </div>
+
+                                            <input
+                                                rows={5}
+                                                type="text"
+                                                value={onlines.content}
+                                                disabled={onlines?._id}
+                                                onChange={(e) => handleOnlineChange(index, 'content', e.target.value)}
+                                                placeholder="Enter content"
+                                                className="w-full bg-[#F4F6F8] text-[#727272] border border-[#F4F6F8] rounded-[10px] px-4 py-2 focus:outline-none"
+                                            />
+                                        </div>
+                                    </div>
+                                ))}
+
+                            </>
+                        </>
+
                     )}
                     {activeTab === "faq" && (
-                        <FaqSection faqs={faqs} setFaqs={setFaqs} />
+                        <>
+                            <div className="flex justify-between items-center mb-5">
+                                <h2 className="text-xl font-semibold text-[#CC2828]">
+                                    FAQ Section
+                                </h2>
+
+                                <button
+                                    onClick={addFaq}
+
+                                    className="border border-[#CC2828] bg-[#CC2828] hover:bg-red-700 text-white px-6 py-2 rounded-[10px] text-base transition"
+                                >
+                                    + Add More FAQ
+                                </button>
+                            </div>
+                            {faqs.map((faq, index) => (
+                                <div key={index} className="grid grid-cols-1 gap-4 items-center">
+                                    {/* QUESTION */}
+                                    <div>
+                                        <label className="block text-[#CC2828] font-medium mb-2">Question</label>
+                                        <input
+                                            type="text"
+                                            disabled={faq?._id}
+                                            value={faq.question}
+                                            onChange={(e) => handleFaqChange(index, 'question', e.target.value)}
+                                            placeholder="Enter Question"
+                                            className="w-full bg-[#F4F6F8] text-[#727272] border border-[#F4F6F8] rounded-[10px] px-4 py-2 focus:outline-none"
+                                        />
+                                    </div>
+
+                                    <div>
+                                        <label className="block text-[#CC2828] font-medium mb-2">Position</label>
+                                        <input
+                                            type="number"
+                                            disabled={faq?._id}
+                                            value={faq.position}
+                                            onChange={(e) => handleFaqChange(index, 'position', e.target.value)}
+                                            placeholder="Enter Position"
+                                            className="w-full bg-[#F4F6F8] text-[#727272] border border-[#F4F6F8] rounded-[10px] px-4 py-2 focus:outline-none"
+                                        />
+                                    </div>
+
+                                    {/* ANSWER */}
+                                    <div>
+                                        <div className="flex justify-between items-center mb-2">
+                                            <label className="block text-[#CC2828] font-medium">Answer</label>
+
+                                            <div className="flex items-center gap-2">
+                                                {faq._id ? (
+                                                    <button
+                                                        onClick={() => openEditModal(faq)}
+                                                        className="bg-red-500 text-white rounded-full p-1 hover:bg-red-700"
+                                                        title="Edit FAQ"
+                                                    >
+                                                        <MdEdit />
+                                                    </button>
+                                                ) : (
+                                                    <button
+                                                        // onClick={() => handleFaqSubmit(index)}
+                                                        className="bg-red-500 text-white rounded-full p-1 hover:bg-red-700"
+                                                        title="Save FAQ"
+                                                    >
+                                                        <MdAdd />
+                                                    </button>
+                                                )}
+
+                                                <span className="text-[#b1a9a9]">|</span>
+
+                                                <button
+                                                    onClick={() => deleteFaq(index)}
+                                                    className="bg-red-500 text-white rounded-full p-1 hover:bg-red-700"
+                                                    title="Delete FAQ"
+                                                >
+                                                    <MdDelete />
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                        <input
+                                            rows={5}
+                                            type="text"
+                                            value={faq.answer}
+                                            disabled={faq?._id}
+                                            onChange={(e) => handleFaqChange(index, 'answer', e.target.value)}
+                                            placeholder="Enter Answer"
+                                            className="w-full bg-[#F4F6F8] text-[#727272] border border-[#F4F6F8] rounded-[10px] px-4 py-2 focus:outline-none"
+                                        />
+                                    </div>
+                                </div>
+                            ))}
+
+                        </>
                     )}
                 </form>
                 <div className="flex justify-between mt-8  p-6">

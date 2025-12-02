@@ -42,7 +42,7 @@ const ReactQuillEditor = ({ label, desc, handleBioChange }) => {
 
     return (
         <div className="mb-6">
-            <label className="block text-[#b91c1c] font-semibold mb-2">{label}</label>
+            <label className="block text-[#FF1B1B] font-semibold mb-2">{label}</label>
 
             <div className="border border-gray-300 bg-white rounded-md">
                 <ReactQuill

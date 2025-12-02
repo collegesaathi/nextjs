@@ -181,24 +181,24 @@ function Details() {
                             <UniversitySidebar />
                         </div>
                         <div className="w-full lg:w-8/12 h-full lg:h-[100vh] overflow-y-auto scs"> */}
-                        <Aboutdetails />
-                        <CourseFess />
-                        <PlacementPartners />
+                            <Aboutdetails />
+                            <CourseFess />
+                            <PlacementPartners />
 
-                        <Ranking />
-                        <CoursesSwiper />
-                        <Advantages />
-                        <Facts />
-                        <SampleCertificate />
-                        <ExaminationPattern />
-                        <Financial />
-                        <UniversityCampusCarousel />
-                        <CareerServices />
-                        <StepsSection />
-                        <FAQSection />
-                        <SimilarUniversities />
-                        <Universities />
-                        <Reviews />
+                            <Ranking />
+                            <CoursesSwiper />
+                            <Advantages />
+                            <Facts />
+                            <SampleCertificate />
+                            <ExaminationPattern />
+                            <Financial />
+                            <UniversityCampusCarousel />
+                            <CareerServices />
+                            <StepsSection />
+                            <FAQSection />
+                            <SimilarUniversities />
+                            <Universities />
+                            <Reviews />
                         {/* </div> */}
 
                     </div>
