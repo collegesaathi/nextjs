@@ -1,6 +1,6 @@
 import ReactQuillEditor from "@/common/ReactQuillEditor";
 
-function Certificate({formData ,  handleChange ,handleImageChange ,preview  ,handleQuillChange}) {
+function Certificate({formData ,  handleChange ,handleImageChange ,preview  ,handleQuillChange }) {
     return (
 
         <>
@@ -14,7 +14,7 @@ function Certificate({formData ,  handleChange ,handleImageChange ,preview  ,han
                 </label>
                 <input
                     type="text"
-                    name="name"
+                    name="certificatename"
                     value={formData.certificatename}
                     onChange={(e) => {
                         if (e.target.value.length <= 50) handleChange(e);

@@ -240,52 +240,60 @@ function Index() {
     };
 
     // ✅ ADD UNIVERSITY
-    const handleAdd = async (e) => {
-        e.preventDefault();
-        if (loading) return;
+   const handleAdd = async (e) => {
+    console.log("Hello");
+    e.preventDefault();
 
-        // if (!formData.icon) {
-        //     toast.error("Icon required!");
-        //     return;
-        // }
+    if (loading) return;
+    setLoading(true);
 
-        setLoading(true);
-
-        try {
-            const main = new Listing();
-            const payload = new FormData();
-
-            payload.append("slug", formData.slug);
-            payload.append("name", formData.name);
-            payload.append("position", formData.position);
-            payload.append("description", formData.description);
-            payload.append("icon", formData.icon);
-            payload.append("cover_image", formData.cover_image);
-            const response = await main.AdminUniversityAdd(payload);
-
-            if (response?.data?.status) {
-                toast.success(response.data.message);
-                setFormData({
-                    slug: "",
-                    name: "",
-                    icon: null,
-                    cover_image: null,
-                    position: "",
-                    description: "",
-                });
-
-                setPreview(null);
-                fetchData();
-            } else {
-                toast.error(response.data.message);
-            }
-
-        } catch (error) {
-            toast.error("Something went wrong");
+    try {
+        const main = new Listing();
+        const payload = new FormData();
+        payload.append("slug", formData.slug);
+        payload.append("name", formData.name);
+        payload.append("position", formData.position);
+        payload.append("about_title", formData.about_title);
+        payload.append("about_desc", formData.about_desc);
+        payload.append("icon", formData.icon);
+        payload.append("cover_image", formData.cover_image);
+        payload.append("advantages", JSON.stringify(advantages));
+        payload.append("services", JSON.stringify(services));
+        payload.append("fees", JSON.stringify(fees));
+        payload.append("faqs", JSON.stringify(faqs));
+        payload.append("patterns", JSON.stringify(patterns));
+        payload.append("facts", JSON.stringify(facts));
+        payload.append("onlines", JSON.stringify(onlines));
+        payload.append("campusList", JSON.stringify(campusList));
+        payload.append("approvals", JSON.stringify(selectedApprovals));
+        payload.append("partners", JSON.stringify(selectedPartners));
+        payload.append("patternname", JSON.stringify(patterns.map(p => p.patternName)));
+        payload.append("patterndescription", JSON.stringify(patterns.map(p => p.description)));
+        payload.append("onlinedesc", JSON.stringify(onlines.map(o => o.content)));
+        // ✅ DEBUG
+        for (let pair of payload.entries()) {
+            console.log(pair[0], pair[1]);
         }
 
-        setLoading(false);
-    };
+        // ✅ IMPORTANT FIX
+        const response = await main.AdminUniversityAdd(payload);
+
+        if (response?.data?.status) {
+            toast.success(response.data.message);
+            setPreview(null);
+        } else {
+            toast.error(response.data.message);
+        }
+
+    } catch (error) {
+        console.error(error);
+        toast.error("Something went wrong");
+    }
+
+    setLoading(false);
+};
+
+
 
     // ✅ UPDATE UNIVERSITY
     const handleUpdate = async (e) => {
@@ -435,12 +443,13 @@ function Index() {
 
                         {/* Right: Save Button */}
                         <button
-                            type="submit"
-                            form="ownerForm"
-                            className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium shadow-md transition-all"
+                            type="button"
+                            onClick={handleAdd}
+                            className="cursor-pointer bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium shadow-md transition-all"
                         >
                             {loading ? "Saving..." : "Save"}
                         </button>
+
                     </div>
                 </div>
 
@@ -603,7 +612,6 @@ function Index() {
 
                     {activeTab === "about" && (
                         <>
-
                             <div>
                                 <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
                                     About Title {" "}

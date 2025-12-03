@@ -6,9 +6,11 @@ class Listing extends Component {
     return Api.post("/user/register", data);
   }
 
-
   async ApprovalandPartners() {
     return Api.get("/admin-universities",);
+  }
+  async AdminUniversityAdd(data) {
+    return ApiallowFile.post("/admin-add-university", data);
   }
 
   render() {
