@@ -4,8 +4,8 @@ import { useState, useRef } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay, Pagination } from 'swiper/modules'
 import 'swiper/css'
+import BackNext from "../components/BackNext";
 
-import Heading from '@/common/Heading'
 
 export default function SimilarUniversities() {
     // Award items data
@@ -42,7 +42,7 @@ export default function SimilarUniversities() {
         320: { slidesPerView: 1, spaceBetween: 16 },
         640: { slidesPerView: 2, spaceBetween: 20 },
         768: { slidesPerView: 3, spaceBetween: 24 },
-        1024: { slidesPerView: 4, spaceBetween: 24 },
+        1024: { slidesPerView: 3, spaceBetween: 24 },
     }
 
     // Active slide tracking
@@ -50,24 +50,16 @@ export default function SimilarUniversities() {
     const swiperRef = useRef(null)
 
     // Handle slide change from carousel
-    const onSlideChange = (swiper) => {
-        setCurrentSlideIndex(swiper.realIndex)
-    }
+   
 
     // Check if a slide is currently active/visible
-    const isActiveSlide = (index) => {
-        return currentSlideIndex === index
-    }
+   
 
     const handleSwiper = (swiper) => {
         swiperRef.current = swiper
     }
 
-    const goToSlide = (index) => {
-        if (swiperRef.current) {
-            swiperRef.current.slideToLoop(index)
-        }
-    }
+   
 
 
     const [progress, setProgress] = useState(0);
@@ -103,27 +95,21 @@ export default function SimilarUniversities() {
 
 
     const navigatePrev = () => {
-        swiperRef.current?.swiper.slidePrev();
+        swiperRef.current?.slidePrev();
     };
 
     const navigateNext = () => {
-        swiperRef.current?.swiper.slideNext();
+        swiperRef.current?.slideNext();
     };
-    const progressBarTotalWidth =
-        typeof window !== "undefined" && window.innerWidth >= 1024 ? "180px" : "120px";
-
-
-    const progressWidthStyle = {
-        width: `${progress}%`,
-    };
+  
 
     return (
         <>
             {/* Desktop Version */}
-            <div className="py-4 md:py-8 ">
+            <div className="py-4 md:py-8 " id="similar-universities-section">
                 <div className="mx-auto container sm:container md:container lg:container xl:max-w-[1230px]  px-4">
 
-                    <div className="flex justify-between items-center mb-6">
+                    {/* <div className="flex justify-between items-center mb-6">
                         <Heading title={" Similar Universities"} />
                         <div className="flex flex-wrap items-center justify-end md:space-x-4">
                             <div className={`w-[${progressBarTotalWidth}] h-1.5 bg-gray-300 rounded-full overflow-hidden`}>
@@ -186,67 +172,76 @@ export default function SimilarUniversities() {
                                 </button>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
 
-                    <div
-                        data-aos="zoom-in-up"
-                        data-aos-duration="500"
-                        data-aos-delay="100"
-                        data-aos-once="true"
-                    >
+
+
+                    <BackNext
+
+                        title=" Similar Universities"
+
+                        progress={progress}
+                        isBeginning={isBeginning}
+                        isEnd={isEnd}
+                        onPrev={navigatePrev}
+                        onNext={navigateNext}
+                    />
+
+                    <div   >
                         <Swiper
-                            slidesPerView={4}
-                            spaceBetween={24}
+                            spaceBetween={20}
                             autoplay={{
                                 delay: 4000,
                                 disableOnInteraction: false,
                             }}
                             modules={[Autoplay, Pagination]}
                             onSwiper={(swiper) => {
-                                swiperRef.current = { swiper };
+                                swiperRef.current = swiper;
                                 updateProgress(swiper);
                             }}
-                            // Update state on slide change
                             onSlideChange={updateProgress}
                             breakpoints={carouselBreakpoints}
                         >
                             {universities?.map((university, index) => (
-                                <SwiperSlide key={index} className="px-2 my-3">
-                                    <div className="
-            w-full h-[100px] rounded-[15px] bg-[#f7f6f6] 
-            p-4 flex flex-col justify-between cursor-pointer 
-            transition-transform duration-300 hover:scale-105
-          ">
-                                        <h3 className="font-poppins font-semibold text-[14px] text-[#363535] mb-3">
-                                            {university.name}
-                                        </h3>
-
-                                        <div className="flex items-center space-x-1.5">
-                                            {/* Fee Section */}
-                                            <div className="flex items-center space-x-1.5 font-poppins font-light text-[14px] text-[#282529]">
-                                                <img src="/img/similar/money.svg" alt="similar" />
-                                                <span>INR {university.fee}</span>
-                                            </div>
-
-                                            {/* Middle Divider */}
-                                            <div className="flex items-center">
-                                                <div className="w-[3px] h-[3px] rounded-full bg-[#282529]"></div>
-
-                                                <div className="
-                  w-[50px] border-[0.75px] bg-white h-[15px] border-[#f7f6f6]
-                  font-poppins font-light text-[6px] text-[#282529]
-                  rounded-full flex items-center justify-center mx-1
-                ">
-                                                    NIRF Ranking
-                                                </div>
-
-                                                <p className="font-poppins font-semibold text-[14px] text-[#282529]">
-                                                    {university.ranking}
-                                                </p>
-                                            </div>
-                                        </div>
+                            <SwiperSlide key={index} className="px-2 my-3">
+                            <div
+                                className="
+                                    w-full h-[130px]  rounded-[15px] bg-[#f7f6f6] 
+                                    p-4 flex flex-col justify-between cursor-pointer 
+                                    transition-transform duration-300 hover:scale-105
+                                "
+                            >
+                                <h3 className="font-poppins font-semibold text-[17px] text-[#363535] mb-3 
+                                    whitespace-normal break-words leading-tight line-clamp-2">
+                                    {university.name}
+                                </h3>
+                        
+                                <div className="flex items-center space-x-1.5">
+                                    <div className="flex items-center space-x-1.5 font-poppins font-light text-[14px] text-[#282529]">
+                                        <img src="/images/money.svg" alt="similar" />
+                                        <span>INR {university.fee}</span>
                                     </div>
-                                </SwiperSlide>
+                        
+                                    <div className="flex items-center">
+                                        <div className="w-[3px] h-[3px] rounded-full bg-[#282529]"></div>
+                        
+                                        <div className="
+                                            w-[50px] border-[0.75px] bg-white h-[15px] border-[#f7f6f6]
+                                            font-poppins font-light text-[6px] text-[#282529]
+                                            rounded-full flex items-center justify-center mx-1
+                                        ">
+                                            NIRF Ranking
+                                        </div>
+                        
+                                        <p className="font-poppins font-semibold text-[14px] text-[#282529]">
+                                            {university.ranking}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </SwiperSlide>
+                        
+                          
                             ))}
                         </Swiper>
 

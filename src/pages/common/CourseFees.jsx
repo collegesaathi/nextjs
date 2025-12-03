@@ -6,7 +6,7 @@ function CourseFess() {
     
     <>
 
-    <div className="mt-[50px] px-6">
+    <div className="mt-[50px] px-6" id="fee-section">
        {/* <h2 
   className="font-semibold text-[28px] leading-[42px] text-[#282529] mt-8 mb-4"
   id="fee-section"

@@ -8,7 +8,7 @@ class Listing extends Component {
 
 
   async ApprovalandPartners() {
-    return Api.get("/admin-universities",);
+    return Api.get("/admin/universities",);
   }
 
   render() {

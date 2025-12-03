@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import BackNext from "../components/BackNext";
+import Image from "next/image";
 
 export default function CoursesSwiper() {
   const swiperRef = useRef(null);
@@ -148,38 +149,68 @@ function CourseCard({ course, mobile = false }) {
 /* ------------------ DESKTOP ENQUIRY ------------------ */
 function EnquiryBox() {
   return (
-    <div className="w-[740px] mx-auto h-[287px] grid grid-cols-2 bg-gradient-to-br from-[#fef0f0] to-[#fbdbdc] rounded-[18px] mt-8">
-      <img src="/images/university/course/3.png" alt="" />
+    <div className="w-full mx-auto mt-8 rounded-[18px] bg-gradient-to-br from-[#fef0f0] to-[#fbdbdc] p-4 sm:p-6 lg:p-8 grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
+      
+      {/* Left Image on Desktop only */}
+      <div className="hidden md:flex justify-center">
+        <img
+          src="/images/university/course/3.png"
+          alt="course form"
+          className="w-[90%] h-auto object-contain"
+        />
+      </div>
 
+      {/* Form */}
       <FormBox />
     </div>
   );
 }
 
 /* ------------------ MOBILE ENQUIRY ------------------ */
-function MobileEnquiry() {
-  return (
-    <div className="bg-gradient-to-br from-[#fef0f0] to-[#fbdbdc] rounded-[18px] mt-8 py-4">
-      <FormBox />
-    </div>
-  );
-}
+
 
 /* ------------------ FORM ------------------ */
 function FormBox() {
   return (
-    <div className="flex justify-center items-center">
-      <div className="w-[280px]">
-        <h3 className="font-semibold mb-4">Enquire Now</h3>
+    <div className="w-full flex justify-center md:justify-start">
+      <div className="w-full max-w-sm">
 
-        <div className="grid grid-cols-2 gap-2 mb-4">
-          <Input label="Your Name" placeholder="jhon Doe" />
-          <Input label="Email" placeholder= "example@gmail.com"/>
+        {/* Logos */}
+        <div className="flex gap-2 justify-center border-b border-gray-300 pb-2 mb-3">
+          <Image
+            src="/images/university/course/4.png"
+            alt="course logo"
+            width={60}
+            height={40}
+            className=" w-[90px] object-contain"
+          />
+          <Image
+            src="/images/university/course/5.png"
+            alt="course logo"
+            width={60}
+            height={40}
+            className=" w-[90px] object-contain"
+          />
+          <Image
+            src="/images/university/course/6.png"
+            alt="course logo"
+            width={60}
+            height={40}
+            className="w-[90px] object-contain"
+          />
+        </div>
+
+        <h3 className="font-semibold mb-3 text-lg">Enquire Now</h3>
+
+        {/* Inputs */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
+          <Input label="Your Name" placeholder="John Doe" />
+          <Input label="Email" placeholder="example@gmail.com" />
           <Input label="Phone" placeholder="+91 000 000 0000" />
           <Input label="OTP" placeholder="xxxx" />
         </div>
 
-        <button className="bg-red-600 text-white text-xs px-4 py-1 rounded-full">
+        <button className="bg-red-600 text-white text-sm w-full py-2 rounded-full hover:bg-red-700 transition">
           Submit
         </button>
       </div>
@@ -187,14 +218,16 @@ function FormBox() {
   );
 }
 
-function Input({ label,placeholder }) {
+/* -------------------------------- INPUT ------------------------------------- */
+
+function Input({ label, placeholder }) {
   return (
     <div>
-      <label className="text-[8px] text-gray-600">{label}</label>
-      <input 
-  className="w-full h-[26px] bg-white text-black border border-gray-600 rounded-full px-2 text-[10px] placeholder:text-black"
-  placeholder={placeholder}
-/>
+      <label className="text-[10px] text-gray-600">{label}</label>
+      <input
+        className="w-full h-[32px] bg-white border border-gray-400 rounded-full px-3 text-[12px]"
+        placeholder={placeholder}
+      />
     </div>
   );
 }

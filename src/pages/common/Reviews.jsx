@@ -6,6 +6,9 @@ import "swiper/css";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import StarRating from "@/common/StarRating";
+import Image from "next/image";
+
+import BackNext from "../components/BackNext";
 
 export default function Reviews() {
     const [activeTab, setActiveTab] = useState("average");
@@ -15,6 +18,16 @@ export default function Reviews() {
     const infraSwiperRef = useRef(null);
     const curriculumSwiperRef = useRef(null);
     const valueSwiperRef = useRef(null);
+
+    const swiperRef = useRef(null);
+  
+
+    const [progress, setProgress] = useState(0);
+    const [isBeginning, setIsBeginning] = useState(true);
+    const [isEnd, setIsEnd] = useState(false);
+
+
+    
 
     useEffect(() => {
         AOS.init({ once: true, easing: "ease-out-quad", offset: 120 });
@@ -56,10 +69,10 @@ export default function Reviews() {
     const filteredReviews = (type) =>
         type === "average" ? reviews : reviews.filter((r) => r.type === type);
 
-    const updateProgress = (swiper) => {
-        const total = swiper.slides.length - (swiper.params.loop ? 2 : 0);
-        setDesktopProgress(((swiper.realIndex + 1) / total) * 100);
-    };
+    // const updateProgress = (swiper) => {
+    //     const total = swiper.slides.length - (swiper.params.loop ? 2 : 0);
+    //     setDesktopProgress(((swiper.realIndex + 1) / total) * 100);
+    // };
 
     const getCurrentSwiper = () => {
         if (activeTab === "average") return desktopSwiperRef.current;
@@ -71,12 +84,49 @@ export default function Reviews() {
     const slidePrev = () => getCurrentSwiper()?.slidePrev();
     const slideNext = () => getCurrentSwiper()?.slideNext();
 
+
+
+
+
+    const updateProgress = (swiper) => {
+        if (!swiper) return;
+
+        const totalCards = reviews.length;
+        const visibleSlides = swiper.params.slidesPerView;
+
+        if (visibleSlides === 4) {
+            setIsBeginning(false);
+        } else {
+            setIsBeginning(swiper.isBeginning);
+        }
+
+        setIsEnd(swiper.isEnd);
+
+        const currentVisibleEnd = swiper.activeIndex + visibleSlides;
+
+        let progressValue = (currentVisibleEnd / totalCards) * 100;
+
+        // Limit between 0–100
+        progressValue = Math.min(100, Math.max(0, progressValue));
+
+        setProgress(progressValue);
+    };
+
+
+    const navigatePrev = () => {
+        swiperRef.current?.slidePrev();
+    };
+
+    const navigateNext = () => {
+        swiperRef.current?.slideNext();
+    };
+
     return (
-        <section className="w-full px-6 py-12 mx-auto hidden lg:block">
+        <section className="w-full px-6 py-12 mx-auto hidden lg:block" id="reviews-section">
             <div className="w-[860px]">
 
                 {/* Header */}
-                <div className="flex justify-between items-center mb-8">
+                {/* <div className="flex justify-between items-center mb-8">
                     <h2 className="text-[26px] font-bold text-[#363535]">NMIMS CDOE Reviews</h2>
 
                     <div className="flex items-center gap-4">
@@ -85,13 +135,24 @@ export default function Reviews() {
                         </div>
 
                         <button onClick={slidePrev} className="w-[35px] h-[35px] rounded-full border flex justify-center items-center">
-                            {/* <RiArrowLeftLongLine /> */}
                         </button>
                         <button onClick={slideNext} className="w-[35px] h-[35px] rounded-full border flex justify-center items-center">
-                            {/* <RiArrowRightLongLine /> */}
                         </button>
                     </div>
-                </div>
+                </div> */}
+
+<BackNext
+                  
+                  title="NMIMS CDOE Reviews"
+               
+                  progress={progress}
+                  isBeginning={isBeginning}
+                  isEnd={isEnd}
+                  onPrev={navigatePrev}
+            onNext={navigateNext}
+                />
+
+
                 {/* Rating Overview */}
                 <div className="mt-14 grid grid-cols-2 gap-8">
                     <div className="border p-5 rounded-lg">
@@ -107,21 +168,47 @@ export default function Reviews() {
                                 <span>{r.percentage}%</span>
                             </div>
                         ))}
+                         <div className="mt-[20px] space-y-2">
+                         <p className="font-poppins text-[17px] font-[600]">Write Your Review</p>
+                         <p className="text-[10px] w-[170px]">Share your feedback and help other students</p>
+                         <button className="w-[129px] h-[21px] rounded-[6px] bg-[#ec1e24] font-poppins text-[12px] leading-[18px] text-white flex items-center justify-center">
+                                            Add to Compare
+                                        </button>
+                         </div>
+                  
                     </div>
 
+
+
+                     <div className=" justify-center flex flex-col gap-10">
+
+                     <div className="flex items-center justify-center gap-4 pt-6">
+                <div className="w-[110px] sm:w-[126px] h-[95px] rounded-[8px] bg-[#fcf0ee] flex flex-col items-center justify-center space-y-1.5">
+                  <h3 className="font-poppins font-semibold text-[30px] sm:text-[36px] text-[#282529]">4.5</h3>
+                  <StarRating rating="4.5" />
+                  <p className="font-poppins text-[8px] text-[#282529]">
+                    Based on 20 Reviews
+                  </p>
+                </div>
+      
+              </div>
                     <div className="border p-5 rounded-lg">
                         <h3 className="text-xl font-semibold mb-4">Peripheral Ratings</h3>
                         {peripheralRatings.map((cat, i) => (
-                            <div key={i} className="flex justify-between text-sm">
+                            <div key={i} className="flex justify-between text-sm space-y-4">
                                 <span>{cat.name}</span>
-                                <span>{cat.rating}</span>
+                                <div className=" flex justify-center gap-2 items-center">
+                                <span className="text-[17px] font-[600]">{cat.rating}</span>
                                 <StarRating rating={cat.rating} />
+                                </div>
                             </div>
                         ))}
                     </div>
+
+                    </div>
                 </div>
                 {/* Tabs */}
-                <div className="flex gap-3 mb-8">
+                <div className="flex gap-3 mb-8 mt-[40px]">
                     {tabs.map((tab) => (
                         <button
                             key={tab.id}
@@ -154,10 +241,7 @@ export default function Reviews() {
                             }}
 
                             onSwiper={(swiper) => {
-                                if (tab.id === "average") desktopSwiperRef.current = swiper;
-                                if (tab.id === "infrastructure") infraSwiperRef.current = swiper;
-                                if (tab.id === "curriculum") curriculumSwiperRef.current = swiper;
-                                if (tab.id === "value") valueSwiperRef.current = swiper;
+                                swiperRef.current = swiper;
                                 updateProgress(swiper);
                             }}
                             onSlideChange={updateProgress}
@@ -168,7 +252,14 @@ export default function Reviews() {
                                         <p className="text-sm text-gray-800">{review.content}</p>
 
                                         <div className="flex gap-1">
+
+                                            <Image src="/images/university/reviewprofile.svg" alt="profile" width={200} height={200}/>
+
+                                            <div>
+                                            <p>{review.type}</p>
                                             <StarRating rating= {review?.rating}/>
+                                            </div>
+                                          
                                         </div>
                                     </div>
                                 </SwiperSlide>

@@ -51,26 +51,22 @@ export default function FAQSection() {
     }, [])
 
     return (
-        <div className="py-4 md:py-8 ">
+        <div className="py-4 md:py-8 " id="faq-section">
             <div className="mx-auto container sm:container md:container lg:container xl:max-w-[1230px]  px-4">
                 <Heading title={"Frequently Asked "} midtitle={"Questions"} />
                 {faqs.map((faq, index) => (
                     <div
-                        key={index}
-                        className={`bg-white rounded-[10px] shadow-[0_2px_8px_0_rgba(0,0,0,0.08)] mb-5 md:mb-8 border-l-[13px] overflow-hidden transition-all duration-300 ${faq.open ? 'border-red-500' : 'border-red-500'
-                            }`}
-                        data-aos="fade-up"
-                        data-aos-delay={100 + index * 50}
+                   
                     >
                         <button
                             className="w-full flex justify-between items-center px-4 py-4 text-left"
                             onClick={() => toggle(index)}
                         >
                             <span
-                                className="font-poppins font-medium text-[12px] lg:text-[14px] md:leading-[100%] tracking-normal text-left text-[#282529] leading-[16px] md:leading-[18px]"
-                            >
-                                {faq.question}
-                            </span>
+  className="font-poppins font-medium text-[12px] lg:text-[14px] leading-normal text-left text-[#282529]"
+>
+  {faq.question}
+</span>
                             <span
                                 className={`w-[30px] h-[30px] lg:w-[45px] lg:h-[45px] flex items-center justify-center border border-[#ED2024] rounded-full transform transition-transform duration-200 text-[20px] md:text-[32px] text-[#ED2024] ${faq.open ? 'rotate-45' : ''
                                     }`}
@@ -80,6 +76,7 @@ export default function FAQSection() {
                                     height="24"
                                     viewBox="0 0 24 24"
                                     fill="none"
+                                    stroke="red"
                                     xmlns="http://www.w3.org/2000/svg"
                                     className="w-4 h-4 lg:w-6 lg:h-6"
                                 >

@@ -52,11 +52,11 @@ function Index() {
                           <Financial />
                             <UniversityCampusCarousel />
                            <CareerServices />
-                             {/*  <StepsSection />
-                            <FAQSection />
+                           <StepsSection />
+                               <FAQSection />
                             <SimilarUniversities />
-                            <Universities />
-                            <Reviews /> */}
+                             <Universities />
+                           <Reviews />
                         </div>
 
                     </div>

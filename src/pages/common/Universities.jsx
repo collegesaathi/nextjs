@@ -9,6 +9,7 @@ import Edtech from "../assets/home/Edtech.svg";
 import Outlook from "../assets/home/Outlook-B.svg";
 import The from "../assets/home/The.svg"
 import Heading from '@/common/Heading'
+import BackNext from "../components/BackNext";
 
 export default function Universities() {
     // Award items data
@@ -18,42 +19,42 @@ export default function Universities() {
             shortName: 'SHARDA',
             rating: '4.2',
             reviews: '1.2k',
-            logo: '/img/university/compare/1.png',
+            logo: '/images/university/compare/1.png',
         },
         {
             name: 'SRM University',
             shortName: 'SRM',
             rating: '4.4',
             reviews: '2.1k',
-            logo: '/img/university/compare/2.png',
+            logo: '/images/university/compare/2.png',
         },
         {
             name: 'Jain University',
             shortName: 'JAIN',
             rating: '4.3',
             reviews: '1.8k',
-            logo: '/img/university/compare/3.png',
+            logo: '/images/university/compare/3.png',
         },
         {
             name: 'Manipal University',
             shortName: 'MANIPAL',
             rating: '4.5',
             reviews: '3.2k',
-            logo: '/img/university/compare/4.png',
+            logo: '/images/university/compare/4.png',
         },
         {
             name: 'Amity University',
             shortName: 'AMITY',
             rating: '4.1',
             reviews: '2.5k',
-            logo: '/img/university/compare/1.png',
+            logo: '/images/university/compare/1.png',
         },
         {
             name: 'LPU University',
             shortName: 'LPU',
             rating: '4.3',
             reviews: '4.1k',
-            logo: '/img/university/compare/2.png',
+            logo: '/images/university/compare/2.png',
         },
     ]
 
@@ -123,11 +124,11 @@ export default function Universities() {
 
 
     const navigatePrev = () => {
-        swiperRef.current?.swiper.slidePrev();
+        swiperRef.current?.slidePrev();
     };
 
     const navigateNext = () => {
-        swiperRef.current?.swiper.slideNext();
+        swiperRef.current?.slideNext();
     };
     const progressBarTotalWidth =
         typeof window !== "undefined" && window.innerWidth >= 1024 ? "180px" : "120px";
@@ -140,10 +141,10 @@ export default function Universities() {
     return (
         <>
             {/* Desktop Version */}
-            <div className="py-4 md:py-8 ">
+            <div className="py-4 md:py-8 " id="universities-comparison-section">
                 <div className="mx-auto container sm:container md:container lg:container xl:max-w-[1230px]  px-4">
 
-                    <div className="flex justify-between items-center mb-6">
+                    {/* <div className="flex justify-between items-center mb-6">
                         <Heading title={"Similar Universities"}/>
                         <div className="flex flex-wrap items-center justify-end md:space-x-4">
                             <div className={`w-[${progressBarTotalWidth}] h-1.5 bg-gray-300 rounded-full overflow-hidden`}>
@@ -206,14 +207,22 @@ export default function Universities() {
                                 </button>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
 
-                    <div
-                        data-aos="zoom-in-up"
-                        data-aos-duration="500"
-                        data-aos-delay="100"
-                        data-aos-once="true"
-                    >
+
+                    
+            <BackNext
+                  
+                  title="Compare with Other Universities"
+               
+                  progress={progress}
+                  isBeginning={isBeginning}
+                  isEnd={isEnd}
+                  onPrev={navigatePrev}
+            onNext={navigateNext}
+                />
+
+                    <div   >
                         <Swiper
                             slidesPerView={4}
                             spaceBetween={24}
@@ -223,7 +232,7 @@ export default function Universities() {
                             }}
                             modules={[Autoplay,  Pagination]}
                             onSwiper={(swiper) => {
-                                swiperRef.current = { swiper };
+                                swiperRef.current = swiper;
                                 updateProgress(swiper);
                             }}
                             // Update state on slide change

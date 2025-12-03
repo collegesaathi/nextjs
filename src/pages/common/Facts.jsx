@@ -1,4 +1,5 @@
 import React from "react";
+import Heading from "@/common/Heading";
 
 const facts = [
   {
@@ -32,56 +33,69 @@ function Facts() {
   return (
     <>
       {/* Desktop Version */}
-      <section className="w-full px-6 mt-[50px] " id="facts-section">
-        <div className="bg-[#fcf0ee]  h-[750px]">
-          <div className="relative z-10 w-full lg:w-[860px]">
-            <h2 className="font-poppins font-[600] text-[28px] leading-[42px] text-[#282529] my-8 animate-fade-in-up">
-              Facts related to <br /> NMIMS CDOE
-            </h2>
+      <section className="w-full px-4 md:px-6 mt-[50px]" id="facts-section">
+  <div className="bg-[#fcf0ee] py-10 md:py-16 flex justify-center">
+    <div className="relative z-10 w-full max-w-[860px]">
+{/* 
+      <h2 className="font-poppins font-[600] text-[22px] md:text-[28px] leading-[32px] md:leading-[42px] text-[#282529] my-6 md:my-8">
+        Facts related to <br /> NMIMS CDOE
+      </h2> */}
 
-            <div className="rounded-[23px] ml-1 bg-white shadow-[0px_1px_10px_rgba(0,0,0,0.09)] p-8 animate-fade-in-up animate-delay-200">
-              <div className="flex justify-between">
+      <Heading title=" Facts related to  NMIMS CDOE " />
 
-                {/* Timeline */}
-                <div className="w-8 flex flex-col items-center pt-4 ">
-                  {[1, 2, 3, 4, 5].map((num, index) => (
-                    <React.Fragment key={index}>
-                      <div className="w-8 h-8 bg-[#fcf0ee] rounded-full flex items-center justify-center animate-bounce-gentle">
-                        <p className="font-poppins font-semibold text-[#ff8787]">{num}</p>
-                      </div>
-                      {num < 5 && (
-                        <div className="w-[1px] h-[100px] bg-[#ffd5ce] animate-line-grow"></div>
-                      )}
-                    </React.Fragment>
-                  ))}
-                </div>
+      <div className="rounded-[20px] bg-white shadow-[0px_1px_10px_rgba(0,0,0,0.09)] p-4 md:p-8">
 
-                {/* Content */}
-                <div className="flex-1 ps-6 pt-4 space-y-6">
-                  {facts.map((item, index) => (
-                    <div
-                      key={index}
-                      className={`flex flex-wrap justify-between border-b last:border-none pb-6 animate-slide-in-right animate-delay-${500 + index * 200}`}
-                    >
-                      <div className="w-[165px]">
-                        <h3 className="font-poppins font-semibold text-[17px] text-[#282529]">
-                          {item.title}
-                        </h3>
-                      </div>
-                      <div className="w-[430px]">
-                        <p className="font-poppins text-[17px] leading-[22px] text-[#282529]">
-                          {item.description}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
+        <div className="flex">
 
-              </div>
-            </div>
+          {/* Timeline + Content Together Row by Row */}
+          <div className="flex-1">
+
+          {facts.map((item, index) => (
+  <div key={index} className="flex gap-4 relative py-4">
+
+    {/* ---- Timeline Column ---- */}
+    <div className="flex flex-col items-center">
+
+      {/* Numbered Dot */}
+      <div className="w-7 h-7 bg-[#fcf0ee] rounded-full flex items-center justify-center">
+        <span className="font-poppins font-semibold text-[#ff8787] text-[16px]">
+          {index + 1}
+        </span>
+      </div>
+
+      {/* Auto Adjust Line */}
+      {index < facts.length - 1 && (
+        <div className="flex-grow w-[1px] bg-[#ffd5ce]"></div>
+      )}
+    </div>
+
+    {/* ---- Content Column ---- */}
+    <div className="flex-1 pb-4">
+      <h3 className="font-poppins font-semibold text-[15px] md:text-[17px] text-[#282529]">
+        {item.title}
+      </h3>
+
+      {/* Add Space Between Title & Description */}
+      <p className="font-poppins text-[14px] md:text-[16px] leading-[20px] md:leading-[22px] text-[#282529] mt-2">
+        {item.description}
+      </p>
+    </div>
+
+  </div>
+))}
+
+
           </div>
+
         </div>
-      </section>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
 
     </>
   );

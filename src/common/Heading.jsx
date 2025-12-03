@@ -6,7 +6,7 @@ export default function Heading({ lattitle, midtitle, title, classes }) {
         className={`
           font-poppins
           font-[600]
-          text-[20px]
+          text-[18px]
            md:text-[28px]
           leading-[24px]
           md:leading-[100%]

@@ -28,11 +28,11 @@ function StarRating({ rating = 0 }) {
 
             {/* Full Stars */}
             {[...Array(totalFull)].map((_, i) => (
-                <MdOutlineStarPurple500 key={`f-${i}`} size={22} className="text-[#c1ac15]" />
+                <MdOutlineStarPurple500 key={`f-${i}`} size={22} className="text-[#FBAD33]" />
             ))}
 
             {/* Half Star */}
-            {half === 1 && <MdStarHalf size={22} className="text-[#c1ac15]" />}
+            {half === 1 && <MdStarHalf size={22} className="text-[#FBAD33]" />}
 
             {/* Gray Stars */}
             {[...Array(empty)].map((_, i) => (

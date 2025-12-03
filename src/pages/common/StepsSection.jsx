@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import Heading from "@/common/Heading";
 
 const steps = [
     {
@@ -32,6 +33,8 @@ const steps = [
 ];
 
 export default function StepsSection() {
+    const [activeStep, setActiveStep] = useState(1); // default selected step
+
     useEffect(() => {
         AOS.init({
             once: true,
@@ -40,59 +43,61 @@ export default function StepsSection() {
     }, []);
 
     return (
-        <section className="bg-[#FFEDED] py-16 px-4">
-            <div className="w-full lg:w-[1006px] px-4 mx-auto flex flex-col lg:flex-row gap-8 md:gap-20 items-start">
-                {/* Left Text */}
-                <div className="lg:w-4/12">
-                    <h2 className="text-[26px] font-semibold font-poppins text-[#ED2024] mb-4">
-                        How to Apply
-                    </h2>
-                    <p className="text-gray-800 text-sm font-sans">
-                        Applying to <strong>SVKM's NMIMS CODE</strong> is a simple and smooth
-                        process. There are a few simple steps to follow:
-                    </p>
-                </div>
-
-                {/* Steps Grid */}
-                <div className="grid lg:grid-cols-2 gap-10 w-full lg:w-8/12">
-                    {steps.map((step, index) => (
-                        <div
-                            key={step.id}
-                            className={`
-                relative p-6 rounded-2xl shadow-lg
-                transition-all duration-300
-                ${step.id === 1 ? "bg-[#ED2024] text-white" : "bg-white text-black"}
-            `}
-                        >
-                            {/* OUTSIDE NUMBER BADGE */}
-                            <div
-                                className={`
-                    w-12 h-12 flex items-center justify-center rounded-full 
-                    absolute -top-6 -left-6 text-[20px] font-bold
-                    shadow-md
-                    ${step.id === 1 ? "bg-white text-[#ED2024]" : "bg-gray-400 text-white"}
-                `}
-                            >
-                                {step.id}
-                            </div>
-
-                            {/* TITLE */}
-                            <h3
-                                className={`text-lg font-semibold mb-2 
-                ${step.id === 1 ? "text-white" : "text-gray-900"}`}
-                            >
-                                {step.title}
-                            </h3>
-
-                            {/* DESCRIPTION */}
-                            <p className={`text-sm leading-relaxed`}>
-                                {step.description}
-                            </p>
-                        </div>
-                    ))}
-                </div>
-
+        <section className="py-16 px-6" id="admission-process-section">
+        <div className="w-full  mx-auto flex flex-col lg:flex-row gap-8 md:gap-[10px] items-center">
+            
+            {/* Left Text */}
+            <div className="lg:w-1/2">
+                <Heading title="NMIMS Online MBA Admission Process " />
+                <p className="text-gray-800 text-sm font-sans">
+                    Applying to <strong>SVKM's NMIMS CODE</strong> is a simple and smooth
+                    process. There are a few simple steps to follow:
+                </p>
             </div>
-        </section>
+    
+            {/* Steps Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-20 ">
+    {steps.map((step) => {
+        const isActive = activeStep === step.id;
+
+        return (
+            <div
+                key={step.id}
+                onClick={() => setActiveStep(step.id)}
+                className={`
+                    w-[230px] h-auto
+                    relative p-6 rounded-2xl shadow-2xl cursor-pointer
+                    transition-all duration-300
+                    ${isActive ? "bg-[#ED2024] text-white" : "bg-white text-black"}
+                `}
+            >
+                <div
+                    className={`
+                        w-12 h-12 flex items-center justify-center rounded-full 
+                        absolute -top-6 -left-6 text-[20px] font-bold shadow-md
+                        ${isActive ? "bg-white text-[#ED2024]" : "bg-gray-400 text-white"}
+                    `}
+                >
+                    {step.id}
+                </div>
+
+                <h3
+                    className={`text-lg font-semibold mb-2
+                    ${isActive ? "text-white" : "text-gray-900"}`}
+                >
+                    {step.title}
+                </h3>
+
+                <p className="text-sm leading-relaxed">
+                    {step.description}
+                </p>
+            </div>
+        );
+    })}
+</div>
+
+        </div>
+    </section>
+    
     );
 }
