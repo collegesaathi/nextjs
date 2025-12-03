@@ -7,10 +7,10 @@ class Listing extends Component {
   }
 
   async ApprovalandPartners() {
-    return Api.get("/admin-universities",);
+    return Api.get("/admin/universities",);
   }
   async AdminUniversityAdd(data) {
-    return ApiallowFile.post("/admin-add-university", data);
+    return ApiallowFile.post("/admin/universities/add", data);
   }
 
   render() {

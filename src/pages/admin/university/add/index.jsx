@@ -22,7 +22,6 @@ function Index() {
 
     const [services, setServices] = useState([{ title: "", content: "", image: null, icon: null }]);
 
-
     const [selectedApprovals, setSelectedApprovals] = useState([]);
 
     const toggleApproval = (id) => {
