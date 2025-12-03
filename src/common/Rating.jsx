@@ -7,9 +7,9 @@ function StarRating({ rating=0 }) {
     return (
         <div className="inline-flex items-center gap-[1px]">
             {[...Array(fullStars)].map((_, index) => (
-                <MdOutlineStarPurple500 key={`full-${index}`} size={24} className="text-[#c1ac15]" />
+                <MdOutlineStarPurple500 key={`full-${index}`} size={24} className="text-[#FBAD33]" />
             ))}
-            {hasHalfStar && <MdStarHalf size={24} className="text-[#c1ac15]" />}
+            {hasHalfStar && <MdStarHalf size={24} className="text-[#FBAD33]" />}
         </div>
     );
 }

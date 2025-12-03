@@ -213,7 +213,7 @@ function Approvals() {
                     <div className="px-2 ">
                         <div
                             className=" w-full h-[190px] lg:h-[202px] shadow-md !bg-[#0000001C] p-4 
-            flex flex-row lg:flex-col items-center lg:items-start justify-between 
+            flex flex-row lg:flex-col items-center  justify-between 
             cursor-pointer group relative overflow-visible rounded-[20px]"
         
                             onClick={() => handleAction(item)}
@@ -233,7 +233,7 @@ function Approvals() {
                             </div>
 
                             {/* Text */}
-                            <div className="text-left md:text-center w-[60%] lg:w-full pl-3 lg:pl-0">
+                            <div className="md:text-center w-[60%] lg:w-full pl-3 lg:pl-0">
                                 <h2 className=" font-popins text-[14px] leading-5 mb-2 lg:text-[16.5px] 
               lg:leading-6 text-[#282529] lg:mb-3 transition-colors duration-300 ">
                                     {item.title}

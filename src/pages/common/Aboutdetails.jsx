@@ -4,7 +4,7 @@ function Aboutdetails() {
     return (
     
     <>
-       <div className="px-6">
+       <div className="px-6 mt-[50px]">
         {/* <h1 className="font-poppins font-semibold text-[28px] leading-[42px] text-[#282529] mb-4">
             NMIMS CDOE
         </h1> */}
@@ -13,7 +13,7 @@ function Aboutdetails() {
 
         {/* Description */}
         <p className="font-poppins font-normal text-[16px] leading-[25px] text-[#282529]">
-            <span className="font-semibold">
+            <span className="font-semibold" id="about-section">
                 Narsee Monjee Institute of Management Studies (CDOE)
             </span>{" "}
             is one of the well-ranked institutions in India, for its online and

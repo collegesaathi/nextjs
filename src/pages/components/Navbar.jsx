@@ -101,7 +101,7 @@ export default function Navbar() {
             </svg>
           </button>
           <div className="logo">
-            <a href="">
+            <a href="/">
               <img
                 src={Logo.src}
                 alt="University Logo"
@@ -172,7 +172,7 @@ export default function Navbar() {
 
             <li className="flex items-center space-x-2">
               <a
-                href=""
+                href="/university"
                 className="font-[Poppins] font-normal text-[13px] leading-[100%] tracking-[0px] text-right text-[#282529]"
               >
                 Top Universities

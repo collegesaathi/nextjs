@@ -43,7 +43,7 @@ body {
 
 
 
-.swiper {
+/* .swiper {
   width: 100%;
   overflow-x: auto !important;
   overflow-y: hidden !important;
@@ -52,7 +52,7 @@ body {
 .swiper-wrapper {
   display: flex !important;
   width: max-content !important;
-}
+} */
 
 
 .no-scrollbar {

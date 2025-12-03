@@ -8,22 +8,23 @@ import 'swiper/css'
 import { useRef, useState } from "react";
 import Image from "next/image";
 import Heading from "@/common/Heading";
+import BackNext from "../components/BackNext";
 
 
 
 export default function UniversityCampusCarousel() {
   const campuses = [
-    { id: 1, name: "Mumbai", image: "/img/university/showcase/1.png" },
-    { id: 2, name: "Indore", image: "/img/university/showcase/2.png" },
-    { id: 3, name: "Shirpur", image: "/img/university/showcase/3.png" },
-    { id: 4, name: "Mumbai", image: "/img/university/showcase/1.png" },
-    { id: 5, name: "Indore", image: "/img/university/showcase/2.png" },
-    { id: 6, name: "Shirpur", image: "/img/university/showcase/3.png" },
+    { id: 1, name: "Mumbai", image: "/images/university/showcase/1.png" },
+    { id: 2, name: "Indore", image: "/images/university/showcase/2.png" },
+    { id: 3, name: "Shirpur", image: "/images/university/showcase/3.png" },
+    { id: 4, name: "Mumbai", image: "/images/university/showcase/1.png" },
+    { id: 5, name: "Indore", image: "/images/university/showcase/2.png" },
+    { id: 6, name: "Shirpur", image: "/images/university/showcase/3.png" },
   ];
   const [activeSlide, setActiveSlide] = useState(0);
   // Carousel breakpoints for responsive design
   const carouselBreakpoints = {
-    320: { slidesPerView: 1, spaceBetween: 16 },
+    320: { slidesPerView: 2, spaceBetween: 16 },
     640: { slidesPerView: 2, spaceBetween: 20 },
     768: { slidesPerView: 3, spaceBetween: 24 },
     1024: { slidesPerView: 4, spaceBetween: 24 },
@@ -87,11 +88,11 @@ export default function UniversityCampusCarousel() {
 
 
   const navigatePrev = () => {
-    swiperRef.current?.swiper.slidePrev();
+    swiperRef.current?.slidePrev();
   };
 
   const navigateNext = () => {
-    swiperRef.current?.swiper.slideNext();
+    swiperRef.current?.slideNext();
   };
   const progressBarTotalWidth =
     typeof window !== "undefined" && window.innerWidth >= 1024 ? "180px" : "120px";
@@ -103,6 +104,19 @@ export default function UniversityCampusCarousel() {
   return (
     <>
 
+    <div className="mt-[50px] px-6">
+
+
+    <BackNext
+        title="NMIMS CDOE Campuses"
+     
+        progress={progress}
+        isBeginning={isBeginning}
+        isEnd={isEnd}
+        onPrev={navigatePrev}
+  onNext={navigateNext}
+      />
+{/* 
       <div className="flex justify-between items-center mb-6">
         <Heading title={"        NMIMS CDOE Campuses"} />
         <div className="flex flex-wrap items-center justify-end md:space-x-4">
@@ -166,7 +180,7 @@ export default function UniversityCampusCarousel() {
             </button>
           </div>
         </div>
-      </div>
+      </div> */}
 
 
       <Swiper
@@ -178,12 +192,13 @@ export default function UniversityCampusCarousel() {
         }}
         modules={[Autoplay, Pagination]}
         onSwiper={(swiper) => {
-          swiperRef.current = { swiper };
+          swiperRef.current =  swiper ;
           updateProgress(swiper);
         }}
         // Update state on slide change
         onSlideChange={updateProgress}
         breakpoints={carouselBreakpoints}
+        style={{ scrollbarWidth: "none" }}
       >
         {campuses.map((campus, index) => (
           <SwiperSlide key={campus.id}>
@@ -210,6 +225,7 @@ export default function UniversityCampusCarousel() {
           </SwiperSlide>
         ))}
       </Swiper>
+      </div>
     </>
   );
 }

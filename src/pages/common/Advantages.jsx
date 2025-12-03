@@ -65,11 +65,11 @@ function Advantages() {
                     {advantages.map((advantage, index) => (
                         <div key={index} className="flex w-full">
                             <div className="bg-white border-b-2 border-l-2 border-r-2 border-[#f47c80] p-4 font-poppins flex flex-col justify-center w-5/12 sm:w-4/12">
-                                <h3 className="text-[17px] text-[#282529] mb-2">
+                                <h3 className=" text-[11px] md:text-[17px] text-[#282529] mb-2">
                                     {advantage.title}
                                 </h3>
                                 {advantage.subtitle && (
-                                    <p className="text-[17px] text-[#666]">
+                                    <p className="text-[11px] md:text-[17px] text-[#666]">
                                         {advantage.subtitle}
                                     </p>
                                 )}
@@ -77,7 +77,7 @@ function Advantages() {
 
                             <div className="bg-white border-b-2 border-r-2 border-[#f47c80] p-4 font-poppins w-7/12 sm:w-8/12">
                                 <div
-                                    className="text-[17px] text-[#363535] leading-relaxed"
+                                    className=" text-[11px] md:text-[17px] text-[#363535] leading-relaxed"
                                     dangerouslySetInnerHTML={{
                                         __html: advantage.description,
                                     }}

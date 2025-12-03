@@ -47,16 +47,16 @@ function Index() {
                             <CoursesSwiper />
                            <Advantages />
                              <Facts />
-                            {/* <SampleCertificate />
-                            <ExaminationPattern />
-                            <Financial />
+                           <SampleCertificate />
+                              <ExaminationPattern />
+                          <Financial />
                             <UniversityCampusCarousel />
-                            <CareerServices />
-                            <StepsSection />
-                            <FAQSection />
+                           <CareerServices />
+                           <StepsSection />
+                               <FAQSection />
                             <SimilarUniversities />
-                            <Universities />
-                            <Reviews /> */}
+                             <Universities />
+                           <Reviews />
                         </div>
 
                     </div>

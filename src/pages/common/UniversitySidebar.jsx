@@ -16,7 +16,7 @@ export default function UniversitySidebar() {
 
 
   const menuItems = [
-    { id: "About",  label: "About", icon:"/images/university/sidebar/about.svg", activeIcon: "/images/university/sidebar/active/about.svg" },
+    { id: "About",  label: "About", icon:"/images/university/sidebar/about.svg", activeIcon: "/images/university/sidebar/about.svg" },
     { id: "Fee",  label: "Fee", icon:"/images/university/sidebar/fee.svg", activeIcon: "/images/university/sidebar/active/fee.svg" },
     { label: "Approvals", icon:"/images/university/sidebar/approvals.svg", activeIcon: "/images/university/sidebar/active/approvals.svg" },
     { label: "Rankings", icon:"/images/university/sidebar/rankings.svg", activeIcon: "/images/university/sidebar/active/rankings.svg" },
@@ -29,8 +29,8 @@ export default function UniversitySidebar() {
     { label: "Loan Facilities", icon: "/images/university/sidebar/loan.svg", activeIcon: "/images/university/sidebar/active/loan.svg" },
     { label: "Campus Locations", icon: "/images/university/sidebar/campus.svg", activeIcon: "/images/university/sidebar/active/campus.svg" },
     { label: "Placement Partners", icon: "/images/university/sidebar/placement.svg", activeIcon: "/images/university/sidebar/active/placement.svg" },
-    { label: "Career Services", icon: "/images/university/sidebar/career.svg", activeIcon: "/images/university/sidebar/active/career.svg" },
-    { label: "Admission Process", icon: "/images/university/sidebar/admission.svg", activeIcon: "/images/university/sidebar/active/admission.svg" },
+    // { label: "Career Services", icon: "/images/university/sidebar/career.svg", activeIcon: "/images/university/sidebar/active/career.svg" },
+    // { label: "Admission Process", icon: "/images/university/sidebar/admission.svg", activeIcon: "/images/university/sidebar/active/admission.svg" },
     { label: "FAQ", icon: "/images/university/sidebar/frequently.svg", activeIcon: "/images/university/sidebar/active/frequently.svg" },
     { label: "Similar Universities", icon: "/images/university/sidebar/similar.svg", activeIcon: "/images/university/sidebar/active/similar.svg" },
     { label: "Universities Comparison", icon: "/images/university/sidebar/universities.svg", activeIcon: "/images/university/sidebar/active/universities.svg" },
