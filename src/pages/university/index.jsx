@@ -5,12 +5,12 @@ import UniversityCard from '../components/UniversityCard';
 import ClikcPickCard from "../components/ClickPickCard";
 import BudgetCard from '../components/BudgetFilter';
 import ApprovalCard from '../components/ApprovalCard';
-// import { useFilterStore } from '@/store/filterStore';
 import { Brush, Search } from 'lucide-react';
 import CourseFilters from '../components/CourseFilter';
 // import GlobalButton from '../../common/GlobalButton';
 import Layout from "../components/Layout";
 import { useFilterStore } from '@/store/filterStore';
+import Listing from "@/pages/api/Listing";
 
 // Responsive hook replacement
 const useResponsive = () => {
@@ -34,130 +34,7 @@ const useResponsive = () => {
 
 export default function UniversityGrid() {
 
-    const allUniversityCardsData = [
-        {
-            universityName: "Manipal Online University",
-            courses: ["Operations", "MBA"],
-            rating: "4.6/5",
-            reviews: 178,
-            approvals: "AICTE | NAAC | NBA | QS | UGC",
-            features: ["No-Cost EMI Available", "Flexible Payment Options"],
-            imageUrl: "/images/cambridge.png",
-            logoUrl: "/logo/Manipal.svg",
-            tag: { text: "Trending" },
-            budget: 10000,
-            admissionClosing: "29 JULY",
-            category: "PG Courses",
-        },
-        {
-            universityName: "Jain Online University",
-            courses: ["Operations", "MS.c"],
-            rating: "4.5/5",
-            reviews: 200,
-            approvals: "UGC | DEB",
-            features: ["Flexible Payment Options"],
-            imageUrl: "/images/uni.png",
-            logoUrl: "/logo/Manipal.svg",
-            tag: { text: "Top Rated by Students" },
-            budget: 10000,
-            admissionClosing: "29 JULY",
-            category: "UG Courses",
-        },
-        {
-            universityName: "Amity Online University",
-            courses: ["Operations", "MS.c"],
-            rating: "4.7/5",
-            reviews: 150,
-            approvals: "AICTE | NIRF",
-            features: ["No-Cost EMI Available"],
-            imageUrl: "/images/cambridge.png",
-            logoUrl: "/logo/Manipal.svg",
-            budget: 10000,
-            admissionClosing: "29 JULY",
-            category: "UG Courses",
-        },
-        {
-            universityName: "Lovely Professional University",
-            courses: ["Operations", "MS.c"],
-            rating: "4.4/5",
-            reviews: 180,
-            approvals: "UGC | WES",
-            features: ["Scholarship Available"],
-            imageUrl: "/images/uni.png",
-            logoUrl: "/logo/Manipal.svg",
-            tag: { text: "Popular Choice", varient: "orange" },
-            budget: 10000,
-            admissionClosing: "29 JULY",
-            category: "PG Courses",
-        },
-        {
-            universityName: "Symbiosis Online",
-            courses: ["Operations", "MS.c"],
-            rating: "4.8/5",
-            reviews: 220,
-            approvals: "NAAC | DEB",
-            features: ["Guaranteed Placement Assistance"],
-            imageUrl: "/images/cambridge.png",
-            logoUrl: "/logo/Manipal.svg",
-            budget: 10000,
-            admissionClosing: "29 JULY",
-            category: "PG Courses",
-        },
-        {
-            universityName: "IGNOU Online",
-            courses: ["Operations", "MS.c"],
-            rating: "4.3/5",
-            reviews: 300,
-            budget: 10000,
-            approvals: "UGC | AICTE",
-            features: ["Government Approved"],
-            imageUrl: "/images/uni.png",
-            logoUrl: "/logo/Manipal.svg",
-            category: "PG Courses",
-            admissionClosing: "29 JULY",
-        },
-        {
-            universityName: "Bharati Vidyapeeth",
-            courses: ["Operations", "Leadership"],
-            rating: "4.2/5",
-            reviews: 160,
-            budget: 700000,
-            approvals: "NIRF | NAAC",
-            features: ["Modern Curriculum"],
-            imageUrl: "/images/cambridge.png",
-            logoUrl: "/logo/Manipal.svg",
-            tag: { text: "New Admission" },
-            admissionClosing: "29 JULY",
-            category: "PG Courses",
-        },
-        {
-            universityName: "Sikkim Manipal University",
-            rating: "4.0/5",
-            courses: ["Operations", "MS.c"],
-            reviews: 190,
-            budget: 10000,
-            approvals: "DEB | UGC",
-            features: ["Weekend Classes"],
-            imageUrl: "/images/uni.png",
-            logoUrl: "/logo/Manipal.svg",
-            admissionClosing: "29 JULY",
-            category: "Finance",
-        },
-        {
-            universityName: "Chandigarh University",
-            courses: ["Operations", "MS.c"],
-            rating: "4.9/5",
-            reviews: 250,
-            approvals: "AICTE | QS",
-            budget: 10000,
-            features: ["Industry Ready Courses"],
-            imageUrl: "/images/cambridge.png",
-            logoUrl: "/logo/Manipal.svg",
-            tag: { text: "Highly Rated", varient: "orange" },
-            admissionClosing: "29 JULY",
-            category: "Finance",
-        },
-    ]
+  
     const { isMobile, isTablet } = useResponsive();
     // const filterStore = useFilterStore();
     const filterStore = useFilterStore();
@@ -165,12 +42,36 @@ export default function UniversityGrid() {
 
     // Row count state
     const [rowCount, setRowCount] = useState(3);
+    const [universities, setUniversities] = useState([]);
+    console.log("universities" , universities)
+const [loadingUniversities, setLoadingUniversities] = useState(true);
 
     // Handle "View More"
     const handleViewMore = () => {
         filterStore.cardsToShow += 9;
     };
 
+
+
+    useEffect(() => {
+        const fetchUniversities = async () => {
+            try {
+                const main = new Listing();
+    const response = await main.Univeristy();
+
+    const universities= response?.data?.data?.universities || [];
+
+    setUniversities(universities);
+
+            } catch (error) {
+                console.error("Error fetching universities:", error);
+            } finally {
+                setLoadingUniversities(false);
+            }
+        };
+    
+        fetchUniversities();
+    }, []);
 
 
 
@@ -181,6 +82,135 @@ export default function UniversityGrid() {
         else if (isTablet) setRowCount(2);
         else setRowCount(3);
     }, [isMobile, isTablet]);
+
+
+
+    const allUniversityCardsData = universities;
+
+      // const allUniversityCardsData = [
+    //     {
+    //         universityName: "Manipal Online University",
+    //         courses: ["Operations", "MBA"],
+    //         rating: "4.6/5",
+    //         reviews: 178,
+    //         approvals: "AICTE | NAAC | NBA | QS | UGC",
+    //         features: ["No-Cost EMI Available", "Flexible Payment Options"],
+    //         imageUrl: "/images/cambridge.png",
+    //         logoUrl: "/logo/Manipal.svg",
+    //         tag: { text: "Trending" },
+    //         budget: 10000,
+    //         admissionClosing: "29 JULY",
+    //         category: "PG Courses",
+    //     },
+    //     {
+    //         universityName: "Jain Online University",
+    //         courses: ["Operations", "MS.c"],
+    //         rating: "4.5/5",
+    //         reviews: 200,
+    //         approvals: "UGC | DEB",
+    //         features: ["Flexible Payment Options"],
+    //         imageUrl: "/images/uni.png",
+    //         logoUrl: "/logo/Manipal.svg",
+    //         tag: { text: "Top Rated by Students" },
+    //         budget: 10000,
+    //         admissionClosing: "29 JULY",
+    //         category: "UG Courses",
+    //     },
+    //     {
+    //         universityName: "Amity Online University",
+    //         courses: ["Operations", "MS.c"],
+    //         rating: "4.7/5",
+    //         reviews: 150,
+    //         approvals: "AICTE | NIRF",
+    //         features: ["No-Cost EMI Available"],
+    //         imageUrl: "/images/cambridge.png",
+    //         logoUrl: "/logo/Manipal.svg",
+    //         budget: 10000,
+    //         admissionClosing: "29 JULY",
+    //         category: "UG Courses",
+    //     },
+    //     {
+    //         universityName: "Lovely Professional University",
+    //         courses: ["Operations", "MS.c"],
+    //         rating: "4.4/5",
+    //         reviews: 180,
+    //         approvals: "UGC | WES",
+    //         features: ["Scholarship Available"],
+    //         imageUrl: "/images/uni.png",
+    //         logoUrl: "/logo/Manipal.svg",
+    //         tag: { text: "Popular Choice", varient: "orange" },
+    //         budget: 10000,
+    //         admissionClosing: "29 JULY",
+    //         category: "PG Courses",
+    //     },
+    //     {
+    //         universityName: "Symbiosis Online",
+    //         courses: ["Operations", "MS.c"],
+    //         rating: "4.8/5",
+    //         reviews: 220,
+    //         approvals: "NAAC | DEB",
+    //         features: ["Guaranteed Placement Assistance"],
+    //         imageUrl: "/images/cambridge.png",
+    //         logoUrl: "/logo/Manipal.svg",
+    //         budget: 10000,
+    //         admissionClosing: "29 JULY",
+    //         category: "PG Courses",
+    //     },
+    //     {
+    //         universityName: "IGNOU Online",
+    //         courses: ["Operations", "MS.c"],
+    //         rating: "4.3/5",
+    //         reviews: 300,
+    //         budget: 10000,
+    //         approvals: "UGC | AICTE",
+    //         features: ["Government Approved"],
+    //         imageUrl: "/images/uni.png",
+    //         logoUrl: "/logo/Manipal.svg",
+    //         category: "PG Courses",
+    //         admissionClosing: "29 JULY",
+    //     },
+    //     {
+    //         universityName: "Bharati Vidyapeeth",
+    //         courses: ["Operations", "Leadership"],
+    //         rating: "4.2/5",
+    //         reviews: 160,
+    //         budget: 700000,
+    //         approvals: "NIRF | NAAC",
+    //         features: ["Modern Curriculum"],
+    //         imageUrl: "/images/cambridge.png",
+    //         logoUrl: "/logo/Manipal.svg",
+    //         tag: { text: "New Admission" },
+    //         admissionClosing: "29 JULY",
+    //         category: "PG Courses",
+    //     },
+    //     {
+    //         universityName: "Sikkim Manipal University",
+    //         rating: "4.0/5",
+    //         courses: ["Operations", "MS.c"],
+    //         reviews: 190,
+    //         budget: 10000,
+    //         approvals: "DEB | UGC",
+    //         features: ["Weekend Classes"],
+    //         imageUrl: "/images/uni.png",
+    //         logoUrl: "/logo/Manipal.svg",
+    //         admissionClosing: "29 JULY",
+    //         category: "Finance",
+    //     },
+    //     {
+    //         universityName: "Chandigarh University",
+    //         courses: ["Operations", "MS.c"],
+    //         rating: "4.9/5",
+    //         reviews: 250,
+    //         approvals: "AICTE | QS",
+    //         budget: 10000,
+    //         features: ["Industry Ready Courses"],
+    //         imageUrl: "/images/cambridge.png",
+    //         logoUrl: "/logo/Manipal.svg",
+    //         tag: { text: "Highly Rated", varient: "orange" },
+    //         admissionClosing: "29 JULY",
+    //         category: "Finance",
+    //     },
+    // ]
 
     // Filtering Logic
     const filteredCards = useMemo(() => {
@@ -417,14 +447,16 @@ export default function UniversityGrid() {
                         </div>
                         <div className="w-full lg:w-2/1">
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3  ">
-                                {filteredCards?.slice(0, filterStore.cardsToShow).map((card, index) => (
+                            {universities?.map((card, index) => {
+    console.log("CARD:", card);
+    return <UniversityCard card={card} index={index} key={index} />;
+})}
+                                {/* {filteredCards?.slice(0, filterStore.cardsToShow).map((card, index) => (
                                     <>
-                                        {/* Card */}
                                         <div key={`card-${index}`} className=''>
                                             <UniversityCard {...card} index={index} />
                                         </div>
 
-                                        {/* Full row border */}
                                         {((index + 1) % rowCount === 0) &&
                                             index !== filteredCards.slice(0, filterStore.cardsToShow).length - 1 && (
                                                 <div
@@ -433,7 +465,7 @@ export default function UniversityGrid() {
                                                 />
                                             )}
                                     </>
-                                ))}
+                                ))} */}
                             </div>
 
                             {/* View More */}

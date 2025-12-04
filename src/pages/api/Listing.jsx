@@ -13,6 +13,10 @@ class Listing extends Component {
     return ApiallowFile.post("/admin/universities/add", data);
   }
 
+    async Univeristy() {
+    return Api.get("/all/universities",);
+  }
+
   render() {
     return (
       <div>
