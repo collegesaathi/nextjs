@@ -13,18 +13,12 @@ import Certificate from "../../common/Certificate";
 import FaqSection from "../../common/FaqSection";
 import OnlineSection from "../../common/OnlineSection";
 import ServicesSection from "../../common/ServicesSection";
-
 function Index() {
-
     const [advantages, setAdvantages] = useState([
         { title: "", description: "" }
     ]);
-
     const [services, setServices] = useState([{ title: "", content: "", image: null, icon: null }]);
-
-
     const [selectedApprovals, setSelectedApprovals] = useState([]);
-
     const toggleApproval = (id) => {
         if (selectedApprovals.includes(id)) {
             setSelectedApprovals(selectedApprovals.filter(a => a !== id));
@@ -119,6 +113,7 @@ function Index() {
         }
     ]);
 
+
     const [facts, setFacts] = useState([
         {
             patternName: "",
@@ -133,16 +128,6 @@ function Index() {
         const list = [...campusList];
         list[index][field] = value;
         setCampusList(list);
-    };
-
-    const handleCampusImage = (index, file) => {
-        const reader = new FileReader();
-        reader.onloadend = () => {
-            const list = [...campusList];
-            list[index].image = reader.result;
-            setCampusList(list);
-        };
-        reader.readAsDataURL(file);
     };
 
     const addCampus = () => {
@@ -179,10 +164,12 @@ function Index() {
         onlinetitle: "",
         onlinedesc: "",
         patterndescription: "",
-        patternname: ""
+        patternname: "",
+        factsname: "",
+        financialdescription: "",
+        financialname: "",
     });
 
-    console.log("formData", formData)
 
     const handleQuillChange = (field, value) => {
         setFormData((prev) => ({ ...prev, [field]: value }));
@@ -238,54 +225,115 @@ function Index() {
 
         }
     };
-
+    console.log(
+        "campusList", campusList
+    )
     // ✅ ADD UNIVERSITY
     const handleAdd = async (e) => {
         e.preventDefault();
         if (loading) return;
-
-        // if (!formData.icon) {
-        //     toast.error("Icon required!");
-        //     return;
-        // }
-
         setLoading(true);
-
         try {
             const main = new Listing();
             const payload = new FormData();
-
             payload.append("slug", formData.slug);
             payload.append("name", formData.name);
             payload.append("position", formData.position);
-            payload.append("description", formData.description);
+            payload.append("about_title", formData.about_title);
+            payload.append("about_desc", formData.about_desc);
             payload.append("icon", formData.icon);
             payload.append("cover_image", formData.cover_image);
+            payload.append("descriptions", JSON.stringify(formData.descriptions));
+            payload.append("advantages", JSON.stringify(advantages));
+            payload.append("services", JSON.stringify(services));
+            payload.append("fees", JSON.stringify(fees));
+            payload.append("faqs", JSON.stringify(faqs));
+            payload.append("facts", JSON.stringify(facts));
+            payload.append("approvals", JSON.stringify(selectedApprovals));
+            payload.append("partners", JSON.stringify(selectedPartners));
+            payload.append("patternname", formData.patternname);
+            payload.append("patterndescription", formData.patterndescription);
+            payload.append("approvals_name", formData.approvals_name);
+            payload.append("approvals_desc", formData.approvals_desc);
+            payload.append("rankings_description", formData.rankings_description);
+            payload.append("rankings_name", formData.rankings_name);
+            payload.append("advantagesname", formData.advantagesname);
+            payload.append("advantagesdescription", formData.advantagesdescription);
+            payload.append("factsname", formData.factsname);
+            payload.append("certificatename", formData.certificatename);
+            payload.append("certificatedescription", formData.certificatedescription);
+            payload.append("certificatemage", formData.certificatemage);
+            const cleanPatterns = patterns.map(item => ({
+                patternName: item.patternName,
+                percentage: item.percentage,
+                description: item.description
+            }));
+            payload.append("patterns", JSON.stringify(cleanPatterns));
+            patterns.forEach((item, index) => {
+                if (item.image) {
+                    payload.append(`patternsimages[${index}]`, item.image);
+                }
+            });
+            payload.append("financialname", formData.financialname);
+            payload.append("financialdescription", formData.financialdescription);
+            const campusListmanage = campusList.map(item => ({
+                name: item.name,
+            }));
+            payload.append("campusList", JSON.stringify(campusListmanage));
+            campusList.forEach((item, index) => {
+                if (item.image) {
+                    payload.append(`campusimages[${index}]`, item.image);
+                }
+            });
+            payload.append("partnersname", formData.partnersname);
+            payload.append("partnersdesc", formData.partnersdesc);
+            payload.append("servicetitle", formData.servicetitle);
+            payload.append("servicedesc", formData.servicedesc);
+            payload.append("onlinedesc", formData.onlinedesc);
+            payload.append("onlinetitle", formData.onlinetitle);
+            const cleanonlines = onlines.map(item => ({
+                title: item.title,
+                content: item.content
+            }));
+            payload.append("onlines", JSON.stringify(cleanonlines));
+            const cleanServices = services.map(item => ({
+                title: item.title,
+                content: item.content
+            }));
+            payload.append("servcies", JSON.stringify(cleanServices));
+            services.forEach((item, index) => {
+                if (item.image) {
+                    payload.append(`servicesimages[${index}]`, item.image);
+                }
+            });
+            services.forEach((item, index) => {
+                if (item.image) {
+                    payload.append(`servicesicon[${index}]`, item.icon);
+                }
+            });
+            for (let pair of payload.entries()) {
+                console.log(pair[0], pair[1]);
+            }
+
+            // ✅ IMPORTANT FIX
             const response = await main.AdminUniversityAdd(payload);
 
             if (response?.data?.status) {
                 toast.success(response.data.message);
-                setFormData({
-                    slug: "",
-                    name: "",
-                    icon: null,
-                    cover_image: null,
-                    position: "",
-                    description: "",
-                });
-
                 setPreview(null);
-                fetchData();
             } else {
                 toast.error(response.data.message);
             }
 
         } catch (error) {
+            console.error(error);
             toast.error("Something went wrong");
         }
 
         setLoading(false);
     };
+
+
 
     // ✅ UPDATE UNIVERSITY
     const handleUpdate = async (e) => {
@@ -344,7 +392,6 @@ function Index() {
     //         }
     //     }
     // }, [data]);
-    const data = ""
 
     const [activeTab, setActiveTab] = useState("card");
 
@@ -378,7 +425,6 @@ function Index() {
             setActiveTab(tabsData[currentIndex - 1].id);
         }
     };
-
 
     return (<>
         <AdminLayout>
@@ -435,18 +481,19 @@ function Index() {
 
                         {/* Right: Save Button */}
                         <button
-                            type="submit"
-                            form="ownerForm"
-                            className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium shadow-md transition-all"
+                            type="button"
+                            onClick={handleAdd}
+                            className="cursor-pointer bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium shadow-md transition-all"
                         >
                             {loading ? "Saving..." : "Save"}
                         </button>
+
                     </div>
                 </div>
 
 
                 <form
-                    onSubmit={data ? handleUpdate : handleAdd}
+                    onSubmit={handleAdd}
                     className="  mt-10 px-3 sm:px-6 pb-3 sm:pb-6 bg-white space-y-2 sm:space-y-4"
                 >
                     {activeTab === "card" && (
@@ -603,7 +650,6 @@ function Index() {
 
                     {activeTab === "about" && (
                         <>
-
                             <div>
                                 <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
                                     About Title {" "}
@@ -932,7 +978,7 @@ function Index() {
                                 </button>
                             </div>
                             {/* MULTIPLE CAMPUS BLOCKS */}
-                            {campusList.map((campus, index) => (
+                            {campusList?.map((campus, index) => (
                                 <div key={index} className="border px-2  rounded-xl bg-gray-100 mb-2 ">
                                     {/* Name */}
                                     <label className="flex  justify-between  items-center block text-[#CC2828] font-medium mb-2">
@@ -958,17 +1004,21 @@ function Index() {
                                     <label className="block text-[#CC2828] font-medium mb-2">
                                         Campus Image
                                     </label>
+                                    {/* <input
+                                        type="file"
+                                        onChange={(e) => handleCampusChange(index, e.target.files[0])}
+                                        className="w-full bg-white text-[#727272] border rounded-[10px] px-4 py-2 focus:outline-none mb-3 "
+                                    /> */}
                                     <input
                                         type="file"
                                         accept="image/*"
-                                        onChange={(e) => handleCampusImage(index, e.target.files[0])}
+                                        onChange={(e) => handleCampusChange(index, "image", e.target.files[0])}
                                         className="w-full bg-white text-[#727272] border rounded-[10px] px-4 py-2 focus:outline-none mb-3 "
                                     />
-
                                     {/* Preview */}
                                     {campus.image && (
                                         <img
-                                            src={campus.image}
+                                            src={campus.image.src}
                                             className="mt-3 mb-3 w-40 h-40 object-cover rounded-md border"
                                             alt="campus"
                                         />

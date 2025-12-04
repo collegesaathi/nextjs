@@ -12,11 +12,25 @@ class Listing extends Component {
   async AdminUniversityAdd(data) {
     return ApiallowFile.post("/admin/universities/add", data);
   }
-
-    async Univeristy() {
+  async Univeristy() {
     return Api.get("/all/universities",);
   }
 
+  async AddApprovals(data) {
+    return ApiallowFile.post("/approval/add", data);
+  }
+
+  async UpdateApprovals(data) {
+    return ApiallowFile.post("/approval/edit", data);
+  }
+
+  async AddPlacementsall(data) {
+    return ApiallowFile.post("/placement/add", data);
+  }
+
+  async UpdatePlacements(data) {
+    return ApiallowFile.post("/placement/edit", data);
+  }
   render() {
     return (
       <div>

@@ -1,6 +1,7 @@
 import ReactQuillEditor from "@/common/ReactQuillEditor";
 
 function Certificate({formData ,  handleChange ,handleImageChange ,preview  ,handleQuillChange }) {
+    console.log("formData?.certificatemage" ,formData?.certificatemage)
     return (
 
         <>
@@ -37,10 +38,10 @@ function Certificate({formData ,  handleChange ,handleImageChange ,preview  ,han
                     className="w-full p-2 bg-gray-100 rounded-md cursor-pointer text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
                 />
 
-                {preview && (
+                {formData?.certificatemage && (
                     <div className="mt-3">
                         <img
-                            src={preview}
+                            src={formData?.certificatemage?.file?.name}
                             alt="Preview"
                             className="w-full h-48 object-cover rounded-md border"
                         />
