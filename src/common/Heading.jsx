@@ -13,7 +13,7 @@ export default function Heading({ lattitle, midtitle, title, classes }) {
           tracking-[0px]
           text-[#282529]
           mb-4 md:mb-[30px]
-          w-2/3
+         
           ${classes}
         `}
       >
@@ -21,3 +21,5 @@ export default function Heading({ lattitle, midtitle, title, classes }) {
       </h2>
   )
 }
+
+ // w-2/3

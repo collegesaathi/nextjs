@@ -25,43 +25,39 @@ function Index() {
     const router = useRouter();
     return (<>
         <Layout>
-
             <div className="py-4 md:py-8 ">
-
-                <div className="mx-auto container sm:container md:container lg:container xl:max-w-[1230px]  px-4">
-                    {/* <Approvals />  */}
+                <div className="mx-auto container sm:container md:container lg:container xl:max-w-[1430px]  px-4">
                     <Hero />
+                </div>
                     <div className="w-full flex items-start pt-10 justify-center h-full relative flex-wrap">
                         <div
                             className="w-full lg:w-3/12 bg-[#f9fafb] lg:shadow-[4px_4px_4px_rgba(0,0,0,0.06)] h-full overflow-y-auto justify-end flex lg:pr-4 relative animate-slide-fade-right animate-delay-200"
-                        
                         >
+                            {/* <Approvals />  */}
                             <UniversitySidebar />
                         </div>
-                        <div className="w-full lg:w-9/12 h-full lg:h-[100vh] overflow-y-auto "  style={{ scrollbarWidth: "none",}}>
+                        <div className="w-full lg:w-9/12 h-full lg:h-[100vh] overflow-y-auto " style={{ scrollbarWidth: "none", }}>
                             <Aboutdetails />
-                             <CourseFees />
-                             <Approvals />
-                       
+                            <CourseFees />
+                            <Approvals />
                             <Ranking />
                             <CoursesSwiper />
-                           <Advantages />
-                             <Facts />
-                           <SampleCertificate />
-                              <ExaminationPattern />
-                          <Financial />
+                            <Advantages />
+                            <Facts />
+                            <SampleCertificate />
+                            <ExaminationPattern />
+                            <Financial />
                             <UniversityCampusCarousel />
                             <PlacementPartners />
-                           <CareerServices />
-                           <StepsSection />
-                               <FAQSection />
+                            <CareerServices />
+                            <StepsSection />
+                            <FAQSection />
                             <SimilarUniversities />
-                             <Universities />
-                           <Reviews />
+                            <Universities />
+                            <Reviews />
                         </div>
 
                     </div>
-                </div>
             </div>
         </Layout>
     </>);

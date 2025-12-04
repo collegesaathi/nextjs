@@ -15,7 +15,7 @@ function Approvals() {
 
     const helpCards = [
         {
-            title: "Find EMI Facilities for different universities.",
+            title: "Budget constraints?",
             description: "We are here to take care of your finances.", // Card 1 is just the title/action
             id: 1,
             image: EMIOptions?.src
@@ -94,168 +94,90 @@ function Approvals() {
     const navigateNext = () => {
         swiperRef.current?.slideNext();
     };
-    const progressBarTotalWidth =
-        typeof window !== "undefined" && window.innerWidth >= 1024 ? "180px" : "120px";
-
-    const progressWidthStyle = {
-        width: `${progress}%`,
-    };
     return (<>
-
-        <div className=" justify-between items-center px-6 mt-[50px]" id="approvals-section">
-            {/* <Heading title={"Approvals and Accreditations"} />
-            <div className="flex flex-wrap items-center justify-end md:space-x-4">
-                <div className={`w-[${progressBarTotalWidth}] h-1.5 bg-gray-300 rounded-full overflow-hidden`}>
-                    <div
-                        className="h-full bg-[#EC1E24] transition-all duration-300 ease-in-out"
-                        style={progressWidthStyle}
-                    ></div>
-                </div>
-                <div className="flex space-x-2 mt-4 md:mt-0">
-                    <button
-                        type="button"
-                        onClick={navigatePrev}
-                        disabled={isBeginning}
-                        className={`
-                                             w-6 h-6
-                                 md:w-8 md:h-8 rounded-full flex items-center justify-center 
-                                 transition-all duration-200 flex-shrink-0
-                                 ${isBeginning
-                                ? 'bg-gray-100 border border-gray-300 cursor-not-allowed text-gray-400 opacity-60'
-                                : 'bg-white border border-[#EC1E24] hover:bg-red-50 cursor-pointer text-[#EC1E24]'
-                            }
-                             `}
-                    >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-4 w-4"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                        >
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-                        </svg>
-                    </button>
-
-                    <button
-                        type="button"
-                        onClick={navigateNext}
-                        disabled={isEnd}
-                        className={`
-                                      w-6 h-6
-                                 md:w-8 md:h-8  rounded-full flex items-center justify-center 
-                                 transition-all duration-200 flex-shrink-0
-                                 ${isEnd
-                                ? 'bg-gray-100 border border-gray-300 cursor-not-allowed text-gray-400 opacity-60'
-                                : 'bg-white border border-gray-300 hover:border-[#EC1E24] hover:text-[#EC1E24] cursor-pointer text-gray-500'
-                            }
-                             `}
-                    >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-4 w-4"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                        >
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                        </svg>
-                    </button>
-                </div>
-            </div> */}
-
-<BackNext
-        title="Approvals and Accreditations"
-     
-        progress={progress}
-        isBeginning={isBeginning}
-        isEnd={isEnd}
-        onPrev={navigatePrev}
-  onNext={navigateNext}
-      />
-
-
-<p className="text-[17px] font-poppins font-[400] text-[#363535] mb-6 font-poppins">
-              
-    The online courses from the<strong>NMIMS CDOE</strong>  have gained high popularity and is supported by 
+        <section className="w-full px-6 py-6 mx-auto" id="approvals-section">
+            <div className="max-w-[1100px]">
+                <BackNext
+                    title="Approvals and Accreditations"
+                    progress={progress}
+                    isBeginning={isBeginning}
+                    isEnd={isEnd}
+                    onPrev={navigatePrev}
+                    onNext={navigateNext}
+                />
+                <p className="text-[15px] md:text-[17px] font-poppins font-[400] text-[#363535] mb-6 font-poppins">
+                    The online courses from the<strong> NMIMS CDOE</strong>  have gained high popularity and is supported by
                     various approvals/accreditations, which add to their value. These approvals and accreditations
-                     are proof of the best education
-                     quality and fair educational policies. These accreditations are:
+                    are proof of the best education
+                    quality and fair educational policies. These accreditations are:
                 </p>
-        </div>
+                {/* Swiper Carousel */}
+                <Swiper
+                    ref={swiperRef}
+                    modules={[Navigation, A11y]}
+                    spaceBetween={30}
+                    slidesPerView={1}
+                    // Initialize Swiper and update state
+                    onSwiper={(swiper) => {
+                        swiperRef.current = swiper;
+                        updateProgress(swiper);
+                    }}
+                    // Update state on slide change
+                    onSlideChange={updateProgress}
 
-
-        {/* Swiper Carousel */}
-
-        <div className="px-6">
-        <Swiper
-            ref={swiperRef}
-            modules={[Navigation, A11y]}
-            spaceBetween={30}
-            slidesPerView={1}
-            // Initialize Swiper and update state
-            onSwiper={(swiper) => {
-                swiperRef.current = swiper;
-                updateProgress(swiper);
-            }}
-            // Update state on slide change
-            onSlideChange={updateProgress}
-
-            // Responsive breakpoints for card display
-            breakpoints={{
-                640: {
-                    slidesPerView: 2,
-                    spaceBetween: 20,
-                },
-                1024: {
-                    slidesPerView: 4,
-                    spaceBetween: 10,
-                },
-            }}
-            className="mySwiper "
-            style={{ scrollbarWidth: "none" }}
-        >
-            {helpCards && helpCards?.map((item) => (
-                <SwiperSlide key={item.id}>
-                    <div className="px-2 ">
-                        <div
-                            className=" w-full h-[190px] lg:h-[202px] shadow-md !bg-[#0000001C] p-4 
+                    // Responsive breakpoints for card display
+                    breakpoints={{
+                        640: {
+                            slidesPerView: 2,
+                            spaceBetween: 20,
+                        },
+                        1024: {
+                            slidesPerView: 4,
+                            spaceBetween: 10,
+                        },
+                    }}
+                    className="mySwiper "
+                    style={{ scrollbarWidth: "none" }}
+                >
+                    {helpCards && helpCards?.map((item) => (
+                        <SwiperSlide key={item.id}>
+                            <div className="px-2 ">
+                                <div
+                                    className=" w-full h-[190px] lg:h-[202px] shadow-md !bg-[#0000001C] p-4 
             flex flex-row lg:flex-col items-center  justify-between 
             cursor-pointer group relative overflow-visible rounded-[20px]"
-        
-                            onClick={() => handleAction(item)}
-                            onKeyDown={(e) => handleKeyDown(e, item)}
-                            tabIndex={0}
-                            role="button"
-                            aria-label={`${item.title} - ${item.description}`}
-                        >
 
-                            {/* Image */}
-                            <div className="flex justify-center bg-white rounded-[15px] items-center lg:justify-center mb-0 lg:mb-2 w-[40%] lg:w-full">
-                                <img
-                                    src={item.image}
-                                    alt={item.title}
-                                    className="w-full h-full object-contain  lg:h-[70px] lg:w-[70px] transition-transform duration-300 "
-                                />
+                                    onClick={() => handleAction(item)}
+                                    onKeyDown={(e) => handleKeyDown(e, item)}
+                                    tabIndex={0}
+                                    role="button"
+                                    aria-label={`${item.title} - ${item.description}`}
+                                >
+
+                                    {/* Image */}
+                                    <div className="flex justify-center bg-white rounded-[15px] items-center lg:justify-center mb-0 lg:mb-2 w-full lg:w-[128px] h-[109px]">
+                                        <img
+                                            src={item.image}
+                                            alt={item.title}
+                                            className="w-[70px] h-[70px] object-cover  lg:h-[70px] lg:w-[70px] transition-transform duration-300 "
+                                        />
+                                    </div>
+                                    {/* Text */}
+                                    <div className="md:text-center w-[60%] lg:w-full pl-3 lg:pl-0">
+                                        <h2 className=" font-popins text-[15px] leading-5 mb-2 lg:text-[16px] 
+                                             lg:leading-6 text-[#282529] lg:mb-3 transition-colors duration-300 ">
+                                            {item.title}
+                                        </h2>
+                                    </div>
+                                </div>
                             </div>
-
-                            {/* Text */}
-                            <div className="md:text-center w-[60%] lg:w-full pl-3 lg:pl-0">
-                                <h2 className=" font-popins text-[14px] leading-5 mb-2 lg:text-[16.5px] 
-              lg:leading-6 text-[#282529] lg:mb-3 transition-colors duration-300 ">
-                                    {item.title}
-                                </h2>
-                            </div>
-                        </div>
-                    </div>
-                </SwiperSlide>
-            ))}
+                        </SwiperSlide>
+                    ))}
 
 
-        </Swiper>
-        </div>
+                </Swiper>
+            </div>
+        </section>
     </>);
 }
 

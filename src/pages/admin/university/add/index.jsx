@@ -397,7 +397,6 @@ function Index() {
     //         }
     //     }
     // }, [data]);
-    const data = ""
 
     const [activeTab, setActiveTab] = useState("card");
 
@@ -431,7 +430,6 @@ function Index() {
             setActiveTab(tabsData[currentIndex - 1].id);
         }
     };
-
 
     return (<>
         <AdminLayout>
@@ -500,7 +498,7 @@ function Index() {
 
 
                 <form
-                    onSubmit={data ? handleUpdate : handleAdd}
+                    onSubmit={ handleAdd}
                     className="  mt-10 px-3 sm:px-6 pb-3 sm:pb-6 bg-white space-y-2 sm:space-y-4"
                 >
                     {activeTab === "card" && (

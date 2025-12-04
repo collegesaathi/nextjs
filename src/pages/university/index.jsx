@@ -355,10 +355,7 @@ const [loadingUniversities, setLoadingUniversities] = useState(true);
                                     <span>Filters</span>
                                 </button>
 
-
-
-
-                                {filterStore.isOpen &&
+                                {filterStore?.isOpen &&
                                     <button
                                         className={clsx(
                                             'text-[black] text-xs flex items-center gap-2 px-2 py-1 rounded-lg border hover:text-[#EC1E24] hover:border-[#EC1E24] transition-all',
@@ -374,7 +371,6 @@ const [loadingUniversities, setLoadingUniversities] = useState(true);
                                         <img src="https://collegesathi.co.in/icons/selected/clean.svg" className="group-hover:block hidden" />
                                         <span>Clear all</span>
                                     </button>}
-
 
                                 {/* Clear All */}
                                 <button
