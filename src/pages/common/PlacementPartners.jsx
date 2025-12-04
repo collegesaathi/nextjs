@@ -55,7 +55,7 @@ export default function PlacementPartners() {
         />
 
         {/* Description */}
-        <p className="font-poppins text-[15px] sm:text-[16px] text-[#282529] leading-6 sm:leading-7 mb-4">
+        <p className="font-poppins text-[15px] sm:text-[17px] text-[#282529] leading-6 sm:leading-7 mb-4">
           The students at
           <strong className="ml-1"> NMIMS Center for Distance and Online Education CDOE </strong>
           have immense hiring and placement opportunities. The university has tie-ups
