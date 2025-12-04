@@ -9,7 +9,7 @@ function Financial() {
   <div>
     <Heading title="NMIMS Online MBA Financial Aid" />
 
-    <p className="font-poppins text-[14px] md:text-[16px] leading-[22px] md:leading-[25px] text-[#282529]">
+    <p className="font-poppins text-[14px] md:text-[17px] leading-[22px] md:leading-[25px] text-[#282529]">
       The University proudly extends special incentives specifically
       designed for the armed forces and Defense Personnel, as well as their
       immediate family members. These incentives include a generous 20%
