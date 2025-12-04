@@ -257,7 +257,8 @@ function Approvals() {
             <h2 className="
                     font-poppins
                     font-[600]
-                    text-[20px]
+                    text-[16px]
+                    md:text-[20px]
                     leading-[41px]
                     tracking-[0px]
                     text-center
@@ -267,7 +268,7 @@ function Approvals() {
 
 
             <div className="max-h-85 overflow-y-auto flex flex-col gap-3 mt-2">
-                {["NAAC A+ Accreditation", "UGC Entitled", "Approved by AICTE", "MHRD Category 1", "UGC Entitled", "NAAC A+ Accreditation",].map((item) => (
+                {approvalData.map((item) => (
                     <div
                         className="
 w-full md:w-[400px]
@@ -294,7 +295,7 @@ h-[72px]
         text-[#282529]
         leading-[20px]
       ">
-                                {item}
+                                {item.name}
                             </span>
                         </div>
 
@@ -368,7 +369,7 @@ function Courses() {
 
     return (
         <div className="px-2 ">
-            <h2 className="text-center font-[600] text-[20px] mb-4">
+            <h2 className="text-center font-[600] text-[16px] md:text-[20px] mb-4">
                 <span className="text-[#EC1E24]">Courses</span> offered by NMIMS CDOE
             </h2>
 
@@ -444,7 +445,7 @@ function Campus() {
 
     return (
         <div className="w-full">
-            <h2 className="text-center font-[600] font-poppins text-[18px] md:text-[20px] mb-4">
+            <h2 className="text-center font-[600] font-poppins text-[16px] md:text-[20px] mb-4">
                 <span className="text-[#EC1E24]">Campus </span>Locations
             </h2>
 
@@ -509,13 +510,13 @@ function Ratings() {
 
     return (
         <div>
-            <h2 className="text-center font-[600] font-poppins text-[20px] mb-4"><span className="text-[#EC1E24]">Ratings and Reviews </span>by Students</h2>
+            <h2 className="text-center font-[600] font-poppins text-[16px] md:text-[20px] mb-4"><span className="text-[#EC1E24]">Ratings and Reviews </span>by Students</h2>
 
             <div className="  max-h-85 ">
 
 
-                <div className="flex items-center justify-center gap-10 ">
-                    <div className="w-[110px] sm:w-[126px] h-[95px] rounded-[8px] bg-[#fcf0ee] flex items-center justify-center space-y-1.5">
+                <div className="flex  flex-col md:flex-row items-center justify-center gap-10 mb-5  ">
+                    <div className="w-[150px] sm:w-[126px] h-full md:h-[95px] rounded-[8px] py-4 bg-[#fcf0ee] flex flex-col md:flex-row items-center justify-center space-y-1.5">
                         <h3 className="font-poppins font-[600] md:text-[52px] sm:text-[36px] text-[#282529]">4.5</h3>
                         <div className=" flex flex-col justify-center items-center">
                             <StarRating rating="4.5" />
@@ -528,14 +529,14 @@ function Ratings() {
                 </div>
 
 
-                <div className="border p-5 rounded-lg ">
-                    <h3 className="text-xl font-semibold mb-4">Peripheral Ratings</h3>
+                <div className="border  p-2 md:p-5 rounded-lg ">
+                    <h3 className=" md:[text-10px] md:text-[12px] font-semibold mb-4">Peripheral Ratings</h3>
                     {peripheralRatings.map((cat, i) => (
-                        <div key={i} className="flex justify-between text-sm space-y-4">
+                        <div key={i} className="flex justify-between text-[10px] md:text-[14px] space-y-1 md:space-y-4">
                             <span>{cat.name}</span>
-                            <div className=" flex justify-center gap-2 items-center">
-                                <span className="text-[17px] font-[600]">{cat.rating}</span>
-                                <StarRating rating={cat.rating} />
+                            <div className="flex justify-center gap-1 md:gap-2 items-center">
+                                <span className="hidden md:block text-[14px] md:text-[17px] font-[600]">{cat.rating}</span>
+                                <StarRating rating={cat.rating} size={17} />
                             </div>
                         </div>
                     ))}
