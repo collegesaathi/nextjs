@@ -13,7 +13,7 @@ export default function SampleCertificate() {
             <div className="w-full lg:w-1/2">
               <Heading title="NMIMS Sample Certificate" />
 
-              <p className="font-poppins text-[15px] md:text-[16px] leading-[22px] md:leading-[25px] text-[#282529] mt-3">
+              <p className="font-poppins text-[15px] md:text-[17px] leading-[22px] md:leading-[25px] text-[#282529] mt-3">
                 The students will get a recognized certificate which will be similar of traditional
                 program, which will help you get admission for higher studies or upgrading prospects at
                 higher professional roles.

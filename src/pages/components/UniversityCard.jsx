@@ -2,6 +2,7 @@
 
 import { useMemo } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 // import { useSelectionStore } from '@/store/selectedStore'; // React store (Zustand/Context equivalent)
 
 export default function UniversityCard({
@@ -38,13 +39,15 @@ console.log("card" ,card)
     }, [index, admissionClosing]);
 
     return (
-        <div className="bg-white w-full h-full rounded-2xl shadow-md relative border border-neutral-200 flex flex-col hover:scale-105 transition-all hover:shadow-[0px_0px_15px_#c2c2c2]">
+        <div className="bg-white w-full h-full rounded-2xl  shadow-md relative border border-neutral-200 flex flex-col hover:scale-105 transition-all hover:shadow-[0px_0px_15px_#c2c2c2]">
 
             {/* University Image */}
             <div className="relative">
-                <img
-                    src={card.cover_image}
+                <Image
+                    src='/images/cambridge.png'
                     alt={universityName} 
+                    width={200}
+                    height={600}
                     className="w-full md:h-[11.563rem] object-cover p-2 rounded-2xl"
                 />
 
@@ -70,7 +73,7 @@ console.log("card" ,card)
             <div className="p-4 flex flex-col flex-grow z-10">
 
                 <div className="text-base font-bold text-black mb-2 line-clamp-1">
-                    {universityName}
+                    {card.name}
                 </div>
 
                 {/* Rating */}
@@ -129,7 +132,7 @@ console.log("card" ,card)
 
             {/* View Details */}
 
-            <Link href="/university/aaa" >
+            <Link href={`/university/${card.slug}`}>
             <button
                 className="absolute w-[7rem] h-[1.4rem] text-[0.75rem] -bottom-4 left-1/2 -translate-x-1/2 bg-[#EC1E24] text-white px-4 rounded-full hover:bg-red-600 transition-colors font-medium shadow-lg z-30"
             >

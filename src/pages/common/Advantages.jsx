@@ -45,7 +45,7 @@ function Advantages() {
 <Heading title="NMIMS CDOE Advantages" />
 
 
-                <p className="text-[16px] text-[#363535] font-poppins">
+                <p className="text-[17px] text-[#363535] font-poppins">
                     The NMIMS CDOE offers a variety of advantages and benefits, helping
                     students transform their lives and careers. These advantages are:
                 </p>

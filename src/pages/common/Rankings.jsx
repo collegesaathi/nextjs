@@ -18,7 +18,7 @@ function Ranking() {
 
 <Heading title={"Rankings of NMIMS CDOE "} /> 
 
-                <p className="text-[16px] font-medium text-[#363535] font-poppins">
+                <p className="text-[17px] font-[400] text-[#363535] font-poppins">
                     <strong>NMIMS CDOE</strong> has earned several prestigious rankings and awards that
                     highlight its commitment to delivering quality online education across the globe.
                     Below is an overview of the key achievements:

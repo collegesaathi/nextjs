@@ -102,7 +102,7 @@ function Approvals() {
     };
     return (<>
 
-        <div className="flex justify-between items-center px-6 mt-[50px]" id="approvals-section">
+        <div className=" justify-between items-center px-6 mt-[50px]" id="approvals-section">
             {/* <Heading title={"Approvals and Accreditations"} />
             <div className="flex flex-wrap items-center justify-end md:space-x-4">
                 <div className={`w-[${progressBarTotalWidth}] h-1.5 bg-gray-300 rounded-full overflow-hidden`}>
@@ -175,6 +175,15 @@ function Approvals() {
         onPrev={navigatePrev}
   onNext={navigateNext}
       />
+
+
+<p className="text-[17px] font-poppins font-[400] text-[#363535] mb-6 font-poppins">
+              
+    The online courses from the<strong>NMIMS CDOE</strong>  have gained high popularity and is supported by 
+                    various approvals/accreditations, which add to their value. These approvals and accreditations
+                     are proof of the best education
+                     quality and fair educational policies. These accreditations are:
+                </p>
         </div>
 
 

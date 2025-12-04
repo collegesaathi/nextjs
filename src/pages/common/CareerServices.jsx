@@ -101,13 +101,13 @@ export default function CareerServices() {
 
 
     return (
-        <section className="mt-[50px] px-6">
+        <section className="mt-[50px] px-6" id="career-services-section">
             {/* Desktop */}
             <div className="">
 
                 <BackNext
 
-                    title="NMIMS CDOE Hiring and Placement Partners"
+                    title="NMIMS Career Services "
 
                     progress={progress}
                     isBeginning={isBeginning}

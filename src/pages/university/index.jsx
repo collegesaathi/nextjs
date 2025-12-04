@@ -446,7 +446,7 @@ const [loadingUniversities, setLoadingUniversities] = useState(true);
 
                         </div>
                         <div className="w-full lg:w-2/1">
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3  ">
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 gap-y-10  ">
                             {universities?.map((card, index) => {
     console.log("CARD:", card);
     return <UniversityCard card={card} index={index} key={index} />;

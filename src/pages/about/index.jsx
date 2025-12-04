@@ -22,7 +22,7 @@ export default function Index() {
 
             </button>
 
-            <Popup isOpen={IsOpen} onClose={handleClose} size={"max-w-full"} height={"max-h-full"}>
+            <Popup isOpen={IsOpen} onClose={handleClose} size={"max-w-full"} height={"max-h-50%"}>
                 <div className="w-full flex flex-col items-center py-6">
 
                     {/* TOP TAB BUTTONS */}

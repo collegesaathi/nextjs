@@ -42,7 +42,7 @@ function Index() {
                             <Aboutdetails />
                              <CourseFees />
                              <Approvals />
-                            <PlacementPartners />
+                       
                             <Ranking />
                             <CoursesSwiper />
                            <Advantages />
@@ -51,6 +51,7 @@ function Index() {
                               <ExaminationPattern />
                           <Financial />
                             <UniversityCampusCarousel />
+                            <PlacementPartners />
                            <CareerServices />
                            <StepsSection />
                                <FAQSection />

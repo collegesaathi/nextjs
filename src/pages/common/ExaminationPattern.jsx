@@ -9,7 +9,7 @@ export default function ExaminationPattern() {
 
       <Heading title="NMIMS CDOE Examination Pattern" />
 
-      <p className="font-poppins text-[15px] md:text-[16px] leading-[22px] md:leading-[25px] text-[#282529]">
+      <p className="font-poppins text-[17px] md:text-[17px] leading-[22px] md:leading-[25px] text-[#282529]">
         NMIMS Online courses are conducted with two different parts, which are internal
         assessments and end term examinations.
       </p>
@@ -34,7 +34,7 @@ export default function ExaminationPattern() {
 
         {/* Right Content */}
         <div className="w-full lg:w-[300px]">
-          <h3 className="font-poppins font-bold text-[22px] md:text-[26px] text-[#282529] mb-4">
+          <h3 className="font-poppins font-bold text-[22px] md:text-[28px] text-[#282529] mb-4">
             Internal Assessment
           </h3>
 
@@ -50,7 +50,7 @@ export default function ExaminationPattern() {
 
         {/* Left Content */}
         <div className="w-full lg:w-[310px]">
-          <h3 className="font-poppins font-bold text-[22px] md:text-[26px] text-[#282529] mb-4">
+          <h3 className="font-poppins font-bold text-[22px] md:text-[28px] text-[#282529] mb-4">
             End-term Exams
           </h3>
 
