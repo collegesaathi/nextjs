@@ -11,6 +11,10 @@ class Listing extends Component {
     return Api.get("/admin/universities",);
   }
 
+    async Univeristy() {
+    return Api.get("/all/universities",);
+  }
+
   render() {
     return (
       <div>

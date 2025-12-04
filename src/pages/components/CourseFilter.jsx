@@ -1,10 +1,13 @@
 'use client';
 
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState,useEffect } from "react";
 import clsx from "clsx";
+import Listing from "@/pages/api/Listing";
 import { Search, ChevronLeft } from "lucide-react";
 import { IoSchoolOutline } from "react-icons/io5";
 import { useFilterStore } from "@/store/filterStore";
+import { Loader } from "lucide-react";
+
 
 export default function CourseFilter() {
   // Zustand states
@@ -35,61 +38,103 @@ const setCurrentView = useFilterStore(s => s.setCurrentCourseView);
   // UI-only
   // const [currentView, setCurrentView] = useState("main");
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [courseData, setCourseData] = useState({});
+const [loading, setLoading] = useState(true);
 
-  const courseData = {
-    "PG Courses": {
-      icon: IoSchoolOutline,
-      subItems: ["MBA", "M.Com", "MCA", "M.Sc"],
-      specializations: {
-        "MBA": ["Finance", "Marketing", "Human Resources", "Operations", "International Business"],
-        "M.Com": ["Advanced Accounting", "Financial Managment", "Taxation", "Auditing"],
-      }
-    },
 
-    "UG Courses": {
-      icon: IoSchoolOutline,
-      subItems: ["BBA", "B.Com", "BCA", "BAJMC"],
-      specializations: {
-        "BBA": ["Financial Managment", "Banking And Insurance", "Digital Marketing", "Enterpreneurship", "Hospital Mangment"],
-        "B.Com": ["Accounting & Finance", "Banking & Insurance", "Taxation", "Corporate Accounting", "Business Analytics"]
-      }
-    },
 
-    "Executive Programms": {
-      icon: IoSchoolOutline,
-      subItems: ["Diploma", "Certification"],
-      specializations: {
-        "Diploma": ["Web Development", "Graphic Design"],
-        "Certification": ["Python", "JavaScript", "Data Science"]
-      }
-    },
 
-    "Certifications": {
-      icon: IoSchoolOutline,
-      subItems: ["Diploma", "Certification"],
-      specializations: {
-        "Diploma": ["Web Development", "Graphic Design"],
-        "Certification": ["Python", "JavaScript", "Data Science"]
-      }
-    }
-  };
+const fetchcourse = async () => {
+  setLoading(true);
+  try {
+    const main = new Listing();
+    const response = await main.Univeristy();
+    console.log("Full course API:", response);
+
+    const categories = response?.data?.data?.categories || [];
+    console.log("dfb",categories)
+
+    const formatted = {};
+
+    categories.forEach(cat => {
+      formatted[cat.name] = {
+        icon: IoSchoolOutline,
+        subItems: cat.courses?.map(c => c.name) || [],
+        specializations: {} 
+      };
+    });
+
+    setCourseData(formatted);
+  } catch (error) {
+    console.error("Error fetching:", error);
+  } finally {
+    setLoading(false);
+  }
+};
+
+
+useEffect(() => {
+  fetchcourse();
+}, []);
+
+
+
+  // const courseData = {
+  //   "PG Courses": {
+  //     icon: IoSchoolOutline,
+  //     subItems: ["MBA", "M.Com", "MCA", "M.Sc"],
+  //     specializations: {
+  //       "MBA": ["Finance", "Marketing", "Human Resources", "Operations", "International Business"],
+  //       "M.Com": ["Advanced Accounting", "Financial Managment", "Taxation", "Auditing"],
+  //     }
+  //   },
+
+  //   "UG Courses": {
+  //     icon: IoSchoolOutline,
+  //     subItems: ["BBA", "B.Com", "BCA", "BAJMC"],
+  //     specializations: {
+  //       "BBA": ["Financial Managment", "Banking And Insurance", "Digital Marketing", "Enterpreneurship", "Hospital Mangment"],
+  //       "B.Com": ["Accounting & Finance", "Banking & Insurance", "Taxation", "Corporate Accounting", "Business Analytics"]
+  //     }
+  //   },
+
+  //   "Executive Programms": {
+  //     icon: IoSchoolOutline,
+  //     subItems: ["Diploma", "Certification"],
+  //     specializations: {
+  //       "Diploma": ["Web Development", "Graphic Design"],
+  //       "Certification": ["Python", "JavaScript", "Data Science"]
+  //     }
+  //   },
+
+  //   "Certifications": {
+  //     icon: IoSchoolOutline,
+  //     subItems: ["Diploma", "Certification"],
+  //     specializations: {
+  //       "Diploma": ["Web Development", "Graphic Design"],
+  //       "Certification": ["Python", "JavaScript", "Data Science"]
+  //     }
+  //   }
+  // };
+
 
   const filters = useMemo(() => {
     return Object.keys(courseData).map((name) => ({
       name,
-      icon: courseData[name]?.icon,
+      icon: IoSchoolOutline,
       hasSubItems: courseData[name]?.subItems?.length > 0,
     }));
-  }, []);
+  }, [courseData]);
+  
 
   // Search filtered list
   const filtered = useMemo(() => {
     const q = courseSearchQuery.toLowerCase();
     return filters.filter(f =>
       f.name.toLowerCase().includes(q) ||
-      courseData[f.name].subItems.some(s => s.toLowerCase().includes(q))
+      courseData[f.name]?.subItems?.some(s => s.toLowerCase().includes(q))
     );
-  }, [courseSearchQuery, filters]);
+  }, [courseSearchQuery, filters, courseData]);
 
   // Navigation animations
   function transition(to) {
@@ -155,11 +200,12 @@ const setCurrentView = useFilterStore(s => s.setCurrentCourseView);
         {/* MAIN VIEW */}
         {currentView === "main" && (
           <div className="space-y-1 pb-3">
-            {filtered.map((f, i) => {
+            
+            {filtered && filtered?.map((f) => {
               const Icon = f.icon;
 
               return (
-                <div key={i} className="relative px-2">
+                <div key={f.name} className="relative px-2">
                   <div
                     onClick={() => handleFilterClick(f.name)}
                     className={clsx(

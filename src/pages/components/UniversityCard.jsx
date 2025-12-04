@@ -15,8 +15,9 @@ export default function UniversityCard({
     admissionClosing,
     logoUrl,
     index,
+    card
 }) {
-
+console.log("card" ,card)
     //   const { selectedItems, toggleSelection } = useSelectionStore();
     const selectedItems = ""
     const isSelected = selectedItems;
@@ -42,7 +43,7 @@ export default function UniversityCard({
             {/* University Image */}
             <div className="relative">
                 <img
-                    src={imageUrl}
+                    src={card.cover_image}
                     alt={universityName} 
                     className="w-full md:h-[11.563rem] object-cover p-2 rounded-2xl"
                 />
@@ -85,7 +86,7 @@ export default function UniversityCard({
 
                 {/* Features */}
                 <div className="flex-grow">
-                    {features.map((feature, i) => (
+                    {features?.map((feature, i) => (
                         <div
                             key={i}
                             className="flex items-center text-neutral-700 text-[0.75rem] mb-1"

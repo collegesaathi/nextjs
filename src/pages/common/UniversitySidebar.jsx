@@ -30,7 +30,7 @@ export default function UniversitySidebar() {
     { label: "Campus Locations", icon: "/images/university/sidebar/campus.svg", activeIcon: "/images/university/sidebar/active/campus.svg" },
     { label: "Placement Partners", icon: "/images/university/sidebar/placement.svg", activeIcon: "/images/university/sidebar/active/placement.svg" },
     // { label: "Career Services", icon: "/images/university/sidebar/career.svg", activeIcon: "/images/university/sidebar/active/career.svg" },
-    // { label: "Admission Process", icon: "/images/university/sidebar/admission.svg", activeIcon: "/images/university/sidebar/active/admission.svg" },
+    { label: "Admission Process", icon: "/images/university/sidebar/admission.svg", activeIcon: "/images/university/sidebar/active/admission.svg" },
     { label: "FAQ", icon: "/images/university/sidebar/frequently.svg", activeIcon: "/images/university/sidebar/active/frequently.svg" },
     { label: "Similar Universities", icon: "/images/university/sidebar/similar.svg", activeIcon: "/images/university/sidebar/active/similar.svg" },
     { label: "Universities Comparison", icon: "/images/university/sidebar/universities.svg", activeIcon: "/images/university/sidebar/active/universities.svg" },
