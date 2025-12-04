@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { IoCloseSharp } from "react-icons/io5";
 
-const Popup = ({ isOpen, onClose, children, size, title }) => {
+const Popup = ({ isOpen, onClose, children, size, title ,height }) => {
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
@@ -19,18 +19,15 @@ const Popup = ({ isOpen, onClose, children, size, title }) => {
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-gray-900/20 z-50 px-3">
       <div className={`bg-white rounded-lg w-full shadow-lg ${size}`}>
-        <div className="p-4 text-gray-800 overflow-y-auto max-h-[80vh] relative">
+        <div className={`p-4 text-gray-800 overflow-y-auto max-h-full ${height} relative`}>
           <div className="flex items-center justify-between mb-4 p-2">
-             <h3 className="text-[30px] font-semibold text-red-600">{title}</h3>
+            <h3 className="text-[30px] font-semibold text-red-600">{title}</h3>
             <IoCloseSharp
               size={30}
               className="cursor-pointer text-red-600"
               onClick={onClose}
             />
           </div>
-
-
-
           {children}
         </div>
       </div>

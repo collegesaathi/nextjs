@@ -100,7 +100,7 @@ export default function PlacementPartners() {
                   />
                 </div>
 
-                <p className="mt-3 text-[15px] sm:text-[16px] font-medium text-[#363535] font-poppins text-center lg:text-left">
+                <p className="mt-3 text-[15px] md:text-[16px] font-medium text-[#363535] font-poppins text-center ">
                   {partner.name}
                 </p>
               </div>

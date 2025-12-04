@@ -39,7 +39,7 @@ function OnlineSection({ formData, handleChange, onlines, setOnlines, handleQuil
                 <input
                     type="text"
                     name="onlinetitle"
-                    value={formData.onlinetitle}
+                    value={formData.title}
                     onChange={(e) => {
                         if (e.target.value.length <= 50) handleChange(e);
                     }}
@@ -76,8 +76,8 @@ function OnlineSection({ formData, handleChange, onlines, setOnlines, handleQuil
                             <input
                                 type="text"
                                 disabled={onlines?._id}
-                                value={onlines.question}
-                                onChange={(e) => handleOnlineChange(index, 'onlines', e.target.value)}
+                                value={onlines.title}
+                                onChange={(e) => handleOnlineChange(index, 'title', e.target.value)}
                                 placeholder="Enter title"
                                 className="w-full bg-[#F4F6F8] text-[#727272] border border-[#F4F6F8] rounded-[10px] px-4 py-2 focus:outline-none"
                             />

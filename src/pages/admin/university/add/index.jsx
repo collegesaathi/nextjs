@@ -21,6 +21,7 @@ function Index() {
     ]);
 
     const [services, setServices] = useState([{ title: "", content: "", image: null, icon: null }]);
+    console.log("services", services)
 
     const [selectedApprovals, setSelectedApprovals] = useState([]);
 
@@ -118,6 +119,8 @@ function Index() {
         }
     ]);
 
+    console.log("patterns", patterns)
+
     const [facts, setFacts] = useState([
         {
             patternName: "",
@@ -134,15 +137,8 @@ function Index() {
         setCampusList(list);
     };
 
-    const handleCampusImage = (index, file) => {
-        const reader = new FileReader();
-        reader.onloadend = () => {
-            const list = [...campusList];
-            list[index].image = reader.result;
-            setCampusList(list);
-        };
-        reader.readAsDataURL(file);
-    };
+
+
 
     const addCampus = () => {
         setCampusList([...campusList, { name: "", image: "" }]);
@@ -178,9 +174,13 @@ function Index() {
         onlinetitle: "",
         onlinedesc: "",
         patterndescription: "",
-        patternname: ""
+        patternname: "",
+        factsname: "",
+        financialdescription: "",
+        financialname: "",
     });
 
+    console.log("formData", formData)
     console.log("formData", formData)
 
     const handleQuillChange = (field, value) => {
@@ -239,58 +239,115 @@ function Index() {
     };
 
     // ✅ ADD UNIVERSITY
-   const handleAdd = async (e) => {
-    console.log("Hello");
-    e.preventDefault();
+    const handleAdd = async (e) => {
+        console.log("Hello");
+        e.preventDefault();
 
-    if (loading) return;
-    setLoading(true);
+        if (loading) return;
+        setLoading(true);
 
-    try {
-        const main = new Listing();
-        const payload = new FormData();
-        payload.append("slug", formData.slug);
-        payload.append("name", formData.name);
-        payload.append("position", formData.position);
-        payload.append("about_title", formData.about_title);
-        payload.append("about_desc", formData.about_desc);
-        payload.append("icon", formData.icon);
-        payload.append("cover_image", formData.cover_image);
-        payload.append("advantages", JSON.stringify(advantages));
-        payload.append("services", JSON.stringify(services));
-        payload.append("fees", JSON.stringify(fees));
-        payload.append("faqs", JSON.stringify(faqs));
-        payload.append("patterns", JSON.stringify(patterns));
-        payload.append("facts", JSON.stringify(facts));
-        payload.append("onlines", JSON.stringify(onlines));
-        payload.append("campusList", JSON.stringify(campusList));
-        payload.append("approvals", JSON.stringify(selectedApprovals));
-        payload.append("partners", JSON.stringify(selectedPartners));
-        payload.append("patternname", JSON.stringify(patterns.map(p => p.patternName)));
-        payload.append("patterndescription", JSON.stringify(patterns.map(p => p.description)));
-        payload.append("onlinedesc", JSON.stringify(onlines.map(o => o.content)));
-        // ✅ DEBUG
-        for (let pair of payload.entries()) {
-            console.log(pair[0], pair[1]);
+        try {
+            const main = new Listing();
+            const payload = new FormData();
+            payload.append("slug", formData.slug);
+            payload.append("name", formData.name);
+            payload.append("position", formData.position);
+            payload.append("about_title", formData.about_title);
+            payload.append("about_desc", formData.about_desc);
+            payload.append("icon", formData.icon);
+            payload.append("cover_image", formData.cover_image);
+            payload.append("descriptions", JSON.stringify(formData.descriptions));
+            payload.append("advantages", JSON.stringify(advantages));
+            payload.append("services", JSON.stringify(services));
+            payload.append("fees", JSON.stringify(fees));
+            payload.append("faqs", JSON.stringify(faqs));
+            payload.append("facts", JSON.stringify(facts));
+            payload.append("approvals", JSON.stringify(selectedApprovals));
+            payload.append("partners", JSON.stringify(selectedPartners));
+            payload.append("patternname", formData.patternname);
+            payload.append("patterndescription", formData.patterndescription);
+            payload.append("onlinedesc", formData.onlinedesc);
+            payload.append("approvals_name", formData.approvals_name);
+            payload.append("approvals_desc", formData.approvals_desc);
+            payload.append("rankings_description", formData.rankings_description);
+            payload.append("rankings_name", formData.rankings_name);
+            payload.append("advantagesname", formData.advantagesname);
+            payload.append("advantagesdescription", formData.advantagesdescription);
+            payload.append("factsname", formData.factsname);
+            payload.append("certificatename", formData.certificatename);
+            payload.append("certificatedescription", formData.certificatedescription);
+            payload.append("certificatemage", formData.certificatemage);
+            const cleanPatterns = patterns.map(item => ({
+                patternName: item.patternName,
+                percentage: item.percentage,
+                description: item.description
+            }));
+            payload.append("patterns", JSON.stringify(cleanPatterns));
+            patterns.forEach((item, index) => {
+                if (item.image) {
+                    payload.append(`patternsimages[${index}]`, item.image);
+                }
+            });
+            payload.append("financialname", formData.financialname);
+            payload.append("financialdescription", formData.financialdescription);
+            const campusListmanage = campusList.map(item => ({
+                name: item.name,
+            }));
+            payload.append("campusList", JSON.stringify(campusListmanage));
+            campusList.forEach((item, index) => {
+                if (item.image) {
+                    payload.append(`campusList[${index}]`, item.image);
+                }
+            });
+            payload.append("partnersname", formData.partnersname);
+            payload.append("partnersdesc", formData.partnersdesc);
+            payload.append("servicetitle", formData.servicetitle);
+            payload.append("servicedesc", formData.servicedesc);
+            payload.append("onlinetitle", formData.onlinetitle);
+            payload.append("onlines", JSON.stringify(onlines));
+
+            const cleanonlines = onlines.map(item => ({
+                title: item.title,
+                content: item.content
+            }));
+            payload.append("onlines", JSON.stringify(cleanonlines));
+
+            const cleanServices = services.map(item => ({
+                title: item.title,
+                content: item.content
+            }));
+            payload.append("servcies", JSON.stringify(cleanServices));
+            services.forEach((item, index) => {
+                if (item.image) {
+                    payload.append(`servicesimages[${index}]`, item.image);
+                }
+            });
+            services.forEach((item, index) => {
+                if (item.image) {
+                    payload.append(`servicesicon[${index}]`, item.icon);
+                }
+            });
+            for (let pair of payload.entries()) {
+                console.log(pair[0], pair[1]);
+            }
+
+            // ✅ IMPORTANT FIX
+            const response = await main.AdminUniversityAdd(payload);
+
+            if (response?.data?.status) {
+                toast.success(response.data.message);
+                setPreview(null);
+            } else {
+                toast.error(response.data.message);
+            }
+
+        } catch (error) {
+            console.error(error);
+            toast.error("Something went wrong");
         }
 
-        // ✅ IMPORTANT FIX
-        const response = await main.AdminUniversityAdd(payload);
-
-        if (response?.data?.status) {
-            toast.success(response.data.message);
-            setPreview(null);
-        } else {
-            toast.error(response.data.message);
-        }
-
-    } catch (error) {
-        console.error(error);
-        toast.error("Something went wrong");
-    }
-
-    setLoading(false);
-};
+        setLoading(false);
+    };
 
 
 
@@ -967,8 +1024,7 @@ function Index() {
                                     </label>
                                     <input
                                         type="file"
-                                        accept="image/*"
-                                        onChange={(e) => handleCampusImage(index, e.target.files[0])}
+                                        onChange={(e) => handleCampusChange(index, e.target.files[0])}
                                         className="w-full bg-white text-[#727272] border rounded-[10px] px-4 py-2 focus:outline-none mb-3 "
                                     />
 
