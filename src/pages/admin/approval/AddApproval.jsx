@@ -42,7 +42,6 @@ export default function AddApproval({ IsEdit, Id, fetch, item }) {
         }));
     };
 
-    // ⭐ Add & Edit API (same code)
     const onSubmit = async () => {
         try {
             setLoading(true);
@@ -61,7 +60,7 @@ export default function AddApproval({ IsEdit, Id, fetch, item }) {
             }
             if (res?.data) {
                 toast.success(res.data.message);
-                fetch(); // refresh parent table
+                fetch(); 
                 handleClose();
             } else {
                 toast.error(res?.data?.message || "Something went wrong.");
@@ -122,7 +121,6 @@ export default function AddApproval({ IsEdit, Id, fetch, item }) {
                             required
                         />
                     </div>
-
                     {/* Image Upload */}
                     <div className="mb-5">
                         <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">Image</label>
