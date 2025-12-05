@@ -41,63 +41,64 @@ export default function StepsSection() {
             easing: "ease-out-quart",
         });
     }, []);
-
     return (
-        <section className="py-16 px-6" id="admission-process-section">
-        <div className="w-full  mx-auto flex flex-col lg:flex-row gap-8 md:gap-[10px] items-center">
-            
-            {/* Left Text */}
-            <div className="lg:w-1/2">
-                <Heading title="NMIMS Online MBA Admission Process " />
-                <p className="text-gray-800 text-sm font-sans">
-                    Applying to <strong>SVKM's NMIMS CODE</strong> is a simple and smooth
-                    process. There are a few simple steps to follow:
-                </p>
-            </div>
-    
-            {/* Steps Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-20 ">
-    {steps.map((step) => {
-        const isActive = activeStep === step.id;
+        <div className="mt-[20px] md:mt-[50px] bg-[#FCF0EE]">
+            <section className="w-full px-6 py-6 mx-auto" id="admission-process-section">
+                <div className="max-w-[1100px] mx-auto">
+                    {/* Left Text */}
+                    <div className="w-full flex flex-col lg:flex-row gap-8 md:gap-[10px]  mt-[20px] justify-left items-left">
 
-        return (
-            <div
-                key={step.id}
-                onClick={() => setActiveStep(step.id)}
-                className={`
-                    w-[230px] h-auto
-                    relative p-6 rounded-2xl shadow-2xl cursor-pointer
-                    transition-all duration-300
-                    ${isActive ? "bg-[#ED2024] text-white" : "bg-white text-black"}
-                `}
-            >
-                <div
-                    className={`
-                        w-12 h-12 flex items-center justify-center rounded-full 
-                        absolute -top-6 -left-6 text-[20px] font-bold shadow-md
-                        ${isActive ? "bg-white text-[#ED2024]" : "bg-gray-400 text-white"}
-                    `}
-                >
-                    {step.id}
+
+                        <div className="w-full md:max-w-[350px] pt-[120px] px-8">
+                            <div className="flex flex-col justify-center items-start text-left">
+                                <Heading title="NMIMS Online MBA Admission Process" />
+                            </div>
+
+                            <p className="text-gray-800 text-sm font-sans text-left">
+                                To get admission to any online programs, the students can directly contact
+                                collegesathi.com. Other than that, the candidate needs to follow the
+                                following information:
+                            </p>
+                        </div>
+
+                        {/* Right Steps Grid */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                            {steps.map((step) => (
+                                <div
+                                    key={step.id}
+                                    onClick={() => setActiveStep(step.id)}
+                                    className="
+                w-[230px] h-auto
+                relative p-6 rounded-2xl cursor-pointer
+                transition-all duration-300
+                hover:bg-[#ED2024] hover:text-white
+                bg-white text-black
+              "
+                                >
+                                    <div
+                                        className="
+                  w-12 h-12 flex items-center justify-center rounded-full 
+                  absolute -top-6 -left-6 text-[20px] font-bold shadow-md
+                  hover:bg-white hover:text-[#ED2024] bg-[#ED2024] text-white
+                "
+                                    >
+                                        {step.id}
+                                    </div>
+
+                                    <h3 className="text-lg font-semibold mb-2">
+                                        {step.title}
+                                    </h3>
+
+                                    <p className="text-sm leading-relaxed">
+                                        {step.description}
+                                    </p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
                 </div>
-
-                <h3
-                    className={`text-lg font-semibold mb-2
-                    ${isActive ? "text-white" : "text-gray-900"}`}
-                >
-                    {step.title}
-                </h3>
-
-                <p className="text-sm leading-relaxed">
-                    {step.description}
-                </p>
-            </div>
-        );
-    })}
-</div>
-
+            </section>
         </div>
-    </section>
-    
+
     );
 }

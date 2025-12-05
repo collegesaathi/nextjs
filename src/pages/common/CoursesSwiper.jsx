@@ -8,11 +8,11 @@ import Image from "next/image";
 
 export default function CoursesSwiper() {
   const swiperRef = useRef(null);
-  
 
-    const [progress, setProgress] = useState(0);
-    const [isBeginning, setIsBeginning] = useState(true);
-    const [isEnd, setIsEnd] = useState(false);
+
+  const [progress, setProgress] = useState(0);
+  const [isBeginning, setIsBeginning] = useState(true);
+  const [isEnd, setIsEnd] = useState(false);
 
   const courses = [
     { title: "Executive MBA", image: "/images/university/course/1.png" },
@@ -27,81 +27,81 @@ export default function CoursesSwiper() {
 
 
 
-    const updateProgress = (swiper) => {
-        if (!swiper) return;
+  const updateProgress = (swiper) => {
+    if (!swiper) return;
 
-        const totalCards = courses.length;
-        const visibleSlides = swiper.params.slidesPerView;
+    const totalCards = courses.length;
+    const visibleSlides = swiper.params.slidesPerView;
 
-        if (visibleSlides === 4) {
-            setIsBeginning(false);
-        } else {
-            setIsBeginning(swiper.isBeginning);
-        }
+    if (visibleSlides === 4) {
+      setIsBeginning(false);
+    } else {
+      setIsBeginning(swiper.isBeginning);
+    }
 
-        setIsEnd(swiper.isEnd);
+    setIsEnd(swiper.isEnd);
 
-        const currentVisibleEnd = swiper.activeIndex + visibleSlides;
+    const currentVisibleEnd = swiper.activeIndex + visibleSlides;
 
-        let progressValue = (currentVisibleEnd / totalCards) * 100;
+    let progressValue = (currentVisibleEnd / totalCards) * 100;
 
-        // Limit between 0–100
-        progressValue = Math.min(100, Math.max(0, progressValue));
+    // Limit between 0–100
+    progressValue = Math.min(100, Math.max(0, progressValue));
 
-        setProgress(progressValue);
-    };
+    setProgress(progressValue);
+  };
 
 
-    const navigatePrev = () => {
-        swiperRef.current?.slidePrev();
-    };
+  const navigatePrev = () => {
+    swiperRef.current?.slidePrev();
+  };
 
-    const navigateNext = () => {
-        swiperRef.current?.slideNext();
-    };
+  const navigateNext = () => {
+    swiperRef.current?.slideNext();
+  };
 
   return (
     <>
-      <div className="flex px-6 mt-[50px]" id="courses-section">
-   
+      <section className="w-full px-6 py-6 mx-auto" id="courses-section">
+        <div className="max-w-[1100px]">
+          <BackNext
 
-<BackNext
-                  
-                  title="NMIMS CODE: Courses"
-               
-                  progress={progress}
-                  isBeginning={isBeginning}
-                  isEnd={isEnd}
-                  onPrev={navigatePrev}
+            title="NMIMS CODE: Courses"
+
+            progress={progress}
+            isBeginning={isBeginning}
+            isEnd={isEnd}
+            onPrev={navigatePrev}
             onNext={navigateNext}
-                />
+          />
 
-   
-      </div>
-      <section className="px-6">
-        <Swiper
-          onSwiper={(swiper) => {
-            swiperRef.current = swiper;
-            updateProgress(swiper);
-        }}
-        onSlideChange={updateProgress}
-          slidesPerView={1}
-          spaceBetween={20}
-          breakpoints={{
-            640: { slidesPerView: 2, spaceBetween: 30 },
-            1024: { slidesPerView: 3, spaceBetween: 40 },
-          }}
-          className=""
-          style={{ scrollbarWidth: "none" }}
-        >
-          {courses.map((course, index) => (
-            <SwiperSlide key={index}>
-              <CourseCard course={course} />
-            </SwiperSlide>
-          ))}
-        </Swiper>
 
-        <EnquiryBox />
+          <section className="px-6">
+            <Swiper
+              onSwiper={(swiper) => {
+                swiperRef.current = swiper;
+                updateProgress(swiper);
+              }}
+              onSlideChange={updateProgress}
+              slidesPerView={1}
+              spaceBetween={20}
+              breakpoints={{
+                640: { slidesPerView: 2, spaceBetween: 30 },
+                1024: { slidesPerView: 3, spaceBetween: 40 },
+              }}
+              className=""
+              style={{ scrollbarWidth: "none" }}
+            >
+              {courses.map((course, index) => (
+                <SwiperSlide key={index}>
+                  <CourseCard course={course} />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+
+            <EnquiryBox />
+          </section>
+        </div>
       </section>
     </>
   );
@@ -150,7 +150,7 @@ function CourseCard({ course, mobile = false }) {
 function EnquiryBox() {
   return (
     <div className="w-full mx-auto mt-8 rounded-[18px] bg-gradient-to-br from-[#fef0f0] to-[#fbdbdc] p-4 sm:p-6 lg:p-8 grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
-      
+
       {/* Left Image on Desktop only */}
       <div className="hidden md:flex justify-center">
         <img

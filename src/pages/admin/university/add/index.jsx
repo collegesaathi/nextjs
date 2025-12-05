@@ -21,7 +21,6 @@ function Index() {
     ]);
 
     const [services, setServices] = useState([{ title: "", content: "", image: null, icon: null }]);
-    console.log("services", services)
 
     const [selectedApprovals, setSelectedApprovals] = useState([]);
 
@@ -119,7 +118,6 @@ function Index() {
         }
     ]);
 
-    console.log("patterns", patterns)
 
     const [facts, setFacts] = useState([
         {
@@ -136,9 +134,6 @@ function Index() {
         list[index][field] = value;
         setCampusList(list);
     };
-
-
-
 
     const addCampus = () => {
         setCampusList([...campusList, { name: "", image: "" }]);
@@ -180,8 +175,6 @@ function Index() {
         financialname: "",
     });
 
-    console.log("formData", formData)
-    console.log("formData", formData)
 
     const handleQuillChange = (field, value) => {
         setFormData((prev) => ({ ...prev, [field]: value }));
@@ -237,15 +230,14 @@ function Index() {
 
         }
     };
-
+    console.log(
+        "campusList", campusList
+    )
     // ✅ ADD UNIVERSITY
     const handleAdd = async (e) => {
-        console.log("Hello");
         e.preventDefault();
-
         if (loading) return;
         setLoading(true);
-
         try {
             const main = new Listing();
             const payload = new FormData();
@@ -266,7 +258,6 @@ function Index() {
             payload.append("partners", JSON.stringify(selectedPartners));
             payload.append("patternname", formData.patternname);
             payload.append("patterndescription", formData.patterndescription);
-            payload.append("onlinedesc", formData.onlinedesc);
             payload.append("approvals_name", formData.approvals_name);
             payload.append("approvals_desc", formData.approvals_desc);
             payload.append("rankings_description", formData.rankings_description);
@@ -296,22 +287,20 @@ function Index() {
             payload.append("campusList", JSON.stringify(campusListmanage));
             campusList.forEach((item, index) => {
                 if (item.image) {
-                    payload.append(`campusList[${index}]`, item.image);
+                    payload.append(`campusimages[${index}]`, item.image);
                 }
             });
             payload.append("partnersname", formData.partnersname);
             payload.append("partnersdesc", formData.partnersdesc);
             payload.append("servicetitle", formData.servicetitle);
             payload.append("servicedesc", formData.servicedesc);
+            payload.append("onlinedesc", formData.onlinedesc);
             payload.append("onlinetitle", formData.onlinetitle);
-            payload.append("onlines", JSON.stringify(onlines));
-
             const cleanonlines = onlines.map(item => ({
                 title: item.title,
                 content: item.content
             }));
             payload.append("onlines", JSON.stringify(cleanonlines));
-
             const cleanServices = services.map(item => ({
                 title: item.title,
                 content: item.content
@@ -408,7 +397,6 @@ function Index() {
     //         }
     //     }
     // }, [data]);
-    const data = ""
 
     const [activeTab, setActiveTab] = useState("card");
 
@@ -442,7 +430,6 @@ function Index() {
             setActiveTab(tabsData[currentIndex - 1].id);
         }
     };
-
 
     return (<>
         <AdminLayout>
@@ -511,7 +498,7 @@ function Index() {
 
 
                 <form
-                    onSubmit={data ? handleUpdate : handleAdd}
+                    onSubmit={ handleAdd}
                     className="  mt-10 px-3 sm:px-6 pb-3 sm:pb-6 bg-white space-y-2 sm:space-y-4"
                 >
                     {activeTab === "card" && (
@@ -996,7 +983,7 @@ function Index() {
                                 </button>
                             </div>
                             {/* MULTIPLE CAMPUS BLOCKS */}
-                            {campusList.map((campus, index) => (
+                            {campusList?.map((campus, index) => (
                                 <div key={index} className="border px-2  rounded-xl bg-gray-100 mb-2 ">
                                     {/* Name */}
                                     <label className="flex  justify-between  items-center block text-[#CC2828] font-medium mb-2">
@@ -1022,16 +1009,21 @@ function Index() {
                                     <label className="block text-[#CC2828] font-medium mb-2">
                                         Campus Image
                                     </label>
-                                    <input
+                                    {/* <input
                                         type="file"
                                         onChange={(e) => handleCampusChange(index, e.target.files[0])}
                                         className="w-full bg-white text-[#727272] border rounded-[10px] px-4 py-2 focus:outline-none mb-3 "
+                                    /> */}
+                                    <input
+                                        type="file"
+                                        accept="image/*"
+                                        onChange={(e) => handleCampusChange(index, "image", e.target.files[0])}
+                                        className="w-full bg-white text-[#727272] border rounded-[10px] px-4 py-2 focus:outline-none mb-3 "
                                     />
-
                                     {/* Preview */}
                                     {campus.image && (
                                         <img
-                                            src={campus.image}
+                                            src={campus.image.src}
                                             className="mt-3 mb-3 w-40 h-40 object-cover rounded-md border"
                                             alt="campus"
                                         />

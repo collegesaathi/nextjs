@@ -78,7 +78,7 @@ const FactsSection = ({ facts, setFacts }) => {
                             type="text"
                             value={item.factname}
                             onChange={(e) => handleFactsChange(index, "patternName", e.target.value)}
-                            placeholder="Enter Pattern Name"
+                            placeholder="Enter Facts Name"
                             className="w-full bg-[#F4F6F8] text-[#727272] border rounded-[10px] px-4 py-2"
                         />
                     </div>

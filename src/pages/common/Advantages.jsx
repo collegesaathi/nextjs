@@ -38,11 +38,8 @@ function Advantages() {
 
         <section className=" mt-[50px] px-6 " id="advantages-section">
             <div className="mb-8">
-                {/* <h2 className="text-[28px] font-semibold text-[#282529] font-poppins mb-4">
-                    NMIMS CDOE Advantages
-                </h2> */}
 
-<Heading title="NMIMS CDOE Advantages" />
+                <Heading title="NMIMS CDOE Advantages" />
 
 
                 <p className="text-[17px] text-[#363535] font-poppins">
@@ -62,7 +59,7 @@ function Advantages() {
                     </div>
 
                     {/* Rows */}
-                    {advantages.map((advantage, index) => (
+                    {advantages && advantages?.map((advantage, index) => (
                         <div key={index} className="flex w-full">
                             <div className="bg-white border-b-2 border-l-2 border-r-2 border-[#f47c80] p-4 font-poppins flex flex-col justify-center w-5/12 sm:w-4/12">
                                 <h3 className=" text-[11px] md:text-[17px] text-[#282529] mb-2">
@@ -77,7 +74,7 @@ function Advantages() {
 
                             <div className="bg-white border-b-2 border-r-2 border-[#f47c80] p-4 font-poppins w-7/12 sm:w-8/12">
                                 <div
-                                    className=" text-[11px] md:text-[17px] text-[#363535] leading-relaxed"
+                                    className=" text-[11px] md:text-[17px] font-[400] text-[#363535] leading-relaxed"
                                     dangerouslySetInnerHTML={{
                                         __html: advantage.description,
                                     }}

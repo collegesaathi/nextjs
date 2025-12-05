@@ -16,10 +16,10 @@ export default function UniversitySidebar() {
 
 
   const menuItems = [
-    { id: "About",  label: "About", icon:"/images/university/sidebar/about.svg", activeIcon: "/images/university/sidebar/about.svg" },
-    { id: "Fee",  label: "Fee", icon:"/images/university/sidebar/fee.svg", activeIcon: "/images/university/sidebar/active/fee.svg" },
-    { label: "Approvals", icon:"/images/university/sidebar/approvals.svg", activeIcon: "/images/university/sidebar/active/approvals.svg" },
-    { label: "Rankings", icon:"/images/university/sidebar/rankings.svg", activeIcon: "/images/university/sidebar/active/rankings.svg" },
+    { id: "About", label: "About", icon: "/images/university/sidebar/about.svg", activeIcon: "/images/university/sidebar/about.svg" },
+    { id: "Fee", label: "Fee", icon: "/images/university/sidebar/fee.svg", activeIcon: "/images/university/sidebar/active/fee.svg" },
+    { label: "Approvals", icon: "/images/university/sidebar/approvals.svg", activeIcon: "/images/university/sidebar/active/approvals.svg" },
+    { label: "Rankings", icon: "/images/university/sidebar/rankings.svg", activeIcon: "/images/university/sidebar/active/rankings.svg" },
     { label: "Courses", icon: "/images/university/sidebar/course.svg", activeIcon: "/images/university/sidebar/active/course.svg" },
     { label: "Advantages", icon: "/images/university/sidebar/advantages.svg", activeIcon: "/images/university/sidebar/active/advantages.svg" },
     { label: "Facts", icon: "/images/university/sidebar/facts.svg", activeIcon: "/images/university/sidebar/active/facts.svg" },
@@ -38,9 +38,9 @@ export default function UniversitySidebar() {
   ];
 
   const sectionIds = [
-    "about-section","fee-section", "approvals-section", "rankings-section", "courses-section", "advantages-section", "facts-section",
+    "about-section", "fee-section", "approvals-section", "rankings-section", "courses-section", "advantages-section", "facts-section",
     "certificate-section", "examination-section", "financial-aid-section", "loan-facilities-section", "campus-locations-section",
-    "placement-partners-section", "career-services-section", "admission-process-section", "faq-section", 
+    "placement-partners-section", "career-services-section", "admission-process-section", "faq-section",
     "similar-universities-section", "universities-comparison-section", "reviews-section"
   ];
 
@@ -72,10 +72,10 @@ export default function UniversitySidebar() {
   /* ---------- Swiper Navigation ---------- */
   const updateNav = (swiper) => {
     if (!swiper) return;
-  
+
     const maxTranslate = swiper.maxTranslate(); // negative number
     const currentTranslate = swiper.translate;  // current position
-  
+
     setCanSlidePrev(currentTranslate < 0);
     setCanSlideNext(currentTranslate > maxTranslate);
   };
@@ -83,9 +83,10 @@ export default function UniversitySidebar() {
   return (
     <>
       {/* ================= DESKTOP ================= */}
-      <aside
-  className="hidden lg:block sticky top-0 h-screen overflow-y-auto p-2 red-scroll"
->
+      
+      <div
+        className="hidden lg:block sticky top-0 h-screen overflow-y-auto p-2 red-scroll"
+      >
         <ul className="space-y-4">
           {menuItems.map((item, index) => (
             <li key={index}>
@@ -106,72 +107,72 @@ export default function UniversitySidebar() {
             </li>
           ))}
         </ul>
-      </aside>
+      </div>
 
       {/* ================= MOBILE ================= */}
       <div className="lg:hidden sticky top-0 z-50 bg-[#f9fafb] shadow-sm  py-2 
     flex items-center overflow-x-auto overflow-y-hidden whitespace-nowrap touch-pan-x no-scrollbar">
 
-  {/* Left Chevron */}
-  <button
-  disabled={!canSlidePrev}
-  onClick={() => {
-    mobileSwiperRef.current?.slidePrev();
-    updateNav(mobileSwiperRef.current);
-  }}
-  className={canSlidePrev ? "text-red-500" : "text-black opacity-40"}
->
-    <ChevronLeft size={14} />
-  </button>
-  <Swiper
-  modules={[FreeMode, Mousewheel, Keyboard]}
-  slidesPerView="auto"
-  freeMode={true}
-  spaceBetween={8}
-  onSwiper={(swiper) => {
-    mobileSwiperRef.current = swiper;
-    updateNav(swiper);
-  }}
-  onSlideChange={updateNav}
-  onProgress={updateNav}
-  onTouchMove={updateNav}
-  className="w-full"
-  style={{ scrollbarWidth: "none" }}
->
-
-    {menuItems.map((item, index) => (
-      <SwiperSlide key={index} className="!w-auto">
+        {/* Left Chevron */}
         <button
+          disabled={!canSlidePrev}
           onClick={() => {
-            setActiveItem(index);
-            scrollToSection(index);
+            mobileSwiperRef.current?.slidePrev();
+            updateNav(mobileSwiperRef.current);
           }}
-          className={`flex items-center gap-2 px-3 h-[22px] rounded-full border text-xs whitespace-nowrap 
-            ${activeItem === index ? "bg-[#ec1e24] text-white border-[#ec1e24]" : "border-gray-300"}`}
+          className={canSlidePrev ? "text-red-500" : "text-black opacity-40"}
         >
-          <div className={`w-[18px] h-[18px] rounded-full flex items-center justify-center 
-            ${activeItem === index ? "bg-white" : "bg-gray-200"}`}>
-            <img src={item.icon} className="w-3 h-3" alt="" />
-          </div>
-          {item.label}
+          <ChevronLeft size={14} />
         </button>
-      </SwiperSlide>
-    ))}
-  </Swiper>
+        <Swiper
+          modules={[FreeMode, Mousewheel, Keyboard]}
+          slidesPerView="auto"
+          freeMode={true}
+          spaceBetween={8}
+          onSwiper={(swiper) => {
+            mobileSwiperRef.current = swiper;
+            updateNav(swiper);
+          }}
+          onSlideChange={updateNav}
+          onProgress={updateNav}
+          onTouchMove={updateNav}
+          className="w-full"
+          style={{ scrollbarWidth: "none" }}
+        >
 
-  {/* Right Chevron */}
-  <button
-  disabled={!canSlideNext}
-  onClick={() => {
-    mobileSwiperRef.current?.slideNext();
-    updateNav(mobileSwiperRef.current);
-  }}
-  className={canSlideNext ? "text-red-500" : "text-black opacity-40"}
->
-  <ChevronRight size={14} />
-</button>
+          {menuItems.map((item, index) => (
+            <SwiperSlide key={index} className="!w-auto">
+              <button
+                onClick={() => {
+                  setActiveItem(index);
+                  scrollToSection(index);
+                }}
+                className={`flex items-center gap-2 px-3 h-[22px] rounded-full border text-xs whitespace-nowrap 
+            ${activeItem === index ? "bg-[#ec1e24] text-white border-[#ec1e24]" : "border-gray-300"}`}
+              >
+                <div className={`w-[18px] h-[18px] rounded-full flex items-center justify-center 
+            ${activeItem === index ? "bg-white" : "bg-gray-200"}`}>
+                  <img src={item.icon} className="w-3 h-3" alt="" />
+                </div>
+                {item.label}
+              </button>
+            </SwiperSlide>
+          ))}
+        </Swiper>
 
-</div>
+        {/* Right Chevron */}
+        <button
+          disabled={!canSlideNext}
+          onClick={() => {
+            mobileSwiperRef.current?.slideNext();
+            updateNav(mobileSwiperRef.current);
+          }}
+          className={canSlideNext ? "text-red-500" : "text-black opacity-40"}
+        >
+          <ChevronRight size={14} />
+        </button>
+
+      </div>
 
 
 
