@@ -10,12 +10,12 @@ import AddApproval from "./AddApproval";
 function Index() {
     const [Loading, setLoading] = useState(false);
     const [approvalOptions, setapprovalOptions] = useState([]);
-    console.log("approvalOptions" ,approvalOptions)
+    console.log("approvalOptions", approvalOptions)
     const fetchApprovalandPartnerLists = async () => {
         setLoading(true);
         try {
             const main = new Listing();
-            const response = await main.ApprovalandPartners();
+            const response = await main.PlacementApproval();
             setapprovalOptions(response?.data?.data?.approvals || [])
             setLoading(false);
 
@@ -40,45 +40,52 @@ function Index() {
                         <h1 className="capitalize font-inter text-lg lg:text-2xl font-bold text-[#FF1B1B] tracking-[-0.04em] mb-6">
                             Manage Approvals
                         </h1>
-                      <AddApproval fetch={fetchApprovalandPartnerLists}/>
+                        <AddApproval fetch={fetchApprovalandPartnerLists} />
                     </div>
                     {Loading ? (
                         <Loader />
                     ) : (
-                        <div className="overflow-x-auto">
-                            <table className="min-w-full bg-white border rounded-lg shadow-sm">
-                                <thead>
-                                    <tr className="bg-gray-100 border-b">
-                                        <th className="p-3 text-left text-sm font-semibold text-gray-700">Index</th>
-                                        <th className="p-3 text-left text-sm font-semibold text-gray-700">Image</th>
-                                        <th className="p-3 text-left text-sm font-semibold text-gray-700">Title</th>
-                                        <th className="p-3 text-left text-sm font-semibold text-gray-700">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {approvalOptions && approvalOptions.map((item ,index) => (
-                                        <tr key={item.id} className="border-b hover:bg-gray-50 cursor-pointer">
-                                              <td className="p-3 text-sm font-medium">
-                                                {item.id}
-                                            </td>
-                                            <td className="p-3">
-                                                <img
-                                                    src={item.image}
-                                                    alt={item.title}
-                                                    className="w-[100px] h-[100px] object-cover"
-                                                />
-                                            </td>
-                                            <td className="p-3 text-sm font-medium">
-                                                {item.title}
-                                            </td>
-                                             <td className="p-3 text-sm font-medium relative flex justify-center items-center text-center">
-                                         <AddApproval item={item} fetch={fetchApprovalandPartnerLists} IsEdit={true}/>
-                                              <Delete step ={3} /> 
-                                            </td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            </table>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                            {approvalOptions?.map((partner) => (
+                                <div
+                                    key={partner.id}
+                                    className={`
+                                w-full h-[200px] shadow-md 
+                                ${partner.deleted_at ? "bg-gray-300" : "bg-[#0000000D]"}
+                                p-4 rounded-[20px] relative
+                                flex flex-col items-center justify-between
+                                transition-all duration-300 hover:shadow-xl
+                              `}
+                                >
+                                    {/* Edit & Delete Buttons */}
+                                    {!partner.deleted_at && (
+                                        <AddApproval
+                                            item={partner}
+                                            fetch={fetchApprovalandPartnerLists}
+                                            IsEdit={true}
+                                            Id={partner?.id}
+                                        />
+                                    )}
+                                    <Delete
+                                        Id={partner.id}
+                                        step={4}
+                                        fetch={fetchApprovalandPartnerLists}
+                                        deleteAt={partner.deleted_at}
+                                    />
+                                    {/* Image */}
+                                    <div className="bg-white w-[110px] h-[110px] rounded-[15px] flex items-center justify-center">
+                                        <img
+                                            src={partner.image}
+                                            alt={partner.title}
+                                            className="w-[80px] h-[80px] object-contain"
+                                        />
+                                    </div>
+                                    {/* Title */}
+                                    <p className="mt-3 text-[15px] md:text-[16px] font-medium text-[#363535] font-poppins text-center">
+                                        {partner.title}
+                                    </p>
+                                </div>
+                            ))}
                         </div>
                     )}
                 </div>

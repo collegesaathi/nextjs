@@ -31,6 +31,19 @@ class Listing extends Component {
   async UpdatePlacements(data) {
     return ApiallowFile.post("/placement/edit", data);
   }
+
+  async PlacementDelete(id) {
+    return Api.get(`/placement/delete/${id}`)
+  }
+  async PlacementApproval(data) {
+    return Api.get("/placement/approval", data);
+  }
+
+  async ApprovalDelete(id) {
+    return Api.get(`/approval/delete/${id}`)
+  }
+
+
   render() {
     return (
       <div>

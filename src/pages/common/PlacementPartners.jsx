@@ -88,7 +88,7 @@ export default function PlacementPartners() {
           style={{ scrollbarWidth: "none" }}
           className="py-4"
         >
-          {partners.map((partner, index) => (
+          {partners?.map((partner, index) => (
             <SwiperSlide key={index}>
               <div
                 className="w-full h-[170px] sm:h-[180px] lg:h-[202px] 

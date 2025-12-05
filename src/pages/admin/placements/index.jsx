@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import AdminLayout from "../common/AdminLayout";
 import Delete from "../common/Delete";
 import AddPlacements from "./AddPlacements";
+import Image from "next/image";
 
 function Index() {
     const [Loading, setLoading] = useState(false);
@@ -12,7 +13,8 @@ function Index() {
         setLoading(true);
         try {
             const main = new Listing();
-            const response = await main.ApprovalandPartners();
+            const response = await main.PlacementApproval();
+            console.log("response", response)
             setapprovalOptions(response?.data?.data?.placements || [])
             setLoading(false);
 
@@ -45,47 +47,51 @@ function Index() {
                     {Loading ? (
                         <Loader />
                     ) : (
-                        <div className="overflow-x-auto">
-                            <table className="min-w-full bg-white border rounded-lg shadow-sm">
-                                <thead>
-                                    <tr className="bg-gray-100 border-b">
-                                        <th className="p-3 text-left text-sm font-semibold text-gray-700">Index</th>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                            {approvalOptions?.map((partner) => (
+                                <div
+                                    key={partner.id}
+                                    className={`
+        w-full h-[200px] shadow-md 
+        ${partner.deleted_at ? "bg-gray-300" : "bg-[#0000000D]"}
+        p-4 rounded-[20px] relative
+        flex flex-col items-center justify-between
+        transition-all duration-300 hover:shadow-xl
+      `}
+                                >
+                                    {/* Edit & Delete Buttons */}
+                                    {!partner.deleted_at && (
+                                    <AddPlacements
+                                        item={partner}
+                                        fetch={fetchApprovalandPartnerLists}
+                                        IsEdit={true}
+                                        Id={partner?.id}
+                                    />
+                                    )}
+                                    <Delete
+                                        Id={partner.id}
+                                        step={3}
+                                        fetch={fetchApprovalandPartnerLists}
+                                        deleteAt={partner.deleted_at}
+                                    />
 
-                                        <th className="p-3 text-left text-sm font-semibold text-gray-700">Image</th>
-                                        <th className="p-3 text-left text-sm font-semibold text-gray-700">Title</th>
-                                        <th className="p-3 text-left text-sm font-semibold text-gray-700">Action</th>
+                                    {/* Image */}
+                                    <div className="bg-white w-[110px] h-[110px] rounded-[15px] flex items-center justify-center">
+                                        <img
+                                            src={partner.image}
+                                            alt={partner.title}
+                                            className="w-[80px] h-[80px] object-contain"
+                                        />
+                                    </div>
 
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {approvalOptions && approvalOptions.map((item) => (
-                                        <tr key={item.id} className="border-b hover:bg-gray-50 cursor-pointer">
-                                            
-                                            <td className="p-3 text-sm font-medium">
-                                                {item.id}
-                                            </td>
-                                            <td className="p-3">
-                                                <div className="w-full h-[200px] rounded-lg overflow-hidden  border">
-                                                    <img
-                                                        src={item.image}
-                                                        alt={item.title}
-                                                        className="w-50 h-50 object-contain"
-                                                    />
-                                                </div>
-                                            </td>
-
-                                            <td className="p-3 text-sm font-medium">
-                                                {item.title}
-                                            </td>
-                                            <td className="p-3 text-sm font-medium relative flex justify-center items-center text-center">
-                                                <AddPlacements item={item} fetch={fetchApprovalandPartnerLists} IsEdit={true} />
-                                                <Delete step={3} />
-                                            </td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            </table>
+                                    {/* Title */}
+                                    <p className="mt-3 text-[15px] md:text-[16px] font-medium text-[#363535] font-poppins text-center">
+                                        {partner.title}
+                                    </p>
+                                </div>
+                            ))}
                         </div>
+
                     )}
                 </div>
             </AdminLayout>

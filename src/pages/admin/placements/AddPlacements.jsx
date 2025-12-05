@@ -49,7 +49,7 @@ export default function AddPlacements({ IsEdit, Id, fetch, item }) {
             const main = new Listing();
             const data = new FormData();
             data.append("title", formData.title);
-            if(IsEdit){
+            if (IsEdit) {
                 data.append("id", item.id);
             }
             if (formData.image) data.append("image", formData.image);
@@ -77,12 +77,25 @@ export default function AddPlacements({ IsEdit, Id, fetch, item }) {
     return (
         <div className="flex flex-col">
             {/* Button */}
-            <button
-                onClick={toggleModal}
-                className="cursor-pointer text-white h-[30px] w-[30px] bg-[#FF1B1B] hover:bg-opacity-80 rounded inline-flex items-center justify-center"
-            >
-                {IsEdit ? <MdEdit size={20} /> : <MdAdd size={20} />}
-            </button>
+            {IsEdit ? (
+                <div className="absolute top-5 left-5 flex gap-2">
+                    <button
+                        onClick={toggleModal}
+                        className="cursor-pointer text-white h-[30px] w-[30px] bg-[#FF1B1B] hover:bg-opacity-80 rounded inline-flex items-center justify-center"
+
+                    >
+                        <MdEdit size={20} />
+                    </button>
+                </div>
+            ) : (
+                <button
+                    onClick={toggleModal}
+                    className="cursor-pointer text-white h-[30px] w-[30px] bg-[#FF1B1B] hover:bg-opacity-80 rounded inline-flex items-center justify-center"
+                >
+                    <MdAdd size={20} />
+                </button>
+            )}
+
 
             {/* Modal */}
             {isOpen && (
