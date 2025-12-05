@@ -61,28 +61,37 @@ export default function PlacementPartners() {
             with topmost companies, briefly mentioned below:
           </p>
 
-          {/* Swiper */}
-          <Swiper
-            spaceBetween={15}
-            onSwiper={(swiper) => {
-              swiperRef.current = swiper;
-              updateProgress(swiper);
-            }}
-            onSlideChange={updateProgress}
-            breakpoints={{
-              480: { slidesPerView: 1, spaceBetween: 18 },
-              640: { slidesPerView: 2, spaceBetween: 20 },
-              768: { slidesPerView: 2, spaceBetween: 22 },
-              1024: { slidesPerView: 3, spaceBetween: 28 },
-              1280: { slidesPerView: 4, spaceBetween: 30 },
-            }}
-            style={{ scrollbarWidth: "none" }}
-            className="py-4"
-          >
-            {partners.map((partner, index) => (
-              <SwiperSlide key={index}>
-                <div
-                  className="w-full h-[170px] sm:h-[180px] lg:h-[202px] 
+        {/* Description */}
+        <p className="font-poppins text-[15px] sm:text-[17px] text-[#282529] leading-6 sm:leading-7 mb-4">
+          The students at
+          <strong className="ml-1"> NMIMS Center for Distance and Online Education CDOE </strong>
+          have immense hiring and placement opportunities. The university has tie-ups
+          with topmost companies, briefly mentioned below:
+        </p>
+
+        {/* Swiper */}
+        <Swiper
+          slidesPerView={1.3}
+          spaceBetween={15}
+          onSwiper={(swiper) => {
+            swiperRef.current = swiper;
+            updateProgress(swiper);
+          }}
+          onSlideChange={updateProgress}
+          breakpoints={{
+            480: { slidesPerView: 1, spaceBetween: 18 },
+            640: { slidesPerView: 2, spaceBetween: 20 },
+            768: { slidesPerView: 2, spaceBetween: 22 },
+            1024: { slidesPerView: 3, spaceBetween: 28 },
+            1280: { slidesPerView: 4, spaceBetween: 30 },
+          }}
+          style={{ scrollbarWidth: "none" }}
+          className="py-4"
+        >
+          {partners.map((partner, index) => (
+            <SwiperSlide key={index}>
+              <div
+                className="w-full h-[170px] sm:h-[180px] lg:h-[202px] 
                 shadow-md bg-[#0000000D] p-4 rounded-[20px]
                 flex flex-row sm:flex-row lg:flex-col 
                 items-center lg:items-start justify-between
