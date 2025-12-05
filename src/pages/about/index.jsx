@@ -75,7 +75,7 @@ export default function Index() {
                         )}
 
                         {/* LEFT SIDE – HIDE ON MOBILE */}
-                        <div className="hidden md:flex w-1/3 h-auto flex-col gap-3 relative">
+                        <div className="hidden lg:flex w-1/3 h-auto flex-col gap-3 relative">
                             {/* Your entire left content remains unchanged */}
                             {/* BACK */}
                             {tabOrder.indexOf(activeTab) > 0 && (
@@ -174,7 +174,7 @@ export default function Index() {
 
 
                         <div className="
-    w-full md:w-2/3
+    w-full lg:w-2/3
     
     md:h-[500px]
     rounded-[18px]
