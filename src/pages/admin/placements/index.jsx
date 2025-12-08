@@ -25,9 +25,6 @@ function Index() {
         }
     };
     console.log("approvalOptions", approvalOptions)
-    console.log("")
-    console.log("")
-    console.log("")
     useEffect(() => {
         fetchApprovalandPartnerLists();
     }, []);

@@ -42,8 +42,13 @@ class Listing extends Component {
   async ApprovalDelete(id) {
     return Api.get(`/approval/delete/${id}`)
   }
+ async ContactAdd(data) {
+    return Api.post("/leads/add", data);
+  }
 
-
+  async ContactGet() {
+    return Api.get("/leads/get", );
+  }
   render() {
     return (
       <div>
