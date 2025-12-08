@@ -6,7 +6,7 @@ function CourseFess() {
 
         <>
             <section className="w-full px-6 py-6 mx-auto" id="fee-section">
-                <div className="max-w-[1100px]">
+                <div className="max-w-[1230px]">
                     <Heading title=" Updated Course Fees for 2025" />
                     {/* Table */}
                     <div className="overflow-x-auto rounded-[13px] border-2 border-[#f47c80]">

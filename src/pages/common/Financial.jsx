@@ -6,7 +6,7 @@ function Financial() {
     <>
       <div className="mt-[20px] md:mt-[50px] bg-white">
         <section className="w-full px-6 py-6 mx-auto" id="financial-aid-section">
-          <div className="max-w-[1100px]">
+          <div className="max-w-[1230px]">
             <div>
               <Heading title="NMIMS Online MBA Financial Aid" />
 

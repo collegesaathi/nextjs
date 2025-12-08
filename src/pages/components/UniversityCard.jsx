@@ -3,6 +3,7 @@
 import { useMemo } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { Loader } from '@/common/Loader';
 // import { useSelectionStore } from '@/store/selectedStore'; // React store (Zustand/Context equivalent)
 
 export default function UniversityCard({

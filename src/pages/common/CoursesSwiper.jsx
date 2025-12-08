@@ -63,7 +63,7 @@ export default function CoursesSwiper() {
   return (
     <>
       <section className="w-full px-6 py-6 mx-auto" id="courses-section">
-        <div className="max-w-[1100px]">
+        <div className="max-w-[1230px]">
           <BackNext
 
             title="NMIMS CODE: Courses"

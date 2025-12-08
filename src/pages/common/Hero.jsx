@@ -5,7 +5,7 @@ import StarRating from "@/common/Rating";
 
 export default function Hero() {
   return (
-    <div className="mt-8 md:mt-[60px] lg:mt-[90px]">
+    <div className="mt-8 md:mt-[60px] lg:mt-[90px] ">
       <div className="flex flex-col-reverse lg:flex-row items-start justify-between">
         {/* LEFT SIDE */}
         <div className="w-full lg:w-[480px] py-6 px-3 sm:px-5 lg:px-0 ">
@@ -43,13 +43,7 @@ export default function Hero() {
 
           {/* STAR + LOGOS */}
           <div className="flex items-center gap-4 pt-6">
-            <div className="w-[110px] sm:w-[126px] h-[95px] rounded-[8px] bg-[#fcf0ee] flex flex-col items-center justify-center space-y-1.5">
-              <h3 className="font-poppins font-semibold text-[30px] sm:text-[36px] text-[#282529]">4.5</h3>
-              <StarRating rating="4.5" />
-              <p className="font-poppins text-[8px] text-[#282529]">
-                Based on 20 Reviews
-              </p>
-            </div>
+          
 
             <Image src="/images/university/hero/1.png" alt="" width={150} height={100} className="sm:w-[200px]" />
           </div>
@@ -91,7 +85,7 @@ export default function Hero() {
         {/* RIGHT IMAGE BLOCK */}
         <div className="w-full lg:w-[648px] relative pt-3">
           <Image
-            src="/images/university/hero/2.png"
+            src="/images/courses/course.svg"
             alt=""
             width={648}
             height={400}
@@ -99,7 +93,7 @@ export default function Hero() {
           />
 
           {/* TOP BADGES */}
-          <div className="absolute top-2 left-0 right-0 w-full flex gap-4 justify-between px-3 sm:px-6 md:px-10 pt-3">
+          {/* <div className="absolute top-2 left-0 right-0 w-full flex gap-4 justify-between px-3 sm:px-6 md:px-10 pt-3">
             <button className="min-w-[110px] sm:w-[140px] h-[32px] sm:h-[40px] rounded-[26px] bg-white shadow-md flex items-center justify-center text-xs sm:text-sm font-poppins gap-1.5 px-4">
               <Image src="/images/university/hero/ranking.png" width={30} height={30} alt="ranking logo" />
               Ranking <strong>#21 </strong>
@@ -108,7 +102,7 @@ export default function Hero() {
             <button className="w-[100px] sm:w-[156px] h-[40px] sm:h-[52px] rounded-[5px] bg-white shadow-md flex items-center justify-center">
               <Image src="/images/university/hero/uniLogo.png" width={60} height={30} alt="" className="sm:w-[80px]" />
             </button>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

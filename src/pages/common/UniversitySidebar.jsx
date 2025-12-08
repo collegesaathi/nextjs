@@ -85,7 +85,7 @@ export default function UniversitySidebar() {
       {/* ================= DESKTOP ================= */}
       
       <div
-        className="hidden lg:block sticky top-0 h-screen overflow-y-auto p-2 red-scroll"
+        className="hidden lg:block sticky top-0 h-screen overflow-y-auto p-2 red-scroll py-8"
       >
         <ul className="space-y-4">
           {menuItems.map((item, index) => (

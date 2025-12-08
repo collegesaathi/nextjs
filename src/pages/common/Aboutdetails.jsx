@@ -4,7 +4,7 @@ function Aboutdetails() {
     return (
         <>
             <section className="w-full px-6 py-6 mx-auto"  id="about-section">
-                <div className="max-w-[1100px]">
+                <div className="max-w-[1230px]">
                     <div className=" ">
                         <Heading title="NMIMS CDOE" />
                         <p className="font-poppins font-[400] text-[17px] leading-[25px] text-[#282529]">

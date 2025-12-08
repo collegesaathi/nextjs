@@ -17,6 +17,7 @@ import University from "./University";
 import IndustryExpertsSection from "./IndustryExperts";
 import Trending from "./Trending";
 import MediaCarousel from "./MediaCarousel";
+
 function Home() {
     return (<>
         <Layout>
@@ -38,6 +39,8 @@ function Home() {
             <QuickTipsCarousel />
             <FAQSection />
             <ContactSection />
+
+
      
   
         </Layout>

@@ -51,11 +51,15 @@ export default function FAQSection() {
     }, [])
 
     return (
-        <div className="py-4 md:py-8 " id="faq-section">
+        <div className="py-4 md:py-8 max-w-[1230px]" id="faq-section">
             <div className="mx-auto container sm:container md:container lg:container xl:max-w-[1230px]  px-4">
                 <Heading title={"Frequently Asked "} midtitle={"Questions"} />
                 {faqs.map((faq, index) => (
                     <div
+                    
+                        key={index}
+                        className={`bg-white rounded-[10px] shadow-[0_2px_8px_0_rgba(0,0,0,0.08)] mb-5 md:mb-8 border-l-[13px] overflow-hidden transition-all duration-300 ${faq.open ? 'border-red-500' : 'border-red-500'
+                            }`}
                    
                     >
                         <button
