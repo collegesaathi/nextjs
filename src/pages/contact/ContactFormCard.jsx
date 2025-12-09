@@ -1,13 +1,22 @@
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 import Listing from "../api/Listing";
+import { FaArrowRightLong } from "react-icons/fa6";
+import { IoChevronDown } from "react-icons/io5";
+import { InputBox } from "../admin/common/InputBox";
+
 
 function ContactForm() {
 
 
     const router = useRouter();
     const [loading, setLoading] = useState(false);
+    const [active, setActive] = useState("jaipur");
+    const [universities, setUniversities] = useState([])
+    const [isuniversityOpen, setUniversityOpen] = useState(false);
+    const [isCourseOpen, setCourseOpen] = useState(false);
+
 
     const [data, setData] = useState({
         name: "",
@@ -15,10 +24,38 @@ function ContactForm() {
         phone_number: "",
         course_id: "",
         content: "",
-        city: "jaipur",
-        state: "rajasthan",
+        city: "",
+        state: "",
         university_id: ""
     })
+
+    console.log(universities, universities)
+
+
+    const fetchData = async () => {
+        try {
+
+            const main = new Listing();
+            const response = await main.ContactUniversityGet();
+            console.log("response", response)
+            const universities = response?.data?.data?.universities || [];
+            setUniversities(universities);
+
+        } catch (error) {
+            console.log("error", error);
+            setLoading(false);
+
+
+        }
+    };
+
+
+
+    useEffect(() => {
+        fetchData();
+
+    }, []);
+
 
 
     const handleChange = (e) => {
@@ -28,6 +65,7 @@ function ContactForm() {
             [name]: value,
         }));
     };
+    console.log("gfjhfgj", data)
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -78,10 +116,10 @@ function ContactForm() {
 
 
     return (<>
-        < div className="py-4 md:py-8 " >
-            <div className="mx-auto container sm:container md:container xl:max-w-[1230px]  px-4   " >
-                <div className="lg:grid lg:grid-cols-2 px-4 py-5 border-2  border-[#DFDFDF] rounded-[30px] shadow-[0px_14px_20px_0px_#0000001F]">
-                    <div className="bg-white px-4 py-4 flex flex-col justify-between">
+        < div className="py-4 md:py-8 bg-white" >
+            <div className="mx-auto container sm:container md:container xl:max-w-[1230px]  md:px-4   " >
+                <div className="lg:grid lg:grid-cols-2 px-2 md:px-4 py-5 border-2  border-[#DFDFDF] rounded-[30px] shadow-[0px_14px_20px_0px_#0000001F]">
+                    <div className="bg-white md:px-4 md:py-4 flex flex-col justify-between">
                         {/* Map */}
                         <div className="h-[500px] sm:h-[800px] rounded-[8px] overflow-hidden">
                             <iframe
@@ -97,25 +135,60 @@ function ContactForm() {
                         <div className="space-y-4 mt-6">
                             {/* Jaipur button */}
                             <button
-                                onClick={() => setMapSrc(jaipurMap)}
-                                className="w-full flex items-center justify-between px-6 py-4 bg-gray-100 text-gray-800 rounded-[8px] hover:bg-gray-200 transition"
+                                onClick={() => { setMapSrc(jaipurMap); setActive("jaipur"); }}
+                                className={`w-full flex items-center justify-between px-6 py-4 cursor-pointer 
+  group text-gray-800 rounded-[8px] transition hover:bg-[#EC1E24] hover:text-white
+  ${active === "jaipur" ? "bg-[#ED1F24] text-white" : "bg-gray-100"}`}
                             >
                                 <span className="text-lg font-medium">Find Jaipur Office</span>
-                                <svg className="w-5 h-5 text-gray-600 transform rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                                </svg>
+
+                                <div
+                                    className={`
+      w-8 h-8 rounded-full flex items-center justify-center transition-all 
+      ${active === "Gurugram" ? "bg-black -translate-y-1" : "bg-black/80"}
+      group-hover:bg-white
+    `}
+                                >
+                                    <FaArrowRightLong
+                                        className={`
+        w-4 h-4 transform transition-all 
+        ${active === "jaipur" ? "text-white rotate-[290deg]" : "text-white"}
+        group-hover:text-black
+      `}
+                                    />
+                                </div>
                             </button>
+
+
 
                             {/* Gurugram button */}
                             <button
-                                onClick={() => setMapSrc(gurugramMap)}
-                                className="w-full flex items-center justify-between px-6 py-4 bg-gray-100 text-gray-800 rounded-[8px] hover:bg-gray-200 transition"
+                                onClick={() => { setMapSrc(gurugramMap); setActive("Gurugram"); }}
+                                className={`w-full flex items-center justify-between px-6 py-4 cursor-pointer 
+  group text-gray-800 rounded-[8px] transition hover:bg-[#EC1E24] hover:text-white
+  ${active === "Gurugram" ? "bg-[#ED1F24] text-white" : "bg-gray-100"}`}
                             >
                                 <span className="text-lg font-medium">Find Gurugram Office</span>
-                                <svg className="w-5 h-5 text-gray-600 transform rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                                </svg>
+
+                                {/* Arrow Circle */}
+                                <div
+                                    className={`
+      w-8 h-8 rounded-full flex items-center justify-center transition-all 
+      ${active === "Gurugram" ? "bg-black -translate-y-1" : "bg-black/80"}
+      group-hover:bg-white
+    `}
+                                >
+                                    <FaArrowRightLong
+                                        className={`
+        w-4 h-4 transform transition-all 
+        ${active === "Gurugram" ? "text-white rotate-[290deg]" : "text-white"}
+        group-hover:text-black
+      `}
+                                    />
+                                </div>
                             </button>
+
+
                         </div>
                     </div>
                     {/* 2. Right Section (Contact Form) */}
@@ -133,17 +206,27 @@ function ContactForm() {
                                     name="name"
                                     value={data?.name}
                                     onChange={handleChange}
-                                    className="w-full px-4 py-3 border border-[#808080] rounded-[8px] focus:outline-none focus:ring-2 focus:ring-red-500"
+                                    className="w-full px-4 py-3 border border-[#808080] rounded-[8px] focus:outline-none focus:ring-2 focus:ring-red-500 placeholder:text-[16px] font-poppins"
                                     required
                                 />
                             </div>
                             {/* Mobile Number Input */}
-                            <div className="flex mb-4  md:mb-6">
-                                {/* Country Code Dropdown */}
-                                <div className="flex items-center bg-gray-50 border border-[#808080] rounded-l-lg px-3 text-sm">
-                                    <img src="https://flagcdn.com/in.svg" alt="Indian Flag" className="w-5 h-4 mr-2 border border-gray-400" />
-                                    <span className="text-gray-600 font-medium">+91</span>
+                            <div className="flex mb-4 md:mb-6 w-full">
+
+                                {/* Country Code Box */}
+                                <div className="flex items-center bg-gray-50 border border-[#808080] 
+      rounded-l-lg px-3 min-w-[90px] sm:min-w-[110px]">
+
+                                    <img
+                                        src="https://flagcdn.com/in.svg"
+                                        alt="Indian Flag"
+                                        className="w-5 h-4 mr-2 border border-gray-400"
+                                    />
+
+                                    <span className="text-gray-600 font-medium text-sm sm:text-base">+91</span>
                                 </div>
+
+                                {/* Phone Input */}
                                 <input
                                     type="tel"
                                     name="phone_number"
@@ -154,11 +237,13 @@ function ContactForm() {
                                     }}
                                     maxLength="10"
                                     placeholder="Mobile Number"
-                                    className="flex-grow px-4 py-3 border border-l-0 border-[#808080] rounded-r-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                    className="w-full px-3 py-3 border border-l-0 border-[#808080] 
+      rounded-r-lg focus:outline-none focus:ring-2 focus:ring-red-500
+      text-sm sm:text-base"
                                     required
                                 />
-
                             </div>
+
 
                             {/* Email Input */}
                             <div className="relative mb-4  md:mb-6">
@@ -179,47 +264,86 @@ function ContactForm() {
 
                             {/* Select University & Course */}
                             <div className="space-y-4 mb-4  md:mb-6">
-                                <select
-                                    name="university_id"
-                                    value={data?.university_id}
-                                    onChange={handleChange}
-                                    className="w-full px-4 py-3 border border-[#808080] rounded-[8px] bg-white appearance-none focus:outline-none focus:ring-2 focus:ring-red-500 text-gray-500">
-                                    <option value="" disabled selected>Select a University</option>
-                                    {/* Add more options here */}
-                                </select>
-                                <select
-                                    name="course_id"
-                                    value={data?.course_id}
-                                    onChange={handleChange}
-                                    className="w-full px-4 py-3 border border-[#808080] rounded-[8px] bg-white appearance-none focus:outline-none focus:ring-2 focus:ring-red-500 text-gray-500">
-                                    <option value="" disabled selected>Select a Course</option>
-                                    {/* Add more options here */}
-                                </select>
+
+                                <div className="relative">
+                                    <select
+                                        name="university_id"
+                                        value={data?.university_id}
+                                        onChange={handleChange}
+                                        onFocus={() => setUniversityOpen(true)}
+                                        onBlur={() => setUniversityOpen(false)}
+                                        className="w-full px-4 py-3 border border-[#808080] rounded-[8px] bg-white appearance-none focus:outline-none focus:ring-2 focus:ring-red-500 text-gray-500">
+                                        <option value="" disabled>Select a University</option>
+                                        {universities && universities.length > 0 ? (
+                                            universities.map((u, index) => (
+                                                <option key={index} value={u.id}>
+                                                    {u.name}
+                                                </option>
+                                            ))
+                                        ) : (
+                                            <option disabled>No data</option>
+                                        )}
+
+                                    </select>
+                                    <span className={`absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none   ${isuniversityOpen ? "rotate-180" : "rotate-0"}`}>
+                                        <IoChevronDown />
+                                    </span>
+                                </div>
+
+                                <div className="relative">
+                                    <select
+                                        name="course_id"
+                                        value={data?.course_id}
+                                        onChange={handleChange}
+                                        onFocus={() => setCourseOpen(true)}
+                                        onBlur={() => setCourseOpen(false)}
+                                        className="w-full px-4 py-3 border border-[#808080] rounded-[8px] bg-white appearance-none focus:outline-none focus:ring-2 focus:ring-red-500 text-gray-500">
+                                        <option value="" disabled selected>Select a Course</option>
+                                        {/* Add more options here */}
+                                    </select>
+                                    <span className={`absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none   ${isCourseOpen ? "rotate-180" : "rotate-0"}`}>
+                                        <IoChevronDown />
+                                    </span>
+                                </div>
                             </div>
 
                             {/* Select State & City (2 Columns) */}
-                            <div className="flex space-x-4  mb-4  md:mb-6">
-                                <div className="w-1/2">
+                            {/* <div className="md:flex  space-y-4 md:space-y-0 md:space-x-4 mb-4 md:mb-6">
+                                <div className="md:w-1/2 relative">
                                     <select
                                         name="state"
                                         value={data?.state}
                                         onChange={handleChange}
-                                        className="w-full px-4 py-3 border border-[#808080] rounded-[8px] bg-white appearance-none focus:outline-none focus:ring-2 focus:ring-red-500 text-gray-500">
-                                        <option value="" disabled selected>Select State</option>
-                                        {/* Add more options here */}
+                                        className="w-full px-4 py-3 pr-10 border border-[#808080] rounded-[8px] bg-white 
+                 focus:outline-none focus:ring-2 focus:ring-red-500 text-gray-500"
+                                    >
+                                        <option value="" disabled>Select State</option>
                                     </select>
+
+                                    <span className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
+                                        <IoChevronDown />
+                                    </span>
                                 </div>
-                                <div className="w-1/2">
+
+                                <div className="md:w-1/2 relative">
                                     <select
                                         name="city"
                                         value={data?.city}
                                         onChange={handleChange}
-                                        className="w-full px-4 py-3 border border-[#808080] rounded-[8px] bg-white appearance-none focus:outline-none focus:ring-2 focus:ring-red-500 text-gray-500">
-                                        <option value="" disabled selected>Select City</option>
-                                        {/* Add more options here */}
+                                        className="w-full px-4 py-3 pr-10 border border-[#808080] rounded-[8px] bg-white 
+                 focus:outline-none focus:ring-2 focus:ring-red-500 text-gray-500"
+                                    >
+                                        <option value="" disabled>Select City</option>
                                     </select>
+
+                                    <span className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
+                                        <IoChevronDown />
+                                    </span>
                                 </div>
-                            </div>
+                            </div> */}
+
+                            <InputBox data={data} handleChange={handleChange} />
+
 
                             {/* Message Textarea */}
                             <div className=" mb-4  md:mb-6">
@@ -239,7 +363,7 @@ function ContactForm() {
                                     onClick={handleSubmit}
                                     type="submit"
                                     disabled={loading}
-                                    className="w-full py-3 bg-red-600 text-white font-semibold rounded-[8px] hover:bg-red-700 transition duration-150 shadow-md"
+                                    className="w-full py-3 bg-red-600 text-white font-[600] cursor-pointer rounded-[8px] text-[16px] font-poppins hover:bg-red-700 transition duration-150 shadow-md"
                                 >
                                     {loading ? "Loading.." : "Submit"}
                                 </button>

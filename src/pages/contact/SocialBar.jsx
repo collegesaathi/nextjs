@@ -7,6 +7,10 @@ import {
     FaXTwitter
 } from "react-icons/fa6";
 import { useState } from "react";
+import Image from "next/image";
+
+
+
 export default function SocialBar() {
     const [active, setActive] = useState("youtube");
 
@@ -19,7 +23,7 @@ export default function SocialBar() {
     ];
     return (
         < div className="py-4 md:py-8 " >
-            <div className="mx-auto container sm:container md:container xl:max-w-[1230px]  px-4" >
+            <div className="mx-auto container sm:container md:container xl:max-w-[1230px]  md:px-4" >
                 <div className="w-full flex justify-center mt-6">
                     <div className="flex items-center justify-between gap-4 bg-white rounded-full shadow-md px-6 py-3 max-w-3xl w-full">
 
@@ -41,7 +45,7 @@ export default function SocialBar() {
 
                         {/* Right Red Icon (CS logo example) */}
                         <div className="w-12 h-12 flex items-center justify-center bg-red-600 rounded-full text-white font-semibold text-lg">
-                            CS
+                                   <Image src="/images/collegesathi.svg" width={50} height={50} />
                         </div>
                     </div>
                 </div>
