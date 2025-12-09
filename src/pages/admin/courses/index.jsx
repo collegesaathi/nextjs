@@ -109,7 +109,7 @@ export default function Index() {
                             <div
                                 key={index}
                                 className={`bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 
-                                    ${item?.is_deleted ? "opacity-80" : ""}
+                                    ${item?.deleted_at ? "opacity-80" : ""}
                                     border border-gray-100 max-w-sm flex flex-col`}
                             >
                                 <div className="relative">
@@ -121,11 +121,15 @@ export default function Index() {
                                         className="w-full h-[220px] object-cover"
                                     />
                                     <Delete step={2} />
-                                    <Link href="/admin/courses/add/aaa"
-                                        className="cursor-pointer absolute top-2 left-2 bg-white bg-opacity-80 hover:bg-[#CECECE] p-2 rounded-full shadow-sm transition-all"
-                                    >
-                                        <MdEdit size={24} className="text-red-600 hover:text-red-700" />
-                                    </Link>
+
+                                    {!item.deleted_at && (
+                                        <Link href="/admin/courses/add/aaa"
+                                            className="cursor-pointer absolute top-2 left-2 bg-white bg-opacity-80 hover:bg-[#CECECE] p-2 rounded-full shadow-sm transition-all"
+                                        >
+                                            <MdEdit size={24} className="text-red-600 hover:text-red-700" />
+                                        </Link>
+                                    )}
+
                                 </div>
 
                                 {/* Make the inner content stretch to push the button down */}
