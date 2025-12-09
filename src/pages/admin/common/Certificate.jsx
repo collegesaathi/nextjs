@@ -41,7 +41,7 @@ function Certificate({formData ,  handleChange ,handleImageChange ,preview  ,han
                 {formData?.certificatemage && (
                     <div className="mt-3">
                         <img
-                            src={formData?.certificatemage?.file?.name}
+                        src={URL.createObjectURL(formData?.certificatemage)}
                             alt="Preview"
                             className="w-full h-48 object-cover rounded-md border"
                         />

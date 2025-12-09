@@ -110,7 +110,17 @@ function ServicesSection({ formData, handleQuillChange, handleChange, setService
                                 onChange={(e) => handleServiceChange(index, "image", e.target.files[0])}
                                 className="w-full bg-[#F4F6F8] text-[#727272] border rounded-[10px] px-4 py-2 focus:outline-none"
                             />
-                            {service.image && <p className="text-sm text-gray-500 mt-1">{service.image.name}</p>}
+                             {service.image && (
+        <div className="mt-2">
+            <img
+                src={URL.createObjectURL(service.image)}
+                alt="Preview"
+                className="w-24 h-24 object-cover rounded-md border"
+            />
+            <p className="text-sm text-gray-500 mt-1">{service.image.name}</p>
+        </div>
+    )}
+
                         </div>
 
                         {/* Icon */}
@@ -122,7 +132,16 @@ function ServicesSection({ formData, handleQuillChange, handleChange, setService
                                 onChange={(e) => handleServiceChange(index, "icon", e.target.files[0])}
                                 className="w-full bg-[#F4F6F8] text-[#727272] border rounded-[10px] px-4 py-2 focus:outline-none"
                             />
-                            {service.icon && <p className="text-sm text-gray-500 mt-1">{service.icon.name}</p>}
+                                                {service.icon && (
+        <div className="mt-2">
+            <img
+                src={URL.createObjectURL(service.icon)}
+                alt="Preview"
+                className="w-24 h-24 object-cover rounded-md border"
+            />
+            <p className="text-sm text-gray-500 mt-1">{service.icon.name}</p>
+        </div>
+    )}
                         </div>
 
                     </div>

@@ -80,6 +80,12 @@ const PatternSection = ({ setPatterns, patterns, formData, handleQuillChange, ha
         desc={formData?.patterndescription}
         handleBioChange={(val) => handleQuillChange("patterndescription", val)}
       />
+
+        <ReactQuillEditor
+        label="Bottom  Description"
+        desc={formData?.bottompatterndesc}
+        handleBioChange={(val) => handleQuillChange("bottompatterndesc", val)}
+      />
       <div className="flex justify-between items-center mb-5">
         <h2 className="text-xl font-semibold text-[#CC2828]">Multiple Pattern</h2>
         <button
@@ -90,7 +96,7 @@ const PatternSection = ({ setPatterns, patterns, formData, handleQuillChange, ha
         </button>
       </div>
 
-      {patterns.map((item, index) => (
+      {patterns?.map((item, index) => (
         <div key={index} className="grid grid-cols-1 gap-4 items-center mb-4 border-b border-gray-200 pb-4">
 
           {/* Image */}
@@ -103,7 +109,6 @@ const PatternSection = ({ setPatterns, patterns, formData, handleQuillChange, ha
               className="w-full bg-[#F4F6F8] text-[#727272] border rounded-[10px] px-4 py-2"
             />
           </div>
-
           {/* Preview */}
           {item.image && (
             <img

@@ -170,6 +170,7 @@ function Index() {
         onlinedesc: "",
         patterndescription: "",
         patternname: "",
+        bottompatterndesc :"",
         factsname: "",
         financialdescription: "",
         financialname: "",
@@ -258,6 +259,7 @@ function Index() {
             payload.append("partners", JSON.stringify(selectedPartners));
             payload.append("patternname", formData.patternname);
             payload.append("patterndescription", formData.patterndescription);
+            payload.append("bottompatterndesc", formData.bottompatterndesc);
             payload.append("approvals_name", formData.approvals_name);
             payload.append("approvals_desc", formData.approvals_desc);
             payload.append("rankings_description", formData.rankings_description);
@@ -1023,7 +1025,7 @@ function Index() {
                                     {/* Preview */}
                                     {campus.image && (
                                         <img
-                                            src={campus.image.src}
+                                        src={URL.createObjectURL(campus.image)}
                                             className="mt-3 mb-3 w-40 h-40 object-cover rounded-md border"
                                             alt="campus"
                                         />
