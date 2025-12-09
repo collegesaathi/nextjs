@@ -284,16 +284,17 @@ const courseData = [
                                                         setSelectedIndex(index);
                                                         setSelectedParentCourse(item);
                                                     }}
-                                                    className={`mt-3 px-4 flex items-center gap-2 py-1 rounded-full text-[12px] md:ext-[14px] font-poppins font-[400] w-fit hover:bg-[#EC1E24] hover:text-[white]
+                                                    className={`mt-3 px-4 flex items-center justify-center md:justify-start  gap-2 py-1 rounded-full text-[12px] md:ext-[14px] font-poppins font-[400] w-full hover:bg-[#EC1E24] hover:text-[white]
                                 ${selectedIndex === index
                                                             ? "bg-[#EC1E24] text-white"
                                                             : "bg-[#FFF5F5] text-red-600"
                                                         }`}
                                                 >  
 
-
+                                                         <div className="flex items-center gap-2"> 
                                                    <p> View Specialization </p> 
                                                 <div> <FaArrowRightLong className="hidden md:block" /></div> 
+                                                </div> 
                                                 </button>
                                             )}
                                         </div>

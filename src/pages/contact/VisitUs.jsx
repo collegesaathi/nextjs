@@ -20,8 +20,8 @@ export default function VisitUs() {
     };
 
     return (
-        < div className="py-4 md:py-8 " >
-            <div className="mx-auto container sm:container md:container xl:max-w-[1230px]  px-4" >
+        < div className="py-4 md:py-10 " >
+            <div className="mx-auto container sm:container md:container xl:max-w-[1230px]  md:px-4" >
                 <div className="text-center mb-8">
                     <h2 className="font-[600] text-center text-[28px] md:text-[40px] leading-[36px] md:leading-[50px]">
                         We’d love to meet you in person
@@ -36,7 +36,7 @@ export default function VisitUs() {
                 <div className="flex items-center gap-3 justify-left mb-6">
                     <button
                         onClick={() => setActiveCity("jaipur")}
-                        className={`px-5 py-2 rounded-full flex items-center gap-2 text-sm font-medium transition-all 
+                        className={`px-5 py-2 rounded-full flex items-center gap-2 text-sm font-medium transition-all cursor-pointer 
             ${activeCity === "jaipur"
                                 ? "bg-[#282529] text-white"
                                 : "bg-gray-200 text-[#8A8A8A]"
@@ -47,13 +47,13 @@ export default function VisitUs() {
 
                     <button
                         onClick={() => setActiveCity("gurugram")}
-                        className={`px-5 py-2 rounded-full flex items-center gap-2 text-sm font-medium transition-all 
+                        className={`px-5 py-2 rounded-full flex items-center gap-2 text-sm font-medium transition-all cursor-pointer 
             ${activeCity === "gurugram"
                                 ? "bg-[#282529] text-white"
                                 : "bg-[#ECEBEB] text-[#8A8A8A]"
                             }`}
                     >
-                        <MapPin size={16} /> Gurugram
+                        <MapPin size={16} />Gurugram
                     </button>
                 </div>
 
@@ -72,7 +72,7 @@ export default function VisitUs() {
                         <h3 className="font-[600] font-poppins text-center text-[18px] md:text-[20px] leading-[26px] md:leading-[30px]">
                             {activeCity === "jaipur" ? "Jaipur Address:" : "Gurugram Address:"}
                         </h3>
-                        <ChevronDown size={20} />
+       
                     </div>
 
                     <p className="font-poppins font-normal text-[16px] leading-[23px] text-[#282529] text-left">
