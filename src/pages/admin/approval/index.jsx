@@ -31,10 +31,8 @@ function Index() {
     }, []);
 
     return (
-
         <>
-            <AdminLayout title={"approvals"}>
-
+            <AdminLayout page={"approvals"}>
                 <div className="min-h-screen p-5 lg:p-[30px]">
                     <div className="flex flex-col md:flex-row justify-between md:items-center mb-4 lg:mb-5">
                         <h1 className="capitalize font-inter text-lg lg:text-2xl font-bold text-[#FF1B1B] tracking-[-0.04em] mb-6">

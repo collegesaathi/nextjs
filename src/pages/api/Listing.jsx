@@ -42,12 +42,20 @@ class Listing extends Component {
   async ApprovalDelete(id) {
     return Api.get(`/approval/delete/${id}`)
   }
- async ContactAdd(data) {
+  async ContactAdd(data) {
     return Api.post("/leads/add", data);
   }
 
   async ContactGet() {
-    return Api.get("/leads/get", );
+    return Api.get("/leads/get",);
+  }
+
+  async AdminUniveristy(page) {
+    return Api.get(`/admin/university?page=${page}`,);
+  }
+
+  async UniveristyDelete(id) {
+    return Api.get(`/university/delete/${id}`)
   }
   render() {
     return (

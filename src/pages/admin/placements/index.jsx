@@ -32,7 +32,7 @@ function Index() {
     return (
 
         <>
-            <AdminLayout title={"Placements"}>
+            <AdminLayout page={"Placements"}>
 
                 <div className="min-h-screen p-5 lg:p-[30px]">
                     <div className="flex flex-col md:flex-row justify-between md:items-center mb-4 lg:mb-5">
