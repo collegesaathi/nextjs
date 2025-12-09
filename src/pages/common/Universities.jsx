@@ -141,8 +141,8 @@ export default function Universities() {
     return (
         <>
             {/* Desktop Version */}
-            <div className="py-4 md:py-8 " id="universities-comparison-section">
-                <div className="mx-auto container sm:container md:container lg:container xl:max-w-[1230px]  px-4">
+            <div className="py-6 px-4 " id="universities-comparison-section">
+                <div className=" container sm:container md:container lg:container xl:max-w-[1230px]  px-4">
 
                     {/* <div className="flex justify-between items-center mb-6">
                         <Heading title={"Similar Universities"}/>

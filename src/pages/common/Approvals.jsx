@@ -96,9 +96,9 @@ function Approvals() {
     };
     return (<>
         <section className="w-full px-6 py-6 mx-auto" id="approvals-section">
-            <div className="max-w-[1100px]">
+            <div className="max-w-[1230px]">
                 <BackNext
-                    title="Approvals and Accreditations"
+                    title="NMIMS Online MBA Approvals "
                     progress={progress}
                     isBeginning={isBeginning}
                     isEnd={isEnd}
@@ -106,10 +106,8 @@ function Approvals() {
                     onNext={navigateNext}
                 />
                 <p className="text-[15px] md:text-[17px] font-poppins font-[400] text-[#363535] mb-6 font-poppins">
-                    The online courses from the<strong> NMIMS CDOE</strong>  have gained high popularity and is supported by
-                    various approvals/accreditations, which add to their value. These approvals and accreditations
-                    are proof of the best education
-                    quality and fair educational policies. These accreditations are:
+                   The <span className="font-[600]">Narsee Monjee Online MBA </span>has become one of the best universities in India and has approvals from different
+                    government authorities, which are briefly explained as follows:
                 </p>
                 {/* Swiper Carousel */}
                 <Swiper
@@ -155,7 +153,7 @@ function Approvals() {
                                 >
 
                                     {/* Image */}
-                                    <div className="flex justify-center bg-white rounded-[15px] items-center lg:justify-center mb-0 lg:mb-2 w-full lg:w-[128px] h-[109px]">
+                                    <div className="flex justify-center bg-white rounded-[15px] items-center lg:justify-center mb-0 lg:mb-2 w-full lg:w-[147px] h-[109px]">
                                         <img
                                             src={item.image}
                                             alt={item.title}

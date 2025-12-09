@@ -3,9 +3,9 @@ import Heading from "@/common/Heading";
 export default function ExaminationPattern() {
   return (
     <>
-      <div className="mt-[50px]  bg-[#f7f6f6]">
+      <div className="mt-[50px] px-6 py-6   bg-[#f7f6f6]">
         <section className="w-full px-6 py-6 mx-auto" id="examination-section">
-          <div className="max-w-[1100px]">
+          <div className=" max-w-[1230px]">
             <div className="space-y-6 px-4 pt-5  pb-5">
               <Heading title="NMIMS CDOE Examination Pattern" classes={""} />
               <p className="font-poppins text-[17px] md:text-[17px] leading-[22px] md:leading-[25px] text-[#282529]">

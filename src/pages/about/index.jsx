@@ -37,7 +37,6 @@ export default function Index() {
 
             <Popup isOpen={IsOpen} onClose={handleClose} size={"max-w-full"} height={"max-h-full"}>
                 <div className="w-full flex flex-col items-center py-2">
-
                     {/* TOP TAB BUTTONS */}
                     <div className="flex md:gap-4 bg-[linear-gradient(224.47deg,#BB0308_3.11%,#E9050C_48.29%,#BB0308_100%)] rounded-[8px] px-4 py-2 shadow " >
                         {["approvals", "courses", "campus", "ratings"].map((tab) => (

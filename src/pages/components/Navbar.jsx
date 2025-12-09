@@ -1,12 +1,13 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import Logo  from "../assets/home/Logo.png"
+import Logo from "../assets/home/Logo.png"
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import 'swiper/css/effect-fade';
+import SearchBar from './SearchBar';
 
 export default function Navbar() {
   const [dropdowns, setDropdowns] = useState({
@@ -112,15 +113,7 @@ export default function Navbar() {
         </div>
 
         <div className="lg:hidden flex w-[100px]">
-          <div className="relative">
-            <input
-              placeholder="Search"
-              className="w-full h-[34px] rounded-[18px] border border-[#EC1E24] flex items-center justify-center font-normal text-[13px] text-[#282529] px-3"
-            />
-            <div className="absolute top-0 right-0 px-2 flex items-center h-full">
-              <i className="ri-search-line"></i>
-            </div>
-          </div>
+          <SearchBar />
         </div>
 
         {/* Desktop menu */}
@@ -347,19 +340,14 @@ export default function Navbar() {
               >
                 9785-800-008
               </button>
-              <button
-                type="button"
-                className="w-full h-[34px] rounded-[18px] border border-[#EC1E24] flex items-center justify-center"
-              >
-                <span className="font-normal text-[13px] text-[#282529] mr-2">Search</span>
-                <i className="ri-search-line"></i>
-              </button>
+              
             </div>
           </div>
         )}
 
-        <div className="hidden lg:flex items-center space-x-4">
-          <button
+        <div className="hidden lg:block ">
+         <div className='flex justify-center  gap-3 '> 
+           <button
             type="button"
             className="w-[119.09px] h-[33.83px] rounded-[5px] bg-gradient-to-r from-[#FF070F] to-[#AF0006] font-bold text-[13px] leading-[100%] tracking-[0px] text-white flex items-center justify-center relative shine-button"
           >
@@ -372,16 +360,8 @@ export default function Navbar() {
             {/* Shine effect overlay */}
             <div className="shine-overlay"></div>
           </button>
-
-          <div className="relative">
-            <input
-              placeholder="Search"
-              className="w-[93px] h-[34px] rounded-[18px] border border-[#EC1E24] flex items-center justify-center font-normal text-[13px] text-[#282529] px-3"
-            />
-            <div className="absolute top-0 right-0 px-2 flex items-center h-full">
-              <i className="ri-search-line"></i>
-            </div>
-          </div>
+          <SearchBar />
+         </div>
         </div>
       </div>
 

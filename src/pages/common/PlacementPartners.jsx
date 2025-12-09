@@ -44,7 +44,7 @@ export default function PlacementPartners() {
 
     <div className="mt-[20px] md:mt-[50px] bg-white">
       <section className="w-full px-6 py-6 mx-auto" id="placement-partners-section">
-        <div className="max-w-[1100px]">
+        <div className="max-w-[1230px]">
           <BackNext
             title="NMIMS CDOE Hiring and Placement Partners"
             progress={progress}

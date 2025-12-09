@@ -5,7 +5,7 @@ export default function SampleCertificate() {
   return (
     <>
       <section className="w-full px-6 py-6 mx-auto" id="certificate-section">
-        <div className="max-w-[1100px]">
+        <div className="max-w-[1230px]">
           <div className="flex flex-col lg:flex-row items-center justify-left gap-3 ">
             {/* LEFT CONTENT */}
             <div className="w-full lg:w-1/2">
@@ -18,7 +18,7 @@ export default function SampleCertificate() {
             </div>
 
             {/* CERTIFICATE IMAGE */}
-            <div className="w-full lg:w-1/2">
+            <div className="w-full lg:w-1/2 justify-center flex">
               <div className="relative w-[260px] h-[250px] sm:w-[300px] sm:h-[290px] md:w-[340px] md:h-[330px] lg:w-[360px] lg:h-[355px]">
                 {/* Frame */}
                 <Image

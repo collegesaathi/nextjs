@@ -12,12 +12,12 @@ function Ranking() {
     return (
         <>
             <section className="w-full px-6 py-6 mx-auto" id="rankings-section">
-                <div className="max-w-[1100px]">
-                    <Heading title={"Rankings of NMIMS CDOE "} />
-                    <p className="text-[15px] md:text-[17px] font-[400] text-[#363535] font-poppins">
-                        <strong>NMIMS CDOE</strong> has earned several prestigious rankings and awards that
-                        highlight its commitment to delivering quality online education across the globe.
-                        Below is an overview of the key achievements:
+                <div className="max-w-[1230px]">
+                    <Heading title={"NMIMS Online MBA Rankings "} />
+                    <p className="text-[15px] md:text-[17px] font-[400] text-[#363535] font-poppins mb-[24px]">
+                        <span className="font-[600]">NMIMS Online MBA program </span> has received many recognitions and many awards which makes the university and 
+                        the programs valid and approved worldwide. 
+                        The following are the rankings and awards received by the university:
                     </p>
                     <ul className="list-none space-y-5 lg:space-y-2 pt-4">
                         {[

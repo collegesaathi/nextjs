@@ -34,7 +34,7 @@ function Facts() {
     <>
       <div className="mt-[50px]  bg-[#fcf0ee]">
         <section className="w-full px-6 py-6 mx-auto" id="facts-section">
-          <div className="max-w-[1100px]">
+          <div className="max-w-[1230px]">
             <div className="relative z-10  mt-[50px]">
               <h2
                 className="

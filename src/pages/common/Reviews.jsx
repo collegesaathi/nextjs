@@ -122,24 +122,10 @@ export default function Reviews() {
     };
 
     return (
-        <section className="w-full px-6 py-12 mx-auto hidden lg:block" id="reviews-section">
-            <div className="w-[860px]">
+        <section className="px-6 py-6 block" id="reviews-section">
+            <div className="max-w-[1230px]">
 
-                {/* Header */}
-                {/* <div className="flex justify-between items-center mb-8">
-                    <h2 className="text-[26px] font-bold text-[#363535]">NMIMS CDOE Reviews</h2>
-
-                    <div className="flex items-center gap-4">
-                        <div className="w-[191px] h-2 bg-gray-200 rounded-full overflow-hidden">
-                            <div style={{ width: `${desktopProgress}%` }} className="h-full bg-red-600"></div>
-                        </div>
-
-                        <button onClick={slidePrev} className="w-[35px] h-[35px] rounded-full border flex justify-center items-center">
-                        </button>
-                        <button onClick={slideNext} className="w-[35px] h-[35px] rounded-full border flex justify-center items-center">
-                        </button>
-                    </div>
-                </div> */}
+             
 
 <BackNext
                   
@@ -154,7 +140,7 @@ export default function Reviews() {
 
 
                 {/* Rating Overview */}
-                <div className="mt-14 grid grid-cols-2 gap-8">
+                <div className="mt-14 grid grid-cols-1 lg:grid-cols-2 gap-8">
                     <div className="border p-5 rounded-lg">
                         <h3 className="text-xl font-semibold mb-4">Ratings Overview</h3>
 
@@ -180,22 +166,22 @@ export default function Reviews() {
 
 
 
-                     <div className=" justify-center flex flex-col gap-10">
+                     <div className=" justify-center flex flex-col gap-4 h-full">
 
-                     <div className="flex items-center justify-center gap-4 pt-6">
-                <div className="w-[110px] sm:w-[126px] h-[95px] rounded-[8px] bg-[#fcf0ee] flex flex-col items-center justify-center space-y-1.5">
-                  <h3 className="font-poppins font-semibold text-[30px] sm:text-[36px] text-[#282529]">4.5</h3>
+                     <div className="flex items-center justify-center gap-4  rounded-[8px] py-2 bg-[#fcf0ee] h-1/3">
+                <div className=" w-full h-auto  flex flex-col items-center justify-center py-6">
+                  <h3 className="font-poppins font-semibold text-[30px] sm:text-[55px] text-[#282529]">4.5</h3>
                   <StarRating rating="4.5" />
-                  <p className="font-poppins text-[8px] text-[#282529]">
+                  <p className="font-poppins text-[12px] text-[#282529]">
                     Based on 20 Reviews
                   </p>
                 </div>
       
               </div>
-                    <div className="border p-5 rounded-lg">
+                    <div className="border p-5 rounded-lg h-2/3">
                         <h3 className="text-xl font-semibold mb-4">Peripheral Ratings</h3>
                         {peripheralRatings.map((cat, i) => (
-                            <div key={i} className="flex justify-between text-sm space-y-4">
+                            <div key={i} className="flex justify-between text-sm ">
                                 <span>{cat.name}</span>
                                 <div className=" flex justify-center gap-2 items-center">
                                 <span className="text-[17px] font-[600]">{cat.rating}</span>
@@ -208,7 +194,7 @@ export default function Reviews() {
                     </div>
                 </div>
                 {/* Tabs */}
-                <div className="flex gap-3 mb-8 mt-[40px]">
+                <div className="flex flex-wrap gap-3 mb-8 mt-[40px]">
                     {tabs.map((tab) => (
                         <button
                             key={tab.id}
@@ -253,7 +239,7 @@ export default function Reviews() {
 
                                         <div className="flex gap-1">
 
-                                            <Image src="/images/university/reviewprofile.svg" alt="profile" width={200} height={200}/>
+                                            <Image src="/images/university/reviewprofile.svg" alt="profile" width={50} height={50}/>
 
                                             <div>
                                             <p>{review.type}</p>

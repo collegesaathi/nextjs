@@ -171,6 +171,16 @@ useEffect(() => {
     }
   }
 
+  // SHOW LOADER UNTIL API FINISHES
+if (loading) {
+  return (
+    <div className="w-full flex justify-center py-10">
+      <Loader className="animate-spin w-6 h-6 text-red-600" />
+    </div>
+  );
+}
+
+
   return (
     <div className="bg-gradient-to-b from-white to-[#EFEFEF] shadow-md shadow-neutral-200 rounded-md">
       <div className="">

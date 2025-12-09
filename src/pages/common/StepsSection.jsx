@@ -42,15 +42,15 @@ export default function StepsSection() {
         });
     }, []);
     return (
-        <div className="mt-[20px] md:mt-[50px] bg-[#FCF0EE]">
-            <section className="w-full px-6 py-6 mx-auto" id="admission-process-section">
-                <div className="max-w-[1100px] mx-auto">
+        <div className="mt-[20px]  md:mt-[50px] bg-[#FCF0EE]">
+            <section className="px-6 py-6" id="admission-process-section">
+                <div className="max-w-[1230px] ">
                     {/* Left Text */}
                     <div className="w-full flex flex-col lg:flex-row gap-8 md:gap-[10px]  mt-[20px] justify-left items-left">
 
 
-                        <div className="w-full md:max-w-[350px] pt-[120px] px-8">
-                            <div className="flex flex-col justify-center items-start text-left">
+                        <div className="w-full md:max-w-[500px] pt-[120px]  mx-auto">
+                            <div className="flex flex-col justify-left items-start text-left">
                                 <Heading title="NMIMS Online MBA Admission Process" />
                             </div>
 
@@ -62,6 +62,8 @@ export default function StepsSection() {
                         </div>
 
                         {/* Right Steps Grid */}
+
+                        <div className="flex justify-center items-center">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                             {steps.map((step) => (
                                 <div
@@ -94,6 +96,7 @@ export default function StepsSection() {
                                     </p>
                                 </div>
                             ))}
+                        </div>
                         </div>
                     </div>
                 </div>
