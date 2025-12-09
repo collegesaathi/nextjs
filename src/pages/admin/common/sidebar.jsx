@@ -139,7 +139,18 @@ function SideBar() {
                                 Placements
                             </Link>
 
-
+   <Link
+                                href="/admin/contact"
+                                className={`flex items-center py-2.5 px-3 md:px-4 lg:px-6 gap-2 
+    text-base font-medium tracking-[-0.06em]
+    ${pathname?.startsWith("/admin/contact")
+                                        ? "text-white bg-[#D6202C]"
+                                        : "text-[#565F66] hover:bg-gray-100"
+                                    }`}
+                            >
+                                <FaUniversity size={20} />
+                                Leads
+                            </Link>
 
 
                             <Link

@@ -27,7 +27,7 @@ function Index() {
     }, []);
 
     return (<>
-        <AdminLayout title={"Leads "}>
+        <AdminLayout page={"    Manage Leads"}>
             <div className="min-h-screen p-5 lg:p-[30px]">
                 <div className="flex flex-col md:flex-row justify-between md:items-center mb-4 lg:mb-5">
                     <h1 className="capitalize font-inter text-lg lg:text-2xl font-bold text-[#FF1B1B] tracking-[-0.04em] mb-6">
@@ -100,7 +100,7 @@ function Index() {
                                                 <NoData
                                                     Heading={"No Leads found"}
                                                     content={
-                                                        "No payout request found."
+                                                        "No Leads Request Found."
                                                     }
                                                 />
                                             </div>

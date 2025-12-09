@@ -19,11 +19,11 @@ export default function Delete({ step, Id, fetch, deleteAt }) {
     };
 
     // ✅ Delete Package
-    const handlePackageDelete = async () => {
+    const handleunivesity = async () => {
         try {
             setLoading(true);
             const main = new Listing();
-            const res = await main.packageDelete({ Id });
+            const res = await main.UniveristyDelete( Id );
 
             if (res?.data?.status) {
                 toast.success(res.data.message);
@@ -111,7 +111,7 @@ export default function Delete({ step, Id, fetch, deleteAt }) {
     const handleClick = (e) => {
         e.preventDefault();
         if (step === 1) {
-            handlePackageDelete();
+            handleunivesity();
         } else if (step === 2) {
             handleUserDelete();
         }
@@ -146,7 +146,7 @@ export default function Delete({ step, Id, fetch, deleteAt }) {
                 <Popup
                     isOpen={isOpen}
                     onClose={handleClose}
-                    size={"max-w-[540px]"}
+                    size={"max-w-[540px] bg-white"}
                     title={deleteAt ? "Restore" : "Delete"}
                 >
                     <p className="text-black text-[14px] md:text-[17px] mb-2">

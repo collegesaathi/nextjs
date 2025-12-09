@@ -9,7 +9,7 @@ export default function NoData({ Heading, content, className }) {
       // <div className="w-full lg:w-1/2 relative pb-12 lg:pb-0">
           <div className={`relative text-center ${className}`}>
       <Image
-        src="/no-data.png" // replace with your actual image path
+        src="/no-data.svg" // replace with your actual image path
         alt="Banner Icon"
         width={500}
         height={500}
