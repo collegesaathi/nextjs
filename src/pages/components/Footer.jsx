@@ -6,6 +6,7 @@ import Bgfooter from "../assets/home/shape1.png"
 import logo from "../assets/home/Logo.png"
 import hand from "../assets/home/hand.png"
 import grostart from "../assets/home/Groupstart.png"
+import Image from 'next/image'
 export default function Footer() {
   useEffect(() => {
     // AOS initialization (if you're using AOS)
@@ -19,8 +20,24 @@ export default function Footer() {
   return (
     <>
       {/* Desktop Version */}
-      <div className="py-4 md:py-8 bg-[#001136]">
-        <div className="mx-auto container sm:container md:container lg:container xl:max-w-[1230px]   px-4">
+      <div className="py-4 md:py-8 bg-[#001136] relative  ">
+                     
+  <div
+    className="absolute bottom-0 left-0 w-full h-1/2 bg-no-repeat bg-bottom bg-cover opacity-50"
+    style={{ backgroundImage: "url('/images/footerbg.png')",
+            WebkitMaskImage:
+        "linear-gradient(to top, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%)",
+      maskImage:
+        "linear-gradient(to top, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%)",
+     }}
+  ></div>
+
+        
+
+
+        <div className="mx-auto container sm:container md:container lg:container xl:max-w-[1230px]  px-4 z-20">
+          
+
 
            <div class="w-full mx-auto relative h-[108px] block lg:hidden ">
       <img    src={Bgfooter?.src} alt="" class="h-[108px]" />
@@ -291,7 +308,7 @@ font-normal text-[14px] leading-[38px] tracking-[0px] text-center text-white my-
 
           </div>
 
-          {/* <img src={footerbg?.src} alt="Footer Bottom" className="w-full" /> */}
+
         </div>
       </div>
     </>
