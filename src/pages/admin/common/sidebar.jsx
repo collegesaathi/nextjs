@@ -86,7 +86,7 @@ function SideBar() {
                                 <FaUniversity size={20} />
                                 University
                             </Link>
-                            <Link
+                            {/* <Link
                                 href="/admin/courses"
                                 className={`flex items-center py-2.5 px-3 md:px-4 lg:px-6 gap-2 
     text-base font-medium tracking-[-0.06em]
@@ -110,7 +110,7 @@ function SideBar() {
                             >
                                 <FaUniversity size={20} />
                                 Specialization
-                            </Link>
+                            </Link> */}
 
                             <Link
                                 href="/admin/approval"
