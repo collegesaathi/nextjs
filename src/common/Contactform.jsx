@@ -9,6 +9,7 @@ function Contactform() {
         email: '',
         location: '',
         query: '',
+        otp: ''
     })
 
     // Form state
@@ -42,6 +43,7 @@ function Contactform() {
                 email: '',
                 location: '',
                 query: '',
+                otp: '',
             })
 
             // Show success message
@@ -64,7 +66,7 @@ function Contactform() {
                     onChange={handleInputChange}
                     type="text"
                     placeholder="Name"
-                    className="w-full h-[61px] px-4 rounded-[11px] bg-[#F7F6F6] font-normal text-[14px] tracking-[0px] text-left text-[#8E8E8E] focus:outline-none focus:ring-2 focus:ring-[#EC1E24] focus:border-transparent transition-all duration-200"
+                    className="w-full h-[61px] px-4 rounded-[11px] bg-[#F7F6F6] font-normal text-[14px] tracking-[0px] text-left text-black focus:outline-none focus:ring-2 focus:ring-[#EC1E24] focus:border-transparent transition-all duration-200"
                     required
                 />
             </div>
@@ -77,7 +79,7 @@ function Contactform() {
                     onChange={handleInputChange}
                     type="tel"
                     placeholder="Mobile Number"
-                    className="w-full h-[61px] px-4 rounded-[11px] bg-[#F7F6F6] font-normal text-[14px] tracking-[0px] text-left text-[#8E8E8E] focus:outline-none focus:ring-2 focus:ring-[#EC1E24] focus:border-transparent transition-all duration-200"
+                    className="w-full h-[61px] px-4 rounded-[11px] bg-[#F7F6F6] font-normal text-[14px] tracking-[0px] text-left text-black focus:outline-none focus:ring-2 focus:ring-[#EC1E24] focus:border-transparent transition-all duration-200"
                     required
                 />
             </div>
@@ -90,13 +92,13 @@ function Contactform() {
                     onChange={handleInputChange}
                     type="email"
                     placeholder="Email"
-                    className="w-full h-[61px] px-4 rounded-[11px] bg-[#F7F6F6] font-normal text-[14px] tracking-[0px] text-left text-[#8E8E8E] focus:outline-none focus:ring-2 focus:ring-[#EC1E24] focus:border-transparent transition-all duration-200"
+                    className="w-full h-[61px] px-4 rounded-[11px] bg-[#F7F6F6] font-normal text-[14px] tracking-[0px] text-left text-black focus:outline-none focus:ring-2 focus:ring-[#EC1E24] focus:border-transparent transition-all duration-200"
                     required
                 />
             </div>
 
             {/* Location Dropdown */}
-            <div className="relative">
+            {/* <div className="relative">
                 <select
                     name="location"
                     value={form.location}
@@ -125,6 +127,23 @@ function Contactform() {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                     </svg>
                 </div>
+            </div> */}
+
+            <div>
+                <input
+                    name="otp"
+                    value={form.otp}
+                    onChange={(e) => {
+                        const digitsOnly = e.target.value.replace(/\D/g, "");
+                        handleInputChange({ target: { name: "otp", value: digitsOnly } });
+                    }}
+                    maxLength="6"
+                    type="text"
+                    inputMode="numeric"
+                    placeholder="OTP"
+                    className="w-full h-[61px] px-4 rounded-[11px] bg-[#F7F6F6] font-normal text-[14px] tracking-[0px] text-left text-black focus:outline-none focus:ring-2 focus:ring-[#EC1E24] focus:border-transparent transition-all duration-200"
+                    required
+                />
             </div>
 
             {/* Query Message Field */}
@@ -135,7 +154,7 @@ function Contactform() {
                     onChange={handleInputChange}
                     placeholder="Write down your query..."
                     rows="4"
-                    className="w-full h-[131px] p-4 rounded-[11px] bg-[#F7F6F6] font-normal text-[14px] tracking-[0px] text-left text-[#8E8E8E] focus:outline-none focus:ring-2 focus:ring-[#EC1E24] focus:border-transparent transition-all duration-200 resize-none"
+                    className="w-full h-[131px] p-4 rounded-[11px] bg-[#F7F6F6] font-normal text-[14px] tracking-[0px] text-left text-black focus:outline-none focus:ring-2 focus:ring-[#EC1E24] focus:border-transparent transition-all duration-200 resize-none"
                     required
                 ></textarea>
             </div>

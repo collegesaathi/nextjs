@@ -11,6 +11,9 @@ function ContactForm() {
 
 
     const router = useRouter();
+    console.log(
+        "router", router?.pathname
+    )
     const [loading, setLoading] = useState(false);
     const [active, setActive] = useState("jaipur");
     const [universities, setUniversities] = useState([])
@@ -26,8 +29,12 @@ function ContactForm() {
         content: "",
         city: "",
         state: "",
-        university_id: ""
+        university_id: "",
+        page_name: router?.pathname
+
     })
+
+    console.log("fgfd", router)
 
     console.log(universities, universities)
 
@@ -83,7 +90,8 @@ function ContactForm() {
                 content: data?.content || "",
                 city: data?.city || "jaipur",
                 state: data?.state || "rajasthan",
-                university_id: data?.university_id || ""
+                university_id: data?.university_id || "",
+                page_name: router?.pathname
             });
 
             if (response?.data?.status) {

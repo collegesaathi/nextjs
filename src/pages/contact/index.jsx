@@ -50,9 +50,9 @@ function Index() {
                                   <RiChatSmileFill size={27} />
                                 </div>
                                 <div className=" flex flex-col justify-start items-start gap-2">
-                                       <h3 className="font-[700] text-[14px] font-poppins">Chat to support</h3>
+                                       <h3 className="font-[700] text-[14px] md:text-[16px] font-poppins">Chat to support</h3>
                                 <p className="text-gray-500 font-[400] text-[12px] font-poppins">Let’s Connect</p>
-                                <a href="mailto:support@collegesathi.com" className="text-[#4DAFF1] font-[400] font-poppins text-[15px] underline">
+                                <a href="mailto:support@collegesathi.com" className="text-[#ED1F24] font-[400] font-poppins text-[15px] underline">
                                     support@collegesathi.com
                                 </a>
                                 </div>
@@ -67,9 +67,9 @@ function Index() {
                                   <IoMailUnreadOutline size={27} />
                                 </div>
                                 <div className=" flex flex-col justify-start items-start gap-2">
-                                       <h3 className="font-[700] text-[14px] font-poppins">Mail to HR</h3>
+                                       <h3 className="font-[700] text-[14px] md:text-[16px] leading-[28px] font-poppins">Mail to HR</h3>
                                 <p className="text-gray-500 font-[400] text-[12px] font-poppins">Join Our Communityt</p>
-                                <a href="mailto:hr@collegesathi.com" className="text-[#4DAFF1] font-[400] font-poppins text-[15px] underline">
+                                <a href="mailto:hr@collegesathi.com" className="text-[#ED1F24] font-[400] font-poppins text-[15px] underline">
                                    hr@collegesathi.com
                                 </a>
                                 </div>
@@ -84,7 +84,7 @@ function Index() {
                                   <PiWhatsappLogoLight size={27} />
                                 </div>
                                 <div className=" flex flex-col justify-start items-start gap-2">
-                                       <h3 className="font-[700] text-[14px] font-poppins">DM Us</h3>
+                                       <h3 className="font-[700] text-[14px] md:text-[16px] font-poppins">DM Us</h3>
                                 <p className="text-gray-500 font-[400] text-[12px] font-poppins">Start a Conversation</p>
                                 <a href="mailto:support@collegesathi.com" className="text-black font-[400] font-poppins text-[15px]">
                                  xxxx-xxx-xxx
@@ -104,7 +104,7 @@ function Index() {
                                   <MdPhoneCallback size={27} />
                                 </div>
                                 <div className=" flex flex-col justify-start items-start gap-2">
-                                       <h3 className="font-[700] text-[14px] font-poppins">Call Us</h3>
+                                       <h3 className="font-[700] text-[14px] md:text-[16px] font-poppins">Call Us</h3>
                                 <p className="text-gray-500 font-[400] text-[12px] font-poppins">Let’s Talk</p>
                                 <a href="mailto:support@collegesathi.com" className="text-black font-[400] font-poppins text-[15px]">
                              9785-800-008
