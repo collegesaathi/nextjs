@@ -8,6 +8,7 @@ import TeamAndAchievements from "./TeamAndAchievements";
 import AwardsCarousel from "../home/AwardsCarousel";
 import IndustryExperts from "../home/IndustryExperts";
 import ContactSection from "../home/ContactSection";
+import WhyChooseUs from "./WhyChooseUs";
 
 
 function Index() {
@@ -24,6 +25,7 @@ function Index() {
                 <TeamAndAchievements />
                 <AwardsCarousel/>
                 <IndustryExperts />
+                <WhyChooseUs/>
                 <ContactSection/>
             </div>
 

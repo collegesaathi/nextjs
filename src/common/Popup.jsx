@@ -18,7 +18,7 @@ const Popup = ({ isOpen, onClose, children, size, title ,height ,bg ,top}) => {
 
   return (
     <div className={`fixed inset-0 flex items-center justify-center  z-50 px-3  ${top}`}>
-      <div className={` rounded-lg w-full shadow-lg ${size} ${bg}`}>
+      <div className={` rounded-lg w-full shadow-lg ${size} ${bg ? bg : "bg-white"}`}>
         <div className={`p-4 text-gray-800 overflow-y-auto  ${height} relative`}>
           <div className="flex items-center justify-between mb-4 p-2">
             <h3 className="text-[30px] font-semibold text-red-600">{title}</h3>
