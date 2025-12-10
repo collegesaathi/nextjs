@@ -1,4 +1,5 @@
 import Layout from "../components/Layout";
+import ContactSection from "../home/ContactSection";
 
 export default function TermsConditions() {
     return (
@@ -9,7 +10,7 @@ export default function TermsConditions() {
                     <nav className="flex items-center gap-2">
                         <span className="text-gray-400">Home</span>
                         <span>{">"}</span>
-                        <span className="text-red-600 font-medium">Terms & Conditions</span>
+                        <span className="text-[#EC1E24] font-medium">Terms & Conditions</span>
                     </nav>
                 </div>
 
@@ -21,10 +22,10 @@ export default function TermsConditions() {
                         </svg>
                     </div>
 
-                    <h1 className="text-3xl md:text-4xl font-bold text-gray-800">
+                    <h1 className="text-3xl md:text-[60px] font-[600] font-poppins text-gray-800">
                         Terms & Conditions
                     </h1>
-                    <p className="text-gray-600 mt-2">
+                    <p className="text-gray-600 text-[16px] font-poppins font-[400] mt-2">
                         Read these terms & conditions carefully as it<br />
                         contains important information
                     </p>
@@ -33,8 +34,8 @@ export default function TermsConditions() {
                 <div className="border-t border-gray-200  my-6"></div>
 
                 {/* Content */}
-                <div className=" px-4 py-4 pb-20 text-gray-700 leading-relaxed">
-                    <p className="mb-4">
+                <div className=" px-4 py-4 pb-20 text-[#282529]  font-poppins text-[16px] leading-[28px] font-[400] ">
+                    <p className="mb-4 ">
                         Further to the Terms of Use provided on <b>"Collegesathi.com"</b> we disclaim all
                         liabilities and warranties with respect to payment of fees (“Fees”) that are
                         applicable to the programs you have opted for through our platform. Such Fees
@@ -99,6 +100,8 @@ export default function TermsConditions() {
                         In such cases, reasonable measures will be taken to minimize disruption.
                     </p>
                 </div>
+
+                <ContactSection />
 
             </div>
         </Layout>

@@ -101,9 +101,17 @@ function ContactForm() {
                 toast.error(response.data.message);
             }
             setData({
-                email: "",
-                password: "",
+               name: "",
+        email: "",
+        phone_number: "",
+        course_id: "",
+        content: "",
+        city: "",
+        state: "",
+        university_id: "",
+          page_name: router?.pathname
             });
+
         } catch (error) {
             console.error("API error:", error);
             toast.error(error?.response?.data?.message || "Something went wrong!");

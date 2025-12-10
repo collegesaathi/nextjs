@@ -12,27 +12,37 @@ function Index() {
 
         <Layout>
 
-            <div className="mx-auto container sm:container md:container xl:max-w-[1230px]  px-4 py-4 md:mt-20 lg:mt-20 ">
-                <section className="py-24 md:py-32 bg-white text-center">
-                    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                        <h1 className="text-5xl md:text-6xl font-extrabold text-gray-900 leading-tight mb-6">
+            <div className="mx-auto container sm:container md:container xl:max-w-[1230px]  md:px-4 py-4 md:mt-20 lg:mt-20 ">
+
+
+  <div className="  px-2 md:px-4 py-4 text-sm text-gray-500 mt-6">
+                    <nav className="flex items-center gap-2">
+                        <span className="text-gray-400">Home</span>
+                        <span>{">"}</span>
+                        <span className="text-[#EC1E24] font-medium">CS Careers</span>
+                    </nav>
+                </div>
+
+                <section className="py-8 md:py-10 bg-white text-center">
+                    <div className="max-w-4xl mx-auto px-2 sm:px-6 lg:px-8">
+                        <h1 className="text-[26px] md:text-[60px] font-[600] text-[#282529] font-poppins leading-tight mb-6">
                             Build Your Career with Collegesathi
                         </h1>
 
-                        <p className="text-xl text-gray-600 mb-10 max-w-2xl mx-auto">
+                        <p className="text-[16px] md:text-[18px] text-[#282529] mb-10 max-w-2xl mx-auto">
                             Where passion meets purpose. Work with desire, passion, and grow with people who inspire you.
                         </p>
 
-                        <button className="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md shadow-lg text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition duration-150 ease-in-out">
+                        <button className="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-xl shadow-lg text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition duration-150 ease-in-out">
                             Explore Open Job Roles
                         </button>
                     </div>
                 </section>
                 <section className="bg-white py-10 md:py-16">
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                        <div className="relative w-full h-[500px] overflow-hidden rounded-xl shadow-2xl">
+                        <div className="relative w-full h-[574px] overflow-hidden rounded-xl shadow-2xl">
                             <div className="absolute inset-0 bg-cover bg-center"
-                                style={{ backgroundImage: "url('/placeholder-office.jpg')" }}>
+                                style={{ backgroundImage: "url('/images/careerhero.png')" }}>
                             </div>
 
 
