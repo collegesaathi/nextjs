@@ -57,7 +57,7 @@ function OnlineSection({ formData, handleChange, onlines, setOnlines, handleQuil
             <>
                 <div className="flex justify-between items-center mb-5">
                     <h2 className="text-xl font-semibold text-[#CC2828]">
-                        Online Section
+                        Adminssion Process Section
                     </h2>
 
                     <button
