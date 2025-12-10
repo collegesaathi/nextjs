@@ -58,7 +58,7 @@ export default function PrivacyPolicy() {
                 </div>
 
                 {/* Header Section */}
-                <div className=" px-4 py-8 md:flex md:items-start md:justify-between ">
+                <div className=" px-4 py-8 md:flex md:items-center md:justify-between ">
 
                     {/* Left Side */}
                     <div className="md:w-1/2">
@@ -79,7 +79,7 @@ export default function PrivacyPolicy() {
                     {/* Right Side Image */}
                     <div className="md:w-1/2 mt-8 md:mt-0 flex justify-center">
                         <img
-                            src="/privacy-policy-illustration.png"
+                            src="/images/privacy.png"
                             alt="Privacy Illustration"
                             className="w-72 md:w-96"
                         />
@@ -92,27 +92,32 @@ export default function PrivacyPolicy() {
                 <div className=" px-4 pb-20 md:flex gap-10">
 
                     {/* Left Sidebar Navigation */}
-                    <aside className="md:w-1/4 mb-10 md:mb-0 pl-4 space-y-2 text-gray-700 font-medium border-l-4 border-red-500">
-                        {sections.map((sec) => (
-                            <a
-                                key={sec.id}
-                                href={`#${sec.id}`}
-                                className={`block cursor-pointer transition-all ${activeSection === sec.id
-                                    ? "text-red-600 font-semibold"
-                                    : "text-gray-700"
-                                    }`}
-                            >
-                                {sec.label}
-                            </a>
-                        ))}
+                 <aside className="md:w-1/4 mb-10 md:mb-0 pl-2 space-y-[30px] text-gray-700 font-medium">
+
+                    {sections.map((sec) => (
+    <a
+        key={sec.id}
+        href={`#${sec.id}`}
+        className={`
+            block cursor-pointer transition-all pl-3 py-1 border-l-4
+            ${activeSection === sec.id
+                ? "border-red-600 text-red-600 font-semibold"
+                : "border-gray-300 text-gray-700"
+            }
+        `}
+    >
+        {sec.label}
+    </a>
+))}
+
                     </aside>
 
                     {/* Right Content */}
-                    <div className="md:w-3/4 text-gray-700 leading-relaxed">
+                    <div className="md:w-3/4 text-gray-700 leading-relaxed font-poppins">
 
                         {/* 1. Introduction */}
-                        <h2 id="introduction" className="text-xl font-semibold mb-3">1. Introduction</h2>
-                        <p className="mb-6">
+                        <h2 id="introduction" className="text-[28px] font-[600] mb-3">1. Introduction</h2>
+                        <p className="mb-6 text-[16px] font-[400]">
                             At Collegesathi (and our affiliates and subsidiaries, "we", "our", or "us") we care
                             to keep your personal data safe. This Privacy Policy ("Policy") explains how we
                             collect, utilize, store, and disclose your personal information while safeguarding
@@ -122,7 +127,7 @@ export default function PrivacyPolicy() {
                         </p>
 
                         {/* 2. Purpose of this Policy */}
-                        <h2 id="purpose" className="text-xl font-semibold mb-3">2. Purpose of this Policy</h2>
+                        <h2 id="purpose" className="text-[28px] font-[600] mb-3">2. Purpose of this Policy</h2>
                         <p className="mb-6">
                             This Policy outlines how Collegesathi gathers and processes personal information
                             via its websites and applications, including our website
@@ -134,7 +139,7 @@ export default function PrivacyPolicy() {
                         </p>
 
                         {/* 3. Scope */}
-                        <h2 id="scope" className="text-xl font-semibold mb-3">3. Scope</h2>
+                        <h2 id="scope" className="text-[28px] font-[600] mb-3">3. Scope</h2>
                         <p className="mb-6">
                             This Policy is effective for all users of our platform, such as students, potential
                             applicants, educational institutions, affiliates, loan and placement partners, and
@@ -143,7 +148,7 @@ export default function PrivacyPolicy() {
                         </p>
 
                         {/* 4. Information We Collect */}
-                        <h2 className="text-xl font-semibold mb-3">4. Information We Collect</h2>
+                        <h2 className="text-[28px] font-[600] mb-3">4. Information We Collect</h2>
 
                         <h3 className="font-semibold mt-4 mb-2">A. Information Provided by You</h3>
                         <ul className="list-disc ml-6 space-y-2 mb-6">

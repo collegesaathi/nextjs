@@ -415,7 +415,7 @@ function Index() {
         { id: "campuses", label: "Campuses" },
         { id: "partners", label: "Partners" },
         { id: "services", label: "Services" },
-        { id: "online", label: "Online" },
+        { id: "online", label: "Admission Process" },
         { id: "faq", label: "FAQ" },
     ];
 
