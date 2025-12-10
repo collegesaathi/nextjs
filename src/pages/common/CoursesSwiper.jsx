@@ -1,5 +1,10 @@
 "use client";
 
+
+import { useRouter } from "next/router";
+import toast from "react-hot-toast";
+import Listing from "../api/Listing";
+
 import { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -171,60 +176,117 @@ function EnquiryBox() {
 
 /* ------------------ FORM ------------------ */
 function FormBox() {
+
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
+
+  const [form, setForm] = useState({
+    name: '',
+    phone_number: '',
+    email: '',
+    content: '',
+    otp: '',
+    course_id: "",
+    city: 'jaipur',
+    state: 'rajasthan',
+    page_name: router?.pathname
+  });
+
+  // Correct handleChange function
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (loading) return;
+
+    setLoading(true);
+
+    try {
+      const main = new Listing();
+      const response = await main.ContactAdd({
+        ...form,
+        otp: form?.otp || "1234",
+      });
+
+      if (response?.data?.status) toast.success(response.data.message);
+      else toast.error(response.data.message);
+
+
+
+      // ✅ Reset form after submit
+      setForm({
+        name: '',
+        phone_number: '',
+        email: '',
+        otp: '',
+        page_name: router?.pathname
+      });
+
+
+    } catch (error) {
+      console.error("API error:", error);
+      toast.error(error?.response?.data?.message || "Something went wrong!");
+    }
+
+    setLoading(false);
+
+  };
+
   return (
     <div className="w-full flex justify-center md:justify-start">
       <div className="w-full max-w-sm">
 
         {/* Logos */}
         <div className="flex gap-2 justify-center border-b border-gray-300 pb-2 mb-3">
-          <Image
-            src="/images/university/course/4.png"
-            alt="course logo"
-            width={60}
-            height={40}
-            className=" w-[90px] object-contain"
-          />
-          <Image
-            src="/images/university/course/5.png"
-            alt="course logo"
-            width={60}
-            height={40}
-            className=" w-[90px] object-contain"
-          />
-          <Image
-            src="/images/university/course/6.png"
-            alt="course logo"
-            width={60}
-            height={40}
-            className="w-[90px] object-contain"
-          />
+          <Image src="/images/university/course/4.png" alt="course logo" width={60} height={40} className="w-[90px] object-contain" />
+          <Image src="/images/university/course/5.png" alt="course logo" width={60} height={40} className="w-[90px] object-contain" />
+          <Image src="/images/university/course/6.png" alt="course logo" width={60} height={40} className="w-[90px] object-contain" />
         </div>
 
         <h3 className="font-semibold mb-3 text-lg">Enquire Now</h3>
 
         {/* Inputs */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
-          <Input label="Your Name" placeholder="John Doe" />
-          <Input label="Email" placeholder="example@gmail.com" />
-          <Input label="Phone" placeholder="+91 000 000 0000" />
-          <Input label="OTP" placeholder="xxxx" />
+          <Input label="Your Name" name="name" placeholder="John Doe" value={form.name} onChange={handleChange} />
+          <Input label="Email" name="email" placeholder="example@gmail.com" value={form.email} onChange={handleChange} />
+          <Input label="Phone" name="phone_number" placeholder="+91 000 000 0000" value={form.phone_number} onChange={(e) => {
+            const value = e.target.value.replace(/\D/g, "");
+            if (value.length <= 10) handleChange({ target: { name: "phone_number", value } });
+          }} />
+          <Input label="OTP" name="otp" placeholder="xxxx" value={form.otp} onChange={handleChange} />
         </div>
 
-        <button className="bg-red-600 text-white text-sm w-full py-2 rounded-full hover:bg-red-700 transition">
-          Submit
+        <button
+          onClick={handleSubmit}
+          disabled={loading}
+          className="bg-red-600 text-white text-sm w-full py-2 rounded-full hover:bg-red-700 transition"
+        >
+          {loading ? "Loading.." : "Submit"}
         </button>
       </div>
     </div>
   );
 }
 
+
 /* -------------------------------- INPUT ------------------------------------- */
 
-function Input({ label, placeholder }) {
+function Input({ label, placeholder, name, value, onChange }) {
   return (
     <div>
       <label className="text-[10px] text-gray-600">{label}</label>
       <input
+        name={name}
+        value={value}
+        onChange={onChange}
+        type="text"
         className="w-full h-[32px] bg-white border border-gray-400 rounded-full px-3 text-[12px]"
         placeholder={placeholder}
       />

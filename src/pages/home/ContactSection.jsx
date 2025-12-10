@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { FaWhatsapp } from 'react-icons/fa'
 import Vector from "../assets/home/Vector.png"
 import Heading from '../../common/Heading'
+
 import Contactform from '../../common/Contactform'
 import shapes from "../assets/home/shape.svg"
 import WhatsApp from "../assets/home/whatsapp.svg"
@@ -136,7 +137,7 @@ export default function ContactSection() {
 
                             {/* Right Side - Contact Form */}
                             <div
-                                className="w-[636px] h-[571px] rounded-[24px] bg-white border border-[#E8E8E8] shadow-[0px_4px_16px_0px_#00000021] p-[30px]"
+                                className="w-[636px]  rounded-[24px] bg-white border border-[#E8E8E8] shadow-[0px_4px_16px_0px_#00000021] p-[30px]"
                             >
                                 <Contactform />
 

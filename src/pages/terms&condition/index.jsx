@@ -6,7 +6,8 @@ function Index() {
   
 
 
-    return (<>
+    return (
+    <>
  
         <Layout>
             
@@ -17,7 +18,8 @@ function Index() {
 
         </Layout>
 
-    </>);
+    </>
+    );
 }
 
 export default Index;

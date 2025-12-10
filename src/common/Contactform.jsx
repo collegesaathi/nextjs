@@ -1,19 +1,35 @@
 import { useState } from "react"
+import { useRouter } from "next/router";
+import toast from "react-hot-toast";
+import { IoChevronDown } from "react-icons/io5";
+
+import Listing from "@/pages/api/Listing";
 
 function Contactform() {
+
+
+
+    const [isSubmitting, setIsSubmitting] = useState(false)
+    const [loading, setLoading] = useState(false);
+    const router = useRouter();
+        const [isCourseOpen, setCourseOpen] = useState(false);
 
     // Form data
     const [form, setForm] = useState({
         name: '',
-        mobile: '',
+        phone_number: '',
         email: '',
-        location: '',
-        query: '',
-        otp: ''
+        content: '',
+        otp: '',
+        course_id: "",
+        city: 'jaipur',
+        state: 'rajasthan',
+        page_name: router?.pathname
+
     })
 
     // Form state
-    const [isSubmitting, setIsSubmitting] = useState(false)
+
 
     // Handle form input changes
     const handleInputChange = (e) => {
@@ -25,44 +41,51 @@ function Contactform() {
     }
 
     // Form submission
-    const submitForm = async (e) => {
-        e.preventDefault()
-        setIsSubmitting(true)
+    const handleSubmit = async (e) => {
+        e.preventDefault();
 
+        if (loading) return;
+
+        console.log("cxgvxfb", form)
+
+        setLoading(true);
         try {
-            // Simulate form submission
-            await new Promise((resolve) => setTimeout(resolve, 2000))
+            const main = new Listing();
+            const response = await main.ContactAdd({
+                name: form?.name || "",
+                email: form?.email || "",
+                phone_number: form?.phone_number || "",
+                course_id: form?.course_id || "",
+                content: form?.content || "",
+                otp: form?.otp || "1234",
+                city: form?.city || "jaipur",
+                state: form?.state || "rajasthan",
+                page_name: router?.pathname
+            });
 
-            // Handle form submission logic here
-            console.log('Form submitted:', form)
+            if (response?.data?.status) {
+                toast.success(response.data.message);
+            }
+            else {
+                toast.error(response.data.message);
+            }
 
-            // Reset form after successful submission
-            setForm({
-                name: '',
-                mobile: '',
-                email: '',
-                location: '',
-                query: '',
-                otp: '',
-            })
-
-            // Show success message
-            toast('Thank you! Your query has been submitted successfully.')
         } catch (error) {
-            console.error('Form submission error:', error)
-            alert('Sorry, there was an error submitting your query. Please try again.')
-        } finally {
-            setIsSubmitting(false)
+            console.error("API error:", error);
+            toast.error(error?.response?.data?.message || "Something went wrong!");
+            setLoading(false);
         }
-    }
+        setLoading(false);
+        setIsSubmitting(true)
+    };
 
     return (
-        <form onSubmit={submitForm} className="space-y-4.5">
+        <form onSubmit={handleSubmit} className="space-y-4.5">
             {/* Name Field */}
             <div>
                 <input
                     name="name"
-                    value={form.name}
+                    value={form?.name}
                     onChange={handleInputChange}
                     type="text"
                     placeholder="Name"
@@ -74,9 +97,13 @@ function Contactform() {
             {/* Mobile Number Field */}
             <div>
                 <input
-                    name="mobile"
-                    value={form.mobile}
-                    onChange={handleInputChange}
+                    name="phone_number"
+                    value={form?.phone_number}
+                    onChange={(e) => {
+                        const value = e.target.value.replace(/\D/g, "");
+                        if (value.length <= 10) handleInputChange({ target: { name: "phone_number", value } });
+                    }}
+                    maxLength="10"
                     type="tel"
                     placeholder="Mobile Number"
                     className="w-full h-[61px] px-4 rounded-[11px] bg-[#F7F6F6] font-normal text-[14px] tracking-[0px] text-left text-black focus:outline-none focus:ring-2 focus:ring-[#EC1E24] focus:border-transparent transition-all duration-200"
@@ -88,7 +115,7 @@ function Contactform() {
             <div>
                 <input
                     name="email"
-                    value={form.email}
+                    value={form?.email}
                     onChange={handleInputChange}
                     type="email"
                     placeholder="Email"
@@ -132,7 +159,7 @@ function Contactform() {
             <div>
                 <input
                     name="otp"
-                    value={form.otp}
+                    value={form?.otp}
                     onChange={(e) => {
                         const digitsOnly = e.target.value.replace(/\D/g, "");
                         handleInputChange({ target: { name: "otp", value: digitsOnly } });
@@ -146,11 +173,28 @@ function Contactform() {
                 />
             </div>
 
+
+            <div className="relative">
+                <select
+                    name="course_id"
+                    value={form?.course_id}
+                    onChange={handleInputChange}
+                    onFocus={() => setCourseOpen(true)}
+                    onBlur={() => setCourseOpen(false)}
+                    className="w-full h-[61px] px-4 rounded-[11px] bg-[#F7F6F6] font-normal text-[14px] tracking-[0px] text-left text-black focus:outline-none focus:ring-2 focus:ring-[#EC1E24] focus:border-transparent transition-all duration-200 ">
+                    <option value="" disabled selected className="text-red-500" >Select a Course</option>
+                    {/* Add more options here */}
+                </select>
+                   <span className={`absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none   ${isCourseOpen ? "rotate-180" : "rotate-0"}`}>
+                                                        <IoChevronDown />
+                                                    </span>
+            </div>
+
             {/* Query Message Field */}
             <div>
                 <textarea
-                    name="query"
-                    value={form.query}
+                    name="content"
+                    value={form?.content}
                     onChange={handleInputChange}
                     placeholder="Write down your query..."
                     rows="4"
