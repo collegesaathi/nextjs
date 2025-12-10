@@ -48,7 +48,10 @@ function Index() {
                                     Email
                                 </th>
                                 <th className="font-normal text-sm lg:text-base px-3 lg:px-4 py-2 lg:py-3 border-t border-[rgba(204,40,40,0.2)] capitalize">
-                                    phone Number
+                                    Phone Number
+                                </th>
+                                 <th className="font-normal text-sm lg:text-base px-3 lg:px-4 py-2 lg:py-3 border-t border-[rgba(204,40,40,0.2)] capitalize">
+                                  Page Name
                                 </th>
                                 <th className="font-normal text-sm lg:text-base px-3 lg:px-4 py-2 lg:py-3 border-t border-[rgba(204,40,40,0.2)] capitalize">
                                     State &   City
@@ -62,7 +65,7 @@ function Index() {
                             </tr>
                         </thead>
                         {Loading ? (
-                            <TableLoader length={6} />
+                            <TableLoader length={8} />
                         ) : (
                             <tbody>
                                 {Leads && Leads?.length > 0 ? (
@@ -80,11 +83,14 @@ function Index() {
                                             <td className="px-3 lg:px-4 py-2 lg:py-3 text-black text-sm lg:text-base font-medium font-inter text-center whitespace-nowrap">
                                                 {item?.phone_number}
                                             </td>
+                                                <td className="px-3 lg:px-4 py-2 lg:py-3 text-black text-sm lg:text-base font-medium font-inter text-center whitespace-nowrap">
+                                                {item?.page_name}
+                                            </td>
                                             <td className="capitalize px-3 lg:px-4 py-2 lg:py-3 text-black text-sm lg:text-base font-medium font-inter whitespace-nowrap">
-                                                {item?.state} /{item?.city}
+                                                {item?.state} & {item?.city}
                                             </td>
                                             <td className="capitalize px-3 lg:px-4 py-2 lg:py-3 text-black text-sm lg:text-base font-medium font-inter ">
-                                                {item?.university?.name}  /
+                                                {item?.university?.name}  &
                                                 {item?.course?.name}
                                             </td>
                                             <td className="capitalize px-3 lg:px-4 py-2 lg:py-3 text-black text-sm lg:text-base font-medium font-inter ">
@@ -95,7 +101,7 @@ function Index() {
                                     ))
                                 ) : (
                                     <tr>
-                                        <td colSpan={6}>
+                                        <td colSpan={8}>
                                             <div className="mt-2">
                                                 <NoData
                                                     Heading={"No Leads found"}
