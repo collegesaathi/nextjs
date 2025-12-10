@@ -39,7 +39,7 @@ function FaqSection({faqs ,  setFaqs}) {
                     + Add More FAQ
                 </button>
             </div>
-            {faqs.map((faq, index) => (
+            {faqs?.map((faq, index) => (
                 <div key={index} className="grid grid-cols-1 gap-4 items-center">
                     {/* QUESTION */}
                     <div>
