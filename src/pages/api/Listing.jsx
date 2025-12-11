@@ -60,6 +60,10 @@ class Listing extends Component {
   async UniveristyDelete(id) {
     return Api.get(`/university/delete/${id}`)
   }
+
+  async UniveristyGet(slug) {
+    return Api.get(`/university/${slug}`)
+  }
   render() {
     return (
       <div>

@@ -10,13 +10,19 @@ const ReactQuillEditor = ({ label, desc, handleBioChange }) => {
             [{ font: [] }],
             [{ size: [] }],
             [{ header: [1, 2, 3, 4, 5, 6, false] }],
-            ["bold", "italic", "underline", "strike", "blockquote"],
-            [{ list: "ordered" }, { list: "bullet" }],
+            // ⭐ EXTRA TEXT OPTIONS
+            ["bold", "italic", "underline", "strike"],
+            [{ script: "sub" }, { script: "super" }],
+            ["blockquote", "code-block"],
+
+            [{ list: "ordered" }, { list: "bullet" }, { list: "check" }],
+
             [{ indent: "-1" }, { indent: "+1" }],
             [{ align: [] }],
             [{ color: [] }, { background: [] }],
             ["link", "image", "video"],
             ["clean"],
+
         ],
     };
 
@@ -41,7 +47,7 @@ const ReactQuillEditor = ({ label, desc, handleBioChange }) => {
     ];
 
     return (
-        <div className="mb-6">
+        <div className="mb-3  mt-3">
             <label className="block text-[#FF1B1B] font-semibold mb-2">{label}</label>
 
             <div className="border border-gray-300 bg-white rounded-md">

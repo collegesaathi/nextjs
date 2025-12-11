@@ -124,18 +124,18 @@ export default function Index() {
                                         <h3 className="text-black text-lg font-semibold">
                                             {item?.name}
                                         </h3>
-                                        <p className="text-gray-500 text-sm mb-4 flex-grow">
+                                        {/* <p className="text-gray-500 text-sm mb-4 flex-grow">
                                             {item?.description}
-                                        </p>
+                                        </p> */}
 
                                         {/* Keep the button fixed at the bottom */}
-                                        <a
-                                            href={"/admin/university/aaa"}
+                                        <Link
+                                            href={`/admin/university/${item?.slug}`}
                                             target="_blank"
                                             className="mt-auto block text-center w-full py-2.5 rounded-full bg-[#FF1B1B] hover:bg-[#ad0e0e] text-white font-semibold transition-all"
                                         >
                                             View
-                                        </a>
+                                        </Link>
                                     </div>
                                 </div>
                             ))}

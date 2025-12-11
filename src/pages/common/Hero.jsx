@@ -3,40 +3,25 @@
 import Image from "next/image";
 import StarRating from "@/common/Rating";
 
-export default function Hero() {
+export default function Hero({data}) {
   return (
     <div className="mt-8 md:mt-[60px] lg:mt-[90px] ">
       <div className="flex flex-col-reverse lg:flex-row items-start justify-between">
         {/* LEFT SIDE */}
         <div className="w-full lg:w-[480px] py-6 px-3 sm:px-5 lg:px-0 ">
-
           {/* TITLE */}
           <h1 className="font-poppins font-bold text-[28px] sm:text-[36px] md:text-[48px] leading-tight text-[#282529]">
-            NMIMS <span className="text-[#EC1E24]">Online MBA</span>
+          {data?.name || ""}
           </h1>
 
           {/* BADGES */}
           <div className="flex flex-wrap gap-3 sm:gap-4 pt-4">
-            {[
-              {
-                img: "/icons/university/granted.svg",
-                text: "Granted Category 1 University by MHRD",
-              },
-              {
-                img: "/icons/university/special.svg",
-                text: "Special Scholarship for Armed Forces",
-              },
-              {
-                img: "/icons/university/hiring.svg",
-                text: "500+ Hiring Partners",
-              },
-            ].map((item, index) => (
+            {data?.description?.map((item, index) => (
               <div
                 key={index}
                 className="w-full sm:w-[48%] lg:w-[208px] min-h-[44px] rounded-[12px] border border-[#f8dbdd] flex items-center gap-2 px-3 py-2"
               >
-                <Image src={item.img} width={20} height={20} alt="" />
-                <span className="font-poppins text-[12px] text-[#282529]">{item.text}</span>
+                <span className="font-poppins text-[12px] text-[#282529]">{item?.text}</span>
               </div>
             ))}
           </div>
@@ -45,7 +30,7 @@ export default function Hero() {
           <div className="flex items-center gap-4 pt-6">
           
 
-            <Image src="/images/university/hero/1.png" alt="" width={150} height={100} className="sm:w-[200px]" />
+            <Image src={data?.cover_image} alt="" width={150} height={100} className="sm:w-[200px]" />
           </div>
 
           {/* BUTTONS */}
@@ -84,8 +69,8 @@ export default function Hero() {
         </div>
         {/* RIGHT IMAGE BLOCK */}
         <div className="w-full lg:w-[648px] relative pt-3">
-          <Image
-            src="/images/courses/course.svg"
+          <img
+            src={data?.cover_image}
             alt=""
             width={648}
             height={400}

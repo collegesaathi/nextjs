@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Heading from "@/common/Heading";
 
-export default function SampleCertificate() {
+export default function SampleCertificate({certificates}) {
   return (
     <>
       <section className="w-full px-6 py-6 mx-auto" id="certificate-section">
@@ -9,12 +9,11 @@ export default function SampleCertificate() {
           <div className="flex flex-col lg:flex-row items-center justify-left gap-3 ">
             {/* LEFT CONTENT */}
             <div className="w-full lg:w-1/2">
-              <Heading title="NMIMS Sample Certificate" />
-              <p className="font-poppins text-[15px] md:text-[17px] leading-[22px] md:leading-[25px] text-[#282529] mt-3">
-                The students will get a recognized certificate which will be similar of traditional
-                program, which will help you get admission for higher studies or upgrading prospects at
-                higher professional roles.
-              </p>
+              <Heading title={certificates?.title} />
+              <div
+                        className="font-poppins text-[15px] sm:text-[16px] text-[#282529] leading-6 sm:leading-7 mb-4"
+                        dangerouslySetInnerHTML={{ __html: certificates?.description || "" }}
+                    />
             </div>
 
             {/* CERTIFICATE IMAGE */}
@@ -31,7 +30,7 @@ export default function SampleCertificate() {
                 {/* Inner Certificate */}
                 <div className="absolute inset-0 flex items-center justify-center">
                   <Image
-                    src="/images/certificate.png"
+                    src={certificates?.image?.src}
                     alt="certificate"
                     width={220}
                     height={150}
