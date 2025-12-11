@@ -78,7 +78,7 @@ export default function OfficeSection() {
   };
 
   return (
-    <div className=" py-16 md:py-20 bg-[#F4F5F7] min-h-screen">
+    <div className=" py-8 md:py-20  min-h-screen">
       
       {/* CSS to Hide Scrollbar but keep functionality */}
       <style jsx global>{`
@@ -104,7 +104,7 @@ export default function OfficeSection() {
           onMouseLeave={handleMouseLeave}
           onMouseUp={handleMouseUp}
           onMouseMove={handleMouseMove}
-          className="flex items-center gap-10 px-10 overflow-x-auto pb-12 pt-12 no-scrollbar relative z-10 cursor-grab active:cursor-grabbing"
+          className="flex items-center gap-10 px-10 overflow-x-auto md:pb-12 pt-12 no-scrollbar relative z-10 cursor-grab active:cursor-grabbing"
         >
           
           {galleryImages.map((img, index) => {
@@ -154,8 +154,8 @@ export default function OfficeSection() {
       </div>
 
       {/* ================= CONTENT SECTION ================= */}
-      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 items-center pb-20">
-        <div>
+      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 items-center py-8 md:py-20">
+        <div className="flex flex-col items-center md:items-start py-4">
           <h2 className="text-[24px] md:text-[40px] font-[600] text-[#282529] text-center md:text-left">Our Offices</h2>
           <p className="text-[#282529] text-center  md:text-left text-[16px] mt-4 max-w-md leading-relaxed">
   We like working together in our offices with our team, where we share ideas, knowledge and opportunities.
@@ -187,7 +187,7 @@ export default function OfficeSection() {
           </div>
 
           <a href="#" className="text-red-600 mt-8 text-[16px]  inline-flex items-center gap-2 font-medium underline">
-            Start Your Journey with Us <span></span>
+            Start Your Journey with Us 
           </a>
         </div>
 
