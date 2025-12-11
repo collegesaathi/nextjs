@@ -57,7 +57,7 @@ function OnlineSection({ formData, handleChange, onlines, setOnlines, handleQuil
             <>
                 <div className="flex justify-between items-center mb-5">
                     <h2 className="text-xl font-semibold text-[#CC2828]">
-                        Online Section
+                        Adminssion Process Section
                     </h2>
 
                     <button
@@ -68,7 +68,7 @@ function OnlineSection({ formData, handleChange, onlines, setOnlines, handleQuil
                         + Add More Online
                     </button>
                 </div>
-                {onlines.map((faq, index) => (
+                {onlines && onlines?.map((faq, index) => (
                     <div key={index} className="grid grid-cols-1 gap-4 items-center">
                         {/* QUESTION */}
                         <div>

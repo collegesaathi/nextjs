@@ -13,9 +13,11 @@ import Certificate from "../../common/Certificate";
 import FaqSection from "../../common/FaqSection";
 import OnlineSection from "../../common/OnlineSection";
 import ServicesSection from "../../common/ServicesSection";
+import { useRouter } from "next/router";
+import SEOAdd from "../../common/SEOAdd";
 
 function Index() {
-
+    const router = useRouter();
     const [advantages, setAdvantages] = useState([
         { title: "", description: "" }
     ]);
@@ -42,7 +44,6 @@ function Index() {
         }
     };
 
-    const [isOpen, setIsOpen] = useState(false);
     const [loading, setLoading] = useState(false);
     const [preview, setPreview] = useState(null);
     const [icons, setIcons] = useState(null);
@@ -170,10 +171,14 @@ function Index() {
         onlinedesc: "",
         patterndescription: "",
         patternname: "",
-        bottompatterndesc :"",
+        bottompatterndesc: "",
         factsname: "",
         financialdescription: "",
         financialname: "",
+        meta_title: "",
+        meta_description: "",
+        meta_keywords: "",
+        canonical_url: ""
     });
 
 
@@ -269,6 +274,10 @@ function Index() {
             payload.append("factsname", formData.factsname);
             payload.append("certificatename", formData.certificatename);
             payload.append("certificatedescription", formData.certificatedescription);
+            payload.append("meta_title", formData.meta_title);
+            payload.append("meta_description", formData.meta_description);
+            payload.append("meta_keywords", formData.meta_keywords);
+            payload.append("canonical_url", formData.canonical_url);
             payload.append("certificatemage", formData.certificatemage);
             const cleanPatterns = patterns.map(item => ({
                 patternName: item.patternName,
@@ -308,6 +317,7 @@ function Index() {
                 content: item.content
             }));
             payload.append("servcies", JSON.stringify(cleanServices));
+
             services.forEach((item, index) => {
                 if (item.image) {
                     payload.append(`servicesimages[${index}]`, item.image);
@@ -327,6 +337,7 @@ function Index() {
 
             if (response?.data?.status) {
                 toast.success(response.data.message);
+                router.push("/admin/university")
                 setPreview(null);
             } else {
                 toast.error(response.data.message);
@@ -334,7 +345,7 @@ function Index() {
 
         } catch (error) {
             console.error(error);
-            toast.error("Something went wrong");
+            toast.error(error.response.data.message);
         }
 
         setLoading(false);
@@ -417,6 +428,8 @@ function Index() {
         { id: "services", label: "Services" },
         { id: "online", label: "Admission Process" },
         { id: "faq", label: "FAQ" },
+        { id: "seo", label: "SEO" },
+
     ];
 
     const currentIndex = tabsData.findIndex((tab) => tab.id === activeTab);
@@ -500,7 +513,7 @@ function Index() {
 
 
                 <form
-                    onSubmit={ handleAdd}
+                    onSubmit={handleAdd}
                     className="  mt-10 px-3 sm:px-6 pb-3 sm:pb-6 bg-white space-y-2 sm:space-y-4"
                 >
                     {activeTab === "card" && (
@@ -1025,7 +1038,7 @@ function Index() {
                                     {/* Preview */}
                                     {campus.image && (
                                         <img
-                                        src={URL.createObjectURL(campus.image)}
+                                            src={URL.createObjectURL(campus.image)}
                                             className="mt-3 mb-3 w-40 h-40 object-cover rounded-md border"
                                             alt="campus"
                                         />
@@ -1065,7 +1078,6 @@ function Index() {
                                 desc={formData.partnersdesc}
                                 handleBioChange={(val) => handleQuillChange("partnersdesc", val)}
                             />
-
                             <ApprovalAndPartner
                                 selectedPartners={selectedPartners}
                                 togglePartners={togglePartners}
@@ -1083,6 +1095,9 @@ function Index() {
                     )}
                     {activeTab === "faq" && (
                         <FaqSection faqs={faqs} setFaqs={setFaqs} />
+                    )}
+                    {activeTab === "seo" && (
+                        <SEOAdd formData={formData} handleChange={handleChange} />
                     )}
                 </form>
                 <div className="flex justify-between mt-8  p-6">
