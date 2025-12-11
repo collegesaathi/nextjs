@@ -68,7 +68,7 @@ function OnlineSection({ formData, handleChange, onlines, setOnlines, handleQuil
                         + Add More Online
                     </button>
                 </div>
-                {onlines.map((faq, index) => (
+                {onlines && onlines?.map((faq, index) => (
                     <div key={index} className="grid grid-cols-1 gap-4 items-center">
                         {/* QUESTION */}
                         <div>
