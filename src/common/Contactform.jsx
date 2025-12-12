@@ -207,7 +207,7 @@ function Contactform() {
             <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-[139px] h-[40px] text-left rounded-[20px] bg-[#EC1E24] font-poppins font-semibold text-[20px] tracking-[0px] text-white flex items-center justify-start px-4 hover:bg-[#d11a1f] focus:outline-none focus:ring-2 focus:ring-[#EC1E24] focus:ring-offset-2 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed relative"
+                className="w-[139px] h-[40px] text-left rounded-[20px] bg-[#EC1E24] font-poppins font-[600] text-[16px] md:text-[20px] tracking-[0px] text-white flex items-center justify-start px-4 hover:bg-[#d11a1f] focus:outline-none focus:ring-2 focus:ring-[#EC1E24] focus:ring-offset-2 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed relative"
             >
                 <span>{isSubmitting ? 'Submitting...' : 'Submit'}</span>
 

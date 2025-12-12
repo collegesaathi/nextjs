@@ -105,7 +105,7 @@ export default function CareerServices() {
             <section className="w-full px-6 py-6 mx-auto" id="career-services-section">
                 <div className="max-w-[1230px]">
                     {/* Desktop */}
-                    <div className="">
+                    <div className="" id="career-services-section">
 
                         <BackNext
 
