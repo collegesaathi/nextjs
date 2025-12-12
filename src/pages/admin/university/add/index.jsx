@@ -608,7 +608,6 @@ function Index() {
                             </div>
                         </>
                     )}
-
                     {activeTab === "about" && (
                         <>
                             <div>
@@ -630,15 +629,12 @@ function Index() {
                                     required
                                 />
                             </div>
-
                             <ReactQuillEditor
                                 label="Description"
                                 desc={formData.about_desc}
                                 handleBioChange={(val) => handleQuillChange("about_desc", val)}
                             />
-
                         </>
-
                     )}
 
                     {activeTab === "approvals" && (
