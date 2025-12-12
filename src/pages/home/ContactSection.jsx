@@ -65,6 +65,7 @@ export default function ContactSection() {
     text-[20px]
     md:text-[44px]
     leading-[40px]
+    md:leading-[60px]
     tracking-[0px]
     text-[#282529]
     mb-1

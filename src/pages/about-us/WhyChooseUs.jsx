@@ -14,7 +14,7 @@ const WhyChooseUs = () => {
 
     {/* LEFT CONTENT */}
     <div className="max-w-md font-poppins">
-        <h2 className="text-[]md:text-[32px] font-[600] tracking-tight leading-[32px] text-[#282529]">
+        <h2 className="text-[26px] md:text-[32px] font-[600] tracking-tight leading-[32px] text-[#282529]">
             Why Choose Us
         </h2>
         <p className="mt-4 text-[16px] font-[400] text-[#282529] leading-[28px]">

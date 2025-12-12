@@ -5,36 +5,36 @@ import Image from 'next/image';
 const features = [
     {
         id: 1,
-        title: 'Personalized Counseling',
-        details: 'Our experts are always there for you, providing one-on-one sessions to solve your every doubt and smooth your journey.',
+        title: 'Clikpick: ',
+        details: 'A verified AI-powered tool, designed to help you discover and compare verified online universities',
         image: "/images/about/clarity1.png",
         color: 'text-red-500'
     },
     {
         id: 2,
-        title: 'Student Resources',
-        details: 'Get the details about your favourite online university, backed with expert guidance clearing your every doubt to help you make an informed decision.',
+        title: 'Personalized Counseling:',
+        details: 'Our experts & mentors are there for you, providing one-on-one sessions to solve your every doubt and smooth your journey.',
       image: "/images/about/clarity2.png",
         color: 'text-blue-500'
     },
     {
         id: 3,
-        title: 'Post-admission Support',
-        details: 'We don’t stop after admission; our team is dedicated with you to support and after getting admission.',
+        title: 'Student Resources:',
+        details: 'Get the details about your favorite online university, backed with expert guidance clearing your every doubt to help you make an informed decision. ',
          image: "/images/about/clarity3.png",
         color: 'text-yellow-500'
     },
     {
         id: 4,
-        title: 'Trusted Partnerships',
-        details: 'Strong connections with UGC online universities and institutions to ensure your success.',
+        title: 'Post-admission Support',
+        details: 'We don’t stop after admissions; our team is connected with you to support you after getting admissions',
           image: "/images/about/clarity4.png",
         color: 'text-green-500'
     },
       {
         id: 5,
         title: 'Trusted Partnerships',
-        details: 'Strong connections with UGC online universities and institutions to ensure your success.',
+        details: 'Have connections with 100+ online universities and institutions to back your dreams.',
           image: "/images/about/clarity5.png",
         color: 'text-green-500'
     },
@@ -46,16 +46,17 @@ const ClaritySection = () => {
     const [activeFeatureId, setActiveFeatureId] = useState(DEFAULT_ACTIVE_ID);
 
     return (
-        <section className="py-10  bg-white">
+        <section className="py-10  bg-white" data-aos="fade-up">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
                 {/* HEADING */}
                 <div className="text-center mb-12 sm:mb-16 font-poppins">
                     <h2 className="text-[26px] md:text-[32px] font-[600] leading-[32px] text-[#282529]">
-                        Clarity at Every Step
+                       What We Do 
                     </h2>
                     <p className="mt-4 text-[16px] text-[#282529] font-[400] max-w-xl mx-auto leading-[24px]">
-                        We take your future very seriously, and we continuously develop ourselves to help you achieving your dreams
+                      We take your future very seriously, and we continuously develop ourselves to help you achieve your dreams.
+
                     </p>
                 </div>
 
