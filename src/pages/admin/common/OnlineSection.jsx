@@ -3,29 +3,19 @@ import toast from "react-hot-toast";
 import { MdDelete } from "react-icons/md";
 
 function OnlineSection({ formData, handleChange, onlines, setOnlines, handleQuillChange }) {
-
     const addOnline = () => {
-        // Only add if no empty one exists
-        const hasEmpty = onlines.some(f => !f.title && !f.content);
-        if (!hasEmpty) {
-            setOnlines([...onlines, { title: "", contet: "" }]);
-        } else {
-            toast.error("Please fill in the existing empty oNLINE before adding another.");
-        }
+        setOnlines([...onlines, { title: "", content: "", }]);
     };
 
     const handleOnlineChange = (index, field, value) => {
-        const updateonline = [...onlines];
-        updateonline[index][field] = value;
-        setOnlines(updateonline);
+        const updated = [...onlines];
+        updated[index][field] = value;
+        setOnlines(updated);
     };
 
     const deleteOnline = (index) => {
-        const updateonline = [...onlines];
-        updateonline.splice(index, 1);
-        setOnlines(updateonline);
+        setOnlines(onlines.filter((_, i) => i !== index));
     };
-
     return (
         <>
 
@@ -39,7 +29,7 @@ function OnlineSection({ formData, handleChange, onlines, setOnlines, handleQuil
                 <input
                     type="text"
                     name="onlinetitle"
-                    value={formData.title}
+                    value={formData.onlinetitle}
                     onChange={(e) => {
                         if (e.target.value.length <= 50) handleChange(e);
                     }}
@@ -75,8 +65,7 @@ function OnlineSection({ formData, handleChange, onlines, setOnlines, handleQuil
                             <label className="block text-[#CC2828] font-medium mb-2">Title</label>
                             <input
                                 type="text"
-                                disabled={onlines?._id}
-                                value={onlines.title}
+                                value={faq.title}
                                 onChange={(e) => handleOnlineChange(index, 'title', e.target.value)}
                                 placeholder="Enter title"
                                 className="w-full bg-[#F4F6F8] text-[#727272] border border-[#F4F6F8] rounded-[10px] px-4 py-2 focus:outline-none"
@@ -101,8 +90,7 @@ function OnlineSection({ formData, handleChange, onlines, setOnlines, handleQuil
                             <input
                                 rows={5}
                                 type="text"
-                                value={onlines.content}
-                                disabled={onlines?._id}
+                                value={faq.content}
                                 onChange={(e) => handleOnlineChange(index, 'content', e.target.value)}
                                 placeholder="Enter content"
                                 className="w-full bg-[#F4F6F8] text-[#727272] border border-[#F4F6F8] rounded-[10px] px-4 py-2 focus:outline-none"

@@ -11,7 +11,8 @@ import EMIOptions from "../assets/home/EMIOptions.png";
 import Suggestions from "../assets/home/Suggestions.png";
 import Placements from "../assets/home/Placements.png"
 import BackNext from "../components/BackNext";
-function Approvals() {
+function Approvals({approvals , approvalsdata}) {
+    console.log("approvalsdata" ,approvalsdata)
 
     const helpCards = [
         {
@@ -98,24 +99,22 @@ function Approvals() {
         <section className="w-full px-6 py-6 mx-auto" id="approvals-section">
             <div className="max-w-[1230px]">
                 <BackNext
-                    title="NMIMS Online MBA Approvals "
+                    title={approvals?.title}
                     progress={progress}
                     isBeginning={isBeginning}
                     isEnd={isEnd}
                     onPrev={navigatePrev}
                     onNext={navigateNext}
                 />
-                <p className="text-[15px] md:text-[17px] font-poppins font-[400] text-[#363535] mb-6 font-poppins">
-                   The <span className="font-[600]">Narsee Monjee Online MBA </span>has become one of the best universities in India and has approvals from different
-                    government authorities, which are briefly explained as follows:
-                </p>
-                {/* Swiper Carousel */}
+                 <div
+                            className="text-[15px] md:text-[17px] font-poppins font-[400] text-[#363535] mb-6 font-poppins"
+                            dangerouslySetInnerHTML={{ __html: approvals?.description || "" }}
+                        />
                 <Swiper
                     ref={swiperRef}
                     modules={[Navigation, A11y]}
                     spaceBetween={30}
                     slidesPerView={1}
-                    // Initialize Swiper and update state
                     onSwiper={(swiper) => {
                         swiperRef.current = swiper;
                         updateProgress(swiper);
@@ -137,7 +136,7 @@ function Approvals() {
                     className="mySwiper "
                     style={{ scrollbarWidth: "none" }}
                 >
-                    {helpCards && helpCards?.map((item) => (
+                    {approvalsdata && approvalsdata?.map((item) => (
                         <SwiperSlide key={item.id}>
                             <div className="px-2 ">
                                 <div

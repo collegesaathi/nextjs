@@ -2,7 +2,6 @@ import Heading from "@/common/Heading";
 
 function Advantages({advantages}) {
 
- console.log("advantages" ,advantages)
     return (
 
         <section className=" mt-[50px] px-6 " id="advantages-section">

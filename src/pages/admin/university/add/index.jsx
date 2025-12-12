@@ -236,9 +236,7 @@ function Index() {
 
         }
     };
-    console.log(
-        "campusList", campusList
-    )
+
     // ✅ ADD UNIVERSITY
     const handleAdd = async (e) => {
         e.preventDefault();
@@ -351,66 +349,6 @@ function Index() {
         setLoading(false);
     };
 
-
-
-    // ✅ UPDATE UNIVERSITY
-    const handleUpdate = async (e) => {
-        e.preventDefault();
-        if (loading) return;
-
-        setLoading(true);
-
-        try {
-            const main = new Listing();
-            const payload = new FormData();
-
-            payload.append("slug", formData.slug);
-            payload.append("name", formData.name);
-            payload.append("position", formData.position);
-            payload.append("description", formData.description);
-
-            if (formData.icon instanceof File) {
-                payload.append("icon", formData.icon);
-            }
-
-            if (formData.cover_image instanceof File) {
-                payload.append("cover_image", formData.cover_image);
-            }
-
-            const response = await main.AdminUniversityUpdate(data?._id, payload);
-
-            if (response?.data?.status) {
-                toast.success(response.data.message);
-                fetchData();
-            } else {
-                toast.error(response.data.message);
-            }
-
-        } catch (error) {
-            toast.error("Update failed");
-        }
-
-        setLoading(false);
-    };
-
-    // ✅ EDIT MODE DATA LOAD
-    // useEffect(() => {
-    //     if (data) {
-    //         setFormData({
-    //             slug: data.slug || "",
-    //             name: data.name || "",
-    //             icon: data.icon || null,
-    //             cover_image: data.cover_image || null,
-    //             position: data.position || "",
-    //             description: data.description || "",
-    //         });
-
-    //         if (data.icon) {
-    //             setPreview(data.icon);
-    //         }
-    //     }
-    // }, [data]);
-
     const [activeTab, setActiveTab] = useState("card");
 
     const tabsData = [
@@ -451,9 +389,9 @@ function Index() {
             <div className="min-h-screen p-1 ">
 
                 <div className="w-full  border-b border-white/10">
-                    <div className="flex flex-col lg:flex-row items-center justify-between gap-4 px-4 md:px-6 lg:px-10 py-4">
-
-                        {/* Left: Back Arrow + Label */}
+                    <div className="flex justify-between items-center  text-center p-4 "
+                    >
+                          {/* Left: Back Arrow + Label */}
                         <div className="flex items-center gap-3 w-[250px]">
                             <FaArrowLeft
                                 onClick={handleBack}
@@ -478,6 +416,17 @@ function Index() {
                             />
 
                         </div>
+                        <button
+                            type="button"
+                            onClick={handleAdd}
+                            className="cursor-pointer bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium shadow-md transition-all"
+                        >
+                            {loading ? "Saving..." : "Save"}
+                        </button>
+                    </div>
+                    <div className="flex flex-col lg:flex-row items-center justify-between gap-4 px-4 md:px-6 lg:px-10 py-4">
+
+                      
 
                         {/* Center: Tabs */}
                         <div className="w-[400px] md:w-[1300px] overflow-x-auto scrollbar-hide bg-[#2C2C2C] rounded-lg">
@@ -499,14 +448,6 @@ function Index() {
                             </div>
                         </div>
 
-                        {/* Right: Save Button */}
-                        <button
-                            type="button"
-                            onClick={handleAdd}
-                            className="cursor-pointer bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium shadow-md transition-all"
-                        >
-                            {loading ? "Saving..." : "Save"}
-                        </button>
 
                     </div>
                 </div>
@@ -1100,7 +1041,7 @@ function Index() {
                         <SEOAdd formData={formData} handleChange={handleChange} />
                     )}
                 </form>
-                <div className="flex justify-between mt-8  p-6">
+                <div className="flex justify-between mt-4  p-6">
                     <button
                         type="button"
                         onClick={handleBack}
@@ -1113,6 +1054,7 @@ function Index() {
                     >
                         <FaArrowLeft /> Back
                     </button>
+
                     <button
                         type="button"
                         onClick={handleNext}
@@ -1125,6 +1067,7 @@ function Index() {
                     >
                         Next <FaArrowRight />
                     </button>
+
                 </div>
             </div>
         </AdminLayout>

@@ -49,10 +49,8 @@ const fetchcourse = async () => {
   try {
     const main = new Listing();
     const response = await main.Univeristy();
-    console.log("Full course API:", response);
 
     const categories = response?.data?.data?.categories || [];
-    console.log("dfb",categories)
 
     const formatted = {};
 

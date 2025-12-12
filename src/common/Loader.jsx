@@ -38,7 +38,7 @@ const Loader = () => {
             </li>
           </ul>
         </div>
-        <span>Loading</span>
+        <span>Loading....</span>
       </div>
     </div>
   );

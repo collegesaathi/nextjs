@@ -19,10 +19,8 @@ export default function Index() {
             else { setButtonLoading(true); }
             const main = new Listing();
             const response = await main.AdminUniveristy(page);
-            console.log("response", response)
             if (response.data) {
                 const newData = response.data.data || {};
-
                 setData((prev) => {
                     if (page === 1) {
                         // First page → replace entire object
@@ -98,7 +96,7 @@ export default function Index() {
                                         <Delete step={1} fetch={fetchData} deleteAt={item?.deleted_at} Id={item?.id} />
 
                                         {!item.deleted_at && (
-                                            <Link href="/admin/university/add/aaa"
+                                            <Link href={`/admin/university/add/${item?.slug}`}
                                                 className="cursor-pointer absolute top-2 left-2 bg-white bg-opacity-80 hover:bg-[#CECECE] p-2 rounded-full shadow-sm transition-all"
                                             >
                                                 <MdEdit size={24} className="text-red-600 hover:text-red-700" />

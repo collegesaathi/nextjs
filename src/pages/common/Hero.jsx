@@ -78,16 +78,16 @@ export default function Hero({data}) {
           />
 
           {/* TOP BADGES */}
-          {/* <div className="absolute top-2 left-0 right-0 w-full flex gap-4 justify-between px-3 sm:px-6 md:px-10 pt-3">
+           <div className="absolute top-2 left-0 right-0 w-full flex gap-4 justify-between px-3 sm:px-6 md:px-10 pt-3">
             <button className="min-w-[110px] sm:w-[140px] h-[32px] sm:h-[40px] rounded-[26px] bg-white shadow-md flex items-center justify-center text-xs sm:text-sm font-poppins gap-1.5 px-4">
               <Image src="/images/university/hero/ranking.png" width={30} height={30} alt="ranking logo" />
               Ranking <strong>#21 </strong>
             </button>
 
             <button className="w-[100px] sm:w-[156px] h-[40px] sm:h-[52px] rounded-[5px] bg-white shadow-md flex items-center justify-center">
-              <Image src="/images/university/hero/uniLogo.png" width={60} height={30} alt="" className="sm:w-[80px]" />
+              <img src={data?.icon} width={60} height={30} alt="" className="sm:w-[80px]" />
             </button>
-          </div> */}
+          </div> 
         </div>
       </div>
     </div>
