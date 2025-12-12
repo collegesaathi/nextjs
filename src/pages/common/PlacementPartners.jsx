@@ -15,7 +15,7 @@ const partners = [
   { name: "Lodestar UM", logo: "/images/university/showcase/1.png" },
 ];
 
-export default function PlacementPartners() {
+export default function PlacementPartners({placements}) {
   const swiperRef = useRef(null);
 
   const [progress, setProgress] = useState(0);
@@ -46,7 +46,7 @@ export default function PlacementPartners() {
       <section className="w-full px-6 py-6 mx-auto" id="placement-partners-section">
         <div className="max-w-[1230px]">
           <BackNext
-            title="NMIMS CDOE Hiring and Placement Partners"
+            title={placements?.title}
             progress={progress}
             isBeginning={isBeginning}
             isEnd={isEnd}
@@ -54,20 +54,10 @@ export default function PlacementPartners() {
             onNext={navigateNext}
           />
           {/* Description */}
-          <p className="font-poppins text-[15px] sm:text-[16px] text-[#282529] leading-6 sm:leading-7 mb-4">
-            The students at
-            <strong className="ml-1"> NMIMS Center for Distance and Online Education CDOE </strong>
-            have immense hiring and placement opportunities. The university has tie-ups
-            with topmost companies, briefly mentioned below:
-          </p>
-
-        {/* Description */}
-        <p className="font-poppins text-[15px] sm:text-[17px] text-[#282529] leading-6 sm:leading-7 mb-4">
-          The students at
-          <strong className="ml-1"> NMIMS Center for Distance and Online Education CDOE </strong>
-          have immense hiring and placement opportunities. The university has tie-ups
-          with topmost companies, briefly mentioned below:
-        </p>
+           <div
+                            className="ont-poppins text-[15px] sm:text-[16px] text-[#282529] leading-6 sm:leading-7 mb-4"
+                            dangerouslySetInnerHTML={{ __html: placements?.description || "" }}
+                        />
 
         {/* Swiper */}
         <Swiper

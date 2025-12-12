@@ -4,52 +4,10 @@ import { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import Image from "next/image";
-
 import BackNext from "../components/BackNext";
 
-// Import images & icons
-
-
-const services = [
-    {
-        title: "Job Portal Access",
-        icon: "/images/university/job.svg",
-        image: "/images/university/service1.png",
-        description:
-            "6 months' access to platforms like IIMJobs, Updazz, and Hirist. Find a job, flag your applications, and rank your profile.",
-    },
-    {
-        title: "Coaching",
-        icon: "/images/university/coaching.svg",
-        image: "/images/university/service1.png",
-        description:
-            "Work one-on-one with a career coach, who will help you plan and consult about your career strategy and goals to build a clear pathway to success.",
-    },
-    {
-        title: "Profile Development",
-        icon: "/images/university/coaching.svg",
-        image: "/images/university/service1.png",
-        description:
-            "Work with an expert to improve your resume, create a solid LinkedIn & social media profile, and develop your personal brand.",
-    },
-    {
-        title: "Mock Interviews",
-        icon: "/images/university/service1.png",
-        image: "/images/university/service1.png",
-        description:
-            "Participate in mock interview sessions to feel confident about real job interviews, career changes, and internal promotions.",
-    },
-    {
-        title: "Assessment",
-        icon: "/images/university/service1.png",
-        image: "/images/university/service1.png",
-        description:
-            "Explore your strengths through aptitude and psychometric tests, which will help guide you to optimum career options in marketing or related fields.",
-    },
-];
-
-export default function CareerServices() {
-
+export default function CareerServices({services}) {
+console.log("services" ,services)
 
 
     const swiperRef = useRef(null);
@@ -69,7 +27,7 @@ export default function CareerServices() {
     const updateProgress = (swiper) => {
         if (!swiper) return;
 
-        const totalCards = services.length;
+        const totalCards = services?.services.length;
         const visibleSlides = swiper.params.slidesPerView;
 
         if (visibleSlides === 4) {
@@ -109,7 +67,7 @@ export default function CareerServices() {
 
                         <BackNext
 
-                            title="NMIMS Career Services "
+                            title={services?.title}
 
                             progress={progress}
                             isBeginning={isBeginning}
@@ -118,12 +76,11 @@ export default function CareerServices() {
                             onNext={navigateNext}
                         />
 
-
-                        <p className="font-poppins text-[17px] text-[#282529] mb-8">
-                            With online programs at <strong>NMIMS CDOE</strong>, the students can get multiple career
-                            benefits that will help them craft a strong professional path. The NMIMS CDOE placements
-                            provide excellent growth opportunities.
-                        </p>
+  <div
+                        className="font-poppins text-[15px] sm:text-[16px] text-[#282529] leading-6 sm:leading-7 mb-4"
+                        dangerouslySetInnerHTML={{ __html: services?.description || "" }}
+                    />
+                       
 
                         {/* Desktop Swiper */}
                         <Swiper
@@ -144,11 +101,11 @@ export default function CareerServices() {
                             }}
                             style={{ scrollbarWidth: "none" }}
                         >
-                            {services.map((service, index) => (
+                            {services?.services?.map((service, index) => (
                                 <SwiperSlide key={index} className="overflow-hidden">
                                     <div className="w-full bg-white rounded-[30px] transition-all duration-300 group relative cursor-pointer my-3">
                                         <div className="overflow-hidden rounded-t-[30px]">
-                                            <Image
+                                            <img
                                                 src={service.image}
                                                 alt={service.title}
                                                 height={300}
@@ -159,7 +116,7 @@ export default function CareerServices() {
 
                                         <div className="p-5 border border-t-0 border-[#D4D2D2] rounded-b-[30px] h-[200px] relative z-10 group-hover:border-[#EC1E24]/30 transition-colors duration-300">
                                             <div className="flex items-center space-x-4">
-                                                <Image
+                                                <img
                                                     src={service.icon}
                                                     alt={service.title}
                                                     width={25}
@@ -172,7 +129,7 @@ export default function CareerServices() {
                                             </div>
 
                                             <p className="font-poppins text-[14px] mt-4 text-[#2D2D2D] leading-[22px]">
-                                                {service.description}
+                                                {service.content}
                                             </p>
                                         </div>
 

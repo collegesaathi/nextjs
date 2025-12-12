@@ -12,7 +12,7 @@ import BackNext from "../components/BackNext";
 
 
 
-export default function UniversityCampusCarousel() {
+export default function UniversityCampusCarousel({universityCampuses}) {
   const campuses = [
     { id: 1, name: "Mumbai", image: "/images/university/showcase/1.png" },
     { id: 2, name: "Indore", image: "/images/university/showcase/2.png" },
@@ -132,14 +132,14 @@ export default function UniversityCampusCarousel() {
               breakpoints={carouselBreakpoints}
               style={{ scrollbarWidth: "none" }}
             >
-              {campuses.map((campus, index) => (
+              {universityCampuses?.campus.map((campus, index) => (
                 <SwiperSlide key={campus.id}>
                   <div
                     className="campus-card bg-white border border-[#bcbcbc] p-2 lg:p-4 rounded-[12px] flex items-center gap-3 my-3 cursor-pointer relative overflow-hidden
                           transform transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1 hover:shadow-lg hover:border-[#EC1E24]/30"
                   >
                     <div className="w-[46.33px] h-[46.33px] lg:w-[71px] lg:h-[71px] rounded-full overflow-hidden flex-shrink-0 transition-transform duration-300 hover:scale-110">
-                      <Image
+                      <img
                         src={campus.image}
                         alt={campus.name}
                         width={71}
