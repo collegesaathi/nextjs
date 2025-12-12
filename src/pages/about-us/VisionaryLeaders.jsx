@@ -19,7 +19,7 @@ const leaders = [
     {
         name: 'Mr. Chirag Nagpal',
         title: 'Co-founder',
-        bio: "Education is changing fast, and online learning is at the forefront. At Collegesathi, we support you at every step with personalized counseling and guidance. Let’s unlock new opportunities and ensure success in this exciting world of learning!",
+        bio: "Education is changing fast, and online learning is at the forefront. At Collegesathi, we support you at every step with personalized counseling and guidance. Let's unlock new opportunities and ensure success in this exciting world of learning!",
         imageSrc: '/images/about/chirag-nagpal.png',
         layoutType: 'small'
     },
@@ -88,7 +88,7 @@ flex flex-col lg:flex-row space-y-8 lg:space-y-0 lg:space-x-10">
                         Our Visionary Leaders
                     </h2>
                     <p className="mt-4 text-[16px] font-[400] leading-[26px] text-[#282529] max-w-3xl mx-auto">
-                        Behind Collegesathi is a passionate team of educators, counselors, and innovators who share one goal: success of the student.
+                    Behind Collegesathi is a passionate team of educators, counselors, and innovators who share one goal: success of the student.
                     </p>
                 </div>
 

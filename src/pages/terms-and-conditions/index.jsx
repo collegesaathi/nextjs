@@ -1,3 +1,5 @@
+
+import Link from "next/link";
 import Layout from "../components/Layout";
 import ContactSection from "../home/ContactSection";
 
@@ -35,71 +37,231 @@ export default function TermsConditions() {
 
                 {/* Content */}
                 <div className=" px-4 py-4 pb-20 text-[#282529]  font-poppins text-[16px] leading-[28px] font-[400] ">
-                    <p className="mb-4 ">
-                        Further to the Terms of Use provided on <b>"Collegesathi.com"</b> we disclaim all
-                        liabilities and warranties with respect to payment of fees (“Fees”) that are
-                        applicable to the programs you have opted for through our platform. Such Fees
-                        shall include but not be limited to course fees of the University/Institution’s
-                        online degree/certificate program which the user/student directly pays to the
-                        university/institution.
-                    </p>
 
-                    <ul className="list-disc ml-6 mb-6 space-y-2">
-                        <li>The User must make all necessary payments to the university/institution directly.</li>
-                        <li>Collegesathi.com does not charge or claim any course fee except for a nominal fee for career counselling services.</li>
-                    </ul>
+                    <div className="my-4">
+                        <p className=" font-[600] text-[18px]">
+                            1. Acceptance of Terms
+                        </p>
+                        <p>
+                            By accessing or using Collegesathi, you confirm that you have read, understood, and agreed to these Terms.
+                            If you do not agree, please refrain from using our services.
+                        </p>
 
-                    <p className="mb-4">
-                        The online payment facility provided by <b>"Collegesathi.com"</b> is neither banking
-                        nor a financial service but merely a facilitator for ease of payment. The Payment
-                        Gateway Service Provider handles the collection and remittance of funds using secure
-                        banking and credit card networks.
-                    </p>
+                    </div>
 
-                    <ul className="list-disc ml-6 mb-6 space-y-2">
-                        <li>
-                            All payments made through the Payment Gateway may take 0–2 working days to be processed.
-                        </li>
-                        <li>
-                            Collegesathi.com is not responsible for any failure/delay caused by the payment gateway.
-                        </li>
-                    </ul>
+                    <div className="my-4">
+                        <p className="mb-1 font-[600] text-[18px]">
+                            2. Services Provided
+                        </p>
+                        <p className="mb-2">
+                            Collegesathi provides information, guidance, and resources related to:
+                        </p>
+                        <ul className="list-disc ml-6 mb-3 ">
+                            <li>Online colleges, universities, and educational institutions</li>
+                            <li>Online and offline courses offered by these universities</li>
+                            <li>Admission processes</li>
+                            <li>Career counselling and related services</li>
+                        </ul>
+                        <p ><span className="font-[600] text-[#EC1E24]">*Note:*</span> Collegesathi is an educational guidance platform. We are not a university or college and do not directly
+                            grant admissions, certificates, or degrees. </p>
 
-                    <p className="mb-3 font-semibold">
-                        Collegesathi.com shall not be liable for any loss caused due to:
-                    </p>
-                    <ul className="list-disc ml-6 mb-6 space-y-2">
-                        <li>Network failure</li>
-                        <li>Data processing errors</li>
-                        <li>Telecommunication or computer issues</li>
-                        <li>Any issues under the Payment Gateway Service Provider’s control</li>
-                    </ul>
+                    </div>
 
-                    <p className="mb-3 font-semibold">Rejection of Services</p>
-                    <p className="mb-4">
-                        In case of delayed payments, the User must submit a written request for validation
-                        of payment. Refund requests (if applicable) are handled as per internal policies of
-                        Collegesathi.com within 10 working days.
-                    </p>
 
-                    <p className="mb-6">
-                        These terms form an essential part of the agreement between the Student and the
-                        Institution. Collegesathi.com acts only as a platform and does not claim any course
-                        fee from the student.
-                    </p>
+                    <div className="my-4">
+                        <p className="font-[600] text-[18px]">
+                            3. Eligibility
+                        </p>
+                        <p className="mb-4">
+                            You must be at least 18 years old or using the platform under the supervision of a parent/guardian to access our services.
+                        </p>
 
-                    <p className="mb-2 font-semibold">Accuracy of Information</p>
-                    <p className="mb-6">
-                        We strive to ensure accuracy in all course data. Institutions may revise academic
-                        content at any time. Collegesathi.com is not responsible for these changes.
-                    </p>
+                    </div>
 
-                    <p className="mb-2 font-semibold">Institution Rights</p>
-                    <p>
-                        The Institution reserves the right to discontinue any program or make modifications.
-                        In such cases, reasonable measures will be taken to minimize disruption.
-                    </p>
+                    <div className="my-4">
+                        <p className=" font-[600] text-[18px]">
+                            4. User Responsibilities
+                        </p>
+                        <p className="mb-2">
+                            You will be responsible for:
+                        </p>
+                        <ul className="list-disc ml-6 mb-3 ">
+                            <li>Provide accurate and updated information while interacting with our services.</li>
+                            <li>Use the website and services for lawful purposes only.</li>
+                            <li>Not misuse, copy, or resell any content, guides, or resources available on Collegesathi without written permission.</li>
+                        </ul>
+
+                    </div>
+
+                    <div className="my-4">
+                        <p className=" font-[600] text-[18px]">
+                            5. Intellectual Property Rights
+                        </p>
+                        <p className="mb-4">
+                            All content, including text, graphics, logos, design, and software, is the property of Collegesathi and protected under applicable
+                            copyright and intellectual property laws. Unauthorized use of any material is prohibited.
+                        </p>
+
+                    </div>
+
+                    <div className="my-4">
+                        <p className=" font-[600] text-[18px]">
+                            6. Third-Party Links & Services
+                        </p>
+                        <p className="mb-4">
+                            Our platform may include links to third-party websites. Collegesathi is not responsible for the content, services,
+                            or privacy policies of third-party platforms. Users are advised to review their terms before engaging with them.
+                        </p>
+
+                    </div>
+
+                    <div className="my-4">
+                        <p className=" font-[600] text-[18px]">
+                            7. Disclaimer & Limitation of Liability
+                        </p>
+                        <p className="mb-2">
+                            Collegesathi strives to provide accurate and updated information. However, we do not guarantee the completeness, accuracy, or reliability of the content.
+                            Collegesathi has every right to discontinue the program, curriculum and facility according to the respective institutions/organizations.
+                        </p>
+                        <p className="mb-2">
+                            We are not liable for any direct, indirect, or incidental damage arising from the use of our website or reliance on information provided.
+                        </p>
+                        <p className="mb-2">
+                            Admission, scholarships, or job opportunities are solely at the discretion of the respective institutions/organizations.
+                        </p>
+
+                    </div>
+
+                    <div className="my-4">
+                        <p className=" font-[600] text-[18px]">
+                            8. Payment & Refund Policy
+                        </p>
+                        <p className="mb-2">
+                            Collegesathi does not charge any fees for counselling or guidance services.
+                            If any third-party services or institutions require payment, such transactions will occur directly between the user and the respective organization. Collegesathi is not responsible for issues arising from such payments.
+
+                        </p>
+                        <p className="mb-2">
+                            The refund policy will be applied as per the institute’s guidelines, and the refund will be processed
+                            according to the university’s policies and procedure.
+
+                        </p>
+
+                    </div>
+
+                    <div className="my-4">
+                        <p className=" font-[600] text-[18px]">
+                            9. Privacy Policy
+                        </p>
+                        <p className="mb-4">
+                            Your personal data is protected under our <span className="text-[#EC1E24] font-[600]"> <Link href="/privacy-policy" target="blank" className="underline" > Privacy Policy</Link></span> .By using our services, you consent to the collection and use of your data as outlined in the policy.
+                        </p>
+
+                    </div>
+
+                    <div className="my-4">
+                        <p className=" font-[600] text-[18px]">
+                            10. Termination of Services
+                        </p>
+                        <p className="mb-2">
+                            Collegesathi reserves the right to suspend or terminate user access if:
+
+                        </p>
+
+
+                        <ul className="list-disc ml-6 mb-3 ">
+                            <li>The user violates these Terms & Conditions.</li>
+                            <li>Fraudulent, misleading, or illegal activity is suspected.</li>
+
+                        </ul>
+
+                    </div>
+
+
+
+                    <div className="my-4">
+                        <p className=" font-[600] text-[18px]">
+                            11. Governing Law & Jurisdiction
+                        </p>
+                        <p className="mb-2">
+                            These Terms shall be governed by and construed in accordance with the laws of India. Any disputes shall fall
+                            under the jurisdiction of the courts in Jaipur/Rajasthan.
+
+                        </p>
+
+
+                    </div>
+
+                    <div className="my-4">
+                        <p className=" font-[600] text-[18px]">
+                            12. Changes to Terms
+                        </p>
+                        <p className="mb-2">
+                            Collegesathi reserves the right to update or modify these Terms & Conditions at any time without prior notice.
+                            Continued use of the platform after changes indicates acceptance of the revised terms.
+
+                        </p>
+
+
+                    </div>
+
+                    <div className="my-4">
+                        <p className=" font-[600] text-[18px]">
+                            13. Contact Us
+                        </p>
+                        <p className="mb-2">
+                            For any questions or concerns regarding these Terms & Conditions, you may contact us at:
+
+                        </p>
+
+                        <ul className="mb-3 mt-6">
+                            <li>
+                                Email:
+                                <Link
+                                    href="mailto:support@collegesathi.com"
+                                    className="text-[#EC1E24] underline ml-1"
+                                >
+                                    support@collegesathi.com
+                                </Link>
+                            </li>
+
+                            <li>
+                                Phone:
+                                <Link
+                                    href="tel:9785800008"
+                                    className="text-[#EC1E24] underline ml-1"
+                                >
+                                    9785-800-008
+                                </Link>
+                            </li>
+
+                            <li>
+                                Website:
+                                <Link
+                                    href="https://www.collegesathi.com"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-[#EC1E24] underline ml-1"
+                                >
+                                    www.collegesathi.com
+                                </Link>
+                            </li>
+                        </ul>
+
+
+
+
+                    </div>
+
+
+
+
+
+
                 </div>
+
+
+
 
                 <ContactSection />
 

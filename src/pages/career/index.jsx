@@ -5,6 +5,7 @@ import OpenPositions from "./OpenPositions";
 import AwardsCarousel from "../home/AwardsCarousel";
 import CultureBenefits from "./CultureBenefits";
 import OfficeSection from "./OfficeSection";
+import Link from "next/link";
 
 
 function Index() {
@@ -17,7 +18,7 @@ function Index() {
 
   <div className="  px-2 md:px-4 py-4 text-sm text-gray-500 mt-6">
                     <nav className="flex items-center gap-2">
-                        <span className="text-gray-400">Home</span>
+                        <span className="text-gray-400"><Link href="/" >Home </Link ></span>
                         <span>{">"}</span>
                         <span className="text-[#EC1E24] font-medium">CS Careers</span>
                     </nav>

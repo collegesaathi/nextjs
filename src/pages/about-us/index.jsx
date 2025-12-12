@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import Layout from "../components/Layout";
 import HeroGallery from "./HeroGallery";
 import StorySection from "./StorySection";
@@ -10,9 +10,20 @@ import IndustryExperts from "../home/IndustryExperts";
 import ContactSection from "../home/ContactSection";
 import WhyChooseUs from "./WhyChooseUs";
 import AcrossIndia from "./AcrossIndia";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 
 function Index() {
+
+
+
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      once: false,
+    });
+  }, []);
 
     return (<>
 
