@@ -1,144 +1,127 @@
-// components/ClaritySection.js
-
-import React from 'react';
-
+import React, { useState } from 'react';
 import { FaUsers, FaBookOpen, FaGraduationCap, FaHandshake, FaRocket } from 'react-icons/fa';
-import { MdOutlineSupportAgent } from 'react-icons/md';
+import Image from 'next/image';
+
 const features = [
     {
         id: 1,
         title: 'Personalized Counseling',
         details: 'Our experts are always there for you, providing one-on-one sessions to solve your every doubt and smooth your journey.',
-        icon: FaUsers
+        image: "/images/about/clarity1.png",
+        color: 'text-red-500'
     },
     {
         id: 2,
         title: 'Student Resources',
         details: 'Get the details about your favourite online university, backed with expert guidance clearing your every doubt to help you make an informed decision.',
-        icon: FaBookOpen
+      image: "/images/about/clarity2.png",
+        color: 'text-blue-500'
     },
     {
         id: 3,
         title: 'Post-admission Support',
         details: 'We don’t stop after admission; our team is dedicated with you to support and after getting admission.',
-        icon: FaGraduationCap
+         image: "/images/about/clarity3.png",
+        color: 'text-yellow-500'
     },
     {
         id: 4,
         title: 'Trusted Partnerships',
         details: 'Strong connections with UGC online universities and institutions to ensure your success.',
-        icon: FaHandshake
+          image: "/images/about/clarity4.png",
+        color: 'text-green-500'
     },
-    {
+      {
         id: 5,
-        title: 'Feature 5 (Example)',
-        details: 'Details for feature 5 goes here.',
-        icon: FaRocket
+        title: 'Trusted Partnerships',
+        details: 'Strong connections with UGC online universities and institutions to ensure your success.',
+          image: "/images/about/clarity5.png",
+        color: 'text-green-500'
     },
 ];
-const DEFAULT_ACTIVE_ID = 2;
+
+const DEFAULT_ACTIVE_ID = 2; // Student Resources
 
 const ClaritySection = () => {
-    const [activeFeatureId, setActiveFeatureId] = React.useState(DEFAULT_ACTIVE_ID);
-
-    const activeFeature = features.find(f => f.id === activeFeatureId);
+    const [activeFeatureId, setActiveFeatureId] = useState(DEFAULT_ACTIVE_ID);
 
     return (
-        <section className="py-16 sm:py-24 bg-white">
+        <section className="py-10  bg-white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-                <div className="text-center mb-12 sm:mb-16">
-                    <h2 className="text-4xl font-extrabold tracking-tight text-gray-900">
+                {/* HEADING */}
+                <div className="text-center mb-12 sm:mb-16 font-poppins">
+                    <h2 className="text-[26px] md:text-[32px] font-[600] leading-[32px] text-[#282529]">
                         Clarity at Every Step
                     </h2>
-                    <p className="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">
+                    <p className="mt-4 text-[16px] text-[#282529] font-[400] max-w-xl mx-auto leading-[24px]">
                         We take your future very seriously, and we continuously develop ourselves to help you achieving your dreams
                     </p>
                 </div>
 
-                <div className="flex flex-col lg:flex-row border-t border-gray-200 divide-x-0 lg:divide-x divide-gray-200">
+                {/* CONTENT GRID */}
+             <div className="flex relative flex-col lg:flex-row  divide-x-0 lg:divide-x divide-gray-200 ">
+  {/* Gradient Top Border */}
+  <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-gray-300 to-transparent z-10"></div>
+    <div className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-gray-300 to-transparent z-10"></div>
 
-                    <div className="lg:w-1/2 p-4 sm:p-8 lg:pr-12">
-                        <h3 className="sr-only">Our Offerings</h3>
-                        <ul className="space-y-6">
-                            {features.map((feature) => (
-                                <li
-                                    key={feature.id}
-                                    className={`
-                    py-4 cursor-pointer transition duration-300 ease-in-out
-                    ${activeFeatureId === feature.id
-                                            ? 'text-gray-900 font-bold'
-                                            : 'text-gray-400 hover:text-gray-600 font-medium'
-                                        }
-                  `}
-                                    onClick={() => setActiveFeatureId(feature.id)}
-                                >
-                                    <span className="text-4xl sm:text-5xl tracking-tight leading-none">
-                                        {feature.title}
-                                    </span>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
+  {/* --- LEFT SIDE --- */}
+  <div className="lg:w-1/2 py-8 lg:pr-12 flex flex-col justify-center">
+    <ul className="space-y-8 md:space-y-12 text-center">
+      {features.map((feature) => {
+        const isActive = activeFeatureId === feature.id;
+        return (
+          <li
+            key={feature.id}
+            onClick={() => setActiveFeatureId(feature.id)}
+            className={`cursor-pointer transition-all duration-500 ease-in-out transform origin-left ${
+              isActive
+                ? "opacity-100 blur-0 scale-105"
+                : "opacity-20 blur-[2px] hover:opacity-60 hover:blur-[1px] hover:scale-100"
+            }`}
+          >
+            <span
+              className={`text-[20px] sm:text-[28px] font-bold tracking-tight leading-tight ${
+                isActive ? "text-gray-900" : "text-gray-400"
+              }`}
+            >
+              {feature.title}
+            </span>
+          </li>
+        );
+      })}
+    </ul>
+  </div>
 
-                    <div className="lg:w-1/2 p-4 sm:p-8 lg:pl-12 mt-8 lg:mt-0">
-                        {activeFeature ? (
-                            <div className="space-y-8">
-                                <div className="flex items-start space-x-4">
-                                    <div className="flex-shrink-0 pt-1">
-                                        <FaBookOpen className="w-6 h-6 text-blue-500" />
-                                    </div>
-                                    <div>
-                                        <h4 className="text-lg font-semibold text-gray-900">Student Resources</h4>
-                                        <p className="mt-1 text-base text-gray-600">
-                                            Get the details about your favourite online university, backed with expert guidance clearing your every doubt to help you make an informed decision.
-                                        </p>
-                                    </div>
-                                </div>
+  {/* --- RIGHT SIDE --- */}
+  <div className="lg:w-1/2 p-6  lg:pl-12 mt-8 lg:mt-0 flex flex-col justify-center space-y-10">
+    {features.map((feature) => {
+      const isActive = activeFeatureId === feature.id;
+      const Icon = feature.icon;
 
-                                <div className="flex items-start space-x-4">
-                                    <div className="flex-shrink-0 pt-1">
-                                        <FaUsers className="w-6 h-6 text-red-500" />
-                                    </div>
-                                    <div>
-                                        <h4 className="text-lg font-semibold text-gray-900">Personalized Counseling</h4>
-                                        <p className="mt-1 text-base text-gray-600">
-                                            Our experts are always there for you, providing one-on-one sessions to solve your every doubt and smooth your journey.
-                                        </p>
-                                    </div>
-                                </div>
+      return (
+        <div
+          key={feature.id}
+          onClick={() => setActiveFeatureId(feature.id)}
+          className={`flex items-start space-x-4 transition-all duration-500 ease-in-out cursor-pointer ${
+            isActive
+              ? "opacity-100 blur-0 translate-x-0"
+              : "opacity-20 blur-[1.5px] translate-x-4 grayscale"
+          }`}
+        >
+          <div className="flex-shrink-0 pt-1">
+            <Image src={feature.image} width={20} height={20} className={`w-8 h-8 ${feature.color}`} />
+          </div>
+          <div>
+          
+            <p className="mt-2 text-base text-gray-600 leading-relaxed">{feature.details}</p>
+          </div>
+        </div>
+      );
+    })}
+  </div>
+</div>
 
-                                <div className="flex items-start space-x-4">
-                                    <div className="flex-shrink-0 pt-1">
-                                        <FaGraduationCap className="w-6 h-6 text-yellow-500" />
-                                    </div>
-                                    <div>
-                                        <h4 className="text-lg font-semibold text-gray-900">Post-admission Support</h4>
-                                        <p className="mt-1 text-base text-gray-600">
-                                            We don’t stop after admission; our team is dedicated with you to support and after getting admission.
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <div className="flex items-start space-x-4">
-                                    <div className="flex-shrink-0 pt-1">
-                                        <FaHandshake className="w-6 h-6 text-green-500" />
-                                    </div>
-                                    <div>
-                                        <h4 className="text-lg font-semibold text-gray-900">Trusted Partnerships</h4>
-                                        <p className="mt-1 text-base text-gray-600">
-                                            Strong connections with UGC online universities and institutions to ensure your success.
-                                        </p>
-                                    </div>
-                                </div>
-
-                            </div>
-                        ) : (
-                            <p className="text-gray-500">Select a feature on the left to see details.</p>
-                        )}
-                    </div>
-
-                </div>
             </div>
         </section>
     );

@@ -63,7 +63,7 @@ const CultureGallery = () => {
   const tabs = ['Moments', 'Thrills', 'Honors'];
 
   return (
-    <div className="py-16 bg-gray-50">
+    <div className="py-10 md:py-16 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Tabs */}
@@ -91,7 +91,7 @@ const CultureGallery = () => {
 
         {/* Masonry Gallery Layout */}
         {/* 'columns-1 sm:columns-2 lg:columns-4' creates the layout */}
-        <div className="columns-3 md:columns-4 gap-4 md:gap-[40px] space-y-[60px]">
+        <div className="columns-2 md:columns-4 gap-4 md:gap-[40px] space-y-[60px]">
 
   {galleryData
     .filter(item => item.category === activeTab)

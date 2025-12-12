@@ -39,7 +39,7 @@ export default function CultureBenefits() {
   ];
 
   return (
-    <div className="py-10 bg-gray-100 font-poppins ">
+    <div className="py-10  font-poppins ">
       
       {/* Utility to hide scrollbar but keep functionality */}
       <style jsx global>{`
@@ -55,11 +55,13 @@ export default function CultureBenefits() {
       <div className="max-w-7xl mx-auto px-4">
         
         {/* Heading */}
-        <h2 className="text-[24px] md:text-[40px] font-bold text-center text-gray-900">
+        <h2 className="text-[24px] md:text-[40px] font-[600] text-center text-gray-900">
           Our Culture and Benefits
         </h2>
         <p className="text-gray-600 max-w-3xl text-center mx-auto mt-4 mb-10 text-sm md:text-base">
-          Collegesathi is a growing company that values hard work and dedication. Beyond work, we cherish every celebration, moment, and tradition.
+        Collegesathi is a growing company that values hard work and dedication. Beyond work, we cherish every celebration, moment,
+         and tradition that turns our company into one big family.
+         We embrace laughter, light-hearted moments, and genuine care for every individual.
         </p>
 
 

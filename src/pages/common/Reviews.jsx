@@ -122,7 +122,7 @@ export default function Reviews() {
     };
 
     return (
-        <section className="px-6 py-6 block" id="reviews-section">
+        <section className="px-6 py-6 block" >
             <div className="max-w-[1230px]">
 
              
@@ -140,7 +140,7 @@ export default function Reviews() {
 
 
                 {/* Rating Overview */}
-                <div className="mt-14 grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div className="mt-14 grid grid-cols-1 lg:grid-cols-2 gap-8" >
                     <div className="border p-5 rounded-lg">
                         <h3 className="text-xl font-semibold mb-4">Ratings Overview</h3>
 
@@ -166,7 +166,7 @@ export default function Reviews() {
 
 
 
-                     <div className=" justify-center flex flex-col gap-4 h-full">
+                     <div className=" justify-center flex flex-col gap-4 h-full"  id="reviews-section">
 
                      <div className="flex items-center justify-center gap-4  rounded-[8px] py-2 bg-[#fcf0ee] h-1/3">
                 <div className=" w-full h-auto  flex flex-col items-center justify-center py-6">

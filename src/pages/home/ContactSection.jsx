@@ -61,9 +61,10 @@ export default function ContactSection() {
                                     <h2
                                         className="
     font-poppins
-    font-semibold
-    text-[44px]
-    leading-[60px]
+    font-[600]
+    text-[20px]
+    md:text-[44px]
+    leading-[40px]
     tracking-[0px]
     text-[#282529]
     mb-1
@@ -72,7 +73,7 @@ export default function ContactSection() {
                                         Collegesathi Learner Support
                                     </h2>
 
-                                    <p className="font-poppins font-[400] text-[16px] tracking-[0px] text-[#282529]">
+                                    <p className="font-poppins font-[400] text-[14px] md:text-[16px] tracking-[0px] text-[#282529]">
                                         We are here to help you at every step!
                                     </p>
                                 </div>

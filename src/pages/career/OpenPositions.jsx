@@ -21,7 +21,7 @@ const jobCategories = [
 
 function OpenPositions() {
     return (
-        <section className="py-16 sm:py-24 bg-gray-50 font-poppins">
+        <section className="py-10 md:py-24 bg-gray-50 font-poppins">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 
                 {/* --- Top Header Section (Centered) --- */}

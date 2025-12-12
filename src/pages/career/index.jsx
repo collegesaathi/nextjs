@@ -48,9 +48,9 @@ function Index() {
 
                             <div className="absolute inset-0 bg-black opacity-30"></div>
 
-                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-blue-500 text-white px-4 py-2 rounded text-sm font-mono">
+                            {/* <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-blue-500 text-white px-4 py-2 rounded text-sm font-mono">
                                 1440 × 643
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 </section>
