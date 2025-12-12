@@ -26,13 +26,11 @@ import Aboutdetails from "@/pages/common/Aboutdetails";
 import Reviews from "@/pages/common/Reviews";
 import Universities from "@/pages/common/Universities";
 import SimilarUniversities from "@/pages/common/SimilarUniversities";
-import FaqManager from "../FaqManager";
 import FAQSection from "@/pages/common/FAQSection";
 import ExaminationPattern from "@/pages/common/ExaminationPattern";
 import SampleCertificate from "@/pages/common/SampleCertificate";
 import CoursesSwiper from "@/pages/common/CoursesSwiper";
 import Hero from "@/pages/common/Hero";
-import UniversitySidebar from "@/pages/common/UniversitySidebar";
 import Listing from "@/pages/api/Listing";
 import { useRouter } from "next/router";
 import toast from "react-hot-toast";
@@ -40,7 +38,7 @@ function Details() {
     const router = useRouter()
     const Id = router.query.slug;
     const [Loading, setLoading] = useState(false);
-const[data ,setData] = useState("")
+    const [data, setData] = useState("")
     const handleDetails = async (Id) => {
         try {
             setLoading(true);
@@ -67,7 +65,7 @@ const[data ,setData] = useState("")
             handleDetails(Id)
         }
     }, [Id])
-    console.log("data" ,data)
+    console.log("data", data)
 
     return (<>
         <AdminLayout page={"university"}>
@@ -77,20 +75,21 @@ const[data ,setData] = useState("")
                     <Hero data={data} />
 
                     <div className="w-full flex items-start pt-10 justify-center h-full relative flex-wrap">
-                        <Aboutdetails  about={data.about}/>
-                        <CourseFess  />
-                        <PlacementPartners placements =  {data?.partners} />
-                        <Ranking  rankings ={data?.rankings}/>
+                        <Aboutdetails about={data.about} />
+                        <CourseFess />
+                        <Approvals placements={data?.partners} />
+                        <Ranking rankings={data?.rankings} />
                         <CoursesSwiper />
-                        <Advantages  advantages ={data?.advantages}/>
-                        <Facts  facts ={data?.facts}/>
-                        <SampleCertificate certificates={data?.certificates}/>
-                        <ExaminationPattern  examPatterns={data?.examPatterns}/>
-                        <Financial financialAid={data?.financialAid}/>
-                        <UniversityCampusCarousel universityCampuses={data?.universityCampuses}/>
-                        <CareerServices  services={data?.services}/>
-                        <StepsSection admissionProcess={data?.admissionProcess}/>
-                        <FAQSection faq={data?.faq}/>
+                        <Advantages advantages={data?.advantages} />
+                        <Facts facts={data?.facts} />
+                        <SampleCertificate certificates={data?.certificates} />
+                        <ExaminationPattern examPatterns={data?.examPatterns} />
+                        <Financial financialAid={data?.financialAid} />
+                        <UniversityCampusCarousel universityCampuses={data?.universityCampuses} />
+                        <PlacementPartners />
+                        <CareerServices services={data?.services} />
+                        <StepsSection admissionProcess={data?.admissionProcess} />
+                        <FAQSection faq={data?.faq} />
                         <SimilarUniversities />
                         <Universities />
                         <Reviews />
