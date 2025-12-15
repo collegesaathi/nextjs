@@ -5,7 +5,9 @@ import Image from "next/image";
 function Facts({ facts }) {
   return (
     <>
-      <div className="mt-[50px]  bg-[#fcf0ee]">
+      <div className="mt-[50px]  relative">
+           <div className="absolute top-0 left-0 w-full h-[80%] bg-[#fcf0ee] -z-10"></div>
+                         <Image src="/images/university/factsbg.png" width={200} height={200} className="hidden lg:block absolute top-2 lg:right-14 lg:top-16" />
         <section className="w-full px-6 py-6 mx-auto" id="facts-section">
           <div className="max-w-[1230px]">
             <div className="relative z-10  mt-[50px]">
@@ -24,54 +26,47 @@ function Facts({ facts }) {
                 {facts?.title}
 
               </h2>
-              <div className="rounded-[20px] bg-white max-w-[1000px] shadow-[0px_1px_10px_rgba(0,0,0,0.09)] p-4 md:p-8">
-           
+  
+        <div className="rounded-[20px] bg-white max-w-[1100px] shadow-[0px_1px_10px_rgba(0,0,0,0.09)] p-4 md:p-8 ">
+  <div className="flex">
 
-                <div className="flex">
+    <div className="flex-1">
+      {facts?.facts?.map((item, index) => (
+     
+        <div key={index} className="flex gap-4 relative"> 
+          
+        
+          <div className="flex flex-col items-center min-w-[40px]"> 
+            
+ 
+            <div className="w-7 h-7 bg-[#fcf0ee] rounded-full flex flex-none items-center justify-center z-10">
+              <span className="font-poppins font-semibold text-[#ff8787] text-[16px]">
+                {index + 1}
+              </span>
+            </div>
 
-                  {/* Timeline + Content Together Row by Row */}
-                  <div className="flex-1">
+    
+            {index < facts.facts.length - 1 && (
+              <div className="w-[1px] bg-[#ffd5ce] flex-grow my-1"></div>
+            )}
+          </div>
 
-                    {facts?.facts?.map((item, index) => (
-                      <div key={index} className="flex gap-4 relative py-4">
+   
+          <div className="flex-1 pb-8">
+            <h3 className="font-poppins font-semibold text-[15px] md:text-[17px] text-[#282529]">
+              {item.patternName}
+            </h3>
 
-                        {/* ---- Timeline Column ---- */}
-                        <div className="flex flex-col items-center">
-
-                          {/* Numbered Dot */}
-                          <div className="w-7 h-7 bg-[#fcf0ee] rounded-full flex items-center justify-center">
-                            <span className="font-poppins font-semibold text-[#ff8787] text-[16px]">
-                              {index + 1}
-                            </span>
-                          </div>
-
-                          {/* Auto Adjust Line */}
-                          {index < facts.length - 1 && (
-                            <div className="flex-grow w-[1px] bg-[#ffd5ce]"></div>
-                          )}
-                        </div>
-
-                        {/* ---- Content Column ---- */}
-                        <div className="flex-1 pb-4">
-                          <h3 className="font-poppins font-semibold text-[15px] md:text-[17px] text-[#282529]">
-                            {item.patternName}
-                          </h3>
-
-                          <div
-                            className="font-poppins text-[14px] md:text-[16px] leading-[20px] md:leading-[22px] text-[#282529] mt-2"
-                            dangerouslySetInnerHTML={{ __html: item?.description || "" }}
-                          />
-                        </div>
-
-                      </div>
-                    ))}
-
-
-                  </div>
-
-                </div>
-
-              </div>
+            <div
+              className="font-poppins text-[14px] md:text-[16px] leading-[20px] md:leading-[22px] text-[#282529] mt-2"
+              dangerouslySetInnerHTML={{ __html: item?.description || "" }}
+            />
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</div>
 
             </div>
           </div>
