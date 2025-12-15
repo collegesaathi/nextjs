@@ -1,5 +1,6 @@
 import React from "react";
-import Heading from "@/common/Heading";
+import Image from "next/image";
+
 
 function Facts({ facts }) {
   return (
@@ -23,7 +24,8 @@ function Facts({ facts }) {
                 {facts?.title}
 
               </h2>
-              <div className="rounded-[20px] bg-white shadow-[0px_1px_10px_rgba(0,0,0,0.09)] p-4 md:p-8">
+              <div className="rounded-[20px] bg-white max-w-[1000px] shadow-[0px_1px_10px_rgba(0,0,0,0.09)] p-4 md:p-8">
+           
 
                 <div className="flex">
 
