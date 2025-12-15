@@ -17,6 +17,28 @@ import OnlineSection from "../../common/OnlineSection";
 import ServicesSection from "../../common/ServicesSection";
 import Ranking from "../../common/Ranking";
 function Index() {
+    const [universities, setUniversities] = useState([])
+    const fetchData = async () => {
+        try {
+
+            const main = new Listing();
+            const response = await main.ContactUniversityGet();
+            console.log("response", response)
+            const universities = response?.data?.data?.universities || [];
+            setUniversities(universities);
+
+        } catch (error) {
+            console.log("error", error);
+            setLoading(false);
+
+
+        }
+    };
+
+    useEffect(() => {
+        fetchData();
+
+    }, []);
     const [activeTabs, setActiveTabs] = useState("indian");
 
     const [advantages, setAdvantages] = useState([
@@ -153,7 +175,8 @@ function Index() {
         creteria: "",
         semesters_title: "",
         patterndescription: "",
-        patternname: ""
+        patternname: "",
+        university_id: ""
     });
 
     console.log("formData", formData)
@@ -434,6 +457,33 @@ function Index() {
                                     required
                                 />
                             </div>
+
+                            <div>
+                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
+                                    University Id {" "}
+                                </label>
+
+                                <div className="relative">
+                                    <select
+                                        name="university_id"
+                                        value={formData?.university_id}
+                                        onChange={handleChange}
+                                       className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
+                                       >
+                                        <option value="" disabled>Select a University</option>
+                                        {universities && universities.length > 0 ? (
+                                            universities.map((u, index) => (
+                                                <option key={index} value={u.id}>
+                                                    {u.name}
+                                                </option>
+                                            ))
+                                        ) : (
+                                            <option disabled>No data</option>
+                                        )}
+
+                                    </select>
+                                </div>
+                            </div>
                             {/* Description Field changed to textarea with 300 character limit */}
 
 
@@ -549,7 +599,6 @@ function Index() {
 
                     {activeTab === "about" && (
                         <>
-
                             <div>
                                 <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
                                     About Title {" "}

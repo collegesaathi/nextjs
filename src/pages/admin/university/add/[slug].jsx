@@ -16,6 +16,8 @@ import ServicesSection from "../../common/ServicesSection";
 import { useRouter } from "next/router";
 import SEOAdd from "../../common/SEOAdd";
 import { Loader } from "@/common/Loader";
+import Campus from "@/commons/add/Campus";
+import AddAbout from "@/commons/add/AddAbout";
 
 function Index() {
     const router = useRouter()
@@ -746,37 +748,8 @@ function Index() {
                                 </div>
                             </>
                         )}
-
                         {activeTab === "about" && (
-                            <>
-                                <div>
-                                    <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
-                                        About Title {" "}
-                                        <span className="text-sm text-gray-500">
-                                            ({formData.about_title?.length}/50)
-                                        </span>
-                                    </label>
-                                    <input
-                                        type="text"
-                                        name="about_title"
-                                        value={formData.about_title}
-                                        onChange={(e) => {
-                                            if (e.target.value.length <= 50) handleChange(e);
-                                        }}
-                                        placeholder="Enter about title"
-                                        className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
-                                        required
-                                    />
-                                </div>
-
-                                <ReactQuillEditor
-                                    label="Description"
-                                    desc={formData.about_desc}
-                                    handleBioChange={(val) => handleQuillChange("about_desc", val)}
-                                />
-
-                            </>
-
+                        <AddAbout handleChange={handleChange} handleQuillChange={handleQuillChange} formData={formData} />
                         )}
 
                         {activeTab === "approvals" && (
@@ -1065,82 +1038,7 @@ function Index() {
 
                         {activeTab === "campuses" && (
                             <>
-                                <div className="flex justify-between items-center">
-                                    <h2 className="text-xl font-semibold text-[#CC2828]">
-                                        Campus Section
-                                    </h2>
-                                    <button
-                                        onClick={addCampus}
-                                        className="border border-[#CC2828] bg-[#CC2828] hover:bg-red-700 text-white px-6 py-2 rounded-[10px] text-base transition"
-                                    >
-                                        + Add More Campus
-                                    </button>
-                                </div>
-                                {/* MULTIPLE CAMPUS BLOCKS */}
-                                {campusList?.map((campus, index) => (
-                                    <div key={index} className="border px-2  rounded-xl bg-gray-100 mb-2 ">
-                                        {/* Name */}
-                                        <label className="flex  justify-between  items-center block text-[#CC2828] font-medium mb-2">
-                                            Campus Name
-                                            <button
-                                                onClick={() => deleteCampus(index)}
-                                                className="mt-3 bg-red-500 text-white px-4 py-1 rounded-[10px]"
-                                            >
-                                                Delete
-                                            </button>
-                                        </label>
-                                        <input
-                                            type="text"
-                                            value={campus.name}
-                                            onChange={(e) =>
-                                                handleCampusChange(index, "name", e.target.value)
-                                            }
-                                            placeholder="Enter Campus Name"
-                                            className="w-full bg-white text-[#727272] border rounded-[10px] px-4 py-2 focus:outline-none mb-4"
-                                        />
-
-                                        {/* Image */}
-                                        <label className="block text-[#CC2828] font-medium mb-2">
-                                            Campus Image
-                                        </label>
-                                        {/* <input
-                                        type="file"
-                                        onChange={(e) => handleCampusChange(index, e.target.files[0])}
-                                        className="w-full bg-white text-[#727272] border rounded-[10px] px-4 py-2 focus:outline-none mb-3 "
-                                    /> */}
-                                        <input
-                                            type="file"
-                                            accept="image/*"
-                                            onChange={(e) => handleCampusChange(index, "image", e.target.files[0])}
-                                            className="w-full bg-white text-[#727272] border rounded-[10px] px-4 py-2 focus:outline-none mb-3 "
-                                        />
-                                        {/* Preview */}
-                                        {campus.image && (
-                                            <img
-                                                src={
-                                                    typeof campus.image === "string"
-                                                        ? campus.image // saved image URL
-                                                        : URL.createObjectURL(campus.image) // uploaded image file
-                                                }
-                                                className="mt-3 mb-3 w-40 h-40 object-cover rounded-md border"
-                                                alt="campus"
-                                            />
-                                        )}
-
-                                        <input
-                                            type="text"
-                                            value={campus.campus_images_alt}
-                                            onChange={(e) =>
-                                                handleCampusChange(index, "campus_images_alt", e.target.value)
-                                            }
-                                            placeholder="Enter Campus Alt Images"
-                                            className="w-full bg-white text-[#727272] border rounded-[10px] px-4 py-2 focus:outline-none mb-4"
-                                        />
-
-                                        {/* Delete Button */}
-
-                                    </div>
-                                ))}
+                        <Campus campusList={campusList} setCampusList={setCampusList}   />
                             </>
                         )}
 
