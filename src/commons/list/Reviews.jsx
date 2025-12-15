@@ -7,8 +7,8 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import StarRating from "@/common/StarRating";
 import Image from "next/image";
+import BackNext from "@/pages/components/BackNext";
 
-import BackNext from "../components/BackNext";
 
 export default function Reviews() {
     const [activeTab, setActiveTab] = useState("average");

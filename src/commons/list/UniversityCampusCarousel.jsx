@@ -6,9 +6,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay, Pagination } from 'swiper/modules'
 import 'swiper/css'
 import { useRef, useState } from "react";
-import Image from "next/image";
-import Heading from "@/common/Heading";
-import BackNext from "../components/BackNext";
+import BackNext from "@/pages/components/BackNext";
 
 
 

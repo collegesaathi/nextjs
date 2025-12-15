@@ -1,19 +1,16 @@
 "use client";
-
-
 import { useRouter } from "next/router";
 import toast from "react-hot-toast";
-import Listing from "../api/Listing";
 
 import { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import BackNext from "../components/BackNext";
 import Image from "next/image";
+import BackNext from "@/pages/components/BackNext";
+import Listing from "@/pages/api/Listing";
 
 export default function CoursesSwiper() {
   const swiperRef = useRef(null);
-
 
   const [progress, setProgress] = useState(0);
   const [isBeginning, setIsBeginning] = useState(true);
@@ -70,9 +67,7 @@ export default function CoursesSwiper() {
       <section className="w-full px-6 py-6 mx-auto" id="courses-section">
         <div className="max-w-[1230px]">
           <BackNext
-
             title="NMIMS CODE: Courses"
-
             progress={progress}
             isBeginning={isBeginning}
             isEnd={isEnd}

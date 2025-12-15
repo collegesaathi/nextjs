@@ -4,57 +4,36 @@ import { useState, useRef } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay, Pagination } from 'swiper/modules'
 import 'swiper/css'
-import ABP from "../assets/home/ABP.svg";
-import Edtech from "../assets/home/Edtech.svg";
-import Outlook from "../assets/home/Outlook-B.svg";
-import The from "../assets/home/The.svg"
-import Heading from '@/common/Heading'
-import BackNext from "../components/BackNext";
+import BackNext from '@/pages/components/BackNext'
 
-export default function Universities() {
+
+export default function SimilarUniversities() {
     // Award items data
-    const compareUniversities = [
+    const universities = [
         {
-            name: 'Sharda University',
-            shortName: 'SHARDA',
-            rating: '4.2',
-            reviews: '1.2k',
-            logo: '/images/university/compare/1.png',
+            name: 'Manipal University Online',
+            ranking: 75,
+            fee: 175000,
         },
         {
-            name: 'SRM University',
-            shortName: 'SRM',
-            rating: '4.4',
-            reviews: '2.1k',
-            logo: '/images/university/compare/2.png',
+            name: 'OP Jindal University',
+            ranking: 75,
+            fee: 175000,
         },
         {
-            name: 'Jain University',
-            shortName: 'JAIN',
-            rating: '4.3',
-            reviews: '1.8k',
-            logo: '/images/university/compare/3.png',
+            name: 'Dr. D.Y. Patil Vidyapeeth University Pune',
+            ranking: 75,
+            fee: 175000,
         },
         {
-            name: 'Manipal University',
-            shortName: 'MANIPAL',
-            rating: '4.5',
-            reviews: '3.2k',
-            logo: '/images/university/compare/4.png',
+            name: 'Amity University Online',
+            ranking: 75,
+            fee: 175000,
         },
         {
-            name: 'Amity University',
-            shortName: 'AMITY',
-            rating: '4.1',
-            reviews: '2.5k',
-            logo: '/images/university/compare/1.png',
-        },
-        {
-            name: 'LPU University',
-            shortName: 'LPU',
-            rating: '4.3',
-            reviews: '4.1k',
-            logo: '/images/university/compare/2.png',
+            name: 'Lovely Professional University',
+            ranking: 75,
+            fee: 175000,
         },
     ]
 
@@ -63,7 +42,7 @@ export default function Universities() {
         320: { slidesPerView: 1, spaceBetween: 16 },
         640: { slidesPerView: 2, spaceBetween: 20 },
         768: { slidesPerView: 3, spaceBetween: 24 },
-        1024: { slidesPerView: 4, spaceBetween: 24 },
+        1024: { slidesPerView: 3, spaceBetween: 24 },
     }
 
     // Active slide tracking
@@ -71,24 +50,16 @@ export default function Universities() {
     const swiperRef = useRef(null)
 
     // Handle slide change from carousel
-    const onSlideChange = (swiper) => {
-        setCurrentSlideIndex(swiper.realIndex)
-    }
+   
 
     // Check if a slide is currently active/visible
-    const isActiveSlide = (index) => {
-        return currentSlideIndex === index
-    }
+   
 
     const handleSwiper = (swiper) => {
         swiperRef.current = swiper
     }
 
-    const goToSlide = (index) => {
-        if (swiperRef.current) {
-            swiperRef.current.slideToLoop(index)
-        }
-    }
+   
 
 
     const [progress, setProgress] = useState(0);
@@ -98,7 +69,7 @@ export default function Universities() {
     const updateProgress = (swiper) => {
         if (!swiper) return;
 
-        const totalCards = compareUniversities.length;
+        const totalCards = universities.length;
         const visibleSlides = swiper.params.slidesPerView;
 
         // Beginning arrow logic
@@ -130,22 +101,16 @@ export default function Universities() {
     const navigateNext = () => {
         swiperRef.current?.slideNext();
     };
-    const progressBarTotalWidth =
-        typeof window !== "undefined" && window.innerWidth >= 1024 ? "180px" : "120px";
-
-
-    const progressWidthStyle = {
-        width: `${progress}%`,
-    };
+  
 
     return (
         <>
             {/* Desktop Version */}
-            <div className="py-6 px-4 " id="universities-comparison-section">
+            <div className="py-6 px-4 md:py-6 " id="similar-universities-section">
                 <div className=" container sm:container md:container lg:container xl:max-w-[1230px]  px-4">
 
                     {/* <div className="flex justify-between items-center mb-6">
-                        <Heading title={"Similar Universities"}/>
+                        <Heading title={" Similar Universities"} />
                         <div className="flex flex-wrap items-center justify-end md:space-x-4">
                             <div className={`w-[${progressBarTotalWidth}] h-1.5 bg-gray-300 rounded-full overflow-hidden`}>
                                 <div
@@ -210,87 +175,73 @@ export default function Universities() {
                     </div> */}
 
 
-                    
-            <BackNext
-                  
-                  title="Compare with Other Universities"
-               
-                  progress={progress}
-                  isBeginning={isBeginning}
-                  isEnd={isEnd}
-                  onPrev={navigatePrev}
-            onNext={navigateNext}
-                />
+
+                    <BackNext
+
+                        title=" Similar Universities"
+
+                        progress={progress}
+                        isBeginning={isBeginning}
+                        isEnd={isEnd}
+                        onPrev={navigatePrev}
+                        onNext={navigateNext}
+                    />
 
                     <div   >
                         <Swiper
-                            slidesPerView={4}
-                            spaceBetween={24}
+                            spaceBetween={20}
                             autoplay={{
                                 delay: 4000,
                                 disableOnInteraction: false,
                             }}
-                            modules={[Autoplay,  Pagination]}
+                            modules={[Autoplay, Pagination]}
                             onSwiper={(swiper) => {
                                 swiperRef.current = swiper;
                                 updateProgress(swiper);
                             }}
-                            // Update state on slide change
                             onSlideChange={updateProgress}
                             breakpoints={carouselBreakpoints}
                         >
-                            {compareUniversities.map((university, index) => (
-                                <SwiperSlide key={index}>
-                                    <div className="w-full h-[232px] rounded-[10px] border border-[rgba(188,188,188,0.7)] p-3 flex flex-col justify-between items-center">
-
-                                        {/* University Logo */}
-                                        <div className="rounded-[14px] h-[81px] bg-white border border-[rgba(188,188,188,0.3)] shadow-[0px_0px_2px_rgba(0,0,0,0.11)] flex items-center justify-center p-3 text-center">
-                                            <img
-                                                src={university.logo}
-                                                alt={university.name}
-                                                className="w-full object-contain"
-                                            />
-                                        </div>
-
-                                        {/* University Name */}
-                                        <h3 className="font-poppins font-semibold text-[17px] leading-[25px] text-[#282529] text-center">
-                                            {university.name}
-                                        </h3>
-
-                                        {/* Student Rating */}
-                                        <div className="space-y-1.5 text-center">
-                                            <p className="font-poppins text-[12px] leading-[18px] text-[#282529] font-light">
-                                                Student Rating
-                                            </p>
-
-                                            <div className="flex justify-center items-center gap-1.5">
-                                                <div className="flex gap-1.5 text-xs">
-                                                    {[...Array(5)].map((_, i) => (
-                                                        <span
-                                                            key={i}
-                                                            className={
-                                                                i < university.rating
-                                                                    ? "text-yellow-400"
-                                                                    : "text-[#DDDDDD]"
-                                                            }
-                                                        >
-                                                            ★
-                                                        </span>
-                                                    ))}
-                                                </div>
-
-                                                <span className="font-poppins text-[8px] leading-[12px] text-[#61ab58] font-light">
-                                                    ({university.reviews} Reviews)
-                                                </span>
-                                            </div>
-                                        </div>
-
-                                        {/* Button */}
-                                        <button className="w-[129px] h-[21px] rounded-[6px] bg-[#ec1e24] font-poppins text-[12px] leading-[18px] text-white flex items-center justify-center">
-                                            Add to Compare
-                                        </button>
+                            {universities?.map((university, index) => (
+                            <SwiperSlide key={index} className="px-2 my-3">
+                            <div
+                                className="
+                                    w-full h-[130px]  rounded-[15px] bg-[#f7f6f6] 
+                                    p-4 flex flex-col justify-between cursor-pointer 
+                                    transition-transform duration-300 hover:scale-105
+                                "
+                            >
+                                <h3 className="font-poppins font-semibold text-[17px] text-[#363535] mb-3 
+                                    whitespace-normal break-words leading-tight line-clamp-2">
+                                    {university.name}
+                                </h3>
+                        
+                                <div className="flex items-center space-x-1.5">
+                                    <div className="flex items-center space-x-1.5 font-poppins font-light text-[14px] text-[#282529]">
+                                        <img src="/images/money.svg" alt="similar" />
+                                        <span>INR {university.fee}</span>
                                     </div>
-                                </SwiperSlide>
+                        
+                                    <div className="flex items-center">
+                                        <div className="w-[3px] h-[3px] rounded-full bg-[#282529]"></div>
+                        
+                                        <div className="
+                                            w-[50px] border-[0.75px] bg-white h-[15px] border-[#f7f6f6]
+                                            font-poppins font-light text-[6px] text-[#282529]
+                                            rounded-full flex items-center justify-center mx-1
+                                        ">
+                                            NIRF Ranking
+                                        </div>
+                        
+                                        <p className="font-poppins font-semibold text-[14px] text-[#282529]">
+                                            {university.ranking}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </SwiperSlide>
+                        
+                          
                             ))}
                         </Swiper>
 
