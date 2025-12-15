@@ -488,7 +488,6 @@ function Index() {
                     <div className="w-full  border-b border-white/10">
                         <div className="flex justify-between items-center  text-center p-4 "
                         >
-
                             {/* Left: Back Arrow + Label */}
                             <div className="flex items-center gap-3 w-[250px]">
                                 <FaArrowLeft
@@ -514,8 +513,6 @@ function Index() {
                                 />
 
                             </div>
-
-
 
                             {/* Right: Save Button */}
                             <button
@@ -758,10 +755,8 @@ function Index() {
                         {activeTab === "about" && (
                         <AddAbout handleChange={handleChange} handleQuillChange={handleQuillChange} formData={formData} />
                         )}
-
                         {activeTab === "approvals" && (
                             <>
-
                                 <div>
                                     <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
                                         Name{" "}
