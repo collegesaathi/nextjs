@@ -52,6 +52,26 @@ function Certificate({formData ,  handleChange ,handleImageChange ,preview  ,han
                     </div>
                 )}
             </div>
+
+               <div>
+                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
+                     Certificate Image Alt {" "}
+                    <span className="text-sm text-gray-500">
+                        ({formData.image_alt?.length}/50)
+                    </span>
+                </label>
+                <input
+                    type="text"
+                    name="image_alt"
+                    value={formData.image_alt}
+                    onChange={(e) => {
+                        if (e.target.value.length <= 50) handleChange(e);
+                    }}
+                    placeholder="Enter Alt Images Name"
+                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
+                    required
+                />
+            </div>
             <div className="mt-5 mb-5">
                 <ReactQuillEditor
                     label="Description"

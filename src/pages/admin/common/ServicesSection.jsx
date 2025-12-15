@@ -101,6 +101,21 @@ function ServicesSection({ formData, handleQuillChange, handleChange, setService
                             />
                         </div>
 
+                        {/* Content */}
+                        <div>
+                            <div className="flex justify-between items-center mb-2">
+                                <label className="block text-[#CC2828] font-medium">Images Alts </label>
+
+                            </div>
+
+                            <input
+                                type="text"
+                                value={service.images_alt}
+                                onChange={(e) => handleServiceChange(index, "images_alt", e.target.value)}
+                                placeholder="Enter service Images alt"
+                                className="w-full bg-[#F4F6F8] text-[#727272] border rounded-[10px] px-4 py-2 focus:outline-none"
+                            />
+                        </div>
                         {/* Image */}
                         <div>
                             <label className="block text-[#CC2828] font-medium mb-2">Image</label>
@@ -110,16 +125,16 @@ function ServicesSection({ formData, handleQuillChange, handleChange, setService
                                 onChange={(e) => handleServiceChange(index, "image", e.target.files[0])}
                                 className="w-full bg-[#F4F6F8] text-[#727272] border rounded-[10px] px-4 py-2 focus:outline-none"
                             />
-                             {service.image && (
-        <div className="mt-2">
-            <img
-                src={service.image ? service.image  : URL.createObjectURL(service.image)}
-                alt="Preview"
-                className="w-24 h-24 object-cover rounded-md border"
-            />
-            <p className="text-sm text-gray-500 mt-1">{service.image.name}</p>
-        </div>
-    )}
+                            {service.image && (
+                                <div className="mt-2">
+                                    <img
+                                        src={service.image ? service.image : URL.createObjectURL(service.image)}
+                                        alt="Preview"
+                                        className="w-24 h-24 object-cover rounded-md border"
+                                    />
+                                    <p className="text-sm text-gray-500 mt-1">{service.image.name}</p>
+                                </div>
+                            )}
 
                         </div>
 
@@ -132,16 +147,30 @@ function ServicesSection({ formData, handleQuillChange, handleChange, setService
                                 onChange={(e) => handleServiceChange(index, "icon", e.target.files[0])}
                                 className="w-full bg-[#F4F6F8] text-[#727272] border rounded-[10px] px-4 py-2 focus:outline-none"
                             />
-                                                {service.icon && (
-        <div className="mt-2">
-            <img
-                src={service.icon ? service.icon  :URL.createObjectURL(service.icon)}
-                alt="Preview"
-                className="w-24 h-24 object-cover rounded-md border"
-            />
-            <p className="text-sm text-gray-500 mt-1">{service.icon.name}</p>
-        </div>
-    )}
+                            {service.icon && (
+                                <div className="mt-2">
+                                    <img
+                                        src={service.icon ? service.icon : URL.createObjectURL(service.icon)}
+                                        alt="Preview"
+                                        className="w-24 h-24 object-cover rounded-md border"
+                                    />
+                                    <p className="text-sm text-gray-500 mt-1">{service.icon.name}</p>
+                                </div>
+                            )}
+                        </div>
+
+                        <div>
+                            <div className="flex justify-between items-center mb-2">
+                                <label className="block text-[#CC2828] font-medium">Icons Alts </label>
+                            </div>
+
+                            <input
+                                type="text"
+                                value={service.icons_alt}
+                                onChange={(e) => handleServiceChange(index, "icons_alt", e.target.value)}
+                                placeholder="Enter service Icons alt"
+                                className="w-full bg-[#F4F6F8] text-[#727272] border rounded-[10px] px-4 py-2 focus:outline-none"
+                            />
                         </div>
 
                     </div>
