@@ -84,9 +84,9 @@ const OptionCard = ({ title, isActive, onClick }) => (
       }
     `}
   >
-    {/* Placeholder Icon */}
+
     <div className={`mb-3 p-3 rounded-full font-poppins ${isActive ? 'bg-white' : 'bg-gray-50'}`}>
-       {/* You can replace this SVG with <Image> or your <SVGIcon> */}
+   
        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={isActive ? "#DC2626" : "#4B5563"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
     </div>
     <span className={`text-[14px] md:text-base font-[400]  text-center ${isActive ? 'text-red-700' : 'text-gray-700'}`}>
@@ -147,9 +147,9 @@ export default function CourseSelectionWizard() {
   const [searchTerm, setSearchTerm] = useState("");
 
   // Selections
-  const [selectedDegree, setSelectedDegree] = useState(null); // Step 1 Selection
-  const [selectedCourse, setSelectedCourse] = useState(null); // Step 2 Selection
-  const [selectedSpec, setSelectedSpec] = useState(null); // Step 3 Selection
+  const [selectedDegree, setSelectedDegree] = useState(null); 
+  const [selectedCourse, setSelectedCourse] = useState(null); 
+  const [selectedSpec, setSelectedSpec] = useState(null);
 
 
   const currentDegreeData = useMemo(() => {
@@ -286,7 +286,7 @@ export default function CourseSelectionWizard() {
               </div>
 
               {/* FOOTER BUTTONS */}
-              <div className="absolute bottom-8 left-0 w-full px-10 flex justify-between items-center">
+              <div className="absolute bottom-8 left-0 w-full px-10 flex justify-center items-center">
                 
                 {/* Back Button */}
                 {step > 1 ? (
