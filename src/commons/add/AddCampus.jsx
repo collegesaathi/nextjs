@@ -1,4 +1,4 @@
-function Campus({ setCampusList, campusList, }) {
+function AddCampus({ setCampusList, campusList, }) {
     const handleCampusChange = (index, field, value) => {
         const list = [...campusList];
         list[index][field] = value;
@@ -87,4 +87,4 @@ function Campus({ setCampusList, campusList, }) {
     </>);
 }
 
-export default Campus;
+export default AddCampus;

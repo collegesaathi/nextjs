@@ -15,7 +15,7 @@ import OnlineSection from "../../common/OnlineSection";
 import ServicesSection from "../../common/ServicesSection";
 import { useRouter } from "next/router";
 import SEOAdd from "../../common/SEOAdd";
-import Campus from "@/commons/add/Campus";
+import Campus from "@/commons/add/AddCampus";
 import AddAbout from "@/commons/add/AddAbout";
 
 function Index() {
@@ -613,30 +613,23 @@ function Index() {
                                 {formData.descriptions.map((desc, index) => (
                                     <div key={index} className="mb-4">
                                         <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
-                                            <span>Description {index + 1}</span>
-                                            <span className="text-sm text-gray-500">
-                                                ({desc.text.length}/500)
-                                            </span>
                                         </label>
-                                        <div className="flex items-start gap-3 mb-4">
-                                            <input
-                                                value={desc.text}
-                                                onChange={(e) => {
-                                                    if (e.target.value.length <= 500)
-                                                        handleDescriptionChange(index, e.target.value);
-                                                }}
-                                                placeholder="Enter description"
-                                                className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
-                                                required
-                                            />
-
-                                            <button
-                                                onClick={() => deleteDescription(index)}
-                                                className="bg-red-500 text-white rounded-md p-3 hover:bg-red-700 flex justify-center items-center"
-                                            >
-                                                <MdDelete size={20} />
-                                            </button>
-                                        </div>
+                                        <ReactQuillEditor
+                                            label={`Description ${index + 1}`}
+                                            desc={desc.text}
+                                            handleBioChange={(value) => {
+                                                const plainText = value.replace(/<[^>]*>/g, "").trim();
+                                                if (plainText.length <= 500) {
+                                                    handleDescriptionChange(index, value);
+                                                }
+                                            }}
+                                        />
+                                        <button
+                                            onClick={() => deleteDescription(index)}
+                                            className="bg-red-500 text-white rounded-md p-3 hover:bg-red-700 flex justify-center items-center"
+                                        >
+                                            <MdDelete size={20} />
+                                        </button>
 
                                     </div>
                                 ))}
@@ -644,8 +637,8 @@ function Index() {
                         </>
                     )}
                     {activeTab === "about" && (
-                        <>                        <AddAbout handleChange={handleChange} handleQuillChange={handleQuillChange} formData={formData} />
-
+                        <>
+                            <AddAbout handleChange={handleChange} handleQuillChange={handleQuillChange} formData={formData} />
                         </>
                     )}
 
