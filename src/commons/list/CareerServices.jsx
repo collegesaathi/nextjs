@@ -4,9 +4,9 @@ import { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import Image from "next/image";
-import BackNext from "../components/BackNext";
+import BackNext from "@/pages/components/BackNext";
 
-export default function CareerServices({services}) {
+export default function CareerServices({ services }) {
 
 
     const swiperRef = useRef(null);
@@ -75,11 +75,11 @@ export default function CareerServices({services}) {
                             onNext={navigateNext}
                         />
 
-  <div
-                        className="font-poppins text-[15px] sm:text-[16px] text-[#282529] leading-6 sm:leading-7 mb-4"
-                        dangerouslySetInnerHTML={{ __html: services?.description || "" }}
-                    />
-                       
+                        <div
+                            className="font-poppins text-[15px] sm:text-[16px] text-[#282529] leading-6 sm:leading-7 mb-4"
+                            dangerouslySetInnerHTML={{ __html: services?.description || "" }}
+                        />
+
 
                         {/* Desktop Swiper */}
                         <Swiper

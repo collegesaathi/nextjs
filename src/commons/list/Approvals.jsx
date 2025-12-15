@@ -4,60 +4,8 @@ import { Navigation, A11y } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import { useRef, useState } from "react";
-
-import Budget from "../assets/home/Budget.png";
-import Confusion from "../assets/home/Confusion.png";
-import EMIOptions from "../assets/home/EMIOptions.png";
-import Suggestions from "../assets/home/Suggestions.png";
-import Placements from "../assets/home/Placements.png"
-import BackNext from "../components/BackNext";
+import BackNext from "@/pages/components/BackNext";
 function Approvals({approvals , approvalsdata}) {
-    console.log("approvalsdata" ,approvalsdata)
-
-    const helpCards = [
-        {
-            title: "Budget constraints?",
-            description: "We are here to take care of your finances.", // Card 1 is just the title/action
-            id: 1,
-            image: EMIOptions?.src
-        },
-        {
-            title: "Budget constraints?",
-            description: "We are here to take care of your finances.",
-            id: 2,
-            image: Budget?.src
-
-        },
-        {
-            title: "Too much confusion?",
-            description: "Don't worry explore the best universities.",
-            id: 3,
-            image: Confusion?.src
-
-        },
-        {
-            title: "Looking for placements?",
-            description: "Discover different placement opportunities with us.",
-            id: 4,
-            image: Placements?.src
-
-        },
-        // Add more cards to ensure the carousel is scrollable
-        {
-            title: "Need expert advice?",
-            description: "Talk to our counselors today.",
-            id: 5,
-            image: Suggestions?.src
-        },
-        {
-            title: "Admission queries?",
-            description: "Get quick answers to all your questions.",
-            id: 6,
-            image: Placements?.src
-
-        },
-    ];
-
     const swiperRef = useRef(null);
     const [progress, setProgress] = useState(0);
     const [isBeginning, setIsBeginning] = useState(true);
@@ -66,7 +14,7 @@ function Approvals({approvals , approvalsdata}) {
     const updateProgress = (swiper) => {
         if (!swiper) return;
 
-        const totalCards = helpCards.length;
+        const totalCards = approvalsdata.length;
         const visibleSlides = swiper.params.slidesPerView;
 
         if (visibleSlides === 4) {

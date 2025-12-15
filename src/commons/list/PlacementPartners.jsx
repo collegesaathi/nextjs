@@ -6,7 +6,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import Image from "next/image";
-import BackNext from "../components/BackNext";
+import BackNext from "@/pages/components/BackNext";
 
 const partners = [
   { name: "Zalaris India", logo: "/images/university/showcase/1.png" },

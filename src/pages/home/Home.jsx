@@ -7,7 +7,7 @@ import Blogs from "./Blogs";
 import Confusion from "./Confusion";
 import ContactSection from "./ContactSection";
 import ExploreUniversities from "./ExploreUniversities";
-import FAQSection from "../common/FAQSection";
+import FAQSection from "../../commons/list/FAQSection";
 import HelpSection from "./HelpSection";
 import Logo from "./Logo";
 import LogoSlider from "./LogoSlider";
