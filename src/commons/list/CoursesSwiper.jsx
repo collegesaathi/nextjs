@@ -76,7 +76,7 @@ export default function CoursesSwiper() {
           />
 
 
-          <section className="px-6">
+          <section className="">
             <Swiper
               onSwiper={(swiper) => {
                 swiperRef.current = swiper;
@@ -98,8 +98,10 @@ export default function CoursesSwiper() {
                 </SwiperSlide>
               ))}
             </Swiper>
-
-            <EnquiryBox />
+           <div className="px-2 md:px-6 pt-5 lg:pt-10">
+                      <EnquiryBox />
+           </div>
+  
           </section>
         </div>
       </section>
@@ -149,14 +151,14 @@ function CourseCard({ course, mobile = false }) {
 /* ------------------ DESKTOP ENQUIRY ------------------ */
 function EnquiryBox() {
   return (
-    <div className="w-full mx-auto mt-8 rounded-[18px] bg-gradient-to-br from-[#fef0f0] to-[#fbdbdc] p-4 sm:p-6 lg:p-8 grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
+    <div className="w-full  mx-auto mt-8 rounded-[18px] bg-gradient-to-br from-[#fef0f0] to-[#fbdbdc] p-4 sm:p-6 lg:p-8 grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
 
       {/* Left Image on Desktop only */}
       <div className="hidden md:flex justify-center">
         <img
           src="/images/university/course/3.png"
           alt="course form"
-          className="w-[90%] h-auto object-contain"
+          className="w-[80%] h-auto object-contain"
         />
       </div>
 

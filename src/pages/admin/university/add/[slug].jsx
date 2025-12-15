@@ -733,6 +733,13 @@ function Index() {
                                                     required
                                                 />
 
+{/*                                                 
+                                <ReactQuillEditor
+                                    label="Description"
+                                    desc={desc.text}
+                                    handleBioChange={(val) => handleQuillChange("desc.text", val)}
+                                /> */}
+
                                                 <button
                                                     onClick={() => deleteDescription(index)}
                                                     className="bg-red-500 text-white rounded-md p-3 hover:bg-red-700 flex justify-center items-center"
