@@ -283,7 +283,6 @@ function Index() {
             payload.append("certificatemage", formData.certificatemage);
             payload.append("cover_image_alt", formData.cover_image_alt)
             payload.append("icon_alt", formData.icon_alt)
-            payload.append("icon_alt", formData.icon_alt)
             payload.append("image_alt", formData.image_alt)
             const cleanPatterns = patterns.map(item => ({
                 patternName: item.patternName,
@@ -568,6 +567,27 @@ function Index() {
                                     required
                                 />
                             </div>
+
+                                 <div>
+                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
+                                    University Icon Alt{" "}
+                                    <span className="text-sm text-gray-500">
+                                        ({formData.icon_alt?.length}/50)
+                                    </span>
+                                </label>
+                                <input
+                                    type="text"
+                                    name="icon_alt"
+                                    value={formData.icon_alt}
+                                    onChange={(e) => {
+                                        if (e.target.value.length <= 50) handleChange(e);
+                                    }}
+                                    placeholder="Enter cover Icon alt"
+                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
+                                    required
+                                />
+                            </div>
+                            
                             <div>
                                 <label className="block text-[#FF1B1B] font-medium mb-1">
                                     Upload Icon
@@ -591,25 +611,7 @@ function Index() {
                                     </div>
                                 )}
                             </div>
-                            <div>
-                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
-                                    University Icon Alt{" "}
-                                    <span className="text-sm text-gray-500">
-                                        ({formData.icon_alt?.length}/50)
-                                    </span>
-                                </label>
-                                <input
-                                    type="text"
-                                    name="icon_alt"
-                                    value={formData.icon_alt}
-                                    onChange={(e) => {
-                                        if (e.target.value.length <= 50) handleChange(e);
-                                    }}
-                                    placeholder="Enter cover Icon alt"
-                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
-                                    required
-                                />
-                            </div>
+                       
                             <div className="mb-4">
                                 <div className="flex justify-between items-center mb-3">
                                     <h2 className="text-xl font-semibold text-[#CC2828]">Multiple Description</h2>

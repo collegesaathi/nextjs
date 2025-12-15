@@ -57,7 +57,10 @@ function Index() {
         meta_keywords: "",
         canonical_url: "",
         Id: "",
-        servicetitle: ""
+        servicetitle: "",
+        icon_alt: "",
+        cover_image_alt: "",
+        image_alt: ""
     });
     const [data, setData] = useState("")
     const [selectedApprovals, setSelectedApprovals] = useState([]);
@@ -131,6 +134,7 @@ function Index() {
             certificatedescription: data?.certificates?.description,
             certificatename: data?.certificates?.title,
             certificatemage: data?.certificates?.image,
+            image_alt: data?.certificates?.image_alt,
             patternname: data?.examPatterns?.title,
             patterndescription: data?.examPatterns?.description,
             financialname: data?.financialAid?.title,
@@ -147,6 +151,8 @@ function Index() {
             meta_description: data?.seo?.meta_description,
             canonical_url: data?.seo?.canonical_url,
             Id: data?.id,
+            icon_alt: data?.icon_alt,
+            cover_image_alt: data?.cover_image_alt,
             descriptions: data?.description?.length
                 ? data.description
                 : [{ text: "" }],
@@ -157,7 +163,7 @@ function Index() {
         setSelectedPartners(data?.partners?.placement_partner_id);
         setAdvantages(data?.advantages?.advantages?.length ? data?.advantages?.advantages : [{ title: "", description: "" }]);
         setFacts(data?.facts?.facts?.length ? data?.facts?.facts : [{ patternName: "", description: "" }]);
-        setPatterns(data?.examPatterns?.patterns?.length ? data?.examPatterns?.patterns : [{ patternName: "", description: "", image: "", percentage: "" }]);
+        setPatterns(data?.examPatterns?.patterns?.length ? data?.examPatterns?.patterns : [{ patternName: "", description: "", image: "", percentage: "" , pattern_images_alt:""  }]);
         setFees(data?.financialAid?.aid?.length ? data?.financialAid?.aid : [{
             courseName: "",
             totalFees: "",
@@ -167,8 +173,8 @@ function Index() {
             emi: "",
             description: "",
         }])
-        setCampusList(data?.universityCampuses?.campus?.length ? data?.universityCampuses?.campus : [{ name: "", image: "" }])
-        setServices(data?.services?.services?.length ? data?.services?.services : [{ title: "", content: "", image: null, icon: null }])
+        setCampusList(data?.universityCampuses?.campus?.length ? data?.universityCampuses?.campus : [{ name: "", image: "",  campus_images_alt:"" }])
+        setServices(data?.services?.services?.length ? data?.services?.services : [{ title: "", content: "", image: null, icon: null  , icons_alt :"" ,images_alt :""  }])
         setFaqs(data?.faq?.faqs?.length ? data?.faq?.faqs : [{ question: "", answer: "", position: "" }]);
         setOnlines(data?.admissionProcess?.process?.length ? data?.admissionProcess?.process : [{ title: "", content: "" }])
     }, [data])
@@ -357,10 +363,14 @@ function Index() {
             payload.append("meta_keywords", formData.meta_keywords);
             payload.append("canonical_url", formData.canonical_url);
             payload.append("certificatemage", formData.certificatemage);
+                payload.append("cover_image_alt", formData.cover_image_alt)
+            payload.append("icon_alt", formData.icon_alt)
+            payload.append("image_alt", formData.image_alt)
             const cleanPatterns = patterns.map(item => ({
                 patternName: item.patternName,
                 percentage: item.percentage,
-                description: item.description
+                description: item.description,
+                  pattern_images_alt: item?.pattern_images_alt
             }));
             payload.append("patterns", JSON.stringify(cleanPatterns));
             patterns.forEach((item, index) => {
@@ -372,6 +382,7 @@ function Index() {
             payload.append("financialdescription", formData.financialdescription);
             const campusListmanage = campusList.map(item => ({
                 name: item.name,
+                  campus_images_alt: item?.campus_images_alt
             }));
             payload.append("campusList", JSON.stringify(campusListmanage));
             campusList.forEach((item, index) => {
@@ -392,7 +403,9 @@ function Index() {
             payload.append("onlines", JSON.stringify(cleanonlines));
             const cleanServices = services.map(item => ({
                 title: item.title,
-                content: item.content
+                content: item.content,
+                        icons_alt: item?.icons_alt,
+                images_alt: item?.images_alt
             }));
             payload.append("servcies", JSON.stringify(cleanServices));
 
@@ -646,6 +659,46 @@ function Index() {
                                             />
                                         </div>
                                     )}
+                                </div>
+
+                                <div>
+                                    <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
+                                        University Image Alt{" "}
+                                        <span className="text-sm text-gray-500">
+                                            ({formData.cover_image_alt?.length}/50)
+                                        </span>
+                                    </label>
+                                    <input
+                                        type="text"
+                                        name="cover_image_alt"
+                                        value={formData.cover_image_alt}
+                                        onChange={(e) => {
+                                            if (e.target.value.length <= 50) handleChange(e);
+                                        }}
+                                        placeholder="Enter cover image alt"
+                                        className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
+                                        required
+                                    />
+                                </div>
+
+                                <div>
+                                    <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
+                                        University Icon Alt{" "}
+                                        <span className="text-sm text-gray-500">
+                                            ({formData.icon_alt?.length}/50)
+                                        </span>
+                                    </label>
+                                    <input
+                                        type="text"
+                                        name="icon_alt"
+                                        value={formData.icon_alt}
+                                        onChange={(e) => {
+                                            if (e.target.value.length <= 50) handleChange(e);
+                                        }}
+                                        placeholder="Enter cover Icon alt"
+                                        className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
+                                        required
+                                    />
                                 </div>
 
                                 <div className="mb-4">
@@ -1073,6 +1126,16 @@ function Index() {
                                                 alt="campus"
                                             />
                                         )}
+
+                                        <input
+                                            type="text"
+                                            value={campus.campus_images_alt}
+                                            onChange={(e) =>
+                                                handleCampusChange(index, "campus_images_alt", e.target.value)
+                                            }
+                                            placeholder="Enter Campus Alt Images"
+                                            className="w-full bg-white text-[#727272] border rounded-[10px] px-4 py-2 focus:outline-none mb-4"
+                                        />
 
                                         {/* Delete Button */}
 
