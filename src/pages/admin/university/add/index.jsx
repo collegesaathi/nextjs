@@ -22,7 +22,7 @@ function Index() {
         { title: "", description: "" }
     ]);
 
-    const [services, setServices] = useState([{ title: "", content: "", image: null, icon: null }]);
+    const [services, setServices] = useState([{ title: "", content: "", image: null, icon: null, icons_alt: "", images_alt: "" }]);
 
     const [selectedApprovals, setSelectedApprovals] = useState([]);
 
@@ -116,6 +116,7 @@ function Index() {
             patternName: "",
             percentage: "",
             description: "",
+            pattern_images_alt: ""
         }
     ]);
 
@@ -128,7 +129,7 @@ function Index() {
     ]);
 
     const [campusList, setCampusList] = useState([
-        { name: "", image: "" }
+        { name: "", image: "", campus_images_alt: "" }
     ]);
     const handleCampusChange = (index, field, value) => {
         const list = [...campusList];
@@ -137,7 +138,7 @@ function Index() {
     };
 
     const addCampus = () => {
-        setCampusList([...campusList, { name: "", image: "" }]);
+        setCampusList([...campusList, { name: "", image: "", campus_images_alt: "" }]);
     };
 
     const deleteCampus = (index) => {
@@ -178,7 +179,10 @@ function Index() {
         meta_title: "",
         meta_description: "",
         meta_keywords: "",
-        canonical_url: ""
+        canonical_url: "",
+        icon_alt: "",
+        cover_image_alt: "",
+        image_alt: ""
     });
 
 
@@ -277,10 +281,15 @@ function Index() {
             payload.append("meta_keywords", formData.meta_keywords);
             payload.append("canonical_url", formData.canonical_url);
             payload.append("certificatemage", formData.certificatemage);
+            payload.append("cover_image_alt", formData.cover_image_alt)
+            payload.append("icon_alt", formData.icon_alt)
+            payload.append("icon_alt", formData.icon_alt)
+            payload.append("image_alt", formData.image_alt)
             const cleanPatterns = patterns.map(item => ({
                 patternName: item.patternName,
                 percentage: item.percentage,
-                description: item.description
+                description: item.description,
+                pattern_images_alt: item?.pattern_images_alt
             }));
             payload.append("patterns", JSON.stringify(cleanPatterns));
             patterns.forEach((item, index) => {
@@ -292,6 +301,7 @@ function Index() {
             payload.append("financialdescription", formData.financialdescription);
             const campusListmanage = campusList.map(item => ({
                 name: item.name,
+                campus_images_alt: item?.campus_images_alt
             }));
             payload.append("campusList", JSON.stringify(campusListmanage));
             campusList.forEach((item, index) => {
@@ -312,7 +322,9 @@ function Index() {
             payload.append("onlines", JSON.stringify(cleanonlines));
             const cleanServices = services.map(item => ({
                 title: item.title,
-                content: item.content
+                content: item.content,
+                icons_alt: item?.icons_alt,
+                images_alt: item?.images_alt
             }));
             payload.append("servcies", JSON.stringify(cleanServices));
 
@@ -391,7 +403,7 @@ function Index() {
                 <div className="w-full  border-b border-white/10">
                     <div className="flex justify-between items-center  text-center p-4 "
                     >
-                          {/* Left: Back Arrow + Label */}
+                        {/* Left: Back Arrow + Label */}
                         <div className="flex items-center gap-3 w-[250px]">
                             <FaArrowLeft
                                 onClick={handleBack}
@@ -426,7 +438,7 @@ function Index() {
                     </div>
                     <div className="flex flex-col lg:flex-row items-center justify-between gap-4 px-4 md:px-6 lg:px-10 py-4">
 
-                      
+
 
                         {/* Center: Tabs */}
                         <div className="w-[400px] md:w-[1300px] overflow-x-auto scrollbar-hide bg-[#2C2C2C] rounded-lg">
@@ -482,7 +494,6 @@ function Index() {
                             <div>
                                 <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
                                     Slug{" "}
-
                                 </label>
                                 <input
                                     type="text"
@@ -538,7 +549,25 @@ function Index() {
                                     </div>
                                 )}
                             </div>
-
+                            <div>
+                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
+                                    University Image Alt{" "}
+                                    <span className="text-sm text-gray-500">
+                                        ({formData.cover_image_alt?.length}/50)
+                                    </span>
+                                </label>
+                                <input
+                                    type="text"
+                                    name="cover_image_alt"
+                                    value={formData.cover_image_alt}
+                                    onChange={(e) => {
+                                        if (e.target.value.length <= 50) handleChange(e);
+                                    }}
+                                    placeholder="Enter cover image alt"
+                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
+                                    required
+                                />
+                            </div>
                             <div>
                                 <label className="block text-[#FF1B1B] font-medium mb-1">
                                     Upload Icon
@@ -562,7 +591,25 @@ function Index() {
                                     </div>
                                 )}
                             </div>
-
+                            <div>
+                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
+                                    University Icon Alt{" "}
+                                    <span className="text-sm text-gray-500">
+                                        ({formData.icon_alt?.length}/50)
+                                    </span>
+                                </label>
+                                <input
+                                    type="text"
+                                    name="icon_alt"
+                                    value={formData.icon_alt}
+                                    onChange={(e) => {
+                                        if (e.target.value.length <= 50) handleChange(e);
+                                    }}
+                                    placeholder="Enter cover Icon alt"
+                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
+                                    required
+                                />
+                            </div>
                             <div className="mb-4">
                                 <div className="flex justify-between items-center mb-3">
                                     <h2 className="text-xl font-semibold text-[#CC2828]">Multiple Description</h2>
@@ -982,7 +1029,15 @@ function Index() {
                                     )}
 
                                     {/* Delete Button */}
-
+                                    <input
+                                        type="text"
+                                        value={campus.campus_images_alt}
+                                        onChange={(e) =>
+                                            handleCampusChange(index, "campus_images_alt", e.target.value)
+                                        }
+                                        placeholder="Enter Campus Alt Images"
+                                        className="w-full bg-white text-[#727272] border rounded-[10px] px-4 py-2 focus:outline-none mb-4"
+                                    />
                                 </div>
                             ))}
                         </>

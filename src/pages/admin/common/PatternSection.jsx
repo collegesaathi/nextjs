@@ -118,6 +118,18 @@ const PatternSection = ({ setPatterns, patterns, formData, handleQuillChange, ha
             />
           )}
 
+           <div>
+            <label className="block text-[#CC2828] font-medium mb-2">Pattern Images Alt</label>
+            <input
+              type="text"
+              disabled={item?._id}
+              value={item.pattern_images_alt}
+              onChange={(e) => handlePatternChange(index, "pattern_images_alt", e.target.value)}
+              placeholder="Enter Pattern images alt"
+              className="w-full bg-[#F4F6F8] text-[#727272] border rounded-[10px] px-4 py-2"
+            />
+          </div>
+
           {/* Pattern Name */}
           <div>
             <label className="block text-[#CC2828] font-medium mb-2">Pattern Name</label>
