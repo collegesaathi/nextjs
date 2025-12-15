@@ -17,7 +17,7 @@ import { Loader } from '@/common/Loader';
 const useResponsive = () => {
     const [isMobile, setIsMobile] = useState(false);
     const [isTablet, setIsTablet] = useState(false);
-  
+
 
     useEffect(() => {
         const checkScreenSize = () => {
@@ -36,7 +36,7 @@ const useResponsive = () => {
 
 export default function UniversityGrid() {
 
-  
+
     const { isMobile, isTablet } = useResponsive();
     // const filterStore = useFilterStore();
     const filterStore = useFilterStore();
@@ -45,8 +45,7 @@ export default function UniversityGrid() {
     // Row count state
     const [rowCount, setRowCount] = useState(3);
     const [universities, setUniversities] = useState([]);
-    console.log("universities" , universities)
-const [loadingUniversities, setLoadingUniversities] = useState(true);
+    const [loadingUniversities, setLoadingUniversities] = useState(true);
     const [loading, setLoading] = useState(true);
 
     // Handle "View More"
@@ -60,19 +59,19 @@ const [loadingUniversities, setLoadingUniversities] = useState(true);
         const fetchUniversities = async () => {
             try {
                 const main = new Listing();
-    const response = await main.Univeristy();
+                const response = await main.Univeristy();
 
-    const universities= response?.data?.data?.universities || [];
+                const universities = response?.data?.data?.universities || [];
 
-    setUniversities(universities);
+                setUniversities(universities);
 
             } catch (error) {
                 console.error("Error fetching universities:", error);
             } finally {
-                 setLoading(false);
+                setLoading(false);
             }
         };
-    
+
         fetchUniversities();
     }, []);
 
@@ -90,7 +89,7 @@ const [loadingUniversities, setLoadingUniversities] = useState(true);
 
     const allUniversityCardsData = universities;
 
-      // const allUniversityCardsData = [
+    // const allUniversityCardsData = [
     //     {
     //         universityName: "Manipal Online University",
     //         courses: ["Operations", "MBA"],
@@ -425,51 +424,51 @@ const [loadingUniversities, setLoadingUniversities] = useState(true);
                                 </div>
                             </div>
 
-                   {/* MOBILE SLIDE-IN FILTER DRAWER */}
+                            {/* MOBILE SLIDE-IN FILTER DRAWER */}
 
 
-                   {isMobile && filterStore.isOpen && (
-  <div
-    onClick={() => filterStore.toggleIsOpen()}
-    className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40"
-  />
-)}
-<div
-  className={clsx(
-    "lg:block", // always visible in desktop
-    isMobile &&
-      "fixed inset-x-0 bottom-0 z-50 bg-white rounded-t-2xl shadow-xl p-5 transition-transform duration-300",
-    isMobile && (filterStore.isOpen ? "translate-y-0" : "translate-y-full") // slide up & down
-  )}
->
-  {/* DRAWER HANDLE BAR (optional) */}
-  {isMobile && (
-    <div className="w-12 h-1 bg-gray-300 rounded-full mx-auto mb-3"></div>
-  )}
+                            {isMobile && filterStore.isOpen && (
+                                <div
+                                    onClick={() => filterStore.toggleIsOpen()}
+                                    className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40"
+                                />
+                            )}
+                            <div
+                                className={clsx(
+                                    "lg:block", // always visible in desktop
+                                    isMobile &&
+                                    "fixed inset-x-0 bottom-0 z-50 bg-white rounded-t-2xl shadow-xl p-5 transition-transform duration-300",
+                                    isMobile && (filterStore.isOpen ? "translate-y-0" : "translate-y-full") // slide up & down
+                                )}
+                            >
+                                {/* DRAWER HANDLE BAR (optional) */}
+                                {isMobile && (
+                                    <div className="w-12 h-1 bg-gray-300 rounded-full mx-auto mb-3"></div>
+                                )}
 
-  {/* FILTER CONTENT */}
-  <CourseFilters />
-  <BudgetCard />
-  <ApprovalCard />
-  <ClikcPickCard />
-</div>
+                                {/* FILTER CONTENT */}
+                                <CourseFilters />
+                                <BudgetCard />
+                                <ApprovalCard />
+                                <ClikcPickCard />
+                            </div>
 
 
                         </div>
                         <div className="w-full lg:w-2/1">
-                        {loading ? (
-                                  <div className='flex justify-center items-center content-center'>
-          <Loader />
-      </div>
-                        ) : (
+                            {loading ? (
+                                <div className='flex justify-center items-center content-center'>
+                                    <Loader />
+                                </div>
+                            ) : (
                                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 gap-y-10  ">
-  {
-    
-    universities?.map((card, index) => (
-      <UniversityCard card={card} index={index} key={index} />
-    ))
-  }
-                                {/* {filteredCards?.slice(0, filterStore.cardsToShow).map((card, index) => (
+                                    {
+
+                                        universities?.map((card, index) => (
+                                            <UniversityCard card={card} index={index} key={index} />
+                                        ))
+                                    }
+                                    {/* {filteredCards?.slice(0, filterStore.cardsToShow).map((card, index) => (
                                     <>
                                         <div key={`card-${index}`} className=''>
                                             <UniversityCard {...card} index={index} />
@@ -484,9 +483,9 @@ const [loadingUniversities, setLoadingUniversities] = useState(true);
                                             )}
                                     </>
                                 ))} */}
-                            </div>
-                        ) }
-                        
+                                </div>
+                            )}
+
 
                             {/* View More */}
                             {filterStore.cardsToShow < filteredCards.length && (

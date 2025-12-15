@@ -15,7 +15,7 @@ const partners = [
   { name: "Lodestar UM", logo: "/images/university/showcase/1.png" },
 ];
 
-export default function PlacementPartners({placements}) {
+export default function PlacementPartners({placements  ,PlacementPartners}) {
   const swiperRef = useRef(null);
 
   const [progress, setProgress] = useState(0);
@@ -78,7 +78,7 @@ export default function PlacementPartners({placements}) {
           style={{ scrollbarWidth: "none" }}
           className="py-4"
         >
-          {partners?.map((partner, index) => (
+          {PlacementPartners?.map((partner, index) => (
             <SwiperSlide key={index}>
               <div
                 className="w-full h-[170px] sm:h-[180px] lg:h-[202px] 
@@ -88,9 +88,9 @@ export default function PlacementPartners({placements}) {
                 cursor-pointer transition-all duration-300"
                 >
                   <div className="bg-white w-[100px] h-[100px] sm:w-[110px] sm:h-[110px] lg:w-full lg:h-[110px] rounded-[15px] flex items-center justify-center">
-                    <Image
-                      src={partner.logo}
-                      alt={partner.name}
+                    <img
+                      src={partner.image}
+                      alt={partner.title}
                       width={80}
                       height={80}
                       className="object-contain"
@@ -98,7 +98,7 @@ export default function PlacementPartners({placements}) {
                   </div>
 
                   <p className="mt-3 text-[15px] md:text-[16px] font-medium text-[#363535] font-poppins text-center ">
-                    {partner.name}
+                    {partner.title}
                   </p>
                 </div>
               </SwiperSlide>

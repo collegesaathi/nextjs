@@ -1,8 +1,7 @@
 import React from "react";
 import Heading from "@/common/Heading";
 
-function Facts({facts}) {
-  console.log("facts" ,facts)
+function Facts({ facts }) {
   return (
     <>
       <div className="mt-[50px]  bg-[#fcf0ee]">
@@ -21,7 +20,7 @@ function Facts({facts}) {
     w-[250px]
   "
               >
-{facts?.title}
+                {facts?.title}
 
               </h2>
               <div className="rounded-[20px] bg-white shadow-[0px_1px_10px_rgba(0,0,0,0.09)] p-4 md:p-8">
@@ -56,10 +55,10 @@ function Facts({facts}) {
                             {item.patternName}
                           </h3>
 
-                          {/* Add Space Between Title & Description */}
-                          <p className="font-poppins text-[14px] md:text-[16px] leading-[20px] md:leading-[22px] text-[#282529] mt-2">
-                            {item.description}
-                          </p>
+                          <div
+                            className="font-poppins text-[14px] md:text-[16px] leading-[20px] md:leading-[22px] text-[#282529] mt-2"
+                            dangerouslySetInnerHTML={{ __html: item?.description || "" }}
+                          />
                         </div>
 
                       </div>

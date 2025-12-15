@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import Heading from '../../common/Heading';
 
 export default function FAQSection({ faq }) {
-    console.log("faq full:", faq);
+    console.log("faq" ,faq)
 
     // Correct: faq.faqs contains the array, not faq
     const [faqs, setFaqs] = useState(() =>

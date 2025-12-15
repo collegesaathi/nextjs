@@ -113,7 +113,7 @@ function ServicesSection({ formData, handleQuillChange, handleChange, setService
                              {service.image && (
         <div className="mt-2">
             <img
-                src={URL.createObjectURL(service.image)}
+                src={service.image ? service.image  : URL.createObjectURL(service.image)}
                 alt="Preview"
                 className="w-24 h-24 object-cover rounded-md border"
             />
@@ -135,7 +135,7 @@ function ServicesSection({ formData, handleQuillChange, handleChange, setService
                                                 {service.icon && (
         <div className="mt-2">
             <img
-                src={URL.createObjectURL(service.icon)}
+                src={service.icon ? service.icon  :URL.createObjectURL(service.icon)}
                 alt="Preview"
                 className="w-24 h-24 object-cover rounded-md border"
             />

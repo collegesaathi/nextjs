@@ -20,8 +20,8 @@ export default function SampleCertificate({certificates}) {
             <div className="w-full lg:w-1/2 justify-center flex">
               <div className="relative w-[260px] h-[250px] sm:w-[300px] sm:h-[290px] md:w-[340px] md:h-[330px] lg:w-[360px] lg:h-[355px]">
                 {/* Frame */}
-                <Image
-                  src="/images/hd.png"
+                <img
+                   src={certificates?.image}
                   alt="frame"
                   fill
                   className="object-cover"
@@ -29,8 +29,8 @@ export default function SampleCertificate({certificates}) {
 
                 {/* Inner Certificate */}
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <Image
-                    src={certificates?.image?.src}
+                  <img
+                    src={certificates?.image}
                     alt="certificate"
                     width={220}
                     height={150}

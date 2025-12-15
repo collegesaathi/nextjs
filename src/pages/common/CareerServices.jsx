@@ -7,7 +7,6 @@ import Image from "next/image";
 import BackNext from "../components/BackNext";
 
 export default function CareerServices({services}) {
-console.log("services" ,services)
 
 
     const swiperRef = useRef(null);
