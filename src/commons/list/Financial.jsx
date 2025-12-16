@@ -33,7 +33,7 @@ function Financial({financialAid}) {
         {["Total Fees", "Loan Amount", "Tenure", "Interest", "Monthly EMI"].map((label, i) => (
           <th
             key={i}
-            className="px-4 py-4 border-b border-[#f47c80] text-[14px] md:text-[17px] font-poppins font-semibold"
+            className="px-4 py-4 border-b border-[#f47c80] text-[14px] lg:text-[17px] font-poppins font-semibold"
           >
             <span className="bg-[#ec1e24] text-white px-4 py-1 rounded-lg">
               {label}

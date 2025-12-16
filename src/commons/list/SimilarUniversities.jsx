@@ -107,73 +107,9 @@ export default function SimilarUniversities() {
         <>
             {/* Desktop Version */}
             <div className="py-6 px-4 md:py-6 " id="similar-universities-section">
-                <div className=" container sm:container md:container lg:container xl:max-w-[1230px]  px-4">
+                <div className=" container sm:container md:container lg:container xl:max-w-[1230px] ">
 
-                    {/* <div className="flex justify-between items-center mb-6">
-                        <Heading title={" Similar Universities"} />
-                        <div className="flex flex-wrap items-center justify-end md:space-x-4">
-                            <div className={`w-[${progressBarTotalWidth}] h-1.5 bg-gray-300 rounded-full overflow-hidden`}>
-                                <div
-                                    className="h-full bg-[#EC1E24] transition-all duration-300 ease-in-out"
-                                    style={progressWidthStyle}
-                                ></div>
-                            </div>
-                            <div className="flex space-x-2 mt-4 md:mt-0">
-                                <button
-                                    type="button"
-                                    onClick={navigatePrev}
-                                    disabled={isBeginning}
-                                    className={`
-                                    w-6 h-6
-                        md:w-8 md:h-8 rounded-full flex items-center justify-center 
-                        transition-all duration-200 flex-shrink-0
-                        ${isBeginning
-                                            ? 'bg-gray-100 border border-gray-300 cursor-not-allowed text-gray-400 opacity-60'
-                                            : 'bg-white border border-[#EC1E24] hover:bg-red-50 cursor-pointer text-[#EC1E24]'
-                                        }
-                    `}
-                                >
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        className="h-4 w-4"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                        stroke="currentColor"
-                                        strokeWidth="2"
-                                    >
-                                        <path strokeLinecap="round" strokeLinejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-                                    </svg>
-                                </button>
-
-                                <button
-                                    type="button"
-                                    onClick={navigateNext}
-                                    disabled={isEnd}
-                                    className={`
-                             w-6 h-6
-                        md:w-8 md:h-8  rounded-full flex items-center justify-center 
-                        transition-all duration-200 flex-shrink-0
-                        ${isEnd
-                                            ? 'bg-gray-100 border border-gray-300 cursor-not-allowed text-gray-400 opacity-60'
-                                            : 'bg-white border border-gray-300 hover:border-[#EC1E24] hover:text-[#EC1E24] cursor-pointer text-gray-500'
-                                        }
-                    `}
-                                >
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        className="h-4 w-4"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                        stroke="currentColor"
-                                        strokeWidth="2"
-                                    >
-                                        <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                                    </svg>
-                                </button>
-                            </div>
-                        </div>
-                    </div> */}
-
+                  
 
 
                     <BackNext
@@ -206,7 +142,7 @@ export default function SimilarUniversities() {
                             <SwiperSlide key={index} className="px-2 my-3">
                             <div
                                 className="
-                                    w-full h-[130px]  rounded-[15px] bg-[#f7f6f6] 
+                                    w-full h-[114px]  rounded-[15px] bg-[#f7f6f6] 
                                     p-4 flex flex-col justify-between cursor-pointer 
                                     transition-transform duration-300 hover:scale-105
                                 "
@@ -217,7 +153,7 @@ export default function SimilarUniversities() {
                                 </h3>
                         
                                 <div className="flex items-center space-x-1.5">
-                                    <div className="flex items-center space-x-1.5 font-poppins font-light text-[14px] text-[#282529]">
+                                    <div className="flex items-center space-x-1.5 font-poppins font-light text-[16px] text-[#282529]">
                                         <img src="/images/money.svg" alt="similar" />
                                         <span>INR {university.fee}</span>
                                     </div>
@@ -226,14 +162,14 @@ export default function SimilarUniversities() {
                                         <div className="w-[3px] h-[3px] rounded-full bg-[#282529]"></div>
                         
                                         <div className="
-                                            w-[50px] border-[0.75px] bg-white h-[15px] border-[#f7f6f6]
-                                            font-poppins font-light text-[6px] text-[#282529]
+                                           border-[0.75px] bg-white px-2  border-[#f7f6f6]
+                                            font-poppins font-light text-[12px] text-[#282529]
                                             rounded-full flex items-center justify-center mx-1
                                         ">
                                             NIRF Ranking
                                         </div>
                         
-                                        <p className="font-poppins font-semibold text-[14px] text-[#282529]">
+                                        <p className="font-poppins font-semibold text-[16px] text-[#282529]">
                                             {university.ranking}
                                         </p>
                                     </div>

@@ -19,11 +19,12 @@ export default function StepsSection({ admissionProcess }) {
             <section className="px-6 py-6" id="admission-process-section">
                 <div className="max-w-[1230px] ">
                     {/* Left Text */}
-                    <div className="w-full flex flex-col lg:flex-row gap-8 md:gap-[10px]  mt-[20px] justify-left items-left">
+                    {/* <div className="w-full flex flex-col lg:flex-row gap-8 md:gap-[10px]  mt-[20px] justify-left items-left"> */}
+                             <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-[10px]  mt-[20px] justify-center items-left">
 
 
-                        <div className="w-full md:max-w-[500px] pt-[120px]  mx-auto">
-                            <div className="flex flex-col justify-left items-start text-left">
+                        <div className="w-full md:max-w-[800px] justify-center items-center mx-auto my-auto">
+                            <div className="flex flex-col justify-left  text-left">
                                 <Heading title={admissionProcess?.title} />
                             </div>
                             <div
