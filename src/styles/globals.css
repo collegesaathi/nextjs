@@ -94,3 +94,11 @@ height:12px;
 line-height: 20px;
 
 }
+
+.examination p{
+  display: flex;
+    align-items: start;
+        gap:4;
+
+
+}
