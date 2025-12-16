@@ -66,7 +66,7 @@ function AddCampus({ setCampusList, campusList, }) {
                   {campus.image && (
                                 <div className="mt-2">
                                     <img
-                                        src={campus.image ? campus.image : URL.createObjectURL(campus.image)}
+                                        src={typeof campus.image === "string"? campus.image : URL.createObjectURL(campus.image)}
                                         alt="Preview"
                                         className="w-24 h-24 object-cover rounded-md border"
                                     />

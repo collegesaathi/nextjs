@@ -31,7 +31,7 @@ export default function SampleCertificate({certificates}) {
                 {/* Inner Certificate */}
                 <div className="absolute inset-0 flex items-center justify-center">
                   <img
-                    src={certificates.image}
+                    src={certificates?.image}
                     alt="certificate"
                     width={220}
                     height={150}

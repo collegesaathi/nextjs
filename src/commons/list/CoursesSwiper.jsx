@@ -98,7 +98,7 @@ export default function CoursesSwiper() {
                 </SwiperSlide>
               ))}
             </Swiper>
-           <div className="px-2 md:px-6 pt-5 lg:pt-10">
+           <div className="px-2 md:px-6 pt-5 lg:pt-6">
                       <EnquiryBox />
            </div>
   

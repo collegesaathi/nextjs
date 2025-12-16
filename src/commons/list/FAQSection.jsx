@@ -32,8 +32,8 @@ export default function FAQSection({ faq }) {
     }, []);
 
     return (
-        <div className="py-4 md:py-8 max-w-[1230px]" id="faq-section">
-            <div className="mx-auto container px-4">
+        <div className="px-6 py-6 max-w-[1230px]" id="faq-section">
+            <div className="mx-auto container ">
                 <Heading title={"Frequently Asked "} midtitle={"Questions"} />
 
                 {faqs.length === 0 && (

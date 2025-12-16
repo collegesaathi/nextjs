@@ -42,8 +42,8 @@ export default function PlacementPartners({placements  ,PlacementPartners}) {
 
   return (
 
-    <div className="mt-[20px] md:mt-[50px] bg-white">
-      <section className="w-full px-6 py-6 mx-auto" id="placement-partners-section">
+    <div className="px-6 py-6  bg-white">
+      <section className="w-full mx-auto" id="placement-partners-section">
         <div className="max-w-[1230px]">
           <BackNext
             title={placements?.title}
@@ -55,7 +55,7 @@ export default function PlacementPartners({placements  ,PlacementPartners}) {
           />
           {/* Description */}
            <div
-                            className="ont-poppins text-[15px] sm:text-[16px] text-[#282529] leading-6 sm:leading-7 mb-4"
+                            className="ont-poppins text-[15px] sm:text-[16px] text-[#282529] leading-6 sm:leading-7 mb-4 "
                             dangerouslySetInnerHTML={{ __html: placements?.description || "" }}
                         />
 
@@ -79,13 +79,13 @@ export default function PlacementPartners({placements  ,PlacementPartners}) {
           className="py-4"
         >
           {PlacementPartners?.map((partner, index) => (
-            <SwiperSlide key={index}>
+            <SwiperSlide key={index} className="py-4">
               <div
                 className="w-full h-[170px] sm:h-[180px] lg:h-[202px] 
                 shadow-md bg-[#0000000D] p-4 rounded-[20px]
                 flex flex-col
                 items-center  justify-between
-                cursor-pointer transition-all duration-300"
+                cursor-pointer transition-all duration-300 "
                 >
                   <div className="bg-white w-[100px] h-[100px] sm:w-[110px] sm:h-[110px] lg:w-full lg:h-[110px] rounded-[15px] flex items-center justify-center">
                     <img

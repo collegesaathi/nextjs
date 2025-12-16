@@ -58,8 +58,8 @@ export default function CareerServices({ services }) {
 
 
     return (
-        <div className="mt-[20px] md:mt-[50px] bg-white">
-            <section className="w-full px-6 py-6 mx-auto" id="career-services-section">
+        <div className="px-6 py-6 bg-white">
+            <section className="w-full  mx-auto" id="career-services-section">
                 <div className="max-w-[1230px]">
                     {/* Desktop */}
                     <div className="" id="career-services-section">
@@ -109,11 +109,11 @@ export default function CareerServices({ services }) {
                                                 alt={service.title}
                                                 height={300}
                                                 width={600}
-                                                className="w-full h-[220px] object-cover transition-transform duration-500"
+                                                className="w-full h-[235px] object-cover transition-transform duration-500"
                                             />
                                         </div>
 
-                                        <div className="p-5 border border-t-0 border-[#D4D2D2] rounded-b-[30px] h-auto relative z-10 group-hover:border-[#EC1E24]/30 transition-colors duration-300">
+                                        <div className="p-5  border border-t-0 border-[#D4D2D2] rounded-b-[30px] h-auto relative z-10 group-hover:border-[#EC1E24]/30 transition-colors duration-300">
                                             <div className="flex items-center space-x-4">
                                                 <img
                                                     src={service.icon}
@@ -127,7 +127,7 @@ export default function CareerServices({ services }) {
                                                 </h3>
                                             </div>
 
-                                             <p className="font-poppins font-[400] text-[14px] mt-4 text-[#2D2D2D] leading-[22px]">
+                                             <p className="font-poppins font-[400] text-[14px] mt-4 text-[#2D2D2D]  lg:line-clamp-3   xl:line-clamp-2 leading-[22px]">
                                                 {service.content}
                                             </p> 
                                         </div>
