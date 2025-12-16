@@ -19,7 +19,10 @@ import AddCertificate from "@/commons/add/AddCertificate";
 import ServicesAdd from "@/commons/add/ServicesAdd";
 import AddOnline from "@/commons/add/AddOnline";
 import FaqAdd from "@/commons/add/FaqAdd";
+import { useRouter } from "next/router";
 function Index() {
+    const router = useRouter();
+
     const [universities, setUniversities] = useState([])
     const [categroy, setCategroy] = useState([])
     const fetchData = async () => {
@@ -40,6 +43,7 @@ function Index() {
     useEffect(() => {
         fetchData();
     }, []);
+
     const [activeTabs, setActiveTabs] = useState("indian");
 
     const [advantages, setAdvantages] = useState([
@@ -238,6 +242,7 @@ function Index() {
             const payload = new FormData();
             payload.append("slug", formData.slug);
             payload.append("name", formData.name);
+            payload.append("university_id", formData.university_id)
             payload.append("position", formData.position);
             payload.append("icon", formData.icon);
             payload.append("cover_image", formData.cover_image);
@@ -257,9 +262,9 @@ function Index() {
             payload.append("rankings_name", formData.rankings_name);
             payload.append("creteria", formData.creteria)
             payload.append("category", formData.category)
-            payload.append("indian", formData.indian)
-            payload.append("nri", formData.nri)
-            payload.append("semesters", formData.semesters)
+            payload.append("indian", JSON.stringify(formData.indian))
+            payload.append("nri", JSON.stringify(formData.nri))
+            payload.append("semesters", JSON.stringify(semesters))
             payload.append("semesters_title", formData.semesters_title)
             payload.append("certificatename", formData.certificatename);
             payload.append("certificatedescription", formData.certificatedescription);
@@ -283,8 +288,6 @@ function Index() {
                     payload.append(`patternsimages[${index}]`, item.image);
                 }
             });
-            payload.append("financialname", formData.financialname);
-            payload.append("financialdescription", formData.financialdescription);
             payload.append("fees", JSON.stringify(fees));
             payload.append("careerdesc", formData.careerdesc)
             payload.append("careername", formData.careername)
@@ -293,26 +296,12 @@ function Index() {
             payload.append("partnersdesc", formData.partnersdesc);
             payload.append("partners", JSON.stringify(selectedPartners));
             payload.append("faqs", JSON.stringify(faqs));
-
             payload.append("meta_title", formData.meta_title);
             payload.append("meta_description", formData.meta_description);
             payload.append("meta_keywords", formData.meta_keywords);
             payload.append("canonical_url", formData.canonical_url);
-
-
             payload.append("financialname", formData.financialname);
             payload.append("financialdescription", formData.financialdescription);
-            const campusListmanage = campusList.map(item => ({
-                name: item.name,
-                campus_images_alt: item?.campus_images_alt
-            }));
-            payload.append("campusList", JSON.stringify(campusListmanage));
-            campusList.forEach((item, index) => {
-                if (item.image) {
-                    payload.append(`campusimages[${index}]`, item.image);
-                }
-            });
-
             payload.append("servicetitle", formData.servicetitle);
             payload.append("servicedesc", formData.servicedesc);
             payload.append("onlinedesc", formData.onlinedesc);
@@ -379,6 +368,8 @@ function Index() {
         { id: "services", label: "Services" },
         { id: "online", label: "Online" },
         { id: "faq", label: "FAQ" },
+        { id: "seo", label: "SEO" },
+
     ];
 
     const currentIndex = tabsData.findIndex((tab) => tab.id === activeTab);
