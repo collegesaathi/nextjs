@@ -61,6 +61,7 @@ const FactsSection = ({ facts, setFacts }) => {
             <div className="flex justify-between items-center mb-5">
                 <h2 className="text-xl font-semibold text-[#CC2828]">Multiple Facts</h2>
                 <button
+                type="button"
                     onClick={addFacts}
                     className="border border-[#CC2828] bg-[#CC2828] hover:bg-red-700 text-white px-6 py-2 rounded-[10px] text-base transition"
                 >
@@ -90,6 +91,7 @@ const FactsSection = ({ facts, setFacts }) => {
 
                             <div className="flex items-center gap-2">
                                 <button
+                                type="button"
                                     onClick={() => handlefactsSubmit(index)}
                                     className="bg-red-500 text-white rounded-full p-1 hover:bg-red-700"
                                     title="Save Fact"
@@ -97,6 +99,7 @@ const FactsSection = ({ facts, setFacts }) => {
                                     <MdAdd />
                                 </button>
                                 <button
+                                type="button"
                                     onClick={() => deleteFacts(index)}
                                     className="bg-red-500 text-white rounded-full p-1 hover:bg-red-700"
                                     title="Delete Fact"
