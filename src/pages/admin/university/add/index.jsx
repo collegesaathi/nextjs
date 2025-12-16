@@ -340,7 +340,7 @@ function Index() {
 
         } catch (error) {
             console.error(error);
-            toast.error(error.response.data.message);
+            toast.error(error?.response?.data?.message);
         }
 
         setLoading(false);
@@ -451,12 +451,10 @@ function Index() {
 
 
                 <form
-                    onSubmit={handleAdd}
                     className="  mt-10 px-3 sm:px-6 pb-3 sm:pb-6 bg-white space-y-2 sm:space-y-4"
                 >
                     {activeTab === "card" && (
                         <>
-
                             <div>
                                 <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
                                     Name{" "}
@@ -493,9 +491,6 @@ function Index() {
                                 />
                             </div>
                             {/* Description Field changed to textarea with 300 character limit */}
-
-
-
                             <div>
                                 <label className="block text-[#FF1B1B] font-medium mb-1">
                                     Position
