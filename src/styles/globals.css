@@ -99,6 +99,8 @@ line-height: 20px;
   display: flex;
     align-items: start;
         gap:4;
+        padding: 0 !important;
+        line-height: 20px;
 
 
 }
