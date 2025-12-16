@@ -37,16 +37,16 @@ export default function StepsSection({ admissionProcess }) {
                         {/* Right Steps Grid */}
 
                         <div className="flex justify-center items-center">
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 ">
                                 {admissionProcess?.process.map((step, index) => (
                                     <div
                                         key={step.id}
                                         onClick={() => setActiveStep(step.id)}
                                         className="
                 w-[230px] h-auto
-                relative p-6 rounded-2xl cursor-pointer
+                relative py-6 px-4 rounded-2xl cursor-pointer
                 transition-all duration-300
-                hover:bg-[#ED2024] hover:text-white
+                hover:bg-[#ED2024] hover:text-white group
                 bg-white text-black
               "
                                     >
@@ -54,17 +54,17 @@ export default function StepsSection({ admissionProcess }) {
                                             className="
                   w-12 h-12 flex items-center justify-center rounded-full 
                   absolute -top-6 -left-6 text-[20px] font-bold shadow-md
-                  hover:bg-white hover:text-[#ED2024] bg-[#ED2024] text-white
+                  group-hover:bg-white group-hover:text-[#ED2024] bg-[#ED2024] text-white
                 "
                                         >
                                             {index+1}
                                         </div>
 
-                                        <h3 className="text-lg font-semibold mb-2">
+                                        <h3 className="text-[17px] font-[600] mb-2">
                                             {step.title}
                                         </h3>
 
-                                        <p className="text-sm leading-relaxed">
+                                        <p className="text-sm leading-[18px] line-clamp-5">
                                             {step.content}
                                         </p>
                                     </div>

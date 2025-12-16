@@ -99,6 +99,24 @@ line-height: 20px;
   display: flex;
     align-items: start;
         gap:4;
+        padding: 0 !important;
+        line-height: 20px;
 
 
+}
+
+
+
+
+@keyframes floatUpDown {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.animate-float {
+  animation: floatUpDown 4s ease-in-out infinite;
 }

@@ -4,7 +4,7 @@ export default function ExaminationPattern({ examPatterns }) {
   console.log("examPatterns", examPatterns)
   return (
     <>
-      <div className="mt-[50px] px-6 py-6   bg-[#f7f6f6]">
+      <div className=" px-6 py-6  bg-[#f7f6f6]">
         <section className="w-full py-6 mx-auto" id="examination-section">
           <div className=" max-w-[1100px]">
             <div className="space-y-6  pt-5  pb-5">
@@ -22,7 +22,7 @@ export default function ExaminationPattern({ examPatterns }) {
                   {/* IMAGE + PERCENTAGE BOX */}
                   <div className={`relative w-full  min-h-[200px] p-4 flex items-center  rounded-xl shadow-lg hover:shadow-2xl ${index % 2 !== 0 ? "bg-[#FCF0EE] justify-end" : "bg-[#F1EAFD] justify-start"}`}>
                     <p className="font-poppins font-bold text-[60px] sm:text-[80px] md:text-[96px] leading-[100%] text-[#282529] text-right">
-                      {item?.percentage}%
+                      {item?.percentage}
                     </p>
 
                     <img

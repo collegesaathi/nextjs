@@ -101,8 +101,8 @@ export default function UniversityCampusCarousel({universityCampuses}) {
   };
   return (
     <>
-      <div className="mt-[20px] md:mt-[50px] bg-white">
-        <section className="w-full px-6 py-6 mx-auto" id="financial-aid-section">
+      <div className="px-6 py-6  bg-white">
+        <section className="w-full mx-auto" id="financial-aid-section">
           <div className="max-w-[1230px]">
             <BackNext
               title="NMIMS CDOE Campuses"
@@ -134,9 +134,9 @@ export default function UniversityCampusCarousel({universityCampuses}) {
                 <SwiperSlide key={campus.id}>
                   <div
                     className="campus-card bg-white border border-[#bcbcbc] p-2 lg:p-4 rounded-[12px] flex items-center gap-3 my-3 cursor-pointer relative overflow-hidden
-                          transform transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1 hover:shadow-lg hover:border-[#EC1E24]/30"
+                          transform transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1 hover:shadow-lg hover:border-[#EC1E24]/30 mx-4"
                   >
-                    <div className="w-[46.33px] h-[46.33px] lg:w-[71px] lg:h-[71px] rounded-full overflow-hidden flex-shrink-0 transition-transform duration-300 hover:scale-110">
+                    <div className="w-[46.33px] h-[46.33px] lg:w-[71px] lg:h-[71px]  rounded-full overflow-hidden flex-shrink-0 transition-transform duration-300 hover:scale-110">
                       <img
                         src={campus.image}
                         alt={campus.name}

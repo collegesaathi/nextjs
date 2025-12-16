@@ -4,7 +4,7 @@ function Advantages({advantages}) {
 
     return (
 
-        <section className=" mt-[50px] px-6 " id="advantages-section">
+        <section className="px-6 py-6 " id="advantages-section">
             <div className="max-w-[1230px]">
             <div className="mb-8">
 

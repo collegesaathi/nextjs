@@ -1,3 +1,5 @@
+
+
 import Reviews from "@/commons/list/Reviews";
 import Listing from "../api/Listing";
 import Layout from "../components/Layout";
@@ -21,6 +23,10 @@ import Hero from "@/commons/list/Hero";
 import CourseFees from "@/commons/list/CourseFees";
 import Ranking from "@/commons/list/Rankings";
 function Index({ data }) {
+
+  
+
+
     return (<>
         <Layout>
             <div className="py-4 md:py-8 ">

@@ -4,8 +4,8 @@ import Heading from "@/common/Heading";
 function Financial({financialAid}) {
   return (
     <>
-      <div className="mt-[20px] md:mt-[50px] bg-white">
-        <section className="w-full px-6 py-6 mx-auto" id="financial-aid-section">
+      <div className="w-full px-6 py-6 ">
+        <section className="" id="financial-aid-section">
           <div className="max-w-[1230px]">
             <div>
               <Heading title={financialAid?.title} />
@@ -33,7 +33,7 @@ function Financial({financialAid}) {
         {["Total Fees", "Loan Amount", "Tenure", "Interest", "Monthly EMI"].map((label, i) => (
           <th
             key={i}
-            className="px-4 py-4 border-b border-[#f47c80] text-[14px] lg:text-[17px] font-poppins font-semibold"
+            className=" py-4 border-b border-[#f47c80] text-[14px] lg:text-[16px] font-poppins font-semibold"
           >
             <span className="bg-[#ec1e24] text-white px-4 py-1 rounded-lg">
               {label}

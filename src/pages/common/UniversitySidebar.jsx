@@ -95,7 +95,7 @@ export default function UniversitySidebar() {
                   setActiveItem(index);
                   scrollToSection(index);
                 }}
-                className={`w-[242px] h-[32px] rounded-[29px] flex items-center gap-2 px-2 border transition-all duration-300 hover:translate-x-1 hover:shadow-md
+                className={`w-[242px] h-[32px] rounded-[29px] flex items-center gap-2  border transition-all duration-300 hover:translate-x-1 hover:shadow-md
                   ${activeItem === index ? "bg-[#ec1e24] text-white" : "border-gray-300"}
                 `}
               >
