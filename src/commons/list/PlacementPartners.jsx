@@ -83,8 +83,8 @@ export default function PlacementPartners({placements  ,PlacementPartners}) {
               <div
                 className="w-full h-[170px] sm:h-[180px] lg:h-[202px] 
                 shadow-md bg-[#0000000D] p-4 rounded-[20px]
-                flex flex-row sm:flex-row lg:flex-col 
-                items-center lg:items-start justify-between
+                flex flex-col
+                items-center  justify-between
                 cursor-pointer transition-all duration-300"
                 >
                   <div className="bg-white w-[100px] h-[100px] sm:w-[110px] sm:h-[110px] lg:w-full lg:h-[110px] rounded-[15px] flex items-center justify-center">

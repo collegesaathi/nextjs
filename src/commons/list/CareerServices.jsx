@@ -113,7 +113,7 @@ export default function CareerServices({ services }) {
                                             />
                                         </div>
 
-                                        <div className="p-5 border border-t-0 border-[#D4D2D2] rounded-b-[30px] h-[200px] relative z-10 group-hover:border-[#EC1E24]/30 transition-colors duration-300">
+                                        <div className="p-5 border border-t-0 border-[#D4D2D2] rounded-b-[30px] h-auto relative z-10 group-hover:border-[#EC1E24]/30 transition-colors duration-300">
                                             <div className="flex items-center space-x-4">
                                                 <img
                                                     src={service.icon}
@@ -127,13 +127,13 @@ export default function CareerServices({ services }) {
                                                 </h3>
                                             </div>
 
-                                            <p className="font-poppins text-[14px] mt-4 text-[#2D2D2D] leading-[22px]">
+                                             <p className="font-poppins font-[400] text-[14px] mt-4 text-[#2D2D2D] leading-[22px]">
                                                 {service.content}
-                                            </p>
+                                            </p> 
                                         </div>
 
                                         {/* Hover Overlay */}
-                                        <div className="absolute inset-0 bg-gradient-to-r from-[#EC1E24]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-[30px]" />
+                                        {/* <div className="absolute inset-0 bg-gradient-to-r from-[#EC1E24]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-[30px]" /> */}
                                     </div>
 
                                 </SwiperSlide>

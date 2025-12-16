@@ -16,7 +16,7 @@ function Ranking({ rankings }) {
                     <Heading title={rankings?.title} />
 
                     <div
-                        className="ont-poppins text-[15px] sm:text-[16px] text-[#282529] leading-6 sm:leading-7 mb-4"
+                        className="ont-poppins text-[15px] sm:text-[16px] text-[#282529] leading-6 sm:leading-[37px] mb-4 ranking  "
                         dangerouslySetInnerHTML={{ __html: rankings?.description || "" }}
                     />
                 </div>

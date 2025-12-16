@@ -507,9 +507,9 @@ function Index() {
                         </div>
 
                         {/* Center: Tabs */}
-                        <div className="flex flex-col lg:flex-row items-center justify-between gap-4 px-4 md:px-6 lg:px-10 py-4">
+                        <div className="flex flex-col lg:flex-row items-center justify-between gap-4 px-4 md:px-6 lg:px-6 py-4">
                             {/* Center: Tabs */}
-                            <div className="w-[400px] md:w-[1300px] overflow-x-auto scrollbar-hide bg-[#2C2C2C] rounded-lg">
+                            <div className="w-[400px] md:w-[1500px] overflow-x-auto scrollbar-hide bg-[#2C2C2C] rounded-lg">
                                 <div className="flex items-center gap-2 bg-[#2C2C2C] px-2 py-2 rounded-xl">
                                     {tabsData.map((tab) => (
                                         <button

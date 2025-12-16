@@ -86,9 +86,9 @@ function Approvals({approvals , approvalsdata}) {
                 >
                     {approvalsdata && approvalsdata?.map((item) => (
                         <SwiperSlide key={item.id}>
-                            <div className="px-2 ">
+                            <div className="px-2 py-2">
                                 <div
-                                    className=" w-full h-[190px] lg:h-[202px] shadow-md !bg-[#0000001C] p-4 
+                                    className=" w-full h-[200px]  shadow-md !bg-[#0000001C] p-4 
             flex flex-row lg:flex-col items-center  justify-between 
             cursor-pointer group relative overflow-visible rounded-[20px]"
 

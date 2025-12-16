@@ -5,7 +5,7 @@ function ServicesAdd({ formData, handleQuillChange, handleChange, setServices, s
 
 
     const addService = () => {
-        setServices([...services, { title: "", content: "", image: null, icon: null }]);
+        setServices([...services, { title: "", content: "", image: "", icon: "" }]);
     };
 
     const handleServiceChange = (index, field, value) => {
@@ -127,16 +127,23 @@ function ServicesAdd({ formData, handleQuillChange, handleChange, setServices, s
                                 onChange={(e) => handleServiceChange(index, "image", e.target.files[0])}
                                 className="w-full bg-[#F4F6F8] text-[#727272] border rounded-[10px] px-4 py-2 focus:outline-none"
                             />
-                            {service.image && (
-                                <div className="mt-2">
-                                    <img
-                                        src={service.image ? service.image : URL.createObjectURL(service.image)}
-                                        alt="Preview"
-                                        className="w-24 h-24 object-cover rounded-md border"
-                                    />
-                                    <p className="text-sm text-gray-500 mt-1">{service.image.name}</p>
-                                </div>
-                            )}
+                         {service.image && (
+    <div className="mt-2">
+        <img
+            src={
+                typeof service.image === "string"
+                    ? service.image
+                    : URL.createObjectURL(service.image)
+            }
+            alt="Preview"
+            className="w-24 h-24 object-cover rounded-md border"
+        />
+        {/* Only show name if it is a File object, URLs don't have a .name property */}
+        {service.image instanceof File && (
+            <p className="text-sm text-gray-500 mt-1">{service.image.name}</p>
+        )}
+    </div>
+)}
 
                         </div>
 
@@ -149,16 +156,22 @@ function ServicesAdd({ formData, handleQuillChange, handleChange, setServices, s
                                 onChange={(e) => handleServiceChange(index, "icon", e.target.files[0])}
                                 className="w-full bg-[#F4F6F8] text-[#727272] border rounded-[10px] px-4 py-2 focus:outline-none"
                             />
-                            {service.icon && (
-                                <div className="mt-2">
-                                    <img
-                                        src={service.icon ? service.icon : URL.createObjectURL(service.icon)}
-                                        alt="Preview"
-                                        className="w-24 h-24 object-cover rounded-md border"
-                                    />
-                                    <p className="text-sm text-gray-500 mt-1">{service.icon.name}</p>
-                                </div>
-                            )}
+                          {service.icon && (
+    <div className="mt-2">
+        <img
+            src={
+                typeof service.icon === "string"
+                    ? service.icon
+                    : URL.createObjectURL(service.icon)
+            }
+            alt="Preview"
+            className="w-24 h-24 object-cover rounded-md border"
+        />
+        {service.icon instanceof File && (
+            <p className="text-sm text-gray-500 mt-1">{service.icon.name}</p>
+        )}
+    </div>
+)}
                         </div>
 
                         <div>

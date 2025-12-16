@@ -10,7 +10,7 @@ export default function Hero({data}) {
         {/* LEFT SIDE */}
         <div className="w-full lg:w-[480px] py-6 px-3 sm:px-5 lg:px-0 ">
           {/* TITLE */}
-          <h1 className="font-poppins font-bold text-[28px] sm:text-[36px] md:text-[48px] leading-tight text-[#282529]">
+          <h1 className="font-poppins font-[700] text-[28px] sm:text-[36px] md:text-[48px] leading-[50px] text-[#282529]">
           {data?.name || ""}
           </h1>
 
@@ -19,9 +19,9 @@ export default function Hero({data}) {
             {data?.description?.map((item, index) => (
               <div
                 key={index}
-                className="w-full sm:w-[48%] lg:w-[208px] min-h-[44px] rounded-[12px] border border-[#f8dbdd] flex items-center gap-2 px-3 py-2"
+                className="w-full sm:w-[48%] lg:w-[208px] min-h-[46px] rounded-[12px] border border-[#f8dbdd] flex items-center gap-2 px-3 py-1"
               >
-                <span className="font-poppins text-[12px] text-[#282529] flex-wrap document-image"  dangerouslySetInnerHTML={{ __html: item?.text || "" }} />
+                <span className="font-poppins text-[12px] text-[#282529] flex-wrap document-image items-center"  dangerouslySetInnerHTML={{ __html: item?.text || "" }} />
               </div>
             ))}
           </div>
@@ -32,7 +32,7 @@ export default function Hero({data}) {
           <div className="flex items-center gap-4 pt-6">
           
 
-            <Image src={data?.cover_image} alt="" width={150} height={100} className="sm:w-[200px]" />
+            <Image src="/images/university/hero/coverimage.png" alt="" width={356} height={150} className="sm:w-[400px]" />
           </div>
 
           {/* BUTTONS */}
