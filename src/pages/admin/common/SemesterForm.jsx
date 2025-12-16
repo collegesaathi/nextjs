@@ -51,6 +51,7 @@ export default function SemesterForm({ semesters, setSemesters }) {
             <div className="flex justify-between mb-5">
                 <h2 className="text-xl font-semibold text-red-600">Semester Management</h2>
                 <button
+ type="button"
                     onClick={addSemester}
                     className="bg-red-600 text-white px-4 py-2 rounded-lg"
                 >
@@ -72,6 +73,7 @@ export default function SemesterForm({ semesters, setSemesters }) {
                         />
 
                         <button
+                         type="button"
                             onClick={() => deleteSemester(sIndex)}
                             className="bg-red-500 text-white p-2 rounded"
                         >
@@ -93,6 +95,7 @@ export default function SemesterForm({ semesters, setSemesters }) {
                             ></textarea>
 
                             <button
+                             type="button"
                                 onClick={() => deleteSubject(sIndex, subIndex)}
                                 className="bg-red-100 text-red-600 text-sm p-2 rounded w-fit"
                             >
@@ -104,6 +107,7 @@ export default function SemesterForm({ semesters, setSemesters }) {
 
                     {/* ADD SUBJECT */}
                     <button
+                     type="button"
                         onClick={() => addSubject(sIndex)}
                         className="text-red-600 font-medium mt-2 flex items-center"
                     >

@@ -88,6 +88,7 @@ export default function AdvantagesSection({ setAdvantages, advantages, htitle, h
       <div className="flex justify-between items-center mb-5">
         <h2 className="text-xl font-semibold text-[#CC2828]">{htitle || "Advantages"} Section</h2>
         <button
+        type="button"
           onClick={addAdvantage}
           className="border border-[#CC2828] bg-[#CC2828] hover:bg-red-700 text-white px-6 py-2 rounded-[10px] text-base transition"
         >
@@ -116,6 +117,7 @@ export default function AdvantagesSection({ setAdvantages, advantages, htitle, h
             <div className="flex justify-between items-center mb-2">
               <label className="block text-[#CC2828] font-medium">Description</label>
               <button
+              type="button"
                 onClick={() => deleteAdvantage(index)}
                 className="bg-red-500 text-white rounded-full p-1 hover:bg-red-700"
                 title="Delete Advantage"

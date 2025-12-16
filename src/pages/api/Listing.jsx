@@ -66,6 +66,12 @@ class Listing extends Component {
     return Api.get("/list",);
   }
 
+     async CourseAll() {
+    return Api.get("/all/Coueses",);
+  }
+
+
+
   async AdminUniveristy(page) {
     return Api.get(`/admin/university?page=${page}`,);
   }

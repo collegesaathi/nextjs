@@ -48,11 +48,13 @@ export default function Criteria({ setCriteria, criteria = [] }) {
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-lg font-semibold text-red-600">Eligibility Criteria</h2>
         <button
+          type="button"
           onClick={addCriteria}
           className="bg-red-600 text-white px-4 py-2 rounded-lg flex items-center"
         >
           <MdAdd className="mr-1" /> Add New
         </button>
+
       </div>
 
 
@@ -104,11 +106,13 @@ export default function Criteria({ setCriteria, criteria = [] }) {
           {/* Delete */}
           <div className="text-right">
             <button
+              type="button"
               onClick={() => deleteItem(index)}
               className="bg-red-500 text-white px-3 py-1 rounded"
             >
               Delete
             </button>
+
           </div>
         </div>
       ))}
