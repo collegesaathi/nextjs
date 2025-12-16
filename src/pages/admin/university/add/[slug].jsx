@@ -165,7 +165,7 @@ function Index() {
         setSelectedPartners(data?.partners?.placement_partner_id);
         setAdvantages(data?.advantages?.advantages?.length ? data?.advantages?.advantages : [{ title: "", description: "" }]);
         setFacts(data?.facts?.facts?.length ? data?.facts?.facts : [{ patternName: "", description: "" }]);
-        setPatterns(data?.examPatterns?.patterns?.length ? data?.examPatterns?.patterns : [{ patternName: "", description: "", image: "", percentage: "" , pattern_images_alt:""  }]);
+        setPatterns(data?.examPatterns?.patterns?.length ? data?.examPatterns?.patterns : [{ patternName: "", description: "", image: "", percentage: "", pattern_images_alt: "" }]);
         setFees(data?.financialAid?.aid?.length ? data?.financialAid?.aid : [{
             courseName: "",
             totalFees: "",
@@ -175,8 +175,8 @@ function Index() {
             emi: "",
             description: "",
         }])
-        setCampusList(data?.universityCampuses?.campus?.length ? data?.universityCampuses?.campus : [{ name: "", image: "",  campus_images_alt:"" }])
-        setServices(data?.services?.services?.length ? data?.services?.services : [{ title: "", content: "", image: null, icon: null  , icons_alt :"" ,images_alt :""  }])
+        setCampusList(data?.universityCampuses?.campus?.length ? data?.universityCampuses?.campus : [{ name: "", image: "", campus_images_alt: "" }])
+        setServices(data?.services?.services?.length ? data?.services?.services : [{ title: "", content: "", image: null, icon: null, icons_alt: "", images_alt: "" }])
         setFaqs(data?.faq?.faqs?.length ? data?.faq?.faqs : [{ question: "", answer: "", position: "" }]);
         setOnlines(data?.admissionProcess?.process?.length ? data?.admissionProcess?.process : [{ title: "", content: "" }])
     }, [data])
@@ -245,27 +245,6 @@ function Index() {
         updated.splice(index, 1);
         setFees(updated);
     };
-
-
-
-
-
-    const handleCampusChange = (index, field, value) => {
-        const list = [...campusList];
-        list[index][field] = value;
-        setCampusList(list);
-    };
-
-    const addCampus = () => {
-        setCampusList([...campusList, { name: "", image: "" }]);
-    };
-
-    const deleteCampus = (index) => {
-        const list = [...campusList];
-        list.splice(index, 1);
-        setCampusList(list);
-    };
-
 
     const handleQuillChange = (field, value) => {
         setFormData((prev) => ({ ...prev, [field]: value }));
@@ -365,14 +344,14 @@ function Index() {
             payload.append("meta_keywords", formData.meta_keywords);
             payload.append("canonical_url", formData.canonical_url);
             payload.append("certificatemage", formData.certificatemage);
-                payload.append("cover_image_alt", formData.cover_image_alt)
+            payload.append("cover_image_alt", formData.cover_image_alt)
             payload.append("icon_alt", formData.icon_alt)
             payload.append("image_alt", formData.image_alt)
             const cleanPatterns = patterns.map(item => ({
                 patternName: item.patternName,
                 percentage: item.percentage,
                 description: item.description,
-                  pattern_images_alt: item?.pattern_images_alt
+                pattern_images_alt: item?.pattern_images_alt
             }));
             payload.append("patterns", JSON.stringify(cleanPatterns));
             patterns.forEach((item, index) => {
@@ -384,7 +363,7 @@ function Index() {
             payload.append("financialdescription", formData.financialdescription);
             const campusListmanage = campusList.map(item => ({
                 name: item.name,
-                  campus_images_alt: item?.campus_images_alt
+                campus_images_alt: item?.campus_images_alt
             }));
             payload.append("campusList", JSON.stringify(campusListmanage));
             campusList.forEach((item, index) => {
@@ -406,7 +385,7 @@ function Index() {
             const cleanServices = services.map(item => ({
                 title: item.title,
                 content: item.content,
-                        icons_alt: item?.icons_alt,
+                icons_alt: item?.icons_alt,
                 images_alt: item?.images_alt
             }));
             payload.append("servcies", JSON.stringify(cleanServices));
@@ -551,7 +530,6 @@ function Index() {
                     </div>
 
                     <form
-                        onSubmit={handleUpdate}
                         className="  mt-10 px-3 sm:px-6 pb-3 sm:pb-6 bg-white space-y-2 sm:space-y-4"
                     >
                         {activeTab === "card" && (
@@ -714,23 +692,23 @@ function Index() {
 
                                     {formData?.descriptions?.map((desc, index) => (
                                         <div key={index} className="mb-4">
-                                      <ReactQuillEditor
-                                            label={`Description ${index + 1}`}
-                                            desc={desc.text}
-                                            handleBioChange={(value) => {
-                                                const plainText = value.replace(/<[^>]*>/g, "").trim();
-                                                if (plainText.length <= 500) {
-                                                    handleDescriptionChange(index, value);
-                                                }
-                                            }}
-                                        />
+                                            <ReactQuillEditor
+                                                label={`Description ${index + 1}`}
+                                                desc={desc.text}
+                                                handleBioChange={(value) => {
+                                                    const plainText = value.replace(/<[^>]*>/g, "").trim();
+                                                    if (plainText.length <= 500) {
+                                                        handleDescriptionChange(index, value);
+                                                    }
+                                                }}
+                                            />
 
-                                                <button
-                                                    onClick={() => deleteDescription(index)}
-                                                    className="bg-red-500 text-white rounded-md p-3 hover:bg-red-700 flex justify-center items-center"
-                                                >
-                                                    <MdDelete size={20} />
-                                                </button>
+                                            <button
+                                                onClick={() => deleteDescription(index)}
+                                                className="bg-red-500 text-white rounded-md p-3 hover:bg-red-700 flex justify-center items-center"
+                                            >
+                                                <MdDelete size={20} />
+                                            </button>
 
                                         </div>
                                     ))}
@@ -738,7 +716,7 @@ function Index() {
                             </>
                         )}
                         {activeTab === "about" && (
-                        <AddAbout handleChange={handleChange} handleQuillChange={handleQuillChange} formData={formData} />
+                            <AddAbout handleChange={handleChange} handleQuillChange={handleQuillChange} formData={formData} />
                         )}
                         {activeTab === "approvals" && (
                             <>
@@ -1025,7 +1003,7 @@ function Index() {
 
                         {activeTab === "campuses" && (
                             <>
-                        <Campus campusList={campusList} setCampusList={setCampusList}   />
+                                <Campus campusList={campusList} setCampusList={setCampusList} />
                             </>
                         )}
 

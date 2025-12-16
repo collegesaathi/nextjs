@@ -38,7 +38,6 @@ function Index() {
 
     useEffect(() => {
         fetchData();
-
     }, []);
     const [activeTabs, setActiveTabs] = useState("indian");
 
@@ -117,31 +116,7 @@ function Index() {
     const [campusList, setCampusList] = useState([
         { name: "", image: "" }
     ]);
-    const handleCampusChange = (index, field, value) => {
-        const list = [...campusList];
-        list[index][field] = value;
-        setCampusList(list);
-    };
 
-    const handleCampusImage = (index, file) => {
-        const reader = new FileReader();
-        reader.onloadend = () => {
-            const list = [...campusList];
-            list[index].image = reader.result;
-            setCampusList(list);
-        };
-        reader.readAsDataURL(file);
-    };
-
-    const addCampus = () => {
-        setCampusList([...campusList, { name: "", image: "" }]);
-    };
-
-    const deleteCampus = (index) => {
-        const list = [...campusList];
-        list.splice(index, 1);
-        setCampusList(list);
-    };
 
     const [formData, setFormData] = useState({
         slug: "",
@@ -177,7 +152,9 @@ function Index() {
         semesters_title: "",
         patterndescription: "",
         patternname: "",
-        university_id: ""
+        university_id: "",
+        cover_image_alt :"",
+
     });
 
     console.log("formData", formData)
@@ -244,75 +221,122 @@ function Index() {
     };
 
 
-    // ✅ ADD UNIVERSITY
     const handleAdd = async (e) => {
         e.preventDefault();
         if (loading) return;
-
-        // if (!formData.icon) {
-        //     toast.error("Icon required!");
-        //     return;
-        // }
-
         setLoading(true);
-
         try {
             const main = new Listing();
             const payload = new FormData();
-
             payload.append("slug", formData.slug);
             payload.append("name", formData.name);
             payload.append("position", formData.position);
-            payload.append("description", formData.description);
+            payload.append("about_title", formData.about_title);
+            payload.append("about_desc", formData.about_desc);
             payload.append("icon", formData.icon);
             payload.append("cover_image", formData.cover_image);
-            const response = await main.AdminUniversityAdd(payload);
+            payload.append("descriptions", JSON.stringify(formData.descriptions));
+            // payload.append("advantages", JSON.stringify(advantages));
+            // payload.append("services", JSON.stringify(services));
+            // payload.append("fees", JSON.stringify(fees));
+            // payload.append("faqs", JSON.stringify(faqs));
+            // payload.append("facts", JSON.stringify(facts));
+            // payload.append("approvals", JSON.stringify(selectedApprovals));
+            // payload.append("partners", JSON.stringify(selectedPartners));
+            // payload.append("patternname", formData.patternname);
+            // payload.append("patterndescription", formData.patterndescription);
+            // payload.append("bottompatterndesc", formData.bottompatterndesc);
+            // payload.append("approvals_name", formData.approvals_name);
+            // payload.append("approvals_desc", formData.approvals_desc);
+            // payload.append("rankings_description", formData.rankings_description);
+            // payload.append("rankings_name", formData.rankings_name);
+            // payload.append("advantagesname", formData.advantagesname);
+            // payload.append("advantagesdescription", formData.advantagesdescription);
+            // payload.append("factsname", formData.factsname);
+            // payload.append("certificatename", formData.certificatename);
+            // payload.append("certificatedescription", formData.certificatedescription);
+            // payload.append("meta_title", formData.meta_title);
+            // payload.append("meta_description", formData.meta_description);
+            // payload.append("meta_keywords", formData.meta_keywords);
+            // payload.append("canonical_url", formData.canonical_url);
+            // payload.append("certificatemage", formData.certificatemage);
+            payload.append("cover_image_alt", formData.cover_image_alt)
+            payload.append("icon_alt", formData.icon_alt)
+            payload.append("image_alt", formData.image_alt)
+            const cleanPatterns = patterns.map(item => ({
+                patternName: item.patternName,
+                percentage: item.percentage,
+                description: item.description,
+                pattern_images_alt: item?.pattern_images_alt
+            }));
+            payload.append("patterns", JSON.stringify(cleanPatterns));
+            patterns.forEach((item, index) => {
+                if (item.image) {
+                    payload.append(`patternsimages[${index}]`, item.image);
+                }
+            });
+            payload.append("financialname", formData.financialname);
+            payload.append("financialdescription", formData.financialdescription);
+            const campusListmanage = campusList.map(item => ({
+                name: item.name,
+                campus_images_alt: item?.campus_images_alt
+            }));
+            payload.append("campusList", JSON.stringify(campusListmanage));
+            campusList.forEach((item, index) => {
+                if (item.image) {
+                    payload.append(`campusimages[${index}]`, item.image);
+                }
+            });
+            payload.append("partnersname", formData.partnersname);
+            payload.append("partnersdesc", formData.partnersdesc);
+            payload.append("servicetitle", formData.servicetitle);
+            payload.append("servicedesc", formData.servicedesc);
+            payload.append("onlinedesc", formData.onlinedesc);
+            payload.append("onlinetitle", formData.onlinetitle);
+            const cleanonlines = onlines.map(item => ({
+                title: item.title,
+                content: item.content
+            }));
+            payload.append("onlines", JSON.stringify(cleanonlines));
+            const cleanServices = services.map(item => ({
+                title: item.title,
+                content: item.content,
+                icons_alt: item?.icons_alt,
+                images_alt: item?.images_alt
+            }));
+            payload.append("servcies", JSON.stringify(cleanServices));
 
+            services.forEach((item, index) => {
+                if (item.image) {
+                    payload.append(`servicesimages[${index}]`, item.image);
+                }
+            });
+            services.forEach((item, index) => {
+                if (item.image) {
+                    payload.append(`servicesicon[${index}]`, item.icon);
+                }
+            });
+            for (let pair of payload.entries()) {
+                console.log(pair[0], pair[1]);
+            }
+
+            // ✅ IMPORTANT FIX
+            const response = await main.AdminCourseAdd(payload);
             if (response?.data?.status) {
                 toast.success(response.data.message);
-                setFormData({
-                    slug: "",
-                    name: "",
-                    icon: null,
-                    cover_image: null,
-                    position: "",
-                    description: "",
-                });
-
+                router.push("/admin/course")
                 setPreview(null);
-                fetchData();
             } else {
                 toast.error(response.data.message);
             }
 
         } catch (error) {
-            toast.error("Something went wrong");
+            console.error(error);
+            // toast.error(error.response.data.message);
         }
 
         setLoading(false);
     };
-
-
-
-    // ✅ EDIT MODE DATA LOAD
-    // useEffect(() => {
-    //     if (data) {
-    //         setFormData({
-    //             slug: data.slug || "",
-    //             name: data.name || "",
-    //             icon: data.icon || null,
-    //             cover_image: data.cover_image || null,
-    //             position: data.position || "",
-    //             description: data.description || "",
-    //         });
-
-    //         if (data.icon) {
-    //             setPreview(data.icon);
-    //         }
-    //     }
-    // }, [data]);
-    const data = ""
-
     const [activeTab, setActiveTab] = useState("card");
 
     const tabsData = [
@@ -407,57 +431,18 @@ function Index() {
                         <button
                             type="submit"
                             form="ownerForm"
+                            onClick={handleAdd}
                             className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium shadow-md transition-all"
                         >
                             {loading ? "Saving..." : "Save"}
                         </button>
                     </div>
                 </div>
-
-
                 <form
-                    onSubmit={data ? handleUpdate : handleAdd}
                     className="  mt-10 px-3 sm:px-6 pb-3 sm:pb-6 bg-white space-y-2 sm:space-y-4"
                 >
                     {activeTab === "card" && (
                         <>
-
-                            <div>
-                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
-                                    Name{" "}
-                                    <span className="text-sm text-gray-500">
-                                        ({formData.name?.length}/50)
-                                    </span>
-                                </label>
-                                <input
-                                    type="text"
-                                    name="name"
-                                    value={formData.name}
-                                    onChange={(e) => {
-                                        if (e.target.value.length <= 50) handleChange(e);
-                                    }}
-                                    placeholder="Enter name"
-                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
-                                    required
-                                />
-                            </div>
-                            <div>
-                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
-                                    Slug{" "}
-
-                                </label>
-                                <input
-                                    type="text"
-                                    name="slug"
-                                    value={formData.slug}
-                                    onChange={(e) => {
-                                        handleChange(e);
-                                    }}
-                                    placeholder="Enter Slug"
-                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
-                                    required
-                                />
-                            </div>
 
                             <div>
                                 <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
@@ -485,10 +470,42 @@ function Index() {
                                     </select>
                                 </div>
                             </div>
+                            <div>
+                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
+                                    Name{" "}
+                                    <span className="text-sm text-gray-500">
+                                        ({formData.name?.length}/50)
+                                    </span>
+                                </label>
+                                <input
+                                    type="text"
+                                    name="name"
+                                    value={formData.name}
+                                    onChange={(e) => {
+                                        if (e.target.value.length <= 50) handleChange(e);
+                                    }}
+                                    placeholder="Enter name"
+                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
+                                    required
+                                />
+                            </div>
+                            <div>
+                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
+                                    Slug{" "}
+                                </label>
+                                <input
+                                    type="text"
+                                    name="slug"
+                                    value={formData.slug}
+                                    onChange={(e) => {
+                                        handleChange(e);
+                                    }}
+                                    placeholder="Enter Slug"
+                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
+                                    required
+                                />
+                            </div>
                             {/* Description Field changed to textarea with 300 character limit */}
-
-
-
                             <div>
                                 <label className="block text-[#FF1B1B] font-medium mb-1">
                                     Position
@@ -526,6 +543,45 @@ function Index() {
                                         />
                                     </div>
                                 )}
+                            </div>
+                            <div>
+                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
+                                    University Image Alt{" "}
+                                    <span className="text-sm text-gray-500">
+                                        ({formData.cover_image_alt?.length}/50)
+                                    </span>
+                                </label>
+                                <input
+                                    type="text"
+                                    name="cover_image_alt"
+                                    value={formData.cover_image_alt}
+                                    onChange={(e) => {
+                                        if (e.target.value.length <= 50) handleChange(e);
+                                    }}
+                                    placeholder="Enter cover image alt"
+                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
+                                    required
+                                />
+                            </div>
+
+                            <div>
+                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
+                                    University Icon Alt{" "}
+                                    <span className="text-sm text-gray-500">
+                                        ({formData.icon_alt?.length}/50)
+                                    </span>
+                                </label>
+                                <input
+                                    type="text"
+                                    name="icon_alt"
+                                    value={formData.icon_alt}
+                                    onChange={(e) => {
+                                        if (e.target.value.length <= 50) handleChange(e);
+                                    }}
+                                    placeholder="Enter cover Icon alt"
+                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
+                                    required
+                                />
                             </div>
 
                             <div>
@@ -566,24 +622,24 @@ function Index() {
 
                                 {formData.descriptions.map((desc, index) => (
                                     <div key={index} className="mb-4">
-                                        <div className="flex items-start gap-3 mb-4">
-                                            <ReactQuillEditor
-                                                label={`Description ${index + 1}`}
-                                                desc={desc.text}
-                                                handleBioChange={(value) => {
-                                                    const plainText = value.replace(/<[^>]*>/g, "").trim();
-                                                    if (plainText.length <= 500) {
-                                                        handleDescriptionChange(index, value);
-                                                    }
-                                                }}
-                                            />
-                                            <button
-                                                onClick={() => deleteDescription(index)}
-                                                className="bg-red-500 text-white rounded-md p-3 hover:bg-red-700 flex justify-center items-center"
-                                            >
-                                                <MdDelete size={20} />
-                                            </button>
-                                        </div>
+                                        <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
+                                        </label>
+                                        <ReactQuillEditor
+                                            label={`Description ${index + 1}`}
+                                            desc={desc.text}
+                                            handleBioChange={(value) => {
+                                                const plainText = value.replace(/<[^>]*>/g, "").trim();
+                                                if (plainText.length <= 500) {
+                                                    handleDescriptionChange(index, value);
+                                                }
+                                            }}
+                                        />
+                                        <button
+                                            onClick={() => deleteDescription(index)}
+                                            className="bg-red-500 text-white rounded-md p-3 hover:bg-red-700 flex justify-center items-center"
+                                        >
+                                            <MdDelete size={20} />
+                                        </button>
 
                                     </div>
                                 ))}

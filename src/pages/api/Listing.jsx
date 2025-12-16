@@ -13,6 +13,10 @@ class Listing extends Component {
     return ApiallowFile.post("/admin/universities/add", data);
   }
 
+  async AdminCourseAdd(data) {
+    return ApiallowFile.post("/admin/course/add", data);
+  }
+
   async AdminUniversityUpdate(data) {
     return ApiallowFile.post("/admin/universities/update", data);
   }
@@ -55,6 +59,10 @@ class Listing extends Component {
     return Api.get("/leads/get",);
   }
   async ContactUniversityGet() {
+    return Api.get("/leads/university",);
+  }
+
+   async ContactUniversityGet() {
     return Api.get("/leads/university",);
   }
 

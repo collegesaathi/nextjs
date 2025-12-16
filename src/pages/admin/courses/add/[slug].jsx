@@ -221,7 +221,7 @@ function Index() {
 
 
     // ✅ ADD UNIVERSITY
-    const handleAdd = async (e) => {
+    const handleEdit = async (e) => {
         e.preventDefault();
         if (loading) return;
 
@@ -381,6 +381,7 @@ function Index() {
 
                         {/* Right: Save Button */}
                         <button
+                            onClick={handleEdit}
                             type="submit"
                             form="ownerForm"
                             className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium shadow-md transition-all"
@@ -392,7 +393,6 @@ function Index() {
 
 
                 <form
-                    onSubmit={data ? handleUpdate : handleAdd}
                     className="  mt-10 px-3 sm:px-6 pb-3 sm:pb-6 bg-white space-y-2 sm:space-y-4"
                 >
                     {activeTab === "card" && (
