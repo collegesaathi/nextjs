@@ -1,5 +1,4 @@
 
-
 import Reviews from "@/commons/list/Reviews";
 import Listing from "../api/Listing";
 import Layout from "../components/Layout";

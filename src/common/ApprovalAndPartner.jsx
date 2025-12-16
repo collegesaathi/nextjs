@@ -47,7 +47,7 @@ function ApprovalAndPartner({ toggleApproval, selectedApprovals, step, togglePar
                                     {/* Checkbox */}
                                     <input
                                         type="checkbox"
-                                        checked={selectedApprovals.includes(item.id)}
+                                        checked={selectedApprovals?.includes(item.id)}
                                         onChange={() => toggleApproval(item.id)}
                                         className="h-4 w-4"
                                     />
@@ -79,7 +79,7 @@ function ApprovalAndPartner({ toggleApproval, selectedApprovals, step, togglePar
                                     {/* Checkbox */}
                                     <input
                                         type="checkbox"
-                                        checked={selectedPartners.includes(item.id)}
+                                        checked={selectedPartners?.includes(item.id)}
                                         onChange={() => togglePartners(item.id)}
                                         className="h-4 w-4"
                                     />

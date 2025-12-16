@@ -611,7 +611,7 @@ function Index() {
                                             <img
                                                 src={preview}
                                                 alt="Preview"
-                                                className="w-full h-48 object-cover rounded-md border"
+                                                className="w-140 h-70 object-cover rounded-md border"
                                             />
                                         </div>
                                     )}
@@ -635,7 +635,7 @@ function Index() {
                                             <img
                                                 src={icons}
                                                 alt="Preview"
-                                                className="w-full h-48 object-cover rounded-md border"
+                                                className="w-140 h-70 object-contain rounded-md border"
                                             />
                                         </div>
                                     )}

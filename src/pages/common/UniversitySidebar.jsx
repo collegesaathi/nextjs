@@ -95,11 +95,11 @@ export default function UniversitySidebar() {
                   setActiveItem(index);
                   scrollToSection(index);
                 }}
-                className={`w-[242px] h-[32px] rounded-[29px] flex items-center gap-2  border transition-all duration-300 hover:translate-x-1 hover:shadow-md
+                className={`w-[242px] h-[32px] rounded-[29px] flex cursor-pointer items-center gap-2  border transition-all duration-300 hover:translate-x-1 hover:shadow-md
                   ${activeItem === index ? "bg-[#ec1e24] text-white" : "border-gray-300"}
                 `}
               >
-                <div className={`w-8 h-8 flex items-center justify-center rounded-full ${activeItem === index ? "bg-white" : "bg-[#eeecec]"}`}>
+                <div className={`w-8 h-8 flex items-center justify-center  rounded-full ${activeItem === index ? "bg-white" : "bg-[#eeecec]"}`}>
                   <img src={activeItem === index ? item.activeIcon : item.icon} className="w-4 h-4" alt="" />
                 </div>
                 <span className="text-sm">{item.label}</span>

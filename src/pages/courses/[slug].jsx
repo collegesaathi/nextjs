@@ -2,27 +2,28 @@ import { useRouter } from "next/router";
 import Layout from "../components/Layout";
 import Hero from "../../commons/list/Hero";
 import UniversitySidebar from "../common/UniversitySidebar";
-import Reviews from "../common/Reviews";
-import Universities from "../common/Universities";
-import SimilarUniversities from "../common/SimilarUniversities";
+import Reviews from "../common/list/Reviews";
+import Universities from "../common/list/Universities";
+import SimilarUniversities from "../common/list/SimilarUniversities";
 import FAQSection from "../../commons/list/FAQSection";
 import StepsSection from "../../commons/list/StepsSection";
-import CareerServices from "../common/CareerServices";
-import UniversityCampusCarousel from "../common/UniversityCampusCarousel";
+import CareerServices from "@/common/list/CareerServices";
+// import UniversityCampusCarousel from "../common/UniversityCampusCarousel";
 import Financial from "../../commons/list/Financial";
 import ExaminationPattern from "../../commons/list/ExaminationPattern";
 import SampleCertificate from "../../commons/list/SampleCertificate";
 import Facts from "../../commons/list/Facts";
 import Advantages from "../../commons/list/Advantages";
-import CoursesSwiper from "../common/CoursesSwiper";
+// import CoursesSwiper from "../common/CoursesSwiper";
 import Ranking from "../../commons/list/Rankings";
-import PlacementPartners from "../common/PlacementPartners";
+import PlacementPartners from "../common/list/PlacementPartners";
 import CourseFees from "../../commons/list/CourseFees";
 import Aboutdetails from "../../commons/list/Aboutdetails";
-import Approvals from "../common/Approvals";
+import Approvals from "@/common/list/Approvals";
 import UpdatedFee from "../common/UpdatedFee";
 import Eligibility from "../common/Eligibility";
 import Curriculum from "../common/Curriculum";
+
 
 function Index() {
     const router = useRouter();
