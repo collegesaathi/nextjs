@@ -352,7 +352,7 @@ function Index() {
         { id: "criteria", label: "Criteria" },
         { id: "sem", label: "Semseter" },
         { id: "certificate", label: "Certificate" },
-        { id: "advantages", label: "Skills" },
+        { id: "skills", label: "Skills" },
         { id: "pattern", label: "Pattern" },
         { id: "career", label: "Career" },
         { id: "financial", label: "Financial" },
@@ -864,7 +864,7 @@ function Index() {
 
                     )}
 
-                    {activeTab === "advantages" && (
+                    {activeTab === "skills" && (
                         <>
                             <AdvantagesSection advantages={advantages} setAdvantages={setAdvantages}
                                 htitle={"Skills"} handleChange={handleChange} handleQuillChange={handleQuillChange} formData={formData} />
