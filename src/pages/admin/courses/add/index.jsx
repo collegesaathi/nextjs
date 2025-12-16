@@ -4,19 +4,21 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { MdAdd, MdDelete, MdEdit } from "react-icons/md";
 import ReactQuillEditor from "@/common/ReactQuillEditor";
 import toast from "react-hot-toast";
-import AdvantagesSection from "../../common/AdvantageSection";
-import PatternSection from "../../common/PatternSection";
+import PatternSection from "@/commons/add/AddPattern";
 import ApprovalAndPartner from "@/common/ApprovalAndPartner";
 import AdminLayout from "../../common/AdminLayout";
-import Criteria from "../../common/Criteria";
-import SemesterForm from "../../common/SemesterForm";
-import Certificate from "../../common/Certificate";
-import CarrerSection from "../../common/CarrerSection";
-import FaqSection from "../../common/FaqSection";
-import OnlineSection from "../../common/OnlineSection";
-import ServicesSection from "../../common/ServicesSection";
-import Ranking from "../../common/Ranking";
 import AddAbout from "@/commons/add/AddAbout";
+import FinancialAdd from "@/commons/add/FinancialAdd";
+import AdvantageSectionAdd from "@/commons/add/AdvantageSectionAdd";
+import Addcareer from "@/commons/add/Addcareer";
+import SEOAdd from "@/commons/add/SEOAdd";
+import AddCriteria from "@/commons/add/AddCriteria";
+import RankingAdd from "@/commons/add/RankingAdd";
+import SemesterFormAdd from "@/commons/add/SemesterFormAdd";
+import AddCertificate from "@/commons/add/AddCertificate";
+import ServicesAdd from "@/commons/add/ServicesAdd";
+import AddOnline from "@/commons/add/AddOnline";
+import FaqAdd from "@/commons/add/FaqAdd";
 function Index() {
     const [universities, setUniversities] = useState([])
     const [categroy, setCategroy] = useState([])
@@ -45,7 +47,7 @@ function Index() {
     ]);
 
     const [Careers, setCareers] = useState([
-        { title: "", description: "", salary: '' }
+        { title: "", description: "", salary: "" }
     ]);
 
 
@@ -58,9 +60,18 @@ function Index() {
         }
     ]);
 
-
     const [services, setServices] = useState([{ title: "", content: "", image: null, icon: null }]);
-
+    const [fees, setFees] = useState([
+        {
+            courseName: "",
+            totalFees: "",
+            loanAmount: "",
+            tenure: "",
+            interest: "",
+            emi: "",
+            description: "",
+        }
+    ]);
 
     const [selectedApprovals, setSelectedApprovals] = useState([]);
 
@@ -146,6 +157,12 @@ function Index() {
         university_id: "",
         categroy_id: "",
         cover_image_alt: "",
+        careername: "",
+        careerdesc: "",
+        meta_title: "",
+        meta_description: "",
+        meta_keywords: "",
+        canonical_url: "",
     });
 
     console.log("formData", formData)
@@ -210,7 +227,7 @@ function Index() {
             category: tab
         }));
     };
-    console.log("semesters",semesters) 
+    console.log("semesters", semesters)
 
     const handleAdd = async (e) => {
         e.preventDefault();
@@ -230,20 +247,20 @@ function Index() {
             payload.append("icon_alt", formData.icon_alt)
             payload.append("about_title", formData.about_title);
             payload.append("about_desc", formData.about_desc);
-            payload.append("tuition_fees" , formData.tuition_fees)
-            payload.append("anuual_fees" ,  formData.anuual_fees)
-            payload.append("semester_fees" , formData.semester_fees)
+            payload.append("tuition_fees", formData.tuition_fees)
+            payload.append("anuual_fees", formData.anuual_fees)
+            payload.append("semester_fees", formData.semester_fees)
             payload.append("approvals_name", formData.approvals_name);
             payload.append("approvals_desc", formData.approvals_desc);
             payload.append("approvals", JSON.stringify(selectedApprovals));
             payload.append("rankings_description", formData.rankings_description);
             payload.append("rankings_name", formData.rankings_name);
-            payload.append("creteria" , formData.creteria)
-            payload.append("category" ,  formData.category)
-            payload.append("indian" ,  formData.indian )
-            payload.append("nri" ,  formData.nri )
-            payload.append("semesters" ,  formData.semesters)
-            payload.append("semesters_title" ,formData.semesters_title)
+            payload.append("creteria", formData.creteria)
+            payload.append("category", formData.category)
+            payload.append("indian", formData.indian)
+            payload.append("nri", formData.nri)
+            payload.append("semesters", formData.semesters)
+            payload.append("semesters_title", formData.semesters_title)
             payload.append("certificatename", formData.certificatename);
             payload.append("certificatedescription", formData.certificatedescription);
             payload.append("certificatemage", formData.certificatemage);
@@ -251,23 +268,9 @@ function Index() {
             payload.append("skills", JSON.stringify(advantages));
             payload.append("skillsname", formData.advantagesname);
             payload.append("skilsdescription", formData.advantagesdescription);
-
-
-            payload.append("services", JSON.stringify(services));
-            payload.append("faqs", JSON.stringify(faqs));
-            payload.append("facts", JSON.stringify(facts));
-            payload.append("partners", JSON.stringify(selectedPartners));
             payload.append("patternname", formData.patternname);
             payload.append("patterndescription", formData.patterndescription);
             payload.append("bottompatterndesc", formData.bottompatterndesc);
-      
-            payload.append("factsname", formData.factsname);
-            
-            payload.append("meta_title", formData.meta_title);
-            payload.append("meta_description", formData.meta_description);
-            payload.append("meta_keywords", formData.meta_keywords);
-            payload.append("canonical_url", formData.canonical_url);
-        
             const cleanPatterns = patterns.map(item => ({
                 patternName: item.patternName,
                 percentage: item.percentage,
@@ -282,6 +285,23 @@ function Index() {
             });
             payload.append("financialname", formData.financialname);
             payload.append("financialdescription", formData.financialdescription);
+            payload.append("fees", JSON.stringify(fees));
+            payload.append("careerdesc", formData.careerdesc)
+            payload.append("careername", formData.careername)
+            payload.append("careermanages", JSON.stringify(Careers));
+            payload.append("partnersname", formData.partnersname);
+            payload.append("partnersdesc", formData.partnersdesc);
+            payload.append("partners", JSON.stringify(selectedPartners));
+            payload.append("faqs", JSON.stringify(faqs));
+
+            payload.append("meta_title", formData.meta_title);
+            payload.append("meta_description", formData.meta_description);
+            payload.append("meta_keywords", formData.meta_keywords);
+            payload.append("canonical_url", formData.canonical_url);
+
+
+            payload.append("financialname", formData.financialname);
+            payload.append("financialdescription", formData.financialdescription);
             const campusListmanage = campusList.map(item => ({
                 name: item.name,
                 campus_images_alt: item?.campus_images_alt
@@ -292,8 +312,7 @@ function Index() {
                     payload.append(`campusimages[${index}]`, item.image);
                 }
             });
-            payload.append("partnersname", formData.partnersname);
-            payload.append("partnersdesc", formData.partnersdesc);
+
             payload.append("servicetitle", formData.servicetitle);
             payload.append("servicedesc", formData.servicedesc);
             payload.append("onlinedesc", formData.onlinedesc);
@@ -354,9 +373,8 @@ function Index() {
         { id: "certificate", label: "Certificate" },
         { id: "skills", label: "Skills" },
         { id: "pattern", label: "Pattern" },
-        { id: "career", label: "Career" },
         { id: "financial", label: "Financial" },
-        { id: "campuses", label: "Campuses" },
+        { id: "career", label: "Career" },
         { id: "partners", label: "Partners" },
         { id: "services", label: "Services" },
         { id: "online", label: "Online" },
@@ -643,8 +661,8 @@ function Index() {
                             <div className="mb-4">
                                 <div className="flex justify-between items-center mb-3">
                                     <h2 className="text-xl font-semibold text-[#CC2828]">Multiple Description</h2>
-
                                     <button
+                                        type="button"
                                         onClick={addDescription}
                                         className="border border-[#CC2828] bg-[#CC2828] hover:bg-red-700 text-white px-6 py-2 rounded-[10px] text-base transition"
                                     >
@@ -667,6 +685,7 @@ function Index() {
                                             }}
                                         />
                                         <button
+                                            type="button"
                                             onClick={() => deleteDescription(index)}
                                             className="bg-red-500 text-white rounded-md p-3 hover:bg-red-700 flex justify-center items-center"
                                         >
@@ -779,7 +798,7 @@ function Index() {
                     )}
 
                     {activeTab === "rankings" && (
-                        <Ranking formData={formData} handleChange={handleChange} handleQuillChange={handleQuillChange} />
+                        <RankingAdd formData={formData} handleChange={handleChange} handleQuillChange={handleQuillChange} />
                     )}
 
                     {activeTab === "criteria" && (
@@ -805,7 +824,7 @@ function Index() {
                             </div>
                             <div className="flex mb-5 bg-gray-100 rounded-lg overflow-hidden">
                                 <button
-                                type="button"
+                                    type="button"
                                     onClick={() => handleTab("indian")}
                                     className={`w-1/2 py-2 font-semibold ${activeTabs === "indian" ? "bg-red-500 text-white" : ""}`}
                                 >
@@ -813,7 +832,7 @@ function Index() {
                                 </button>
 
                                 <button
-                                type="button"
+                                    type="button"
 
                                     onClick={() => handleTab("nri")}
                                     className={`w-1/2 py-2 font-semibold ${activeTabs === "nri" ? "bg-red-500 text-white" : ""}`}
@@ -823,7 +842,7 @@ function Index() {
                             </div>
 
                             {/* Criteria Component */}
-                            <Criteria
+                            <AddCriteria
                                 criteria={formData[activeTabs]}
                                 setCriteria={(dataOrUpdater) => {
                                     // support both array or updater function
@@ -860,19 +879,19 @@ function Index() {
                                     required
                                 />
                             </div>
-                            <SemesterForm semesters={semesters} setSemesters={setSemesters} /></>
+                            <SemesterFormAdd semesters={semesters} setSemesters={setSemesters} /></>
 
                     )}
 
                     {activeTab === "skills" && (
                         <>
-                            <AdvantagesSection advantages={advantages} setAdvantages={setAdvantages}
+                            <AdvantageSectionAdd advantages={advantages} setAdvantages={setAdvantages}
                                 htitle={"Skills"} handleChange={handleChange} handleQuillChange={handleQuillChange} formData={formData} />
                         </>
                     )}
 
                     {activeTab === "certificate" && (
-                        <Certificate
+                        <AddCertificate
                             formData={formData}
                             handleChange={handleChange}
                             handleImageChange={handleImageChange}
@@ -886,70 +905,14 @@ function Index() {
                         <PatternSection setPatterns={setPatterns} patterns={patterns} formData={formData} handleChange={handleChange} handleQuillChange={handleQuillChange} />
                     )}
 
+                    {activeTab === "financial" && (
+                        <FinancialAdd handleQuillChange={handleQuillChange} handleChange={handleChange} fees={fees} setFees={setFees} formData={formData} />
+                    )}
+
                     {activeTab === "career" && (
-                        <>
-                            <div>
-                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
-                                    Financial    Name{" "}
-                                    <span className="text-sm text-gray-500">
-                                        ({formData.fincalname?.length}/50)
-                                    </span>
-                                </label>
-                                <input
-                                    type="text"
-                                    name="fincalname"
-                                    value={formData.fincalname}
-                                    onChange={(e) => {
-                                        if (e.target.value.length <= 50) handleChange(e);
-                                    }}
-                                    placeholder="Enter name"
-                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
-                                    required
-                                />
-                            </div>
-
-                            <ReactQuillEditor
-                                label="Financial Description"
-                                desc={formData.fincal_des}
-                                handleBioChange={(val) => handleQuillChange("fincal_des", val)}
-                            />
-
-
-                            <div>
-                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
-                                    Careers   Name{" "}
-                                    <span className="text-sm text-gray-500">
-                                        ({formData.carrer_name?.length}/50)
-                                    </span>
-                                </label>
-                                <input
-                                    type="text"
-                                    name="carrer_name"
-                                    value={formData.carrer_name}
-                                    onChange={(e) => {
-                                        if (e.target.value.length <= 50) handleChange(e);
-                                    }}
-                                    placeholder="Enter name"
-                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
-                                    required
-                                />
-                            </div>
-
-                            <ReactQuillEditor
-                                label="Careers  Description"
-                                desc={formData.careerdes}
-                                handleBioChange={(val) => handleQuillChange("careerdes", val)}
-                            />
-                            <CarrerSection Carrers={Careers} setCarrer={setCareers} htitle={"Careers"} />
-                        </>
+                        <Addcareer handleQuillChange={handleQuillChange} handleChange={handleChange} Careers={Careers} setCareers={setCareers} formData={formData} />
                     )}
 
-
-                    {activeTab === "campuses" && (
-                        <>
-                            <Campus campusList={campusList} setCampusList={setCampusList} />
-                        </>
-                    )}
 
                     {activeTab === "partners" && (
                         <>
@@ -989,13 +952,16 @@ function Index() {
 
                     )}
                     {activeTab === "services" && (
-                        <ServicesSection services={services} setServices={setServices} handleChange={handleChange} handleQuillChange={handleQuillChange} formData={formData} />
+                        <ServicesAdd services={services} setServices={setServices} handleChange={handleChange} handleQuillChange={handleQuillChange} formData={formData} />
                     )}
                     {activeTab === "online" && (
-                        <OnlineSection formData={formData} handleChange={handleChange} onlines={onlines} setOnlines={setOnlines} handleQuillChange={handleQuillChange} />
+                        <AddOnline formData={formData} handleChange={handleChange} onlines={onlines} setOnlines={setOnlines} handleQuillChange={handleQuillChange} />
                     )}
                     {activeTab === "faq" && (
-                        <FaqSection faqs={faqs} setFaqs={setFaqs} />
+                        <FaqAdd faqs={faqs} setFaqs={setFaqs} />
+                    )}
+                    {activeTab === "seo" && (
+                        <SEOAdd formData={formData} handleChange={handleChange} />
                     )}
                 </form>
                 <div className="flex justify-between mt-8  p-6">

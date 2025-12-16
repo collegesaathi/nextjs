@@ -1,7 +1,7 @@
 import React from "react";
 import { MdAdd, MdDelete } from "react-icons/md";
 
-export default function SemesterForm({ semesters, setSemesters }) {
+export default function SemesterFormAdd({ semesters, setSemesters }) {
 
     // Add Semester
     const addSemester = () => {
@@ -51,7 +51,7 @@ export default function SemesterForm({ semesters, setSemesters }) {
             <div className="flex justify-between mb-5">
                 <h2 className="text-xl font-semibold text-red-600">Semester Management</h2>
                 <button
- type="button"
+                    type="button"
                     onClick={addSemester}
                     className="bg-red-600 text-white px-4 py-2 rounded-lg"
                 >

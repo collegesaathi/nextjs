@@ -1,7 +1,7 @@
 import toast from "react-hot-toast";
 import { MdDelete } from "react-icons/md";
 
-function FaqSection({faqs ,  setFaqs}) {
+function FaqAdd({faqs ,  setFaqs}) {
 
       const addFaq = () => {
         // Only add if no empty one exists
@@ -32,6 +32,7 @@ function FaqSection({faqs ,  setFaqs}) {
                 </h2>
 
                 <button
+                type="button"
                     onClick={addFaq}
 
                     className="border border-[#CC2828] bg-[#CC2828] hover:bg-red-700 text-white px-6 py-2 rounded-[10px] text-base transition"
@@ -74,6 +75,7 @@ function FaqSection({faqs ,  setFaqs}) {
                             <div className="flex items-center gap-2">
 
                                 <button
+                                type="button"
                                     onClick={() => deleteFaq(index)}
                                     className="bg-red-500 text-white rounded-full p-1 hover:bg-red-700"
                                     title="Delete FAQ"
@@ -100,4 +102,4 @@ function FaqSection({faqs ,  setFaqs}) {
     );
 }
 
-export default FaqSection;
+export default FaqAdd;

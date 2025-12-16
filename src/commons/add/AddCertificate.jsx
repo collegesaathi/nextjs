@@ -1,6 +1,6 @@
 import ReactQuillEditor from "@/common/ReactQuillEditor";
 
-function Certificate({formData ,  handleChange ,handleImageChange ,preview  ,handleQuillChange }) {
+function AddCertificate({formData ,  handleChange ,handleImageChange ,preview  ,handleQuillChange }) {
     console.log("formData?.certificatemage" ,formData?.certificatemage)
     return (
 
@@ -85,4 +85,4 @@ function Certificate({formData ,  handleChange ,handleImageChange ,preview  ,han
     );
 }
 
-export default Certificate;
+export default AddCertificate;

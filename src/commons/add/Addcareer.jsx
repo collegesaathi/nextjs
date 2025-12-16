@@ -2,34 +2,31 @@ import React, { useState } from "react";
 import { MdDelete, MdAdd } from "react-icons/md";
 import dynamic from "next/dynamic";
 import "react-quill-new/dist/quill.snow.css";
+import ReactQuillEditor from "@/common/ReactQuillEditor";
 
 // Dynamic import for Quill editor (SSR safe)
 const ReactQuill = dynamic(() => import("react-quill-new"), { ssr: false });
 
-export default function CarrerSection({ setCarrer, Carrers, htitle }) {
+export default function Addcareer({ setCareers, Careers, htitle  ,formData ,handleQuillChange  ,handleChange}) {
 
     // Add new advantage
     const addAdvantage = () => {
-        setCarrer([...Carrers, { title: "", description: "", salary: "" }]);
+        setCareers([...Careers, { title: "", description: "", salary: "" }]);
     };
 
     // Handle field change (title or description)
     const handleAdvantageChange = (index, field, value) => {
-        const updated = [...Carrers];
+        const updated = [...Careers];
         updated[index][field] = value;
-        setCarrer(updated);
+        setCareers(updated);
     };
 
     // Delete advantage
     const deleteAdvantage = (index) => {
-        setCarrer(Carrers.filter((_, i) => i !== index));
+        setCareers(Careers.filter((_, i) => i !== index));
     };
 
-    // Save advantage (example)
-    const saveAdvantage = (index) => {
-        console.log("Saving advantage:", Carrers[index]);
-        // Add API call here
-    };
+   
 
     // Quill modules & formats
     const quillModules = {
@@ -54,10 +51,39 @@ export default function CarrerSection({ setCarrer, Carrers, htitle }) {
 
     return (
         <div>
+
+             <div>
+        <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
+          Name{" "}
+          <span className="text-sm text-gray-500">
+            ({formData.careername?.length}/50)
+          </span>
+        </label>
+        <input
+          type="text"
+          name="careername"
+          value={formData.careername}
+          onChange={(e) => {
+            if (e.target.value.length <= 50) handleChange(e);
+          }}
+          placeholder="Enter name"
+          className="w-full p-3 rounded-md bg-gray-100 text-gray-700 
+                focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
+          required
+        />
+      </div>
+      <div className="mt-5 mb-5">
+        <ReactQuillEditor
+          label="Description"
+          desc={formData.careerdesc}
+          handleBioChange={(val) => handleQuillChange("careerdesc", val)}
+        />
+      </div>
             {/* Header + Add Button */}
             <div className="flex justify-between items-center mb-5">
-                <h2 className="text-xl font-semibold text-[#CC2828]">{htitle || "Carrers"} Section</h2>
+                <h2 className="text-xl font-semibold text-[#CC2828]">{htitle || "Careers"} Section</h2>
                 <button
+                type="button"
                     onClick={addAdvantage}
                     className="border border-[#CC2828] bg-[#CC2828] hover:bg-red-700 text-white px-6 py-2 rounded-[10px] text-base transition"
                 >
@@ -65,8 +91,8 @@ export default function CarrerSection({ setCarrer, Carrers, htitle }) {
                 </button>
             </div>
 
-            {/* Carrers List */}
-            {Carrers.map((adv, index) => (
+            {/* Careers List */}
+            {Careers?.map((adv, index) => (
                 <div key={index} className="grid grid-cols-1 gap-4 mb-6 border-b border-gray-200 pb-4">
 
                     {/* Title */}
@@ -86,6 +112,7 @@ export default function CarrerSection({ setCarrer, Carrers, htitle }) {
                         <div className="flex justify-between items-center mb-2">
                             <label className="block text-[#CC2828] font-medium">Description</label>
                             <button
+                            type="button"
                                 onClick={() => deleteAdvantage(index)}
                                 className="bg-red-500 text-white rounded-full p-1 hover:bg-red-700"
                                 title="Delete Advantage"

@@ -21,6 +21,7 @@ function AddCampus({ setCampusList, campusList, }) {
                 Campus Section
             </h2>
             <button
+            type="button"
                 onClick={addCampus}
                 className="border border-[#CC2828] bg-[#CC2828] hover:bg-red-700 text-white px-6 py-2 rounded-[10px] text-base transition"
             >
@@ -34,6 +35,7 @@ function AddCampus({ setCampusList, campusList, }) {
                 <label className="flex  justify-between  items-center block text-[#CC2828] font-medium mb-2">
                     Campus Name
                     <button
+                    type="button"
                         onClick={() => deleteCampus(index)}
                         className="mt-3 bg-red-500 text-white px-4 py-1 rounded-[10px]"
                     >

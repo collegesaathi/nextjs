@@ -6,7 +6,7 @@ import "react-quill-new/dist/quill.snow.css";
 // ✅ Dynamic import ReactQuill (SSR false)
 const ReactQuill = dynamic(() => import("react-quill-new"), { ssr: false });
 
-const FactsSection = ({ facts, setFacts }) => {
+const FactAdd = ({ facts, setFacts }) => {
 
     // Add new fact
     const addFacts = () => {
@@ -126,4 +126,4 @@ const FactsSection = ({ facts, setFacts }) => {
     );
 };
 
-export default FactsSection;
+export default FactAdd;

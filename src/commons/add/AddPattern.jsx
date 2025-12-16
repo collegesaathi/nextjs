@@ -7,7 +7,7 @@ import ReactQuillEditor from "@/common/ReactQuillEditor";
 // ✅ Dynamic import ReactQuill (SSR false)
 const ReactQuill = dynamic(() => import("react-quill-new"), { ssr: false });
 
-const PatternSection = ({ setPatterns, patterns, formData, handleQuillChange, handleChange }) => {
+const AddPattern = ({ setPatterns, patterns, formData, handleQuillChange, handleChange }) => {
 
 
   const addPattern = () => {
@@ -207,4 +207,4 @@ const PatternSection = ({ setPatterns, patterns, formData, handleQuillChange, ha
   );
 };
 
-export default PatternSection;
+export default AddPattern;
