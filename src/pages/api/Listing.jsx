@@ -62,8 +62,8 @@ class Listing extends Component {
     return Api.get("/leads/university",);
   }
 
-   async ContactUniversityGet() {
-    return Api.get("/leads/university",);
+   async Listjsx() {
+    return Api.get("/list",);
   }
 
   async AdminUniveristy(page) {

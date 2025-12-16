@@ -19,13 +19,16 @@ import Ranking from "../../common/Ranking";
 import AddAbout from "@/commons/add/AddAbout";
 function Index() {
     const [universities, setUniversities] = useState([])
+    const [categroy, setCategroy] = useState([])
+console.log("categroy" ,categroy)
     const fetchData = async () => {
         try {
 
             const main = new Listing();
-            const response = await main.ContactUniversityGet();
+            const response = await main.Listjsx();
             console.log("response", response)
             const universities = response?.data?.data?.universities || [];
+            setCategroy(response?.data?.data?.CategoryLists)
             setUniversities(universities);
 
         } catch (error) {
@@ -153,6 +156,7 @@ function Index() {
         patterndescription: "",
         patternname: "",
         university_id: "",
+       categroy_id: "",
         cover_image_alt :"",
 
     });
@@ -459,6 +463,34 @@ function Index() {
                                         <option value="" disabled>Select a University</option>
                                         {universities && universities.length > 0 ? (
                                             universities.map((u, index) => (
+                                                <option key={index} value={u.id}>
+                                                    {u.name}
+                                                </option>
+                                            ))
+                                        ) : (
+                                            <option disabled>No data</option>
+                                        )}
+
+                                    </select>
+                                </div>
+                            </div>
+
+                            
+                            <div>
+                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
+                                    Categroy Id {" "}
+                                </label>
+
+                                <div className="relative">
+                                    <select
+                                        name="categroy_id"
+                                        value={formData?.categroy_id}
+                                        onChange={handleChange}
+                                        className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
+                                    >
+                                        <option value="" disabled>Select a categroy</option>
+                                        {categroy && categroy.length > 0 ? (
+                                            categroy.map((u, index) => (
                                                 <option key={index} value={u.id}>
                                                     {u.name}
                                                 </option>
