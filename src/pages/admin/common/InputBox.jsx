@@ -60,16 +60,12 @@ export function InputBox({ data: parentData = null, handleChange: parentHandleCh
                                 {st.name}
                             </option>
                         ))
-
                     ) :
                         (
                             <option disabled>
                                 No data
                             </option>
-
                         )}
-
-                  
                 </select>
 
                 <span className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
@@ -86,20 +82,20 @@ export function InputBox({ data: parentData = null, handleChange: parentHandleCh
                     className="w-full px-4 py-3 pr-10 border border-[#808080] rounded-[8px] bg-white appearance-none focus:outline-none focus:ring-2 focus:ring-red-500 text-gray-500"
                 >
                     <option value="" disabled>Select City</option>
-                    {cities && cities.length>0 ? (
-                           cities.map((ct) => (
-                        <option key={ct.name} value={ct.name}>
-                            {ct.name}
-                        </option>
-                    ))
-
-                    ):(
-                          <option disabled>
-                                No data
+                    {cities && cities.length > 0 ? (
+                        cities.map((ct) => (
+                            <option key={ct.name} value={ct.name}>
+                                {ct.name}
                             </option>
+                        ))
 
-                    ) }
-                 
+                    ) : (
+                        <option disabled>
+                            No data
+                        </option>
+
+                    )}
+
                 </select>
 
                 <span className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">

@@ -1,7 +1,7 @@
 import ReactQuillEditor from "@/common/ReactQuillEditor";
 import { MdAdd, MdDelete, MdEdit } from "react-icons/md";
 
-function FinancialAdd({ formData, fees, handleChange, handleQuillChange, }) {
+function FinancialAdd({ formData, fees, handleChange, handleQuillChange,setFees }) {
 
     const handleFeesChange = (index, field, value) => {
         const updatedFees = [...fees];
