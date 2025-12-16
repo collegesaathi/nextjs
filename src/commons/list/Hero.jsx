@@ -21,10 +21,12 @@ export default function Hero({data}) {
                 key={index}
                 className="w-full sm:w-[48%] lg:w-[208px] min-h-[44px] rounded-[12px] border border-[#f8dbdd] flex items-center gap-2 px-3 py-2"
               >
-                <span className="font-poppins text-[12px] text-[#282529]">{item?.text}</span>
+                <span className="font-poppins text-[12px] text-[#282529] flex-wrap document-image"  dangerouslySetInnerHTML={{ __html: item?.text || "" }} />
               </div>
             ))}
           </div>
+
+              
 
           {/* STAR + LOGOS */}
           <div className="flex items-center gap-4 pt-6">

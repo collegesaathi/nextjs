@@ -21,7 +21,7 @@ export default function SampleCertificate({certificates}) {
               <div className="relative w-[260px] h-[250px] sm:w-[300px] sm:h-[290px] md:w-[340px] md:h-[330px] lg:w-[360px] lg:h-[355px]">
                 {/* Frame */}
                 <img
-                   src={certificates?.image}
+                   src="/images/university/certificatebg.png"
                   alt="frame"
                   fill
                   className="object-cover"

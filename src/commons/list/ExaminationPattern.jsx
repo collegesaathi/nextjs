@@ -5,12 +5,12 @@ export default function ExaminationPattern({ examPatterns }) {
   return (
     <>
       <div className="mt-[50px] px-6 py-6   bg-[#f7f6f6]">
-        <section className="w-full px-6 py-6 mx-auto" id="examination-section">
+        <section className="w-full py-6 mx-auto" id="examination-section">
           <div className=" max-w-[1230px]">
-            <div className="space-y-6 px-4 pt-5  pb-5">
+            <div className="space-y-6  pt-5  pb-5">
               <Heading title={examPatterns?.title} classes={""} />
               <div
-                className="font-poppins text-[15px] sm:text-[16px] text-[#282529] leading-6 sm:leading-7 mb-4"
+                className="font-poppins text-[15px] sm:text-[16px] text-[#282529] leading-6 sm:leading-7 mb-4 [&_*]:!bg-transparent"
                 dangerouslySetInnerHTML={{ __html: examPatterns?.description || "" }}
               />
               {examPatterns?.patterns?.map((item, index) => (
@@ -28,9 +28,9 @@ export default function ExaminationPattern({ examPatterns }) {
                     <img
                       src={item?.image}
                       alt={item?.patternName}
-                      width={260}
-                      height={260}
-                      className="absolute right-[-20px] sm:right-[-30px] bottom-[-5px] w-[180px] sm:w-[230px] md:w-[270px]"
+                      width={60}
+                      height={60}
+                      className="absolute right-0 bottom-[-5px] w-[180px] sm:w-[30px] md:w-[170px]"
                     />
                   </div>
 
@@ -41,7 +41,7 @@ export default function ExaminationPattern({ examPatterns }) {
                     </h3>
 
                     <div
-                      className="font-poppins text-[15px] md:text-[17px] leading-[22px] md:leading-[25px] text-[#282529]"
+                      className="font-poppins text-[15px] md:text-[17px] leading-[22px] md:leading-[25px] text-[#282529]  [&_*]:!bg-transparent"
                       dangerouslySetInnerHTML={{ __html: item?.description }}
                     />
                   </div>
@@ -52,7 +52,7 @@ export default function ExaminationPattern({ examPatterns }) {
             {/* ---------------- Footer Note ---------------- */}
             <div className="flex items-start gap-3 px-2 md:px-4 pt-10">
               <div
-                className="font-poppins text-[15px] sm:text-[16px] text-[#282529] leading-6 sm:leading-7 mb-4 data "
+                className="font-poppins text-[15px] sm:text-[16px] text-[#282529] leading-6 sm:leading-7 mb-4 data [&_*]:!bg-transparent "
                 dangerouslySetInnerHTML={{ __html: examPatterns?.bottompatterndesc || "" }}
               />
             </div>
