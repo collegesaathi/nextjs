@@ -23,7 +23,7 @@ export default function Delete({ step, Id, fetch, deleteAt }) {
         try {
             setLoading(true);
             const main = new Listing();
-            const res = await main.UniveristyDelete( Id );
+            const res = await main.UniveristyDelete(Id);
 
             if (res?.data?.status) {
                 toast.success(res.data.message);
