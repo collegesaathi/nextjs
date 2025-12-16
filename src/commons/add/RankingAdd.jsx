@@ -1,6 +1,6 @@
 import ReactQuillEditor from "@/common/ReactQuillEditor";
 
-function Ranking({ formData, handleChange, handleQuillChange }) {
+function RankingAdd({ formData, handleChange, handleQuillChange }) {
     return (
         <>
 
@@ -25,7 +25,6 @@ function Ranking({ formData, handleChange, handleQuillChange }) {
             </div>
 
             {/* Description Field changed to textarea with 300 character limit */}
-
             <ReactQuillEditor
                 label="Description"
                 desc={formData.rankings_description}
@@ -40,4 +39,4 @@ function Ranking({ formData, handleChange, handleQuillChange }) {
     );
 }
 
-export default Ranking;
+export default RankingAdd;

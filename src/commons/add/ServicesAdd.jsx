@@ -1,7 +1,7 @@
 import ReactQuillEditor from "@/common/ReactQuillEditor";
 import { MdDelete } from "react-icons/md";
 
-function ServicesSection({ formData, handleQuillChange, handleChange, setServices, services }) {
+function ServicesAdd({ formData, handleQuillChange, handleChange, setServices, services }) {
 
 
     const addService = () => {
@@ -53,6 +53,7 @@ function ServicesSection({ formData, handleQuillChange, handleChange, setService
                 <div className="flex justify-between items-center mb-5">
                     <h2 className="text-xl font-semibold text-[#CC2828]">Services Section</h2>
                     <button
+                    type="button"
                         onClick={addService}
                         className="border border-[#CC2828] bg-[#CC2828] hover:bg-red-700 text-white px-6 py-2 rounded-[10px] text-base transition"
                     >
@@ -69,6 +70,7 @@ function ServicesSection({ formData, handleQuillChange, handleChange, setService
                                 <label className="block text-[#CC2828] font-medium mb-2">Title</label>
 
                                 <button
+                                type="button"
                                     onClick={() => deleteService(index)}
                                     className="bg-red-500 text-white rounded-full p-1 hover:bg-red-700 mb-2"
                                     title="Delete Service"
@@ -182,4 +184,4 @@ function ServicesSection({ formData, handleQuillChange, handleChange, setService
     );
 }
 
-export default ServicesSection;
+export default ServicesAdd;

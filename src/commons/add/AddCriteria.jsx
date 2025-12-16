@@ -5,7 +5,7 @@ import "react-quill-new/dist/quill.snow.css";
 
 const ReactQuill = dynamic(() => import("react-quill-new"), { ssr: false });
 
-export default function Criteria({ setCriteria, criteria = [] }) {
+export default function AddCriteria({ setCriteria, criteria = [] }) {
   // ensure criteria default to array to avoid map errors
 
   const addCriteria = () => {

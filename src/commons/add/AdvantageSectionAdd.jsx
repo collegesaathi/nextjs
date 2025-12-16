@@ -7,7 +7,7 @@ import ReactQuillEditor from "@/common/ReactQuillEditor";
 // Dynamic import for Quill editor (SSR safe)
 const ReactQuill = dynamic(() => import("react-quill-new"), { ssr: false });
 
-export default function AdvantagesSection({ setAdvantages, advantages, htitle, handleChange, formData, handleQuillChange }) {
+export default function AdvantageSectionAdd({ setAdvantages, advantages, htitle, handleChange, formData, handleQuillChange }) {
 
   // Add new advantage
   const addAdvantage = () => {

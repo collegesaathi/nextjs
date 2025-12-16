@@ -5,19 +5,21 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { MdAdd, MdDelete, MdEdit } from "react-icons/md";
 import ReactQuillEditor from "@/common/ReactQuillEditor";
 import toast from "react-hot-toast";
-import AdvantagesSection from "../../common/AdvantageSection";
-import FactsSection from "../../common/FactSection";
-import PatternSection from "../../common/PatternSection";
 import ApprovalAndPartner from "@/common/ApprovalAndPartner";
-import Certificate from "../../common/Certificate";
-import FaqSection from "../../common/FaqSection";
-import OnlineSection from "../../common/OnlineSection";
-import ServicesSection from "../../common/ServicesSection";
 import { useRouter } from "next/router";
-import SEOAdd from "../../common/SEOAdd";
 import { Loader } from "@/common/Loader";
 import Campus from "@/commons/add/AddCampus";
 import AddAbout from "@/commons/add/AddAbout";
+import SEOAdd from "@/commons/add/SEOAdd";
+import FaqAdd from "@/commons/add/FaqAdd";
+import AddOnline from "@/commons/add/AddOnline";
+import ServicesAdd from "@/commons/add/ServicesAdd";
+import AdvantageSectionAdd from "@/commons/add/AdvantageSectionAdd";
+import FactAdd from "@/commons/add/FactAdd";
+import AddCertificate from "@/commons/add/AddCertificate";
+import AddPattern from "@/commons/add/AddPattern";
+import FinancialAdd from "@/commons/add/FinancialAdd";
+import AddCampus from "@/commons/add/AddCampus";
 
 function Index() {
     const router = useRouter()
@@ -797,7 +799,7 @@ function Index() {
                             <>
                                 {activeTab === "advantages" && (
                                     <>
-                                        <AdvantagesSection advantages={advantages} setAdvantages={setAdvantages}
+                                        <AdvantageSectionAdd advantages={advantages} setAdvantages={setAdvantages}
                                             htitle={"Advantages"} handleChange={handleChange} handleQuillChange={handleQuillChange} formData={formData} />
                                     </>
                                 )}
@@ -828,7 +830,7 @@ function Index() {
                                     />
                                 </div>
 
-                                <FactsSection facts={facts} setFacts={setFacts} />
+                                <FactAdd facts={facts} setFacts={setFacts} />
 
                             </>
 
@@ -836,7 +838,7 @@ function Index() {
 
                         {activeTab === "certificate" && (
                             <>
-                                <Certificate
+                                <AddCertificate
                                     formData={formData}
                                     handleChange={handleChange}
                                     handleImageChange={handleImageChange}
@@ -848,163 +850,16 @@ function Index() {
                         )}
 
                         {activeTab === "pattern" && (
-                            <PatternSection setPatterns={setPatterns} patterns={patterns} formData={formData} handleChange={handleChange} handleQuillChange={handleQuillChange} />
+                            <AddPattern setPatterns={setPatterns} patterns={patterns} formData={formData} handleChange={handleChange} handleQuillChange={handleQuillChange} />
                         )}
                         {/* Action Buttons */}
-                        {activeTab === "financial" && (
-                            <>
-                                <div>
-                                    <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
-                                        Financial  Name{" "}
-                                        <span className="text-sm text-gray-500">
-                                            ({formData.financialname?.length}/50)
-                                        </span>
-                                    </label>
-                                    <input
-                                        type="text"
-                                        name="financialname"
-                                        value={formData.financialname}
-                                        onChange={(e) => {
-                                            if (e.target.value.length <= 50) handleChange(e);
-                                        }}
-                                        placeholder="Enter name"
-                                        className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
-                                        required
-                                    />
-                                </div>
-                                <ReactQuillEditor
-                                    label="Description"
-                                    desc={formData.financialdescription}
-                                    handleBioChange={(val) => handleQuillChange("financialdescription", val)}
-                                />
-
-
-                                <div className="flex justify-between items-center mb-5">
-                                    <h2 className="text-xl font-semibold text-[#CC2828]">
-                                        Multiple Financial
-                                    </h2>
-
-                                    <button
-                                        onClick={addFees}
-                                        className="border border-[#CC2828] bg-[#CC2828] hover:bg-red-700 text-white px-6 py-2 rounded-[10px] text-base transition"
-                                    >
-                                        + Multiple Financial More
-                                    </button>
-                                </div>
-                                {fees?.map((fee, index) => (
-                                    <div key={index} className="grid grid-cols-1 gap-4 items-center">
-
-                                        {/* Course Name */}
-                                        <div>
-                                            <label className="block text-[#CC2828] font-medium mb-2">Course Name</label>
-                                            <input
-                                                type="text"
-                                                disabled={fee?._id}
-                                                value={fee.courseName}
-                                                onChange={(e) => handleFeesChange(index, "courseName", e.target.value)}
-                                                placeholder="Enter Course Name"
-                                                className="w-full bg-[#F4F6F8] text-[#727272] border rounded-[10px] px-4 py-2 focus:outline-none"
-                                            />
-                                        </div>
-
-                                        {/* 5 Fees Fields */}
-                                        <div>
-                                            <div className="flex justify-between items-center mb-2">
-                                                <label className="block text-[#CC2828] font-medium">Fees Details</label>
-
-                                                <div className="flex items-center gap-2">
-                                                    {fee._id ? (
-                                                        <button
-                                                            onClick={() => openEditModal(fee)}
-                                                            className="bg-red-500 text-white rounded-full p-1 hover:bg-red-700"
-                                                            title="Edit Fees"
-                                                        >
-                                                            <MdEdit />
-                                                        </button>
-                                                    ) : (
-                                                        <button
-                                                            onClick={() => handleFeesSubmit(index)}
-                                                            className="bg-red-500 text-white rounded-full p-1 hover:bg-red-700"
-                                                            title="Save Fees"
-                                                        >
-                                                            <MdAdd />
-                                                        </button>
-                                                    )}
-
-                                                    <span className="text-[#b1a9a9]">|</span>
-
-                                                    <button
-                                                        onClick={() => deleteFees(index)}
-                                                        className="bg-red-500 text-white rounded-full p-1 hover:bg-red-700"
-                                                        title="Delete Fees"
-                                                    >
-                                                        <MdDelete />
-                                                    </button>
-                                                </div>
-                                            </div>
-
-                                            {/* 5 Inputs */}
-                                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                                <input
-                                                    type="text"
-                                                    placeholder="Total Fees"
-                                                    value={fee.totalFees}
-                                                    disabled={fee?._id}
-                                                    onChange={(e) => handleFeesChange(index, "totalFees", e.target.value)}
-                                                    className="w-full bg-[#F4F6F8] text-[#727272] border rounded-[10px] px-4 py-2"
-                                                />
-
-                                                <input
-                                                    type="text"
-                                                    placeholder="Loan Amount"
-                                                    value={fee.loanAmount}
-                                                    disabled={fee?._id}
-                                                    onChange={(e) => handleFeesChange(index, "loanAmount", e.target.value)}
-                                                    className="w-full bg-[#F4F6F8] text-[#727272] border rounded-[10px] px-4 py-2"
-                                                />
-
-                                                <input
-                                                    type="text"
-                                                    placeholder="Tenure"
-                                                    value={fee.tenure}
-                                                    disabled={fee?._id}
-                                                    onChange={(e) => handleFeesChange(index, "tenure", e.target.value)}
-                                                    className="w-full bg-[#F4F6F8] text-[#727272] border rounded-[10px] px-4 py-2"
-                                                />
-
-                                                <input
-                                                    type="text"
-                                                    placeholder="Interest (%)"
-                                                    value={fee.interest}
-                                                    disabled={fee?._id}
-                                                    onChange={(e) => handleFeesChange(index, "interest", e.target.value)}
-                                                    className="w-full bg-[#F4F6F8] text-[#727272] border rounded-[10px] px-4 py-2"
-                                                />
-
-                                                <input
-                                                    type="text"
-                                                    placeholder="Monthly EMI"
-                                                    value={fee.emi}
-                                                    disabled={fee?._id}
-                                                    onChange={(e) => handleFeesChange(index, "emi", e.target.value)}
-                                                    className="w-full bg-[#F4F6F8] text-[#727272] border rounded-[10px] px-4 py-2"
-                                                />
-                                            </div>
-                                        </div>
-                                    </div>
-                                ))}
-
-                                {/* Add More Button */}
-                                <div className="flex justify-center ">
-
-                                </div>
-
-                            </>
-                        )}
+                       {activeTab === "financial" && (
+                        <FinancialAdd handleQuillChange={handleQuillChange} handleChange={handleChange} fees={fees} setFees={setFees} formData={formData} />
+                    )}
 
                         {activeTab === "campuses" && (
                             <>
-                                <Campus campusList={campusList} setCampusList={setCampusList} />
+                                <AddCampus campusList={campusList} setCampusList={setCampusList} />
                             </>
                         )}
 
@@ -1044,13 +899,13 @@ function Index() {
 
                         )}
                         {activeTab === "services" && (
-                            <ServicesSection services={services} setServices={setServices} handleChange={handleChange} handleQuillChange={handleQuillChange} formData={formData} />
+                            <ServicesAdd services={services} setServices={setServices} handleChange={handleChange} handleQuillChange={handleQuillChange} formData={formData} />
                         )}
                         {activeTab === "online" && (
-                            <OnlineSection formData={formData} handleChange={handleChange} onlines={onlines} setOnlines={setOnlines} handleQuillChange={handleQuillChange} />
+                            <AddOnline formData={formData} handleChange={handleChange} onlines={onlines} setOnlines={setOnlines} handleQuillChange={handleQuillChange} />
                         )}
                         {activeTab === "faq" && (
-                            <FaqSection faqs={faqs} setFaqs={setFaqs} />
+                            <FaqAdd faqs={faqs} setFaqs={setFaqs} />
                         )}
                         {activeTab === "seo" && (
                             <SEOAdd formData={formData} handleChange={handleChange} />

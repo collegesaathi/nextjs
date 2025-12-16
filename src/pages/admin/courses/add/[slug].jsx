@@ -4,18 +4,18 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { MdAdd, MdDelete, MdEdit } from "react-icons/md";
 import ReactQuillEditor from "@/common/ReactQuillEditor";
 import toast from "react-hot-toast";
-import AdvantagesSection from "../../common/AdvantageSection";
-import PatternSection from "../../common/PatternSection";
+import AdvantagesSection from "../../../../commons/add/AdvantageSectionAdd";
+import PatternSection from "../../../../commons/add/AddPattern";
 import ApprovalAndPartner from "@/common/ApprovalAndPartner";
 import AdminLayout from "../../common/AdminLayout";
-import Criteria from "../../common/Criteria";
-import SemesterForm from "../../common/SemesterForm";
-import Certificate from "../../common/Certificate";
+import Criteria from "../../../../commons/add/AddCriteria";
+import SemesterForm from "../../../../commons/add/SemesterFormAdd";
+import Certificate from "../../../../commons/add/AddCertificate";
 import CarrerSection from "../../common/CarrerSection";
-import FaqSection from "../../common/FaqSection";
-import OnlineSection from "../../common/OnlineSection";
-import ServicesSection from "../../common/ServicesSection";
-import Ranking from "../../common/Ranking";
+import FaqSection from "../../../../commons/add/FaqAdd";
+import OnlineSection from "../../../../commons/add/AddOnline";
+import ServicesSection from "../../../../commons/add/ServicesAdd";
+import Ranking from "../../../../commons/add/RankingAdd";
 function Index() {
     const [activeTabs, setActiveTabs] = useState("indian");
 

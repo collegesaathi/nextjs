@@ -1,6 +1,3 @@
-import ReactQuillEditor from "@/common/ReactQuillEditor";
-import { MdDelete } from "react-icons/md";
-
 function SEOAdd({ formData, handleChange, }) {
 
     return (
