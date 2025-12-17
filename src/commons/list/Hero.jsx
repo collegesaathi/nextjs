@@ -32,6 +32,8 @@ export default function Hero({data}) {
           <div className="flex items-center gap-4 pt-6">
           
 
+            <Image src="/images/university/hero/reviews.png" alt="" width={356} height={150} className="sm:w-[400px]" />
+            
             <Image src="/images/university/hero/coverimage.png" alt="" width={356} height={150} className="sm:w-[400px]" />
           </div>
 
@@ -78,6 +80,8 @@ export default function Hero({data}) {
             height={400}
             className="rounded-[8px] w-full h-auto"
           />
+
+          
 
           {/* TOP BADGES */}
            <div className="absolute top-2 left-0 right-0 w-full flex gap-4 justify-between px-3 sm:px-6 md:px-10 pt-3">

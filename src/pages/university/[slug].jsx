@@ -28,7 +28,7 @@ function Index({ data }) {
         <Layout>
             <div className="py-4 md:py-8 ">
                 <div className="mx-auto container sm:container md:container lg:container xl:max-w-[1430px]  px-4">
-                    <Hero data={data?.university} />
+                    <Hero data={data?.university} approvalsdata={data?.approvalsData} />
                 </div>
                 <div className="w-full flex items-start pt-10 justify-center h-full relative flex-wrap">
                     <div
