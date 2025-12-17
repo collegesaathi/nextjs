@@ -46,7 +46,7 @@ function Index({ data }) {
                         <Eligibility />
                         <Curriculum />
 
-                        <Skills advantages={data?.CourseData?.advantages} />
+                        <Skills advantages={data?.CourseData?.Skills} />
 
                         <Advantages advantages={data?.CourseData?.advantages} />
 
