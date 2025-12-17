@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
-import br from "../assets/home/br.avif"
-import bg from "../assets/home/bg.avif"
+import BR from "../assets/home/br.avif"
+import BG from "../assets/home/bg.avif"
 
 
 export default function Confusion() {
@@ -34,7 +34,7 @@ export default function Confusion() {
                                 </div>
                             </div>
                             <div className="absolute top-13 -right-[30px] w-[587px]">
-                                <img src={br?.src} alt="Blog illustration" className="w-full h-auto" />
+                                <img src={BR?.src} alt="Blog illustration" className="w-full h-auto" />
                             </div>
                         </div>
                     </section>
@@ -43,7 +43,7 @@ export default function Confusion() {
                     <section className=" lg:hidden block">
                         <div className="w-full rounded-[25px] relative mx-auto">
                             <img
-                                src={bg?.src}
+                                src={BG?.src}
                                 alt="Blog background"
                                 className="w-full h-[200px] object-cover rounded-[25px]"
                             />

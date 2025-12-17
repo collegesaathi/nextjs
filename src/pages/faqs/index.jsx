@@ -267,14 +267,14 @@ export default function FaqSection() {
               </div>
             )}
 
-            <div className="mt-4 ">
+            {/* <div className="mt-4 ">
               <a
                 href="#"
                 className="text-[#282529] text-[16px] font-[600] inline-flex items-center leading-[16px] border-b-2 border-[#EE1E24] "
               > 
                 Load More
               </a>
-            </div>
+            </div> */}
           </div>
         </div>
         <ContactSection />
