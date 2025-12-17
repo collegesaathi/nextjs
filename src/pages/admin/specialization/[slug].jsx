@@ -1,38 +1,4 @@
-import React from "react";
-import AdminLayout from "../common/AdminLayout";
-import Budget from "../../assets/home/Budget.png";
-import Confusion from "../../assets/home/Confusion.png";
-import EMIOptions from "../../assets/home/EMIOptions.png";
-import Suggestions from "../../assets/home/Suggestions.png";
-import Placements from "../../assets/home/Placements.png"
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, A11y } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import { useRef, useState } from "react";
-import Heading from "@/common/Heading";
-import Image from "next/image";
-import Facts from "../../../commons/list/Facts";
-import UniversityCampusCarousel from "@/pages/common/UniversityCampusCarousel";
-import PlacementPartners from "@/pages/common/PlacementPartners";
-import CareerServices from "@/pages/common/CareerServices";
-import StepsSection from "@/commons/list/StepsSection";
-import Approvals from "../../common/Approvals";
-import Advantages from "@/commons/list/Advantages";
-import Financial from "@/commons/list/Financial";
-import Ranking from "@/commons/list/Rankings";
-import CourseFess from "@/commons/list/CourseFees";
-import Aboutdetails from "@/commons/list/Aboutdetails";
-import Reviews from "@/pages/common/Reviews";
-import Universities from "@/pages/common/Universities";
-import SimilarUniversities from "@/pages/common/SimilarUniversities";
-import FaqManager from "../FaqManager";
-import FAQSection from "@/commons/list/FAQSection";
-import ExaminationPattern from "@/commons/list/ExaminationPattern";
-import SampleCertificate from "@/commons/list/SampleCertificate";
-import CoursesSwiper from "@/pages/common/CoursesSwiper";
-import Hero from "@/commons/list/Hero";
-import UniversitySidebar from "@/pages/common/FrontendSidebar";
+
 function Details() {
 
     const helpCards = [
@@ -170,39 +136,6 @@ function Details() {
     return (<>
         <AdminLayout page={"university"}>
             <div className="py-4 md:py-8 ">
-                <div className="mx-auto container sm:container md:container lg:container xl:max-w-[1230px]  px-4">
-                    {/* <Approvals />  */}
-                    <Hero />
-
-                    <div className="w-full flex items-start pt-10 justify-center h-full relative flex-wrap">
-                        {/* <div
-                            className="w-full lg:w-4/12 bg-[#f9fafb] lg:shadow-[4px_4px_4px_rgba(0,0,0,0.06)] h-full overflow-y-auto justify-end flex lg:pr-4 relative animate-slide-fade-right animate-delay-200"
-                        >
-                            <UniversitySidebar />
-                        </div>
-                        <div className="w-full lg:w-8/12 h-full lg:h-[100vh] overflow-y-auto scs"> */}
-                            <Aboutdetails />
-                            <CourseFess />
-                            <PlacementPartners />
-
-                            <Ranking />
-                            <CoursesSwiper />
-                            <Advantages />
-                            <Facts />
-                            <SampleCertificate />
-                            <ExaminationPattern />
-                            <Financial />
-                            <UniversityCampusCarousel />
-                            <CareerServices />
-                            <StepsSection />
-                            <FAQSection />
-                            <SimilarUniversities />
-                            <Universities />
-                            <Reviews />
-                        {/* </div> */}
-
-                    </div>
-                </div>
             </div>
         </AdminLayout>
     </>);
