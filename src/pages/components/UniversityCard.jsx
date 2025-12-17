@@ -74,7 +74,7 @@ console.log("card" ,card)
             <div className="p-4 flex flex-col flex-grow z-10">
 
                 <div className="text-base font-bold text-black mb-2 line-clamp-1">
-                    {card.name}
+                    {card?.name}
                 </div>
 
                 {/* Rating */}
