@@ -32,7 +32,7 @@ import ExaminationPattern from "@/commons/list/ExaminationPattern";
 import SampleCertificate from "@/commons/list/SampleCertificate";
 import CoursesSwiper from "@/pages/common/CoursesSwiper";
 import Hero from "@/commons/list/Hero";
-import UniversitySidebar from "@/pages/common/UniversitySidebar";
+import UniversitySidebar from "@/pages/common/FrontendSidebar";
 function Details() {
 
     const helpCards = [

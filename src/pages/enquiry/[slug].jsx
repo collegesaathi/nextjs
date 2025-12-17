@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import Layout from "../components/Layout";
 import Hero from "../../commons/list/Hero";
-import UniversitySidebar from "../common/UniversitySidebar";
+import UniversitySidebar from "../common/FrontendSidebar";
 import Reviews from "../common/Reviews";
 import Universities from "../common/Universities";
 import SimilarUniversities from "../common/SimilarUniversities";
@@ -20,9 +20,9 @@ import PlacementPartners from "../common/PlacementPartners";
 import CourseFees from "../../commons/list/CourseFees";
 import Aboutdetails from "../../commons/list/Aboutdetails";
 import Approvals from "../common/Approvals";
-import UpdatedFee from "../common/UpdatedFee";
-import Eligibility from "../common/Eligibility";
-import Curriculum from "../common/Curriculum";
+import UpdatedFee from "../../commons/list/UpdatedFee";
+import Eligibility from "../../commons/list/Eligibility";
+import Curriculum from "../../commons/list/Curriculum";
 import EnquiryForm from "../common/EnquiryForm";
 import MarketingManagement from "../common/MarketingManagement";
 

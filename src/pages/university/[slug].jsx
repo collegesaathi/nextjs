@@ -17,10 +17,10 @@ import Advantages from "@/commons/list/Advantages";
 import CoursesSwiper from "@/commons/list/CoursesSwiper";
 import Approvals from "@/commons/list/Approvals";
 import Aboutdetails from "@/commons/list/Aboutdetails";
-import UniversitySidebar from "../common/UniversitySidebar";
 import Hero from "@/commons/list/Hero";
 import CourseFees from "@/commons/list/CourseFees";
 import Ranking from "@/commons/list/Rankings";
+import FrontendSidebar from "../common/FrontendSidebar";
 function Index({ data }) {
 
   
@@ -36,7 +36,7 @@ function Index({ data }) {
                     <div
                         className="w-full lg:w-3/12 bg-[#f9fafb] lg:shadow-[4px_4px_4px_rgba(0,0,0,0.06)] h-full overflow-y-auto justify-end flex lg:pr-4 relative animate-slide-fade-right animate-delay-200"
                     >
-                        <UniversitySidebar />
+                        <FrontendSidebar />
                     </div>
                     <div className="w-full lg:w-9/12 h-full lg:h-[100vh] overflow-y-auto " style={{ scrollbarWidth: "none", }}>
                         <Aboutdetails about={data?.university?.about} />

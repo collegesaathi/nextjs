@@ -1,28 +1,24 @@
 import { useRouter } from "next/router";
 import Layout from "../components/Layout";
-import Hero from "../../commons/list/Hero";
-import UniversitySidebar from "../common/UniversitySidebar";
-import Reviews from "../common/list/Reviews";
-import Universities from "../common/list/Universities";
-import SimilarUniversities from "../common/list/SimilarUniversities";
-import FAQSection from "../../commons/list/FAQSection";
-import StepsSection from "../../commons/list/StepsSection";
-import CareerServices from "@/common/list/CareerServices";
-// import UniversityCampusCarousel from "../common/UniversityCampusCarousel";
-import Financial from "../../commons/list/Financial";
-import ExaminationPattern from "../../commons/list/ExaminationPattern";
-import SampleCertificate from "../../commons/list/SampleCertificate";
-import Facts from "../../commons/list/Facts";
-import Advantages from "../../commons/list/Advantages";
-// import CoursesSwiper from "../common/CoursesSwiper";
-import Ranking from "../../commons/list/Rankings";
-import PlacementPartners from "../common/list/PlacementPartners";
-import CourseFees from "../../commons/list/CourseFees";
-import Aboutdetails from "../../commons/list/Aboutdetails";
-import Approvals from "@/common/list/Approvals";
-import UpdatedFee from "../common/UpdatedFee";
-import Eligibility from "../common/Eligibility";
-import Curriculum from "../common/Curriculum";
+import Hero from "@/commons/list/Hero";
+import Aboutdetails from "@/commons/list/Aboutdetails";
+import UpdatedFee from "@/commons/list/UpdatedFee";
+import Approvals from "@/commons/list/Approvals";
+import Ranking from "@/commons/list/Rankings";
+import Eligibility from "@/commons/list/Eligibility";
+import Curriculum from "@/commons/list/Curriculum";
+import Advantages from "@/commons/list/Advantages";
+import SampleCertificate from "@/commons/list/SampleCertificate";
+import ExaminationPattern from "@/commons/list/ExaminationPattern";
+import Financial from "@/commons/list/Financial";
+import PlacementPartners from "@/commons/list/PlacementPartners";
+import CareerServices from "@/commons/list/CareerServices";
+import StepsSection from "@/commons/list/StepsSection";
+import FAQSection from "@/commons/list/FAQSection";
+import SimilarUniversities from "@/commons/list/SimilarUniversities";
+import Universities from "@/commons/list/Universities";
+import Reviews from "@/commons/list/Reviews";
+import FrontendSidebar from "../common/FrontendSidebar";
 
 
 function Index() {
@@ -38,7 +34,7 @@ function Index() {
                         className="w-full lg:w-3/12 bg-[#f9fafb] lg:shadow-[4px_4px_4px_rgba(0,0,0,0.06)] h-full overflow-y-auto justify-end flex lg:pr-4 relative animate-slide-fade-right animate-delay-200"
                     >
                         {/* <Approvals />  */}
-                        <UniversitySidebar />
+                        <FrontendSidebar />
                     </div>
                     <div className="w-full lg:w-9/12 h-full lg:h-[100vh] overflow-y-auto " style={{ scrollbarWidth: "none", }}>
                         <Aboutdetails />
