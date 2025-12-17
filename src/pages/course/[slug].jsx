@@ -24,6 +24,7 @@ import FrontendSidebar from "../common/FrontendSidebar";
 import { fetchDetails } from "@/lib/ssrFetch";
 import Eligibility from "@/commons/list/Eligibility";
 import Curriculum from "@/commons/list/Curriculum";
+import Skills from "@/commons/list/Skills";
 function Index({ data }) {
     return (<>
         <Layout>
@@ -44,6 +45,8 @@ function Index({ data }) {
                         <Ranking rankings={data?.CourseData?.rankings} />
                         <Eligibility />
                         <Curriculum />
+
+                        <Skills advantages={data?.CourseData?.advantages} />
 
                         <Advantages advantages={data?.CourseData?.advantages} />
 
