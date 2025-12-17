@@ -14,7 +14,7 @@ function Facts({ facts }) {
       <div className="px-6 py-6  relative">
          
            <div className="absolute top-0 left-0 w-full h-[80%] bg-[#fcf0ee] -z-10 "></div>
-                         <Image src="/images/university/factsbg.png" width={200} height={200} className="hidden lg:block absolute top-2 lg:right-10 2xl:right-20 lg:top-16 animate-float"  />
+                         <Image src="/images/university/factsbg.png" width={200} height={200} className="hidden lg:block absolute top-2 lg:right-10 2xl:right-60 lg:top-16 animate-float"  />
         <section className="w-full mx-auto" id="facts-section">
           <div className="">
             <div className="relative z-10  mt-[50px]">
@@ -34,7 +34,7 @@ function Facts({ facts }) {
 
               </h2>
   
-        <div className="rounded-[20px] bg-white  shadow-[0px_1px_10px_rgba(0,0,0,0.09)] p-4 md:p-8 ">
+        <div className="rounded-[20px] bg-white max-w-[1230px] shadow-[0px_1px_10px_rgba(0,0,0,0.09)] p-4 md:p-8 ">
              
   <div className="flex">
 

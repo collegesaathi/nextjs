@@ -21,6 +21,10 @@ import Hero from "@/commons/list/Hero";
 import CourseFees from "@/commons/list/CourseFees";
 import Ranking from "@/commons/list/Rankings";
 import FrontendSidebar from "../common/FrontendSidebar";
+import { fetchDetails } from "@/lib/ssrFetch";
+import Eligibility from "@/commons/list/Eligibility";
+import Curriculum from "@/commons/list/Curriculum";
+import Skills from "@/commons/list/Skills";
 function Index({ data }) {
     return (<>
         <Layout>
@@ -39,13 +43,17 @@ function Index({ data }) {
                         <CourseFees />
                         <Approvals approvals={data?.CourseData?.approvals} approvalsdata={data?.approvalsData} />
                         <Ranking rankings={data?.CourseData?.rankings} />
-                        <CoursesSwiper />
+                        <Eligibility />
+                        <Curriculum />
+
+                        <Skills advantages={data?.CourseData?.advantages} />
+
                         <Advantages advantages={data?.CourseData?.advantages} />
-                        <Facts facts={data?.CourseData?.facts} />
+
                         <SampleCertificate certificates={data?.CourseData?.certificates} />
                         <ExaminationPattern examPatterns={data?.CourseData?.examPatterns} />
                         <Financial financialAid={data?.CourseData?.financialAid} />
-                        <UniversityCampusCarousel universityCampuses={data?.CourseData?.universityCampuses} />
+
                         <PlacementPartners placements={data?.CourseData?.partners} PlacementPartners={data?.placementPartners} />
                         <CareerServices services={data?.CourseData?.services} />
                         <StepsSection admissionProcess={data?.CourseData?.admissionProcess} />
@@ -61,26 +69,7 @@ function Index({ data }) {
 }
 export default Index;
 
-export async function getServerSideProps(context) {
-    try {
-        const { slug } = context.query;
-        const main = new Listing();
-        const res = await main.CourseGet(slug);
-        if (res?.data?.status) {
-            return {
-                props: {
-                    data: res.data.data,
-                },
-            };
-        }
-        return {
-            notFound: true,
-        };
-    } catch (error) {
-        console.error("SSR Error:", error);
 
-        return {
-            notFound: true,
-        };
-    }
+export async function getServerSideProps(context) {
+    return fetchDetails(context, "course");
 }

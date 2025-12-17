@@ -184,8 +184,8 @@ function Index() {
     }, [data])
 
     const toggleApproval = (id) => {
-        if (selectedApprovals.includes(id)) {
-            setSelectedApprovals(selectedApprovals.filter(a => a !== id));
+        if (selectedApprovals?.includes(id)) {
+            setSelectedApprovals(selectedApprovals?.filter(a => a !== id));
         } else {
             setSelectedApprovals([...selectedApprovals, id]);
         }
@@ -193,7 +193,7 @@ function Index() {
 
 
     const togglePartners = (id) => {
-        if (selectedPartners.includes(id)) {
+        if (selectedPartners?.includes(id)) {
             setSelectedPartners(selectedPartners.filter(a => a !== id));
         } else {
             setSelectedPartners([...selectedPartners, id]);

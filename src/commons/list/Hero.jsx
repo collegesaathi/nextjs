@@ -3,7 +3,8 @@
 import Image from "next/image";
 import StarRating from "@/common/Rating";
 
-export default function Hero({data}) {
+export default function Hero({data,approvalsdata}) {
+  console.log("gvfdbg",approvalsdata)
   return (
     <div className="mt-8 md:mt-[60px] lg:mt-[90px] ">
       <div className="flex flex-col-reverse lg:flex-row items-start justify-between">
@@ -32,7 +33,10 @@ export default function Hero({data}) {
           <div className="flex items-center gap-4 pt-6">
           
 
-            <Image src="/images/university/hero/coverimage.png" alt="" width={356} height={150} className="sm:w-[400px]" />
+            <Image src="/images/university/hero/reviews.png" alt="" width={356} height={150} className="sm:w-[126px]" />
+               {approvalsdata && approvalsdata?.slice(0,3).map((item) => (
+            <img src={item?.image}  alt={item.title} width={356} height={150} className="sm:w-[63px]" />
+              ))}
           </div>
 
           {/* BUTTONS */}
@@ -79,6 +83,8 @@ export default function Hero({data}) {
             className="rounded-[8px] w-full h-auto"
           />
 
+          
+
           {/* TOP BADGES */}
            <div className="absolute top-2 left-0 right-0 w-full flex gap-4 justify-between px-3 sm:px-6 md:px-10 pt-3">
             <button className="min-w-[110px] sm:w-[140px] h-[32px] sm:h-[40px] rounded-[26px] bg-white shadow-md flex items-center justify-center text-xs sm:text-sm font-poppins gap-1.5 px-4">
@@ -87,7 +93,7 @@ export default function Hero({data}) {
             </button>
 
             <button className="w-[100px] sm:w-[156px] h-[40px] sm:h-[52px] rounded-[5px] bg-white shadow-md flex items-center justify-center">
-              <img src={data?.icon} width={60} height={30} alt="" className="sm:w-[80px]" />
+              <img src={data?.icon} width={60} height={30} alt="" className="sm:w-[127px]" />
             </button>
           </div> 
         </div>
