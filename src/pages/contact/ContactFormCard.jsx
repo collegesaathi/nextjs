@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 import Listing from "../api/Listing";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { IoChevronDown } from "react-icons/io5";
-import { InputBox } from "../admin/common/InputBox";
+import { InputBox } from "@/common/InputBox";
 
 
 function ContactForm() {
