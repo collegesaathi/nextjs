@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { MdAdd, MdDelete, MdEdit } from "react-icons/md";
-import Listing from "../../Api/Listing";
 import toast from "react-hot-toast";
 import Popup from "@/common/Popup";
+import Listing from "@/pages/api/Listing";
 
 export default function AddPlacements({ IsEdit, Id, fetch, item }) {
     const [isOpen, setIsOpen] = useState(false);

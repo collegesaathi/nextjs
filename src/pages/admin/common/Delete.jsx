@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import { IoCloseSharp } from "react-icons/io5";
 import { MdDelete, MdRestore } from "react-icons/md";
-import Listing from "../../Api/Listing";
 import toast from "react-hot-toast";
 import Popup from "@/common/Popup";
+import Listing from "@/pages/api/Listing";
 
 export default function Delete({ step, Id, fetch, deleteAt }) {
     console.log(Id)
