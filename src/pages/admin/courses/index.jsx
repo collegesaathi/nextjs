@@ -92,7 +92,7 @@ export default function Index() {
                                             height={250}
                                             className="w-full h-[220px] object-cover"
                                         />
-                                        <Delete step={1} fetch={fetchData} deleteAt={item?.deleted_at} Id={item?.id} />
+                                        <Delete step={5} fetch={fetchData} deleteAt={item?.deleted_at} Id={item?.id} />
 
                                         {!item.deleted_at && (
                                             <Link href={`/admin/courses/add/${item?.slug}`}

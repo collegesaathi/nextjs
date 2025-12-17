@@ -108,6 +108,29 @@ export default function Delete({ step, Id, fetch, deleteAt }) {
             setLoading(false);
         }
     };
+
+
+    const handleCourseDelete = async () => {
+        try {
+            setLoading(true);
+            const main = new Listing();
+            const res = await main.CourseDelete(Id);
+
+            if (res?.data?.status) {
+                toast.success(res.data.message);
+                fetch();
+            } else {
+                toast.error(res?.data?.message || "Something went wrong.");
+            }
+
+            toggleModal();
+        } catch (error) {
+            console.error("Package Delete Error:", error);
+            toast.error(error?.response?.data?.message || "Delete failed");
+        } finally {
+            setLoading(false);
+        }
+    };
     const handleClick = (e) => {
         e.preventDefault();
         if (step === 1) {
@@ -120,6 +143,9 @@ export default function Delete({ step, Id, fetch, deleteAt }) {
         }
         else if (step === 4) {
             handleApprovalDelete()
+        }
+        else if (step === 5) {
+            handleCourseDelete()
         }
         else {
             console.warn("Invalid step");
@@ -156,6 +182,8 @@ export default function Delete({ step, Id, fetch, deleteAt }) {
                             {step === 1 && "University"}
                             {step === 3 && "Placements"}
                             {step === 4 && "Approvals"}
+                            {step === 5 && "Course"}
+
 
                         </span>
                         ?

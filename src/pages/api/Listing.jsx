@@ -51,6 +51,11 @@ class Listing extends Component {
   async ApprovalDelete(id) {
     return Api.get(`/approval/delete/${id}`)
   }
+
+  async CourseDelete(id) {
+    return Api.get(`/course/delete/${id}`)
+  }
+
   async ContactAdd(data) {
     return Api.post("/leads/add", data);
   }
