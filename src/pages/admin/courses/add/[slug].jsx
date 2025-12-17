@@ -4,29 +4,60 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { MdAdd, MdDelete, MdEdit } from "react-icons/md";
 import ReactQuillEditor from "@/common/ReactQuillEditor";
 import toast from "react-hot-toast";
-import AdvantagesSection from "../../../../commons/add/AdvantageSectionAdd";
-import PatternSection from "../../../../commons/add/AddPattern";
+import PatternSection from "@/commons/add/AddPattern";
 import ApprovalAndPartner from "@/common/ApprovalAndPartner";
 import AdminLayout from "../../common/AdminLayout";
-import Criteria from "../../../../commons/add/AddCriteria";
-import SemesterForm from "../../../../commons/add/SemesterFormAdd";
-import Certificate from "../../../../commons/add/AddCertificate";
-
+import AddAbout from "@/commons/add/AddAbout";
+import FinancialAdd from "@/commons/add/FinancialAdd";
+import AdvantageSectionAdd from "@/commons/add/AdvantageSectionAdd";
 import Addcareer from "@/commons/add/Addcareer";
-
-import FaqSection from "../../../../commons/add/FaqAdd";
-import OnlineSection from "../../../../commons/add/AddOnline";
-import ServicesSection from "../../../../commons/add/ServicesAdd";
-import Ranking from "../../../../commons/add/RankingAdd";
+import SEOAdd from "@/commons/add/SEOAdd";
+import AddCriteria from "@/commons/add/AddCriteria";
+import RankingAdd from "@/commons/add/RankingAdd";
+import SemesterFormAdd from "@/commons/add/SemesterFormAdd";
+import AddCertificate from "@/commons/add/AddCertificate";
+import ServicesAdd from "@/commons/add/ServicesAdd";
+import AddOnline from "@/commons/add/AddOnline";
+import FaqAdd from "@/commons/add/FaqAdd";
+import { useRouter } from "next/router";
+import AddSkills from "@/commons/add/AddSkills";
 function Index() {
+    const router = useRouter();
+
+    const [universities, setUniversities] = useState([])
+    const [categroy, setCategroy] = useState([])
+    const fetchData = async () => {
+        try {
+
+            const main = new Listing();
+            const response = await main.Listjsx();
+            console.log("response", response)
+            const universities = response?.data?.data?.universities || [];
+            setCategroy(response?.data?.data?.CategoryLists)
+            setUniversities(universities);
+        } catch (error) {
+            console.log("error", error);
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        fetchData();
+    }, []);
+
     const [activeTabs, setActiveTabs] = useState("indian");
 
     const [advantages, setAdvantages] = useState([
         { title: "", description: "" }
     ]);
 
+    
+    const [skills, setSkills] = useState([
+        { title: "" }
+    ]);
+
     const [Careers, setCareers] = useState([
-        { title: "", description: "", salary: '' }
+        { title: "", description: "", salary: "" }
     ]);
 
 
@@ -39,9 +70,18 @@ function Index() {
         }
     ]);
 
-
     const [services, setServices] = useState([{ title: "", content: "", image: null, icon: null }]);
-
+    const [fees, setFees] = useState([
+        {
+            courseName: "",
+            totalFees: "",
+            loanAmount: "",
+            tenure: "",
+            interest: "",
+            emi: "",
+            description: "",
+        }
+    ]);
 
     const [selectedApprovals, setSelectedApprovals] = useState([]);
 
@@ -63,7 +103,6 @@ function Index() {
         }
     };
 
-    const [isOpen, setIsOpen] = useState(false);
     const [loading, setLoading] = useState(false);
     const [preview, setPreview] = useState(null);
     const [icons, setIcons] = useState(null);
@@ -86,41 +125,11 @@ function Index() {
         }
     ]);
 
-    const [facts, setFacts] = useState([
-        {
-            patternName: "",
-            description: "",
-        }
-    ]);
 
     const [campusList, setCampusList] = useState([
         { name: "", image: "" }
     ]);
-    const handleCampusChange = (index, field, value) => {
-        const list = [...campusList];
-        list[index][field] = value;
-        setCampusList(list);
-    };
 
-    const handleCampusImage = (index, file) => {
-        const reader = new FileReader();
-        reader.onloadend = () => {
-            const list = [...campusList];
-            list[index].image = reader.result;
-            setCampusList(list);
-        };
-        reader.readAsDataURL(file);
-    };
-
-    const addCampus = () => {
-        setCampusList([...campusList, { name: "", image: "" }]);
-    };
-
-    const deleteCampus = (index) => {
-        const list = [...campusList];
-        list.splice(index, 1);
-        setCampusList(list);
-    };
 
     const [formData, setFormData] = useState({
         slug: "",
@@ -128,7 +137,6 @@ function Index() {
         icon: null,
         cover_image: null,
         position: "",
-        title_fees: "",
         tuition_fees: "",
         anuual_fees: "",
         semester_fees: "",
@@ -155,7 +163,16 @@ function Index() {
         creteria: "",
         semesters_title: "",
         patterndescription: "",
-        patternname: ""
+        patternname: "",
+        university_id: "",
+        categroy_id: "",
+        cover_image_alt: "",
+        careername: "",
+        careerdesc: "",
+        meta_title: "",
+        meta_description: "",
+        meta_keywords: "",
+        canonical_url: "",
     });
 
     console.log("formData", formData)
@@ -220,77 +237,124 @@ function Index() {
             category: tab
         }));
     };
+    console.log("semesters", semesters)
 
-
-    // ✅ ADD UNIVERSITY
-    const handleEdit = async (e) => {
+    const handleAdd = async (e) => {
         e.preventDefault();
         if (loading) return;
-
-        // if (!formData.icon) {
-        //     toast.error("Icon required!");
-        //     return;
-        // }
-
         setLoading(true);
-
         try {
             const main = new Listing();
             const payload = new FormData();
-
             payload.append("slug", formData.slug);
             payload.append("name", formData.name);
+            payload.append("university_id", formData.university_id)
             payload.append("position", formData.position);
-            payload.append("description", formData.description);
             payload.append("icon", formData.icon);
             payload.append("cover_image", formData.cover_image);
-            const response = await main.AdminUniversityAdd(payload);
+            payload.append("category_id", formData?.categroy_id);
+            payload.append("descriptions", JSON.stringify(formData.descriptions));
+            payload.append("cover_image_alt", formData.cover_image_alt)
+            payload.append("icon_alt", formData.icon_alt)
+            payload.append("about_title", formData.about_title);
+            payload.append("about_desc", formData.about_desc);
+            payload.append("tuition_fees", formData.tuition_fees)
+            payload.append("anuual_fees", formData.anuual_fees)
+            payload.append("semester_fees", formData.semester_fees)
+            payload.append("approvals_name", formData.approvals_name);
+            payload.append("approvals_desc", formData.approvals_desc);
+            payload.append("approvals", JSON.stringify(selectedApprovals));
+            payload.append("rankings_description", formData.rankings_description);
+            payload.append("rankings_name", formData.rankings_name);
+            payload.append("creteria", formData.creteria)
+            payload.append("category", formData.category)
+            payload.append("indian", JSON.stringify(formData.indian))
+            payload.append("nri", JSON.stringify(formData.nri))
+            payload.append("semesters", JSON.stringify(semesters))
+            payload.append("semesters_title", formData.semesters_title)
+            payload.append("certificatename", formData.certificatename);
+            payload.append("certificatedescription", formData.certificatedescription);
+            payload.append("certificatemage", formData.certificatemage);
+            payload.append("image_alt", formData.image_alt)
+            payload.append("skills", JSON.stringify(advantages));
+            payload.append("skillsname", formData.advantagesname);
+            payload.append("skilsdescription", formData.advantagesdescription);
+            payload.append("patternname", formData.patternname);
+            payload.append("patterndescription", formData.patterndescription);
+            payload.append("bottompatterndesc", formData.bottompatterndesc);
+            const cleanPatterns = patterns.map(item => ({
+                patternName: item.patternName,
+                percentage: item.percentage,
+                description: item.description,
+                pattern_images_alt: item?.pattern_images_alt
+            }));
+            payload.append("patterns", JSON.stringify(cleanPatterns));
+            patterns.forEach((item, index) => {
+                if (item.image) {
+                    payload.append(`patternsimages[${index}]`, item.image);
+                }
+            });
+            payload.append("fees", JSON.stringify(fees));
+            payload.append("careerdesc", formData.careerdesc)
+            payload.append("careername", formData.careername)
+            payload.append("careermanages", JSON.stringify(Careers));
+            payload.append("partnersname", formData.partnersname);
+            payload.append("partnersdesc", formData.partnersdesc);
+            payload.append("partners", JSON.stringify(selectedPartners));
+            payload.append("faqs", JSON.stringify(faqs));
+            payload.append("meta_title", formData.meta_title);
+            payload.append("meta_description", formData.meta_description);
+            payload.append("meta_keywords", formData.meta_keywords);
+            payload.append("canonical_url", formData.canonical_url);
+            payload.append("financialname", formData.financialname);
+            payload.append("financialdescription", formData.financialdescription);
+            payload.append("servicetitle", formData.servicetitle);
+            payload.append("servicedesc", formData.servicedesc);
+            payload.append("onlinedesc", formData.onlinedesc);
+            payload.append("onlinetitle", formData.onlinetitle);
+            const cleanonlines = onlines.map(item => ({
+                title: item.title,
+                content: item.content
+            }));
+            payload.append("onlines", JSON.stringify(cleanonlines));
+            const cleanServices = services.map(item => ({
+                title: item.title,
+                content: item.content,
+                icons_alt: item?.icons_alt,
+                images_alt: item?.images_alt
+            }));
+            payload.append("servcies", JSON.stringify(cleanServices));
 
+            services.forEach((item, index) => {
+                if (item.image) {
+                    payload.append(`servicesimages[${index}]`, item.image);
+                }
+            });
+            services.forEach((item, index) => {
+                if (item.image) {
+                    payload.append(`servicesicon[${index}]`, item.icon);
+                }
+            });
+            for (let pair of payload.entries()) {
+                console.log(pair[0], pair[1]);
+            }
+            // ✅ IMPORTANT FIX
+            const response = await main.AdminCourseAdd(payload);
             if (response?.data?.status) {
+                router.push("/admin/courses")
                 toast.success(response.data.message);
-                setFormData({
-                    slug: "",
-                    name: "",
-                    icon: null,
-                    cover_image: null,
-                    position: "",
-                    description: "",
-                });
-
                 setPreview(null);
-                fetchData();
             } else {
                 toast.error(response.data.message);
             }
 
         } catch (error) {
-            toast.error("Something went wrong");
+            console.error(error);
+            // toast.error(error.response.data.message);
         }
 
         setLoading(false);
     };
-
-
-
-    // ✅ EDIT MODE DATA LOAD
-    // useEffect(() => {
-    //     if (data) {
-    //         setFormData({
-    //             slug: data.slug || "",
-    //             name: data.name || "",
-    //             icon: data.icon || null,
-    //             cover_image: data.cover_image || null,
-    //             position: data.position || "",
-    //             description: data.description || "",
-    //         });
-
-    //         if (data.icon) {
-    //             setPreview(data.icon);
-    //         }
-    //     }
-    // }, [data]);
-    const data = ""
-
     const [activeTab, setActiveTab] = useState("card");
 
     const tabsData = [
@@ -302,15 +366,16 @@ function Index() {
         { id: "criteria", label: "Criteria" },
         { id: "sem", label: "Semseter" },
         { id: "certificate", label: "Certificate" },
-        { id: "advantages", label: "Skills" },
+        { id: "skills", label: "Skills" },
         { id: "pattern", label: "Pattern" },
-        { id: "career", label: "Career" },
         { id: "financial", label: "Financial" },
-        { id: "campuses", label: "Campuses" },
+        { id: "career", label: "Career" },
         { id: "partners", label: "Partners" },
         { id: "services", label: "Services" },
         { id: "online", label: "Online" },
         { id: "faq", label: "FAQ" },
+        { id: "seo", label: "SEO" },
+        { id: "advantages", label: "Advantages" },
     ];
 
     const currentIndex = tabsData.findIndex((tab) => tab.id === activeTab);
@@ -327,6 +392,66 @@ function Index() {
         }
     };
 
+    // useEffect(() => {
+    //     setFormData({
+    //         slug: data?.slug,
+    //         name: data?.name,
+    //         position: data?.position,
+    //         about_title: data?.about?.title,
+    //         about_desc: data?.about?.description,
+    //         approvals_name: data?.approvals?.title,
+    //         approvals_desc: data?.approvals?.description,
+    //         rankings_name: data?.rankings?.title,
+    //         rankings_description: data?.rankings?.description,
+    //         advantagesname: data?.advantages?.title,
+    //         advantagesdescription: data?.advantages?.description,
+    //         factsname: data?.facts?.title,
+    //         certificatedescription: data?.certificates?.description,
+    //         certificatename: data?.certificates?.title,
+    //         certificatemage: data?.certificates?.image,
+    //         image_alt: data?.certificates?.image_alt,
+    //         patternname: data?.examPatterns?.title,
+    //         patterndescription: data?.examPatterns?.description,
+    //         financialname: data?.financialAid?.title,
+    //         financialdescription: data?.financialAid?.description,
+    //         partnersname: data?.partners?.title,
+    //         partnersdesc: data?.partners?.description,
+    //         servicetitle: data?.services?.title,
+    //         servicedesc: data?.services?.description,
+    //         onlinetitle: data?.admissionProcess?.title,
+    //         onlinedesc: data?.admissionProcess?.description,
+    //         bottompatterndesc: data?.examPatterns?.bottompatterndesc,
+    //         meta_title: data?.seo?.meta_title,
+    //         meta_keywords: data?.seo?.meta_keywords,
+    //         meta_description: data?.seo?.meta_description,
+    //         canonical_url: data?.seo?.canonical_url,
+    //         Id: data?.id,
+    //         icon_alt: data?.icon_alt,
+    //         cover_image_alt: data?.cover_image_alt,
+    //         descriptions: data?.description?.length
+    //             ? data.description
+    //             : [{ text: "" }],
+    //     })
+    //     setPreview(data?.cover_image);
+    //     setIcons(data?.icon);
+    //     setSelectedApprovals(data?.approvals?.approval_ids);
+    //     setSelectedPartners(data?.partners?.placement_partner_id);
+    //     setAdvantages(data?.advantages?.advantages?.length ? data?.advantages?.advantages : [{ title: "", description: "" }]);
+    //     setPatterns(data?.examPatterns?.patterns?.length ? data?.examPatterns?.patterns : [{ patternName: "", description: "", image: "", percentage: "", pattern_images_alt: "" }]);
+    //     setFees(data?.financialAid?.aid?.length ? data?.financialAid?.aid : [{
+    //         courseName: "",
+    //         totalFees: "",
+    //         loanAmount: "",
+    //         tenure: "",
+    //         interest: "",
+    //         emi: "",
+    //         description: "",
+    //     }])
+    //     setCampusList(data?.universityCampuses?.campus?.length ? data?.universityCampuses?.campus : [{ name: "", image: "", campus_images_alt: "" }])
+    //     setServices(data?.services?.services?.length ? data?.services?.services : [{ title: "", content: "", image: null, icon: null, icons_alt: "", images_alt: "" }])
+    //     setFaqs(data?.faq?.faqs?.length ? data?.faq?.faqs : [{ question: "", answer: "", position: "" }]);
+    //     setOnlines(data?.admissionProcess?.process?.length ? data?.admissionProcess?.process : [{ title: "", content: "" }])
+    // }, [data])
 
     return (<>
         <AdminLayout>
@@ -383,23 +508,75 @@ function Index() {
 
                         {/* Right: Save Button */}
                         <button
-                            onClick={handleEdit}
                             type="submit"
                             form="ownerForm"
+                            onClick={handleAdd}
                             className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium shadow-md transition-all"
                         >
                             {loading ? "Saving..." : "Save"}
                         </button>
                     </div>
                 </div>
-
-
                 <form
                     className="  mt-10 px-3 sm:px-6 pb-3 sm:pb-6 bg-white space-y-2 sm:space-y-4"
                 >
                     {activeTab === "card" && (
                         <>
 
+                            <div>
+                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
+                                    University Id {" "}
+                                </label>
+
+                                <div className="relative">
+                                    <select
+                                        name="university_id"
+                                        value={formData?.university_id}
+                                        onChange={handleChange}
+                                        className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
+                                    >
+                                        <option value="" disabled>Select a University</option>
+                                        {universities && universities.length > 0 ? (
+                                            universities.map((u, index) => (
+                                                <option key={index} value={u.id}>
+                                                    {u.name}
+                                                </option>
+                                            ))
+                                        ) : (
+                                            <option disabled>No data</option>
+                                        )}
+
+                                    </select>
+                                </div>
+                            </div>
+
+
+                            <div>
+                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
+                                    Categroy Id {" "}
+                                </label>
+
+                                <div className="relative">
+                                    <select
+                                        name="categroy_id"
+                                        value={formData?.categroy_id}
+                                        onChange={handleChange}
+                                        className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
+                                    >
+                                        <option value="" disabled>Select a categroy</option>
+                                        {categroy && categroy.length > 0 ? (
+                                            categroy.map((u, index) => (
+                                                <option key={index} value={u.id}>
+                                                    {u.name}
+                                                </option>
+                                            ))
+                                        ) : (
+                                            <option disabled>No data</option>
+                                        )}
+
+                                    </select>
+                                </div>
+                            </div>
                             <div>
                                 <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
                                     Name{" "}
@@ -422,7 +599,6 @@ function Index() {
                             <div>
                                 <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
                                     Slug{" "}
-
                                 </label>
                                 <input
                                     type="text"
@@ -437,9 +613,6 @@ function Index() {
                                 />
                             </div>
                             {/* Description Field changed to textarea with 300 character limit */}
-
-
-
                             <div>
                                 <label className="block text-[#FF1B1B] font-medium mb-1">
                                     Position
@@ -478,6 +651,45 @@ function Index() {
                                     </div>
                                 )}
                             </div>
+                            <div>
+                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
+                                    University Image Alt{" "}
+                                    <span className="text-sm text-gray-500">
+                                        ({formData.cover_image_alt?.length}/50)
+                                    </span>
+                                </label>
+                                <input
+                                    type="text"
+                                    name="cover_image_alt"
+                                    value={formData.cover_image_alt}
+                                    onChange={(e) => {
+                                        if (e.target.value.length <= 50) handleChange(e);
+                                    }}
+                                    placeholder="Enter cover image alt"
+                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
+                                    required
+                                />
+                            </div>
+
+                            <div>
+                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
+                                    University Icon Alt{" "}
+                                    <span className="text-sm text-gray-500">
+                                        ({formData.icon_alt?.length}/50)
+                                    </span>
+                                </label>
+                                <input
+                                    type="text"
+                                    name="icon_alt"
+                                    value={formData.icon_alt}
+                                    onChange={(e) => {
+                                        if (e.target.value.length <= 50) handleChange(e);
+                                    }}
+                                    placeholder="Enter cover Icon alt"
+                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
+                                    required
+                                />
+                            </div>
 
                             <div>
                                 <label className="block text-[#FF1B1B] font-medium mb-1">
@@ -506,8 +718,8 @@ function Index() {
                             <div className="mb-4">
                                 <div className="flex justify-between items-center mb-3">
                                     <h2 className="text-xl font-semibold text-[#CC2828]">Multiple Description</h2>
-
                                     <button
+                                        type="button"
                                         onClick={addDescription}
                                         className="border border-[#CC2828] bg-[#CC2828] hover:bg-red-700 text-white px-6 py-2 rounded-[10px] text-base transition"
                                     >
@@ -518,30 +730,24 @@ function Index() {
                                 {formData.descriptions.map((desc, index) => (
                                     <div key={index} className="mb-4">
                                         <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
-                                            <span>Description {index + 1}</span>
-                                            <span className="text-sm text-gray-500">
-                                                ({desc.text.length}/500)
-                                            </span>
                                         </label>
-                                        <div className="flex items-start gap-3 mb-4">
-                                            <input
-                                                value={desc.text}
-                                                onChange={(e) => {
-                                                    if (e.target.value.length <= 500)
-                                                        handleDescriptionChange(index, e.target.value);
-                                                }}
-                                                placeholder="Enter description"
-                                                className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
-                                                required
-                                            />
-
-                                            <button
-                                                onClick={() => deleteDescription(index)}
-                                                className="bg-red-500 text-white rounded-md p-3 hover:bg-red-700 flex justify-center items-center"
-                                            >
-                                                <MdDelete size={20} />
-                                            </button>
-                                        </div>
+                                        <ReactQuillEditor
+                                            label={`Description ${index + 1}`}
+                                            desc={desc.text}
+                                            handleBioChange={(value) => {
+                                                const plainText = value.replace(/<[^>]*>/g, "").trim();
+                                                if (plainText.length <= 500) {
+                                                    handleDescriptionChange(index, value);
+                                                }
+                                            }}
+                                        />
+                                        <button
+                                            type="button"
+                                            onClick={() => deleteDescription(index)}
+                                            className="bg-red-500 text-white rounded-md p-3 hover:bg-red-700 flex justify-center items-center"
+                                        >
+                                            <MdDelete size={20} />
+                                        </button>
 
                                     </div>
                                 ))}
@@ -550,58 +756,11 @@ function Index() {
                     )}
 
                     {activeTab === "about" && (
-                        <>
-
-                            <div>
-                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
-                                    About Title {" "}
-                                    <span className="text-sm text-gray-500">
-                                        ({formData.about_title?.length}/50)
-                                    </span>
-                                </label>
-                                <input
-                                    type="text"
-                                    name="about_title"
-                                    value={formData.about_title}
-                                    onChange={(e) => {
-                                        if (e.target.value.length <= 50) handleChange(e);
-                                    }}
-                                    placeholder="Enter about title"
-                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
-                                    required
-                                />
-                            </div>
-
-                            <ReactQuillEditor
-                                label="Description"
-                                desc={formData.about_desc}
-                                handleBioChange={(val) => handleQuillChange("about_desc", val)}
-                            />
-
-                        </>
-
+                        <AddAbout handleChange={handleChange} handleQuillChange={handleQuillChange} formData={formData} />
                     )}
 
                     {activeTab === "fees" && (
                         <>
-
-                            <div>
-                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
-                                    Fees Title {" "}
-                                </label>
-                                <input
-                                    type="text"
-                                    name="title_fees"
-                                    value={formData.title_fees}
-                                    onChange={(e) => {
-                                        handleChange(e);
-                                    }}
-                                    placeholder="Enter fees title"
-                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
-                                    required
-                                />
-                            </div>
-
                             <div>
                                 <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
                                     Total Tuition Fee:
@@ -696,7 +855,7 @@ function Index() {
                     )}
 
                     {activeTab === "rankings" && (
-                        <Ranking formData={formData} handleChange={handleChange} handleQuillChange={handleQuillChange} />
+                        <RankingAdd formData={formData} handleChange={handleChange} handleQuillChange={handleQuillChange} />
                     )}
 
                     {activeTab === "criteria" && (
@@ -722,6 +881,7 @@ function Index() {
                             </div>
                             <div className="flex mb-5 bg-gray-100 rounded-lg overflow-hidden">
                                 <button
+                                    type="button"
                                     onClick={() => handleTab("indian")}
                                     className={`w-1/2 py-2 font-semibold ${activeTabs === "indian" ? "bg-red-500 text-white" : ""}`}
                                 >
@@ -729,6 +889,8 @@ function Index() {
                                 </button>
 
                                 <button
+                                    type="button"
+
                                     onClick={() => handleTab("nri")}
                                     className={`w-1/2 py-2 font-semibold ${activeTabs === "nri" ? "bg-red-500 text-white" : ""}`}
                                 >
@@ -737,7 +899,7 @@ function Index() {
                             </div>
 
                             {/* Criteria Component */}
-                            <Criteria
+                            <AddCriteria
                                 criteria={formData[activeTabs]}
                                 setCriteria={(dataOrUpdater) => {
                                     // support both array or updater function
@@ -774,19 +936,26 @@ function Index() {
                                     required
                                 />
                             </div>
-                            <SemesterForm semesters={semesters} setSemesters={setSemesters} /></>
+                            <SemesterFormAdd semesters={semesters} setSemesters={setSemesters} /></>
 
                     )}
 
                     {activeTab === "advantages" && (
                         <>
-                            <AdvantagesSection advantages={advantages} setAdvantages={setAdvantages}
+                            <AdvantageSectionAdd advantages={advantages} setAdvantages={setAdvantages}
+                                htitle={"Skills"} handleChange={handleChange} handleQuillChange={handleQuillChange} formData={formData} />
+                        </>
+                    )}
+
+                     {activeTab === "skills" && (
+                        <>
+                            <AddSkills skills={skills} setSkills={setSkills}
                                 htitle={"Skills"} handleChange={handleChange} handleQuillChange={handleQuillChange} formData={formData} />
                         </>
                     )}
 
                     {activeTab === "certificate" && (
-                        <Certificate
+                        <AddCertificate
                             formData={formData}
                             handleChange={handleChange}
                             handleImageChange={handleImageChange}
@@ -800,69 +969,12 @@ function Index() {
                         <PatternSection setPatterns={setPatterns} patterns={patterns} formData={formData} handleChange={handleChange} handleQuillChange={handleQuillChange} />
                     )}
 
-                    {activeTab === "career" && (
-                        <>
-                            <div>
-                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
-                                    Financial    Name{" "}
-                                    <span className="text-sm text-gray-500">
-                                        ({formData.fincalname?.length}/50)
-                                    </span>
-                                </label>
-                                <input
-                                    type="text"
-                                    name="fincalname"
-                                    value={formData.fincalname}
-                                    onChange={(e) => {
-                                        if (e.target.value.length <= 50) handleChange(e);
-                                    }}
-                                    placeholder="Enter name"
-                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
-                                    required
-                                />
-                            </div>
-
-                            <ReactQuillEditor
-                                label="Financial Description"
-                                desc={formData.fincal_des}
-                                handleBioChange={(val) => handleQuillChange("fincal_des", val)}
-                            />
-
-
-                            <div>
-                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
-                                    Careers   Name{" "}
-                                    <span className="text-sm text-gray-500">
-                                        ({formData.carrer_name?.length}/50)
-                                    </span>
-                                </label>
-                                <input
-                                    type="text"
-                                    name="carrer_name"
-                                    value={formData.carrer_name}
-                                    onChange={(e) => {
-                                        if (e.target.value.length <= 50) handleChange(e);
-                                    }}
-                                    placeholder="Enter name"
-                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
-                                    required
-                                />
-                            </div>
-
-                            <ReactQuillEditor
-                                label="Careers  Description"
-                                desc={formData.careerdes}
-                                handleBioChange={(val) => handleQuillChange("careerdes", val)}
-                            />
-                            <Addcareer Carrers={Careers} setCarrer={setCareers} htitle={"Careers"} />
-                        </>
+                    {activeTab === "financial" && (
+                        <FinancialAdd handleQuillChange={handleQuillChange} handleChange={handleChange} fees={fees} setFees={setFees} formData={formData} />
                     )}
 
-
-                    {activeTab === "campuses" && (
-                        <>
-                            <Campus campusList={campusList} setCampusList={setCampusList} />
-                        </>
+                    {activeTab === "career" && (
+                        <Addcareer handleQuillChange={handleQuillChange} handleChange={handleChange} Careers={Careers} setCareers={setCareers} formData={formData} />
                     )}
 
                     {activeTab === "partners" && (
@@ -903,13 +1015,16 @@ function Index() {
 
                     )}
                     {activeTab === "services" && (
-                        <ServicesSection services={services} setServices={setServices} handleChange={handleChange} handleQuillChange={handleQuillChange} formData={formData} />
+                        <ServicesAdd services={services} setServices={setServices} handleChange={handleChange} handleQuillChange={handleQuillChange} formData={formData} />
                     )}
                     {activeTab === "online" && (
-                        <OnlineSection formData={formData} handleChange={handleChange} onlines={onlines} setOnlines={setOnlines} handleQuillChange={handleQuillChange} />
+                        <AddOnline formData={formData} handleChange={handleChange} onlines={onlines} setOnlines={setOnlines} handleQuillChange={handleQuillChange} />
                     )}
                     {activeTab === "faq" && (
-                        <FaqSection faqs={faqs} setFaqs={setFaqs} />
+                        <FaqAdd faqs={faqs} setFaqs={setFaqs} />
+                    )}
+                    {activeTab === "seo" && (
+                        <SEOAdd formData={formData} handleChange={handleChange} />
                     )}
                 </form>
                 <div className="flex justify-between mt-8  p-6">

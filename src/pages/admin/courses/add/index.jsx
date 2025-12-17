@@ -276,9 +276,12 @@ function Index() {
             payload.append("certificatedescription", formData.certificatedescription);
             payload.append("certificatemage", formData.certificatemage);
             payload.append("image_alt", formData.image_alt)
-            payload.append("skills", JSON.stringify(advantages));
-            payload.append("skillsname", formData.advantagesname);
-            payload.append("skilsdescription", formData.advantagesdescription);
+            payload.append("advantages", JSON.stringify(advantages));
+            payload.append("advantagesname", formData.advantagesname);
+            payload.append("advantagesdescription", formData.advantagesdescription);
+            payload.append("skills" ,JSON.stringify(skills) );
+            payload.append("skillsname" , formData.skillname);
+            payload.append("skilldesc" , formData.skilldesc);
             payload.append("patternname", formData.patternname);
             payload.append("patterndescription", formData.patterndescription);
             payload.append("bottompatterndesc", formData.bottompatterndesc);
@@ -883,7 +886,7 @@ function Index() {
                     {activeTab === "advantages" && (
                         <>
                             <AdvantageSectionAdd advantages={advantages} setAdvantages={setAdvantages}
-                                htitle={"Skills"} handleChange={handleChange} handleQuillChange={handleQuillChange} formData={formData} />
+                                htitle={"Advantages"} handleChange={handleChange} handleQuillChange={handleQuillChange} formData={formData} />
                         </>
                     )}
 
