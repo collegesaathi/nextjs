@@ -18,7 +18,7 @@ export default function Confusion() {
                             data-aos-once="true"
                         >
                             <img
-                                src={bg?.src}
+                                src={BG?.src}
                                 alt="Blog background"
                                 className="w-full h-full object-cover rounded-[25px]"
                             />
