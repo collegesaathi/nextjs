@@ -14,7 +14,7 @@ function Approvals({approvals , approvalsdata}) {
     const updateProgress = (swiper) => {
         if (!swiper) return;
 
-        const totalCards = approvalsdata.length;
+        const totalCards = approvalsdata?.length;
         const visibleSlides = swiper.params.slidesPerView;
 
         if (visibleSlides === 4) {

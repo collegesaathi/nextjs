@@ -88,6 +88,12 @@ class Listing extends Component {
   async UniveristyGet(slug) {
     return Api.get(`/university/${slug}`)
   }
+
+  async CourseGet(slug) {
+    return Api.get(`/course/${slug}`)
+  }
+
+
   render() {
     return (
       <div>

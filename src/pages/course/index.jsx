@@ -56,6 +56,7 @@ function Index({ data }) {
                         <Universities />
                         <Reviews />
                     </div>
+
                 </div>
             </div>
         </Layout>
@@ -65,6 +66,6 @@ export default Index;
 
 
 export async function getServerSideProps(context) {
-    return fetchDetails(context, "university");
+    return fetchDetails(context, "course");
 }
 

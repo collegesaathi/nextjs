@@ -21,14 +21,12 @@ import Hero from "@/commons/list/Hero";
 import CourseFees from "@/commons/list/CourseFees";
 import Ranking from "@/commons/list/Rankings";
 import FrontendSidebar from "../common/FrontendSidebar";
-import { fetchDetails } from "@/lib/ssrFetch";
-
 function Index({ data }) {
     return (<>
         <Layout>
             <div className="py-4 md:py-8 ">
                 <div className="mx-auto container sm:container md:container lg:container xl:max-w-[1430px]  px-4">
-                    <Hero data={data?.university} />
+                    <Hero data={data?.CourseData} />
                 </div>
                 <div className="w-full flex items-start pt-10 justify-center h-full relative flex-wrap">
                     <div
@@ -37,21 +35,21 @@ function Index({ data }) {
                         <FrontendSidebar />
                     </div>
                     <div className="w-full lg:w-9/12 h-full lg:h-[100vh] overflow-y-auto " style={{ scrollbarWidth: "none", }}>
-                        <Aboutdetails about={data?.university?.about} />
+                        <Aboutdetails about={data?.CourseData?.about} />
                         <CourseFees />
-                        <Approvals approvals={data?.university?.approvals} approvalsdata={data?.approvalsData} />
-                        <Ranking rankings={data?.university?.rankings} />
+                        <Approvals approvals={data?.CourseData?.approvals} approvalsdata={data?.approvalsData} />
+                        <Ranking rankings={data?.CourseData?.rankings} />
                         <CoursesSwiper />
-                        <Advantages advantages={data?.university?.advantages} />
-                        <Facts facts={data?.university?.facts} />
-                        <SampleCertificate certificates={data?.university?.certificates} />
-                        <ExaminationPattern examPatterns={data?.university?.examPatterns} />
-                        <Financial financialAid={data?.university?.financialAid} />
-                        <UniversityCampusCarousel universityCampuses={data?.university?.universityCampuses} />
-                        <PlacementPartners placements={data?.university?.partners} PlacementPartners={data?.placementPartners} />
-                        <CareerServices services={data?.university?.services} />
-                        <StepsSection admissionProcess={data?.university?.admissionProcess} />
-                        <FAQSection faq={data?.university?.faq} />
+                        <Advantages advantages={data?.CourseData?.advantages} />
+                        <Facts facts={data?.CourseData?.facts} />
+                        <SampleCertificate certificates={data?.CourseData?.certificates} />
+                        <ExaminationPattern examPatterns={data?.CourseData?.examPatterns} />
+                        <Financial financialAid={data?.CourseData?.financialAid} />
+                        <UniversityCampusCarousel universityCampuses={data?.CourseData?.universityCampuses} />
+                        <PlacementPartners placements={data?.CourseData?.partners} PlacementPartners={data?.placementPartners} />
+                        <CareerServices services={data?.CourseData?.services} />
+                        <StepsSection admissionProcess={data?.CourseData?.admissionProcess} />
+                        <FAQSection faq={data?.CourseData?.faq} />
                         <SimilarUniversities />
                         <Universities />
                         <Reviews />
@@ -63,8 +61,26 @@ function Index({ data }) {
 }
 export default Index;
 
-
 export async function getServerSideProps(context) {
-    return fetchDetails(context, "university");
-}
+    try {
+        const { slug } = context.query;
+        const main = new Listing();
+        const res = await main.CourseGet(slug);
+        if (res?.data?.status) {
+            return {
+                props: {
+                    data: res.data.data,
+                },
+            };
+        }
+        return {
+            notFound: true,
+        };
+    } catch (error) {
+        console.error("SSR Error:", error);
 
+        return {
+            notFound: true,
+        };
+    }
+}

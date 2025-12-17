@@ -11,7 +11,9 @@ import AdminLayout from "../../common/AdminLayout";
 import Criteria from "../../../../commons/add/AddCriteria";
 import SemesterForm from "../../../../commons/add/SemesterFormAdd";
 import Certificate from "../../../../commons/add/AddCertificate";
-import CarrerSection from "../../common/CarrerSection";
+
+import Addcareer from "@/commons/add/Addcareer";
+
 import FaqSection from "../../../../commons/add/FaqAdd";
 import OnlineSection from "../../../../commons/add/AddOnline";
 import ServicesSection from "../../../../commons/add/ServicesAdd";
@@ -852,7 +854,7 @@ function Index() {
                                 desc={formData.careerdes}
                                 handleBioChange={(val) => handleQuillChange("careerdes", val)}
                             />
-                            <CarrerSection Carrers={Careers} setCarrer={setCareers} htitle={"Careers"} />
+                            <Addcareer Carrers={Careers} setCarrer={setCareers} htitle={"Careers"} />
                         </>
                     )}
 
