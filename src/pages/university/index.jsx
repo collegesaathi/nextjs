@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect, useMemo } from 'react';
-import UniversityCard from '../components/UniversityCard';
 import ClikcPickCard from "../components/ClickPickCard";
 import BudgetCard from '../components/BudgetFilter';
 import ApprovalCard from '../components/ApprovalCard';
@@ -12,6 +11,7 @@ import Layout from "../components/Layout";
 import { useFilterStore } from '@/store/filterStore';
 import Listing from "@/pages/api/Listing";
 import { Loader } from '@/common/Loader';
+import UniversityCard from '../components/UniversityCard';
 
 // Responsive hook replacement
 const useResponsive = () => {

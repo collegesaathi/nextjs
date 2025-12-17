@@ -133,7 +133,7 @@ console.log("card" ,card)
 
             {/* View Details */}
 
-            <Link href={`/university/${card.slug}`}>
+            <Link href={`/university/${card?.slug}`}>
             <button
                 className="cursor-pointer absolute w-[7rem] h-[1.4rem] text-[0.75rem] -bottom-4 left-1/2 -translate-x-1/2 bg-[#EC1E24] text-white px-4 rounded-full hover:bg-red-600 transition-colors font-medium shadow-lg z-30"
             >
