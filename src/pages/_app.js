@@ -5,10 +5,14 @@ import "../styles/Loader.css";
 import { Toaster } from "react-hot-toast";
 import { RoleProvider } from "@/context/RoleContext";
 import NextNProgress from 'nextjs-progressbar';
-
+import Head from "next/head";
 export default function App({ Component, pageProps }) {
   return <>
-   <NextNProgress color="#EC1E24" />
+    <Head>
+      <meta name="robots" content="noindex, nofollow" />
+      <meta name="googlebot" content="noindex, nofollow" />
+    </Head>
+    <NextNProgress color="#EC1E24" />
     <Toaster
       toastOptions={{
         position: "top-right",
@@ -19,7 +23,7 @@ export default function App({ Component, pageProps }) {
       }}
     />
     <RoleProvider>
-     <Component {...pageProps} />
+      <Component {...pageProps} />
     </RoleProvider>
   </>;
 }
