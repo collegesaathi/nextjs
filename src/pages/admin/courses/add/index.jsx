@@ -20,6 +20,7 @@ import ServicesAdd from "@/commons/add/ServicesAdd";
 import AddOnline from "@/commons/add/AddOnline";
 import FaqAdd from "@/commons/add/FaqAdd";
 import { useRouter } from "next/router";
+import AddSkills from "@/commons/add/AddSkills";
 function Index() {
     const router = useRouter();
 
@@ -48,6 +49,11 @@ function Index() {
 
     const [advantages, setAdvantages] = useState([
         { title: "", description: "" }
+    ]);
+
+    
+    const [skills, setSkills] = useState([
+        { title: "" }
     ]);
 
     const [Careers, setCareers] = useState([
@@ -369,7 +375,7 @@ function Index() {
         { id: "online", label: "Online" },
         { id: "faq", label: "FAQ" },
         { id: "seo", label: "SEO" },
-
+        { id: "advantages", label: "Advantages" },
     ];
 
     const currentIndex = tabsData.findIndex((tab) => tab.id === activeTab);
@@ -874,9 +880,16 @@ function Index() {
 
                     )}
 
-                    {activeTab === "skills" && (
+                    {activeTab === "advantages" && (
                         <>
                             <AdvantageSectionAdd advantages={advantages} setAdvantages={setAdvantages}
+                                htitle={"Skills"} handleChange={handleChange} handleQuillChange={handleQuillChange} formData={formData} />
+                        </>
+                    )}
+
+                     {activeTab === "skills" && (
+                        <>
+                            <AddSkills skills={skills} setSkills={setSkills}
                                 htitle={"Skills"} handleChange={handleChange} handleQuillChange={handleQuillChange} formData={formData} />
                         </>
                     )}
@@ -903,7 +916,6 @@ function Index() {
                     {activeTab === "career" && (
                         <Addcareer handleQuillChange={handleQuillChange} handleChange={handleChange} Careers={Careers} setCareers={setCareers} formData={formData} />
                     )}
-
 
                     {activeTab === "partners" && (
                         <>

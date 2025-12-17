@@ -67,16 +67,13 @@ class Listing extends Component {
     return Api.get("/leads/university",);
   }
 
-   async Listjsx() {
+  async Listjsx() {
     return Api.get("/list",);
   }
 
-     async CourseAll() {
-    return Api.get("/all/Coueses",);
+  async CourseAll() {
+    return Api.get("/all/course",);
   }
-
-
-
   async AdminUniveristy(page) {
     return Api.get(`/admin/university?page=${page}`,);
   }
@@ -92,7 +89,6 @@ class Listing extends Component {
   async CourseGet(slug) {
     return Api.get(`/course/${slug}`)
   }
-
 
   render() {
     return (
