@@ -344,7 +344,7 @@ function Index() {
             // ✅ IMPORTANT FIX
             const response = await main.AdminCourseUpdate(payload);
             if (response?.data?.status) {
-                router.push("/admin/course")
+                router.push("/admin/courses")
                 toast.success(response.data.message);
                 setPreview(null);
             } else {
