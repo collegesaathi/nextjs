@@ -18,7 +18,7 @@ export default function App({ Component, pageProps }) {
         position: "top-right",
         className: "",
         style: {
-          fontSize: "14px", // Corrected "font-size" to camelCase as required in JSX styles
+          fontSize: "14px", 
         },
       }}
     />

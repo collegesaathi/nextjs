@@ -12,7 +12,7 @@ export default function SampleCertificate({certificates}) {
             <div className="w-full lg:w-1/2">
               <Heading title={certificates?.title} />
               <div
-                        className="font-poppins text-[15px] sm:text-[16px] text-[#282529] leading-6 sm:leading-7 mb-4"
+                        className="font-poppins text-[15px] sm:text-[17px] text-[#282529] leading-6 sm:leading-7 mb-4 certificate"
                         dangerouslySetInnerHTML={{ __html: certificates?.description || "" }}
                     />
             </div>

@@ -3,7 +3,7 @@
 import Image from "next/image";
 import StarRating from "@/common/Rating";
 
-export default function Hero({data,approvalsdata}) {
+export default function Hero({data,approvalsdata , exisitng}) {
   console.log("gvfdbg",approvalsdata)
   return (
     <div className="mt-8 md:mt-[60px] lg:mt-[90px] ">
@@ -28,12 +28,12 @@ export default function Hero({data,approvalsdata}) {
           </div>
 
               
-
           {/* STAR + LOGOS */}
           <div className="flex items-center gap-4 pt-6">
           
+{exisitng ==="university" && (  <Image src="/images/university/hero/reviews.png" alt="" width={356} height={150} className="sm:w-[126px]" />) }
 
-            <Image src="/images/university/hero/reviews.png" alt="" width={356} height={150} className="sm:w-[126px]" />
+          
                {approvalsdata && approvalsdata?.slice(0,3).map((item) => (
             <img src={item?.image}  alt={item.title} width={356} height={150} className="sm:w-[63px]" />
               ))}

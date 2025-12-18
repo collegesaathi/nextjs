@@ -8,7 +8,7 @@ import "swiper/css/free-mode";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 
-export default function FrontendSidebar() {
+export default function FrontendSidebar({data}) {
   const [activeItem, setActiveItem] = useState(0);
   const mobileSwiperRef = useRef(null);
   const [canSlidePrev, setCanSlidePrev] = useState(false);

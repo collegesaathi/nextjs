@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Heading from "@/common/Heading";
-export default function ExaminationPattern({ examPatterns }) {
+export default function ExaminationPattern({ examPatterns=[] }) {
   console.log("examPatterns", examPatterns)
+  const examPattern =  JSON.parse(examPatterns?.patterns)
   return (
     <>
       <div className=" px-6 py-6  bg-[#f7f6f6]">
@@ -13,7 +14,7 @@ export default function ExaminationPattern({ examPatterns }) {
                 className="font-poppins text-[15px] sm:text-[16px] text-[#282529] leading-6 sm:leading-7 mb-4 [&_*]:!bg-transparent"
                 dangerouslySetInnerHTML={{ __html: examPatterns?.description || "" }}
               />
-              {examPatterns?.patterns?.map((item, index) => (
+              {examPattern?.map((item, index) => (
                 <div
                   key={index}
                   className={`flex flex-col md:flex-row items-center justify-between gap-14 text-start

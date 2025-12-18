@@ -30,7 +30,8 @@ const curriculumData = [
   },
 ];
 
-function Curriculum() {
+function Curriculum(curriculum) {
+  console.log("curriculam",curriculum)
   const [openIndex, setOpenIndex] = useState(0);
 
   const toggleAccordion = (index) => {
@@ -40,10 +41,10 @@ function Curriculum() {
   return (
     <section className="w-full px-4 sm:px-6 py-6 mx-auto">
       <div className="max-w-[1230px]">
-        <Heading title="Curriculum: NMIMS Online MBA" />
+        <Heading title={curriculum?.curriculum?.title} />
 
         <div className="mt-6 flex flex-col gap-3">
-          {curriculumData.map((item, index) => (
+          {curriculum?.semesters?.subjects?.map((item, index) => (
             <div key={index} className="w-full">
               
               {/* HEADER */}
