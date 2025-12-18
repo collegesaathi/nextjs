@@ -2,6 +2,7 @@ import React from "react";
 import { MdDelete, MdAdd } from "react-icons/md";
 import dynamic from "next/dynamic";
 import "react-quill-new/dist/quill.snow.css";
+import ImagePreview from "@/common/ImagePreview";
 
 const ReactQuill = dynamic(() => import("react-quill-new"), { ssr: false });
 
@@ -73,6 +74,16 @@ export default function AddCriteria({ setCriteria, criteria = [] }) {
             />
           </div>
 
+   <div className="mb-3">
+            <label className="text-red-600 font-medium">images alt</label>
+            <input
+              type="text"
+              value={item.images_alt || ""}
+              onChange={(e) => handleChange(index, "images_alt", e.target.value)}
+              className="w-full mt-1 p-2 border rounded"
+              placeholder="Images Alt "
+            />
+          </div>
           {/* Image */}
           <div className="mb-3">
             <label className="text-red-600 font-medium">Image</label>
@@ -83,12 +94,11 @@ export default function AddCriteria({ setCriteria, criteria = [] }) {
                 handleChange(index, "images", e.target.files && e.target.files[0] ? e.target.files[0] : null)
               }
             />
-            {item.images && typeof item.images === "object" && (
-              <p className="text-sm text-gray-600 mt-1">{item.images.name}</p>
-            )}
-            {item.images && typeof item.images === "string" && (
-              <img src={item.images} alt="preview" className="w-24 h-24 object-contain mt-2" />
-            )}
+          
+   
+<ImagePreview image={item.images} />
+
+
           </div>
 
           {/* Description */}

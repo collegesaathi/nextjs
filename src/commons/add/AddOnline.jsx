@@ -90,8 +90,8 @@ function AddOnline({ formData, handleChange, onlines, setOnlines, handleQuillCha
                                 </div>
                             </div>
 
-                            <input
-                                rows={5}
+                            <textarea
+                                rows={6}
                                 type="text"
                                 value={faq.content}
                                 onChange={(e) => handleOnlineChange(index, 'content', e.target.value)}

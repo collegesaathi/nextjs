@@ -28,28 +28,24 @@ function Index({ data }) {
                     <Hero data={data?.CourseData} />
                 </div>
                 <div className="w-full flex items-start pt-10 justify-center h-full relative flex-wrap">
-                        <Aboutdetails about={data?.CourseData?.about} />
-                        <CourseFees />
-                        <Approvals approvals={data?.CourseData?.approvals} approvalsdata={data?.approvalsData} />
-                        <Ranking rankings={data?.CourseData?.rankings} />
-                        <Eligibility />
-                        <Curriculum />
-
-                        <Skills advantages={data?.CourseData?.advantages} />
-
-                        <Advantages advantages={data?.CourseData?.advantages} />
-
-                        <SampleCertificate certificates={data?.CourseData?.certificates} />
-                        <ExaminationPattern examPatterns={data?.CourseData?.examPatterns} />
-                        <Financial financialAid={data?.CourseData?.financialAid} />
-
-                        <PlacementPartners placements={data?.CourseData?.partners} PlacementPartners={data?.placementPartners} />
-                        <CareerServices services={data?.CourseData?.services} />
-                        <StepsSection admissionProcess={data?.CourseData?.admissionProcess} />
-                        <FAQSection faq={data?.CourseData?.faq} />
-                        <SimilarUniversities />
-                        <Universities />
-                        <Reviews />
+                    <Aboutdetails about={data?.CourseData?.about} />
+                    <CourseFees />
+                    <Approvals approvals={data?.CourseData?.approvals} approvalsdata={data?.approvalsData} />
+                    <Ranking rankings={data?.CourseData?.rankings} />
+                    <Eligibility />
+                    <Curriculum />
+                    <Skills advantages={data?.CourseData?.advantages} />
+                    <Advantages advantages={data?.CourseData?.advantages} />
+                    <SampleCertificate certificates={data?.CourseData?.certificates} />
+                    <ExaminationPattern examPatterns={data?.CourseData?.examPatterns} />
+                    <Financial financialAid={data?.CourseData?.financialAid} />
+                    <PlacementPartners placements={data?.CourseData?.partners} PlacementPartners={data?.placementPartners} />
+                    <CareerServices services={data?.CourseData?.services} />
+                    <StepsSection admissionProcess={data?.CourseData?.admissionProcess} />
+                    <FAQSection faq={data?.CourseData?.faq} />
+                    <SimilarUniversities />
+                    <Universities />
+                    <Reviews />
                 </div>
             </div>
         </AdminLayout>

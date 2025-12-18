@@ -21,13 +21,13 @@ import AddOnline from "@/commons/add/AddOnline";
 import FaqAdd from "@/commons/add/FaqAdd";
 import { useRouter } from "next/router";
 import AddSkills from "@/commons/add/AddSkills";
+import AddFees from "@/commons/add/AddFees";
 function Index() {
     const router = useRouter()
     const Id = router.query.slug;
     const [universities, setUniversities] = useState([])
     const [categroy, setCategroy] = useState([])
     const [data, setData] = useState("")
-    console.log("console.log", data)
     const fetchData = async () => {
         try {
 
@@ -174,7 +174,8 @@ function Index() {
         meta_description: "",
         meta_keywords: "",
         canonical_url: "",
-        Id: ""
+        Id: "",
+        fees_title :""
     });
 
     const handleQuillChange = (field, value) => {
@@ -268,6 +269,7 @@ function Index() {
             payload.append("rankings_description", formData.rankings_description);
             payload.append("rankings_name", formData.rankings_name);
             payload.append("creteria", formData.creteria)
+            payload.append("fees_title" ,formData.fees_title)
             payload.append("category", formData.category)
             payload.append("indian", JSON.stringify(formData.indian))
             payload.append("nri", JSON.stringify(formData.nri))
@@ -429,10 +431,12 @@ function Index() {
             return [];
         }
     };
+console.log("data",data)
     useEffect(() => {
         if (data?.curriculum?.semesters) {
             try {
-                const parsedSemesters = safeParse(data.curriculum.semesters);
+         const parsedSemesters = (data.curriculum.semesters);
+               
                 setSemesters(parsedSemesters?.length ? parsedSemesters : [
                     {
                         title: "Semester I",
@@ -444,10 +448,10 @@ function Index() {
             }
         }
 
-        const indianData = safeParse(data?.eligibilitycriteria?.IndianCriteria);
-        const nriData = safeParse(data?.eligibilitycriteria?.NRICriteria);
-                const carrerData = safeParse(data?.career?.Career);
 
+        const indianData = data?.eligibilitycriteria?.IndianCriteria;
+        const nriData = data?.eligibilitycriteria?.NRICriteria;
+                const carrerData = safeParse(data?.career?.Career);
         setFormData({
             slug: data?.slug,
             name: data?.name,
@@ -495,8 +499,6 @@ function Index() {
             cover_image_alt: data?.cover_image_alt,
             careerdesc: data?.career?.description,
             careername: data?.career?.title,
-
-
             descriptions: data?.description?.length
                 ? data.description
                 : [{ text: "" }],
@@ -509,7 +511,8 @@ function Index() {
 
             indian: indianData,
             nri: nriData,
-            Id: data?.id
+            Id: data?.id,
+            fees_title : data?.fees_title
         })
         setPreview(data?.cover_image);
         setIcons(data?.icon);
@@ -841,61 +844,7 @@ function Index() {
                     )}
 
                     {activeTab === "fees" && (
-                        <>
-                            <div>
-                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
-                                    Total Tuition Fee:
-                                </label>
-                                <input
-                                    type="text"
-                                    name="tuition_fees"
-                                    value={formData.tuition_fees}
-                                    onChange={(e) => {
-                                        handleChange(e);
-                                    }}
-                                    placeholder="Enter tuition fees "
-                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
-                                    required
-                                />
-                            </div>
-                            <div>
-                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
-                                    Total Anuual Fee:
-
-                                </label>
-                                <input
-                                    type="text"
-                                    name="anuual_fees"
-                                    value={formData.anuual_fees}
-                                    onChange={(e) => {
-                                        handleChange(e);
-                                    }}
-                                    placeholder="Enter anuual fees"
-                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
-                                    required
-                                />
-                            </div>
-                            <div>
-                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
-                                    Semester Fees
-
-                                </label>
-                                <input
-                                    type="text"
-                                    name="semester_fees"
-                                    value={formData.semester_fees}
-                                    onChange={(e) => {
-                                        handleChange(e);
-                                    }}
-                                    placeholder="Enter Semester Fees"
-                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
-                                    required
-                                />
-                            </div>
-
-
-                        </>
-
+                        <AddFees handleChange={handleChange} formData={formData}/>
                     )}
 
                     {activeTab === "approvals" && (

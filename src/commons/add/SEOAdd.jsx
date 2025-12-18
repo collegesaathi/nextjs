@@ -34,6 +34,7 @@ function SEOAdd({ formData, handleChange, }) {
                     onChange={(e) => {
                         handleChange(e);
                     }}
+                    rows={6}
                     placeholder="Enter meta Title"
                     className="w-full p-3 rounded-md bg-gray-100 text-gray-700 
                 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
@@ -54,6 +55,7 @@ function SEOAdd({ formData, handleChange, }) {
                     onChange={(e) => {
                         handleChange(e);
                     }}
+                     rows={6}
                     placeholder="Enter meta keywords"
                     className="w-full p-3 rounded-md bg-gray-100 text-gray-700 
                 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"

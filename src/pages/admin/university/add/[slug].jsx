@@ -2,13 +2,12 @@ import Listing from "@/pages/api/Listing";
 import { useEffect, useState } from "react";
 import AdminLayout from "../../common/AdminLayout";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
-import { MdAdd, MdDelete, MdEdit } from "react-icons/md";
+import {  MdDelete } from "react-icons/md";
 import ReactQuillEditor from "@/common/ReactQuillEditor";
 import toast from "react-hot-toast";
 import ApprovalAndPartner from "@/common/ApprovalAndPartner";
 import { useRouter } from "next/router";
 import { Loader } from "@/common/Loader";
-import Campus from "@/commons/add/AddCampus";
 import AddAbout from "@/commons/add/AddAbout";
 import SEOAdd from "@/commons/add/SEOAdd";
 import FaqAdd from "@/commons/add/FaqAdd";
@@ -184,8 +183,8 @@ function Index() {
     }, [data])
 
     const toggleApproval = (id) => {
-        if (selectedApprovals?.includes(id)) {
-            setSelectedApprovals(selectedApprovals?.filter(a => a !== id));
+        if (selectedApprovals.includes(id)) {
+            setSelectedApprovals(selectedApprovals.filter(a => a !== id));
         } else {
             setSelectedApprovals([...selectedApprovals, id]);
         }
@@ -193,7 +192,7 @@ function Index() {
 
 
     const togglePartners = (id) => {
-        if (selectedPartners?.includes(id)) {
+        if (selectedPartners.includes(id)) {
             setSelectedPartners(selectedPartners.filter(a => a !== id));
         } else {
             setSelectedPartners([...selectedPartners, id]);
@@ -203,7 +202,6 @@ function Index() {
     const [loading, setLoading] = useState(false);
 
     // FEES STATE
-    console.log("campusList", campusList)
 
     const handleFeesChange = (index, field, value) => {
         const updatedFees = [...fees];
@@ -302,9 +300,7 @@ function Index() {
 
         }
     };
-    console.log(
-        "campusList", campusList
-    )
+   
     // ✅ ADD UNIVERSITY
     const handleUpdate = async (e) => {
         e.preventDefault();
