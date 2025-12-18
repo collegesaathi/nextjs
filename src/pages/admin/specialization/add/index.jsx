@@ -28,10 +28,8 @@ function Index() {
     const [categroy, setCategroy] = useState([])
     const fetchData = async () => {
         try {
-
             const main = new Listing();
             const response = await main.Listjsx();
-            console.log("response", response)
             const universities = response?.data?.data?.universities || [];
             setCategroy(response?.data?.data?.CategoryLists)
             setUniversities(universities);
@@ -249,6 +247,7 @@ function Index() {
             payload.append("slug", formData.slug);
             payload.append("name", formData.name);
             payload.append("university_id", formData.university_id)
+            payload.append("course_id", 7)
             payload.append("position", formData.position);
             payload.append("icon", formData.icon);
             payload.append("cover_image", formData.cover_image);
@@ -342,9 +341,9 @@ function Index() {
                 console.log(pair[0], pair[1]);
             }
             // ✅ IMPORTANT FIX
-            const response = await main.AdminCourseAdd(payload);
+            const response = await main.AdminSpecializationAdd(payload);
             if (response?.data?.status) {
-                router.push("/admin/courses")
+                router.push("/admin/specialization")
                 toast.success(response.data.message);
                 setPreview(null);
             } else {

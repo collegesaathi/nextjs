@@ -17,10 +17,17 @@ class Listing extends Component {
     return ApiallowFile.post("/admin/course/add", data);
   }
 
+  async AdminSpecializationAdd(data) {
+    return ApiallowFile.post("/admin/specialisation/add", data);
+  }
+
   async AdminUniversityUpdate(data) {
     return ApiallowFile.post("/admin/universities/update", data);
   }
 
+   async AdminCourseUpdate(data) {
+    return ApiallowFile.post("/admin/course/update", data);
+  }
   async Univeristy() {
     return Api.get("/all/universities",);
   }

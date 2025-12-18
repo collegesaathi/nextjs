@@ -7,6 +7,7 @@ const ReactQuill = dynamic(() => import("react-quill-new"), { ssr: false });
 
 export default function AddCriteria({ setCriteria, criteria = [] }) {
   // ensure criteria default to array to avoid map errors
+    console.log("criteria" ,criteria)
 
   const addCriteria = () => {
     // use functional update to be safe
@@ -58,7 +59,7 @@ export default function AddCriteria({ setCriteria, criteria = [] }) {
       </div>
 
 
-      {criteria.map((item, index) => (
+      {criteria?.map((item, index) => (
         <div key={index} className="border rounded-lg p-4 mb-6 bg-gray-50">
           {/* Title */}
           <div className="mb-3">
