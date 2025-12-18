@@ -2,6 +2,7 @@
 import React from "react";
 import BR from "../assets/home/br.avif"
 import BG from "../assets/home/bg.avif"
+import Image from "next/image";
 
 
 export default function Confusion() {
@@ -17,10 +18,11 @@ export default function Confusion() {
                             data-aos-delay="200"
                             data-aos-once="true"
                         >
-                            <img
+                            <Image
                                 src={BG?.src}
                                 alt="Blog background"
                                 className="w-full h-full object-cover rounded-[25px]"
+                                width={800} height={600}
                             />
                             <div className="absolute top-0 left-0 w-full h-full px-[94px] py-[50px] space-y-2">
                                 <h2 className="font-semibold text-[38px] leading-[48px] tracking-[0px] text-[#282529]">
@@ -34,7 +36,7 @@ export default function Confusion() {
                                 </div>
                             </div>
                             <div className="absolute top-13 -right-[30px] w-[587px]">
-                                <img src={BR?.src} alt="Blog illustration" className="w-full h-auto" />
+                                <Image src={BR?.src} alt="Blog illustration" className="w-full h-auto" width={800} height={600} />
                             </div>
                         </div>
                     </section>
@@ -42,10 +44,11 @@ export default function Confusion() {
                     {/* Mobile Version */}
                     <section className=" lg:hidden block">
                         <div className="w-full rounded-[25px] relative mx-auto">
-                            <img
+                            <Image
                                 src={BG?.src}
                                 alt="Blog background"
                                 className="w-full h-[200px] object-cover rounded-[25px]"
+                                width={800} height={600}
                             />
                             <div className="absolute top-0 left-0 w-full h-full text-center px-[20px] flex flex-col justify-center items-center space-y-2">
                                 <h2 className="font-semibold text-[20px] tracking-[0px] text-[#282529]">

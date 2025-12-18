@@ -22,16 +22,17 @@ import FaqAdd from "@/commons/add/FaqAdd";
 import { useRouter } from "next/router";
 import AddSkills from "@/commons/add/AddSkills";
 function Index() {
-    const router = useRouter();
-
+    const router = useRouter()
+    const Id = router.query.slug;
     const [universities, setUniversities] = useState([])
     const [categroy, setCategroy] = useState([])
+    const [data, setData] = useState("")
+    console.log("console.log", data)
     const fetchData = async () => {
         try {
 
             const main = new Listing();
             const response = await main.Listjsx();
-            console.log("response", response)
             const universities = response?.data?.data?.universities || [];
             setCategroy(response?.data?.data?.CategoryLists)
             setUniversities(universities);
@@ -40,7 +41,6 @@ function Index() {
             setLoading(false);
         }
     };
-
     useEffect(() => {
         fetchData();
     }, []);
@@ -51,7 +51,7 @@ function Index() {
         { title: "", description: "" }
     ]);
 
-    
+
     const [skills, setSkills] = useState([
         { title: "" }
     ]);
@@ -60,6 +60,8 @@ function Index() {
         { title: "", description: "", salary: "" }
     ]);
 
+
+    const [creteria, setCriteria] = useState([])
 
     const [semesters, setSemesters] = useState([
         {
@@ -111,7 +113,6 @@ function Index() {
     const [faqs, setFaqs] = useState([
         { question: "", answer: "", position: "" }
     ]);
-    console.log("faqs", faqs)
     const [onlines, setOnlines] = useState([
         { title: "", content: "" }
     ]);
@@ -173,9 +174,9 @@ function Index() {
         meta_description: "",
         meta_keywords: "",
         canonical_url: "",
+        Id: ""
     });
 
-    console.log("formData", formData)
     const handleQuillChange = (field, value) => {
         setFormData((prev) => ({ ...prev, [field]: value }));
     };
@@ -237,7 +238,6 @@ function Index() {
             category: tab
         }));
     };
-    console.log("semesters", semesters)
 
     const handleAdd = async (e) => {
         e.preventDefault();
@@ -249,6 +249,7 @@ function Index() {
             payload.append("slug", formData.slug);
             payload.append("name", formData.name);
             payload.append("university_id", formData.university_id)
+            payload.append("id", formData.Id);
             payload.append("position", formData.position);
             payload.append("icon", formData.icon);
             payload.append("cover_image", formData.cover_image);
@@ -276,9 +277,12 @@ function Index() {
             payload.append("certificatedescription", formData.certificatedescription);
             payload.append("certificatemage", formData.certificatemage);
             payload.append("image_alt", formData.image_alt)
-            payload.append("skills", JSON.stringify(advantages));
-            payload.append("skillsname", formData.advantagesname);
-            payload.append("skilsdescription", formData.advantagesdescription);
+            payload.append("advantages", JSON.stringify(advantages));
+            payload.append("advantagesname", formData.advantagesname);
+            payload.append("advantagesdescription", formData.advantagesdescription);
+            payload.append("skills", JSON.stringify(skills));
+            payload.append("skillsname", formData.skillname);
+            payload.append("skilldesc", formData.skilldesc);
             payload.append("patternname", formData.patternname);
             payload.append("patterndescription", formData.patterndescription);
             payload.append("bottompatterndesc", formData.bottompatterndesc);
@@ -324,7 +328,6 @@ function Index() {
                 images_alt: item?.images_alt
             }));
             payload.append("servcies", JSON.stringify(cleanServices));
-
             services.forEach((item, index) => {
                 if (item.image) {
                     payload.append(`servicesimages[${index}]`, item.image);
@@ -339,9 +342,9 @@ function Index() {
                 console.log(pair[0], pair[1]);
             }
             // ✅ IMPORTANT FIX
-            const response = await main.AdminCourseAdd(payload);
+            const response = await main.AdminCourseUpdate(payload);
             if (response?.data?.status) {
-                router.push("/admin/courses")
+                router.push("/admin/course")
                 toast.success(response.data.message);
                 setPreview(null);
             } else {
@@ -392,66 +395,144 @@ function Index() {
         }
     };
 
-    // useEffect(() => {
-    //     setFormData({
-    //         slug: data?.slug,
-    //         name: data?.name,
-    //         position: data?.position,
-    //         about_title: data?.about?.title,
-    //         about_desc: data?.about?.description,
-    //         approvals_name: data?.approvals?.title,
-    //         approvals_desc: data?.approvals?.description,
-    //         rankings_name: data?.rankings?.title,
-    //         rankings_description: data?.rankings?.description,
-    //         advantagesname: data?.advantages?.title,
-    //         advantagesdescription: data?.advantages?.description,
-    //         factsname: data?.facts?.title,
-    //         certificatedescription: data?.certificates?.description,
-    //         certificatename: data?.certificates?.title,
-    //         certificatemage: data?.certificates?.image,
-    //         image_alt: data?.certificates?.image_alt,
-    //         patternname: data?.examPatterns?.title,
-    //         patterndescription: data?.examPatterns?.description,
-    //         financialname: data?.financialAid?.title,
-    //         financialdescription: data?.financialAid?.description,
-    //         partnersname: data?.partners?.title,
-    //         partnersdesc: data?.partners?.description,
-    //         servicetitle: data?.services?.title,
-    //         servicedesc: data?.services?.description,
-    //         onlinetitle: data?.admissionProcess?.title,
-    //         onlinedesc: data?.admissionProcess?.description,
-    //         bottompatterndesc: data?.examPatterns?.bottompatterndesc,
-    //         meta_title: data?.seo?.meta_title,
-    //         meta_keywords: data?.seo?.meta_keywords,
-    //         meta_description: data?.seo?.meta_description,
-    //         canonical_url: data?.seo?.canonical_url,
-    //         Id: data?.id,
-    //         icon_alt: data?.icon_alt,
-    //         cover_image_alt: data?.cover_image_alt,
-    //         descriptions: data?.description?.length
-    //             ? data.description
-    //             : [{ text: "" }],
-    //     })
-    //     setPreview(data?.cover_image);
-    //     setIcons(data?.icon);
-    //     setSelectedApprovals(data?.approvals?.approval_ids);
-    //     setSelectedPartners(data?.partners?.placement_partner_id);
-    //     setAdvantages(data?.advantages?.advantages?.length ? data?.advantages?.advantages : [{ title: "", description: "" }]);
-    //     setPatterns(data?.examPatterns?.patterns?.length ? data?.examPatterns?.patterns : [{ patternName: "", description: "", image: "", percentage: "", pattern_images_alt: "" }]);
-    //     setFees(data?.financialAid?.aid?.length ? data?.financialAid?.aid : [{
-    //         courseName: "",
-    //         totalFees: "",
-    //         loanAmount: "",
-    //         tenure: "",
-    //         interest: "",
-    //         emi: "",
-    //         description: "",
-    //     }])
-    //     setCampusList(data?.universityCampuses?.campus?.length ? data?.universityCampuses?.campus : [{ name: "", image: "", campus_images_alt: "" }])
-    //     setServices(data?.services?.services?.length ? data?.services?.services : [{ title: "", content: "", image: null, icon: null, icons_alt: "", images_alt: "" }])
-    //     setFaqs(data?.faq?.faqs?.length ? data?.faq?.faqs : [{ question: "", answer: "", position: "" }]);
-    //     setOnlines(data?.admissionProcess?.process?.length ? data?.admissionProcess?.process : [{ title: "", content: "" }])
-    // }, [data])
+    const [processing, setprocessing] = useState(false);
+    const handleDetails = async (Id) => {
+        try {
+            setprocessing(true);
+            const main = new Listing();
+            const res = await main.CourseGet(Id);
+            if (res?.data?.status) {
+                setData(res.data.data?.CourseData)
+                toast.success(res.data.message);
+            } else {
+                toast.error(res?.data?.CourseData?.message || "Something went wrong.");
+            }
+        } catch (error) {
+            console.log("error", error)
+            console.error("Package Delete Error:", error);
+            toast.error(error?.response?.data?.university?.message || "Delete failed");
+        } finally {
+            setprocessing(false);
+        }
+    };
+
+    useEffect(() => {
+        if (Id) {
+            handleDetails(Id)
+        }
+    }, [Id])
+
+    const safeParse = (value) => {
+        try {
+            return value ? JSON.parse(value) : [];
+        } catch {
+            return [];
+        }
+    };
+    useEffect(() => {
+        if (data?.curriculum?.semesters) {
+            try {
+                const parsedSemesters = safeParse(data.curriculum.semesters);
+                setSemesters(parsedSemesters?.length ? parsedSemesters : [
+                    {
+                        title: "Semester I",
+                        subjects: [{ description: "" }]
+                    }
+                ]);
+            } catch (error) {
+                console.error("Semester JSON parse error:", error);
+            }
+        }
+
+        const indianData = safeParse(data?.eligibilitycriteria?.IndianCriteria);
+        const nriData = safeParse(data?.eligibilitycriteria?.NRICriteria);
+                const carrerData = safeParse(data?.career?.Career);
+
+        setFormData({
+            slug: data?.slug,
+            name: data?.name,
+            tuition_fees: data?.fees?.tuition_fees,
+            anuual_fees: data?.fees?.annual_fees,
+            semester_fees: data?.fees?.semester_wise_fees,
+            university_id: data?.university_id,
+            categroy_id: data?.category_id,
+            position: data?.position,
+            about_title: data?.about?.title,
+            about_desc: data?.about?.description,
+            approvals_name: data?.approvals?.title,
+            approvals_desc: data?.approvals?.description,
+            rankings_name: data?.rankings?.title,
+            rankings_description: data?.rankings?.description,
+            creteria: data?.eligibilitycriteria?.title,
+            //  indian: data?.eligibilitycriteria?.IndianCriteria,
+            advantagesname: data?.advantages?.title,
+            advantagesdescription: data?.advantages?.description,
+            factsname: data?.facts?.title,
+            certificatedescription: data?.certificates?.description,
+            certificatename: data?.certificates?.title,
+            certificatemage: data?.certificates?.image,
+            skillname: data?.skills?.title,
+            skilldesc: data?.skills?.description,
+            semesters_title: data?.curriculum?.title,
+            image_alt: data?.certificates?.image_alt,
+            patternname: data?.examPatterns?.title,
+            patterndescription: data?.examPatterns?.description,
+            financialname: data?.financialAid?.title,
+            financialdescription: data?.financialAid?.description,
+            partnersname: data?.partners?.title,
+            partnersdesc: data?.partners?.description,
+            servicetitle: data?.services?.title,
+            servicedesc: data?.services?.description,
+            onlinetitle: data?.admissionprocess?.title,
+            onlinedesc: data?.admissionprocess?.description,
+            bottompatterndesc: data?.examPatterns?.bottompatterndesc,
+            meta_title: data?.seo?.meta_title,
+            meta_keywords: data?.seo?.meta_keywords,
+            meta_description: data?.seo?.meta_description,
+            canonical_url: data?.seo?.canonical_url,
+            Id: data?.id,
+            icon_alt: data?.icon_alt,
+            cover_image_alt: data?.cover_image_alt,
+            careerdesc: data?.career?.description,
+            careername: data?.career?.title,
+
+
+            descriptions: data?.description?.length
+                ? data.description
+                : [{ text: "" }],
+
+            category: data?.eligibilitycriteria?.IndianCriteria
+                ? "indian"
+                : data?.eligibilitycriteria?.NRICriteria
+                    ? "nri"
+                    : "indian",
+
+            indian: indianData,
+            nri: nriData,
+            Id: data?.id
+        })
+        setPreview(data?.cover_image);
+        setIcons(data?.icon);
+        setSelectedApprovals(data?.approvals?.approval_ids);
+        setSelectedPartners(data?.partners?.placement_partner_id);
+        setAdvantages(data?.advantages?.advantages?.length ? data?.advantages?.advantages : [{ title: "", description: "" }]);
+        setPatterns(data?.examPatterns?.patterns?.length ? data?.examPatterns?.patterns : [{ patternName: "", description: "", image: "", percentage: "", pattern_images_alt: "" }]);
+        setFees(data?.financialAid?.aid?.length ? data?.financialAid?.aid : [{
+            courseName: "",
+            totalFees: "",
+            loanAmount: "",
+            tenure: "",
+            interest: "",
+            emi: "",
+            description: "",
+        }])
+        setCampusList(data?.universityCampuses?.campus?.length ? data?.universityCampuses?.campus : [{ name: "", image: "", campus_images_alt: "" }])
+        setServices(data?.services?.services?.length ? data?.services?.services : [{ title: "", content: "", image: null, icon: null, icons_alt: "", images_alt: "" }])
+        setFaqs(data?.faq?.faqs?.length ? data?.faq?.faqs : [{ question: "", answer: "", position: "" }]);
+        setSkills(data?.skills?.skills?.length ? data?.skills?.skills : [{ title: "" }])
+        setOnlines(data?.admissionprocess?.process?.length ? data?.admissionprocess?.process : [{ title: "", content: "" }])
+        setCareers(carrerData?.length ? carrerData : [{ title: "", content: "" }])
+    }, [data])
 
     return (<>
         <AdminLayout>
@@ -947,7 +1028,7 @@ function Index() {
                         </>
                     )}
 
-                     {activeTab === "skills" && (
+                    {activeTab === "skills" && (
                         <>
                             <AddSkills skills={skills} setSkills={setSkills}
                                 htitle={"Skills"} handleChange={handleChange} handleQuillChange={handleQuillChange} formData={formData} />
