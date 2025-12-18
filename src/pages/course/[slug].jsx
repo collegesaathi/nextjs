@@ -1,6 +1,5 @@
 
 import Reviews from "@/commons/list/Reviews";
-import Listing from "../api/Listing";
 import Layout from "../components/Layout";
 import Universities from "@/commons/list/Universities";
 import SimilarUniversities from "@/commons/list/SimilarUniversities";
@@ -8,13 +7,13 @@ import FAQSection from "@/commons/list/FAQSection";
 import StepsSection from "@/commons/list/StepsSection";
 import CareerServices from "@/commons/list/CareerServices";
 import PlacementPartners from "@/commons/list/PlacementPartners";
-import UniversityCampusCarousel from "@/commons/list/UniversityCampusCarousel";
+
 import Financial from "@/commons/list/Financial";
 import ExaminationPattern from "@/commons/list/ExaminationPattern";
 import SampleCertificate from "@/commons/list/SampleCertificate";
-import Facts from "@/commons/list/Facts";
+
 import Advantages from "@/commons/list/Advantages";
-import CoursesSwiper from "@/commons/list/CoursesSwiper";
+
 import Approvals from "@/commons/list/Approvals";
 import Aboutdetails from "@/commons/list/Aboutdetails";
 import Hero from "@/commons/list/Hero";
