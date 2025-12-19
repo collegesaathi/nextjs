@@ -6,8 +6,10 @@ import Delete from "../common/Delete";
 import Link from "next/link";
 import { MdAdd, MdEdit } from "react-icons/md";
 import { Loader } from "@/common/Loader";
+import { useRouter } from "next/router";
 
 export default function Index() {
+    const router = useRouter();
     const [page, setPage] = useState(1);
     const [data, setData] = useState([]);
     const [buttonLoading, setButtonLoading] = useState(false);
@@ -64,11 +66,14 @@ export default function Index() {
                     <h1 className="capitalize font-inter text-lg lg:text-2xl font-bold text-[#FF1B1B] tracking-[-0.04em] mb-6">
                         Manage university
                     </h1>
-                    <Link href="/admin/university/add"
+                    <button
                         className="cursor-pointer text-[18px] text-[#ffffff] p-2 bg-[#FF1B1B] bg-opacity-10 hover:bg-opacity-30 rounded inline-flex items-center justify-center"
+
+                        onClick={() => router.push("/admin/university/add")}
                     >
-                        <MdAdd size={24} /> Add university
-                    </Link>
+                        <MdAdd size={24} />   Add University
+                    </button>
+
                     {/* <AddUniversity data={null}
                         fetchData={fetchData}
                     /> */}

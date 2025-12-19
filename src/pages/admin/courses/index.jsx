@@ -55,12 +55,12 @@ export default function Index() {
                     <h1 className="capitalize font-inter text-lg lg:text-2xl font-bold text-[#FF1B1B] tracking-[-0.04em] mb-6">
                         Manage course
                     </h1>
-                    <Link
+                    <a
                         href={`/admin/courses/add?university_id=${university_id}`}
                         className="cursor-pointer text-[18px] text-[#ffffff] p-2 bg-[#FF1B1B] bg-opacity-10 hover:bg-opacity-30 rounded inline-flex items-center justify-center"
                     >
                         <MdAdd size={24} /> Add Course
-                    </Link>
+                    </a>
                     {/* <Addcourse data={null}
                         fetchData={fetchData}
                     /> */}
