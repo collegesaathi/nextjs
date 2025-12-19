@@ -553,16 +553,13 @@ function Index() {
                             <div>
                                 <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
                                     Name{" "}
-                                    <span className="text-sm text-gray-500">
-                                        ({formData.name?.length}/50)
-                                    </span>
                                 </label>
                                 <input
                                     type="text"
                                     name="name"
                                     value={formData.name}
                                     onChange={(e) => {
-                                        if (e.target.value.length <= 50) handleChange(e);
+                                        handleChange(e);
                                     }}
                                     placeholder="Enter name"
                                     className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
@@ -627,16 +624,13 @@ function Index() {
                             <div>
                                 <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
                                     University Image Alt{" "}
-                                    <span className="text-sm text-gray-500">
-                                        ({formData.cover_image_alt?.length}/50)
-                                    </span>
                                 </label>
                                 <input
                                     type="text"
                                     name="cover_image_alt"
                                     value={formData.cover_image_alt}
                                     onChange={(e) => {
-                                        if (e.target.value.length <= 50) handleChange(e);
+                                        handleChange(e);
                                     }}
                                     placeholder="Enter cover image alt"
                                     className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
@@ -647,16 +641,13 @@ function Index() {
                             <div>
                                 <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
                                     University Icon Alt{" "}
-                                    <span className="text-sm text-gray-500">
-                                        ({formData.icon_alt?.length}/50)
-                                    </span>
                                 </label>
                                 <input
                                     type="text"
                                     name="icon_alt"
                                     value={formData.icon_alt}
                                     onChange={(e) => {
-                                        if (e.target.value.length <= 50) handleChange(e);
+                                        handleChange(e);
                                     }}
                                     placeholder="Enter cover Icon alt"
                                     className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
@@ -742,16 +733,14 @@ function Index() {
                             <div>
                                 <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
                                     Name{" "}
-                                    <span className="text-sm text-gray-500">
-                                        ({formData.approvals_name?.length}/50)
-                                    </span>
+
                                 </label>
                                 <input
                                     type="text"
                                     name="approvals_name"
                                     value={formData.approvals_name}
                                     onChange={(e) => {
-                                        if (e.target.value.length <= 50) handleChange(e);
+                                        handleChange(e);
                                     }}
                                     placeholder="Enter approvals name"
                                     className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
@@ -839,16 +828,13 @@ function Index() {
                             <div>
                                 <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
                                     Name{" "}
-                                    <span className="text-sm text-gray-500">
-                                        ({formData.semesters_title?.length}/50)
-                                    </span>
                                 </label>
                                 <input
                                     type="text"
                                     name="semesters_title"
                                     value={formData.semesters_title}
                                     onChange={(e) => {
-                                        if (e.target.value.length <= 50) handleChange(e);
+                                        handleChange(e);
                                     }}
                                     placeholder="Enter name"
                                     className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
@@ -902,16 +888,14 @@ function Index() {
                             <div>
                                 <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
                                     Name{" "}
-                                    <span className="text-sm text-gray-500">
-                                        ({formData.partnersname?.length}/50)
-                                    </span>
+
                                 </label>
                                 <input
                                     type="text"
                                     name="partnersname"
                                     value={formData.partnersname}
                                     onChange={(e) => {
-                                        if (e.target.value.length <= 50) handleChange(e);
+                                        handleChange(e);
                                     }}
                                     placeholder="Enter partners name"
                                     className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
