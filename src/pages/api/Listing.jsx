@@ -25,8 +25,13 @@ class Listing extends Component {
     return ApiallowFile.post("/admin/universities/update", data);
   }
 
-   async AdminCourseUpdate(data) {
+  async AdminCourseUpdate(data) {
     return ApiallowFile.post("/admin/course/update", data);
+  }
+
+  
+  async AdminSpecializationUpdate(data) {
+    return ApiallowFile.post("/admin/specialisation/update", data);
   }
   async Univeristy() {
     return Api.get("/all/universities",);
@@ -95,6 +100,9 @@ class Listing extends Component {
 
   async CourseGet(slug) {
     return Api.get(`/course/${slug}`)
+  }
+  async SpecializationGet(slug) {
+    return Api.get(`/all/specialisations/${slug}`)
   }
 
   render() {

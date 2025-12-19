@@ -369,7 +369,7 @@ function Index() {
                 console.log(pair[0], pair[1]);
             }
             // ✅ IMPORTANT FIX
-            const response = await main.AdminCourseUpdate(payload);
+            const response = await main.AdminSpecializationUpdate(payload);
             if (response?.data?.status) {
                 router.push("/admin/courses")
                 toast.success(response.data.message);
@@ -425,12 +425,12 @@ function Index() {
         try {
             setprocessing(true);
             const main = new Listing();
-            const res = await main.CourseGet(Id);
+            const res = await main.SpecializationGet(Id);
             if (res?.data?.status) {
-                setData(res.data.data?.CourseData)
+                setData(res.data.data?.SpecialisationData)
                 toast.success(res.data.message);
             } else {
-                toast.error(res?.data?.CourseData?.message || "Something went wrong.");
+                toast.error(res?.data?.SpecialisationData?.message || "Something went wrong.");
             }
         } catch (error) {
             console.log("error", error)
