@@ -496,7 +496,7 @@ function Index() {
             rankings_name: data?.rankings?.title,
             rankings_description: data?.rankings?.description,
             creteria: data?.eligibilitycriteria?.title,
-            desccreteria :data?.eligibilitycriteria.desccreteria,
+            desccreteria :data?.eligibilitycriteria?.desccreteria,
             advantagesname: data?.advantages?.title,
             advantagesdescription: data?.advantages?.description,
             factsname: data?.facts?.title,
