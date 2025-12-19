@@ -275,7 +275,7 @@ function Index() {
             payload.append("slug", formData.slug);
             payload.append("name", formData.name);
             payload.append("university_id", formData.university_id)
-            payload.append("course_id", 7)
+            payload.append("course_id", formData.course_id)
 
             payload.append("position", formData.position);
             payload.append("icon", formData.icon);

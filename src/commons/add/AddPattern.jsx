@@ -3,6 +3,7 @@ import dynamic from "next/dynamic";
 import { MdAdd, MdEdit, MdDelete } from "react-icons/md";
 import "react-quill-new/dist/quill.snow.css";
 import ReactQuillEditor from "@/common/ReactQuillEditor";
+import ImagePreview from "@/common/ImagePreview";
 
 // ✅ Dynamic import ReactQuill (SSR false)
 const ReactQuill = dynamic(() => import("react-quill-new"), { ssr: false });
@@ -107,14 +108,9 @@ console.log("patterns" ,patterns)
               className="w-full bg-[#F4F6F8] text-[#727272] border rounded-[10px] px-4 py-2"
             />
           </div>
-          {/* Preview */}
-          {item.image && (
-            <img
-              src={typeof item.image === "string" ? item.image : URL.createObjectURL(item.image)}
-              alt="preview"
-              className="w-20 h-20 object-contain"
-            />
-          )}
+
+                      <ImagePreview image={typeof item.image === "string" ? item.image : URL.createObjectURL(item.image)} />
+          
 
            <div>
             <label className="block text-[#CC2828] font-medium mb-2">Pattern Images Alt</label>

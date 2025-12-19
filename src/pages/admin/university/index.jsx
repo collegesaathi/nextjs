@@ -65,7 +65,7 @@ export default function Index() {
                         Manage university
                     </h1>
                     <Link href="/admin/university/add"
-                     className="cursor-pointer text-[18px] text-[#ffffff] p-2 bg-[#FF1B1B] bg-opacity-10 hover:bg-opacity-30 rounded inline-flex items-center justify-center"
+                        className="cursor-pointer text-[18px] text-[#ffffff] p-2 bg-[#FF1B1B] bg-opacity-10 hover:bg-opacity-30 rounded inline-flex items-center justify-center"
                     >
                         <MdAdd size={24} /> Add university
                     </Link>
@@ -95,7 +95,7 @@ export default function Index() {
                                 {data?.universities?.map((item, index) => (
                                     <tr
                                         key={index}
-                                        className={`border hover:bg-gray-50 ${item?.deleted_at ? "bg-gray-200 opacity-80" : ""
+                                        className={`border hover:bg-gray-750 ${item?.deleted_at ? "bg-gray-500 !text-white " : "text-gray-800"
                                             }`}
                                     >
                                         {/* Index */}

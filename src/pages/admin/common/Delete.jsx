@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 import Popup from "@/common/Popup";
 import Listing from "@/pages/api/Listing";
 
-export default function Delete({ step, Id, fetch, deleteAt }) {
+export default function Delete({ step, Id, fetch, deleteAt, university_id, course_id }) {
     console.log(Id)
     const [isOpen, setIsOpen] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -108,7 +108,6 @@ export default function Delete({ step, Id, fetch, deleteAt }) {
         }
     };
 
-
     const handleCourseDelete = async () => {
         try {
             setLoading(true);
@@ -117,7 +116,7 @@ export default function Delete({ step, Id, fetch, deleteAt }) {
 
             if (res?.data?.status) {
                 toast.success(res.data.message);
-                fetch();
+                fetch(university_id);
             } else {
                 toast.error(res?.data?.message || "Something went wrong.");
             }
@@ -131,7 +130,6 @@ export default function Delete({ step, Id, fetch, deleteAt }) {
         }
     };
 
-
     const handleSpecialisationDelete = async () => {
         try {
             setLoading(true);
@@ -140,7 +138,7 @@ export default function Delete({ step, Id, fetch, deleteAt }) {
 
             if (res?.data?.status) {
                 toast.success(res.data.message);
-                fetch();
+                fetch(university_id, course_id);
             } else {
                 toast.error(res?.data?.message || "Something went wrong.");
             }
@@ -170,7 +168,7 @@ export default function Delete({ step, Id, fetch, deleteAt }) {
         else if (step === 5) {
             handleCourseDelete()
         }
-          else if (step === 6) {
+        else if (step === 6) {
             handleSpecialisationDelete()
         }
         else {
@@ -209,8 +207,6 @@ export default function Delete({ step, Id, fetch, deleteAt }) {
                             {step === 3 && "Placements"}
                             {step === 4 && "Approvals"}
                             {step === 5 && "Course"}
-
-
                         </span>
                         ?
                     </p>

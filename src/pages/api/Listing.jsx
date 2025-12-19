@@ -96,13 +96,15 @@ class Listing extends Component {
   async UniveristyDelete(id) {
     return Api.get(`/university/delete/${id}`)
   }
-
+  async SpecialisationDelete(id) {
+    return Api.get(`/specialisation/delete/${id}`)
+  }
   async UniveristyGet(slug) {
     return Api.get(`/university/${slug}`)
   }
 
 
-  async UniveristyCourseList(id){
+  async UniveristyCourseList(id) {
     return Api.get(`/course/university/${id}`)
   }
 
@@ -110,18 +112,19 @@ class Listing extends Component {
     return Api.get(`/course/${slug}`)
   }
 
-   async CoursenameGet(id) {
+  async CoursenameGet(id) {
     return Api.get(`/course_name/${id}`)
   }
-  
+
   async SpecializationGet(slug) {
-    return Api.get(`/specialisations/${slug}`) }
-    
-  async UniveristyCourseGet(id){
+    return Api.get(`/specialisations/${slug}`)
+  }
+
+  async UniveristyCourseGet(id) {
     return Api.get(`/course/university/${id}`)
   }
 
-  async CourseSpecialisationGet(uni , cui){
+  async CourseSpecialisationGet(uni, cui) {
     return Api.get(`/course/specialisation/${uni}/${cui}`)
   }
   render() {

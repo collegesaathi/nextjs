@@ -18,6 +18,7 @@ import AddPattern from "@/commons/add/AddPattern";
 import AddCertificate from "@/commons/add/AddCertificate";
 import FactAdd from "@/commons/add/FactAdd";
 import AdvantageSectionAdd from "@/commons/add/AdvantageSectionAdd";
+import ImagePreview from "@/common/ImagePreview";
 
 function Index() {
     const router = useRouter();
@@ -473,16 +474,8 @@ function Index() {
                                     className="w-full p-2 bg-gray-100 rounded-md cursor-pointer text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
                                 />
 
-                                {/* Image Preview */}
-                                {preview && (
-                                    <div className="mt-3">
-                                        <img
-                                            src={preview}
-                                            alt="Preview"
-                                            className="w-full h-48 object-cover rounded-md border"
-                                        />
-                                    </div>
-                                )}
+                               
+                                <ImagePreview image={preview}   />
                             </div>
                             <div>
                                 <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
@@ -531,16 +524,8 @@ function Index() {
                                     className="w-full p-2 bg-gray-100 rounded-md cursor-pointer text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
                                 />
 
-                                {/* Image Preview */}
-                                {icons && (
-                                    <div className="mt-3">
-                                        <img
-                                            src={icons}
-                                            alt="Preview"
-                                            className="w-full h-48 object-cover rounded-md border"
-                                        />
-                                    </div>
-                                )}
+                                <ImagePreview image={icons}   />
+
                             </div>
 
                             <div className="mb-4">

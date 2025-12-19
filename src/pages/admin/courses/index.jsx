@@ -86,7 +86,7 @@ export default function Index() {
                                 {data?.map((item, index) => (
                                     <tr
                                         key={index}
-                                        className={`border hover:bg-gray-50 ${item?.deleted_at ? "bg-gray-200 opacity-80" : ""
+                                        className={`border hover:bg-gray-750 ${item?.deleted_at ? "bg-gray-500 !text-white " : "text-gray-800"
                                             }`}
                                     >
                                         {/* Index */}
@@ -102,7 +102,7 @@ export default function Index() {
                                         </td>
 
                                         {/* Course Name */}
-                                        <td className="p-3 border font-semibold text-gray-800">
+                                        <td className="p-3 border font-semibold ">
                                             {item?.name}
                                         </td>
 
@@ -148,6 +148,7 @@ export default function Index() {
                                                     fetch={fetchData}
                                                     deleteAt={item?.deleted_at}
                                                     Id={item?.id}
+                                                    university_id={university_id}
                                                 />
 
                                                 {/* View Button */}

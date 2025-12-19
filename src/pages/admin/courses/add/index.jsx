@@ -23,6 +23,7 @@ import { useRouter } from "next/router";
 import AddSkills from "@/commons/add/AddSkills";
 import AddFees from "@/commons/add/AddFees";
 import Link from "next/link";
+import ImagePreview from "@/common/ImagePreview";
 function Index() {
     const router = useRouter();
     console.log("router", router?.query)
@@ -610,16 +611,8 @@ function Index() {
                                     className="w-full p-2 bg-gray-100 rounded-md cursor-pointer text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
                                 />
 
-                                {/* Image Preview */}
-                                {preview && (
-                                    <div className="mt-3">
-                                        <img
-                                            src={preview}
-                                            alt="Preview"
-                                            className="w-full h-48 object-cover rounded-md border"
-                                        />
-                                    </div>
-                                )}
+                           
+                                    <ImagePreview image={preview}   />
                             </div>
                             <div>
                                 <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
@@ -668,15 +661,7 @@ function Index() {
                                 />
 
                                 {/* Image Preview */}
-                                {icons && (
-                                    <div className="mt-3">
-                                        <img
-                                            src={icons}
-                                            alt="Preview"
-                                            className="w-full h-48 object-cover rounded-md border"
-                                        />
-                                    </div>
-                                )}
+                                     <ImagePreview image={icons}   />
                             </div>
 
                             <div className="mb-4">

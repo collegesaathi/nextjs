@@ -22,6 +22,7 @@ import FaqAdd from "@/commons/add/FaqAdd";
 import { useRouter } from "next/router";
 import AddSkills from "@/commons/add/AddSkills";
 import AddFees from "@/commons/add/AddFees";
+import ImagePreview from "@/common/ImagePreview";
 function Index() {
     const router = useRouter()
     const Id = router.query.slug;
@@ -279,7 +280,7 @@ function Index() {
             payload.append("position", formData.position);
             payload.append("icon", formData.icon);
             payload.append("cover_image", formData.cover_image);
-            payload.append("category_id", formData?.categroy_id);
+            payload.append("course_id", formData?.course_id);
             payload.append("descriptions", JSON.stringify(formData.descriptions));
             payload.append("cover_image_alt", formData.cover_image_alt)
             payload.append("icon_alt", formData.icon_alt)
@@ -503,7 +504,7 @@ function Index() {
             anuual_fees: data?.fees?.annual_fees,
             semester_fees: data?.fees?.semester_wise_fees,
             university_id: data?.university_id,
-            categroy_id: data?.category_id,
+            course_id: data?.course_id,
             position: data?.position,
             about_title: data?.about?.title,
             about_desc: data?.about?.description,
@@ -752,17 +753,10 @@ function Index() {
                                     onChange={(e) => handleImageChange(e, "cover_image")}
                                     className="w-full p-2 bg-gray-100 rounded-md cursor-pointer text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
                                 />
-
+  {/* Image Preview */}
+                                <ImagePreview image={preview} />
                                 {/* Image Preview */}
-                                {preview && (
-                                    <div className="mt-3">
-                                        <img
-                                            src={preview}
-                                            alt="Preview"
-                                            className="w-full h-48 object-cover rounded-md border"
-                                        />
-                                    </div>
-                                )}
+                               
                             </div>
                             <div>
                                 <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
@@ -809,17 +803,10 @@ function Index() {
 
                                     className="w-full p-2 bg-gray-100 rounded-md cursor-pointer text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
                                 />
+                                <ImagePreview image={icons} />
 
                                 {/* Image Preview */}
-                                {icons && (
-                                    <div className="mt-3">
-                                        <img
-                                            src={icons}
-                                            alt="Preview"
-                                            className="w-full h-48 object-cover rounded-md border"
-                                        />
-                                    </div>
-                                )}
+                                
                             </div>
 
                             <div className="mb-4">

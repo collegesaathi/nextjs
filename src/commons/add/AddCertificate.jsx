@@ -1,3 +1,4 @@
+import ImagePreview from "@/common/ImagePreview";
 import ReactQuillEditor from "@/common/ReactQuillEditor";
 
 function AddCertificate({formData ,  handleChange ,handleImageChange ,preview  ,handleQuillChange }) {
@@ -48,6 +49,10 @@ function AddCertificate({formData ,  handleChange ,handleImageChange ,preview  ,
                         />
                     </div>
                 )}
+
+                <ImagePreview image={ typeof formData.certificatemage === "string"
+                                    ? formData.certificatemage // saved image URL
+                                    : URL.createObjectURL(formData.certificatemage)}   />
             </div>
 
                <div>
