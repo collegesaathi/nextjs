@@ -1,20 +1,58 @@
 "use client";
 import { useRouter } from "next/router";
 import toast from "react-hot-toast";
+import Link from "next/link";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import Image from "next/image";
 import BackNext from "@/pages/components/BackNext";
 import Listing from "@/pages/api/Listing";
 
-export default function CoursesSwiper(exisitng) {
+export default function CoursesSwiper({course, exisitng, data}) {
+  console.log("gdfgf", exisitng)
+
+  console.log("universiytid", course)
+  console.log("courseListing", data)
   const swiperRef = useRef(null);
 
   const [progress, setProgress] = useState(0);
   const [isBeginning, setIsBeginning] = useState(true);
   const [isEnd, setIsEnd] = useState(false);
+  const [courseData, setCourseData] = useState([])
+  const [loading, setLoading] = useState(false);
+  const uniId = course?.university_id
+
+
+
+
+  const fetchCourse = async (uniId) => {
+
+    setLoading(true)
+
+
+    try {
+      const main = new Listing();
+      const response = await main.UniveristyCourseGet(uniId);
+      console.log("courseeeee", response?.data)
+      setCourseData(response?.data)
+
+    }
+    catch (error) {
+      console.error("Error fetching projects:", error);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    if (exisitng) {
+      fetchCourse(uniId)
+    }
+  }, [uniId])
+
+  console.log("coursedata fdg", courseData)
 
   const courses = [
     { title: "Executive MBA", image: "/images/university/course/1.png" },
@@ -92,19 +130,20 @@ export default function CoursesSwiper(exisitng) {
               className=""
               style={{ scrollbarWidth: "none" }}
             >
-              {courses.map((course, index) => (
+              {courseData?.data?.map((course, index) => (
+
                 <SwiperSlide key={index}>
                   <CourseCard course={course} />
                 </SwiperSlide>
               ))}
             </Swiper>
-           <div className="px-2 md:px-6 pt-5 lg:pt-6">
+            <div className="px-2 md:px-6 pt-5 lg:pt-6">
 
 
-            {exisitng ==="university" && (   <EnquiryBox />)}
-                   
-           </div>
-  
+              {exisitng === "university" && (<EnquiryBox />)}
+
+            </div>
+
           </section>
         </div>
       </section>
@@ -121,14 +160,14 @@ function CourseCard({ course, mobile = false }) {
     >
       <div className="relative">
         <img
-          src={course.image}
-          alt={course.title}
+          src={course.cover_image}
+          alt={course.name}
           className="w-full h-[162px] object-cover rounded-[14px]"
         />
 
         <div className="absolute bottom-0 left-3 translate-y-[50%]">
           <div className="bg-white shadow-md rounded-[5px] w-[102px] h-[34px] flex justify-center items-center">
-            <img src="/images/university/course/logo.png" className="h-5" alt="" />
+            <img src={course.icon} className="h-5" alt="" />
           </div>
         </div>
       </div>
@@ -137,14 +176,20 @@ function CourseCard({ course, mobile = false }) {
         <div>
           <span className="text-[12px] text-[#282529]">NMIMS Online</span>
           <h3 className="font-semibold text-[16px] mt-1">
-            {course.title}
+            {course.name}
           </h3>
         </div>
 
         <div className="flex justify-end">
-          <button className="bg-red-600 hover:bg-red-700 text-white text-[10px] rounded-[6px] w-[81px] h-[18px]">
-            Read More
-          </button>
+
+
+          <Link href={`/course/${course.slug}`}>
+            <button className="bg-red-600 hover:bg-red-700 text-white text-[10px] rounded-[6px] w-[81px] h-[18px]">
+              Read More
+            </button></Link>
+
+
+
         </div>
       </div>
     </div>
@@ -293,3 +338,7 @@ function Input({ label, placeholder, name, value, onChange }) {
     </div>
   );
 }
+
+
+
+

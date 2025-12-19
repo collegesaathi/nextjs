@@ -2,7 +2,7 @@ import Image from "next/image";
 import Heading from "@/common/Heading";
 
 export default function SampleCertificate({certificates}) {
-  console.log("fgvfdg",certificates)
+
   return (
     <>
       <section className="w-full px-6 py-6 mx-auto" id="certificate-section">

@@ -111,13 +111,14 @@ margin-left: -5px;
 .certificate p{
 
     display: flex;
+    flex-wrap: wrap;
  
         gap:8px;
         padding: 0 !important;
         line-height: 20px;
         align-items: center;
           margin: 36px 0px;
-        
+        width:600px
 }
 
 .certificate img{

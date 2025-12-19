@@ -2,7 +2,10 @@ import Image from "next/image";
 import Heading from "@/common/Heading";
 export default function ExaminationPattern({ examPatterns=[] }) {
   console.log("examPatterns", examPatterns)
-  const examPattern =  JSON.parse(examPatterns?.patterns)
+  // const examPattern =  JSON.parse(examPatterns?.patterns)
+
+  const examPattern =  examPatterns?.patterns ? (JSON.parse(examPatterns?.patterns)):(examPatterns?.patterns) 
+
   return (
     <>
       <div className=" px-6 py-6  bg-[#f7f6f6]">

@@ -101,6 +101,11 @@ class Listing extends Component {
     return Api.get(`/university/${slug}`)
   }
 
+
+  async UniveristyCourseList(id){
+    return Api.get(`/course/university/${id}`)
+  }
+
   async CourseGet(slug) {
     return Api.get(`/course/${slug}`)
   }
@@ -110,7 +115,10 @@ class Listing extends Component {
   }
   
   async SpecializationGet(slug) {
-    return Api.get(`/all/specialisations/${slug}`)
+    return Api.get(`/all/specialisations/${slug}`) }
+    
+  async UniveristyCourseGet(id){
+    return Api.get(`/course/university/${id}`)
   }
 
   render() {
