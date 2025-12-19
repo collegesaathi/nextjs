@@ -28,7 +28,7 @@ function Details({ data }) {
             <div className="py-4 md:py-8 ">
                 <div className="mx-auto container sm:container md:container lg:container xl:max-w-[1230px]  px-4">
                     {/* <Approvals />  */}
-                    <Hero data={data?.university} />
+                    <Hero data={data?.university} exisitng={"university"} />
                     <Aboutdetails about={data?.university?.about} />
                     <CourseFess />
                     <Approvals approvals={data?.university?.approvals} approvalsdata={data?.approvalsData} />

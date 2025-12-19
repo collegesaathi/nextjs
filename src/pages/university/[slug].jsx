@@ -24,15 +24,16 @@ import FrontendSidebar from "../common/FrontendSidebar";
 import { fetchDetails } from "@/lib/ssrFetch";
 
 function Index({ data }) {
+    console.log("universoitydata",data)
     return (<>
         <Layout>
             <div className="py-4 md:py-8 ">
                 <div className="mx-auto container sm:container md:container lg:container xl:max-w-[1430px]  px-4">
-                    <Hero data={data?.university} approvalsdata={data?.approvalsData} />
+                    <Hero data={data?.university} approvalsdata={data?.approvalsData} exisitng={"university"} />
                 </div>
                 <div className="w-full flex items-start pt-10 justify-center h-full relative flex-wrap">
                     <div
-                        className="w-full lg:w-3/12 bg-[#f9fafb] lg:shadow-[4px_4px_4px_rgba(0,0,0,0.06)] h-full overflow-y-auto justify-end flex lg:pr-4 relative animate-slide-fade-right animate-delay-200"
+                        className="w-full lg:w-3/12 bg-[#f9fafb] mx-6 lg:mx-0 lg:shadow-[4px_4px_4px_rgba(0,0,0,0.06)] h-full overflow-y-auto justify-end flex lg:pr-4 relative animate-slide-fade-right animate-delay-200"
                     >
                         <FrontendSidebar />
                     </div>
@@ -41,7 +42,7 @@ function Index({ data }) {
                         <CourseFees />
                         <Approvals approvals={data?.university?.approvals} approvalsdata={data?.approvalsData} />
                         <Ranking rankings={data?.university?.rankings} />
-                        <CoursesSwiper />
+                        <CoursesSwiper course={data?.university?.about} exisitng={true} />
                         <Advantages advantages={data?.university?.advantages} />
                         <Facts facts={data?.university?.facts} />
                         <SampleCertificate certificates={data?.university?.certificates} />
@@ -67,4 +68,9 @@ export default Index;
 export async function getServerSideProps(context) {
     return fetchDetails(context, "university");
 }
+
+
+
+
+
 

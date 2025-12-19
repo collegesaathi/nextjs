@@ -12,7 +12,9 @@ export async function fetchDetails(context, type) {
             res = await main.CourseGet(slug);
         } else if (type === "university") {
             res = await main.UniveristyGet(slug);
-        } else {
+            
+        }
+         else {
             return { notFound: true };
         }
 

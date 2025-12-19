@@ -50,7 +50,7 @@ function Index({ data }) {
                         {data?.CourseData?.rankings ? (<Ranking rankings={data?.CourseData?.rankings} />) : (<></>)}
 
                         {data?.CourseData?.advantages ? (<Advantages advantages={data?.CourseData?.advantages} />) : (<></>)}
-                        <CoursesSwiper />
+                        <CoursesSwiper  />
 
 
                         <Eligibility eligibilitycriteria={data?.CourseData?.eligibilitycriteria} />
@@ -58,10 +58,10 @@ function Index({ data }) {
 
 
 
-                        {data?.CourseData?.certificates ?(   <SampleCertificate certificates={data?.CourseData?.certificates} />):(<></>)}
-                 
+                        {data?.CourseData?.certificates ? (<SampleCertificate certificates={data?.CourseData?.certificates} />) : (<></>)}
 
-                         <Skills skills={data?.CourseData?.skills} />
+                        {data?.CourseData?.skills ?( <Skills skills={data?.CourseData?.skills} />):(<></>)}
+                    
                         {/*  <ExaminationPattern examPatterns={data?.CourseData?.examPatterns} />
                      <Financial financialAid={data?.CourseData?.financialAid} />
 

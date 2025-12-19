@@ -31,7 +31,7 @@ const curriculumData = [
 ];
 
 function Curriculum(curriculum) {
-  console.log("curriculam",curriculum)
+  // console.log("curriculam",curriculum)
   const [openIndex, setOpenIndex] = useState(0);
 
   const toggleAccordion = (index) => {
