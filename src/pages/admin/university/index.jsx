@@ -65,9 +65,9 @@ export default function Index() {
                         Manage university
                     </h1>
                     <Link href="/admin/university/add"
-                        className="cursor-pointer text-[#CECECE] h-[30px] w-[30px] bg-[#FF1B1B] bg-opacity-10 hover:bg-opacity-30 rounded inline-flex items-center justify-center"
+                     className="cursor-pointer text-[18px] text-[#ffffff] p-2 bg-[#FF1B1B] bg-opacity-10 hover:bg-opacity-30 rounded inline-flex items-center justify-center"
                     >
-                        <MdAdd size={24} />
+                        <MdAdd size={24} /> Add university
                     </Link>
                     {/* <AddUniversity data={null}
                         fetchData={fetchData}

@@ -556,7 +556,7 @@ function Index() {
             indian: indianData,
             nri: nriData,
             Id: data?.id,
-            fees_title: data?.fees_title
+            fees_title: data?.fees?.fees_title
         })
         setPreview(data?.cover_image);
         setIcons(data?.icon);
@@ -678,7 +678,7 @@ function Index() {
                                     </select>
                                 </div>
                             </div>
-  <div>
+                            <div>
                                 <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
                                     Course  Name{" "}
 
@@ -692,7 +692,7 @@ function Index() {
                                 />
                             </div>
 
-                       
+
                             <div>
                                 <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
                                     Name{" "}

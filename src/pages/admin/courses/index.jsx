@@ -17,30 +17,14 @@ export default function Index() {
     const [data, setData] = useState([]);
     const [buttonLoading, setButtonLoading] = useState(false);
     const [loading, setLoading] = useState(false);
-    console.log("data", data)
-    const fetchData = async (page = 1) => {
+    const fetchData = async (university_id) => {
         try {
-            if (page === 1) { setLoading(true); }
-            else { setButtonLoading(true); }
             const main = new Listing();
-            const response = await main.CourseAll(page);
+            const response = await main.UniveristyCourseGet(university_id);
             if (response.data) {
                 const newData = response.data.data || {};
-                setData(prev => {
-                    if (page === 1) {
-                        // page 1 → replace
-                        return newData;
-                    }
-
-                    // next page → append
-                    return {
-                        ...prev,
-                        courses: [
-                            ...(prev?.courses || []),
-                            ...(newData?.courses || [])
-                        ]
-                    };
-                });
+                console.log("newData" ,newData)
+                setData(newData)
             }
             setLoading(false);
             setButtonLoading(false);
@@ -53,8 +37,8 @@ export default function Index() {
     };
 
     useEffect(() => {
-        fetchData();
-    }, []);
+        fetchData(university_id);
+    }, [university_id]);
 
     const LoadMore = () => {
         const nextPage = page + 1;
@@ -99,7 +83,7 @@ export default function Index() {
                             </thead>
 
                             <tbody>
-                                {data?.courses?.map((item, index) => (
+                                {data?.map((item, index) => (
                                     <tr
                                         key={index}
                                         className={`border hover:bg-gray-50 ${item?.deleted_at ? "bg-gray-200 opacity-80" : ""

@@ -121,6 +121,9 @@ class Listing extends Component {
     return Api.get(`/course/university/${id}`)
   }
 
+  async CourseSpecialisationGet(uni , cui){
+    return Api.get(`/course/specialisation/${uni}/${cui}`)
+  }
   render() {
     return (
       <div>

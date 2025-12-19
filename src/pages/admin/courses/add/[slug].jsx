@@ -375,7 +375,7 @@ function Index() {
             // ✅ IMPORTANT FIX
             const response = await main.AdminCourseUpdate(payload);
             if (response?.data?.status) {
-                router.push("/admin/courses")
+                router.push(`/admin/courses?university_id=${university_id}`)
                 toast.success(response.data.message);
                 setPreview(null);
             } else {
@@ -537,7 +537,7 @@ function Index() {
             indian: indianData,
             nri: nriData,
             Id: data?.id,
-            fees_title: data?.fees_title
+            fees_title: data?.fees?.fees_title
         })
         setPreview(data?.cover_image);
         setIcons(data?.icon);
