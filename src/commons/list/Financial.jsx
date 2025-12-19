@@ -2,6 +2,7 @@ import React from "react";
 import Heading from "@/common/Heading";
 
 function Financial({financialAid}) {
+  console.log()
   return (
     <>
       <div className="w-full px-6 py-6 ">
@@ -16,7 +17,9 @@ function Financial({financialAid}) {
                     />
             </div>
 
-            <div className="bg-white border-[2px] border-[#ec1e24] overflow-hidden mt-[30px] rounded-lg">
+            
+{financialAid?.aid?.courseName && (
+   <div className="bg-white border-[2px] border-[#ec1e24] overflow-hidden mt-[30px] rounded-lg">
 
               {/* Header */}
               <div className="bg-[#ec1e24] text-white text-center py-3 flex items-center justify-center">
@@ -26,6 +29,8 @@ function Financial({financialAid}) {
               </div>
 
               {/* --- RESPONSIVE SCROLL WRAPPER --- */}
+
+          
               <div className="overflow-x-auto">
   <table className="min-w-[700px] w-full border-[2px] border-[#ec1e24] text-center">
     <thead>
@@ -79,7 +84,10 @@ function Financial({financialAid}) {
   </table>
 </div>
 
+
             </div>
+)}
+           
           </div>
         </section>
       </div>

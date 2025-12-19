@@ -45,7 +45,7 @@ function Approvals({approvals , approvalsdata}) {
         swiperRef.current?.slideNext();
     };
     return (<>
-        <section className="w-full px-6 py-6 mx-auto" id="approvals-section">
+        <section className="w-full px-2 md:px-6 py-6 mx-auto" id="approvals-section">
             <div className="max-w-[1230px]">
                 <BackNext
                     title={approvals?.title}

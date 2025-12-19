@@ -4,7 +4,7 @@ export default function ExaminationPattern({ examPatterns=[] }) {
   console.log("examPatterns", examPatterns)
   // const examPattern =  JSON.parse(examPatterns?.patterns)
 
-  const examPattern =  examPatterns?.patterns ? (JSON.parse(examPatterns?.patterns)):(examPatterns?.patterns) 
+  const examPattern =  examPatterns?.patterns ?(examPatterns?.patterns) : (JSON.parse(examPatterns?.patterns))
 
   return (
     <>
@@ -54,12 +54,14 @@ export default function ExaminationPattern({ examPatterns=[] }) {
 
             </div>
             {/* ---------------- Footer Note ---------------- */}
-            <div className="flex items-start gap-3 px-2 md:px-4 pt-10">
+
+            {examPatterns?.bottompatterndesc  &&(   <div className="flex items-start gap-3 px-2 md:px-4 pt-10">
               <div
                 className="font-poppins text-[15px] sm:text-[16px] text-[#282529] leading-6 sm:leading-7 mb-4 data [&_*]:!bg-transparent examination"
                 dangerouslySetInnerHTML={{ __html: examPatterns?.bottompatterndesc || "" }}
               />
-            </div>
+            </div>)}
+         
           </div>
         </section>
       </div>
