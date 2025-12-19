@@ -26,13 +26,14 @@ import Curriculum from "@/commons/list/Curriculum";
 import Skills from "@/commons/list/Skills";
 import UpdatedFee from "@/commons/list/UpdatedFee";
 import CoursesSwiper from "@/commons/list/CoursesSwiper";
+import CarreerOppurtunity from "@/commons/list/CarreerOppurtunity";
 function Index({ data }) {
     console.log("data", data)
     return (<>
         <Layout>
             <div className="py-4 md:py-8 ">
-                <div className="mx-auto container sm:container md:container lg:container xl:max-w-[1430px]  px-4">
-                    <Hero data={data?.CourseData} exisitng={"course"} />
+                <div className="mx-auto container sm:container md:container lg:container xl:max-w-[1430px] md:px-4">
+                    <Hero data={data?.CourseData} approvalsdata={data?.approvalsData} exisitng={"course"} />
                 </div>
                 <div className="w-full flex items-start pt-10 justify-center h-full relative flex-wrap">
                     <div
@@ -42,15 +43,15 @@ function Index({ data }) {
                     </div>
                     <div className="w-full lg:w-9/12 h-full lg:h-[100vh] overflow-y-auto " style={{ scrollbarWidth: "none", }}>
 
-                        {data?.CourseData?.about ? (<Aboutdetails about={data?.CourseData?.about} />) : (<></>)}
-                        {data?.CourseData?.fees ? (<UpdatedFee fees={data?.CourseData?.fees} />) : (<></>)}
+                        {data?.CourseData?.about && (<Aboutdetails about={data?.CourseData?.about} />) }
+                        {data?.CourseData?.fees && (<UpdatedFee fees={data?.CourseData?.fees} />) }
 
-                        {data?.CourseData?.approvals ? (<Approvals approvals={data?.CourseData?.approvals} approvalsdata={data?.approvalsData} />) : (<></>)}
+                        {data?.CourseData?.approvals && (<Approvals approvals={data?.CourseData?.approvals} approvalsdata={data?.approvalsData} />) }
 
-                        {data?.CourseData?.rankings ? (<Ranking rankings={data?.CourseData?.rankings} />) : (<></>)}
+                        {data?.CourseData?.rankings && (<Ranking rankings={data?.CourseData?.rankings} />) }
 
-                        {data?.CourseData?.advantages ? (<Advantages advantages={data?.CourseData?.advantages} />) : (<></>)}
-                        <CoursesSwiper  />
+                        {data?.CourseData?.advantages &&(<Advantages advantages={data?.CourseData?.advantages} />) }
+                           <CoursesSwiper  />
 
 
                         <Eligibility eligibilitycriteria={data?.CourseData?.eligibilitycriteria} />
@@ -58,20 +59,21 @@ function Index({ data }) {
 
 
 
-                        {data?.CourseData?.certificates ? (<SampleCertificate certificates={data?.CourseData?.certificates} />) : (<></>)}
+                        {data?.CourseData?.certificates && (<SampleCertificate certificates={data?.CourseData?.certificates} />) }
 
-                        {data?.CourseData?.skills ?( <Skills skills={data?.CourseData?.skills} />):(<></>)}
+                        {data?.CourseData?.skills &&( <Skills skills={data?.CourseData?.skills} />)}
                     
-                        {/*  <ExaminationPattern examPatterns={data?.CourseData?.examPatterns} />
-                     <Financial financialAid={data?.CourseData?.financialAid} />
+                    <ExaminationPattern examPatterns={data?.CourseData?.examPatterns} />
+                          <Financial financialAid={data?.CourseData?.financialAid} />
+                          <CarreerOppurtunity career={data?.CourseData?.career}/>
 
-                        <PlacementPartners placements={data?.CourseData?.partners} PlacementPartners={data?.placementPartners} />
-                        <CareerServices services={data?.CourseData?.services} />
-                        <StepsSection admissionProcess={data?.CourseData?.admissionProcess} />
+                     <PlacementPartners placements={data?.CourseData?.partners} PlacementPartners={data?.placementPartners} />
+                          <CareerServices services={data?.CourseData?.services} />
+                        <StepsSection admissionProcess={data?.CourseData?.admissionprocess} />
                         <FAQSection faq={data?.CourseData?.faq} />
                         <SimilarUniversities />
                         <Universities />
-                        <Reviews />  */}
+                        <Reviews />  
                     </div>
                 </div>
             </div>

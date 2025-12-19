@@ -62,35 +62,15 @@ function Eligibility({eligibilitycriteria}) {
                       </div>
                       <h3 className="font-semibold text-[18px]">{item.title}</h3>
                       {/* <p className="text-[14px] leading-6" dangerouslySetInnerHTML={{ __html: item?.description || "" }}> */}
-                            <p className="text-[14px] leading-6" >
-                    {item.description}
+                            <p className="text-[14px] leading-6" dangerouslySetInnerHTML={{ __html: item?.description || "" }}>
+                
                       </p>
                     </div>
 
                     ))}
                 
 
-                    {/* CARD 2 */}
-                    {/* <div className=" p-6 md:border-r border-[#FCF0EE] space-y-2 md:space-y-8">
-                      <div className="bg-[#FCF0EE] h-12 w-12 rounded-full flex justify-center items-center">
-                        <Image src="/images/courses/icons/Educational.svg" width={30} height={40} />
-                      </div>
-                      <h3 className="font-semibold text-[18px]">Grades</h3>
-                      <p className="text-[14px] leading-6">
-                        Minimum 50% marks (45% for SC/ST/OBC/PwD).
-                      </p>
-                    </div> */}
-
-                    {/* CARD 3 */}
-                    {/* <div className="rounded-[12px] p-6 space-y-2 md:space-y-8">
-                      <div className="bg-[#FCF0EE] h-12 w-12 rounded-full flex justify-center items-center">
-                        <Image src="/images/courses/icons/Educational.svg" width={30} height={40} />
-                      </div>
-                      <h3 className="font-semibold text-[18px]">Work experience</h3>
-                      <p className="text-[14px] leading-6">
-                        Work experience is not mandatory, but helpful.
-                      </p>
-                    </div> */}
+        
 
                   </div>
                 )}
@@ -100,7 +80,7 @@ function Eligibility({eligibilitycriteria}) {
 
                     {/* CARD 1 */}
                      {eligibilitycriteria?.NRICriteria?.map((item,index)=>(
-                          <div className=" p-6  md:border-r border-[#FCF0EE] space-y-2 md:space-y-8">
+                          <div className=" p-6  md:border-l border-[#FCF0EE] space-y-2 md:space-y-8">
                       <div className="bg-[#FCF0EE] h-12 w-12 rounded-full flex justify-center items-center">
                         <img src={item.images} width={30} height={40} />
                       </div>

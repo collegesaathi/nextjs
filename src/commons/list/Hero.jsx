@@ -9,7 +9,7 @@ export default function Hero({data,approvalsdata , exisitng}) {
     <div className="mt-8 md:mt-[60px] lg:mt-[90px] ">
       <div className="flex flex-col-reverse lg:flex-row items-start justify-between">
         {/* LEFT SIDE */}
-        <div className="w-full lg:w-[480px] py-6 px-3 sm:px-5 lg:px-0 ">
+        <div className="w-full lg:w-[480px] py-6 px-2 md:px-5 lg:px-0 ">
           {/* TITLE */}
           <h1 className="font-poppins font-[700] text-[28px] sm:text-[36px] md:text-[48px] leading-[50px] text-[#282529]">
           {data?.name || ""}
@@ -35,7 +35,7 @@ export default function Hero({data,approvalsdata , exisitng}) {
 
           
                {approvalsdata && approvalsdata?.slice(0,3).map((item) => (
-            <img src={item?.image}  alt={item.title} width={356} height={150} className="sm:w-[63px]" />
+            <img src={item?.image}  alt={item.title} width={356} height={150} className="w-[63px]" />
               ))}
           </div>
 

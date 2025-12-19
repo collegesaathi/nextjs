@@ -61,7 +61,7 @@ function Facts({ facts }) {
 
    
             <div className={`border-b  border-[#C4C4C4] mb-8 ${index < facts.facts.length - 1? "" : "border-b-0"}`}>
-          <div className="flex w-full items-start  mb-4 ">
+          <div className="md:flex w-full items-start  mb-4 ">
             <h3 className="font-poppins font-semibold text-[15px] md:text-[17px] text-[#282529] w-1/3 ">
               {item.patternName}
             </h3>

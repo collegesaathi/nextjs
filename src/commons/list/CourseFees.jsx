@@ -5,7 +5,7 @@ function CourseFess() {
 
 
         <>
-            <section className="w-full px-6 py-6 mx-auto" id="fee-section">
+            <section className="w-full px-2 md:px-6 py-6 mx-auto" id="fee-section">
                 <div className="max-w-[1230px]">
                     <Heading title=" Updated Course Fees for 2025" />
                     {/* Table */}
@@ -16,7 +16,7 @@ function CourseFess() {
                                     {["Course", "Per Semester", "Total Fees"].map((heading, index) => (
                                         <th
                                             key={index}
-                                            className={`py-3 px-4 text-left font-[500] md:text-[17px] leading-[25px] ${index !== 2 ? "border-r-2 border-[#f47c80]" : ""
+                                            className={`py-3 px-4 text-left font-[500]  text-[14px] md:text-[17px] leading-[25px] ${index !== 2 ? "border-r-2 border-[#f47c80]" : ""
                                                 }`}
                                         >
                                             {heading}
@@ -33,13 +33,13 @@ function CourseFess() {
                                     ["Online BBA", "₹ 30,000/-", "₹ 1,45,000/-"],
                                 ].map((row, index) => (
                                     <tr key={index} className="border-t hover:bg-[#f9fafb]">
-                                        <td className="py-3 px-4 border-r-2 border-[#f47c80] underline">
+                                        <td className="py-3 px-1 md:px-4 text-[12px] md:text-[14px] border-r-2 border-[#f47c80] underline">
                                             {row[0]}
                                         </td>
-                                        <td className="py-3 px-4 border-r-2 border-[#f47c80]">
+                                        <td className="py-3 px-1 md:px-4 border-r-2 text-[12px] md:text-[14px] border-[#f47c80]">
                                             {row[1]}
                                         </td>
-                                        <td className="py-3 px-4">{row[2]}</td>
+                                        <td className="py-3 px-1 md:px-4 text-[12px] md:text-[14px]">{row[2]}</td>
                                     </tr>
                                 ))}
                             </tbody>
