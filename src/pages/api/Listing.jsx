@@ -115,7 +115,7 @@ class Listing extends Component {
   }
   
   async SpecializationGet(slug) {
-    return Api.get(`/all/specialisations/${slug}`) }
+    return Api.get(`/specialisations/${slug}`) }
     
   async UniveristyCourseGet(id){
     return Api.get(`/course/university/${id}`)
