@@ -178,6 +178,7 @@ function Index() {
         meta_description: "",
         meta_keywords: "",
         canonical_url: "",
+        desccreteria: ""
     });
 
     const handleQuillChange = (field, value) => {
@@ -255,6 +256,7 @@ function Index() {
             payload.append("university_id", formData.university_id)
             payload.append("position", formData.position);
             payload.append("icon", formData.icon);
+            payload.append("desccreteria", formData.desccreteria);
             payload.append("cover_image", formData.cover_image);
             payload.append("fees_title", formData.fees_title);
             payload.append("category_id", formData?.categroy_id);
@@ -611,8 +613,8 @@ function Index() {
                                     className="w-full p-2 bg-gray-100 rounded-md cursor-pointer text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
                                 />
 
-                           
-                                    <ImagePreview image={preview}   />
+
+                                <ImagePreview image={preview} />
                             </div>
                             <div>
                                 <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
@@ -661,7 +663,7 @@ function Index() {
                                 />
 
                                 {/* Image Preview */}
-                                     <ImagePreview image={icons}   />
+                                <ImagePreview image={icons} />
                             </div>
 
                             <div className="mb-4">
@@ -772,6 +774,13 @@ function Index() {
                                     required
                                 />
                             </div>
+
+
+                            <ReactQuillEditor
+                                label="Description"
+                                desc={formData.desccreteria}
+                                handleBioChange={(val) => handleQuillChange("desccreteria", val)}
+                            />
                             <div className="flex mb-5 bg-gray-100 rounded-lg overflow-hidden">
                                 <button
                                     type="button"

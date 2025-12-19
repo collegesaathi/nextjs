@@ -182,7 +182,8 @@ function Index() {
         meta_keywords: "",
         canonical_url: "",
         Id: "",
-        fees_title: ""
+        fees_title: "",
+        desccreteria:""
     });
 
     const handleQuillChange = (field, value) => {
@@ -311,6 +312,7 @@ function Index() {
             payload.append("advantagesdescription", formData.advantagesdescription);
             payload.append("skills", JSON.stringify(skills));
             payload.append("skillsname", formData.skillname);
+            payload.append("desccreteria" ,formData.desccreteria);
             payload.append("skilldesc", formData.skilldesc);
             payload.append("patternname", formData.patternname);
             payload.append("patterndescription", formData.patterndescription);
@@ -494,7 +496,7 @@ function Index() {
             rankings_name: data?.rankings?.title,
             rankings_description: data?.rankings?.description,
             creteria: data?.eligibilitycriteria?.title,
-            //  indian: data?.eligibilitycriteria?.IndianCriteria,
+            desccreteria :data?.eligibilitycriteria.desccreteria,
             advantagesname: data?.advantages?.title,
             advantagesdescription: data?.advantages?.description,
             factsname: data?.facts?.title,
@@ -922,6 +924,13 @@ function Index() {
                                     required
                                 />
                             </div>
+
+                                 <ReactQuillEditor
+                                    label="Description"
+                                    desc={formData.desccreteria}
+                                    handleBioChange={(val) => handleQuillChange("desccreteria", val)}
+                                />
+                            
                             <div className="flex mb-5 bg-gray-100 rounded-lg overflow-hidden">
                                 <button
                                     type="button"

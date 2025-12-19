@@ -200,6 +200,7 @@ function Index() {
         meta_description: "",
         meta_keywords: "",
         canonical_url: "",
+        desccreteria :""
     });
 
     const handleQuillChange = (field, value) => {
@@ -276,7 +277,7 @@ function Index() {
             payload.append("name", formData.name);
             payload.append("university_id", formData.university_id)
             payload.append("course_id", formData.course_id)
-
+payload.append("desccreteria" ,formData.desccreteria)
             payload.append("position", formData.position);
             payload.append("icon", formData.icon);
             payload.append("cover_image", formData.cover_image);
@@ -795,6 +796,14 @@ function Index() {
                                     placeholder="Enter name"
                                     className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
                                     required
+                                />
+                            </div>
+
+                                <div>
+                                   <ReactQuillEditor
+                                    label="Description"
+                                    desc={formData.desccreteria}
+                                    handleBioChange={(val) => handleQuillChange("desccreteria", val)}
                                 />
                             </div>
                             <div className="flex mb-5 bg-gray-100 rounded-lg overflow-hidden">

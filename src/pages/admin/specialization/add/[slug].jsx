@@ -201,7 +201,8 @@ function Index() {
         meta_keywords: "",
         canonical_url: "",
         Id: "",
-        fees_title: ""
+        fees_title: "",
+        desccreteria: ""
     });
 
     const handleQuillChange = (field, value) => {
@@ -297,6 +298,7 @@ function Index() {
             payload.append("creteria", formData.creteria)
             payload.append("fees_title", formData.fees_title)
             payload.append("category", formData.category)
+            payload.append("desccreteria", formData.desccreteria)
             const NRIDATA = formData.nri.map(item => ({
                 title: item.title,
                 description: item.description,
@@ -513,6 +515,7 @@ function Index() {
             rankings_name: data?.rankings?.title,
             rankings_description: data?.rankings?.description,
             creteria: data?.eligibilitycriteria?.title,
+            desccreteria: data?.eligibilitycriteria?.description,
             //  indian: data?.eligibilitycriteria?.IndianCriteria,
             advantagesname: data?.advantages?.title,
             advantagesdescription: data?.advantages?.description,
@@ -654,7 +657,7 @@ function Index() {
 
                             <div>
                                 <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
-                                    University 
+                                    University
                                 </label>
 
                                 <div className="relative">
@@ -703,7 +706,7 @@ function Index() {
                                     name="name"
                                     value={formData.name}
                                     onChange={(e) => {
-                                      handleChange(e);
+                                        handleChange(e);
                                     }}
                                     placeholder="Enter name"
                                     className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
@@ -753,10 +756,10 @@ function Index() {
                                     onChange={(e) => handleImageChange(e, "cover_image")}
                                     className="w-full p-2 bg-gray-100 rounded-md cursor-pointer text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
                                 />
-  {/* Image Preview */}
+                                {/* Image Preview */}
                                 <ImagePreview image={preview} />
                                 {/* Image Preview */}
-                               
+
                             </div>
                             <div>
                                 <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
@@ -806,7 +809,7 @@ function Index() {
                                 <ImagePreview image={icons} />
 
                                 {/* Image Preview */}
-                                
+
                             </div>
 
                             <div className="mb-4">
@@ -869,7 +872,7 @@ function Index() {
                                     name="approvals_name"
                                     value={formData.approvals_name}
                                     onChange={(e) => {
-                                     handleChange(e);
+                                        handleChange(e);
                                     }}
                                     placeholder="Enter approvals name"
                                     className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
@@ -906,13 +909,20 @@ function Index() {
                                     name="creteria"
                                     value={formData.creteria}
                                     onChange={(e) => {
-                                         handleChange(e);
+                                        handleChange(e);
                                     }}
                                     placeholder="Enter name"
                                     className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
                                     required
                                 />
                             </div>
+
+                                 <ReactQuillEditor
+                                    label="Description"
+                                    desc={formData.desccreteria}
+                                    handleBioChange={(val) => handleQuillChange("desccreteria", val)}
+                                />
+
                             <div className="flex mb-5 bg-gray-100 rounded-lg overflow-hidden">
                                 <button
                                     type="button"
@@ -954,14 +964,14 @@ function Index() {
                             <div>
                                 <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
                                     Name{" "}
-                                   
+
                                 </label>
                                 <input
                                     type="text"
                                     name="semesters_title"
                                     value={formData.semesters_title}
                                     onChange={(e) => {
-                                       handleChange(e);
+                                        handleChange(e);
                                     }}
                                     placeholder="Enter name"
                                     className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
