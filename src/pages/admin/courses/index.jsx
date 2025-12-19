@@ -6,13 +6,18 @@ import Delete from "../common/Delete";
 import Link from "next/link";
 import { MdAdd, MdEdit } from "react-icons/md";
 import { Loader } from "@/common/Loader";
+import { useRouter } from "next/router";
 
 export default function Index() {
+    const router = useRouter();
+    console.log("router", router?.query)
+    const university_id = router?.query?.university_id
+    console.log("university_id", university_id)
     const [page, setPage] = useState(1);
     const [data, setData] = useState([]);
     const [buttonLoading, setButtonLoading] = useState(false);
     const [loading, setLoading] = useState(false);
-
+    console.log("data", data)
     const fetchData = async (page = 1) => {
         try {
             if (page === 1) { setLoading(true); }
@@ -21,12 +26,13 @@ export default function Index() {
             const response = await main.CourseAll(page);
             if (response.data) {
                 const newData = response.data.data || {};
-                setData((prev) => {
+                setData(prev => {
                     if (page === 1) {
-                        // First page → replace entire object
+                        // page 1 → replace
                         return newData;
                     }
-                    // Next pages → append universities array
+
+                    // next page → append
                     return {
                         ...prev,
                         courses: [
@@ -56,6 +62,8 @@ export default function Index() {
         fetchData(nextPage);
     }
 
+    console.log("daata" , data)
+
     return (
         <AdminLayout page={"course Panel"}>
             <div className="min-h-screen p-5 lg:p-[30px]">
@@ -63,10 +71,11 @@ export default function Index() {
                     <h1 className="capitalize font-inter text-lg lg:text-2xl font-bold text-[#FF1B1B] tracking-[-0.04em] mb-6">
                         Manage course
                     </h1>
-                    <Link href="/admin/courses/add"
-                        className="cursor-pointer text-[#CECECE] h-[30px] w-[30px] bg-[#FF1B1B] bg-opacity-10 hover:bg-opacity-30 rounded inline-flex items-center justify-center"
+                    <Link
+                        href={`/admin/courses/add?university_id=${university_id}`}
+                        className="cursor-pointer text-[18px] text-[#ffffff] p-2 bg-[#FF1B1B] bg-opacity-10 hover:bg-opacity-30 rounded inline-flex items-center justify-center"
                     >
-                        <MdAdd size={24} />
+                        <MdAdd size={24} /> Add Course
                     </Link>
                     {/* <Addcourse data={null}
                         fetchData={fetchData}
@@ -75,70 +84,115 @@ export default function Index() {
                 {loading ? (
                     <Loader />
                 ) : (
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  gap-6">
-                        {data &&
-                            data?.courses?.map((item, index) => (
-                                <div
-                                    key={index}
-                                    className={` rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 
-                                    ${item?.deleted_at ? "opacity-80 bg-gray-300" : ""}
-                                    border border-gray-100 max-w-sm flex flex-col`}
-                                >
-                                    <div className="relative">
-                                        <img
-                                            src={item?.cover_image || MCA?.src || "/Placeholder.png"}
-                                            alt={item?.name}
-                                            width={400}
-                                            height={250}
-                                            className="w-full h-[220px] object-cover"
-                                        />
-                                        <Delete step={5} fetch={fetchData} deleteAt={item?.deleted_at} Id={item?.id} />
+                    <div className="overflow-x-auto bg-white shadow-md rounded-lg">
+                        <table className="min-w-full text-left border">
+                            <thead className="bg-gray-100">
+                                <tr className="text-sm font-semibold text-gray-700">
+                                    <th className="p-3 border">#</th>
+                                    <th className="p-3 border">Cover</th>
+                                    <th className="p-3 border">Course Name</th>
+                                    <th className="p-3 border">Icon</th>
+                                    <th className="p-3 border">Status</th>
+                                    <th className="p-3 border">Actions</th>
+                                    <th className="p-3 border">Specialization</th>
+                                </tr>
+                            </thead>
 
-                                        {!item.deleted_at && (
-                                            <Link href={`/admin/courses/add/${item?.slug}`}
-                                                className="cursor-pointer absolute top-2 left-2 bg-white bg-opacity-80 hover:bg-[#CECECE] p-2 rounded-full shadow-sm transition-all"
-                                            >
-                                                <MdEdit size={24} className="text-red-600 hover:text-red-700" />
-                                            </Link>
-                                        )}
+                            <tbody>
+                                {data?.courses?.map((item, index) => (
+                                    <tr
+                                        key={index}
+                                        className={`border hover:bg-gray-50 ${item?.deleted_at ? "bg-gray-200 opacity-80" : ""
+                                            }`}
+                                    >
+                                        {/* Index */}
+                                        <td className="p-3 border">{index + 1}</td>
 
+                                        {/* Cover Image */}
+                                        <td className="p-3 border">
+                                            <img
+                                                src={item?.cover_image || MCA?.src || "/Placeholder.png"}
+                                                alt={item?.name}
+                                                className="w-24 h-14 object-cover rounded"
+                                            />
+                                        </td>
 
-                                        <div
-                                            className="cursor-pointer absolute bottom-2 left-2 bg-white bg-opacity-80 hover:bg-[#CECECE] p-2 rounded-full shadow-sm transition-all"
-                                        >
+                                        {/* Course Name */}
+                                        <td className="p-3 border font-semibold text-gray-800">
+                                            {item?.name}
+                                        </td>
+
+                                        {/* Icon */}
+                                        <td className="p-3 border">
                                             <img
                                                 src={item?.icon || MCA?.src || "/Placeholder.png"}
                                                 alt={item?.name}
-                                                width={50}
-                                                height={50}
-                                                className="w-full h-[50px] object-contain"
+                                                className="w-10 h-10 object-contain"
                                             />
-                                        </div>
-                                    </div>
+                                        </td>
 
-                                    {/* Make the inner content stretch to push the button down */}
-                                    <div className="p-4 flex flex-col flex-grow">
-                                        <h3 className="text-black text-lg font-semibold">
-                                            {item?.name}
-                                        </h3>
-                                        {/* <p className="text-gray-500 text-sm mb-4 flex-grow">
-                                            {item?.description}
-                                        </p> */}
+                                        {/* Status */}
+                                        <td className="p-3 border">
+                                            {item?.deleted_at ? (
+                                                <span className="px-3 py-1 text-sm bg-gray-500 text-white rounded-full">
+                                                    Deleted
+                                                </span>
+                                            ) : (
+                                                <span className="px-3 py-1 text-sm bg-green-500 text-white rounded-full">
+                                                    Active
+                                                </span>
+                                            )}
+                                        </td>
 
-                                        {/* Keep the button fixed at the bottom */}
-                                        <Link
-                                            href={`/admin/courses/${item?.slug}`}
-                                            target="_blank"
-                                            className="mt-auto block text-center w-full py-2.5 rounded-full bg-[#FF1B1B] hover:bg-[#ad0e0e] text-white font-semibold transition-all"
-                                        >
-                                            View
-                                        </Link>
-                                    </div>
-                                </div>
-                            ))}
+                                        {/* Actions */}
+                                        <td className="p-3 border">
+                                            <div className="flex  justify-left items-left gap-4  ">
 
+                                                {/* Edit Button */}
+                                                {!item?.deleted_at && (
+                                                    <Link
+                                                        href={`/admin/courses/add/${item?.slug}?university_id=${university_id}`}
+                                                        className="p-2 rounded bg-yellow-400 hover:bg-yellow-500 text-white"
+                                                    >
+                                                        <MdEdit size={20} />
+                                                    </Link>
+                                                )}
+
+                                                {/* Delete Button */}
+                                                <Delete
+                                                    step={5}
+                                                    fetch={fetchData}
+                                                    deleteAt={item?.deleted_at}
+                                                    Id={item?.id}
+                                                />
+
+                                                {/* View Button */}
+                                                <Link
+                                                    href={`/admin/courses/${item?.slug}`}
+                                                    target="_blank"
+                                                    className="px-4 py-2 rounded bg-[#FF1B1B] hover:bg-[#ad0e0e] text-white"
+                                                >
+                                                    View
+                                                </Link>
+                                            </div>
+                                        </td>
+                                        <td className="p-3 border">
+
+                                             <Link
+                                                href={`/admin/specialization?university_id=${item?.university_id}&course_id=${item?.id}`}
+                                                target="_blank"
+                                                className="px-4 py-2 rounded bg-[#FF1B1B] hover:bg-[#ad0e0e] text-white"
+                                            >
+                                                Add Specialization
+                                            </Link>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
                     </div>
                 )}
+
                 {data?.pagination?.page < data?.pagination?.totalPages ?
                     <div className="flex justify-center mt-4">
                         <button

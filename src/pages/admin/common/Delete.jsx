@@ -156,7 +156,7 @@ export default function Delete({ step, Id, fetch, deleteAt }) {
             {/* Delete Icon Button */}
             <button
                 onClick={toggleModal}
-                className="cursor-pointer absolute top-2 right-2 bg-white bg-opacity-80 hover:bg-[#CECECE] p-2 rounded-full shadow-sm transition-all"
+                className="cursor-pointer  top-2 right-2 bg-white bg-opacity-80 hover:bg-[#CECECE] p-2 rounded-full shadow-sm transition-all"
             >
                 {deleteAt ? (
                     <MdRestore size={24} className="text-green-600 hover:text-green-700" />

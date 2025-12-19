@@ -22,9 +22,12 @@ import FaqAdd from "@/commons/add/FaqAdd";
 import { useRouter } from "next/router";
 import AddSkills from "@/commons/add/AddSkills";
 import AddFees from "@/commons/add/AddFees";
+import Link from "next/link";
 function Index() {
     const router = useRouter();
-
+    console.log("router", router?.query)
+    const university_id = router?.query?.university_id
+    console.log("university_id", university_id)
     const [universities, setUniversities] = useState([])
     const [categroy, setCategroy] = useState([])
     const fetchData = async () => {
@@ -115,15 +118,15 @@ function Index() {
         { title: "", content: "" }
     ]);
 
-     const [patterns, setPatterns] = useState([
-  {
-    image: "",
-    pattern_images_alt: "",
-    patternName: "",
-    percentage: "",
-    description: "",
-  },
-]);
+    const [patterns, setPatterns] = useState([
+        {
+            image: "",
+            pattern_images_alt: "",
+            patternName: "",
+            percentage: "",
+            description: "",
+        },
+    ]);
 
 
     const [campusList, setCampusList] = useState([
@@ -165,7 +168,7 @@ function Index() {
         semesters_title: "",
         patterndescription: "",
         patternname: "",
-        university_id: "",
+        university_id: university_id || "",
         categroy_id: "",
         cover_image_alt: "",
         careername: "",
@@ -366,17 +369,17 @@ function Index() {
             // ✅ IMPORTANT FIX
             const response = await main.AdminCourseAdd(payload);
             if (response?.data?.status) {
-                router.push("/admin/courses")
+                router.push(`/admin/courses?university_id=${university_id}`)
                 toast.success(response.data.message);
                 setPreview(null);
             } else {
                 toast.error(response.data.message);
             }
- setLoading(false);
+            setLoading(false);
         } catch (error) {
             console.error(error);
-          toast.error(error.response.data.message);
-           setLoading(false);
+            toast.error(error.response.data.message);
+            setLoading(false);
         }
 
         setLoading(false);
@@ -424,7 +427,14 @@ function Index() {
             <div className="min-h-screen p-1 ">
 
                 <div className="w-full  border-b border-white/10">
-                    <div className="flex flex-col lg:flex-row items-center justify-between gap-4 px-4 md:px-6 lg:px-10 py-4">
+                    <div className="p-2  flex flex-col lg:flex-row gap-4 justify-between  items-center ">
+                        <Link
+                            href={`/admin/courses?university_id=${university_id}`}
+                            className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#FF1B1B] hover:bg-[#ad0e0e] text-white font-semibold transition-all"
+                        >
+                            <FaArrowLeft size={20} />
+                            Back To Course Page
+                        </Link>
 
                         {/* Left: Back Arrow + Label */}
                         <div className="flex items-center gap-3 w-[250px]">
@@ -451,28 +461,6 @@ function Index() {
                             />
 
                         </div>
-
-                        {/* Center: Tabs */}
-                        <div className="w-[400px] md:w-[1300px] overflow-x-auto scrollbar-hide bg-[#2C2C2C] rounded-lg">
-                            <div className="flex items-center gap-2 bg-[#2C2C2C] px-2 py-2 rounded-xl">
-                                {tabsData.map((tab) => (
-                                    <button
-                                        key={tab.id}
-                                        onClick={() => setActiveTab(tab.id)}
-                                        className={`px-4 py-2 rounded-lg text-[14px] font-medium transition 
-                            ${activeTab === tab.id
-                                                ? "bg-white text-black shadow"
-                                                : "text-gray-300 hover:bg-gray-200 hover:text-black"
-                                            }
-                        `}
-                                    >
-                                        {tab.label}
-                                    </button>
-                                ))}
-                            </div>
-                        </div>
-
-                        {/* Right: Save Button */}
                         <button
                             type="submit"
                             form="ownerForm"
@@ -481,6 +469,24 @@ function Index() {
                         >
                             {loading ? "Saving..." : "Save"}
                         </button>
+                    </div>
+                    <div className="w-[400px] md:w-full overflow-x-auto scrollbar-hide bg-[#2C2C2C] mt-2 rounded-lg">
+                        <div className="flex items-center gap-2 bg-[#2C2C2C] px-2 py-2 rounded-xl">
+                            {tabsData.map((tab) => (
+                                <button
+                                    key={tab.id}
+                                    onClick={() => setActiveTab(tab.id)}
+                                    className={`px-4 py-2 rounded-lg text-[14px] font-medium transition 
+                            ${activeTab === tab.id
+                                            ? "bg-white text-black shadow"
+                                            : "text-gray-300 hover:bg-gray-200 hover:text-black"
+                                        }
+                        `}
+                                >
+                                    {tab.label}
+                                </button>
+                            ))}
+                        </div>
                     </div>
                 </div>
                 <form
@@ -491,7 +497,7 @@ function Index() {
 
                             <div>
                                 <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
-                                    University Id {" "}
+                                    University  {" "}
                                 </label>
 
                                 <div className="relative">
@@ -499,6 +505,7 @@ function Index() {
                                         name="university_id"
                                         value={formData?.university_id}
                                         onChange={handleChange}
+                                        disabled
                                         className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
                                     >
                                         <option value="" disabled>Select a University</option>

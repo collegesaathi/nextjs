@@ -25,6 +25,10 @@ import AddFees from "@/commons/add/AddFees";
 function Index() {
     const router = useRouter()
     const Id = router.query.slug;
+    console.log("router", router?.query)
+    const university_id = router?.query?.university_id
+    const course_id = router?.query?.course_id
+    console.log("university_id", university_id)
     const [universities, setUniversities] = useState([])
     const [categroy, setCategroy] = useState([])
     const [data, setData] = useState("")
@@ -45,6 +49,27 @@ function Index() {
         fetchData();
     }, []);
 
+    const [coursedata, setcoursedata] = useState("")
+
+    console.log("coursedata", coursedata)
+    const fetchCourseData = async (course_id) => {
+        try {
+
+            const main = new Listing();
+            const response = await main.CoursenameGet(course_id);
+            console.log("response", response)
+            const universities = response?.data?.data?.CourseData || [];
+            setcoursedata(universities)
+        } catch (error) {
+            console.log("error", error);
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        fetchCourseData(course_id);
+    }, [course_id]);
+
     const [activeTabs, setActiveTabs] = useState("indian");
 
     const [advantages, setAdvantages] = useState([
@@ -59,8 +84,6 @@ function Index() {
     const [Careers, setCareers] = useState([
         { title: "", description: "", salary: "" }
     ]);
-
-
     const [creteria, setCriteria] = useState([])
 
     const [semesters, setSemesters] = useState([
@@ -371,7 +394,7 @@ function Index() {
             // ✅ IMPORTANT FIX
             const response = await main.AdminSpecializationUpdate(payload);
             if (response?.data?.status) {
-                router.push("/admin/courses")
+                router.push(`/admin/specialization?university_id=${university_id}&course_id=${course_id}`)
                 toast.success(response.data.message);
                 setPreview(null);
             } else {
@@ -638,6 +661,7 @@ function Index() {
                                         name="university_id"
                                         value={formData?.university_id}
                                         onChange={handleChange}
+                                        disabled
                                         className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
                                     >
                                         <option value="" disabled>Select a University</option>
@@ -654,34 +678,21 @@ function Index() {
                                     </select>
                                 </div>
                             </div>
-
-
-                            <div>
+  <div>
                                 <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
-                                    Categroy Id {" "}
+                                    Course  Name{" "}
+
                                 </label>
-
-                                <div className="relative">
-                                    <select
-                                        name="categroy_id"
-                                        value={formData?.categroy_id}
-                                        onChange={handleChange}
-                                        className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
-                                    >
-                                        <option value="" disabled>Select a categroy</option>
-                                        {categroy && categroy.length > 0 ? (
-                                            categroy.map((u, index) => (
-                                                <option key={index} value={u.id}>
-                                                    {u.name}
-                                                </option>
-                                            ))
-                                        ) : (
-                                            <option disabled>No data</option>
-                                        )}
-
-                                    </select>
-                                </div>
+                                <input
+                                    type="text"
+                                    value={coursedata?.name}
+                                    readOnly placeholder="Enter name"
+                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
+                                    required
+                                />
                             </div>
+
+                       
                             <div>
                                 <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
                                     Name{" "}

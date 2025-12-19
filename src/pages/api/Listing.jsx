@@ -29,7 +29,7 @@ class Listing extends Component {
     return ApiallowFile.post("/admin/course/update", data);
   }
 
-  
+
   async AdminSpecializationUpdate(data) {
     return ApiallowFile.post("/admin/specialisation/update", data);
   }
@@ -90,6 +90,9 @@ class Listing extends Component {
     return Api.get(`/admin/university?page=${page}`,);
   }
 
+  async AdminSpecialisation(page) {
+    return Api.get(`/all/specialisation?page=${page}`,);
+  }
   async UniveristyDelete(id) {
     return Api.get(`/university/delete/${id}`)
   }
@@ -101,6 +104,11 @@ class Listing extends Component {
   async CourseGet(slug) {
     return Api.get(`/course/${slug}`)
   }
+
+   async CoursenameGet(id) {
+    return Api.get(`/course_name/${id}`)
+  }
+  
   async SpecializationGet(slug) {
     return Api.get(`/all/specialisations/${slug}`)
   }
