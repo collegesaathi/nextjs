@@ -9,25 +9,25 @@ import { Loader } from "@/common/Loader";
 import { useRouter } from "next/router";
 
 export default function Index() {
-      const router = useRouter();
-        console.log("router", router?.query)
-        const university_id = router?.query?.university_id
-        const course_id = router?.query?.course_id
+    const router = useRouter();
+    console.log("router", router?.query)
+    const university_id = router?.query?.university_id
+    const course_id = router?.query?.course_id
 
-        console.log("university_id", university_id)
+    console.log("university_id", university_id)
     const [page, setPage] = useState(1);
     const [data, setData] = useState([]);
     const [buttonLoading, setButtonLoading] = useState(false);
     const [loading, setLoading] = useState(false);
 
-    console.log("data"  , data)
-    const fetchData = async (university_id ,course_id ) => {
+    console.log("data", data)
+    const fetchData = async (university_id, course_id) => {
         try {
             const main = new Listing();
-            const response = await main.CourseSpecialisationGet(university_id ,course_id );
+            const response = await main.CourseSpecialisationGet(university_id, course_id);
             if (response.data) {
                 const newData = response.data.data || {};
-                console.log("newData" , newData)
+                console.log("newData", newData)
                 setData(newData);
             }
             setLoading(false);
@@ -41,8 +41,8 @@ export default function Index() {
     };
 
     useEffect(() => {
-        fetchData(university_id ,course_id );
-    }, [university_id ,course_id ]);
+        fetchData(university_id, course_id);
+    }, [university_id, course_id]);
 
     const LoadMore = () => {
         const nextPage = page + 1;
@@ -104,7 +104,6 @@ export default function Index() {
 
                                         {/* Name */}
                                         <td className="p-3 border font-semibold">{item?.name}</td>
-
                                         {/* Icon */}
                                         <td className="p-3 border">
                                             <img
@@ -113,7 +112,6 @@ export default function Index() {
                                                 className="w-10 h-10 object-contain"
                                             />
                                         </td>
-
                                         {/* Status */}
                                         <td className="p-3 border">
                                             {item?.deleted_at ? (
@@ -141,7 +139,7 @@ export default function Index() {
 
                                                 {/* Delete Button */}
                                                 <Delete
-                                                    step={1}
+                                                    step={6}
                                                     fetch={fetchData}
                                                     deleteAt={item?.deleted_at}
                                                     Id={item?.id}

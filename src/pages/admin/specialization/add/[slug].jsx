@@ -578,7 +578,7 @@ function Index() {
         setFaqs(data?.faq?.faqs?.length ? data?.faq?.faqs : [{ question: "", answer: "", position: "" }]);
         setSkills(data?.skills?.skills?.length ? data?.skills?.skills : [{ title: "" }])
         setOnlines(data?.admissionprocess?.process?.length ? data?.admissionprocess?.process : [{ title: "", content: "" }])
-        setCareers(carrerData?.length ? carrerData : [{ title: "", content: "" }])
+        setCareers(carrerData?.length ? carrerData : [{ title: "", content: "", salary: "" }])
     }, [data])
 
     return (<>

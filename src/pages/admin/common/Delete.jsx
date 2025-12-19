@@ -130,6 +130,30 @@ export default function Delete({ step, Id, fetch, deleteAt }) {
             setLoading(false);
         }
     };
+
+
+    const handleSpecialisationDelete = async () => {
+        try {
+            setLoading(true);
+            const main = new Listing();
+            const res = await main.SpecialisationDelete(Id);
+
+            if (res?.data?.status) {
+                toast.success(res.data.message);
+                fetch();
+            } else {
+                toast.error(res?.data?.message || "Something went wrong.");
+            }
+
+            toggleModal();
+        } catch (error) {
+            console.error("Package Delete Error:", error);
+            toast.error(error?.response?.data?.message || "Delete failed");
+        } finally {
+            setLoading(false);
+        }
+    };
+
     const handleClick = (e) => {
         e.preventDefault();
         if (step === 1) {
@@ -145,6 +169,9 @@ export default function Delete({ step, Id, fetch, deleteAt }) {
         }
         else if (step === 5) {
             handleCourseDelete()
+        }
+          else if (step === 6) {
+            handleSpecialisationDelete()
         }
         else {
             console.warn("Invalid step");
