@@ -120,11 +120,13 @@ function Index() {
     const [patterns, setPatterns] = useState([
         {
             image: "",
+            pattern_images_alt: "",
             patternName: "",
             percentage: "",
             description: "",
-        }
+        },
     ]);
+
 
 
     const [campusList, setCampusList] = useState([
@@ -175,7 +177,7 @@ function Index() {
         meta_keywords: "",
         canonical_url: "",
         Id: "",
-        fees_title :""
+        fees_title: ""
     });
 
     const handleQuillChange = (field, value) => {
@@ -269,10 +271,30 @@ function Index() {
             payload.append("rankings_description", formData.rankings_description);
             payload.append("rankings_name", formData.rankings_name);
             payload.append("creteria", formData.creteria)
-            payload.append("fees_title" ,formData.fees_title)
+            payload.append("fees_title", formData.fees_title)
             payload.append("category", formData.category)
-            payload.append("indian", JSON.stringify(formData.indian))
-            payload.append("nri", JSON.stringify(formData.nri))
+            const NRIDATA = formData.nri.map(item => ({
+                title: item.title,
+                description: item.description,
+                images_alt: item?.images_alt
+            }));
+            payload.append("nri", JSON.stringify(NRIDATA));
+            formData?.nri?.forEach((item, index) => {
+                if (item.images) {
+                    payload.append(`nriimages[${index}]`, item.images);
+                }
+            });
+            const IndiaDATA = formData.indian.map(item => ({
+                title: item.title,
+                description: item.description,
+                images_alt: item?.images_alt
+            }));
+            payload.append("indian", JSON.stringify(IndiaDATA));
+            formData?.indian?.forEach((item, index) => {
+                if (item.images) {
+                    payload.append(`Indianimages[${index}]`, item.images);
+                }
+            });
             payload.append("semesters", JSON.stringify(semesters))
             payload.append("semesters_title", formData.semesters_title)
             payload.append("certificatename", formData.certificatename);
@@ -288,18 +310,21 @@ function Index() {
             payload.append("patternname", formData.patternname);
             payload.append("patterndescription", formData.patterndescription);
             payload.append("bottompatterndesc", formData.bottompatterndesc);
-            const cleanPatterns = patterns.map(item => ({
-                patternName: item.patternName,
-                percentage: item.percentage,
-                description: item.description,
-                pattern_images_alt: item?.pattern_images_alt
-            }));
+            const cleanPatterns = Array.isArray(patterns)
+                ? patterns.map(item => ({
+                    patternName: item?.patternName || "",
+                    percentage: item?.percentage || "",
+                    description: item?.description || "",
+                    pattern_images_alt: item?.pattern_images_alt || ""
+                }))
+                : [];
             payload.append("patterns", JSON.stringify(cleanPatterns));
-            patterns.forEach((item, index) => {
-                if (item.image) {
+            patterns?.forEach?.((item, index) => {
+                if (item?.image) {
                     payload.append(`patternsimages[${index}]`, item.image);
                 }
             });
+
             payload.append("fees", JSON.stringify(fees));
             payload.append("careerdesc", formData.careerdesc)
             payload.append("careername", formData.careername)
@@ -352,12 +377,10 @@ function Index() {
             } else {
                 toast.error(response.data.message);
             }
-
         } catch (error) {
             console.error(error);
             // toast.error(error.response.data.message);
         }
-
         setLoading(false);
     };
     const [activeTab, setActiveTab] = useState("card");
@@ -431,12 +454,12 @@ function Index() {
             return [];
         }
     };
-console.log("data",data)
+    console.log("data", data)
     useEffect(() => {
         if (data?.curriculum?.semesters) {
             try {
-         const parsedSemesters = (data.curriculum.semesters);
-               
+                const parsedSemesters = (data.curriculum.semesters);
+
                 setSemesters(parsedSemesters?.length ? parsedSemesters : [
                     {
                         title: "Semester I",
@@ -447,11 +470,9 @@ console.log("data",data)
                 console.error("Semester JSON parse error:", error);
             }
         }
-
-
         const indianData = data?.eligibilitycriteria?.IndianCriteria;
         const nriData = data?.eligibilitycriteria?.NRICriteria;
-                const carrerData = safeParse(data?.career?.Career);
+        const carrerData = (data?.career?.Career ? data?.career?.Career : safeParse(data?.career?.Career));
         setFormData({
             slug: data?.slug,
             name: data?.name,
@@ -512,7 +533,7 @@ console.log("data",data)
             indian: indianData,
             nri: nriData,
             Id: data?.id,
-            fees_title : data?.fees_title
+            fees_title: data?.fees_title
         })
         setPreview(data?.cover_image);
         setIcons(data?.icon);
@@ -844,7 +865,7 @@ console.log("data",data)
                     )}
 
                     {activeTab === "fees" && (
-                        <AddFees handleChange={handleChange} formData={formData}/>
+                        <AddFees handleChange={handleChange} formData={formData} />
                     )}
 
                     {activeTab === "approvals" && (

@@ -127,7 +127,7 @@ export default function Index() {
 
                                         {/* Keep the button fixed at the bottom */}
                                         <Link
-                                            href={`/admin/course/${item?.slug}`}
+                                            href={`/admin/courses/${item?.slug}`}
                                             target="_blank"
                                             className="mt-auto block text-center w-full py-2.5 rounded-full bg-[#FF1B1B] hover:bg-[#ad0e0e] text-white font-semibold transition-all"
                                         >

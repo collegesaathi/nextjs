@@ -80,13 +80,15 @@ function Index() {
     const [faqs, setFaqs] = useState([{ question: "", answer: "", position: "" }]);
     const [onlines, setOnlines] = useState([{ title: "", content: "" }]);
     const [facts, setFacts] = useState([{ patternName: "", description: "" }]);
-    const [patterns, setPatterns] = useState([
-        {
-            image: "",
-            patternName: "",
-            percentage: "",
-            description: "",
-        }]);
+     const [patterns, setPatterns] = useState([
+  {
+    image: "",
+    pattern_images_alt: "",
+    patternName: "",
+    percentage: "",
+    description: "",
+  },
+]);
 
     const [campusList, setCampusList] = useState([
         { name: "", image: "" }

@@ -1,10 +1,10 @@
 import Layout from "../components/Layout";
-import AdvantagesSection from "./AdvantagesSection";
+// import AdvantagesSection from "./AdvantagesSection";
 import AwardsCarousel from "./AwardsCarousel";
 import Banner from "./Banner";
 import BestPartnerCount from "./BestPartnerCount";
 import Blogs from "./Blogs";
-import Confusion from "./Confusion";
+// import Confusion from "./Confusion";
 import ContactSection from "./ContactSection";
 import ExploreUniversities from "./ExploreUniversities";
 import FAQSection from "../../commons/list/FAQSection";
@@ -26,13 +26,13 @@ function Home() {
             <LogoSlider />
             <Programs />
             <HelpSection />
-            <AdvantagesSection universities={[{ id: 1, name: "Amity", location: "Noida" }]} />
+            {/* <AdvantagesSection universities={[{ id: 1, name: "Amity", location: "Noida" }]} /> */}
             <University />
             <IndustryExpertsSection />
             <ExploreUniversities />
             <BestPartnerCount />
             <Trending />
-            <Confusion />
+            {/* <Confusion /> */}
             <Blogs />
             <MediaCarousel />
             <AwardsCarousel />

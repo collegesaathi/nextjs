@@ -8,7 +8,7 @@ import ReactQuillEditor from "@/common/ReactQuillEditor";
 const ReactQuill = dynamic(() => import("react-quill-new"), { ssr: false });
 
 const AddPattern = ({ setPatterns, patterns, formData, handleQuillChange, handleChange }) => {
-
+console.log("patterns" ,patterns)
 
   const addPattern = () => {
     setPatterns([...patterns, { image: "", patternName: "", percentage: "", description: "" }]);
@@ -97,7 +97,7 @@ const AddPattern = ({ setPatterns, patterns, formData, handleQuillChange, handle
         </button>
       </div>
 
-      {patterns?.map((item, index) => (
+      {patterns && patterns?.map((item, index) => (
         <div key={index} className="grid grid-cols-1 gap-4 items-center mb-4 border-b border-gray-200 pb-4">
 
           {/* Image */}

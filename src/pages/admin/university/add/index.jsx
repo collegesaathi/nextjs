@@ -74,13 +74,12 @@ function Index() {
     const [patterns, setPatterns] = useState([
         {
             image: "",
+            pattern_images_alt: "",
             patternName: "",
             percentage: "",
             description: "",
-            pattern_images_alt: ""
-        }
+        },
     ]);
-
 
     const [facts, setFacts] = useState([
         {
@@ -557,7 +556,7 @@ function Index() {
                                     <h2 className="text-xl font-semibold text-[#CC2828]">Multiple Description</h2>
 
                                     <button
-                                    type="button"
+                                        type="button"
                                         onClick={addDescription}
                                         className="border border-[#CC2828] bg-[#CC2828] hover:bg-red-700 text-white px-6 py-2 rounded-[10px] text-base transition"
                                     >
@@ -580,7 +579,7 @@ function Index() {
                                             }}
                                         />
                                         <button
-                                                   type="button"
+                                            type="button"
                                             onClick={() => deleteDescription(index)}
                                             className="bg-red-500 text-white rounded-md p-3 hover:bg-red-700 flex justify-center items-center"
                                         >

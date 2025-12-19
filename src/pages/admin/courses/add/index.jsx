@@ -115,14 +115,15 @@ function Index() {
         { title: "", content: "" }
     ]);
 
-    const [patterns, setPatterns] = useState([
-        {
-            image: "",
-            patternName: "",
-            percentage: "",
-            description: "",
-        }
-    ]);
+     const [patterns, setPatterns] = useState([
+  {
+    image: "",
+    pattern_images_alt: "",
+    patternName: "",
+    percentage: "",
+    description: "",
+  },
+]);
 
 
     const [campusList, setCampusList] = useState([

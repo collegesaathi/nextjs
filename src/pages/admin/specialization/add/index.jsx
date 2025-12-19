@@ -21,6 +21,7 @@ import AddOnline from "@/commons/add/AddOnline";
 import FaqAdd from "@/commons/add/FaqAdd";
 import { useRouter } from "next/router";
 import AddSkills from "@/commons/add/AddSkills";
+import AddFees from "@/commons/add/AddFees";
 function Index() {
     const router = useRouter();
 
@@ -28,6 +29,7 @@ function Index() {
     const [categroy, setCategroy] = useState([])
     const fetchData = async () => {
         try {
+
             const main = new Listing();
             const response = await main.Listjsx();
             const universities = response?.data?.data?.universities || [];
@@ -49,7 +51,7 @@ function Index() {
         { title: "", description: "" }
     ]);
 
-    
+
     const [skills, setSkills] = useState([
         { title: "" }
     ]);
@@ -109,7 +111,6 @@ function Index() {
     const [faqs, setFaqs] = useState([
         { question: "", answer: "", position: "" }
     ]);
-    console.log("faqs", faqs)
     const [onlines, setOnlines] = useState([
         { title: "", content: "" }
     ]);
@@ -117,10 +118,11 @@ function Index() {
     const [patterns, setPatterns] = useState([
         {
             image: "",
+            pattern_images_alt: "",
             patternName: "",
             percentage: "",
             description: "",
-        }
+        },
     ]);
 
 
@@ -135,6 +137,7 @@ function Index() {
         icon: null,
         cover_image: null,
         position: "",
+        fees_title: "",
         tuition_fees: "",
         anuual_fees: "",
         semester_fees: "",
@@ -173,7 +176,6 @@ function Index() {
         canonical_url: "",
     });
 
-    console.log("formData", formData)
     const handleQuillChange = (field, value) => {
         setFormData((prev) => ({ ...prev, [field]: value }));
     };
@@ -205,6 +207,7 @@ function Index() {
             [name]: value,
         }));
     };
+    console.log("formData", formData)
 
     // 🔹 Image Upload (icon or cover)
     const handleImageChange = (e, field) => {
@@ -235,7 +238,6 @@ function Index() {
             category: tab
         }));
     };
-    console.log("semesters", semesters)
 
     const handleAdd = async (e) => {
         e.preventDefault();
@@ -247,10 +249,10 @@ function Index() {
             payload.append("slug", formData.slug);
             payload.append("name", formData.name);
             payload.append("university_id", formData.university_id)
-            payload.append("course_id", 7)
             payload.append("position", formData.position);
             payload.append("icon", formData.icon);
             payload.append("cover_image", formData.cover_image);
+            payload.append("fees_title", formData.fees_title);
             payload.append("category_id", formData?.categroy_id);
             payload.append("descriptions", JSON.stringify(formData.descriptions));
             payload.append("cover_image_alt", formData.cover_image_alt)
@@ -267,8 +269,29 @@ function Index() {
             payload.append("rankings_name", formData.rankings_name);
             payload.append("creteria", formData.creteria)
             payload.append("category", formData.category)
-            payload.append("indian", JSON.stringify(formData.indian))
-            payload.append("nri", JSON.stringify(formData.nri))
+            const NRIDATA = formData.nri.map(item => ({
+                title: item.title,
+                description: item.description,
+                images_alt: item?.images_alt
+            }));
+            payload.append("nri", JSON.stringify(NRIDATA));
+            formData?.nri?.forEach((item, index) => {
+                if (item.images) {
+                    payload.append(`nriimages[${index}]`, item.images);
+                }
+            });
+
+            const IndiaDATA = formData.indian.map(item => ({
+                title: item.title,
+                description: item.description,
+                images_alt: item?.images_alt
+            }));
+            payload.append("indian", JSON.stringify(IndiaDATA));
+            formData?.indian?.forEach((item, index) => {
+                if (item.images) {
+                    payload.append(`Indianimages[${index}]`, item.images);
+                }
+            });
             payload.append("semesters", JSON.stringify(semesters))
             payload.append("semesters_title", formData.semesters_title)
             payload.append("certificatename", formData.certificatename);
@@ -278,9 +301,9 @@ function Index() {
             payload.append("advantages", JSON.stringify(advantages));
             payload.append("advantagesname", formData.advantagesname);
             payload.append("advantagesdescription", formData.advantagesdescription);
-            payload.append("skills" ,JSON.stringify(skills) );
-            payload.append("skillsname" , formData.skillname);
-            payload.append("skilldesc" , formData.skilldesc);
+            payload.append("skills", JSON.stringify(skills));
+            payload.append("skillsname", formData.skillname);
+            payload.append("skilldesc", formData.skilldesc);
             payload.append("patternname", formData.patternname);
             payload.append("patterndescription", formData.patterndescription);
             payload.append("bottompatterndesc", formData.bottompatterndesc);
@@ -343,16 +366,17 @@ function Index() {
             // ✅ IMPORTANT FIX
             const response = await main.AdminSpecializationAdd(payload);
             if (response?.data?.status) {
-                router.push("/admin/specialization")
+                router.push("/admin/courses")
                 toast.success(response.data.message);
                 setPreview(null);
             } else {
                 toast.error(response.data.message);
             }
-
+            setLoading(false);
         } catch (error) {
             console.error(error);
-            // toast.error(error.response.data.message);
+            toast.error(error.response.data.message);
+            setLoading(false);
         }
 
         setLoading(false);
@@ -702,61 +726,7 @@ function Index() {
                     )}
 
                     {activeTab === "fees" && (
-                        <>
-                            <div>
-                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
-                                    Total Tuition Fee:
-                                </label>
-                                <input
-                                    type="text"
-                                    name="tuition_fees"
-                                    value={formData.tuition_fees}
-                                    onChange={(e) => {
-                                        handleChange(e);
-                                    }}
-                                    placeholder="Enter tuition fees "
-                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
-                                    required
-                                />
-                            </div>
-                            <div>
-                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
-                                    Total Anuual Fee:
-
-                                </label>
-                                <input
-                                    type="text"
-                                    name="anuual_fees"
-                                    value={formData.anuual_fees}
-                                    onChange={(e) => {
-                                        handleChange(e);
-                                    }}
-                                    placeholder="Enter anuual fees"
-                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
-                                    required
-                                />
-                            </div>
-                            <div>
-                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
-                                    Semester Fees
-
-                                </label>
-                                <input
-                                    type="text"
-                                    name="semester_fees"
-                                    value={formData.semester_fees}
-                                    onChange={(e) => {
-                                        handleChange(e);
-                                    }}
-                                    placeholder="Enter Semester Fees"
-                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
-                                    required
-                                />
-                            </div>
-
-
-                        </>
-
+                        <AddFees handleChange={handleChange} formData={formData} />
                     )}
 
                     {activeTab === "approvals" && (
@@ -889,7 +859,7 @@ function Index() {
                         </>
                     )}
 
-                     {activeTab === "skills" && (
+                    {activeTab === "skills" && (
                         <>
                             <AddSkills skills={skills} setSkills={setSkills}
                                 htitle={"Skills"} handleChange={handleChange} handleQuillChange={handleQuillChange} formData={formData} />
