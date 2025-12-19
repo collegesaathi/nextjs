@@ -1,54 +1,70 @@
+import React from "react";
 import Heading from "@/common/Heading";
 
-function Skills({advantages}) {
+function Skills({ skills }) {
+  const skillsList = skills?.skills || [];
 
-    return (
+  return (
+    <section className="px-6 py-6" id="skills-section">
+      <div className="max-w-[1230px] ">
+        
+        {/* --- Section Title & Description --- */}
+        <div className="mb-8">
+          <Heading title={skills?.title} />
+          <div
+            className="font-poppins text-[15px] sm:text-[16px] text-[#282529] leading-6 sm:leading-7 mb-4"
+            dangerouslySetInnerHTML={{ __html: skills?.description || "" }}
+          />
+        </div>
 
-        <section className="px-6 py-6 " id="advantages-section">
-            <div className="max-w-[1230px]">
-            <div className="mb-8">
 
-                <Heading title={advantages?.title}/>
+        <div className="overflow-hidden mt-[30px] border-2 border-[#f47c80] rounded-t-lg">
 
-<div
-                        className="font-poppins text-[15px] sm:text-[16px] text-[#282529] leading-6 sm:leading-7 mb-4"
-                        dangerouslySetInnerHTML={{ __html: advantages?.description || "" }}
-                    />
-              
-            </div>
+          <div className="bg-[#ec1e24] text-white p-4 font-poppins font-bold text-[16px] md:text-[18px] text-center w-full">
+            Skills
+          </div>
 
-            <div className="overflow-hidden mt-[30px]">
-                <div className="flex ">
-                    {/* Header */}
-                    <div className="bg-[#ec1e24] text-white p-4 font-poppins font-semibold text-[14px ]md:text-[17px] border-r-2 border-[#f47c80] h-[65px] flex items-center">
-                        Advantages
-                    </div>
-                 
-
-                    {/* Rows */}
-                    {advantages && advantages?.advantages?.map((advantage, index) => (
-                        <div key={index} className="flex w-full">
-                            <div className="bg-white border-b-2 border-l-2 border-r-2 border-[#f47c80] p-4 font-poppins flex flex-col justify-center w-5/12 sm:w-4/12">
-                                <h3 className=" text-[11px] md:text-[17px] text-[#282529] mb-2">
-                                    {advantage.title}
-                                </h3>
-                            </div>
-
-                            <div className="bg-white border-b-2 border-r-2 border-[#f47c80] p-4 font-poppins w-7/12 sm:w-8/12">
-                                <div
-                                    className=" text-[11px] md:text-[17px] font-[400] text-[#363535] leading-relaxed"
-                                    dangerouslySetInnerHTML={{
-                                        __html: advantage.description,
-                                    }}
-                                />
-                            </div>
-                        </div>
-                    ))}
+          {/* 2. Grid Rows (2 Columns) */}
+          <div className="grid grid-cols-1 md:grid-cols-2 bg-white">
+            {skillsList.map((skill, index) => (
+              <div
+                key={index}
+                className={`
+                  flex items-start p-10 px-20
+                  border-b border-[#f47c80]
+                  ${index % 2 === 0 ? "md:border-r" : ""} 
+                  /* The line above adds a right border only to the left column items on desktop */
+                `}
+              >
+                {/* Green Check Icon */}
+                <div className="mr-3 mt-1 min-w-[20px] ">
+                <img src="/images/check.png" ></img>
                 </div>
-            </div>
-            </div>
-        </section>
-    );
+
+                {/* Skill Content */}
+                <div className="font-poppins flex flex-col justify-center ">
+                  <h3 className="text-[14px] md:text-[17px] font-[400] text-[#282529]">
+                    {skill.title}
+                  </h3>
+                  
+                  {/* Optional: Render description if it exists, otherwise hide */}
+                  {skill.description && (
+                    <div
+                      className="text-[12px] text-gray-500 mt-1 leading-relaxed"
+                      dangerouslySetInnerHTML={{
+                        __html: skill.description,
+                      }}
+                    />
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+
+        </div>
+      </div>
+    </section>
+  );
 }
 
 export default Skills;

@@ -9,7 +9,7 @@ import Image from "next/image";
 import BackNext from "@/pages/components/BackNext";
 import Listing from "@/pages/api/Listing";
 
-export default function CoursesSwiper() {
+export default function CoursesSwiper(exisitng) {
   const swiperRef = useRef(null);
 
   const [progress, setProgress] = useState(0);
@@ -99,7 +99,10 @@ export default function CoursesSwiper() {
               ))}
             </Swiper>
            <div className="px-2 md:px-6 pt-5 lg:pt-6">
-                      <EnquiryBox />
+
+
+            {exisitng ==="university" && (   <EnquiryBox />)}
+                   
            </div>
   
           </section>

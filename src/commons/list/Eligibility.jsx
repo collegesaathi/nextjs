@@ -4,7 +4,8 @@ import { useState } from "react";
 import Heading from "@/common/Heading";
 import Image from "next/image";
 
-function Eligibility() {
+function Eligibility({eligibilitycriteria}) {
+  console.log("gvdgvnhgbn",eligibilitycriteria)
   const [activeTab, setActiveTab] = useState("indian"); // default tab
 
   return (
@@ -53,18 +54,24 @@ function Eligibility() {
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-1">
 
                     {/* CARD 1 */}
-                    <div className=" p-6  md:border-r border-[#FCF0EE] space-y-2 md:space-y-8">
+
+                    {eligibilitycriteria?.IndianCriteria?.map((item,index)=>(
+                          <div className=" p-6  md:border-r border-[#FCF0EE] space-y-2 md:space-y-8">
                       <div className="bg-[#FCF0EE] h-12 w-12 rounded-full flex justify-center items-center">
-                        <Image src="/images/courses/icons/Educational.svg" width={30} height={40} />
+                        <img src={item.images} width={30} height={40} />
                       </div>
-                      <h3 className="font-semibold text-[18px]">Educational Qualification</h3>
-                      <p className="text-[14px] leading-6">
-                        The candidate must have a bachelor’s degree from a recognized University (AIU).
+                      <h3 className="font-semibold text-[18px]">{item.title}</h3>
+                      {/* <p className="text-[14px] leading-6" dangerouslySetInnerHTML={{ __html: item?.description || "" }}> */}
+                            <p className="text-[14px] leading-6" >
+                    {item.description}
                       </p>
                     </div>
 
+                    ))}
+                
+
                     {/* CARD 2 */}
-                    <div className=" p-6 md:border-r border-[#FCF0EE] space-y-2 md:space-y-8">
+                    {/* <div className=" p-6 md:border-r border-[#FCF0EE] space-y-2 md:space-y-8">
                       <div className="bg-[#FCF0EE] h-12 w-12 rounded-full flex justify-center items-center">
                         <Image src="/images/courses/icons/Educational.svg" width={30} height={40} />
                       </div>
@@ -72,10 +79,10 @@ function Eligibility() {
                       <p className="text-[14px] leading-6">
                         Minimum 50% marks (45% for SC/ST/OBC/PwD).
                       </p>
-                    </div>
+                    </div> */}
 
                     {/* CARD 3 */}
-                    <div className="rounded-[12px] p-6 space-y-2 md:space-y-8">
+                    {/* <div className="rounded-[12px] p-6 space-y-2 md:space-y-8">
                       <div className="bg-[#FCF0EE] h-12 w-12 rounded-full flex justify-center items-center">
                         <Image src="/images/courses/icons/Educational.svg" width={30} height={40} />
                       </div>
@@ -83,7 +90,7 @@ function Eligibility() {
                       <p className="text-[14px] leading-6">
                         Work experience is not mandatory, but helpful.
                       </p>
-                    </div>
+                    </div> */}
 
                   </div>
                 )}
@@ -92,18 +99,22 @@ function Eligibility() {
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-1">
 
                     {/* CARD 1 */}
-                    <div className=" p-6 md:border-r border-[#FCF0EE] space-y-2 md:space-y-8">
+                     {eligibilitycriteria?.NRICriteria?.map((item,index)=>(
+                          <div className=" p-6  md:border-r border-[#FCF0EE] space-y-2 md:space-y-8">
                       <div className="bg-[#FCF0EE] h-12 w-12 rounded-full flex justify-center items-center">
-                        <Image src="/images/courses/icons/Educational.svg" width={30} height={40} />
+                        <img src={item.images} width={30} height={40} />
                       </div>
-                      <h3 className="font-semibold text-[18px]">Educational Qualification</h3>
-                      <p className="text-[14px] leading-6">
-                        Must have a valid foreign Bachelor's degree equivalent to Indian standards.
+                      <h3 className="font-semibold text-[18px]">{item.title}</h3>
+                      {/* <p className="text-[14px] leading-6" dangerouslySetInnerHTML={{ __html: item?.description || "" }}> */}
+                            <p className="text-[14px] leading-6" >
+                    {item.description}
                       </p>
                     </div>
 
+                    ))}
+
                     {/* CARD 2 */}
-                    <div className="p-6 md:border-r border-[#FCF0EE] space-y-2 md:space-y-8">
+                    {/* <div className="p-6 md:border-r border-[#FCF0EE] space-y-2 md:space-y-8">
                       <div className="bg-[#FCF0EE] h-12 w-12 rounded-full flex justify-center items-center">
                         <Image src="/images/courses/icons/Educational.svg" width={30} height={40} />
                       </div>
@@ -111,10 +122,10 @@ function Eligibility() {
                       <p className="text-[14px] leading-6">
                         IELTS/TOEFL score may be required depending on nationality.
                       </p>
-                    </div>
+                    </div> */}
 
                     {/* CARD 3 */}
-                    <div className=" p-6 space-y-2 md:space-y-8">
+                    {/* <div className=" p-6 space-y-2 md:space-y-8">
                       <div className="bg-[#FCF0EE] h-12 w-12 rounded-full flex justify-center items-center">
                         <Image src="/images/courses/icons/Educational.svg" width={30} height={40} />
                       </div>
@@ -122,7 +133,7 @@ function Eligibility() {
                       <p className="text-[14px] leading-6">
                         Valid passport and international student verification.
                       </p>
-                    </div>
+                    </div> */}
 
                   </div>
                 )}

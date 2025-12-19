@@ -26,7 +26,7 @@ export default function CareerServices({ services }) {
     const updateProgress = (swiper) => {
         if (!swiper) return;
 
-        const totalCards = services?.services.length;
+        const totalCards = services?.services?.length;
         const visibleSlides = swiper.params.slidesPerView;
 
         if (visibleSlides === 4) {

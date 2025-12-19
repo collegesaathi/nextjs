@@ -92,6 +92,7 @@ height:12px;
   padding-left: 4px;
   padding-right: 4px;
 line-height: 20px;
+margin-left: -5px;
 
 }
 
@@ -103,6 +104,27 @@ line-height: 20px;
         line-height: 20px;
 
 
+}
+
+
+
+.certificate p{
+
+    display: flex;
+ 
+        gap:8px;
+        padding: 0 !important;
+        line-height: 20px;
+        align-items: center;
+          margin: 36px 0px;
+        
+}
+
+.certificate img{
+  background-color: #F8F8F8;
+  padding: 10px;
+
+  border-radius: 100%;
 }
 
 
