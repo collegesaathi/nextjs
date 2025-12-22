@@ -54,17 +54,17 @@ function Eligibility({eligibilitycriteria}) {
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-1">
 
                     {/* CARD 1 */}
-
-                    {eligibilitycriteria?.IndianCriteria?.map((item,index)=>(
+                    
+                    { eligibilitycriteria?.IndianCriteria?.map((item,index)=>(
                           <div className=" p-2 md:p-6  md:border-r border-[#FCF0EE] space-y-2 md:space-y-8">
                       <div className="bg-[#FCF0EE] h-12 w-12 rounded-full flex justify-center items-center">
-                        <img src={item.images} width={30} height={40} />
+                        <img src={item.image} width={30} height={40} />
                       </div>
                       <h3 className="font-semibold text-[18px]">{item.title}</h3>
                       {/* <p className="text-[14px] leading-6" dangerouslySetInnerHTML={{ __html: item?.description || "" }}> */}
-                            <p className="text-[14px] leading-6" dangerouslySetInnerHTML={{ __html: item?.description || "" }}>
+                            <div className="text-[14px] leading-6"  dangerouslySetInnerHTML={{ __html: item?.description || "" }}>
                 
-                      </p>
+                      </div>
                     </div>
 
                     ))}
@@ -80,40 +80,18 @@ function Eligibility({eligibilitycriteria}) {
 
                     {/* CARD 1 */}
                      {eligibilitycriteria?.NRICriteria?.map((item,index)=>(
-                          <div className=" p-2 md:p-6  md:border-l border-[#FCF0EE] space-y-2 md:space-y-8">
+                          <div className=" p-2 md:p-6  md:border-r border-[#FCF0EE] space-y-2 md:space-y-8">
                       <div className="bg-[#FCF0EE] h-12 w-12 rounded-full flex justify-center items-center">
                         <img src={item.images} width={30} height={40} />
                       </div>
                       <h3 className="font-semibold text-[18px]">{item.title}</h3>
                       {/* <p className="text-[14px] leading-6" dangerouslySetInnerHTML={{ __html: item?.description || "" }}> */}
-                            <p className="text-[14px] leading-6" >
-                    {item.description}
-                      </p>
+                            <div className="text-[14px] leading-6"   dangerouslySetInnerHTML={{ __html: item?.description || "" }} >
+                
+                      </div>
                     </div>
 
                     ))}
-
-                    {/* CARD 2 */}
-                    {/* <div className="p-6 md:border-r border-[#FCF0EE] space-y-2 md:space-y-8">
-                      <div className="bg-[#FCF0EE] h-12 w-12 rounded-full flex justify-center items-center">
-                        <Image src="/images/courses/icons/Educational.svg" width={30} height={40} />
-                      </div>
-                      <h3 className="font-semibold text-[18px]">English Proficiency</h3>
-                      <p className="text-[14px] leading-6">
-                        IELTS/TOEFL score may be required depending on nationality.
-                      </p>
-                    </div> */}
-
-                    {/* CARD 3 */}
-                    {/* <div className=" p-6 space-y-2 md:space-y-8">
-                      <div className="bg-[#FCF0EE] h-12 w-12 rounded-full flex justify-center items-center">
-                        <Image src="/images/courses/icons/Educational.svg" width={30} height={40} />
-                      </div>
-                      <h3 className="font-semibold text-[18px]">Passport & Visa</h3>
-                      <p className="text-[14px] leading-6">
-                        Valid passport and international student verification.
-                      </p>
-                    </div> */}
 
                   </div>
                 )}

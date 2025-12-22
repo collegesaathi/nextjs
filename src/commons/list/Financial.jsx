@@ -2,7 +2,7 @@ import React from "react";
 import Heading from "@/common/Heading";
 
 function Financial({financialAid}) {
-  console.log()
+  console.log("finance",financialAid)
   return (
     <>
       <div className="w-full px-2 md:px-6 py-6 ">
@@ -18,7 +18,7 @@ function Financial({financialAid}) {
             </div>
 
             
-{financialAid?.aid?.courseName && (
+{financialAid?.aid && (
    <div className="bg-white border-[2px] border-[#ec1e24] overflow-hidden mt-[30px] rounded-lg">
 
               {/* Header */}

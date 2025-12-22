@@ -53,6 +53,7 @@ function Index() {
     const [selectedSpecialization, setSelectedSpecialization] = useState(null);
     const [selectedUniversity, setSelectedUniversity] = useState(null)
     const [selectedDomain, setSelectedDomain] = useState(null);
+        const [openDomain, setOpenDomain] = useState(null);
 
     const [openIndex, setOpenIndex] = useState(null);
     const [selectedIndex, setSelectedIndex] = useState(null);
@@ -60,6 +61,9 @@ function Index() {
     const handleToggle = (i) => {
         setOpenIndex(openIndex === i ? null : i);
     };
+  const handleDomainToggle = () => {
+  setOpenDomain(prev => !prev);
+};
 
 const courseData = [
   { name: "Online BBA", image: "/images/programs/program1.svg", specializations: bbaSpecs, domain: "PG Courses" },
@@ -133,35 +137,85 @@ const courseData = [
                         <ImCross className="cursor-pointer" onClick={handleReset} />
                     </div>
 
-                    <div className="w-full flex flex-col md:flex-row gap-3 lg:gap-1 mt-6">
+                    <div className="w-full flex flex-col md:flex-row gap-3 lg:gap-1 md:mt-6">
 
                         {/* SIDEBAR */}
-                        <div className="w-full md:w-[260px] bg-white rounded-xl  px-3 py-3 lg:p-5 h-fit ">
-                            <h3 className="text-[16px] font-poppins text-[#EC1E24] mb-4">Browse by Domains</h3>
-                            <div className="space-y-[29.5px] md:border border-[#CECECE] p-1 md:p-4 rounded-[10px]">
-                                {sidebarData.map((item, i) => (
-                                    <div key={i} className="md:border-l-[2px] border-[#CECECE] hover:border-[#EC1E24]">
-                                      <div 
-  onClick={() => {
-      handleToggle(i);
-      setSelectedDomain(item.title); // ← FILTER ACTIVE
-      setSelectedParentCourse(null);
-      setSelectedSpecialization(null);
-  }}
-  className="font-[400] py-2 flex justify-between items-center cursor-pointer md:pl-4 hover:text-[#EC1E24]"
->
-                                            <p>{item.title}</p>
-                                            <div className="md:hidden" style={{ transform: openIndex === i ? "rotate(90deg)" : "rotate(0deg)" }}>
-                                                <IoChevronForwardOutline />
-                                            </div>
-                                        </div>
-                                        <div className={`pl-6 mt-1 text-xs text-gray-500 hover:text-[#EC1E24] cursor-pointer ${openIndex === i ? "block" : "hidden"} md:block`}>
-                                            {item.sub.map((s, idx) => (<p key={idx}>{s}</p>))}
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
+         <div className=" block md:hidden w-full md:w-[260px] bg-white rounded-xl px-3 py-3 lg:p-5 h-fit">
+                  <div className={` 
+                    h-[50px] rounded-full bg-white flex items-center px-4 gap-2 border border-[#CECECE] 
+                    transition-all duration-300 ease-in-out 
+                    ${selectedParentCourse ? "w-full lg:w-[500px] xl:w-[800px]" : "w-full"}
+                `}>
+                                    <Search className="text-gray-400" width={20} height={20} />
+                                    <input
+                                        type="text"
+                                        placeholder={
+                                            isUniversityView
+                                                ? 'Search "University"'
+                                                : selectedParentCourse
+                                                    ? `Search in ${selectedParentCourse.name}`
+                                                    : 'Search "University"'
+                                        }
+                                        className="flex-1 outline-none text-[15px] placeholder:text-gray-400"
+                                    />
+                                    <Image src="/icons/normal/voice.svg" alt="mic" width={20} height={20} />
+                                </div>
+  <div className="flex items-center justify-between"  onClick={handleDomainToggle}>
+    <h3
+      className="text-[16px] font-poppins text-[#EC1E24] md:mb-4 cursor-pointer"
+     
+    >
+      Browse by Domains
+    </h3>
+      <div
+            className="md:hidden transition-transform"
+            style={{ transform: openDomain ? "rotate(270deg)" : "rotate(90deg)" }}
+          >
+            <IoChevronForwardOutline />
+          </div>
+  </div>
+
+  <div
+    className={`space-y-[29.5px] md:border border-[#CECECE] p-1 md:p-4 rounded-[10px] 
+      ${openDomain ? "block" : "hidden"} md:block`}
+  >
+    {sidebarData.map((item, i) => (
+      <div key={i} className="md:border-l-[2px] border-[#CECECE] hover:border-[#EC1E24]">
+        
+        {/* Parent Row */}
+        <div
+          onClick={() => {
+            handleToggle(i);
+            setSelectedDomain(item.title);
+          }}
+          className="font-[400] py-2 flex justify-between items-center cursor-pointer md:pl-4 hover:text-[#EC1E24]"
+        >
+          <p>{item.title}</p>
+
+          {/* Show Arrow only in Mobile */}
+          <div
+            className="md:hidden transition-transform"
+            style={{ transform: openIndex === i ? "rotate(90deg)" : "rotate(0deg)" }}
+          >
+            <IoChevronForwardOutline />
+          </div>
+        </div>
+
+        {/* Sub List */}
+        <div
+          className={`pl-6 mt-1 text-xs text-gray-500 hover:text-[#EC1E24] cursor-pointer 
+            ${openIndex === i ? "block" : "hidden"} md:block`}
+        >
+          {item.sub.map((s, idx) => (
+            <p key={idx}>{s}</p>
+          ))}
+        </div>
+
+      </div>
+    ))}
+  </div>
+</div>
+
 
                         <div className="flex-1">
 
@@ -208,6 +262,7 @@ const courseData = [
                                 )}
 
                                 {/* Search Bar */}
+                                <div className="hidden md:block">
                                 <div className={`
                     h-[50px] rounded-full bg-white flex items-center px-4 gap-2 border border-[#CECECE] 
                     transition-all duration-300 ease-in-out 
@@ -227,35 +282,38 @@ const courseData = [
                                     />
                                     <Image src="/icons/normal/voice.svg" alt="mic" width={20} height={20} />
                                 </div>
+                                </div>
                             </div>
 
                             {/* GRID */}
-                            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 md:gap-5 px-2 ">
+                            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-5 px-2 ">
                                 {displayData.map((item, index) => {
 
                                     if (isUniversityView) {
                                         return (
-                                            <div key={index} className="bg-white shadow-md hover:shadow-xl rounded-xl p-5 h-[240px] flex flex-col items-center md:items-start text-center justify-between transition-all">
-                                                <div className="w-16 h-16 flex  mb-2">
+                                            <div key={index} className="bg-white shadow-md hover:shadow-xl rounded-xl p-1 py-4  md:p-5 md:py-8  flex flex-col gap-5 items-center md:items-start text-center justify-between transition-all group ">
+                                               <div className=" flex justify-center md:justify-left flex-col">
+                                                <div className="w-16 h-16 flex  mb-2 self-center md:self-start ">
                                                     <Image src={item.logo} width={60} height={60} alt={item.name} className="object-contain " />
                                                 </div>
 
                                                 <h3 className="text-[14px] font-poppins font-[600] text-black leading-tight ">
                                                     {item.name}
                                                 </h3>
+                                                </div>
 
                                                 <div className="w-full items-center flex flex-col gap-3 ">
                                                     <div
                                                         onClick={() => setSelectedUniversity(item)}
-                                                        className="flex items-center  md:self-start gap-1 text-[14px] font-[400] font-poppins text-gray-500 cursor-pointer hover:text-[#EC1E24] transition-colors"
+                                                        className="flex items-center  md:self-start gap-1 text-[12px] md:text-[14px] font-[400] font-poppins text-gray-500 cursor-pointer group-hover:text-[#EC1E24] transition-colors"
                                                     >
                                                         <p className="">View info </p>
                                                         <div><IoChevronForwardOutline /></div>
                                                     </div>
 
                                                     <div className="flex md:self-start items-center gap-2 cursor-pointer">
-                                                        <input type="checkbox" id={`compare-${index}`} className="w-4 h-4 accent-red-600 cursor-pointer" />
-                                                        <label htmlFor={`compare-${index}`} className="text-[14px] font-poppins text-[#2825297F] cursor-pointer select-none">Add to compare</label>
+                                                        <input type="checkbox" id={`compare-${index}`} className="md:w-4 md:h-4 accent-red-600 cursor-pointer" />
+                                                        <label htmlFor={`compare-${index}`} className="text-[12px] md:text-[14px] font-poppins text-[#2825297F] cursor-pointer select-none">Add to compare</label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -263,14 +321,17 @@ const courseData = [
                                     }
 
                                     return (
-                                        <div className="bg-white shadow-md hover:shadow-xl rounded-xl p-5 h-[200px] flex flex-col justify-between" key={index}>
-                                            <Image src={item.image} width={50} height={50} alt={item.name} className="self-center md:self-start"/>
-                                            <h3 className="text-[14px] font-poppins font-[600] mt-2 self-center md:self-start">{item.name}</h3>
+                                        <div  className="bg-white shadow-xl hover:shadow-[3px_4px_18px_0px_rgba(0,0,0,0.25)] rounded-xl p-2 md:p-5 md:py-8  flex flex-col gap-5 justify-between group"
+  key={index}>
+                                            <div className="flex flex-col justify-center">
+                                                <Image src={item.image} width={50} height={50} alt={item.name} className="self-center md:self-start"/>
+                                            <h3 className="text-[14px] font-poppins font-[600] mt-2 text-center md:self-start">{item.name}</h3>
+                                            </div>
 
                                             {selectedParentCourse ? (
                                                 <div
                                                     onClick={() => { setSelectedSpecialization(item), setSelectedUniversity(item) }}
-                                                    className="mt-3 flex items-center gap-1 justify-center md:justify-start text-[14px] font-poppins text-gray-600 cursor-pointer hover:text-[#EC1E24]"
+                                                    className="mt-3 flex items-center gap-1 justify-center md:justify-start text-[14px] font-poppins text-gray-600 cursor-pointer group-hover:text-[#EC1E24]"
                                                 >    
 
                                                 <div className="flex items-center">
@@ -284,14 +345,14 @@ const courseData = [
                                                         setSelectedIndex(index);
                                                         setSelectedParentCourse(item);
                                                     }}
-                                                    className={`mt-3 px-4 flex items-center justify-center md:justify-start  gap-2 py-1 rounded-full text-[12px] md:ext-[14px] font-poppins font-[400] w-full hover:bg-[#EC1E24] hover:text-[white]
+                                                    className={`mt-3 px-1 md:px-4 flex items-center justify-center md:justify-start  gap-2 py-1 rounded-full text-[12px] md:ext-[14px] font-poppins font-[400] w-full group-hover:bg-[#EC1E24] group-hover:text-[white]
                                 ${selectedIndex === index
                                                             ? "bg-[#EC1E24] text-white"
                                                             : "bg-[#FFF5F5] text-red-600"
                                                         }`}
                                                 >  
 
-                                                         <div className="flex items-center gap-2"> 
+                                                         <div className="flex items-center md:gap-2"> 
                                                    <p> View Specialization </p> 
                                                 <div> <FaArrowRightLong className="hidden md:block" /></div> 
                                                 </div> 

@@ -24,15 +24,15 @@ function CarreerOppurtunity({career}) {
 
   {/* Header */}
   <div className="grid grid-cols-3 md:grid-cols-3">
-    <div className="bg-[#ec1e24] text-white p-2 md:p-4 font-poppins font-semibold text-[14px] md:text-[17px] border-r-2 border-[#f47c80] h-[65px] flex items-center">
+    <div className="bg-[#ec1e24] text-white p-2 md:p-4 font-poppins font-semibold text-[12px] md:text-[17px] border-r-2 border-[#f47c80] h-[65px] flex items-center">
       Job Roles
     </div>
 
-    <div className="bg-[#ec1e24] text-white p-2 md:p-4 font-poppins font-semibold text-[14px] md:text-[17px] border-r-2 border-[#f47c80] h-[65px] flex items-center">
+    <div className="bg-[#ec1e24] text-white p-2 md:p-4 font-poppins font-semibold text-[12px] md:text-[17px] border-r-2 border-[#f47c80] h-[65px] flex items-center">
       Responsibilities
     </div>
 
-    <div className="bg-[#ec1e24] text-white  p-2 md:p-4 font-poppins font-semibold text-[14px] md:text-[17px] h-[65px] flex items-center">
+    <div className="bg-[#ec1e24] text-white  p-2 md:p-4 font-poppins font-semibold text-[12px] md:text-[17px] h-[65px] flex items-center">
       Annual Average Salary
     </div>
   </div>
