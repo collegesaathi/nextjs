@@ -45,14 +45,14 @@ function AddCertificate({formData ,  handleChange ,handleImageChange ,preview  ,
                                     : URL.createObjectURL(formData.certificatemage) // uploaded image file
                             }
                             alt="Preview"
-                            className="w-full h-48 object-cover rounded-md border"
+                               className="w-48 h-48 object-cover rounded border"
                         />
                     </div>
                 )}
 
-                <ImagePreview image={ typeof formData.certificatemage === "string"
+                {/* <ImagePreview image={ typeof formData.certificatemage === "string"
                                     ? formData.certificatemage // saved image URL
-                                    : URL.createObjectURL(formData.certificatemage)}   />
+                                    : URL.createObjectURL(formData.certificatemage)}   /> */}
             </div>
 
                <div>

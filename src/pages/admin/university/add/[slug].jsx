@@ -369,7 +369,7 @@ function Index() {
 
             if (response?.data?.status) {
                 toast.success(response.data.message);
-                router.push("/admin/university")
+                // router.push("/admin/university")
                 setPreview(null);
             } else {
                 toast.error(response.data.message);

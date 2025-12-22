@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import { MdAdd, MdEdit, MdDelete } from "react-icons/md";
 import "react-quill-new/dist/quill.snow.css";
@@ -9,8 +9,6 @@ import ImagePreview from "@/common/ImagePreview";
 const ReactQuill = dynamic(() => import("react-quill-new"), { ssr: false });
 
 const AddPattern = ({ setPatterns, patterns, formData, handleQuillChange, handleChange }) => {
-console.log("patterns" ,patterns)
-
   const addPattern = () => {
     setPatterns([...patterns, { image: "", patternName: "", percentage: "", description: "" }]);
   };
@@ -54,6 +52,7 @@ console.log("patterns" ,patterns)
     "list", "bullet", "indent", "align", "color", "background", "link", "image", "video"
   ];
 
+
   return (
     <div>
 
@@ -79,7 +78,7 @@ console.log("patterns" ,patterns)
         handleBioChange={(val) => handleQuillChange("patterndescription", val)}
       />
 
-        <ReactQuillEditor
+      <ReactQuillEditor
         label="Bottom  Description"
         desc={formData?.bottompatterndesc}
         handleBioChange={(val) => handleQuillChange("bottompatterndesc", val)}
@@ -87,7 +86,7 @@ console.log("patterns" ,patterns)
       <div className="flex justify-between items-center mb-5">
         <h2 className="text-xl font-semibold text-[#CC2828]">Multiple Pattern</h2>
         <button
-        type="button"
+          type="button"
           onClick={addPattern}
           className="border border-[#CC2828] bg-[#CC2828] hover:bg-red-700 text-white px-6 py-2 rounded-[10px] text-base transition"
         >
@@ -108,11 +107,21 @@ console.log("patterns" ,patterns)
               className="w-full bg-[#F4F6F8] text-[#727272] border rounded-[10px] px-4 py-2"
             />
           </div>
+          <img
+            src={
+              typeof item?.image === "string"
+                ? item.image
+                : item?.image instanceof File || item?.image instanceof Blob
+                  ? URL.createObjectURL(item.image)
+                  : "/Placeholder.png"
+            }
+            alt="Preview"
+            className="w-48 h-48 object-cover rounded border"
+          />
 
-                      <ImagePreview image={typeof item.image === "string" ? item.image : URL.createObjectURL(item.image)} />
-          
 
-           <div>
+
+          <div>
             <label className="block text-[#CC2828] font-medium mb-2">Pattern Images Alt</label>
             <input
               type="text"
@@ -158,7 +167,7 @@ console.log("patterns" ,patterns)
               <div className="flex items-center gap-2">
                 {item._id ? (
                   <button
-                  type="button"
+                    type="button"
                     onClick={() => openPatternEdit(item)}
                     className="bg-red-500 text-white rounded-full p-1 hover:bg-red-700"
                   >
@@ -166,7 +175,7 @@ console.log("patterns" ,patterns)
                   </button>
                 ) : (
                   <button
-                  type="button"
+                    type="button"
                     onClick={() => handlePatternSubmit(index)}
                     className="bg-red-500 text-white rounded-full p-1 hover:bg-red-700"
                   >
@@ -174,7 +183,7 @@ console.log("patterns" ,patterns)
                   </button>
                 )}
                 <button
-                type="button"
+                  type="button"
                   onClick={() => deletePattern(index)}
                   className="bg-red-500 text-white rounded-full p-1 hover:bg-red-700"
                 >

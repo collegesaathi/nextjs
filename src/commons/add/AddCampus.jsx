@@ -64,9 +64,13 @@ function AddCampus({ setCampusList, campusList, }) {
                     onChange={(e) => handleCampusChange(index, "image", e.target.files[0])}
                     className="w-full bg-white text-[#727272] border rounded-[10px] px-4 py-2 focus:outline-none mb-3 "
                 />
+                {campus.image && (
+                    <div className="mt-2">
+                        <ImagePreview image={typeof campus.image === "string" ? campus.image : URL.createObjectURL(campus.image)} />
+                    </div>
+                )}
 
 
-                <ImagePreview image={typeof campus.image === "string" ? campus.image : URL.createObjectURL(campus.image)} />
 
                 {/* Delete Button */}
                 <input
