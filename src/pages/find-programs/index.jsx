@@ -140,13 +140,13 @@ const courseData = [
                     <div className="w-full flex flex-col md:flex-row gap-3 lg:gap-1 md:mt-6">
 
                         {/* SIDEBAR */}
-         <div className=" block md:hidden w-full md:w-[260px] bg-white rounded-xl px-3 py-3 lg:p-5 h-fit">
+         <div className="  w-full md:w-[260px] bg-white rounded-xl px-3 py-3 lg:p-5 h-fit">
                   <div className={` 
-                    h-[50px] rounded-full bg-white flex items-center px-4 gap-2 border border-[#CECECE] 
+                    h-[30px] block md:hidden rounded-full bg-white flex items-center px-4 my-4 gap-2 border border-[#CECECE] 
                     transition-all duration-300 ease-in-out 
                     ${selectedParentCourse ? "w-full lg:w-[500px] xl:w-[800px]" : "w-full"}
                 `}>
-                                    <Search className="text-gray-400" width={20} height={20} />
+                                    <Search className="text-gray-400" width={15} height={15} />
                                     <input
                                         type="text"
                                         placeholder={
@@ -158,7 +158,7 @@ const courseData = [
                                         }
                                         className="flex-1 outline-none text-[15px] placeholder:text-gray-400"
                                     />
-                                    <Image src="/icons/normal/voice.svg" alt="mic" width={20} height={20} />
+                                    <Image src="/icons/normal/voice.svg" alt="mic" width={13} height={13} />
                                 </div>
   <div className="flex items-center justify-between"  onClick={handleDomainToggle}>
     <h3
@@ -262,11 +262,11 @@ const courseData = [
                                 )}
 
                                 {/* Search Bar */}
-                                <div className="hidden md:block">
+                                <div className="hidden md:block w-full">
                                 <div className={`
                     h-[50px] rounded-full bg-white flex items-center px-4 gap-2 border border-[#CECECE] 
                     transition-all duration-300 ease-in-out 
-                    ${selectedParentCourse ? "w-full lg:w-[500px] xl:w-[800px]" : "w-full"}
+                    ${selectedParentCourse ? "w-full " : "w-full"}
                 `}>
                                     <Search className="text-gray-400" width={20} height={20} />
                                     <input
