@@ -50,7 +50,7 @@ function Index() {
     }, []);
     const [coursedata, setcoursedata] = useState("")
 
-    console.log("coursedata" ,coursedata)
+    console.log("coursedata", coursedata)
     const fetchCourseData = async (course_id) => {
         try {
 
@@ -200,7 +200,7 @@ function Index() {
         meta_description: "",
         meta_keywords: "",
         canonical_url: "",
-        desccreteria :""
+        desccreteria: ""
     });
 
     const handleQuillChange = (field, value) => {
@@ -275,9 +275,9 @@ function Index() {
             const payload = new FormData();
             payload.append("slug", formData.slug);
             payload.append("name", formData.name);
-            payload.append("university_id", formData.university_id)
-            payload.append("course_id", formData.course_id)
-payload.append("desccreteria" ,formData.desccreteria)
+            payload.append("university_id", university_id)
+            payload.append("course_id", course_id)
+            payload.append("desccreteria", formData.desccreteria)
             payload.append("position", formData.position);
             payload.append("icon", formData.icon);
             payload.append("cover_image", formData.cover_image);
@@ -395,7 +395,7 @@ payload.append("desccreteria" ,formData.desccreteria)
             // ✅ IMPORTANT FIX
             const response = await main.AdminSpecializationAdd(payload);
             if (response?.data?.status) {
-                   router.push(`/admin/specialization?university_id=${university_id}&course_id=${course_id}`)
+                router.push(`/admin/specialization?university_id=${university_id}&course_id=${course_id}`)
                 router.push("/admin/specialization")
                 toast.success(response.data.message);
                 setPreview(null);
@@ -420,7 +420,7 @@ payload.append("desccreteria" ,formData.desccreteria)
         { id: "approvals", label: "Approvals" },
         { id: "rankings", label: "Rankings" },
         { id: "criteria", label: "Criteria" },
-        { id: "sem", label: "Semseter" },
+        { id: "sem", label: "Syllabus" },
         { id: "certificate", label: "Certificate" },
         { id: "skills", label: "Skills" },
         { id: "pattern", label: "Pattern" },
@@ -428,7 +428,7 @@ payload.append("desccreteria" ,formData.desccreteria)
         { id: "career", label: "Career" },
         { id: "partners", label: "Partners" },
         { id: "services", label: "Services" },
-        { id: "online", label: "Online" },
+        { id: "online", label: "Admission Process" },
         { id: "faq", label: "FAQ" },
         { id: "seo", label: "SEO" },
         { id: "advantages", label: "Advantages" },
@@ -453,7 +453,7 @@ payload.append("desccreteria" ,formData.desccreteria)
         <AdminLayout>
             <div className="min-h-screen p-1 ">
 
-  <div className="w-full  border-b border-white/10">
+                <div className="w-full  border-b border-white/10">
                     <div className="p-2  flex flex-col lg:flex-row gap-4 justify-between  items-center ">
                         <Link
                             href={`/admin/specialization?university_id=${university_id}&course_id=${course_id}`}
@@ -573,7 +573,7 @@ payload.append("desccreteria" ,formData.desccreteria)
                                     name="name"
                                     value={formData.name}
                                     onChange={(e) => {
-                                         handleChange(e);
+                                        handleChange(e);
                                     }}
                                     placeholder="Enter name"
                                     className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
@@ -615,7 +615,7 @@ payload.append("desccreteria" ,formData.desccreteria)
                             {/* thumbnail Upload Field */}
                             <div>
                                 <label className="block text-[#FF1B1B] font-medium mb-1">
-                                    Upload University Image
+                                    Upload specialization Image
                                 </label>
                                 <input
                                     type="file"
@@ -630,21 +630,21 @@ payload.append("desccreteria" ,formData.desccreteria)
                                         <img
                                             src={preview}
                                             alt="Preview"
-                                            className="w-full h-48 object-cover rounded-md border"
+                                            className="w-48 h-48 object-cover rounded-md border"
                                         />
                                     </div>
                                 )}
                             </div>
                             <div>
                                 <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
-                                    University Image Alt{" "}
+                                    specialization Image Alt{" "}
                                 </label>
                                 <input
                                     type="text"
                                     name="cover_image_alt"
                                     value={formData.cover_image_alt}
                                     onChange={(e) => {
-                                         handleChange(e);
+                                        handleChange(e);
                                     }}
                                     placeholder="Enter cover image alt"
                                     className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
@@ -661,7 +661,7 @@ payload.append("desccreteria" ,formData.desccreteria)
                                     name="icon_alt"
                                     value={formData.icon_alt}
                                     onChange={(e) => {
-                                       handleChange(e);
+                                        handleChange(e);
                                     }}
                                     placeholder="Enter cover Icon alt"
                                     className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
@@ -687,7 +687,7 @@ payload.append("desccreteria" ,formData.desccreteria)
                                         <img
                                             src={icons}
                                             alt="Preview"
-                                            className="w-full h-48 object-cover rounded-md border"
+                                            className="w-48 h-48 object-cover rounded-md border"
                                         />
                                     </div>
                                 )}
@@ -753,7 +753,7 @@ payload.append("desccreteria" ,formData.desccreteria)
                                     name="approvals_name"
                                     value={formData.approvals_name}
                                     onChange={(e) => {
-                                      handleChange(e);
+                                        handleChange(e);
                                     }}
                                     placeholder="Enter approvals name"
                                     className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
@@ -784,7 +784,7 @@ payload.append("desccreteria" ,formData.desccreteria)
                             <div>
                                 <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
                                     Name{" "}
-                                  
+
                                 </label>
                                 <input
                                     type="text"
@@ -799,8 +799,8 @@ payload.append("desccreteria" ,formData.desccreteria)
                                 />
                             </div>
 
-                                <div>
-                                   <ReactQuillEditor
+                            <div>
+                                <ReactQuillEditor
                                     label="Description"
                                     desc={formData.desccreteria}
                                     handleBioChange={(val) => handleQuillChange("desccreteria", val)}
@@ -853,7 +853,7 @@ payload.append("desccreteria" ,formData.desccreteria)
                                     name="semesters_title"
                                     value={formData.semesters_title}
                                     onChange={(e) => {
-                                         handleChange(e);
+                                        handleChange(e);
                                     }}
                                     placeholder="Enter name"
                                     className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
@@ -913,7 +913,7 @@ payload.append("desccreteria" ,formData.desccreteria)
                                     name="partnersname"
                                     value={formData.partnersname}
                                     onChange={(e) => {
-                                      handleChange(e);
+                                        handleChange(e);
                                     }}
                                     placeholder="Enter partners name"
                                     className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
