@@ -1,12 +1,9 @@
 import ImagePreview from "@/common/ImagePreview";
 import ReactQuillEditor from "@/common/ReactQuillEditor";
 
-function AddCertificate({formData ,  handleChange ,handleImageChange ,preview  ,handleQuillChange }) {
-    console.log("formData?.certificatemage" ,formData?.certificatemage)
+function AddCertificate({ formData, handleChange, handleImageChange, preview, handleQuillChange }) {
     return (
-
         <>
-
             <div>
                 <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
                     Name{" "}
@@ -16,7 +13,7 @@ function AddCertificate({formData ,  handleChange ,handleImageChange ,preview  ,
                     name="certificatename"
                     value={formData.certificatename}
                     onChange={(e) => {
-                       handleChange(e);
+                        handleChange(e);
                     }}
                     placeholder="Enter name"
                     className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
@@ -45,7 +42,7 @@ function AddCertificate({formData ,  handleChange ,handleImageChange ,preview  ,
                                     : URL.createObjectURL(formData.certificatemage) // uploaded image file
                             }
                             alt="Preview"
-                               className="w-48 h-48 object-cover rounded border"
+                            className="w-48 h-48 object-cover rounded border"
                         />
                     </div>
                 )}
@@ -55,9 +52,9 @@ function AddCertificate({formData ,  handleChange ,handleImageChange ,preview  ,
                                     : URL.createObjectURL(formData.certificatemage)}   /> */}
             </div>
 
-               <div>
+            <div>
                 <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
-                     Certificate Image Alt {" "}
+                    Certificate Image Alt {" "}
                     <span className="text-sm text-gray-500">
                         ({formData.image_alt?.length}/50)
                     </span>

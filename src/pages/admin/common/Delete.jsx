@@ -5,7 +5,6 @@ import Popup from "@/common/Popup";
 import Listing from "@/pages/api/Listing";
 
 export default function Delete({ step, Id, fetch, deleteAt, university_id, course_id }) {
-    console.log(Id)
     const [isOpen, setIsOpen] = useState(false);
     const [loading, setLoading] = useState(false);
 

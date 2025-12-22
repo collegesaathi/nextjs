@@ -26,16 +26,13 @@ import Link from "next/link";
 import ImagePreview from "@/common/ImagePreview";
 function Index() {
     const router = useRouter();
-    console.log("router", router?.query)
     const university_id = router?.query?.university_id
-    console.log("university_id", university_id)
     const [universities, setUniversities] = useState([])
-    console.log("universities" ,universities)
     const [categroy, setCategroy] = useState([])
     const fetchData = async () => {
         try {
             const main = new Listing();
-            const response = await main.Listjsx();
+            const response = await main.UniversityCategroyAll();
             const universities = response?.data?.data?.universities || [];
             setCategroy(response?.data?.data?.CategoryLists)
             setFormData({
@@ -215,7 +212,6 @@ function Index() {
             [name]: value,
         }));
     };
-    console.log("formData", formData)
 
     // 🔹 Image Upload (icon or cover)
     const handleImageChange = (e, field) => {

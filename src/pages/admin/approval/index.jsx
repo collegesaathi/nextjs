@@ -10,9 +10,6 @@ import AddApproval from "./AddApproval";
 function Index() {
     const [Loading, setLoading] = useState(false);
     const [approvalOptions, setapprovalOptions] = useState([]);
-    console.log("approvalOptions", approvalOptions)
-
-    
     const fetchApprovalandPartnerLists = async () => {
         setLoading(true);
         try {

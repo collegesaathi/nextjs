@@ -10,9 +10,7 @@ import { useRouter } from "next/router";
 
 export default function Index() {
     const router = useRouter();
-    console.log("router", router?.query)
     const university_id = router?.query?.university_id
-    console.log("university_id", university_id)
     const [page, setPage] = useState(1);
     const [data, setData] = useState([]);
     const [buttonLoading, setButtonLoading] = useState(false);
@@ -23,7 +21,6 @@ export default function Index() {
             const response = await main.UniveristyCourseGet(university_id);
             if (response.data) {
                 const newData = response.data.data || {};
-                console.log("newData" ,newData)
                 setData(newData)
             }
             setLoading(false);
@@ -46,7 +43,6 @@ export default function Index() {
         fetchData(nextPage);
     }
 
-    console.log("daata" , data)
 
     return (
         <AdminLayout page={"course Panel"}>

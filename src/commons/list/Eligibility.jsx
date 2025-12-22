@@ -5,7 +5,6 @@ import Heading from "@/common/Heading";
 import Image from "next/image";
 
 function Eligibility({eligibilitycriteria}) {
-  console.log("gvdgvnhgbn",eligibilitycriteria)
   const [activeTab, setActiveTab] = useState("indian"); // default tab
 
   return (
@@ -82,7 +81,7 @@ function Eligibility({eligibilitycriteria}) {
                      {eligibilitycriteria?.NRICriteria?.map((item,index)=>(
                           <div className=" p-2 md:p-6  md:border-r border-[#FCF0EE] space-y-2 md:space-y-8">
                       <div className="bg-[#FCF0EE] h-12 w-12 rounded-full flex justify-center items-center">
-                        <img src={item.images} width={30} height={40} />
+                        <img src={item.image} width={30} height={40} />
                       </div>
                       <h3 className="font-semibold text-[18px]">{item.title}</h3>
                       {/* <p className="text-[14px] leading-6" dangerouslySetInnerHTML={{ __html: item?.description || "" }}> */}

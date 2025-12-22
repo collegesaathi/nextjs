@@ -43,11 +43,7 @@ function Contactform() {
     // Form submission
     const handleSubmit = async (e) => {
         e.preventDefault();
-
         if (loading) return;
-
-        console.log("cxgvxfb", form)
-
         setLoading(true);
         try {
             const main = new Listing();

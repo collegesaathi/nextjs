@@ -22,9 +22,32 @@ import CourseFees from "@/commons/list/CourseFees";
 import Ranking from "@/commons/list/Rankings";
 import FrontendSidebar from "../common/FrontendSidebar";
 import { fetchDetails } from "@/lib/ssrFetch";
+import { useEffect, useState } from "react";
+import EnquiryBox from "@/commons/list/EnquiryForm";
 
 function Index({ data }) {
-    console.log("universoitydata", data)
+    const uniId = data?.university.id;
+    const [loading, setLoading] = useState(false);
+    const [courseData, setCourseData] = useState([])
+    const fetchCourse = async (uniId) => {
+        setLoading(true)
+        try {
+            const main = new Listing();
+            const response = await main.UniveristyCourseGet(uniId);
+            setCourseData(response?.data)
+
+        }
+        catch (error) {
+            console.error("Error fetching projects:", error);
+        } finally {
+            setLoading(false);
+        }
+    }
+
+    useEffect(() => {
+        fetchCourse(uniId)
+    }, [uniId])
+
     return (<>
         <Layout>
             <div className=" md:py-8 ">
@@ -38,30 +61,30 @@ function Index({ data }) {
                         <FrontendSidebar />
                     </div>
                     <div className="w-full lg:w-9/12 h-full lg:h-[100vh] overflow-y-auto " style={{ scrollbarWidth: "none", }}>
-                        {data?.university?.about && (<Aboutdetails about={data?.university?.about} />) }
+                        {data?.university?.about && (<Aboutdetails about={data?.university?.about} />)}
+                        {courseData && (
+                            <CourseFees courseData={courseData?.data} />
+                        )}
+                        {data?.university?.approvals && (<Approvals approvals={data?.university?.approvals} approvalsdata={data?.approvalsData} />)}
+                        {data?.university?.rankings && (<Ranking rankings={data?.university?.rankings} />)}
+                        <CoursesSwiper courseData={courseData} name={"university"} title={`${data?.university?.name} - Course`} />
+                    <EnquiryBox/>
+                        {data?.university?.advantages && (<Advantages advantages={data?.university?.advantages} />)}
+                        {data?.university?.facts && (<Facts facts={data?.university?.facts} />)}
+                        {data?.university?.certificates && (<SampleCertificate certificates={data?.university?.certificates} />)}
+                        {data?.university?.examPatterns && (<ExaminationPattern examPatterns={data?.university?.examPatterns} />)}
+                        {data?.university?.financialAid && (<Financial financialAid={data?.university?.financialAid} />)}
+                        {data?.university?.universityCampuses && (<UniversityCampusCarousel universityCampuses={data?.university?.universityCampuses} />)}
+                        {data?.university?.partners && data?.placementPartners && (
+                            <PlacementPartners
+                                placements={data?.university?.partners}
+                                PlacementPartners={data?.placementPartners}
+                            />
+                        )}
+                        {data?.university?.services && (<CareerServices services={data?.university?.services} />)}
+                        {data?.university?.admissionProcess && (<StepsSection admissionProcess={data?.university?.admissionProcess} />)}
+                        {data?.university?.faq && (<FAQSection faq={data?.university?.faq} />)}
 
-                        <CourseFees />
-                        {data?.university?.approvals && (<Approvals approvals={data?.university?.approvals} approvalsdata={data?.approvalsData} />) }
-                        {data?.university?.rankings && (<Ranking rankings={data?.university?.rankings} />) }
-
-
-                        <CoursesSwiper course={data?.university?.about} exisitng={true} />
-                        {data?.university?.advantages &&( <Advantages advantages={data?.university?.advantages} />)}
-                       {data?.university?.facts &&(  <Facts facts={data?.university?.facts} />)}
-                       {data?.university?.certificates &&(  <SampleCertificate certificates={data?.university?.certificates} />)}
-                      {data?.university?.examPatterns &&(<ExaminationPattern examPatterns={data?.university?.examPatterns} />)}
-                 {data?.university?.financialAid &&(  <Financial financialAid={data?.university?.financialAid} />)}
-                      {data?.university?.universityCampuses &&( <UniversityCampusCarousel universityCampuses={data?.university?.universityCampuses} />)}
-                      {data?.university?.partners && data?.placementPartners && (
-  <PlacementPartners
-    placements={data?.university?.partners}
-    PlacementPartners={data?.placementPartners}
-  />
-)}
-                      {data?.university?.services &&( <CareerServices services={data?.university?.services} />)} 
-                       {data?.university?.admissionProcess &&(      <StepsSection admissionProcess={data?.university?.admissionProcess} />)}
-                  {data?.university?.faq &&(  <FAQSection faq={data?.university?.faq} />)}
-                      
                         <SimilarUniversities />
                         <Universities />
                         <Reviews />
@@ -77,9 +100,3 @@ export default Index;
 export async function getServerSideProps(context) {
     return fetchDetails(context, "university");
 }
-
-
-
-
-
-

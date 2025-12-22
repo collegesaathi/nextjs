@@ -19,7 +19,6 @@ export default function UniversityCard({
     index,
     card
 }) {
-console.log("card" ,card)
     //   const { selectedItems, toggleSelection } = useSelectionStore();
     const selectedItems = ""
     const isSelected = selectedItems;

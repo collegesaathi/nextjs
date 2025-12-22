@@ -26,10 +26,8 @@ import ImagePreview from "@/common/ImagePreview";
 function Index() {
     const router = useRouter()
     const Id = router.query.slug;
-    console.log("router", router?.query)
     const university_id = router?.query?.university_id
     const course_id = router?.query?.course_id
-    console.log("university_id", university_id)
     const [universities, setUniversities] = useState([])
     const [categroy, setCategroy] = useState([])
     const [data, setData] = useState("")
@@ -37,7 +35,7 @@ function Index() {
         try {
 
             const main = new Listing();
-            const response = await main.Listjsx();
+            const response = await main.UniversityCategroyAll();
             const universities = response?.data?.data?.universities || [];
             setCategroy(response?.data?.data?.CategoryLists)
             setUniversities(universities);
@@ -52,13 +50,11 @@ function Index() {
 
     const [coursedata, setcoursedata] = useState("")
 
-    console.log("coursedata", coursedata)
     const fetchCourseData = async (course_id) => {
         try {
 
             const main = new Listing();
             const response = await main.CoursenameGet(course_id);
-            console.log("response", response)
             const universities = response?.data?.data?.CourseData || [];
             setcoursedata(universities)
         } catch (error) {
@@ -276,12 +272,12 @@ function Index() {
             const payload = new FormData();
             payload.append("slug", formData.slug || "");
             payload.append("name", formData.name || "");
-            payload.append("university_id", formData.university_id || "")
+            payload.append("university_id", university_id || "")
             payload.append("id", formData.Id || "");
             payload.append("position", formData.position || "");
             payload.append("icon", formData.icon || "");
             payload.append("cover_image", formData.cover_image || "");
-            payload.append("course_id", formData?.course_id || "");
+            payload.append("course_id", course_id || "");
             payload.append("descriptions", JSON.stringify(formData.descriptions));
             payload.append("cover_image_alt", formData.cover_image_alt || "")
             payload.append("icon_alt", formData.icon_alt || "")
@@ -480,7 +476,6 @@ function Index() {
             return [];
         }
     };
-    console.log("data", data)
     useEffect(() => {
         if (data?.curriculum?.semesters) {
             try {

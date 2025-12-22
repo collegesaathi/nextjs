@@ -8,12 +8,7 @@ import { InputBox } from "@/common/InputBox";
 
 
 function ContactForm() {
-
-
     const router = useRouter();
-    console.log(
-        "router", router?.pathname
-    )
     const [loading, setLoading] = useState(false);
     const [active, setActive] = useState("jaipur");
     const [universities, setUniversities] = useState([])
@@ -34,17 +29,11 @@ function ContactForm() {
 
     })
 
-    console.log("fgfd", router)
-
-    console.log(universities, universities)
-
-
     const fetchData = async () => {
         try {
 
             const main = new Listing();
             const response = await main.ContactUniversityGet();
-            console.log("response", response)
             const universities = response?.data?.data?.universities || [];
             setUniversities(universities);
 
@@ -72,7 +61,6 @@ function ContactForm() {
             [name]: value,
         }));
     };
-    console.log("gfjhfgj", data)
 
     const handleSubmit = async (e) => {
         e.preventDefault();

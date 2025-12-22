@@ -10,23 +10,19 @@ import { useRouter } from "next/router";
 
 export default function Index() {
     const router = useRouter();
-    console.log("router", router?.query)
     const university_id = router?.query?.university_id
     const course_id = router?.query?.course_id
-    console.log("university_id", university_id)
     const [page, setPage] = useState(1);
     const [data, setData] = useState([]);
     const [buttonLoading, setButtonLoading] = useState(false);
     const [loading, setLoading] = useState(false);
 
-    console.log("data", data)
     const fetchData = async (university_id, course_id) => {
         try {
             const main = new Listing();
             const response = await main.CourseSpecialisationGet(university_id, course_id);
             if (response.data) {
                 const newData = response.data.data || {};
-                console.log("newData", newData)
                 setData(newData);
             }
             setLoading(false);

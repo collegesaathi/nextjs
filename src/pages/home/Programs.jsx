@@ -23,8 +23,6 @@ export default function Programs() {
   };
 
   const navigateNext = () => {
-    console.log("desktop:", desktopSwiperRef.current);
-    console.log("mobile:", mobileSwiperRef.current);
     desktopSwiperRef.current?.slideNext();
     mobileSwiperRef.current?.slideNext();
   };

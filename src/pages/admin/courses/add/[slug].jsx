@@ -27,9 +27,7 @@ import ImagePreview from "@/common/ImagePreview";
 function Index() {
     const router = useRouter()
     const Id = router.query.slug;
-    console.log("router", router?.query)
     const university_id = router?.query?.university_id
-    console.log("university_id", university_id)
     const [universities, setUniversities] = useState([])
     const [categroy, setCategroy] = useState([])
     const [data, setData] = useState("")
@@ -37,7 +35,7 @@ function Index() {
         try {
 
             const main = new Listing();
-            const response = await main.Listjsx();
+            const response = await main.UniversityCategroyAll();
             const universities = response?.data?.data?.universities || [];
             setCategroy(response?.data?.data?.CategoryLists)
             setUniversities(universities);
@@ -461,7 +459,6 @@ function Index() {
             return [];
         }
     };
-    console.log("data", data)
     useEffect(() => {
         if (data?.curriculum?.semesters) {
             try {

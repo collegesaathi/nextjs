@@ -105,8 +105,6 @@ const HelpSection = () => {
 
   const handleAction = (item) => {
     // Handle action button clicks
-    console.log('Action clicked:', item.action);
-
     // You can handle routing or other actions here
     switch (item.action) {
       case 'emi-options':

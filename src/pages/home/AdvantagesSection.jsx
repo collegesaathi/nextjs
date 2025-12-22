@@ -169,7 +169,6 @@ export default function AdvantagesSection() {
 
   const handleSearch = () => {
     if (searchQuery.trim()) {
-      console.log('Searching for:', searchQuery);
 
       // Find matching university
       const matchedUniversity = universities.find(uni =>

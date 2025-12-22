@@ -1,7 +1,6 @@
 import Heading from "@/common/Heading";
 
-function UpdatedFee({fees}) {
-  console.log("fees",fees)
+function UpdatedFee({ fees }) {
   return (
     <>
       <section className="w-full px-4 sm:px-6 py-6 " id="about-section">

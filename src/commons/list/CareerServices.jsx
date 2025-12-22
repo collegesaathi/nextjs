@@ -8,7 +8,6 @@ import BackNext from "@/pages/components/BackNext";
 
 export default function CareerServices({ services }) {
 
-
     const swiperRef = useRef(null);
 
 

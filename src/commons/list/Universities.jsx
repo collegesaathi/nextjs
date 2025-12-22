@@ -1,58 +1,32 @@
 'use client'
 
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay, Pagination } from 'swiper/modules'
 import 'swiper/css'
 import BackNext from '@/pages/components/BackNext'
+import Listing from '@/pages/api/Listing'
 
 export default function Universities() {
-    // Award items data
-    const compareUniversities = [
-        {
-            name: 'Sharda University',
-            shortName: 'SHARDA',
-            rating: '4.2',
-            reviews: '1.2k',
-            logo: '/images/university/compare/1.png',
-        },
-        {
-            name: 'SRM University',
-            shortName: 'SRM',
-            rating: '4.4',
-            reviews: '2.1k',
-            logo: '/images/university/compare/2.png',
-        },
-        {
-            name: 'Jain University',
-            shortName: 'JAIN',
-            rating: '4.3',
-            reviews: '1.8k',
-            logo: '/images/university/compare/3.png',
-        },
-        {
-            name: 'Manipal University',
-            shortName: 'MANIPAL',
-            rating: '4.5',
-            reviews: '3.2k',
-            logo: '/images/university/compare/4.png',
-        },
-        {
-            name: 'Amity University',
-            shortName: 'AMITY',
-            rating: '4.1',
-            reviews: '2.5k',
-            logo: '/images/university/compare/1.png',
-        },
-        {
-            name: 'LPU University',
-            shortName: 'LPU',
-            rating: '4.3',
-            reviews: '4.1k',
-            logo: '/images/university/compare/2.png',
-        },
-    ]
+    const [compareUniversities, setcompareUniversities] = useState("")
+    const [Loading, setLoading] = useState(false)
 
+    console.log("compareUniversities", compareUniversities)
+    const fetchData = async () => {
+        try {
+
+            const main = new Listing();
+            const response = await main.UniversityAll();
+            const universities = response?.data?.data?.universities || [];
+            setcompareUniversities(universities);
+        } catch (error) {
+            console.log("error", error);
+            setLoading(false);
+        }
+    };
+    useEffect(() => {
+        fetchData();
+    }, []);
     // Carousel breakpoints for responsive design
     const carouselBreakpoints = {
         320: { slidesPerView: 1, spaceBetween: 16 },
@@ -139,17 +113,17 @@ export default function Universities() {
             <div className="py-6 px-2 md:px-6 " id="universities-comparison-section">
                 <div className=" container sm:container md:container lg:container xl:max-w-[1230px] ">
 
-                
-            <BackNext
-                  
-                  title="Compare with Other Universities"
-               
-                  progress={progress}
-                  isBeginning={isBeginning}
-                  isEnd={isEnd}
-                  onPrev={navigatePrev}
-            onNext={navigateNext}
-                />
+
+                    <BackNext
+
+                        title="Compare with Other Universities"
+
+                        progress={progress}
+                        isBeginning={isBeginning}
+                        isEnd={isEnd}
+                        onPrev={navigatePrev}
+                        onNext={navigateNext}
+                    />
 
                     <div   >
                         <Swiper
@@ -159,7 +133,7 @@ export default function Universities() {
                                 delay: 4000,
                                 disableOnInteraction: false,
                             }}
-                            modules={[Autoplay,  Pagination]}
+                            modules={[Autoplay, Pagination]}
                             onSwiper={(swiper) => {
                                 swiperRef.current = swiper;
                                 updateProgress(swiper);
@@ -168,14 +142,14 @@ export default function Universities() {
                             onSlideChange={updateProgress}
                             breakpoints={carouselBreakpoints}
                         >
-                            {compareUniversities.map((university, index) => (
+                            {compareUniversities && compareUniversities?.map((university, index) => (
                                 <SwiperSlide key={index}>
-                                    <div className="w-full h-[232px] rounded-[10px] border border-[rgba(188,188,188,0.7)] p-3 flex flex-col justify-between items-center">
+                                    <div className="w-full h-[232px] rounded-[10px] border border- [rgba(188,188,188,0.7)] p-3 flex flex-col justify-between items-center">
 
                                         {/* University Logo */}
                                         <div className="rounded-[14px] h-[81px] bg-white border border-[rgba(188,188,188,0.3)] shadow-[0px_0px_2px_rgba(0,0,0,0.11)] flex items-center justify-center p-3 text-center">
                                             <img
-                                                src={university.logo}
+                                                src={university.icon}
                                                 alt={university.name}
                                                 className="w-full object-contain"
                                             />

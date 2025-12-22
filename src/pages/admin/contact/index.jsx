@@ -12,7 +12,6 @@ function Index() {
         try {
             const main = new Listing();
             const response = await main.ContactGet();
-            console.log("response", response)
             setLeads(response?.data?.data || [])
             setLoading(false);
 

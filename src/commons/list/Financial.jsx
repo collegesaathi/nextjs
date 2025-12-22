@@ -2,7 +2,6 @@ import React from "react";
 import Heading from "@/common/Heading";
 
 function Financial({financialAid}) {
-  console.log("finance",financialAid)
   return (
     <>
       <div className="w-full px-2 md:px-6 py-6 ">

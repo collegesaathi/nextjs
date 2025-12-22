@@ -25,17 +25,15 @@ import AddFees from "@/commons/add/AddFees";
 import Link from "next/link";
 function Index() {
     const router = useRouter();
-    console.log("router", router?.query)
     const university_id = router?.query?.university_id
     const course_id = router?.query?.course_id
-    console.log("university_id", university_id)
     const [universities, setUniversities] = useState([])
     const [categroy, setCategroy] = useState([])
     const fetchData = async () => {
         try {
 
             const main = new Listing();
-            const response = await main.Listjsx();
+            const response = await main.UniversityCategroyAll();
             const universities = response?.data?.data?.universities || [];
             setCategroy(response?.data?.data?.CategoryLists)
             setUniversities(universities);
@@ -50,13 +48,11 @@ function Index() {
     }, []);
     const [coursedata, setcoursedata] = useState("")
 
-    console.log("coursedata", coursedata)
     const fetchCourseData = async (course_id) => {
         try {
 
             const main = new Listing();
             const response = await main.CoursenameGet(course_id);
-            console.log("response", response)
             const universities = response?.data?.data?.CourseData || [];
             setcoursedata(universities)
         } catch (error) {
@@ -234,7 +230,6 @@ function Index() {
             [name]: value,
         }));
     };
-    console.log("formData", formData)
 
     // 🔹 Image Upload (icon or cover)
     const handleImageChange = (e, field) => {

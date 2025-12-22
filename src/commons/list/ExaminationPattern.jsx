@@ -1,8 +1,6 @@
 import Image from "next/image";
 import Heading from "@/common/Heading";
 export default function ExaminationPattern({ examPatterns=[] }) {
-  console.log("examPatterns", examPatterns)
-  // const examPattern =  JSON.parse(examPatterns?.patterns)
 
   const examPattern =  examPatterns?.patterns ?(examPatterns?.patterns) : (JSON.parse(examPatterns?.patterns))
 
