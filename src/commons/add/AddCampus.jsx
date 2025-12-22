@@ -1,3 +1,5 @@
+import ImagePreview from "@/common/ImagePreview";
+
 function AddCampus({ setCampusList, campusList, }) {
     const handleCampusChange = (index, field, value) => {
         const list = [...campusList];
@@ -21,7 +23,7 @@ function AddCampus({ setCampusList, campusList, }) {
                 Campus Section
             </h2>
             <button
-            type="button"
+                type="button"
                 onClick={addCampus}
                 className="border border-[#CC2828] bg-[#CC2828] hover:bg-red-700 text-white px-6 py-2 rounded-[10px] text-base transition"
             >
@@ -35,7 +37,7 @@ function AddCampus({ setCampusList, campusList, }) {
                 <label className="flex  justify-between  items-center block text-[#CC2828] font-medium mb-2">
                     Campus Name
                     <button
-                    type="button"
+                        type="button"
                         onClick={() => deleteCampus(index)}
                         className="mt-3 bg-red-500 text-white px-4 py-1 rounded-[10px]"
                     >
@@ -62,17 +64,13 @@ function AddCampus({ setCampusList, campusList, }) {
                     onChange={(e) => handleCampusChange(index, "image", e.target.files[0])}
                     className="w-full bg-white text-[#727272] border rounded-[10px] px-4 py-2 focus:outline-none mb-3 "
                 />
+                {campus.image && (
+                    <div className="mt-2">
+                        <ImagePreview image={typeof campus.image === "string" ? campus.image : URL.createObjectURL(campus.image)} />
+                    </div>
+                )}
 
-                  {campus.image && (
-                                <div className="mt-2">
-                                    <img
-                                        src={typeof campus.image === "string"? campus.image : URL.createObjectURL(campus.image)}
-                                        alt="Preview"
-                                        className="w-24 h-24 object-cover rounded-md border"
-                                    />
-                                    <p className="text-sm text-gray-500 mt-1">{campus.image.name}</p>
-                                </div>
-                            )}
+
 
                 {/* Delete Button */}
                 <input

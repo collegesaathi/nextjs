@@ -1,3 +1,4 @@
+import ImagePreview from "@/common/ImagePreview";
 import ReactQuillEditor from "@/common/ReactQuillEditor";
 
 function AddCertificate({formData ,  handleChange ,handleImageChange ,preview  ,handleQuillChange }) {
@@ -9,16 +10,13 @@ function AddCertificate({formData ,  handleChange ,handleImageChange ,preview  ,
             <div>
                 <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
                     Name{" "}
-                    <span className="text-sm text-gray-500">
-                        ({formData.certificatename?.length}/50)
-                    </span>
                 </label>
                 <input
                     type="text"
                     name="certificatename"
                     value={formData.certificatename}
                     onChange={(e) => {
-                        if (e.target.value.length <= 50) handleChange(e);
+                       handleChange(e);
                     }}
                     placeholder="Enter name"
                     className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
@@ -47,10 +45,14 @@ function AddCertificate({formData ,  handleChange ,handleImageChange ,preview  ,
                                     : URL.createObjectURL(formData.certificatemage) // uploaded image file
                             }
                             alt="Preview"
-                            className="w-full h-48 object-cover rounded-md border"
+                               className="w-48 h-48 object-cover rounded border"
                         />
                     </div>
                 )}
+
+                {/* <ImagePreview image={ typeof formData.certificatemage === "string"
+                                    ? formData.certificatemage // saved image URL
+                                    : URL.createObjectURL(formData.certificatemage)}   /> */}
             </div>
 
                <div>

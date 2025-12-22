@@ -22,9 +22,14 @@ import FaqAdd from "@/commons/add/FaqAdd";
 import { useRouter } from "next/router";
 import AddSkills from "@/commons/add/AddSkills";
 import AddFees from "@/commons/add/AddFees";
+import Link from "next/link";
+import ImagePreview from "@/common/ImagePreview";
 function Index() {
     const router = useRouter()
     const Id = router.query.slug;
+    console.log("router", router?.query)
+    const university_id = router?.query?.university_id
+    console.log("university_id", university_id)
     const [universities, setUniversities] = useState([])
     const [categroy, setCategroy] = useState([])
     const [data, setData] = useState("")
@@ -120,11 +125,13 @@ function Index() {
     const [patterns, setPatterns] = useState([
         {
             image: "",
+            pattern_images_alt: "",
             patternName: "",
             percentage: "",
             description: "",
-        }
+        },
     ]);
+
 
 
     const [campusList, setCampusList] = useState([
@@ -175,7 +182,8 @@ function Index() {
         meta_keywords: "",
         canonical_url: "",
         Id: "",
-        fees_title :""
+        fees_title: "",
+        desccreteria:""
     });
 
     const handleQuillChange = (field, value) => {
@@ -269,10 +277,30 @@ function Index() {
             payload.append("rankings_description", formData.rankings_description);
             payload.append("rankings_name", formData.rankings_name);
             payload.append("creteria", formData.creteria)
-            payload.append("fees_title" ,formData.fees_title)
+            payload.append("fees_title", formData.fees_title)
             payload.append("category", formData.category)
-            payload.append("indian", JSON.stringify(formData.indian))
-            payload.append("nri", JSON.stringify(formData.nri))
+            const NRIDATA = formData.nri.map(item => ({
+                title: item.title,
+                description: item.description,
+                images_alt: item?.images_alt
+            }));
+            payload.append("nri", JSON.stringify(NRIDATA));
+            formData?.nri?.forEach((item, index) => {
+                if (item.images) {
+                    payload.append(`nriimages[${index}]`, item.images);
+                }
+            });
+            const IndiaDATA = formData.indian.map(item => ({
+                title: item.title,
+                description: item.description,
+                images_alt: item?.images_alt
+            }));
+            payload.append("indian", JSON.stringify(IndiaDATA));
+            formData?.indian?.forEach((item, index) => {
+                if (item.images) {
+                    payload.append(`Indianimages[${index}]`, item.images);
+                }
+            });
             payload.append("semesters", JSON.stringify(semesters))
             payload.append("semesters_title", formData.semesters_title)
             payload.append("certificatename", formData.certificatename);
@@ -284,22 +312,26 @@ function Index() {
             payload.append("advantagesdescription", formData.advantagesdescription);
             payload.append("skills", JSON.stringify(skills));
             payload.append("skillsname", formData.skillname);
+            payload.append("desccreteria" ,formData.desccreteria);
             payload.append("skilldesc", formData.skilldesc);
             payload.append("patternname", formData.patternname);
             payload.append("patterndescription", formData.patterndescription);
             payload.append("bottompatterndesc", formData.bottompatterndesc);
-            const cleanPatterns = patterns.map(item => ({
-                patternName: item.patternName,
-                percentage: item.percentage,
-                description: item.description,
-                pattern_images_alt: item?.pattern_images_alt
-            }));
+            const cleanPatterns = Array.isArray(patterns)
+                ? patterns.map(item => ({
+                    patternName: item?.patternName || "",
+                    percentage: item?.percentage || "",
+                    description: item?.description || "",
+                    pattern_images_alt: item?.pattern_images_alt || ""
+                }))
+                : [];
             payload.append("patterns", JSON.stringify(cleanPatterns));
-            patterns.forEach((item, index) => {
-                if (item.image) {
+            patterns?.forEach?.((item, index) => {
+                if (item?.image) {
                     payload.append(`patternsimages[${index}]`, item.image);
                 }
             });
+
             payload.append("fees", JSON.stringify(fees));
             payload.append("careerdesc", formData.careerdesc)
             payload.append("careername", formData.careername)
@@ -346,18 +378,16 @@ function Index() {
             // ✅ IMPORTANT FIX
             const response = await main.AdminCourseUpdate(payload);
             if (response?.data?.status) {
-                router.push("/admin/courses")
+                router.push(`/admin/courses?university_id=${university_id}`)
                 toast.success(response.data.message);
                 setPreview(null);
             } else {
                 toast.error(response.data.message);
             }
-
         } catch (error) {
             console.error(error);
             // toast.error(error.response.data.message);
         }
-
         setLoading(false);
     };
     const [activeTab, setActiveTab] = useState("card");
@@ -431,12 +461,12 @@ function Index() {
             return [];
         }
     };
-console.log("data",data)
+    console.log("data", data)
     useEffect(() => {
         if (data?.curriculum?.semesters) {
             try {
-         const parsedSemesters = (data.curriculum.semesters);
-               
+                const parsedSemesters = (data.curriculum.semesters);
+
                 setSemesters(parsedSemesters?.length ? parsedSemesters : [
                     {
                         title: "Semester I",
@@ -447,18 +477,16 @@ console.log("data",data)
                 console.error("Semester JSON parse error:", error);
             }
         }
-
-
         const indianData = data?.eligibilitycriteria?.IndianCriteria;
         const nriData = data?.eligibilitycriteria?.NRICriteria;
-                const carrerData = safeParse(data?.career?.Career);
+        const carrerData = (data?.career?.Career ? data?.career?.Career : safeParse(data?.career?.Career));
         setFormData({
             slug: data?.slug,
             name: data?.name,
             tuition_fees: data?.fees?.tuition_fees,
             anuual_fees: data?.fees?.annual_fees,
             semester_fees: data?.fees?.semester_wise_fees,
-            university_id: data?.university_id,
+            university_id: data?.university_id || university_id,
             categroy_id: data?.category_id,
             position: data?.position,
             about_title: data?.about?.title,
@@ -468,7 +496,7 @@ console.log("data",data)
             rankings_name: data?.rankings?.title,
             rankings_description: data?.rankings?.description,
             creteria: data?.eligibilitycriteria?.title,
-            //  indian: data?.eligibilitycriteria?.IndianCriteria,
+            desccreteria :data?.eligibilitycriteria?.desccreteria,
             advantagesname: data?.advantages?.title,
             advantagesdescription: data?.advantages?.description,
             factsname: data?.facts?.title,
@@ -512,7 +540,7 @@ console.log("data",data)
             indian: indianData,
             nri: nriData,
             Id: data?.id,
-            fees_title : data?.fees_title
+            fees_title: data?.fees?.fees_title
         })
         setPreview(data?.cover_image);
         setIcons(data?.icon);
@@ -534,15 +562,21 @@ console.log("data",data)
         setFaqs(data?.faq?.faqs?.length ? data?.faq?.faqs : [{ question: "", answer: "", position: "" }]);
         setSkills(data?.skills?.skills?.length ? data?.skills?.skills : [{ title: "" }])
         setOnlines(data?.admissionprocess?.process?.length ? data?.admissionprocess?.process : [{ title: "", content: "" }])
-        setCareers(carrerData?.length ? carrerData : [{ title: "", content: "" }])
+        setCareers(carrerData?.length ? carrerData : [{ title: "", content: "", salary: "" }])
     }, [data])
 
     return (<>
         <AdminLayout>
             <div className="min-h-screen p-1 ">
-
                 <div className="w-full  border-b border-white/10">
-                    <div className="flex flex-col lg:flex-row items-center justify-between gap-4 px-4 md:px-6 lg:px-10 py-4">
+                    <div className="p-2  flex flex-col lg:flex-row gap-4 justify-between  items-center ">
+                        <Link
+                            href={`/admin/courses?university_id=${university_id}`}
+                            className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#FF1B1B] hover:bg-[#ad0e0e] text-white font-semibold transition-all"
+                        >
+                            <FaArrowLeft size={20} />
+                            Back To Course Page
+                        </Link>
 
                         {/* Left: Back Arrow + Label */}
                         <div className="flex items-center gap-3 w-[250px]">
@@ -569,28 +603,6 @@ console.log("data",data)
                             />
 
                         </div>
-
-                        {/* Center: Tabs */}
-                        <div className="w-[400px] md:w-[1300px] overflow-x-auto scrollbar-hide bg-[#2C2C2C] rounded-lg">
-                            <div className="flex items-center gap-2 bg-[#2C2C2C] px-2 py-2 rounded-xl">
-                                {tabsData.map((tab) => (
-                                    <button
-                                        key={tab.id}
-                                        onClick={() => setActiveTab(tab.id)}
-                                        className={`px-4 py-2 rounded-lg text-[14px] font-medium transition 
-                            ${activeTab === tab.id
-                                                ? "bg-white text-black shadow"
-                                                : "text-gray-300 hover:bg-gray-200 hover:text-black"
-                                            }
-                        `}
-                                    >
-                                        {tab.label}
-                                    </button>
-                                ))}
-                            </div>
-                        </div>
-
-                        {/* Right: Save Button */}
                         <button
                             type="submit"
                             form="ownerForm"
@@ -599,6 +611,24 @@ console.log("data",data)
                         >
                             {loading ? "Saving..." : "Save"}
                         </button>
+                    </div>
+                    <div className="w-[400px] md:w-full overflow-x-auto scrollbar-hide bg-[#2C2C2C] mt-2 rounded-lg">
+                        <div className="flex items-center gap-2 bg-[#2C2C2C] px-2 py-2 rounded-xl">
+                            {tabsData.map((tab) => (
+                                <button
+                                    key={tab.id}
+                                    onClick={() => setActiveTab(tab.id)}
+                                    className={`px-4 py-2 rounded-lg text-[14px] font-medium transition 
+                            ${activeTab === tab.id
+                                            ? "bg-white text-black shadow"
+                                            : "text-gray-300 hover:bg-gray-200 hover:text-black"
+                                        }
+                        `}
+                                >
+                                    {tab.label}
+                                </button>
+                            ))}
+                        </div>
                     </div>
                 </div>
                 <form
@@ -609,7 +639,7 @@ console.log("data",data)
 
                             <div>
                                 <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
-                                    University Id {" "}
+                                    University {" "}
                                 </label>
 
                                 <div className="relative">
@@ -617,6 +647,7 @@ console.log("data",data)
                                         name="university_id"
                                         value={formData?.university_id}
                                         onChange={handleChange}
+                                        disabled
                                         className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
                                     >
                                         <option value="" disabled>Select a University</option>
@@ -725,15 +756,7 @@ console.log("data",data)
                                 />
 
                                 {/* Image Preview */}
-                                {preview && (
-                                    <div className="mt-3">
-                                        <img
-                                            src={preview}
-                                            alt="Preview"
-                                            className="w-full h-48 object-cover rounded-md border"
-                                        />
-                                    </div>
-                                )}
+                                <ImagePreview image={preview} />
                             </div>
                             <div>
                                 <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
@@ -786,17 +809,9 @@ console.log("data",data)
 
                                     className="w-full p-2 bg-gray-100 rounded-md cursor-pointer text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
                                 />
-
+                                <ImagePreview image={icons} />
                                 {/* Image Preview */}
-                                {icons && (
-                                    <div className="mt-3">
-                                        <img
-                                            src={icons}
-                                            alt="Preview"
-                                            className="w-full h-48 object-cover rounded-md border"
-                                        />
-                                    </div>
-                                )}
+
                             </div>
 
                             <div className="mb-4">
@@ -844,7 +859,7 @@ console.log("data",data)
                     )}
 
                     {activeTab === "fees" && (
-                        <AddFees handleChange={handleChange} formData={formData}/>
+                        <AddFees handleChange={handleChange} formData={formData} />
                     )}
 
                     {activeTab === "approvals" && (
@@ -909,6 +924,13 @@ console.log("data",data)
                                     required
                                 />
                             </div>
+
+                                 <ReactQuillEditor
+                                    label="Description"
+                                    desc={formData.desccreteria}
+                                    handleBioChange={(val) => handleQuillChange("desccreteria", val)}
+                                />
+                            
                             <div className="flex mb-5 bg-gray-100 rounded-lg overflow-hidden">
                                 <button
                                     type="button"

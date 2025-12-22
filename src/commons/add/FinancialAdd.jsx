@@ -52,16 +52,13 @@ function FinancialAdd({ formData, fees, handleChange, handleQuillChange,setFees 
             <div>
                 <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
                     Financial  Name{" "}
-                    <span className="text-sm text-gray-500">
-                        ({formData.financialname?.length}/50)
-                    </span>
                 </label>
                 <input
                     type="text"
                     name="financialname"
                     value={formData.financialname}
                     onChange={(e) => {
-                        if (e.target.value.length <= 50) handleChange(e);
+                      handleChange(e);
                     }}
                     placeholder="Enter name"
                     className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"

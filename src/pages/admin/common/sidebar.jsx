@@ -86,18 +86,6 @@ function SideBar() {
                                 <FaUniversity size={20} />
                                 University
                             </Link>
-                           <Link
-                                href="/admin/courses"
-                                className={`flex items-center py-2.5 px-3 md:px-4 lg:px-6 gap-2 
-    text-base font-medium tracking-[-0.06em]
-    ${pathname?.startsWith("/admin/courses")
-                                        ? "text-white bg-[#D6202C]"
-                                        : "text-[#565F66] hover:bg-gray-100"
-                                    }`}
-                            >
-                                <FaUniversity size={20} />
-                                Courses
-                            </Link>
   {/*
                             <Link
                                 href="/admin/specialization"

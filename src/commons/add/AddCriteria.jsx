@@ -8,7 +8,7 @@ const ReactQuill = dynamic(() => import("react-quill-new"), { ssr: false });
 
 export default function AddCriteria({ setCriteria, criteria = [] }) {
   // ensure criteria default to array to avoid map errors
-    console.log("criteria" ,criteria)
+  console.log("criteria", criteria)
 
   const addCriteria = () => {
     // use functional update to be safe
@@ -74,7 +74,7 @@ export default function AddCriteria({ setCriteria, criteria = [] }) {
             />
           </div>
 
-   <div className="mb-3">
+          <div className="mb-3">
             <label className="text-red-600 font-medium">images alt</label>
             <input
               type="text"
@@ -94,9 +94,9 @@ export default function AddCriteria({ setCriteria, criteria = [] }) {
                 handleChange(index, "images", e.target.files && e.target.files[0] ? e.target.files[0] : null)
               }
             />
-          
-   
-<ImagePreview image={item.images} />
+
+
+            <ImagePreview image={item.images} />
 
 
           </div>

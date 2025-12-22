@@ -18,6 +18,7 @@ import AddPattern from "@/commons/add/AddPattern";
 import AddCertificate from "@/commons/add/AddCertificate";
 import FactAdd from "@/commons/add/FactAdd";
 import AdvantageSectionAdd from "@/commons/add/AdvantageSectionAdd";
+import ImagePreview from "@/common/ImagePreview";
 
 function Index() {
     const router = useRouter();
@@ -74,13 +75,12 @@ function Index() {
     const [patterns, setPatterns] = useState([
         {
             image: "",
+            pattern_images_alt: "",
             patternName: "",
             percentage: "",
             description: "",
-            pattern_images_alt: ""
-        }
+        },
     ]);
-
 
     const [facts, setFacts] = useState([
         {
@@ -417,16 +417,13 @@ function Index() {
                             <div>
                                 <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
                                     Name{" "}
-                                    <span className="text-sm text-gray-500">
-                                        ({formData.name?.length}/50)
-                                    </span>
                                 </label>
                                 <input
                                     type="text"
                                     name="name"
                                     value={formData.name}
                                     onChange={(e) => {
-                                        if (e.target.value.length <= 50) handleChange(e);
+                                         handleChange(e);
                                     }}
                                     placeholder="Enter name"
                                     className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
@@ -477,30 +474,20 @@ function Index() {
                                     className="w-full p-2 bg-gray-100 rounded-md cursor-pointer text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
                                 />
 
-                                {/* Image Preview */}
-                                {preview && (
-                                    <div className="mt-3">
-                                        <img
-                                            src={preview}
-                                            alt="Preview"
-                                            className="w-full h-48 object-cover rounded-md border"
-                                        />
-                                    </div>
-                                )}
+                               
+                                <ImagePreview image={preview}   />
                             </div>
                             <div>
                                 <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
                                     University Image Alt{" "}
-                                    <span className="text-sm text-gray-500">
-                                        ({formData.cover_image_alt?.length}/50)
-                                    </span>
+                                    
                                 </label>
                                 <input
                                     type="text"
                                     name="cover_image_alt"
                                     value={formData.cover_image_alt}
                                     onChange={(e) => {
-                                        if (e.target.value.length <= 50) handleChange(e);
+                                         handleChange(e);
                                     }}
                                     placeholder="Enter cover image alt"
                                     className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
@@ -511,16 +498,13 @@ function Index() {
                             <div>
                                 <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
                                     University Icon Alt{" "}
-                                    <span className="text-sm text-gray-500">
-                                        ({formData.icon_alt?.length}/50)
-                                    </span>
                                 </label>
                                 <input
                                     type="text"
                                     name="icon_alt"
                                     value={formData.icon_alt}
                                     onChange={(e) => {
-                                        if (e.target.value.length <= 50) handleChange(e);
+                                        handleChange(e);
                                     }}
                                     placeholder="Enter cover Icon alt"
                                     className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
@@ -540,16 +524,8 @@ function Index() {
                                     className="w-full p-2 bg-gray-100 rounded-md cursor-pointer text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
                                 />
 
-                                {/* Image Preview */}
-                                {icons && (
-                                    <div className="mt-3">
-                                        <img
-                                            src={icons}
-                                            alt="Preview"
-                                            className="w-full h-48 object-cover rounded-md border"
-                                        />
-                                    </div>
-                                )}
+                                <ImagePreview image={icons}   />
+
                             </div>
 
                             <div className="mb-4">
@@ -557,7 +533,7 @@ function Index() {
                                     <h2 className="text-xl font-semibold text-[#CC2828]">Multiple Description</h2>
 
                                     <button
-                                    type="button"
+                                        type="button"
                                         onClick={addDescription}
                                         className="border border-[#CC2828] bg-[#CC2828] hover:bg-red-700 text-white px-6 py-2 rounded-[10px] text-base transition"
                                     >
@@ -580,7 +556,7 @@ function Index() {
                                             }}
                                         />
                                         <button
-                                                   type="button"
+                                            type="button"
                                             onClick={() => deleteDescription(index)}
                                             className="bg-red-500 text-white rounded-md p-3 hover:bg-red-700 flex justify-center items-center"
                                         >
@@ -604,16 +580,13 @@ function Index() {
                             <div>
                                 <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
                                     Name{" "}
-                                    <span className="text-sm text-gray-500">
-                                        ({formData.approvals_name?.length}/50)
-                                    </span>
                                 </label>
                                 <input
                                     type="text"
                                     name="approvals_name"
                                     value={formData.approvals_name}
                                     onChange={(e) => {
-                                        if (e.target.value.length <= 50) handleChange(e);
+                                     handleChange(e);
                                     }}
                                     placeholder="Enter approvals name"
                                     className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
@@ -641,16 +614,14 @@ function Index() {
                             <div>
                                 <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
                                     Name{" "}
-                                    <span className="text-sm text-gray-500">
-                                        ({formData.rankings_name?.length}/50)
-                                    </span>
+                                    
                                 </label>
                                 <input
                                     type="text"
                                     name="rankings_name"
                                     value={formData.rankings_name}
                                     onChange={(e) => {
-                                        if (e.target.value.length <= 50) handleChange(e);
+                                         handleChange(e);
                                     }}
                                     placeholder="Enter name"
                                     className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
@@ -691,16 +662,13 @@ function Index() {
                             <div>
                                 <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
                                     Name{" "}
-                                    <span className="text-sm text-gray-500">
-                                        ({formData.factsname?.length}/50)
-                                    </span>
                                 </label>
                                 <input
                                     type="text"
                                     name="factsname"
                                     value={formData.factsname}
                                     onChange={(e) => {
-                                        if (e.target.value.length <= 50) handleChange(e);
+                                     handleChange(e);
                                     }}
                                     placeholder="Enter name"
                                     className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
@@ -743,16 +711,13 @@ function Index() {
                             <div>
                                 <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
                                     Name{" "}
-                                    <span className="text-sm text-gray-500">
-                                        ({formData.partnersname?.length}/50)
-                                    </span>
                                 </label>
                                 <input
                                     type="text"
                                     name="partnersname"
                                     value={formData.partnersname}
                                     onChange={(e) => {
-                                        if (e.target.value.length <= 50) handleChange(e);
+                                         handleChange(e);
                                     }}
                                     placeholder="Enter partners name"
                                     className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"

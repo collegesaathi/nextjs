@@ -25,8 +25,13 @@ class Listing extends Component {
     return ApiallowFile.post("/admin/universities/update", data);
   }
 
-   async AdminCourseUpdate(data) {
+  async AdminCourseUpdate(data) {
     return ApiallowFile.post("/admin/course/update", data);
+  }
+
+
+  async AdminSpecializationUpdate(data) {
+    return ApiallowFile.post("/admin/specialisation/update", data);
   }
   async Univeristy() {
     return Api.get("/all/universities",);
@@ -85,16 +90,21 @@ class Listing extends Component {
     return Api.get(`/admin/university?page=${page}`,);
   }
 
+  async AdminSpecialisation(page) {
+    return Api.get(`/all/specialisation?page=${page}`,);
+  }
   async UniveristyDelete(id) {
     return Api.get(`/university/delete/${id}`)
   }
-
+  async SpecialisationDelete(id) {
+    return Api.get(`/specialisation/delete/${id}`)
+  }
   async UniveristyGet(slug) {
     return Api.get(`/university/${slug}`)
   }
 
 
-  async UniveristyCourseList(id){
+  async UniveristyCourseList(id) {
     return Api.get(`/course/university/${id}`)
   }
 
@@ -102,10 +112,21 @@ class Listing extends Component {
     return Api.get(`/course/${slug}`)
   }
 
-  async UniveristyCourseGet(id){
+  async CoursenameGet(id) {
+    return Api.get(`/course_name/${id}`)
+  }
+
+  async SpecializationGet(slug) {
+    return Api.get(`/specialisations/${slug}`)
+  }
+
+  async UniveristyCourseGet(id) {
     return Api.get(`/course/university/${id}`)
   }
 
+  async CourseSpecialisationGet(uni, cui) {
+    return Api.get(`/course/specialisation/${uni}/${cui}`)
+  }
   render() {
     return (
       <div>
