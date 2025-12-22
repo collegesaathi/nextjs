@@ -5,14 +5,14 @@ function Financial({financialAid}) {
   console.log()
   return (
     <>
-      <div className="w-full px-6 py-6 ">
+      <div className="w-full px-2 md:px-6 py-6 ">
         <section className="" id="financial-aid-section">
           <div className="max-w-[1230px]">
             <div>
               <Heading title={financialAid?.title} />
 
                   <div
-                        className="font-poppins text-[15px] sm:text-[16px] text-[#282529] leading-6 sm:leading-7 mb-4"
+                        className="font-poppins text-[14px] sm:text-[16px] text-[#282529] leading-6 sm:leading-7 mb-4"
                         dangerouslySetInnerHTML={{ __html: financialAid?.description || "" }}
                     />
             </div>
@@ -55,7 +55,7 @@ function Financial({financialAid}) {
           <tr className="bg-[#f9f1f1]">
             <td
               colSpan={5}
-              className="py-3 font-poppins font-semibold text-[15px] md:text-[17px] border-b border-[#ec1e24]"
+              className="py-3 font-poppins font-semibold text-[14px] md:text-[17px] border-b border-[#ec1e24]"
             >
               {item.courseName}
             </td>

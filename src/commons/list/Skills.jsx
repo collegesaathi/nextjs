@@ -5,7 +5,7 @@ function Skills({ skills }) {
   const skillsList = skills?.skills || [];
 
   return (
-    <section className="px-6 py-6" id="skills-section">
+    <section className="px-2 md:px-6 py-6" id="skills-section">
       <div className="max-w-[1230px] ">
         
         {/* --- Section Title & Description --- */}
@@ -30,7 +30,7 @@ function Skills({ skills }) {
               <div
                 key={index}
                 className={`
-                  flex items-start p-10 px-20
+                  flex items-start p-4 md:p-10 md:px-20
                   border-b border-[#f47c80]
                   ${index % 2 === 0 ? "md:border-r" : ""} 
                   /* The line above adds a right border only to the left column items on desktop */

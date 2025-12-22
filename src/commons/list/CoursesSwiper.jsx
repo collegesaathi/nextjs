@@ -140,7 +140,7 @@ export default function CoursesSwiper({course, exisitng, data}) {
             <div className="px-2 md:px-6 pt-5 lg:pt-6">
 
 
-              {exisitng === "university" && (<EnquiryBox />)}
+              { exisitng && (<EnquiryBox />)}
 
             </div>
 

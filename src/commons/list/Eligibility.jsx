@@ -10,7 +10,7 @@ function Eligibility({eligibilitycriteria}) {
 
   return (
     <>
-      <section className="w-full px-6 py-6">
+      <section className="w-full px-2 md:px-6 py-6">
         <div className="max-w-[1230px]">
           <Heading title="NMIMS Online MBA Eligibility Criteria" />
 
@@ -48,7 +48,7 @@ function Eligibility({eligibilitycriteria}) {
 
             {/* CONTENT BOX */}
             <div className="px-4 pb-6">
-              <div className="bg-white w-full px-6 sm:px-8 py-10 mt-10 rounded-[12px]">
+              <div className="bg-white w-full px-6 md:px-8 md:py-10 mt-10 rounded-[12px]">
 
                 {activeTab === "indian" && (
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-1">
@@ -56,7 +56,7 @@ function Eligibility({eligibilitycriteria}) {
                     {/* CARD 1 */}
 
                     {eligibilitycriteria?.IndianCriteria?.map((item,index)=>(
-                          <div className=" p-6  md:border-r border-[#FCF0EE] space-y-2 md:space-y-8">
+                          <div className=" p-2 md:p-6  md:border-r border-[#FCF0EE] space-y-2 md:space-y-8">
                       <div className="bg-[#FCF0EE] h-12 w-12 rounded-full flex justify-center items-center">
                         <img src={item.images} width={30} height={40} />
                       </div>
@@ -80,7 +80,7 @@ function Eligibility({eligibilitycriteria}) {
 
                     {/* CARD 1 */}
                      {eligibilitycriteria?.NRICriteria?.map((item,index)=>(
-                          <div className=" p-6  md:border-l border-[#FCF0EE] space-y-2 md:space-y-8">
+                          <div className=" p-2 md:p-6  md:border-l border-[#FCF0EE] space-y-2 md:space-y-8">
                       <div className="bg-[#FCF0EE] h-12 w-12 rounded-full flex justify-center items-center">
                         <img src={item.images} width={30} height={40} />
                       </div>
@@ -136,10 +136,10 @@ function Eligibility({eligibilitycriteria}) {
 
 function EnquiryBox() {
   return (
-    <div className="w-[1000px] mx-auto mt-8 lg:mt-12 rounded-[18px] bg-gradient-to-br from-[#fef0f0] to-[#fbdbdc] p-4 sm:p-6 lg:p-8 grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
+    <div className=" mx-auto mt-8 lg:mt-12 rounded-[18px] bg-gradient-to-br from-[#fef0f0] to-[#fbdbdc] p-4 sm:p-4 lg:p-6 flex  gap-4 items-center w-full">
 
       {/* Left Image on Desktop only */}
-      <div className="hidden md:flex justify-center">
+      <div className="hidden md:block md:flex justify-center w-1/2">
         <img
           src="/images/university/course/3.png"
           alt="course form"
@@ -148,7 +148,10 @@ function EnquiryBox() {
       </div>
 
       {/* Form */}
-      <FormBox />
+      <div className=" w-full md:w-1/2 md:mx-auto">
+          <FormBox />
+      </div>
+    
     </div>
   );
 }
@@ -158,8 +161,8 @@ function EnquiryBox() {
 
 function FormBox() {
   return (
-    <div className="w-full flex justify-center md:justify-start max-w-[1230px]">
-      <div className="w-full max-w-sm">
+    <div className="w-full flex justify-center  ">
+      <div className="w-full ">
 
         {/* Logos */}
         <div className="flex gap-4 justify-center border-b border-gray-300 pb-2 mb-3">

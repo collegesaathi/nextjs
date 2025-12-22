@@ -9,7 +9,7 @@ export default function Hero({data,approvalsdata , exisitng}) {
     <div className="mt-8 md:mt-[60px] lg:mt-[90px] ">
       <div className="flex flex-col-reverse lg:flex-row items-start justify-between">
         {/* LEFT SIDE */}
-        <div className="w-full lg:w-[480px] py-6 px-2 md:px-5 lg:px-0 ">
+        <div className="w-full lg:w-[480px] py-6  md:px-5 lg:px-0 ">
           {/* TITLE */}
           <h1 className="font-poppins font-[700] text-[28px] sm:text-[36px] md:text-[48px] leading-[50px] text-[#282529]">
           {data?.name || ""}
@@ -54,7 +54,7 @@ export default function Hero({data,approvalsdata , exisitng}) {
 
           {/* COMPARE BOX */}
           <div className="pt-5">
-            <div className="w-full lg:w-[399px] h-[45px] rounded-[27px] border border-[#282529] shadow-[4px_8px_19px_rgba(0,0,0,0.09)] flex items-center justify-center gap-4 px-3">
+            <div className="w-full lg:w-[399px] h-[45px] rounded-[27px] border border-[#282529] shadow-[4px_8px_19px_rgba(0,0,0,0.09)] flex items-center justify-center gap-4 md:px-3">
               <button className="flex items-center gap-1 text-[14px] sm:text-[17px] text-[#282529]">
                 {/* <Image src="/images/university/hero/compare.svg" alt="" width={18} height={18} className="" /> */}
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">

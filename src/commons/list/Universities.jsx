@@ -136,7 +136,7 @@ export default function Universities() {
     return (
         <>
             {/* Desktop Version */}
-            <div className="py-6 px-6 " id="universities-comparison-section">
+            <div className="py-6 px-2 md:px-6 " id="universities-comparison-section">
                 <div className=" container sm:container md:container lg:container xl:max-w-[1230px] ">
 
                 
