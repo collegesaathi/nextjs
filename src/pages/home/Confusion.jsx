@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
-import BR from "../assets/home/br.png"
-import BG from "../assets/home/bg.png"
+import BR from "../assets/home/Budget.png"
+import BG from "../assets/home/Budget.png"
 import Image from "next/image";
 
 
