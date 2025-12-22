@@ -42,7 +42,7 @@ export default function PlacementPartners({placements  ,PlacementPartners}) {
 
   return (
 
-    <div className="px-6 py-6  bg-white">
+    <div className="px-2 md:px-6 py-6  bg-white">
       <section className="w-full mx-auto" id="placement-partners-section">
         <div className="max-w-[1230px]">
           <BackNext

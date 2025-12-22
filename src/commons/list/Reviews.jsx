@@ -122,7 +122,7 @@ export default function Reviews() {
     };
 
     return (
-        <section className="px-6 py-6 block" >
+        <section className="px-2 md:px-6 py-6 block" >
             <div className="max-w-[1230px]">
 
              
@@ -199,7 +199,7 @@ export default function Reviews() {
                         <button
                             key={tab.id}
                             onClick={() => setActiveTab(tab.id)}
-                            className={`px-4 h-[30px] rounded-full border 
+                            className={`px-4 h-[30px] text-[12px] md:text-[14px] rounded-full border 
                 ${activeTab === tab.id ? "bg-red-600 text-white" : "text-gray-600"}`}
                         >
                             {tab.name}

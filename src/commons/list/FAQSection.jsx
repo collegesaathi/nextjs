@@ -32,7 +32,7 @@ export default function FAQSection({ faq }) {
     }, []);
 
     return (
-        <div className="px-6 py-6 max-w-[1230px]" id="faq-section">
+        <div className="px-2 md:px-6 py-6 max-w-[1230px]" id="faq-section">
             <div className="mx-auto container ">
                 <Heading title={"Frequently Asked "} midtitle={"Questions"} />
 

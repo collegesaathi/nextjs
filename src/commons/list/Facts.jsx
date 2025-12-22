@@ -11,7 +11,7 @@ function Facts({ facts }) {
   
   return (
     <>
-      <div className="px-6 py-6  relative">
+      <div className="px-2 md:px-6 py-6  relative">
          
            <div className="absolute top-0 left-0 w-full h-[80%] bg-[#fcf0ee] -z-10 "></div>
                          <Image src="/images/university/factsbg.png" width={200} height={200} className="hidden lg:block absolute top-2 lg:right-10 2xl:right-60 lg:top-16 animate-float"  />
@@ -67,7 +67,7 @@ function Facts({ facts }) {
             </h3>
 
             <div
-              className="font-poppins  text-[14px] md:text-[16px] leading-[20px] md:leading-[22px] text-[#282529]  w-2/3 "
+              className="font-poppins  text-[14px] md:text-[16px] leading-[20px] md:leading-[22px] text-[#282529]  md:w-2/3 "
               dangerouslySetInnerHTML={{ __html: item?.description || "" }}
             />
             </div>

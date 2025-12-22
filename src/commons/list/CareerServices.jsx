@@ -58,7 +58,7 @@ export default function CareerServices({ services }) {
 
 
     return (
-        <div className="px-6 py-6 bg-white">
+        <div className="px-2 md:px-6 py-6 bg-white">
             <section className="w-full  mx-auto" id="career-services-section">
                 <div className="max-w-[1230px]">
                     {/* Desktop */}
@@ -76,7 +76,7 @@ export default function CareerServices({ services }) {
                         />
 
                         <div
-                            className="font-poppins text-[15px] sm:text-[16px] text-[#282529] leading-6 sm:leading-7 mb-4"
+                            className="font-poppins text-[14px] sm:text-[16px] text-[#282529] leading-6 sm:leading-7 mb-4"
                             dangerouslySetInnerHTML={{ __html: services?.description || "" }}
                         />
 

@@ -8,7 +8,7 @@ export default function ExaminationPattern({ examPatterns=[] }) {
 
   return (
     <>
-      <div className=" px-6 py-6  bg-[#f7f6f6]">
+      <div className=" px-2 md:px-6 py-6  bg-[#f7f6f6]">
         <section className="w-full py-6 mx-auto" id="examination-section">
           <div className=" max-w-[1100px]">
             <div className="space-y-6  pt-5  pb-5">

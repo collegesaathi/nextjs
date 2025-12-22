@@ -84,7 +84,8 @@ height:12px;
   display: flex;
     flex-wrap: wrap;
   align-items: center;
-    gap:4;
+    gap:8px;
+       
 }
 
 .ranking span{

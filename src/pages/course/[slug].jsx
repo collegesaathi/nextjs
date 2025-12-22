@@ -31,8 +31,8 @@ function Index({ data }) {
     console.log("data", data)
     return (<>
         <Layout>
-            <div className="py-4 md:py-8 ">
-                <div className="mx-auto container sm:container md:container lg:container xl:max-w-[1430px] md:px-4">
+            <div className=" md:py-8 ">
+                <div className="mx-auto container sm:container md:container lg:container xl:max-w-[1430px] px-2 md:px-4">
                     <Hero data={data?.CourseData} approvalsdata={data?.approvalsData} exisitng={"course"} />
                 </div>
                 <div className="w-full flex items-start pt-10 justify-center h-full relative flex-wrap">

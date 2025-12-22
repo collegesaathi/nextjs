@@ -27,7 +27,7 @@ function Index({ data }) {
     console.log("universoitydata", data)
     return (<>
         <Layout>
-            <div className="py-4 md:py-8 ">
+            <div className=" md:py-8 ">
                 <div className="mx-auto container sm:container md:container lg:container xl:max-w-[1430px]  px-2 md:px-4">
                     <Hero data={data?.university} approvalsdata={data?.approvalsData} exisitng={"university"} />
                 </div>
