@@ -35,7 +35,7 @@ function Index({ data }) {
                     <div
                         className="w-full lg:w-3/12 bg-[#f9fafb] mx-2 lg:mx-0 lg:shadow-[4px_4px_4px_rgba(0,0,0,0.06)] h-full overflow-y-auto justify-end flex lg:pr-4 relative animate-slide-fade-right animate-delay-200"
                     >
-                        <FrontendSidebar />
+                        <FrontendSidebar data={data?.university} />
                     </div>
                     <div className="w-full lg:w-9/12 h-full lg:h-[100vh] overflow-y-auto " style={{ scrollbarWidth: "none", }}>
                         {data?.university?.about && (<Aboutdetails about={data?.university?.about} />) }
