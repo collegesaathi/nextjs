@@ -34,7 +34,7 @@ class Listing extends Component {
     return ApiallowFile.post("/admin/specialisation/update", data);
   }
   async Univeristy() {
-    return Api.get("/all/universities",);
+    return Api.get("/universities",);
   }
 
   async AddApprovals(data) {
@@ -78,9 +78,12 @@ class Listing extends Component {
   async ContactUniversityGet() {
     return Api.get("/leads/university",);
   }
+  async UniversityCategroyAll() {
+    return Api.get("/all/catergoy/university",);
+  }
 
-  async Listjsx() {
-    return Api.get("/list",);
+  async UniversityAll() {
+    return Api.get("/all/university",);
   }
 
   async CourseAll() {
@@ -124,6 +127,9 @@ class Listing extends Component {
     return Api.get(`/course/university/${id}`)
   }
 
+    async SpecialisationCourseGet(id) {
+    return Api.get(`/specialisation/course/${id}`)
+  }
   async CourseSpecialisationGet(uni, cui) {
     return Api.get(`/course/specialisation/${uni}/${cui}`)
   }

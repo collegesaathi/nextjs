@@ -14,6 +14,10 @@ export async function fetchDetails(context, type) {
             res = await main.UniveristyGet(slug);
             
         }
+        else if (type === "specialisation") {
+            res = await main.SpecializationGet(slug);
+            
+        }
          else {
             return { notFound: true };
         }

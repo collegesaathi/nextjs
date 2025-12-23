@@ -17,7 +17,6 @@ import Advantages from "@/commons/list/Advantages";
 import Approvals from "@/commons/list/Approvals";
 import Aboutdetails from "@/commons/list/Aboutdetails";
 import Hero from "@/commons/list/Hero";
-import CourseFees from "@/commons/list/CourseFees";
 import Ranking from "@/commons/list/Rankings";
 import FrontendSidebar from "../common/FrontendSidebar";
 import { fetchDetails } from "@/lib/ssrFetch";
@@ -27,8 +26,29 @@ import Skills from "@/commons/list/Skills";
 import UpdatedFee from "@/commons/list/UpdatedFee";
 import CoursesSwiper from "@/commons/list/CoursesSwiper";
 import CarreerOppurtunity from "@/commons/list/CarreerOppurtunity";
+import { useEffect, useState } from "react";
+import Listing from "../api/Listing";
 function Index({ data }) {
-    console.log("data", data)
+        const uniId = data?.CourseData?.id;
+        const [loading, setLoading] = useState(false);
+        const [courseData, setCourseData] = useState([])
+    const fetchCourse = async (uniId) => {
+        setLoading(true)
+        try {
+            const main = new Listing();
+            const response = await main.SpecialisationCourseGet(uniId);
+            setCourseData(response?.data)
+        }
+        catch (error) {
+            console.error("Error fetching projects:", error);
+        } finally {
+            setLoading(false);
+        }
+    }
+
+    useEffect(() => {
+        fetchCourse(uniId)
+    }, [uniId])
     return (<>
         <Layout>
             <div className=" md:py-8 ">
@@ -47,14 +67,14 @@ function Index({ data }) {
                         {data?.CourseData?.fees && (<UpdatedFee fees={data?.CourseData?.fees} />) }
 
                         {data?.CourseData?.approvals && (<Approvals approvals={data?.CourseData?.approvals} approvalsdata={data?.approvalsData} />) }
+                        {data?.CourseData?.advantages &&(<Advantages advantages={data?.CourseData?.advantages} />) }
 
                         {data?.CourseData?.rankings && (<Ranking rankings={data?.CourseData?.rankings} />) }
-
-                        {data?.CourseData?.advantages &&(<Advantages advantages={data?.CourseData?.advantages} />) }
-                           <CoursesSwiper  />
-
+                          <CoursesSwiper courseData={courseData} name={"course"} title={`${data?.CourseData?.name} - Specialisation`} />
 
                         <Eligibility eligibilitycriteria={data?.CourseData?.eligibilitycriteria} />
+
+
                         <Curriculum curriculum={data?.CourseData?.curriculum} />
 
 
@@ -62,13 +82,12 @@ function Index({ data }) {
                         {data?.CourseData?.certificates && (<SampleCertificate certificates={data?.CourseData?.certificates} />) }
 
                         {data?.CourseData?.skills &&( <Skills skills={data?.CourseData?.skills} />)}
-                    
-                    <ExaminationPattern examPatterns={data?.CourseData?.examPatterns} />
-                          <Financial financialAid={data?.CourseData?.financialAid} />
-                          <CarreerOppurtunity career={data?.CourseData?.career}/>
-
-                     <PlacementPartners placements={data?.CourseData?.partners} PlacementPartners={data?.placementPartners} />
-                          <CareerServices services={data?.CourseData?.services} />
+                     
+                        <ExaminationPattern examPatterns={data?.CourseData?.examPatterns} />
+                        <Financial financialAid={data?.CourseData?.financialAid} />
+                        <CarreerOppurtunity career={data?.CourseData?.career}/>
+                        <PlacementPartners placements={data?.CourseData?.partners} PlacementPartners={data?.placementPartners} />
+                        <CareerServices services={data?.CourseData?.services} />
                         <StepsSection admissionProcess={data?.CourseData?.admissionprocess} />
                         <FAQSection faq={data?.CourseData?.faq} />
                         <SimilarUniversities />

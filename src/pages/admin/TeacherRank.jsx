@@ -85,7 +85,6 @@ export default function TeacherRank({ teacherData }) {
     }
   };
 
-  // console.log("rank", featured);
 
   return (
     <div className={`py-5 px-5 md:px-10`} >

@@ -91,12 +91,12 @@ export default function AddCriteria({ setCriteria, criteria = [] }) {
               type="file"
               className="w-full mt-1"
               onChange={(e) =>
-                handleChange(index, "images", e.target.files && e.target.files[0] ? e.target.files[0] : null)
+                handleChange(index, "image", e.target.files && e.target.files[0] ? e.target.files[0] : null)
               }
             />
 
 
-            <ImagePreview image={item.images} />
+            <ImagePreview image={item.image} />
 
 
           </div>

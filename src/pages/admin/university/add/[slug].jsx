@@ -120,8 +120,6 @@ function Index() {
             handleDetails(Id)
         }
     }, [Id])
-    console.log("data", data)
-
 
     useEffect(() => {
         setFormData({

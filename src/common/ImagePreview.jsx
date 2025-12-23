@@ -10,7 +10,9 @@ export default function ImagePreview({ image }) {
       <img
         src={src}
         alt={name || "preview"}
-        className="w-48 h-48 object-cover rounded border"
+     
+        
+        
       />
       {name && (
         <p className="text-xs text-gray-600 mt-1 truncate">{name}</p>

@@ -4,7 +4,6 @@ import Image from "next/image";
 import StarRating from "@/common/Rating";
 
 export default function Hero({data,approvalsdata , exisitng}) {
-  console.log("gvfdbg",approvalsdata)
   return (
     <div className="mt-8 md:mt-[60px] lg:mt-[90px] ">
       <div className="flex flex-col-reverse lg:flex-row items-start justify-between">

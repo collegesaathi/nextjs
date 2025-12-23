@@ -85,9 +85,6 @@ export default function Reviews() {
     const slideNext = () => getCurrentSwiper()?.slideNext();
 
 
-
-
-
     const updateProgress = (swiper) => {
         if (!swiper) return;
 

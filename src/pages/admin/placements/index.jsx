@@ -14,7 +14,6 @@ function Index() {
         try {
             const main = new Listing();
             const response = await main.PlacementApproval();
-            console.log("response", response)
             setapprovalOptions(response?.data?.data?.placements || [])
             setLoading(false);
 
@@ -24,7 +23,6 @@ function Index() {
             setLoading(false);
         }
     };
-    console.log("approvalOptions", approvalOptions)
     useEffect(() => {
         fetchApprovalandPartnerLists();
     }, []);

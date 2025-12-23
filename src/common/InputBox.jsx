@@ -23,7 +23,6 @@ export function InputBox({ data: parentData = null, handleChange: parentHandleCh
 
     useEffect(() => {
         const indianStates = State.getStatesOfCountry("IN") || [];
-        console.log("indianStates", indianStates)
         setStates(indianStates);
     }, []);
 

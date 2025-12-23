@@ -26,10 +26,8 @@ import ImagePreview from "@/common/ImagePreview";
 function Index() {
     const router = useRouter()
     const Id = router.query.slug;
-    console.log("router", router?.query)
     const university_id = router?.query?.university_id
     const course_id = router?.query?.course_id
-    console.log("university_id", university_id)
     const [universities, setUniversities] = useState([])
     const [categroy, setCategroy] = useState([])
     const [data, setData] = useState("")
@@ -37,7 +35,7 @@ function Index() {
         try {
 
             const main = new Listing();
-            const response = await main.Listjsx();
+            const response = await main.UniversityCategroyAll();
             const universities = response?.data?.data?.universities || [];
             setCategroy(response?.data?.data?.CategoryLists)
             setUniversities(universities);
@@ -52,13 +50,11 @@ function Index() {
 
     const [coursedata, setcoursedata] = useState("")
 
-    console.log("coursedata", coursedata)
     const fetchCourseData = async (course_id) => {
         try {
 
             const main = new Listing();
             const response = await main.CoursenameGet(course_id);
-            console.log("response", response)
             const universities = response?.data?.data?.CourseData || [];
             setcoursedata(universities)
         } catch (error) {
@@ -274,31 +270,31 @@ function Index() {
         try {
             const main = new Listing();
             const payload = new FormData();
-            payload.append("slug", formData.slug);
-            payload.append("name", formData.name);
-            payload.append("university_id", formData.university_id)
-            payload.append("id", formData.Id);
-            payload.append("position", formData.position);
-            payload.append("icon", formData.icon);
-            payload.append("cover_image", formData.cover_image);
-            payload.append("course_id", formData?.course_id);
+            payload.append("slug", formData.slug || "");
+            payload.append("name", formData.name || "");
+            payload.append("university_id", university_id || "")
+            payload.append("id", formData.Id || "");
+            payload.append("position", formData.position || "");
+            payload.append("icon", formData.icon || "");
+            payload.append("cover_image", formData.cover_image || "");
+            payload.append("course_id", course_id || "");
             payload.append("descriptions", JSON.stringify(formData.descriptions));
-            payload.append("cover_image_alt", formData.cover_image_alt)
-            payload.append("icon_alt", formData.icon_alt)
-            payload.append("about_title", formData.about_title);
-            payload.append("about_desc", formData.about_desc);
-            payload.append("tuition_fees", formData.tuition_fees)
-            payload.append("anuual_fees", formData.anuual_fees)
-            payload.append("semester_fees", formData.semester_fees)
-            payload.append("approvals_name", formData.approvals_name);
-            payload.append("approvals_desc", formData.approvals_desc);
+            payload.append("cover_image_alt", formData.cover_image_alt || "")
+            payload.append("icon_alt", formData.icon_alt || "")
+            payload.append("about_title", formData.about_title || "")  ;
+            payload.append("about_desc", formData.about_desc || "");
+            payload.append("tuition_fees", formData.tuition_fees || "")
+            payload.append("anuual_fees", formData.anuual_fees || "")
+            payload.append("semester_fees", formData.semester_fees || "")
+            payload.append("approvals_name", formData.approvals_name || "");
+            payload.append("approvals_desc", formData.approvals_desc || "");
             payload.append("approvals", JSON.stringify(selectedApprovals));
-            payload.append("rankings_description", formData.rankings_description);
-            payload.append("rankings_name", formData.rankings_name);
-            payload.append("creteria", formData.creteria)
-            payload.append("fees_title", formData.fees_title)
-            payload.append("category", formData.category)
-            payload.append("desccreteria", formData.desccreteria)
+            payload.append("rankings_description", formData.rankings_description || "") ;
+            payload.append("rankings_name", formData.rankings_name || "");
+            payload.append("creteria", formData.creteria || "")
+            payload.append("fees_title", formData.fees_title || "")
+            payload.append("category", formData.category || "")
+            payload.append("desccreteria", formData.desccreteria || "")
             const NRIDATA = formData.nri.map(item => ({
                 title: item.title,
                 description: item.description,
@@ -322,20 +318,20 @@ function Index() {
                 }
             });
             payload.append("semesters", JSON.stringify(semesters))
-            payload.append("semesters_title", formData.semesters_title)
-            payload.append("certificatename", formData.certificatename);
-            payload.append("certificatedescription", formData.certificatedescription);
-            payload.append("certificatemage", formData.certificatemage);
-            payload.append("image_alt", formData.image_alt)
+            payload.append("semesters_title", formData.semesters_title || "")
+            payload.append("certificatename", formData.certificatename || "");
+            payload.append("certificatedescription", formData.certificatedescription || "");
+            payload.append("certificatemage", formData.certificatemage || "");
+            payload.append("image_alt", formData.image_alt || "")
             payload.append("advantages", JSON.stringify(advantages));
-            payload.append("advantagesname", formData.advantagesname);
-            payload.append("advantagesdescription", formData.advantagesdescription);
+            payload.append("advantagesname", formData.advantagesname || "");
+            payload.append("advantagesdescription", formData.advantagesdescription || "");
             payload.append("skills", JSON.stringify(skills));
-            payload.append("skillsname", formData.skillname);
-            payload.append("skilldesc", formData.skilldesc);
-            payload.append("patternname", formData.patternname);
-            payload.append("patterndescription", formData.patterndescription);
-            payload.append("bottompatterndesc", formData.bottompatterndesc);
+            payload.append("skillsname", formData.skillname || "");
+            payload.append("skilldesc", formData.skilldesc || "");
+            payload.append("patternname", formData.patternname || "");
+            payload.append("patterndescription", formData.patterndescription || "");
+            payload.append("bottompatterndesc", formData.bottompatterndesc || "");
             const cleanPatterns = Array.isArray(patterns)
                 ? patterns.map(item => ({
                     patternName: item?.patternName || "",
@@ -352,23 +348,23 @@ function Index() {
             });
 
             payload.append("fees", JSON.stringify(fees));
-            payload.append("careerdesc", formData.careerdesc)
-            payload.append("careername", formData.careername)
+            payload.append("careerdesc", formData.careerdesc || "")
+            payload.append("careername", formData.careername || "")
             payload.append("careermanages", JSON.stringify(Careers));
-            payload.append("partnersname", formData.partnersname);
-            payload.append("partnersdesc", formData.partnersdesc);
+            payload.append("partnersname", formData.partnersname || "") ;
+            payload.append("partnersdesc", formData.partnersdesc || "");
             payload.append("partners", JSON.stringify(selectedPartners));
             payload.append("faqs", JSON.stringify(faqs));
-            payload.append("meta_title", formData.meta_title);
-            payload.append("meta_description", formData.meta_description);
-            payload.append("meta_keywords", formData.meta_keywords);
-            payload.append("canonical_url", formData.canonical_url);
-            payload.append("financialname", formData.financialname);
-            payload.append("financialdescription", formData.financialdescription);
-            payload.append("servicetitle", formData.servicetitle);
-            payload.append("servicedesc", formData.servicedesc);
-            payload.append("onlinedesc", formData.onlinedesc);
-            payload.append("onlinetitle", formData.onlinetitle);
+            payload.append("meta_title", formData.meta_title || "");
+            payload.append("meta_description", formData.meta_description || "");
+            payload.append("meta_keywords", formData.meta_keywords || "");
+            payload.append("canonical_url", formData.canonical_url || "") ;
+            payload.append("financialname", formData.financialname || "");
+            payload.append("financialdescription", formData.financialdescription || "");
+            payload.append("servicetitle", formData.servicetitle || "");
+            payload.append("servicedesc", formData.servicedesc || "");
+            payload.append("onlinedesc", formData.onlinedesc || "");
+            payload.append("onlinetitle", formData.onlinetitle || "");
             const cleanonlines = onlines.map(item => ({
                 title: item.title,
                 content: item.content
@@ -397,7 +393,7 @@ function Index() {
             // ✅ IMPORTANT FIX
             const response = await main.AdminSpecializationUpdate(payload);
             if (response?.data?.status) {
-                router.push(`/admin/specialization?university_id=${university_id}&course_id=${course_id}`)
+                // router.push(`/admin/specialization?university_id=${university_id}&course_id=${course_id}`)
                 toast.success(response.data.message);
                 setPreview(null);
             } else {
@@ -418,7 +414,7 @@ function Index() {
         { id: "approvals", label: "Approvals" },
         { id: "rankings", label: "Rankings" },
         { id: "criteria", label: "Criteria" },
-        { id: "sem", label: "Semseter" },
+        { id: "sem", label: "Syllabus" },
         { id: "certificate", label: "Certificate" },
         { id: "skills", label: "Skills" },
         { id: "pattern", label: "Pattern" },
@@ -426,7 +422,7 @@ function Index() {
         { id: "career", label: "Career" },
         { id: "partners", label: "Partners" },
         { id: "services", label: "Services" },
-        { id: "online", label: "Online" },
+        { id: "online", label: "Admission Process" },
         { id: "faq", label: "FAQ" },
         { id: "seo", label: "SEO" },
         { id: "advantages", label: "Advantages" },
@@ -480,7 +476,6 @@ function Index() {
             return [];
         }
     };
-    console.log("data", data)
     useEffect(() => {
         if (data?.curriculum?.semesters) {
             try {
@@ -748,7 +743,7 @@ function Index() {
                             {/* thumbnail Upload Field */}
                             <div>
                                 <label className="block text-[#FF1B1B] font-medium mb-1">
-                                    Upload University Image
+                                    Upload specialization Image
                                 </label>
                                 <input
                                     type="file"
@@ -763,7 +758,7 @@ function Index() {
                             </div>
                             <div>
                                 <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
-                                    University Image Alt{" "}
+                                    specialization Image Alt{" "}
                                 </label>
                                 <input
                                     type="text"
