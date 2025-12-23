@@ -34,7 +34,7 @@ class Listing extends Component {
     return ApiallowFile.post("/admin/specialisation/update", data);
   }
   async Univeristy() {
-    return Api.get("/all/universities",);
+    return Api.get("/universities",);
   }
 
   async AddApprovals(data) {
