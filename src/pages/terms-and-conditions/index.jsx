@@ -6,7 +6,7 @@ import ContactSection from "../home/ContactSection";
 export default function TermsConditions() {
     return (
         <Layout>
-            <div className="mx-auto container sm:container md:container xl:max-w-[1230px]  px-4 py-4 md:mt-20 lg:mt-20 ">
+            <div className="mx-auto container sm:container md:container xl:max-w-[1230px]   px-2 md:px-4 py-4 md:mt-20 lg:mt-20 ">
                 {/* Breadcrumb */}
                 <div className="  px-4 py-4 text-sm text-gray-500 mt-6">
                     <nav className="flex items-center gap-2">
