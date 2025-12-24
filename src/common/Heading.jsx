@@ -13,11 +13,12 @@ export default function Heading({ lattitle, midtitle, title, classes }) {
           tracking-[0px]
           text-[#282529]
           mb-4 md:mb-[30px]
+        
          
           ${classes}
         `}
       >
-        {title} <span className="text-[#EC1E24]">{midtitle}</span> {lattitle}
+        {title} <span className="text-[#EC1E24] flex-wrap">{midtitle}</span> {lattitle}
       </h2>
   )
 }

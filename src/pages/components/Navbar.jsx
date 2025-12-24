@@ -279,7 +279,7 @@ export default function Navbar() {
               </li>
 
               <li className="border-b border-gray-100">
-                <a href="#" className="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50">
+                <a href="/university" className="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50">
                   Top Universities
                 </a>
               </li>

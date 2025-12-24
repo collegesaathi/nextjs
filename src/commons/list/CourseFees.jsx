@@ -12,26 +12,26 @@ function CourseFees({ courseData }) {
                             <thead>
                                 <tr className="bg-red-600 text-white h-[65px]">
                                     <th
-                                        className={`py-3 px-4 text-left font-[500]  text-[14px] md:text-[17px] leading-[25px] 
+                                        className={`py-1 md:py-3 px-1 md:px-4 text-left font-[500]  min-w-[150px] text-[14px] md:text-[17px] leading-[25px] 
                                               `}
                                     >
                                         Course
                                     </th>
                                     <th
-                                        className={`py-3 px-4 text-left font-[500]  text-[14px] md:text-[17px] leading-[25px] 
+                                        className={`py-1 md:py-3 px-1 md:px-4 text-left font-[500] min-w-[150px] text-[14px] md:text-[17px] leading-[25px] 
                                               `}
                                     >
                                         Per Semester
                                     </th>
                                     <th
-                                        className={`py-3 px-4 text-left font-[500]  text-[14px] md:text-[17px] leading-[25px] 
+                                        className={`py-1 md:py-3 px-1 md:px-4 text-left font-[500] min-w-[150px] text-[14px] md:text-[17px] leading-[25px] 
                                               `}
                                     >
                                         Total Fees
                                     </th>
 
                                     <th
-                                        className={`py-3 px-4 text-left font-[500]  text-[14px] md:text-[17px] leading-[25px] 
+                                        className={`py-1 md:py-3 px-1 md:px-4 text-left font-[500]  min-w-[150px] text-[14px] md:text-[17px] leading-[25px] 
                                               `}
                                     >
                                         One Time Fees
@@ -43,17 +43,17 @@ function CourseFees({ courseData }) {
                                 {
                                     courseData && courseData?.map((row, index) => (
                                         <tr key={index} className="border-t hover:bg-[#f9fafb]">
-                                            <td className="py-3 px-1 md:px-4 text-[12px] md:text-[14px] border-r-2 border-[#f47c80] underline">
+                                            <td className="py-3 px-1 md:px-4 text-[12px] md:text-[17px] border-r-2 border-[#f47c80] underline">
                                          <Link href={`/course/${row?.slug}`}>
                                                 {row?.name}
                                          </Link>
                                             </td>
-                                            <td className="py-3 px-1 md:px-4 border-r-2 text-[12px] md:text-[14px] border-[#f47c80]">
+                                            <td className="py-3 px-1 md:px-4 border-r-2 text-[12px] md:text-[17px] border-[#f47c80]">
                                                 {row?.fees?.semester_wise_fees}
                                             </td>
 
-                                            <td className="py-3 px-1 md:px-4 border-r-2 text-[12px] md:text-[14px] border-[#f47c80]">    {row?.fees?.annual_fees}</td>
-                                            <td className="py-3 px-1 md:px-4 border-r-2 text-[12px] md:text-[14px] border-[#f47c80]">    {row?.fees?.tuition_fees}</td>
+                                            <td className="py-3 px-1 md:px-4 border-r-2 text-[12px] md:text-[17px] border-[#f47c80]">    {row?.fees?.annual_fees}</td>
+                                            <td className="py-3 px-1 md:px-4 border-r-2 text-[12px] md:text-[17px] border-[#f47c80]">    {row?.fees?.tuition_fees}</td>
 
                                         </tr>
                                     ))

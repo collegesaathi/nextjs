@@ -12,19 +12,19 @@ export default function BackNext({
   onNext = () => {},
 }) {
   // Responsive progress bar width
-  const progressBarTotalWidth =
-    typeof window !== "undefined" && window.innerWidth >= 1024
-      ? "180px"
-      : "120px";
+  // const progressBarTotalWidth =
+  //   typeof window !== "undefined" && window.innerWidth >= 1024
+  //     ? "180px"
+  //     : "110px";
 
   return (
-    <div className="flex  justify-between items-start  w-full">
+    <div className="flex  justify-between items-center md:items-start  w-full">
       <Heading title={title} midtitle={midtitle} />
 
       <div className="flex flex-wrap items-center justify-end md:space-x-4">
         <div
-          className="h-1.5 bg-gray-300 rounded-full overflow-hidden"
-          style={{ width: progressBarTotalWidth }}
+          className="h-1.5 bg-gray-300 rounded-full overflow-hidden        w-24 sm:w-28 md:w-36 lg:w-44 xl:w-48"
+     
         >
           <div
             className="h-full bg-[#EC1E24] transition-all duration-300 ease-in-out"

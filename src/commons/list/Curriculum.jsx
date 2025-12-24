@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Heading from "@/common/Heading";
 import { ChevronDown } from "lucide-react";
+import { TiArrowSortedDown } from "react-icons/ti";
 function Curriculum(curriculum) {
   const [openIndex, setOpenIndex] = useState(0);
 
@@ -28,8 +29,8 @@ function Curriculum(curriculum) {
                 >
                   {sem?.title}
 
-                  <ChevronDown
-                    size={20}
+                  <TiArrowSortedDown
+                    size={24}
                     className={`text-red-500 transition-transform duration-300 ${openIndex === index ? "rotate-180" : "rotate-0"
                       }`}
                   />

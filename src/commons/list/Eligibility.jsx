@@ -99,7 +99,7 @@ function Eligibility({eligibilitycriteria}) {
             </div>
 
           </div>
-          <EnquiryBox />
+    
         </div>
       </section>
     </>
