@@ -116,7 +116,7 @@ function Approvals({approvals , approvalsdata}) {
 </div>
 
                                     {/* Text */}
-                                    <div className="md:text-center w-[60%] lg:w-full pl-3 py-4 lg:pl-0">
+                                    <div className="md:text-center md:w-[60%] lg:w-full  py-4 lg:pl-0">
                                         <h2 className=" font-popins text-[15px] leading-5 mb-2 lg:text-[16px] 
                                              lg:leading-6 text-[#282529] lg:mb-3 transition-colors duration-300 ">
                                             {item.title}

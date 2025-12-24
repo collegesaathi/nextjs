@@ -23,7 +23,7 @@ export default function BackNext({
 
       <div className="flex flex-wrap items-center justify-end md:space-x-4">
         <div
-          className="h-1.5 bg-gray-300 rounded-full overflow-hidden        w-24 sm:w-28 md:w-36 lg:w-44 xl:w-48"
+          className="h-1.5 bg-gray-300 rounded-full overflow-hidden  w-24 sm:w-28 md:w-36 lg:w-44 xl:w-48"
      
         >
           <div
