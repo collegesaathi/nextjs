@@ -414,14 +414,14 @@ const DetailedSpecializationSection = ({ title, items }) => (
 
 // Data Arrays
 const companyLinks = [
-  { text: 'About Us', href: '/about' },
-  { text: 'Privacy Policy', href: '/privacy' },
+  { text: 'About Us', href: '/about-us' },
+  { text: 'Privacy Policy', href: '/privacy-policy' },
   { text: 'Contact Us', href: '/contact' },
-  { text: 'Terms & Conditions', href: '/terms' },
+  { text: 'Terms & Conditions', href: '/terms-conditionss' },
   { text: 'FAQs', href: '/faqs' },
   { text: 'Disclaimer', href: '/disclaimer' },
   { text: 'Blogs', href: '/blogs' },
-  { text: 'Cs Careers', href: '/careers', badge: 'We are Hiring' }
+  { text: 'Cs Careers', href: '/career', badge: 'We are Hiring' }
 ]
 
 const quickLinks = [
