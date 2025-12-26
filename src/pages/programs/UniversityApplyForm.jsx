@@ -28,7 +28,7 @@ import 'swiper/css/pagination';
 
 const UniversityApplyForm = () => {
   return (
-    <div className="max-w-[1230px] mx-auto my-10 bg-white md:rounded-[40px] md:shadow-[0_20px_50px_rgba(0,0,0,0.1)] overflow-hidden md:border border-gray-100  md:p-6">
+    <div className="max-w-[1230px] mx-auto my-10 bg-white md:rounded-[40px] md:shadow-[0_20px_50px_rgba(0,0,0,0.1)] overflow-hidden md:border border-gray-100 md:px-4 md:p-6">
       <div className="flex flex-col lg:flex-row gap-8">
         
         {/* LEFT SECTION: BRANDING & GRAPHIC */}
@@ -150,7 +150,7 @@ const UniversityApplyForm = () => {
               </label>
             </div>
 
-            <button type="submit" className="w-full bg-[#EC1E24] hover:bg-[#c4191e] transition-all text-white font-[600] py-1 md:py-4 rounded-[12px] text-[24px] shadow-lg shadow-red-200 mt-2">
+            <button type="submit" className="w-full bg-[#EC1E24] hover:bg-[#c4191e] transition-all text-white font-[600] py-1 md:py-4 rounded-[12px] text-[20px] md:text-[24px] shadow-lg shadow-red-200 mt-2">
               Apply Now
             </button>
           </form>
