@@ -13,7 +13,7 @@ function UpdatedFee({ fees }) {
             {/* LEFT BIG BOX */}
             <div className="bg-white w-full lg:w-2/3 px-6 sm:px-10 py-6 sm:py-10 rounded-[12px]">
               <p className="text-[14px] font-[400]">Total Tuition Fee:</p>
-              <p className="text-[32px] sm:text-[48px] font-[600]">{fees?.tuition_fees}</p>
+              <p className="text-[20px] sm:text-[48px] font-[600]">{fees?.tuition_fees}</p>
             </div>
 
             {/* RIGHT SMALL BOXES */}

@@ -3,6 +3,7 @@
 import Aos from 'aos';
 import { useState, useEffect } from 'react';
 import Heading from '../../common/Heading';
+import SVGIcon from '@/common/SVGIcon';
 
 export default function FAQSection({ faq }) {
 
@@ -50,28 +51,15 @@ export default function FAQSection({ faq }) {
                             className="w-full flex justify-between items-center px-4 py-4 text-left"
                             onClick={() => toggle(index)}
                         >
-                            <span className="font-poppins font-medium text-[14px] text-[#282529]">
+                            <span className="font-poppins font-[400] text-[14px] md:text-[20px] text-[#282529] max-w-[200px] sm:max-w-[390px] md:max-w-[800px]">
                                 {item.question}
                             </span>
-
-                            <span
+                            <div
                                 className={`w-[30px] h-[30px] flex items-center justify-center border border-[#ED2024] rounded-full transition-all duration-200 text-[#ED2024] ${item.open ? 'rotate-45' : ''}`}
                             >
-                                <svg
-                                    width="24"
-                                    height="24"
-                                    viewBox="0 0 24 24"
-                                    stroke="red"
-                                    className="w-4 h-4"
-                                >
-                                    <path
-                                        d="M12 5V19M5 12H19"
-                                        strokeWidth="2"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                    />
-                                </svg>
-                            </span>
+                                <SVGIcon name="plus" size={18} />
+                            </div>
+
                         </button>
 
                         <div
@@ -79,7 +67,7 @@ export default function FAQSection({ faq }) {
                                 }`}
                         >
                             {item.open && (
-                                <div className="px-4 pb-4 text-[14px] text-[#282529]">
+                                <div className="px-4 pb-4 text-[14px] md:text-[18px] text-[#282529]">
                                     {item.answer}
                                 </div>
                             )}

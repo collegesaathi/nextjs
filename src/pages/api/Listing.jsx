@@ -78,12 +78,9 @@ class Listing extends Component {
   async ContactUniversityGet() {
     return Api.get("/leads/university",);
   }
-  async UniversityCategroyAll() {
-    return Api.get("/all/catergoy/university",);
-  }
 
-  async UniversityAll() {
-    return Api.get("/all/university",);
+  async Listjsx() {
+    return Api.get("/list",);
   }
 
   async CourseAll() {
@@ -127,12 +124,14 @@ class Listing extends Component {
     return Api.get(`/course/university/${id}`)
   }
 
-    async SpecialisationCourseGet(id) {
-    return Api.get(`/specialisation/course/${id}`)
-  }
   async CourseSpecialisationGet(uni, cui) {
     return Api.get(`/course/specialisation/${uni}/${cui}`)
   }
+
+  async UniversitySearch(query) {
+    // This produces: /all/university?search=manipal (CORRECT)
+    return Api.get(`/all/university?search=${query}`);
+}
   render() {
     return (
       <div>

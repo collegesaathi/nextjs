@@ -33,7 +33,7 @@ export default function Index() {
 
           {/* Subheading */}
           <p className="text-center text-[#282529] mt-2 text-[12px] font-poppins font-[400] md:text-base">
-            Discover online courses, universities & specializations.
+   
           </p>
 
           {/* MAIN SEARCH SECTION BOX */}

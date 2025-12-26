@@ -12,7 +12,7 @@ function Skills({ skills }) {
         <div className="mb-8">
           <Heading title={skills?.title} />
           <div
-            className="font-poppins text-[15px] sm:text-[16px] text-[#282529] leading-6 sm:leading-7 mb-4"
+            className="font-poppins text-[14px] sm:text-[16px] text-[#282529] leading-6 sm:leading-7 mb-4"
             dangerouslySetInnerHTML={{ __html: skills?.description || "" }}
           />
         </div>
@@ -25,12 +25,12 @@ function Skills({ skills }) {
           </div>
 
           {/* 2. Grid Rows (2 Columns) */}
-          <div className="grid grid-cols-1 md:grid-cols-2 bg-white">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 bg-white">
             {skillsList.map((skill, index) => (
               <div
                 key={index}
                 className={`
-                  flex items-start p-4 md:p-10 md:px-20
+                  flex items-start p-4 md:p-6 md:px-10
                   border-b border-[#f47c80]
                   ${index % 2 === 0 ? "md:border-r" : ""} 
                   /* The line above adds a right border only to the left column items on desktop */

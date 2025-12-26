@@ -55,7 +55,7 @@ export default function PlacementPartners({placements  ,PlacementPartners}) {
           />
           {/* Description */}
            <div
-                            className="ont-poppins text-[15px] sm:text-[16px] text-[#282529] leading-6 sm:leading-7 mb-4 "
+                            className="ont-poppins text-[14px] sm:text-[16px] text-[#282529] leading-6 sm:leading-7 mb-4 "
                             dangerouslySetInnerHTML={{ __html: placements?.description || "" }}
                         />
 

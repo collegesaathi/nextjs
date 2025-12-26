@@ -97,6 +97,56 @@ margin-left: -5px;
 
 }
 
+/* .ranking ol{
+
+  display: flex;
+    flex-wrap: wrap;
+  align-items: center;
+    gap:8px;
+       
+}
+
+.ranking ol li img{
+  border-radius: 6px;
+  padding-left: 4px;
+  padding-right: 4px;
+line-height: 20px;
+margin-left: -5px;
+
+}
+
+.ranking ol li{
+  border-radius: 6px;
+  padding-left: 4px;
+  padding-right: 4px;
+line-height: 20px;
+margin-left: -5px;
+
+} */
+
+.ranking ol li[data-list="checked"]{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;        /* spacing */
+}
+
+.ranking ol li[data-list="checked"] img{
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  margin-right: 6px;
+}
+
+.ranking ol li[data-list="checked"] .ql-ui{
+  display: none;   /* removes quill checkbox bullet */
+}
+
+
+
+/* Medium screens */
+
+
 .examination p{
   display: flex;
     align-items: start;

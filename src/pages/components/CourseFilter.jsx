@@ -77,44 +77,6 @@ useEffect(() => {
 
 
 
-  // const courseData = {
-  //   "PG Courses": {
-  //     icon: IoSchoolOutline,
-  //     subItems: ["MBA", "M.Com", "MCA", "M.Sc"],
-  //     specializations: {
-  //       "MBA": ["Finance", "Marketing", "Human Resources", "Operations", "International Business"],
-  //       "M.Com": ["Advanced Accounting", "Financial Managment", "Taxation", "Auditing"],
-  //     }
-  //   },
-
-  //   "UG Courses": {
-  //     icon: IoSchoolOutline,
-  //     subItems: ["BBA", "B.Com", "BCA", "BAJMC"],
-  //     specializations: {
-  //       "BBA": ["Financial Managment", "Banking And Insurance", "Digital Marketing", "Enterpreneurship", "Hospital Mangment"],
-  //       "B.Com": ["Accounting & Finance", "Banking & Insurance", "Taxation", "Corporate Accounting", "Business Analytics"]
-  //     }
-  //   },
-
-  //   "Executive Programms": {
-  //     icon: IoSchoolOutline,
-  //     subItems: ["Diploma", "Certification"],
-  //     specializations: {
-  //       "Diploma": ["Web Development", "Graphic Design"],
-  //       "Certification": ["Python", "JavaScript", "Data Science"]
-  //     }
-  //   },
-
-  //   "Certifications": {
-  //     icon: IoSchoolOutline,
-  //     subItems: ["Diploma", "Certification"],
-  //     specializations: {
-  //       "Diploma": ["Web Development", "Graphic Design"],
-  //       "Certification": ["Python", "JavaScript", "Data Science"]
-  //     }
-  //   }
-  // };
-
 
   const filters = useMemo(() => {
     return Object.keys(courseData).map((name) => ({

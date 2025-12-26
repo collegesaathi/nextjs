@@ -28,13 +28,13 @@ export default function Hero({data,approvalsdata , exisitng}) {
 
               
           {/* STAR + LOGOS */}
-          <div className="flex items-center gap-4 pt-6">
+          <div className="flex items-center gap-2 md:gap-4 pt-6 max-w-[70px]">
           
-{exisitng ==="university" && (  <Image src="/images/university/hero/reviews.png" alt="" width={356} height={150} className="sm:w-[126px]" />) }
+{exisitng ==="university" && (  <Image src="/images/university/hero/reviews.png" alt="" width={356} height={150} />) }
 
           
                {approvalsdata && approvalsdata?.slice(0,3).map((item) => (
-            <img src={item?.image}  alt={item.title} width={356} height={150} className="w-[63px]" />
+            <img src={item?.image}  alt={item.title} width={356} height={150}  />
               ))}
           </div>
 

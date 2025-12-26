@@ -6,19 +6,24 @@ import { toast } from "react-hot-toast";
 
 function EnquiryBox() {
   return (
-    <div className="lg:w-full mx-auto mt-8 rounded-[18px] bg-gradient-to-br from-[#fef0f0] to-[#fbdbdc] p-4 sm:p-6 lg:p-8 grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
+    <div className="max-w-[1230px] px-2 md:px-6 py-6   ">
+    <div className="lg:w-full mt-8 rounded-[18px] min-h-[400px] bg-gradient-to-br from-[#fef0f0] to-[#fbdbdc]  grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
 
       {/* Left Image */}
       <div className="hidden md:flex justify-center">
         <img
-          src="/images/university/course/3.png"
+          src="/images/formimage.png"
           alt="course form"
-          className="w-[80%] h-auto object-contain"
+          className="w-full h-auto object-contain"
         />
       </div>
 
       {/* Form Box */}
-      <FormBox />
+      <div className="w-full ">
+            <FormBox />
+      </div>
+  
+    </div>
     </div>
   );
 }
@@ -81,7 +86,7 @@ function FormBox() {
   };
 
   return (
-    <div className="w-full flex justify-center md:justify-start">
+    <div className="w-full p-4 flex justify-center md:justify-start">
       <div className="w-full max-w-sm">
 
         {/* Logos */}

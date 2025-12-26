@@ -26,6 +26,8 @@ import { useEffect, useState } from "react";
 import EnquiryBox from "@/commons/list/EnquiryForm";
 
 function Index({ data }) {
+
+    console.log("sidebar", data)
     const uniId = data?.university.id;
     const [loading, setLoading] = useState(false);
     const [courseData, setCourseData] = useState([])
@@ -58,7 +60,7 @@ function Index({ data }) {
                     <div
                         className="w-full lg:w-3/12 bg-[#f9fafb] mx-2 lg:mx-0 lg:shadow-[4px_4px_4px_rgba(0,0,0,0.06)] h-full overflow-y-auto justify-end flex lg:pr-4 relative animate-slide-fade-right animate-delay-200"
                     >
-                        <FrontendSidebar />
+                        <FrontendSidebar data={data?.university} courseData={courseData?.data} />
                     </div>
                     <div className="w-full lg:w-9/12 h-full lg:h-[100vh] overflow-y-auto " style={{ scrollbarWidth: "none", }}>
                         {data?.university?.about && (<Aboutdetails about={data?.university?.about} />)}
@@ -68,7 +70,7 @@ function Index({ data }) {
                         {data?.university?.approvals && (<Approvals approvals={data?.university?.approvals} approvalsdata={data?.approvalsData} />)}
                         {data?.university?.rankings && (<Ranking rankings={data?.university?.rankings} />)}
                         <CoursesSwiper courseData={courseData} name={"university"} title={`${data?.university?.name} - Course`} />
-                    <EnquiryBox/>
+                        <EnquiryBox />
                         {data?.university?.advantages && (<Advantages advantages={data?.university?.advantages} />)}
                         {data?.university?.facts && (<Facts facts={data?.university?.facts} />)}
                         {data?.university?.certificates && (<SampleCertificate certificates={data?.university?.certificates} />)}

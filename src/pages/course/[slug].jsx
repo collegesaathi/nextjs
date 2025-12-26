@@ -28,6 +28,8 @@ import CoursesSwiper from "@/commons/list/CoursesSwiper";
 import CarreerOppurtunity from "@/commons/list/CarreerOppurtunity";
 import { useEffect, useState } from "react";
 import Listing from "../api/Listing";
+import EnquiryForm from "../common/EnquiryForm";
+import EnquiryBox from "@/commons/list/EnquiryForm";
 function Index({ data }) {
         const uniId = data?.CourseData?.id;
         const [loading, setLoading] = useState(false);
@@ -73,6 +75,7 @@ function Index({ data }) {
                           <CoursesSwiper courseData={courseData} name={"course"} title={`${data?.CourseData?.name} - Specialisation`} />
 
                         <Eligibility eligibilitycriteria={data?.CourseData?.eligibilitycriteria} />
+                        <EnquiryBox />
 
 
                         <Curriculum curriculum={data?.CourseData?.curriculum} />

@@ -22,7 +22,7 @@ function Eligibility({eligibilitycriteria}) {
               {/* Indian Students Tab */}
               <button
                 onClick={() => setActiveTab("indian")}
-                className={`w-1/2 py-4 rounded-l-[17px] text-center transition-all
+                className={`w-1/2 py-4 rounded-br-[17px] rounded-tl-[17px] text-center transition-all
                 ${activeTab === "indian" 
                   ? "bg-[#FEE4E4] text-black" 
                   : "bg-white text-[#666]"}
@@ -34,7 +34,7 @@ function Eligibility({eligibilitycriteria}) {
               {/* Foreign Students Tab */}
               <button
                 onClick={() => setActiveTab("foreign")}
-                className={`w-1/2 py-4 rounded-r-[17px] text-center transition-all
+                className={`w-1/2 py-4 rounded-bl-[17px] rounded-tr-[17px] text-center transition-all
                 ${activeTab === "foreign" 
                   ? "bg-[#FEE4E4] text-black" 
                   : "bg-white text-[#666]"}
@@ -55,11 +55,11 @@ function Eligibility({eligibilitycriteria}) {
                     {/* CARD 1 */}
                     
                     { eligibilitycriteria?.IndianCriteria?.map((item,index)=>(
-                          <div className=" p-2 md:p-6  md:border-r border-[#FCF0EE] space-y-2 md:space-y-8">
+                          <div className=" p-2 md:p-6 border-b md:border-b-0 md:border-r last:border-r-0 border-[#FCF0EE] space-y-2 md:space-y-8">
                       <div className="bg-[#FCF0EE] h-12 w-12 rounded-full flex justify-center items-center">
                         <img src={item.image} width={30} height={40} />
                       </div>
-                      <h3 className="font-semibold text-[18px]">{item.title}</h3>
+                      <h3 className="font-semibold text-[16px] md:text-[18px]">{item.title}</h3>
                       {/* <p className="text-[14px] leading-6" dangerouslySetInnerHTML={{ __html: item?.description || "" }}> */}
                             <div className="text-[14px] leading-6"  dangerouslySetInnerHTML={{ __html: item?.description || "" }}>
                 
@@ -79,7 +79,7 @@ function Eligibility({eligibilitycriteria}) {
 
                     {/* CARD 1 */}
                      {eligibilitycriteria?.NRICriteria?.map((item,index)=>(
-                          <div className=" p-2 md:p-6  md:border-r border-[#FCF0EE] space-y-2 md:space-y-8">
+                          <div className=" p-2 md:p-6  border-b md:border-b-0 md:border-r last:border-r-0 border-[#FCF0EE] space-y-2 md:space-y-8">
                       <div className="bg-[#FCF0EE] h-12 w-12 rounded-full flex justify-center items-center">
                         <img src={item.image} width={30} height={40} />
                       </div>
@@ -99,7 +99,7 @@ function Eligibility({eligibilitycriteria}) {
             </div>
 
           </div>
-          <EnquiryBox />
+    
         </div>
       </section>
     </>
