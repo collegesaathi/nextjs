@@ -1,52 +1,91 @@
 import React from 'react';
 import { CheckCircle2 } from 'lucide-react';
 
+
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination, Autoplay } from 'swiper/modules';
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/pagination';
+
+
+ const slideData = [
+    {
+      title: "Find your perfect online course with CS Clickpick",
+      feature: "Compare your preferred universities at one click",
+    },
+    {
+      title: "Get expert career counseling for free",
+      feature: "Top rated mentors from global industries",
+    },
+    {
+      title: "Scholarships up to 50% for top courses",
+      feature: "Affordable education at your fingertips",
+    }
+  ];
+
+
 const UniversityApplyForm = () => {
   return (
-    <div className="max-w-[1230px] mx-auto my-10 bg-white rounded-[40px] shadow-[0_20px_50px_rgba(0,0,0,0.1)] overflow-hidden border border-gray-100 p-4 md:p-6">
+    <div className="max-w-[1230px] mx-auto my-10 bg-white md:rounded-[40px] md:shadow-[0_20px_50px_rgba(0,0,0,0.1)] overflow-hidden md:border border-gray-100  md:p-6">
       <div className="flex flex-col lg:flex-row gap-8">
         
         {/* LEFT SECTION: BRANDING & GRAPHIC */}
-        <div className="w-full lg:w-[45%] bg-[#EC1E24] rounded-[30px] p-6 relative flex flex-col items-center min-h-[450px]">
+      <div className="hidden lg:flex w-full lg:w-[45%] bg-[url('/images/programs/formbg.png')] bg-no-repeat bg-cover rounded-[30px] py-6 relative flex-col items-center min-h-[550px]">
           
-          {/* Main Decorative Frame */}
-          <div className="w-full h-[300px] bg-white rounded-[25px] mt-4 relative">
-            
-            {/* Floating Callout Top Right */}
-            <div className="absolute -top-2 -right-4 bg-white shadow-lg rounded-xl p-3 max-w-[140px] border border-gray-100 z-10 animate-bounce-slow">
-              <div className="absolute -left-2 top-4 w-0 h-0 border-t-[8px] border-t-transparent border-r-[10px] border-r-white border-b-[8px] border-b-transparent"></div>
-              <p className="text-[10px] font-semibold text-gray-700 leading-tight">
-                Find your perfect online course with CS Clickpick
-              </p>
-              <div className="absolute -top-1 -left-1 w-2 h-2 bg-[#EC1E24] rounded-full"></div>
-            </div>
+          <div className="w-full px-12 pt-10 form">
+            <Swiper
+              modules={[Pagination, Autoplay]}
+              spaceBetween={30}
+              slidesPerView={1}
+              loop={true}
+              autoplay={{ delay: 4000 }}
+              pagination={{
+                clickable: true,
+                el: '.custom-pagination',
+              }}
+              className="mySwiper "
+            >
+              {slideData.map((slide, index) => (
+                <SwiperSlide key={index} className="!flex justify-center">
+                  <div className="w-[330px] h-[346px] bg-[url('/images/programs/enquirybg.png')] bg-no-repeat bg-cover rounded-[25px] relative">
+                    
+                    {/* Floating Callout */}
+                    <div className="absolute top-8 -right-8 bg-white shadow-lg rounded-[7px] px-2 py-3 max-w-[167px] border border-gray-100 z-10 animate-bounce-slow">
+                      <div className="absolute -left-2 top-4 w-0 h-0 border-t-[8px] border-t-transparent border-r-[10px] border-r-white border-b-[8px] border-b-transparent"></div>
+                      <p className="text-[12px] text-[#282529] leading-[16px]">
+                        {slide.title}
+                      </p>
+                      <div className="absolute -top-2 -left-1 w-5 h-5 bg-[#E34B4F] rounded-full"></div>
+                    </div>
 
-            {/* Floating Card Left Center */}
-            <div className="absolute top-1/2 -left-6 -translate-y-1/2 bg-white shadow-2xl rounded-2xl p-4 w-[140px] flex flex-col items-center text-center gap-2 border border-gray-50 z-20">
-              <div className="w-10 h-10 bg-red-50 rounded-lg flex items-center justify-center">
-                <img src="/images/icons/mortarboard-red.svg" alt="icon" className="w-6 h-6" />
-              </div>
-              <p className="text-[10px] font-bold text-gray-800 leading-tight">
-                Compare your preferred universities at one click
-              </p>
-            </div>
-          </div>
+                    {/* Floating Card */}
+                    <div className="absolute top-2/3 -left-12 -translate-y-1/2 bg-white shadow-2xl rounded-[21px] px-2 py-4 w-[160px] flex flex-col items-center text-center border border-gray-50 z-20">
+                      <div className="rounded-lg flex items-center justify-center">
+                        <img src="/images/programs/scholarhat.svg" alt="icon" className="w-[62px] h-[62px]" />
+                      </div>
+                      <p className="text-[12px] text-[#282529] leading-[16px]">
+                        {slide.feature}
+                      </p>
+                    </div>
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
 
-          {/* Pagination dots */}
-          <div className="flex gap-1 mt-6">
-            <div className="w-4 h-1 bg-white rounded-full"></div>
-            <div className="w-2 h-1 bg-white/50 rounded-full"></div>
-            <div className="w-2 h-1 bg-white/50 rounded-full"></div>
+            {/* Custom Pagination Container */}
+            <div className="custom-pagination flex gap-1 mt-10 justify-center "></div>
           </div>
 
           {/* Bottom Logos Section */}
-          <div className="mt-auto w-full text-center">
-            <p className="text-white/80 text-[10px] uppercase tracking-widest font-bold mb-3">Top Universities</p>
-            <div className="flex justify-between items-center px-2 opacity-90 grayscale brightness-200 overflow-hidden">
-                <img src="/images/logos/manipal-logo-white.png" className="h-6 object-contain" alt="Manipal" />
-                <img src="/images/logos/manipal-logo-white.png" className="h-6 object-contain" alt="Manipal" />
-                <img src="/images/logos/manipal-logo-white.png" className="h-6 object-contain" alt="Manipal" />
-                <img src="/images/logos/manipal-logo-white.png" className="h-6 object-contain" alt="Manipal" />
+          <div className="mt-auto w-full text-center ">
+            <p className="text-white text-[14px] uppercase tracking-widest font-[400] mb-3 mt-4 ">Top Universities</p>
+            <div className="flex gap-2 items-center px-4  grayscale brightness-200 overflow-hidden mb-2">
+              <img src="/images/programs/formlogo.png" className=" object-cover" alt="Logo" />
+              <img src="/images/programs/formlogo1.png" className=" object-cover" alt="Logo" />
+              <img src="/images/programs/formlogo2.png" className=" object-cover" alt="Logo" />
+              <img src="/images/programs/formlogo3.png" className=" object-cover" alt="Logo" />
             </div>
           </div>
         </div>
@@ -106,12 +145,12 @@ const UniversityApplyForm = () => {
             {/* Checkbox authorization */}
             <div className="flex items-start gap-3 mt-4">
               <input type="checkbox" className="mt-1 accent-[#EC1E24]" id="auth" defaultChecked />
-              <label htmlFor="auth" className="text-[11px] leading-relaxed text-gray-600 font-medium">
-                I hereby authorize you to send notifications via <span className="font-bold text-gray-800">SMS/RCS Messages, Promotional / Informational Messages.</span>
+              <label htmlFor="auth" className="text-[14px] leading-relaxed text-gray-600 font-400">
+                I here by authorize you to send notifications via <span className="font-[600] text-gray-800">SMS/RCS Messages, Promotional / Informational Messages.</span>
               </label>
             </div>
 
-            <button type="submit" className="w-full bg-[#EC1E24] hover:bg-[#c4191e] transition-all text-white font-extrabold py-4 rounded-xl text-xl shadow-lg shadow-red-200 mt-2">
+            <button type="submit" className="w-full bg-[#EC1E24] hover:bg-[#c4191e] transition-all text-white font-[600] py-1 md:py-4 rounded-[12px] text-[24px] shadow-lg shadow-red-200 mt-2">
               Apply Now
             </button>
           </form>

@@ -194,3 +194,19 @@ margin-left: -5px;
 .animate-float {
   animation: floatUpDown 4s ease-in-out infinite;
 }
+
+
+
+        .form .custom-pagination .swiper-pagination-bullet {
+          width: 8px;
+          height: 4px;
+          background-color: white; 
+          opacity: 1;
+          border-radius: 99px;
+          transition: all 0.3s ease;
+        }
+        .form .custom-pagination .swiper-pagination-bullet-active {
+          width: 16px;
+          background-color: white;
+        }
+   

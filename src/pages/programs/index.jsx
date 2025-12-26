@@ -5,6 +5,10 @@ import ContactSection from "../home/ContactSection";
 import ProgramHero from "./ProgramHero";
 import StatsCounter from "./StatsCounter";
 import UniversityApplyForm from "./UniversityApplyForm";
+import AudioPlayer from "./AudioPlayer";
+import InfoSection from "./InfoSection";
+import AcademicValueSection from "./AcademicValueSection";
+import WhyPursue from "./WhyPursue";
 
 export default function TermsConditions() {
     return (
@@ -21,6 +25,10 @@ export default function TermsConditions() {
                 <ProgramHero />
                 <StatsCounter />
                 <UniversityApplyForm />
+                <AudioPlayer />
+                <InfoSection />
+                <AcademicValueSection />
+                <WhyPursue />
 
       
             
