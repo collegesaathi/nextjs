@@ -5,13 +5,11 @@ import { FreeMode, Mousewheel, Keyboard } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/free-mode";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-
 export default function FrontendSidebar({ data, courseData }) {
   const [activeItem, setActiveItem] = useState(0);
   const mobileSwiperRef = useRef(null);
   const [canSlidePrev, setCanSlidePrev] = useState(false);
   const [canSlideNext, setCanSlideNext] = useState(true);
-
   // Define all possible items and which data key they rely on
   const fullMenuConfig = [
     { id: "about-section", label: "About", dataKey: "about", icon: "/images/university/sidebar/about.svg", activeIcon: "/images/university/sidebar/about.svg" },
@@ -38,9 +36,10 @@ export default function FrontendSidebar({ data, courseData }) {
   const menuItems = fullMenuConfig.filter(item => {
     if (item.isStatic) return true;
     if (item.isCourse) return courseData && courseData.length > 0;
-    return data && data[item.dataKey] !== null && data[item.dataKey] !== undefined;
+    return data && data[item.dataKey.title] !== null && data[item.dataKey.title] !== undefined;
   });
 
+  console.log("menuItems" ,menuItems)
   const scrollToSection = (sectionId) => {
     const target = document.getElementById(sectionId);
     if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });

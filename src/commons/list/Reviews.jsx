@@ -10,7 +10,7 @@ import Image from "next/image";
 import BackNext from "@/pages/components/BackNext";
 
 
-export default function Reviews() {
+export default function Reviews({ name }) {
     const [activeTab, setActiveTab] = useState("average");
     const [desktopProgress, setDesktopProgress] = useState(0);
 
@@ -20,14 +20,14 @@ export default function Reviews() {
     const valueSwiperRef = useRef(null);
 
     const swiperRef = useRef(null);
-  
+
 
     const [progress, setProgress] = useState(0);
     const [isBeginning, setIsBeginning] = useState(true);
     const [isEnd, setIsEnd] = useState(false);
 
 
-    
+
 
     useEffect(() => {
         AOS.init({ once: true, easing: "ease-out-quad", offset: 120 });
@@ -122,17 +122,17 @@ export default function Reviews() {
         <section className="px-2 md:px-6 py-6 block" >
             <div className="max-w-[1230px]">
 
-             
 
-<BackNext
-                  
-                  title="NMIMS CDOE Reviews"
-               
-                  progress={progress}
-                  isBeginning={isBeginning}
-                  isEnd={isEnd}
-                  onPrev={navigatePrev}
-            onNext={navigateNext}
+
+                <BackNext
+
+                    title={`${name} Reviews`}
+
+                    progress={progress}
+                    isBeginning={isBeginning}
+                    isEnd={isEnd}
+                    onPrev={navigatePrev}
+                    onNext={navigateNext}
                 />
 
 
@@ -151,42 +151,42 @@ export default function Reviews() {
                                 <span>{r.percentage}%</span>
                             </div>
                         ))}
-                         <div className="mt-[20px] space-y-2">
-                         <p className="font-poppins text-[17px] font-[600]">Write Your Review</p>
-                         <p className="text-[10px] w-[170px]">Share your feedback and help other students</p>
-                         <button className="w-[129px] h-[21px] rounded-[6px] bg-[#ec1e24] font-poppins text-[12px] leading-[18px] text-white flex items-center justify-center">
-                                            Add to Compare
-                                        </button>
-                         </div>
-                  
+                        <div className="mt-[20px] space-y-2">
+                            <p className="font-poppins text-[17px] font-[600]">Write Your Review</p>
+                            <p className="text-[10px] w-[170px]">Share your feedback and help other students</p>
+                            <button className="w-[129px] h-[21px] rounded-[6px] bg-[#ec1e24] font-poppins text-[12px] leading-[18px] text-white flex items-center justify-center">
+                                Add to Compare
+                            </button>
+                        </div>
+
                     </div>
 
 
 
-                     <div className=" justify-center flex flex-col gap-4 h-full"  id="reviews-section">
+                    <div className=" justify-center flex flex-col gap-4 h-full" id="reviews-section">
 
-                     <div className="flex items-center justify-center gap-4  rounded-[8px] py-2 bg-[#fcf0ee] h-1/3">
-                <div className=" w-full h-auto  flex flex-col items-center justify-center py-6">
-                  <h3 className="font-poppins font-semibold text-[30px] sm:text-[55px] text-[#282529]">4.5</h3>
-                  <StarRating rating="4.5" />
-                  <p className="font-poppins text-[12px] text-[#282529]">
-                    Based on 20 Reviews
-                  </p>
-                </div>
-      
-              </div>
-                    <div className="border p-5 rounded-lg h-2/3">
-                        <h3 className="text-xl font-semibold mb-4">Peripheral Ratings</h3>
-                        {peripheralRatings.map((cat, i) => (
-                            <div key={i} className="flex justify-between text-sm ">
-                                <span>{cat.name}</span>
-                                <div className=" flex justify-center gap-2 items-center">
-                                <span className="text-[17px] font-[600]">{cat.rating}</span>
-                                <StarRating rating={cat.rating} />
-                                </div>
+                        <div className="flex items-center justify-center gap-4  rounded-[8px] py-2 bg-[#fcf0ee] h-1/3">
+                            <div className=" w-full h-auto  flex flex-col items-center justify-center py-6">
+                                <h3 className="font-poppins font-semibold text-[30px] sm:text-[55px] text-[#282529]">4.5</h3>
+                                <StarRating rating="4.5" />
+                                <p className="font-poppins text-[12px] text-[#282529]">
+                                    Based on 20 Reviews
+                                </p>
                             </div>
-                        ))}
-                    </div>
+
+                        </div>
+                        <div className="border p-5 rounded-lg h-2/3">
+                            <h3 className="text-xl font-semibold mb-4">Peripheral Ratings</h3>
+                            {peripheralRatings.map((cat, i) => (
+                                <div key={i} className="flex justify-between text-sm ">
+                                    <span>{cat.name}</span>
+                                    <div className=" flex justify-center gap-2 items-center">
+                                        <span className="text-[17px] font-[600]">{cat.rating}</span>
+                                        <StarRating rating={cat.rating} />
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
 
                     </div>
                 </div>
@@ -236,13 +236,13 @@ export default function Reviews() {
 
                                         <div className="flex gap-1">
 
-                                            <Image src="/images/university/reviewprofile.svg" alt="profile" width={50} height={50}/>
+                                            <Image src="/images/university/reviewprofile.svg" alt="profile" width={50} height={50} />
 
                                             <div>
-                                            <p>{review.type}</p>
-                                            <StarRating rating= {review?.rating}/>
+                                                <p>{review.type}</p>
+                                                <StarRating rating={review?.rating} />
                                             </div>
-                                          
+
                                         </div>
                                     </div>
                                 </SwiperSlide>

@@ -18,6 +18,7 @@ export default function Universities() {
             const main = new Listing();
             const response = await main.UniversityAll();
             const universities = response?.data?.data?.universities || [];
+            console.log("universities" ,universities)
             setcompareUniversities(universities);
         } catch (error) {
             console.log("error", error);

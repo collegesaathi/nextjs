@@ -3,6 +3,8 @@ import Heading from "@/common/Heading";
 
 export default function SampleCertificate({ certificates }) {
   return (
+    <>
+    {certificates?.title && (
     <section className="w-full px-2 sm:px-6 py-8 mx-auto" id="certificate-section">
       <div className="max-w-[1230px] ">
         
@@ -57,5 +59,7 @@ export default function SampleCertificate({ certificates }) {
         </div>
       </div>
     </section>
+    )}
+    </>
   );
 }

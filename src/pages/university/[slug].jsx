@@ -26,11 +26,11 @@ import { useEffect, useState } from "react";
 import EnquiryBox from "@/commons/list/EnquiryForm";
 
 function Index({ data }) {
-
-    console.log("sidebar", data)
+    console.log("data", data)
     const uniId = data?.university.id;
     const [loading, setLoading] = useState(false);
     const [courseData, setCourseData] = useState([])
+    console.log("courseData" ,courseData)
     const fetchCourse = async (uniId) => {
         setLoading(true)
         try {
@@ -64,32 +64,34 @@ function Index({ data }) {
                     </div>
                     <div className="w-full lg:w-9/12 h-full lg:h-[100vh] overflow-y-auto " style={{ scrollbarWidth: "none", }}>
                         {data?.university?.about && (<Aboutdetails about={data?.university?.about} />)}
-                        {courseData && (
-                            <CourseFees courseData={courseData?.data} />
-                        )}
+                       {courseData?.data?.length > 0 && (
+  <CourseFees courseData={courseData?.data} />
+)}
+
                         {data?.university?.approvals && (<Approvals approvals={data?.university?.approvals} approvalsdata={data?.approvalsData} />)}
                         {data?.university?.rankings && (<Ranking rankings={data?.university?.rankings} />)}
+                                 {courseData?.data?.length > 0 && (
                         <CoursesSwiper courseData={courseData} name={"university"} title={`${data?.university?.name} - Course`} />
+)}
                         <EnquiryBox />
                         {data?.university?.advantages && (<Advantages advantages={data?.university?.advantages} />)}
                         {data?.university?.facts && (<Facts facts={data?.university?.facts} />)}
                         {data?.university?.certificates && (<SampleCertificate certificates={data?.university?.certificates} />)}
                         {data?.university?.examPatterns && (<ExaminationPattern examPatterns={data?.university?.examPatterns} />)}
-                        {data?.university?.financialAid && (<Financial financialAid={data?.university?.financialAid} />)}
-                        {data?.university?.universityCampuses && (<UniversityCampusCarousel universityCampuses={data?.university?.universityCampuses} />)}
-                        {data?.university?.partners && data?.placementPartners && (
+                        {data?.university?.financialAid && (<Financial financialAid={data?.university?.financialAid} name={data?.university?.name} />)}
+                        {data?.university?.universityCampuses && (<UniversityCampusCarousel universityCampuses={data?.university?.universityCampuses}  name={data?.university?.name}/>)}
+                        {data?.university?.partners  && (
                             <PlacementPartners
-                                placements={data?.university?.partners}
+                                partners={data?.university?.partners}
                                 PlacementPartners={data?.placementPartners}
                             />
                         )}
-                        {data?.university?.services && (<CareerServices services={data?.university?.services} />)}
-                        {data?.university?.admissionProcess && (<StepsSection admissionProcess={data?.university?.admissionProcess} />)}
-                        {data?.university?.faq && (<FAQSection faq={data?.university?.faq} />)}
-
+                        {data?.university?.services?.length >1  && (<CareerServices services={data?.university?.services} />)}
+                        {data?.university?.admissionProcess?.length >1  && (<StepsSection admissionProcess={data?.university?.admissionProcess} />)}
+                        {data?.university?.faq?.length>1  && (<FAQSection faq={data?.university?.faq} />)}
                         <SimilarUniversities />
                         <Universities />
-                        <Reviews />
+                        <Reviews name={data?.university?.name} />
                     </div>
                 </div>
             </div>

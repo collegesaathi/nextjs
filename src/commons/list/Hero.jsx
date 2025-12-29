@@ -13,8 +13,8 @@ export default function Hero({data,approvalsdata , exisitng}) {
           <h1 className="font-poppins font-[700] text-[28px] sm:text-[36px] md:text-[48px] leading-[50px] text-[#282529]">
           {data?.name || ""}
           </h1>
-
           {/* BADGES */}
+          {data?.description?.length === 1 && (
           <div className="flex flex-wrap gap-3 sm:gap-4 pt-4">
             {data?.description?.map((item, index) => (
               <div
@@ -25,14 +25,12 @@ export default function Hero({data,approvalsdata , exisitng}) {
               </div>
             ))}
           </div>
+          )}
 
               
           {/* STAR + LOGOS */}
           <div className="flex items-center gap-2 md:gap-4 pt-6 max-w-[70px]">
-          
 {exisitng ==="university" && (  <Image src="/images/university/hero/reviews.png" alt="" width={356} height={150} />) }
-
-          
                {approvalsdata && approvalsdata?.slice(0,3).map((item) => (
             <img src={item?.image}  alt={item.title} width={356} height={150}  />
               ))}
@@ -73,10 +71,11 @@ export default function Hero({data,approvalsdata , exisitng}) {
           </div>
         </div>
         {/* RIGHT IMAGE BLOCK */}
+        {data?.cover_image != "null" &&(
         <div className="w-full lg:w-[648px] relative pt-3">
           <img
             src={data?.cover_image}
-            alt=""
+            alt={data?.cover_image_alt || data?.name || "university Images"}
             width={648}
             height={400}
             className="rounded-[8px] w-full h-auto"
@@ -96,6 +95,7 @@ export default function Hero({data,approvalsdata , exisitng}) {
             </button>
           </div> 
         </div>
+        ) }
       </div>
     </div>
   );

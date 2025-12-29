@@ -6,6 +6,7 @@ export default function ExaminationPattern({ examPatterns=[] }) {
 
   return (
     <>
+    {examPatterns?.title &&(
       <div className=" px-2 md:px-6 py-6  bg-[#f7f6f6]">
         <section className="w-full py-6 mx-auto" id="examination-section">
           <div className=" max-w-[1230px]">
@@ -15,6 +16,8 @@ export default function ExaminationPattern({ examPatterns=[] }) {
                 className="font-poppins text-[14px] sm:text-[16px] text-[#282529] leading-6 sm:leading-7 mb-4 [&_*]:!bg-transparent"
                 dangerouslySetInnerHTML={{ __html: examPatterns?.description || "" }}
               />
+              {examPattern?.length > 1 &&  (
+              <>
               {examPattern?.map((item, index) => (
                 <div
                   key={index}
@@ -49,10 +52,10 @@ export default function ExaminationPattern({ examPatterns=[] }) {
                   </div>
                 </div>
               ))}
-
+              </>
+              )}
             </div>
             {/* ---------------- Footer Note ---------------- */}
-
             {examPatterns?.bottompatterndesc  &&(   <div className="flex items-start gap-3 px-2 md:px-4 pt-10">
               <div
                 className="font-poppins text-[14px] sm:text-[16px] text-[#282529] leading-6 sm:leading-7 mb-4 data [&_*]:!bg-transparent examination"
@@ -63,6 +66,7 @@ export default function ExaminationPattern({ examPatterns=[] }) {
           </div>
         </section>
       </div>
+    )}
 
     </>
   );

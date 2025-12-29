@@ -4,7 +4,7 @@ import Layout from "../components/Layout";
 import ContactSection from "../home/ContactSection";
 
 export default function TermsConditions() {
-    return (
+    return (    
         <Layout>
             <div className="mx-auto container sm:container md:container xl:max-w-[1230px]   px-2 md:px-4 py-4 md:mt-20 lg:mt-20 ">
                 {/* Breadcrumb */}

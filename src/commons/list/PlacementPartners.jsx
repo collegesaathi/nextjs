@@ -15,7 +15,7 @@ const partners = [
   { name: "Lodestar UM", logo: "/images/university/showcase/1.png" },
 ];
 
-export default function PlacementPartners({placements  ,PlacementPartners}) {
+export default function PlacementPartners({ partners, PlacementPartners }) {
   const swiperRef = useRef(null);
 
   const [progress, setProgress] = useState(0);
@@ -41,72 +41,76 @@ export default function PlacementPartners({placements  ,PlacementPartners}) {
   const navigateNext = () => swiperRef.current?.slideNext();
 
   return (
-
-    <div className="px-2 md:px-6 py-6  bg-white">
-      <section className="w-full mx-auto" id="placement-partners-section">
-        <div className="max-w-[1230px]">
-          <BackNext
-            title={placements?.title}
-            progress={progress}
-            isBeginning={isBeginning}
-            isEnd={isEnd}
-            onPrev={navigatePrev}
-            onNext={navigateNext}
-          />
-          {/* Description */}
-           <div
-                            className="ont-poppins text-[14px] sm:text-[16px] text-[#282529] leading-6 sm:leading-7 mb-4 "
-                            dangerouslySetInnerHTML={{ __html: placements?.description || "" }}
-                        />
-
-        {/* Swiper */}
-        <Swiper
-          slidesPerView={1.3}
-          spaceBetween={15}
-          onSwiper={(swiper) => {
-            swiperRef.current = swiper;
-            updateProgress(swiper);
-          }}
-          onSlideChange={updateProgress}
-          breakpoints={{
-            480: { slidesPerView: 1, spaceBetween: 18 },
-            640: { slidesPerView: 2, spaceBetween: 20 },
-            768: { slidesPerView: 2, spaceBetween: 22 },
-            1024: { slidesPerView: 3, spaceBetween: 28 },
-            1280: { slidesPerView: 4, spaceBetween: 30 },
-          }}
-          style={{ scrollbarWidth: "none" }}
-          className="py-4"
-        >
-          {PlacementPartners?.map((partner, index) => (
-            <SwiperSlide key={index} className="py-4">
+    <>
+      {PlacementPartners?.length > 1 && (
+        <div className="px-2 md:px-6 py-6  bg-white">
+          <section className="w-full mx-auto" id="placement-partners-section">
+            <div className="max-w-[1230px]">
+              <BackNext
+                title={partners?.title}
+                progress={progress}
+                isBeginning={isBeginning}
+                isEnd={isEnd}
+                onPrev={navigatePrev} 
+                onNext={navigateNext}
+              />
+              {/* Description */}
               <div
-                className="w-full h-[170px] sm:h-[180px] lg:h-[202px] 
+                className="ont-poppins text-[14px] sm:text-[16px] text-[#282529] leading-6 sm:leading-7 mb-4 "
+                dangerouslySetInnerHTML={{ __html: partners?.description || "" }}
+              />
+
+              {/* Swiper */}
+              <Swiper
+                slidesPerView={1.3}
+                spaceBetween={15}
+                onSwiper={(swiper) => {
+                  swiperRef.current = swiper;
+                  updateProgress(swiper);
+                }}
+                onSlideChange={updateProgress}
+                breakpoints={{
+                  480: { slidesPerView: 1, spaceBetween: 18 },
+                  640: { slidesPerView: 2, spaceBetween: 20 },
+                  768: { slidesPerView: 2, spaceBetween: 22 },
+                  1024: { slidesPerView: 3, spaceBetween: 28 },
+                  1280: { slidesPerView: 4, spaceBetween: 30 },
+                }}
+                style={{ scrollbarWidth: "none" }}
+                className="py-4"
+              >
+                {PlacementPartners?.map((partner, index) => (
+                  <SwiperSlide key={index} className="py-4">
+                    <div
+                      className="w-full h-[170px] sm:h-[180px] lg:h-[202px] 
                 shadow-md bg-[#0000000D] p-4 rounded-[20px]
                 flex flex-col
                 items-center  justify-between
                 cursor-pointer transition-all duration-300 "
-                >
-                  <div className="bg-white w-[100px] h-[100px] sm:w-[110px] sm:h-[110px] lg:w-full lg:h-[110px] rounded-[15px] flex items-center justify-center">
-                    <img
-                      src={partner.image}
-                      alt={partner.title}
-                      width={80}
-                      height={80}
-                      className="object-contain"
-                    />
-                  </div>
+                    >
+                      <div className="bg-white w-[100px] h-[100px] sm:w-[110px] sm:h-[110px] lg:w-full lg:h-[110px] rounded-[15px] flex items-center justify-center">
+                        <img
+                          src={partner.image}
+                          alt={partner.title}
+                          width={80}
+                          height={80}
+                          className="object-contain"
+                        />
+                      </div>
 
-                  <p className="mt-3 text-[15px] md:text-[16px] font-medium text-[#363535] font-poppins text-center ">
-                    {partner.title}
-                  </p>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
+                      <p className="mt-3 text-[15px] md:text-[16px] font-medium text-[#363535] font-poppins text-center ">
+                        {partner.title}
+                      </p>
+                    </div>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
 
+            </div>
+          </section>
         </div>
-      </section>
-    </div>
+      )}
+    </>
+
   );
 }

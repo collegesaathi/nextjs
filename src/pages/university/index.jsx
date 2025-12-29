@@ -44,8 +44,6 @@ export default function UniversityGrid() {
 
     // Row count state
     const [rowCount, setRowCount] = useState(3);
-    const [universities, setUniversities] = useState([]);
-    const [loadingUniversities, setLoadingUniversities] = useState(true);
     const [loading, setLoading] = useState(true);
 
     // Handle "View More"
@@ -53,30 +51,45 @@ export default function UniversityGrid() {
         filterStore.cardsToShow += 9;
     };
 
+    const [universities, setUniversities] = useState([]);
+    const [pagination, setPagination] = useState(null);
+    const [page, setPage] = useState(1);
+    const [buttonLoading, setButtonLoading] = useState(false)
 
+    const fetchData = async (page = 1) => {
+        try {
+            page === 1 ? setLoading(true) : setButtonLoading(true);
+
+            const main = new Listing();
+            const response = await main.Univeristy(page);
+
+            if (response?.data?.data) {
+                const { universities: newList, pagination } = response.data.data;
+
+                setPagination(pagination);
+
+                setUniversities(prev =>
+                    page === 1 ? newList : [...prev, ...newList]
+                );
+            }
+
+        } catch (error) {
+            console.log(error);
+        } finally {
+            setLoading(false);
+            setButtonLoading(false);
+        }
+    };
+
+    const LoadMore = () => {
+        const next = page + 1;
+        setPage(next);
+        fetchData(next);
+    };
 
     useEffect(() => {
-        const fetchUniversities = async () => {
-            try {
-                const main = new Listing();
-                const response = await main.Univeristy();
-
-                const universities = response?.data?.data?.universities || [];
-
-                setUniversities(universities);
-
-            } catch (error) {
-                console.error("Error fetching universities:", error);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchUniversities();
+        fetchData();
     }, []);
-
-
-
 
     // Watch responsiveness
     useEffect(() => {
@@ -336,27 +349,24 @@ export default function UniversityGrid() {
                             ) : (
                                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 gap-y-10  ">
                                     {
-
                                         universities?.map((card, index) => (
-                                            <UniversityCard card={card} index={index} key={index} />
+                                            <UniversityCard card={card} key={index} />
                                         ))
+
                                     }
                                 </div>
                             )}
 
 
-                            {/* View More */}
-                            {filterStore.cardsToShow < filteredCards.length && (
-                                <div className="flex justify-center mt-12 mb-0">
-                                    <button
-                                        size="lg"
-                                        onClick={handleViewMore}
-                                        className="bg-[#EC1E24] text-white h-[29px] w-[130px] text-sm rounded-full hover:bg-[#EC1E24] transition font-semibold"
-                                    >
-                                        View More &gt;
+
+                            {pagination?.page < pagination?.totalPages && (
+                                <div className="flex justify-center mt-8">
+                                    <button onClick={LoadMore} className="w-fit px-6 h-[44px] hover:bg-white hover:text-[#FF1B1B] border border-[#FF1B1B] rounded-full text-sm font-medium bg-[#FF1B1B] text-white cursor-pointer">
+                                        {buttonLoading ? "Loading..." : "View More >"}
                                     </button>
                                 </div>
                             )}
+
                         </div>
                     </div>
                 </div>

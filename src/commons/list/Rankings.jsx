@@ -11,6 +11,7 @@ function Ranking({ rankings }) {
     const WorkIcon = "/assets/icons/work.png";
     return (
         <>
+        {rankings?.title &&(
             <section className="w-full px-2 md:px-6 py-6 mx-auto" id="rankings-section">
                 <div className="max-w-[1230px]">
                     <Heading title={rankings?.title} />
@@ -21,6 +22,7 @@ function Ranking({ rankings }) {
                     />
                 </div>
             </section>
+        )}
         </>
     );
 }

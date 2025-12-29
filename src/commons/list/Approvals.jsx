@@ -6,6 +6,7 @@ import 'swiper/css/navigation';
 import { useRef, useState } from "react";
 import BackNext from "@/pages/components/BackNext";
 function Approvals({approvals , approvalsdata}) {
+    console.log("approvalsdata" ,approvalsdata)
     const swiperRef = useRef(null);
     const [progress, setProgress] = useState(0);
     const [isBeginning, setIsBeginning] = useState(true);
@@ -14,7 +15,7 @@ function Approvals({approvals , approvalsdata}) {
     const updateProgress = (swiper) => {
         if (!swiper) return;
 
-        const totalCards = approvalsdata?.length;
+        const totalCards = approvalsdata?.length ;
         const visibleSlides = swiper.params.slidesPerView;
 
         if (visibleSlides === 4) {
@@ -44,6 +45,7 @@ function Approvals({approvals , approvalsdata}) {
         swiperRef.current?.slideNext();
     };
     return (<>
+    {approvals?.title && (
         <section className="w-full px-2 md:px-6 py-6 mx-auto" id="approvals-section">
             <div className="max-w-[1230px]">
                 <BackNext
@@ -131,6 +133,8 @@ function Approvals({approvals , approvalsdata}) {
                 </Swiper>
             </div>
         </section>
+    ) }
+        
     </>);
 }
 
