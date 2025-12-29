@@ -277,9 +277,9 @@ function Index() {
         try {
             const main = new Listing();
             const payload = new FormData();
-            payload.append("slug", formData.slug);
-            payload.append("rank", formData.rank);
-            payload.append("name", formData.name);
+            payload.append("slug", formData.slug || "");
+            payload.append("rank", formData.rank || "");
+            payload.append("name", formData.name || "");
             payload.append("id", formData.Id);
             payload.append("position", formData.position);
             payload.append("about_title", formData.about_title);
