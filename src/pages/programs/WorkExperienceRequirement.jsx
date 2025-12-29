@@ -1,5 +1,6 @@
 import React from 'react';
 import { Info } from 'lucide-react';
+import { BiSolidMessageRoundedError } from "react-icons/bi";
 
 const WorkExperienceRequirement = () => {
   const entranceExams = [
@@ -46,16 +47,16 @@ const WorkExperienceRequirement = () => {
         </p>
 
         {/* Exams Container */}
-        <div className="border border-[#C5C5C5] my-6 rounded-[21px] p-6  flex flex-col md:flex-row gap-6 items-stretch">
+        <div className="border border-[#C5C5C5] my-6 rounded-[21px] p-2 md:p-6  flex flex-col md:flex-row gap-2 md:gap-6 items-stretch">
           {entranceExams.map((exam, index) => (
             <div 
               key={index} 
-              className={`flex-1 ${exam.bgColor} rounded-[18px] p-2 flex flex-col items-center justify-center text-center min-h-[120px] shadow-sm`}
+              className={`flex-1 ${exam.bgColor} rounded-[18px] p-2 flex flex-col items-center justify-center text-center md:min-h-[90px] shadow-sm`}
             >
-              <h4 className={`font-bold text-[18px] ${exam.textColor} mb-1`}>
+              <h4 className={`font-[600] text-[16px] ${exam.textColor} mb-1`}>
                 {exam.abbr}
               </h4>
-              <p className={`text-[14px] font-medium ${exam.textColor} leading-tight`}>
+              <p className={`text-[16px] font-[600] ${exam.textColor} leading-tight`}>
                 {exam.name}
               </p>
             </div>
@@ -64,12 +65,13 @@ const WorkExperienceRequirement = () => {
       </div>
 
       {/* Bottom Info Pill */}
-      <div className="mt-12 flex justify-center">
-        <div className="bg-[#F7F6F6] border border-[#CFCFCF] rounded-[48px] md:rounded-full py-4 px-6 md:px-10 max-w-[900px] flex items-start md:items-center gap-4 shadow-sm">
-          <div className="bg-gray-400 rounded-full p-0.5 mt-1 md:mt-0 flex-shrink-0">
-            <Info size={16} className="text-white fill-current" />
+      <div className="md:mt-12 flex justify-center">
+        <div className="bg-[#F7F6F6] border border-[#CFCFCF] rounded-[14px] md:rounded-[48px] md:rounded-full py-3 px-2 md:px-10 max-w-[900px] flex items-start  gap-2 shadow-sm">
+          <div className=" mt-1">
+            {/* <Info size={16} className="text-white fill-current" /> */}
+            <BiSolidMessageRoundedError size={24} color="gray"  />
           </div>
-          <p className="text-[#282529]  md:text-[14px] leading-relaxed">
+          <p className="text-[#282529]  md:text-[14px] leading-[20px]">
             Some IIMs even have their own tests, like the IIM Ahmedabad Admission Test (IAT), to assess the qualifications of the candidates. After these tests, interviews, writing assessments, or group discussions at certain institutes.
           </p>
         </div>
