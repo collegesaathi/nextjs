@@ -13,7 +13,7 @@ function SEOAdd({ formData, handleChange, }) {
                     name="meta_title"
                     value={formData.meta_title}
                     onChange={(e) => {
-                        if (e.target.value.length <= 50) handleChange(e);
+                         handleChange(e);
                     }}
                     placeholder="Enter meta Title"
                     className="w-full p-3 rounded-md bg-gray-100 text-gray-700 

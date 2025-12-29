@@ -60,13 +60,7 @@ const FactAdd = ({ facts, setFacts }) => {
         <div>
             <div className="flex justify-between items-center mb-5">
                 <h2 className="text-xl font-semibold text-[#CC2828]">Multiple Facts</h2>
-                <button
-                type="button"
-                    onClick={addFacts}
-                    className="border border-[#CC2828] bg-[#CC2828] hover:bg-red-700 text-white px-6 py-2 rounded-[10px] text-base transition"
-                >
-                    + Add Facts
-                </button>
+           
             </div>
 
             {facts.map((item, index) => (
@@ -122,6 +116,17 @@ const FactAdd = ({ facts, setFacts }) => {
                     </div>
                 </div>
             ))}
+
+ <div className="flex justify-end items-center ">
+          <button
+        type="button"
+          onClick={addFacts}
+          className="border border-[#CC2828] bg-[#CC2828] hover:bg-red-700 text-white px-6 py-2 rounded-[10px] text-base transition"
+        >
+           + Add Facts
+        </button>
+        </div>
+             
         </div>
     );
 };

@@ -20,6 +20,7 @@ import AddPattern from "@/commons/add/AddPattern";
 import FinancialAdd from "@/commons/add/FinancialAdd";
 import AddCampus from "@/commons/add/AddCampus";
 import ImagePreview from "@/common/ImagePreview";
+import AddInternationalcapmus from "@/commons/add/AddInternationalcapmus";
 
 function Index() {
     const router = useRouter()
@@ -64,7 +65,8 @@ function Index() {
         servicetitle: "",
         icon_alt: "",
         cover_image_alt: "",
-        image_alt: ""
+        image_alt: "",
+        rank :""
     });
     const [data, setData] = useState("")
     const [selectedApprovals, setSelectedApprovals] = useState([]);
@@ -93,6 +95,10 @@ function Index() {
 
     const [campusList, setCampusList] = useState([
         { name: "", image: "" }
+    ]);
+
+    const [campusInterList, setCampusInterList] = useState([
+        { name: "", image: "", campus_images_alt: "" }
     ]);
 
     const handleDetails = async (Id) => {
@@ -131,6 +137,7 @@ function Index() {
             approvals_name: data?.approvals?.title,
             approvals_desc: data?.approvals?.description,
             rankings_name: data?.rankings?.title,
+            rank: data?.rank,
             rankings_description: data?.rankings?.description,
             advantagesname: data?.advantages?.title,
             advantagesdescription: data?.advantages?.description,
@@ -181,6 +188,7 @@ function Index() {
         setServices(data?.services?.services?.length ? data?.services?.services : [{ title: "", content: "", image: null, icon: null, icons_alt: "", images_alt: "" }])
         setFaqs(data?.faq?.faqs?.length ? data?.faq?.faqs : [{ question: "", answer: "", position: "" }]);
         setOnlines(data?.admissionProcess?.process?.length ? data?.admissionProcess?.process : [{ title: "", content: "" }])
+        setCampusInterList(data?.universityCampuses?.campusInternationList?.length ? data?.universityCampuses?.campusInternationList : [{ name: "", image: "", campus_images_alt: "" }])
     }, [data])
 
     const toggleApproval = (id) => {
@@ -270,6 +278,7 @@ function Index() {
             const main = new Listing();
             const payload = new FormData();
             payload.append("slug", formData.slug);
+            payload.append("rank", formData.rank);
             payload.append("name", formData.name);
             payload.append("id", formData.Id);
             payload.append("position", formData.position);
@@ -335,6 +344,16 @@ function Index() {
             payload.append("servicedesc", formData.servicedesc);
             payload.append("onlinedesc", formData.onlinedesc);
             payload.append("onlinetitle", formData.onlinetitle);
+            const campusInterLists = campusInterList.map(item => ({
+                name: item.name,
+                campus_images_alt: item?.campus_images_alt
+            }));
+            payload.append("internationalcampus", JSON.stringify(campusInterLists));
+            campusInterList.forEach((item, index) => {
+                if (item.image) {
+                    payload.append(`campusinterimages[${index}]`, item.image);
+                }
+            });
             const cleanonlines = onlines.map(item => ({
                 title: item.title,
                 content: item.content
@@ -453,13 +472,7 @@ function Index() {
                             </div>
 
                             {/* Right: Save Button */}
-                            <button
-                                type="button"
-                                onClick={handleUpdate}
-                                className="cursor-pointer bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium shadow-md transition-all"
-                            >
-                                {loading ? "Updateing..." : "Update "}
-                            </button>
+
                         </div>
 
                         {/* Center: Tabs */}
@@ -508,6 +521,21 @@ function Index() {
                                         placeholder="Enter name"
                                         className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
                                         required
+                                    />
+                                </div>
+                                  <div>
+                                    <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
+                                        Name{" "}
+                                    </label>
+                                    <input
+                                        type="text"
+                                        name="rank"
+                                        value={formData.rank}
+                                        onChange={(e) => {
+                                            handleChange(e);
+                                        }}
+                                        placeholder="Enter rank"
+                                        className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
                                     />
                                 </div>
                                 <div>
@@ -559,7 +587,7 @@ function Index() {
                                     />
 
                                     {/* Image Preview */}
-                                    <ImagePreview image={preview}   />
+                                    <ImagePreview image={preview} />
                                 </div>
 
                                 <div>
@@ -573,7 +601,7 @@ function Index() {
 
                                         className="w-full p-2 bg-gray-100 rounded-md cursor-pointer text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
                                     />
-                                    <ImagePreview image={icons}   />
+                                    <ImagePreview image={icons} />
                                     {/* Image Preview */}
                                 </div>
 
@@ -784,6 +812,7 @@ function Index() {
                         {activeTab === "campuses" && (
                             <>
                                 <AddCampus campusList={campusList} setCampusList={setCampusList} />
+                                <AddInternationalcapmus campusInterList={campusInterList} setCampusInterList={setCampusInterList} />
                             </>
                         )}
 
@@ -844,6 +873,14 @@ function Index() {
                                 }`}
                         >
                             <FaArrowLeft /> Back
+                        </button>
+
+                        <button
+                            type="button"
+                            onClick={handleUpdate}
+                            className="cursor-pointer bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium shadow-md transition-all"
+                        >
+                            {loading ? "Updateing..." : "Update "}
                         </button>
                         <button
                             type="button"

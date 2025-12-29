@@ -74,14 +74,6 @@ function FinancialAdd({ formData, fees, handleChange, handleQuillChange,setFees 
                 <h2 className="text-xl font-semibold text-[#CC2828]">
                     Multiple Financial
                 </h2>
-
-                <button
-                    type="button"
-                    onClick={addFees}
-                    className="border border-[#CC2828] bg-[#CC2828] hover:bg-red-700 text-white px-6 py-2 rounded-[10px] text-base transition"
-                >
-                    + Multiple Financial More
-                </button>
             </div>
             {fees?.map((fee, index) => (
                 <div key={index} className="grid grid-cols-1 gap-4 items-center">
@@ -165,6 +157,17 @@ function FinancialAdd({ formData, fees, handleChange, handleQuillChange,setFees 
                     </div>
                 </div>
             ))}
+
+              <div className="flex justify-end items-center mb-5">
+
+                <button
+                    type="button"
+                    onClick={addFees}
+                    className="border border-[#CC2828] bg-[#CC2828] hover:bg-red-700 text-white px-6 py-2 rounded-[10px] text-base transition"
+                >
+                    + Multiple Financial More
+                </button>
+            </div>
         </>
     );
 }

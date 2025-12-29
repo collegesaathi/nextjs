@@ -66,7 +66,7 @@ export default function AdvantageSectionAdd({ setAdvantages, advantages, htitle,
           name="advantagesname"
           value={formData.advantagesname}
           onChange={(e) => {
-          handleChange(e);
+            handleChange(e);
           }}
           placeholder="Enter name"
           className="w-full p-3 rounded-md bg-gray-100 text-gray-700 
@@ -84,13 +84,7 @@ export default function AdvantageSectionAdd({ setAdvantages, advantages, htitle,
       {/* Header + Add Button */}
       <div className="flex justify-between items-center mb-5">
         <h2 className="text-xl font-semibold text-[#CC2828]">{htitle || "Advantages"} Section</h2>
-        <button
-        type="button"
-          onClick={addAdvantage}
-          className="border border-[#CC2828] bg-[#CC2828] hover:bg-red-700 text-white px-6 py-2 rounded-[10px] text-base transition"
-        >
-          + Add More
-        </button>
+
       </div>
 
       {/* Advantages List */}
@@ -105,7 +99,7 @@ export default function AdvantageSectionAdd({ setAdvantages, advantages, htitle,
               value={adv.title}
               onChange={(e) => handleAdvantageChange(index, "title", e.target.value)}
               placeholder="Enter Title"
-              className="w-full h-[100px] bg-[#F4F6F8] text-[#727272] border rounded-[10px] px-4 py-2 focus:outline-none"
+              className="w-full h-[70px] bg-[#F4F6F8] text-[#727272] border rounded-[10px] px-4 py-2 focus:outline-none"
             />
           </div>
 
@@ -114,7 +108,7 @@ export default function AdvantageSectionAdd({ setAdvantages, advantages, htitle,
             <div className="flex justify-between items-center mb-2">
               <label className="block text-[#CC2828] font-medium">Description</label>
               <button
-              type="button"
+                type="button"
                 onClick={() => deleteAdvantage(index)}
                 className="bg-red-500 text-white rounded-full p-1 hover:bg-red-700"
                 title="Delete Advantage"
@@ -132,12 +126,22 @@ export default function AdvantageSectionAdd({ setAdvantages, advantages, htitle,
                 theme="snow"
                 className="editor-wrapper"
               />
+
             </div>
           </div>
 
 
         </div>
       ))}
+      <div className="flex justify-end items-center ">
+        <button
+          type="button"
+          onClick={addAdvantage}
+          className="border border-[#CC2828] bg-[#CC2828] hover:bg-red-700 text-white px-6 py-2 rounded-[10px] text-base transition"
+        >
+          + Add More
+        </button>
+      </div>
     </div>
   );
 }

@@ -29,15 +29,17 @@ export default function Index() {
                         return newData;
                     }
 
-                    // Next pages → append universities array
+                    // Next pages → append universities array and update pagination
                     return {
                         ...prev,
                         universities: [
                             ...(prev?.universities || []),
                             ...(newData?.universities || [])
-                        ]
+                        ],
+                        pagination: newData?.pagination // Update pagination info
                     };
                 });
+
             }
             setLoading(false);
             setButtonLoading(false);

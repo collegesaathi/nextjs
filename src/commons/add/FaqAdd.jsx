@@ -30,15 +30,6 @@ function FaqAdd({faqs ,  setFaqs}) {
                 <h2 className="text-xl font-semibold text-[#CC2828]">
                     FAQ Section
                 </h2>
-
-                <button
-                type="button"
-                    onClick={addFaq}
-
-                    className="border border-[#CC2828] bg-[#CC2828] hover:bg-red-700 text-white px-6 py-2 rounded-[10px] text-base transition"
-                >
-                    + Add More FAQ
-                </button>
             </div>
             {faqs?.map((faq, index) => (
                 <div key={index} className="grid grid-cols-2 gap-4 items-center">
@@ -97,7 +88,18 @@ function FaqAdd({faqs ,  setFaqs}) {
                     </div>
                 </div>
             ))}
+      <div className="flex justify-end items-center mb-5">
+            
 
+                <button
+                type="button"
+                    onClick={addFaq}
+
+                    className="border border-[#CC2828] bg-[#CC2828] hover:bg-red-700 text-white px-6 py-2 rounded-[10px] text-base transition"
+                >
+                    + Add More FAQ
+                </button>
+            </div>
         </>
     );
 }

@@ -50,13 +50,6 @@ function ServicesAdd({ formData, handleQuillChange, handleChange, setServices, s
             <>
                 <div className="flex justify-between items-center mb-5">
                     <h2 className="text-xl font-semibold text-[#CC2828]">Services Section</h2>
-                    <button
-                        type="button"
-                        onClick={addService}
-                        className="border border-[#CC2828] bg-[#CC2828] hover:bg-red-700 text-white px-6 py-2 rounded-[10px] text-base transition"
-                    >
-                        + Add More Service
-                    </button>
                 </div>
 
                 {services?.map((service, index) => (
@@ -173,6 +166,16 @@ function ServicesAdd({ formData, handleQuillChange, handleChange, setServices, s
                         </div>
                     </div>
                 ))}
+
+                   <div className="flex justify-between items-center mb-5">
+                    <button
+                        type="button"
+                        onClick={addService}
+                        className="border border-[#CC2828] bg-[#CC2828] hover:bg-red-700 text-white px-6 py-2 rounded-[10px] text-base transition"
+                    >
+                        + Add More Service
+                    </button>
+                </div>
             </>
 
         </>

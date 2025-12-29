@@ -19,6 +19,7 @@ import AddCertificate from "@/commons/add/AddCertificate";
 import FactAdd from "@/commons/add/FactAdd";
 import AdvantageSectionAdd from "@/commons/add/AdvantageSectionAdd";
 import ImagePreview from "@/common/ImagePreview";
+import AddInternationalcapmus from "@/commons/add/AddInternationalcapmus";
 
 function Index() {
     const router = useRouter();
@@ -92,6 +93,10 @@ function Index() {
     const [campusList, setCampusList] = useState([
         { name: "", image: "", campus_images_alt: "" }
     ]);
+
+      const [campusInterList, setCampusInterList] = useState([
+        { name: "", image: "", campus_images_alt: "" }
+    ]);
     const [formData, setFormData] = useState({
         slug: "",
         name: "",
@@ -127,7 +132,8 @@ function Index() {
         canonical_url: "",
         icon_alt: "",
         cover_image_alt: "",
-        image_alt: ""
+        image_alt: "",
+        rank :""
     });
 
 
@@ -195,6 +201,7 @@ function Index() {
             const main = new Listing();
             const payload = new FormData();
             payload.append("slug", formData.slug);
+            payload.append("rank", formData.rank);
             payload.append("name", formData.name);
             payload.append("position", formData.position);
             payload.append("about_title", formData.about_title);
@@ -243,7 +250,17 @@ function Index() {
             });
             payload.append("financialname", formData.financialname);
             payload.append("financialdescription", formData.financialdescription);
-            const campusListmanage = campusList.map(item => ({
+            const campusInterLists = campusInterList.map(item => ({
+                name: item.name,
+                campus_images_alt: item?.campus_images_alt
+            }));
+            payload.append("internationalcampus", JSON.stringify(campusInterLists));
+            campusInterList.forEach((item, index) => {
+                if (item.image) {
+                    payload.append(`campusinterimages[${index}]`, item.image);
+                }
+            });
+              const campusListmanage = campusList.map(item => ({
                 name: item.name,
                 campus_images_alt: item?.campus_images_alt
             }));
@@ -372,13 +389,7 @@ function Index() {
                             />
 
                         </div>
-                        <button
-                            type="button"
-                            onClick={handleAdd}
-                            className="cursor-pointer bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium shadow-md transition-all"
-                        >
-                            {loading ? "Saving..." : "Save"}
-                        </button>
+
                     </div>
                     <div className="flex flex-col lg:flex-row items-center justify-between gap-4 px-4 md:px-6 lg:px-10 py-4">
 
@@ -423,9 +434,26 @@ function Index() {
                                     name="name"
                                     value={formData.name}
                                     onChange={(e) => {
-                                         handleChange(e);
+                                        handleChange(e);
                                     }}
                                     placeholder="Enter name"
+                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
+                                    required
+                                />
+                            </div>
+
+                            <div>
+                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
+                                    Name{" "}
+                                </label>
+                                <input
+                                    type="text"
+                                    name="rank"
+                                    value={formData.rank}
+                                    onChange={(e) => {
+                                        handleChange(e);
+                                    }}
+                                    placeholder="Enter rank"
                                     className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
                                     required
                                 />
@@ -474,20 +502,20 @@ function Index() {
                                     className="w-full p-2 bg-gray-100 rounded-md cursor-pointer text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
                                 />
 
-                               
-                                <ImagePreview image={preview}   />
+
+                                <ImagePreview image={preview} />
                             </div>
                             <div>
                                 <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
                                     University Image Alt{" "}
-                                    
+
                                 </label>
                                 <input
                                     type="text"
                                     name="cover_image_alt"
                                     value={formData.cover_image_alt}
                                     onChange={(e) => {
-                                         handleChange(e);
+                                        handleChange(e);
                                     }}
                                     placeholder="Enter cover image alt"
                                     className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
@@ -524,7 +552,7 @@ function Index() {
                                     className="w-full p-2 bg-gray-100 rounded-md cursor-pointer text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
                                 />
 
-                                <ImagePreview image={icons}   />
+                                <ImagePreview image={icons} />
 
                             </div>
 
@@ -586,7 +614,7 @@ function Index() {
                                     name="approvals_name"
                                     value={formData.approvals_name}
                                     onChange={(e) => {
-                                     handleChange(e);
+                                        handleChange(e);
                                     }}
                                     placeholder="Enter approvals name"
                                     className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
@@ -614,14 +642,14 @@ function Index() {
                             <div>
                                 <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
                                     Name{" "}
-                                    
+
                                 </label>
                                 <input
                                     type="text"
                                     name="rankings_name"
                                     value={formData.rankings_name}
                                     onChange={(e) => {
-                                         handleChange(e);
+                                        handleChange(e);
                                     }}
                                     placeholder="Enter name"
                                     className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
@@ -668,7 +696,7 @@ function Index() {
                                     name="factsname"
                                     value={formData.factsname}
                                     onChange={(e) => {
-                                     handleChange(e);
+                                        handleChange(e);
                                     }}
                                     placeholder="Enter name"
                                     className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
@@ -704,7 +732,10 @@ function Index() {
                     )}
 
                     {activeTab === "campuses" && (
+                     <>
                         <Campus campusList={campusList} setCampusList={setCampusList} />
+                        <AddInternationalcapmus  campusInterList={campusInterList} setCampusInterList={setCampusInterList} />
+                     </>
                     )}
                     {activeTab === "partners" && (
                         <>
@@ -717,7 +748,7 @@ function Index() {
                                     name="partnersname"
                                     value={formData.partnersname}
                                     onChange={(e) => {
-                                         handleChange(e);
+                                        handleChange(e);
                                     }}
                                     placeholder="Enter partners name"
                                     className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
@@ -764,7 +795,13 @@ function Index() {
                     >
                         <FaArrowLeft /> Back
                     </button>
-
+                    <button
+                        type="button"
+                        onClick={handleAdd}
+                        className="cursor-pointer bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium shadow-md transition-all"
+                    >
+                        {loading ? "Saving..." : "Save"}
+                    </button>
                     <button
                         type="button"
                         onClick={handleNext}

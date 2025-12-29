@@ -85,13 +85,6 @@ const AddPattern = ({ setPatterns, patterns, formData, handleQuillChange, handle
       /> */}
       <div className="flex justify-between items-center mb-5">
         <h2 className="text-xl font-semibold text-[#CC2828]">Multiple Pattern</h2>
-        <button
-          type="button"
-          onClick={addPattern}
-          className="border border-[#CC2828] bg-[#CC2828] hover:bg-red-700 text-white px-6 py-2 rounded-[10px] text-base transition"
-        >
-          + Add Pattern
-        </button>
       </div>
 
       {patterns && patterns?.map((item, index) => (
@@ -186,6 +179,16 @@ const AddPattern = ({ setPatterns, patterns, formData, handleQuillChange, handle
         
         </div>
       ))}
+
+         <div className="flex justify-end items-center mb-5">
+        <button
+          type="button"
+          onClick={addPattern}
+          className="border border-[#CC2828] bg-[#CC2828] hover:bg-red-700 text-white px-6 py-2 rounded-[10px] text-base transition"
+        >
+          + Add Pattern
+        </button>
+      </div>
     </div>
   );
 };
