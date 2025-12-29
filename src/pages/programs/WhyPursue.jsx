@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 import { 
   Laptop, 
   TrendingUp, 
@@ -13,36 +14,38 @@ import {
 } from 'lucide-react';
 
 const WhyPursue = () => {
+const [active, setActive] = useState(null);
+
   const summaryCards = [
     { 
       id: 1, 
       label: "Flexibility with No Career Break", 
       image: "/images/programs/pursue1.png", 
-      active: true 
+
     },
     { 
       id: 2, 
       label: "Career Growth & New Opportunities", 
      image: "/images/programs/pursue2.png", 
-      active: false 
+  
     },
     { 
       id: 3, 
       label: "Cost-Effective Learning", 
    image: "/images/programs/pursue3.png", 
-      active: false 
+
     },
     { 
       id: 4, 
       label: "Global Networking", 
     image: "/images/programs/pursue1.png", 
-      active: false 
+
     },
     { 
       id: 5, 
       label: "Recognized Degrees from Top Institutions", 
       image: "/images/programs/pursue2.png", 
-      active: false 
+     
     },
   ];
 
@@ -80,7 +83,7 @@ const WhyPursue = () => {
   ];
 
   return (
-    <div className="max-w-[1230px] mx-auto px-6 py-12 font-sans text-[#282529]">
+    <div className="max-w-[1230px] mx-auto  py-12 font-poppins text-[#282529]">
       {/* Header Section */}
       <div className="mb-10">
         <h2 className="text-[20px] md:text-[28px] font-[600] mb-4 leading-[28px]">Why Should I Pursue Online MBA?</h2>
@@ -90,18 +93,19 @@ const WhyPursue = () => {
       </div>
 
       {/* Overview Card Container */}
-      <div className="bg-[#FFF4E6] rounded-[30px] p-8 md:p-6 mb-16">
-        <h3 className="text-[20px] md:text-[28px] font-[400] text-center mb-10">Why Choose Online MBA?</h3>
+      <div className="bg-[#FFF4E6] rounded-[30px] p-4 md:p-6 mb-10">
+        <h3 className="text-[20px] md:text-[28px] font-[400] text-center mb-4 md:mb-10">Why Choose Online MBA?</h3>
         
-        <div className="flex flex-wrap justify-center gap-6">
+        <div className="grid grid-cols-2 md:flex flex-wrap justify-center gap-2 md:gap-6">
           {summaryCards.map((card) => (
             <div 
               key={card.id}
-              className={`w-full sm:w-[280px] h-[110px] bg-white rounded-2xl flex flex-col items-center justify-center p-4  lg:p-8 text-center transition-all shadow-sm
-                ${card.active ? 'border-2 border-[#EC1E24]' : 'border border-gray-100'}`}
+              onClick={() => setActive(card.id)}
+              className={`w-full sm:w-[280px] h-[130px] bg-white rounded-[14px] md:rounded-[25px] flex flex-col items-center justify-center  lg:p-8 text-center transition-all shadow-lg
+               ${active === card.id ? 'border-1 border-[#D9181E]' : ''}`}
             >
-              <div className="mb-2 text-2xl">      <img src={card.image} /></div>
-              <p className="text-[16px] font-[400] leading-[20px] px-2">{card.label}</p>
+              <div className="mb-2 text-2xl  ">      <img src={card.image} /></div>
+              <p className="text-[14px] md:text-[16px] font-[400] leading-[20px] px-2 ">{card.label}</p>
             </div>
           ))}
         </div>
@@ -109,20 +113,20 @@ const WhyPursue = () => {
 
       {/* Detailed Grid Section */}
       <div className="mb-6">
-        <p className="text-[15px] mb-10">
-          The following are the reason for pursuing an <span className="text-[#EC1E24] font-bold">online MBA</span> is a smart investment for:
+        <p className="text-[16px] mb-10 leading-[28px] tracking-[0]">
+          The following are the reason for pursuing an <span className="text-[#EC1E24] font-[600]">online MBA</span> is a smart investment for:
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-8">
           {details.map((item, index) => (
-            <div key={index} className="space-y-3">
-              <div className="flex items-center gap-3">
+            <div key={index} className="space-y-2">
+              <div className="space-y-4 items-center gap-3">
                 <div className="text-[#EC1E24]">
            {item.icon}
                 </div>
-                <h4 className="font-bold text-[16px]">{item.title}</h4>
+                <h4 className="font-[600] text-[16px] leading-[22px]">{item.title}</h4>
               </div>
-              <p className="text-[#4A4A4A] text-[14px] leading-relaxed">
+              <p className="text-[#282529] text-[16px] leading-[22px]">
                 {item.desc}
               </p>
             </div>

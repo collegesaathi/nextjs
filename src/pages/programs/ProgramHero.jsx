@@ -4,7 +4,7 @@ import { Download } from "lucide-react"; // Assuming lucide-react is installed
 export default function ProgramHero() {
   return (
     <section className="w-full bg-white py-6">
-      <div className="mx-auto container xl:max-w-[1230px]  md:px-4">
+      <div className="mx-auto container xl:max-w-[1230px] ">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           
           {/* LEFT CONTENT */}
@@ -48,22 +48,27 @@ export default function ProgramHero() {
             </div>
 
             {/* Floating Overlay: Top Left Tag */}
+            <div className="hidden md:block">
             <div className="absolute top-[20%] -left-4 md:-left-8 bg-white/90 backdrop-blur-sm p-2 px-4 rounded-full shadow-lg flex items-center gap-3 animate-bounce-slow">
               <span className="text-xs md:text-sm font-medium text-gray-700 whitespace-nowrap">Lorem ipsum do</span>
               <div className="bg-[#EC1E24] rounded-full p-1">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
               </div>
             </div>
+            </div>
 
             {/* Floating Overlay: Middle Right Tag */}
+             <div className="hidden md:block">
             <div className="absolute bottom-[30%] -right-4 bg-white/90 backdrop-blur-sm p-2 px-4 rounded-full shadow-lg flex items-center gap-3">
               <div className="bg-[#EC1E24] rounded-full p-1">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
               </div>
               <span className="text-xs md:text-sm font-medium text-gray-700 whitespace-nowrap">Lorem ipsum</span>
             </div>
+            </div>
 
             {/* Floating Overlay: Bottom Stats Card */}
+          
             <div className="absolute bottom-6 left-6 bg-white rounded-2xl p-4 shadow-2xl w-[220px] md:w-[260px] border border-gray-100">
                <div className="flex justify-between items-start mb-4">
                   <div>
@@ -71,6 +76,7 @@ export default function ProgramHero() {
                   </div>
                   <span className="text-[10px] text-gray-400 font-medium">Lorem ip</span>
                </div>
+    
                {/* Decorative Bar Chart */}
                <div className="flex items-end gap-2 h-16">
                   <div className="w-full bg-[#fce8e9] rounded-t-full h-[40%]"></div>
