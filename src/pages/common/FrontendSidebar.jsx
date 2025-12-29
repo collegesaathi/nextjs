@@ -39,7 +39,7 @@ export default function FrontendSidebar({ data, courseData }) {
     return data && data[item.dataKey.title] !== null && data[item.dataKey.title] !== undefined;
   });
 
-  console.log("menuItems" ,menuItems)
+
   const scrollToSection = (sectionId) => {
     const target = document.getElementById(sectionId);
     if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });

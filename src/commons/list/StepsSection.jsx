@@ -43,7 +43,9 @@ export default function StepsSection({ admissionProcess }) {
               onClick={() => setActiveStep(step.id)}
               className="
                 w-full max-w-[260px] 
-                relative py-6 px-4 rounded-2xl cursor-pointer
+                relative py-6 px-4
+                    rounded-tl-3xl rounded-tr-3xl rounded-bl-3xl rounded-br-none
+                 cursor-pointer shadow-md
                 transition-all duration-300
                 hover:bg-[#ED2024] hover:text-white group
                 bg-white text-black mx-auto
@@ -56,7 +58,7 @@ export default function StepsSection({ admissionProcess }) {
                   absolute -top-5 -left-5 sm:-top-6 sm:-left-6
                   text-[16px] sm:text-[20px] font-bold shadow-md
                   group-hover:bg-white group-hover:text-[#ED2024]
-                  bg-[#ED2024] text-white
+                  bg-[#ED2024] text-white 
                 "
               >
                 {index + 1}
@@ -66,7 +68,7 @@ export default function StepsSection({ admissionProcess }) {
                 {step.title}
               </h3>
 
-              <p className="text-[13px] sm:text-sm leading-[18px] sm:leading-[20px] line-clamp-5">
+              <p className="text-[13px] sm:text-sm leading-[18px] sm:leading-[20px] line-clamp-5 group-hover:line-clamp-none">
                 {step.content}
               </p>
             </div>

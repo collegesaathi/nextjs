@@ -10,7 +10,10 @@ import Image from "next/image";
 import BackNext from "@/pages/components/BackNext";
 import Listing from "@/pages/api/Listing";
 
-export default function CoursesSwiper({ courseData, title, name }) {
+export default function CoursesSwiper({ courseData, title, name,slug }) {
+
+  console.log("sluggg",slug)
+
   const swiperRef = useRef(null);
 
   const [progress, setProgress] = useState(0);
@@ -96,7 +99,7 @@ export default function CoursesSwiper({ courseData, title, name }) {
               {courseData?.data?.map((course, index) => (
 
                 <SwiperSlide key={index}>
-                  <CourseCard course={course} name={name} />
+                  <CourseCard course={course} name={name} slug={slug} />
                 </SwiperSlide>
               ))}
             </Swiper>
@@ -108,7 +111,7 @@ export default function CoursesSwiper({ courseData, title, name }) {
 }
 
 /* ------------------ COURSE CARD ------------------ */
-function CourseCard({ course, mobile = false, name }) {
+function CourseCard({ course, mobile = false, name,slug }) {
   return (
     <div
       className={`bg-[#f7f6f6] border rounded-[14px] p-2 flex flex-col ${mobile ? "h-[270px]" : "h-[290px]"

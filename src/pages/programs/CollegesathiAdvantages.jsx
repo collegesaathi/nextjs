@@ -48,7 +48,7 @@ const advantageSlides = [
 
 const CollegesathiAdvantages = () => {
   return (
-    <div className="max-w-[1200px] mx-auto  py-3 mb-10 font-poppins text-[#282529]">
+    <div className="max-w-[1200px] mx-auto  py-3 my-12 font-poppins text-[#282529]">
       <div className="flex flex-col md:flex-row w-full md:gap-24 items-start">
         
         {/* LEFT COLUMN: ADVANTAGES */}

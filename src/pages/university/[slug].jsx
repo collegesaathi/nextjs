@@ -30,7 +30,7 @@ function Index({ data }) {
     const uniId = data?.university.id;
     const [loading, setLoading] = useState(false);
     const [courseData, setCourseData] = useState([])
-    console.log("courseData" ,courseData)
+
     const fetchCourse = async (uniId) => {
         setLoading(true)
         try {
@@ -65,13 +65,13 @@ function Index({ data }) {
                     <div className="w-full lg:w-9/12 h-full lg:h-[100vh] overflow-y-auto " style={{ scrollbarWidth: "none", }}>
                         {data?.university?.about && (<Aboutdetails about={data?.university?.about} />)}
                        {courseData?.data?.length > 0 && (
-  <CourseFees courseData={courseData?.data} />
+  <CourseFees courseData={courseData?.data}  />
 )}
 
                         {data?.university?.approvals && (<Approvals approvals={data?.university?.approvals} approvalsdata={data?.approvalsData} />)}
                         {data?.university?.rankings && (<Ranking rankings={data?.university?.rankings} />)}
                                  {courseData?.data?.length > 0 && (
-                        <CoursesSwiper courseData={courseData} name={"university"} title={`${data?.university?.name} - Course`} />
+                        <CoursesSwiper courseData={courseData} name={"university"} title={`${data?.university?.name} - Course`}  slug={`${data?.university?.slug}`}  />
 )}
                         <EnquiryBox />
                         {data?.university?.advantages && (<Advantages advantages={data?.university?.advantages} />)}
@@ -86,8 +86,8 @@ function Index({ data }) {
                                 PlacementPartners={data?.placementPartners}
                             />
                         )}
-                        {data?.university?.services?.length >1  && (<CareerServices services={data?.university?.services} />)}
-                        {data?.university?.admissionProcess?.length >1  && (<StepsSection admissionProcess={data?.university?.admissionProcess} />)}
+                        {data?.university?.services && (<CareerServices services={data?.university?.services} />)}
+                        {data?.university?.admissionProcess  && (<StepsSection admissionProcess={data?.university?.admissionProcess} />)}
                         {data?.university?.faq?.length>1  && (<FAQSection faq={data?.university?.faq} />)}
                         <SimilarUniversities />
                         <Universities />

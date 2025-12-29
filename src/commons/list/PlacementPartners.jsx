@@ -16,6 +16,8 @@ const partners = [
 ];
 
 export default function PlacementPartners({ partners, PlacementPartners }) {
+
+
   const swiperRef = useRef(null);
 
   const [progress, setProgress] = useState(0);
@@ -25,7 +27,7 @@ export default function PlacementPartners({ partners, PlacementPartners }) {
   const updateProgress = (swiper) => {
     if (!swiper) return;
 
-    const totalCards = partners.length;
+    const totalCards = partners?.length;
     const visibleSlides = swiper.params.slidesPerView;
 
     setIsBeginning(swiper.isBeginning);

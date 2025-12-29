@@ -5,6 +5,13 @@ export default function ProgramHero() {
   return (
     <section className="w-full bg-white py-6">
       <div className="mx-auto container xl:max-w-[1230px] ">
+           <div className=" mx-auto py-4 text-sm text-gray-500 mt-6">
+                    <nav className="flex items-center gap-2">
+                        <span className="text-gray-400">Home</span>
+                        <span>{">"}</span>
+                        <span className="text-[#EC1E24] font-medium">All Online Programs</span>
+                    </nav>
+                </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           
           {/* LEFT CONTENT */}
