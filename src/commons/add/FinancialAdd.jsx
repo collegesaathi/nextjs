@@ -103,28 +103,7 @@ function FinancialAdd({ formData, fees, handleChange, handleQuillChange,setFees 
                     <div>
                         <div className="flex justify-between items-center mb-2">
                             <label className="block text-[#CC2828] font-medium">Fees Details</label>
-
                             <div className="flex items-center gap-2">
-                                {fee._id ? (
-                                    <button
-                                        type="button"
-                                        onClick={() => openEditModal(fee)}
-                                        className="bg-red-500 text-white rounded-full p-1 hover:bg-red-700"
-                                        title="Edit Fees"
-                                    >
-                                        <MdEdit />
-                                    </button>
-                                ) : (
-                                    <button
-                                        type="button"
-                                        onClick={() => handleFeesSubmit(index)}
-                                        className="bg-red-500 text-white rounded-full p-1 hover:bg-red-700"
-                                        title="Save Fees"
-                                    >
-                                        <MdAdd />
-                                    </button>
-                                )}
-                                <span className="text-[#b1a9a9]">|</span>
                                 <button
                                     type="button"
                                     onClick={() => deleteFees(index)}
@@ -137,7 +116,7 @@ function FinancialAdd({ formData, fees, handleChange, handleQuillChange,setFees 
                         </div>
 
                         {/* 5 Inputs */}
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
                             <input
                                 type="text"
                                 placeholder="Total Fees"

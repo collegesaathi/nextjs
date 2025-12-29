@@ -41,7 +41,7 @@ function FaqAdd({faqs ,  setFaqs}) {
                 </button>
             </div>
             {faqs?.map((faq, index) => (
-                <div key={index} className="grid grid-cols-1 gap-4 items-center">
+                <div key={index} className="grid grid-cols-2 gap-4 items-center">
                     {/* QUESTION */}
                     <div>
                         <label className="block text-[#CC2828] font-medium mb-2">Question</label>
@@ -55,7 +55,7 @@ function FaqAdd({faqs ,  setFaqs}) {
                         />
                     </div>
 
-                    <div>
+                    {/* <div>
                         <label className="block text-[#CC2828] font-medium mb-2">Position</label>
                         <input
                             type="number"
@@ -65,7 +65,7 @@ function FaqAdd({faqs ,  setFaqs}) {
                             placeholder="Enter Position"
                             className="w-full bg-[#F4F6F8] text-[#727272] border border-[#F4F6F8] rounded-[10px] px-4 py-2 focus:outline-none"
                         />
-                    </div>
+                    </div> */}
 
                     {/* ANSWER */}
                     <div>

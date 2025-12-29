@@ -60,7 +60,7 @@ function ServicesAdd({ formData, handleQuillChange, handleChange, setServices, s
                 </div>
 
                 {services?.map((service, index) => (
-                    <div key={index} className="grid grid-cols-1 gap-4 items-center border-b border-gray-200 pb-4 mb-4">
+                    <div key={index} className="grid grid-cols-2 gap-4 items-center border-b border-gray-200 pb-4 mb-4">
 
                         {/* Title */}
                         <div>
@@ -85,23 +85,24 @@ function ServicesAdd({ formData, handleQuillChange, handleChange, setServices, s
                             />
                         </div>
 
-
-
+                        
                         {/* Content */}
                         <div>
                             <div className="flex justify-between items-center mb-2">
-                                <label className="block text-[#CC2828] font-medium">Images Alts </label>
+                                <label className="block text-[#CC2828] font-medium">Content</label>
 
                             </div>
 
-                            <input
+                            <textarea
+                                rows={2}
                                 type="text"
-                                value={service.images_alt}
-                                onChange={(e) => handleServiceChange(index, "images_alt", e.target.value)}
-                                placeholder="Enter service Images alt"
+                                value={service.content}
+                                onChange={(e) => handleServiceChange(index, "content", e.target.value)}
+                                placeholder="Enter service content"
                                 className="w-full bg-[#F4F6F8] text-[#727272] border rounded-[10px] px-4 py-2 focus:outline-none"
                             />
                         </div>
+
                         {/* Image */}
                         <div>
                             <label className="block text-[#CC2828] font-medium mb-2">Image</label>
@@ -111,7 +112,6 @@ function ServicesAdd({ formData, handleQuillChange, handleChange, setServices, s
                                 onChange={(e) => handleServiceChange(index, "image", e.target.files[0])}
                                 className="w-full bg-[#F4F6F8] text-[#727272] border rounded-[10px] px-4 py-2 focus:outline-none"
                             />
-
                             {service.image && (
                                 <div className="mt-2">
                                     <ImagePreview image={typeof service.image === "string" ? service.image : URL.createObjectURL(service.image)} />
@@ -138,7 +138,10 @@ function ServicesAdd({ formData, handleQuillChange, handleChange, setServices, s
                             )}
                         </div>
 
-                        <div>
+                       
+
+
+                         <div>
                             <div className="flex justify-between items-center mb-2">
                                 <label className="block text-[#CC2828] font-medium">Icons Alts </label>
                             </div>
@@ -152,19 +155,19 @@ function ServicesAdd({ formData, handleQuillChange, handleChange, setServices, s
                             />
                         </div>
 
+                        
                         {/* Content */}
                         <div>
                             <div className="flex justify-between items-center mb-2">
-                                <label className="block text-[#CC2828] font-medium">Content</label>
+                                <label className="block text-[#CC2828] font-medium">Images Alts </label>
 
                             </div>
 
-                            <textarea
-                                rows={6}
+                            <input
                                 type="text"
-                                value={service.content}
-                                onChange={(e) => handleServiceChange(index, "content", e.target.value)}
-                                placeholder="Enter service content"
+                                value={service.images_alt}
+                                onChange={(e) => handleServiceChange(index, "images_alt", e.target.value)}
+                                placeholder="Enter service Images alt"
                                 className="w-full bg-[#F4F6F8] text-[#727272] border rounded-[10px] px-4 py-2 focus:outline-none"
                             />
                         </div>

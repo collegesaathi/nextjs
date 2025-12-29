@@ -58,7 +58,7 @@ function AddOnline({ formData, handleChange, onlines, setOnlines, handleQuillCha
                     </button>
                 </div>
                 {onlines && onlines?.map((faq, index) => (
-                    <div key={index} className="grid grid-cols-1 gap-4 items-center">
+                    <div key={index} className="grid grid-cols-2 gap-4 items-center">
                         {/* QUESTION */}
                         <div>
                             <label className="block text-[#CC2828] font-medium mb-2">Title</label>
@@ -88,7 +88,7 @@ function AddOnline({ formData, handleChange, onlines, setOnlines, handleQuillCha
                             </div>
 
                             <textarea
-                                rows={6}
+                                rows={2}
                                 type="text"
                                 value={faq.content}
                                 onChange={(e) => handleOnlineChange(index, 'content', e.target.value)}

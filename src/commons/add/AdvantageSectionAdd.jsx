@@ -95,7 +95,7 @@ export default function AdvantageSectionAdd({ setAdvantages, advantages, htitle,
 
       {/* Advantages List */}
       {advantages.map((adv, index) => (
-        <div key={index} className="grid grid-cols-1 gap-4 mb-6 border-b border-gray-200 pb-4">
+        <div key={index} className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6 border-b border-gray-200 pb-4">
 
           {/* Title */}
           <div>
@@ -105,7 +105,7 @@ export default function AdvantageSectionAdd({ setAdvantages, advantages, htitle,
               value={adv.title}
               onChange={(e) => handleAdvantageChange(index, "title", e.target.value)}
               placeholder="Enter Title"
-              className="w-full bg-[#F4F6F8] text-[#727272] border rounded-[10px] px-4 py-2 focus:outline-none"
+              className="w-full h-[100px] bg-[#F4F6F8] text-[#727272] border rounded-[10px] px-4 py-2 focus:outline-none"
             />
           </div>
 

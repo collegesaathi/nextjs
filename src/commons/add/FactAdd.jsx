@@ -70,7 +70,7 @@ const FactAdd = ({ facts, setFacts }) => {
             </div>
 
             {facts.map((item, index) => (
-                <div key={index} className="grid grid-cols-1 gap-4 items-center mb-4 border-b border-gray-200 pb-4">
+                <div key={index} className="grid grid-cols-1 md:grid-cols-2 gap-4 items-center mb-4 border-b border-gray-200 pb-4">
 
                     {/* Pattern Name */}
                     <div>
@@ -80,7 +80,7 @@ const FactAdd = ({ facts, setFacts }) => {
                             value={item.patternName}
                             onChange={(e) => handleFactsChange(index, "patternName", e.target.value)}
                             placeholder="Enter Facts Name"
-                            className="w-full bg-[#F4F6F8] text-[#727272] border rounded-[10px] px-4 py-2"
+                            className="w-full h-[100px] bg-[#F4F6F8] text-[#727272] border rounded-[10px] px-4 py-2"
                         />
                     </div>
 
