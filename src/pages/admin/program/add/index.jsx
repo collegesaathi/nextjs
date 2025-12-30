@@ -20,6 +20,9 @@ import FactAdd from "@/commons/add/FactAdd";
 import AdvantageSectionAdd from "@/commons/add/AdvantageSectionAdd";
 import ImagePreview from "@/common/ImagePreview";
 import AddInternationalcapmus from "@/commons/add/AddInternationalcapmus";
+import ProgramCareer from "@/commons/add/ProgramCareer";
+import AllUniversity from "@/common/AllUniversity";
+import AddInstute from "@/commons/add/AddInstute";
 
 function Index() {
     const router = useRouter();
@@ -29,6 +32,9 @@ function Index() {
 
     const [services, setServices] = useState([{ title: "", content: "", image: null, icon: null, icons_alt: "", images_alt: "" }]);
 
+    const [Careers, setCareers] = useState([
+        { title: "", description: "", salary: "" }
+    ]);
     const [selectedApprovals, setSelectedApprovals] = useState([]);
 
     const toggleApproval = (id) => {
@@ -94,28 +100,36 @@ function Index() {
         { name: "", image: "", campus_images_alt: "" }
     ]);
 
-      const [campusInterList, setCampusInterList] = useState([
+    const [campusInterList, setCampusInterList] = useState([
         { name: "", image: "", campus_images_alt: "" }
     ]);
     const [formData, setFormData] = useState({
         slug: "",
         name: "",
         icon: null,
+        descriptions: "",
+        pdf_download: "",
         cover_image: null,
-        position: "",
-        descriptions: [{ text: "" }],
-        about_title: "",
-        about_desc: "",
-        rankings_point: "",
-        rankings_name: "",
-        rankings_description: "",
-        approvals_name: "",
-        approvals_desc: "",
-        advantagesdescription: "",
-        advantagesname: "",
-        certificatemage: "",
-        certificatedescription: "",
-        certificatename: "",
+        audio: "",
+        video: "",
+        career_growth: "",
+        duration: "",
+        specialization: "",
+        shortDescription: "",
+        subtitle: "",
+        universitytitle: "",
+        universitydesc: "",
+        universitybtmdesc: "",
+        university_id: "",
+        conclusion: "",
+        specialisationtitle: "",
+        specialisationdesc: "",
+        academictitle: "",
+        academicdesc: "",
+        academic_cover_image: "",
+        entracetitle: "",
+        entracedesc: "",
+        entrace_cover_image: "",
         partnersname: "",
         partnersdesc: "",
         onlinetitle: "",
@@ -133,7 +147,7 @@ function Index() {
         icon_alt: "",
         cover_image_alt: "",
         image_alt: "",
-        rank :""
+        rank: ""
     });
 
 
@@ -260,7 +274,7 @@ function Index() {
                     payload.append(`campusinterimages[${index}]`, item.image);
                 }
             });
-              const campusListmanage = campusList.map(item => ({
+            const campusListmanage = campusList.map(item => ({
                 name: item.name,
                 campus_images_alt: item?.campus_images_alt
             }));
@@ -334,10 +348,10 @@ function Index() {
         { id: "certificate", label: "Certificate" },
         { id: "pattern", label: "Pattern" },
         { id: "financial", label: "Financial" },
-        { id: "campuses", label: "Campuses" },
-        { id: "partners", label: "Partners" },
-        { id: "services", label: "Services" },
-        { id: "online", label: "Admission Process" },
+        { id: "partners", label: "Placement" },
+        { id: "carrer", label: "Carrer" },
+        { id: "institutes", label: "Institutes" },
+        { id: "university", label: "University" },
         { id: "faq", label: "FAQ" },
         { id: "seo", label: "SEO" },
 
@@ -442,14 +456,20 @@ function Index() {
                                 />
                             </div>
 
+                            <ReactQuillEditor
+                                label="Description"
+                                desc={formData.descriptions}
+                                handleBioChange={(val) => handleQuillChange("descriptions", val)}
+                            />
+
                             <div>
                                 <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
-                                    Rank{" "}
+                                    Download  Pdf {" "}
                                 </label>
                                 <input
-                                    type="text"
-                                    name="rank"
-                                    value={formData.rank}
+                                    type="file"
+                                    name="pdf_download"
+                                    value={formData.pdf_download}
                                     onChange={(e) => {
                                         handleChange(e);
                                     }}
@@ -458,6 +478,39 @@ function Index() {
                                     required
                                 />
                             </div>
+                            <div>
+                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
+                                    audio {" "}
+                                </label>
+                                <input
+                                    type="file"
+                                    name="audio"
+                                    value={formData.audio}
+                                    onChange={(e) => {
+                                        handleChange(e);
+                                    }}
+                                    placeholder="Enter rank"
+                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
+                                    required
+                                />
+                            </div>
+                            <div>
+                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
+                                    Video {" "}
+                                </label>
+                                <input
+                                    type="file"
+                                    name="video"
+                                    value={formData.video}
+                                    onChange={(e) => {
+                                        handleChange(e);
+                                    }}
+                                    placeholder="Enter video"
+                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
+                                    required
+                                />
+                            </div>
+
                             <div>
                                 <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
                                     Slug{" "}
@@ -474,26 +527,10 @@ function Index() {
                                     required
                                 />
                             </div>
-                            {/* Description Field changed to textarea with 300 character limit */}
-                            <div>
-                                <label className="block text-[#FF1B1B] font-medium mb-1">
-                                    Position
-                                </label>
-                                <input
-                                    type="number"
-                                    name="position"
-                                    value={formData.position}
-                                    onChange={handleChange}
-                                    placeholder="Enter Position"
-                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
-                                    required
-                                />
-                            </div>
-
                             {/* thumbnail Upload Field */}
                             <div>
                                 <label className="block text-[#FF1B1B] font-medium mb-1">
-                                    Upload University Image
+                                    Upload  Image
                                 </label>
                                 <input
                                     type="file"
@@ -522,19 +559,226 @@ function Index() {
                                     required
                                 />
                             </div>
-
                             <div>
                                 <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
-                                    University Icon Alt{" "}
+                                    Name{" "}
                                 </label>
                                 <input
                                     type="text"
-                                    name="icon_alt"
-                                    value={formData.icon_alt}
+                                    name="name"
+                                    value={formData.name}
                                     onChange={(e) => {
                                         handleChange(e);
                                     }}
-                                    placeholder="Enter cover Icon alt"
+                                    placeholder="Enter name"
+                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
+                                    required
+                                />
+                            </div>
+                            <div>
+                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
+                                    Name{" "}
+                                </label>
+                                <input
+                                    type="text"
+                                    name="name"
+                                    value={formData.name}
+                                    onChange={(e) => {
+                                        handleChange(e);
+                                    }}
+                                    placeholder="Enter name"
+                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
+                                    required
+                                />
+                            </div>
+                            <div>
+                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
+                                    career growth{" "}
+                                </label>
+                                <input
+                                    type="text"
+                                    name="career_growth"
+                                    value={formData.career_growth}
+                                    onChange={(e) => {
+                                        handleChange(e);
+                                    }}
+                                    placeholder="Enter career_growth"
+                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
+                                    required
+                                />
+                            </div>
+                            <div>
+                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
+                                    specialization{" "}
+                                </label>
+                                <input
+                                    type="text"
+                                    name="specialization"
+                                    value={formData.specialization}
+                                    onChange={(e) => {
+                                        handleChange(e);
+                                    }}
+                                    placeholder="Enter specialization"
+                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
+                                    required
+                                />
+                            </div>
+
+
+                            <div>
+                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
+                                    subtitle{" "}
+                                </label>
+                                <input
+                                    type="text"
+                                    name="subtitle"
+                                    value={formData.subtitle}
+                                    onChange={(e) => {
+                                        handleChange(e);
+                                    }}
+                                    placeholder="Enter subtitle"
+                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
+                                    required
+                                />
+                            </div>
+                            <div>
+                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
+                                    shortDescription{" "}
+                                </label>
+                                <textarea
+                                    rows={5}
+                                    name="shortDescription"
+                                    value={formData.shortDescription}
+                                    onChange={(e) => {
+                                        handleChange(e);
+                                    }}
+                                    placeholder="Enter short Description"
+                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
+                                    required
+                                />
+                            </div>
+
+                            <div>
+                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
+                                    university title{" "}
+                                </label>
+                                <input
+                                    type="text"
+                                    name="universitytitle"
+                                    value={formData.universitytitle}
+                                    onChange={(e) => {
+                                        handleChange(e);
+                                    }}
+                                    placeholder="Enter short title"
+                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
+                                    required
+                                />
+                            </div>
+
+                            <div>
+                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
+                                    university desc{" "}
+                                </label>
+                                <textarea
+                                    rows={5}
+                                    type="text"
+                                    name="universitydesc"
+                                    value={formData.universitydesc}
+                                    onChange={(e) => {
+                                        handleChange(e);
+                                    }}
+                                    placeholder="Enter short Description"
+                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
+                                    required
+                                />
+                            </div>
+
+                            <div>
+                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
+                                    conclusion
+                                </label>
+                                <textarea
+                                    rows={5}
+                                    type="text"
+                                    name="conclusion"
+                                    value={formData.conclusion}
+                                    onChange={(e) => {
+                                        handleChange(e);
+                                    }}
+                                    placeholder="Enter short Description"
+                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
+                                    required
+                                />
+                            </div>
+
+
+
+
+                            <div>
+                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
+                                    specialisation title{" "}
+                                </label>
+                                <textarea
+                                    rows={5}
+                                    type="text"
+                                    name="specialisationtitle"
+                                    value={formData.specialisationtitle}
+                                    onChange={(e) => {
+                                        handleChange(e);
+                                    }}
+                                    placeholder="Enter short title"
+                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
+                                    required
+                                />
+                            </div>
+
+
+                            <div>
+                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
+                                    specialisationdesc
+                                </label>
+                                <input
+                                    type="text"
+                                    name="specialisationdesc"
+                                    value={formData.specialisationdesc}
+                                    onChange={(e) => {
+                                        handleChange(e);
+                                    }}
+                                    placeholder="Enter short specialisationdesc"
+                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
+                                    required
+                                />
+                            </div>
+
+
+                            <div>
+                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
+                                    academic title{" "}
+                                </label>
+                                <input
+                                    type="text"
+                                    name="academictitle"
+                                    value={formData.academictitle}
+                                    onChange={(e) => {
+                                        handleChange(e);
+                                    }}
+                                    placeholder="Enter subtitle"
+                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
+                                    required
+                                />
+                            </div>
+                            <div>
+                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
+                                    Academic Description{" "}
+                                </label>
+                                <textarea
+                                    rows={5}
+                                    name="academicdesc"
+                                    value={formData.academicdesc}
+                                    onChange={(e) => {
+                                        handleChange(e);
+                                    }}
+                                    placeholder="Enter short Description"
                                     className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
                                     required
                                 />
@@ -542,200 +786,64 @@ function Index() {
 
                             <div>
                                 <label className="block text-[#FF1B1B] font-medium mb-1">
-                                    Upload Icon
+                                    Upload Academic Image
                                 </label>
                                 <input
                                     type="file"
                                     accept="image/*"
-                                    onChange={(e) => handleImageChange(e, "icon")}
-
+                                    onChange={(e) => handleImageChange(e, "academic_cover_image")}
                                     className="w-full p-2 bg-gray-100 rounded-md cursor-pointer text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
                                 />
-
-                                <ImagePreview image={icons} />
-
+                                <ImagePreview image={preview} />
                             </div>
 
-                            <div className="mb-4">
-                                <div className="flex justify-between items-center mb-3">
-                                    <h2 className="text-xl font-semibold text-[#CC2828]">Multiple Description</h2>
-
-                                    <button
-                                        type="button"
-                                        onClick={addDescription}
-                                        className="border border-[#CC2828] bg-[#CC2828] hover:bg-red-700 text-white px-6 py-2 rounded-[10px] text-base transition"
-                                    >
-                                        + Add More
-                                    </button>
-                                </div>
-
-                                {formData.descriptions.map((desc, index) => (
-                                    <div key={index} className="mb-4">
-                                        <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
-                                        </label>
-                                        <ReactQuillEditor
-                                            label={`Description ${index + 1}`}
-                                            desc={desc.text}
-                                            handleBioChange={(value) => {
-                                                const plainText = value.replace(/<[^>]*>/g, "").trim();
-                                                if (plainText.length <= 500) {
-                                                    handleDescriptionChange(index, value);
-                                                }
-                                            }}
-                                        />
-                                        <button
-                                            type="button"
-                                            onClick={() => deleteDescription(index)}
-                                            className="bg-red-500 text-white rounded-md p-3 hover:bg-red-700 flex justify-center items-center"
-                                        >
-                                            <MdDelete size={20} />
-                                        </button>
-
-                                    </div>
-                                ))}
-                            </div>
-                        </>
-                    )}
-                    {activeTab === "about" && (
-                        <>
-                            <AddAbout handleChange={handleChange} handleQuillChange={handleQuillChange} formData={formData} />
-                        </>
-                    )}
-
-                    {activeTab === "approvals" && (
-                        <>
 
                             <div>
                                 <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
-                                    Name{" "}
+                                    Entrace title{" "}
                                 </label>
                                 <input
                                     type="text"
-                                    name="approvals_name"
-                                    value={formData.approvals_name}
+                                    name="entracetitle"
+                                    value={formData.entracetitle}
                                     onChange={(e) => {
                                         handleChange(e);
                                     }}
-                                    placeholder="Enter approvals name"
+                                    placeholder="Enter subtitle"
                                     className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
                                     required
                                 />
                             </div>
                             <div>
-
-                                <ReactQuillEditor
-                                    label="Description"
-                                    desc={formData.approvals_desc}
-                                    handleBioChange={(val) => handleQuillChange("approvals_desc", val)}
-                                />
-                            </div>
-
-                            <ApprovalAndPartner step={1} toggleApproval={toggleApproval} selectedApprovals={selectedApprovals} />
-
-                        </>
-
-                    )}
-
-                    {activeTab === "rankings" && (
-                        <>
-
-                            <div>
                                 <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
-                                    Name{" "}
-
+                                    Academic Description{" "}
                                 </label>
-                                <input
-                                    type="text"
-                                    name="rankings_name"
-                                    value={formData.rankings_name}
+                                <textarea
+                                    rows={5}
+                                    name="entracedesc"
+                                    value={formData.entracedesc}
                                     onChange={(e) => {
                                         handleChange(e);
                                     }}
-                                    placeholder="Enter name"
+                                    placeholder="Enter short Description"
                                     className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
                                     required
                                 />
                             </div>
 
-                            {/* Description Field changed to textarea with 300 character limit */}
-
-                            <ReactQuillEditor
-                                label="Description"
-                                desc={formData.rankings_description}
-                                handleBioChange={(val) => handleQuillChange("rankings_description", val)}
-                            />
-
-
-
-
-                        </>
-
-                    )}
-
-                    {activeTab === "advantages" && (
-                        <>
-                            {activeTab === "advantages" && (
-                                <>
-                                    <AdvantageSectionAdd advantages={advantages} setAdvantages={setAdvantages}
-                                        htitle={"Advantages"} handleChange={handleChange} handleQuillChange={handleQuillChange} formData={formData} />
-                                </>
-                            )}
-                            {/* ADD MORE BUTTON */}
-
-                        </>
-                    )}
-
-                    {activeTab === "facts" && (
-                        <>
                             <div>
-                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
-                                    Name{" "}
+                                <label className="block text-[#FF1B1B] font-medium mb-1">
+                                    Upload Entrace Image
                                 </label>
                                 <input
-                                    type="text"
-                                    name="factsname"
-                                    value={formData.factsname}
-                                    onChange={(e) => {
-                                        handleChange(e);
-                                    }}
-                                    placeholder="Enter name"
-                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
-                                    required
+                                    type="file"
+                                    accept="image/*"
+                                    onChange={(e) => handleImageChange(e, "entrace_cover_image")}
+                                    className="w-full p-2 bg-gray-100 rounded-md cursor-pointer text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
                                 />
+                                <ImagePreview image={preview} />
                             </div>
-
-                            <FactAdd facts={facts} setFacts={setFacts} />
-
                         </>
-
-                    )}
-
-                    {activeTab === "certificate" && (
-                        <>
-                            <AddCertificate
-                                formData={formData}
-                                handleChange={handleChange}
-                                handleImageChange={handleImageChange}
-                                preview={preview}
-                                handleQuillChange={handleQuillChange}
-                            />
-                        </>
-
-                    )}
-
-                    {activeTab === "pattern" && (
-                        <AddPattern setPatterns={setPatterns} patterns={patterns} formData={formData} handleChange={handleChange} handleQuillChange={handleQuillChange} />
-                    )}
-                    {/* Action Buttons */}
-                    {activeTab === "financial" && (
-                        <FinancialAdd handleQuillChange={handleQuillChange} handleChange={handleChange} fees={fees} setFees={setFees} formData={formData} />
-                    )}
-
-                    {activeTab === "campuses" && (
-                     <>
-                        <Campus campusList={campusList} setCampusList={setCampusList} />
-                        <AddInternationalcapmus  campusInterList={campusInterList} setCampusInterList={setCampusInterList} />
-                     </>
                     )}
                     {activeTab === "partners" && (
                         <>
@@ -769,11 +877,24 @@ function Index() {
                         </>
 
                     )}
-                    {activeTab === "services" && (
-                        <ServicesAdd services={services} setServices={setServices} handleChange={handleChange} handleQuillChange={handleQuillChange} formData={formData} />
+
+                    {activeTab === "carrer" && (
+                        <>
+                            <ProgramCareer handleQuillChange={handleQuillChange} handleChange={handleChange} Careers={Careers} setCareers={setCareers} formData={formData} />
+                        </>
                     )}
-                    {activeTab === "online" && (
-                        <AddOnline formData={formData} handleChange={handleChange} onlines={onlines} setOnlines={setOnlines} handleQuillChange={handleQuillChange} />
+
+                       {activeTab === "institutes" && (
+                        <>
+                            <AddInstute formData={formData} handleChange={handleChange} onlines={onlines} setOnlines={setOnlines} handleQuillChange={handleQuillChange} />
+                        </>
+                    )}
+
+                    
+                    {activeTab === "university" && (
+                        <>
+                          <AllUniversity />  
+                        </>
                     )}
                     {activeTab === "faq" && (
                         <FaqAdd faqs={faqs} setFaqs={setFaqs} />
