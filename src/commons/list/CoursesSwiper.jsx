@@ -126,7 +126,7 @@ function CourseCard({ course, mobile = false, name,slug }) {
 
         <div className="absolute bottom-0 left-3 translate-y-[50%]">
           <div className="bg-white shadow-md rounded-[5px] w-[102px] h-[34px] flex justify-center items-center">
-            <img src={course.icon} className="h-5" alt="" />
+            <img src={course.icon} className="h-10 object-cover" alt={course.alt} />
           </div>
         </div>
       </div>
@@ -149,7 +149,7 @@ function CourseCard({ course, mobile = false, name,slug }) {
           )}
 
           {name === "university" && (
-            <Link href={`/course/${course.slug}`}>
+            <Link href={`/university/${slug}/${course.slug}`}>
               <button className="cursor-pointer bg-red-600 hover:bg-red-700 text-white text-[10px] rounded-[6px] w-[81px] h-[18px]">
                 Read More
               </button></Link>

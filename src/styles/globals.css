@@ -288,4 +288,41 @@ margin-left: -5px;
   width: 10px !important;
   height: 10px !important;
 }
-   
+
+
+
+@keyframes pulseRingOnly {
+  0% {
+    transform: scale(0.9);
+    opacity: .8;
+  }
+  70% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.pulse-wrapper::after {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  border-radius: 9999px;
+  border: 13px solid #ef4444;   /* red ring */
+  animation: pulseRingOnly 1.6s infinite cubic-bezier(0.4, 0, 0.6, 1);
+  pointer-events: none;
+}
+
+.pulse-wrapper-green::after{
+    content: "";
+  position: absolute;
+  inset: 2px;
+  border-radius: 9999px;
+  border: 13px solid #037938;   /* red ring */
+  animation: pulseRingOnly 1.6s infinite cubic-bezier(0.4, 0, 0.6, 1);
+  pointer-events: none;
+
+}
+ 

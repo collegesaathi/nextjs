@@ -136,6 +136,12 @@ class Listing extends Component {
     // This produces: /all/university?search=manipal (CORRECT)
     return Api.get(`/all/university?search=${query}`);
 }
+
+async CompareUniversities(slug){
+  return Api.get(`/compare/university/${slug}`)
+}
+
+
   render() {
     return (
       <div>

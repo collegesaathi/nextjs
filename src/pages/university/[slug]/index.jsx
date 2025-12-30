@@ -1,7 +1,7 @@
 
 import Reviews from "@/commons/list/Reviews";
-import Listing from "../api/Listing";
-import Layout from "../components/Layout";
+import Listing from "@/pages/api/Listing";
+import Layout from "@/pages/components/Layout";
 import Universities from "@/commons/list/Universities";
 import SimilarUniversities from "@/commons/list/SimilarUniversities";
 import FAQSection from "@/commons/list/FAQSection";
@@ -20,16 +20,19 @@ import Aboutdetails from "@/commons/list/Aboutdetails";
 import Hero from "@/commons/list/Hero";
 import CourseFees from "@/commons/list/CourseFees";
 import Ranking from "@/commons/list/Rankings";
-import FrontendSidebar from "../common/FrontendSidebar";
+import FrontendSidebar from "@/pages/common/FrontendSidebar";
 import { fetchDetails } from "@/lib/ssrFetch";
 import { useEffect, useState } from "react";
 import EnquiryBox from "@/commons/list/EnquiryForm";
+import Head from 'next/head';
 
 function Index({ data }) {
-    console.log("data", data)
+    console.log("universitydata", data)
     const uniId = data?.university.id;
     const [loading, setLoading] = useState(false);
     const [courseData, setCourseData] = useState([])
+
+       
 
     const fetchCourse = async (uniId) => {
         setLoading(true)
@@ -51,6 +54,8 @@ function Index({ data }) {
     }, [uniId])
 
     return (<>
+
+  
         <Layout>
             <div className=" md:py-8 ">
                 <div className="mx-auto container sm:container md:container lg:container xl:max-w-[1430px]  px-2 md:px-4">

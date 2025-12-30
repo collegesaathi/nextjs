@@ -6,6 +6,9 @@ import StarRating from "@/common/Rating";
 import BestPartnerCount from "../home/BestPartnerCount";
 import ExploreUniversities from "../home/ExploreUniversities";
 import Confusion from "../home/Confusion";
+import { useRouter } from "next/router";
+
+import { fetchComparisonDetails } from "@/lib/ssrFetch";
 
 
 const comparisonData = {
@@ -290,7 +293,7 @@ const RatingRow = ({ label, values, isPink, type }) => (
 
 
 
-export default function Compare() {
+export default function Compare({compareData}) {
   const [activeDetail, setActiveDetail] = useState(null);
   const [activeSection, setActiveSection] = useState("approvals");
 
@@ -304,6 +307,12 @@ export default function Compare() {
     activeSection,
     ...tabList.map((s) => s.id).filter((id) => id !== activeSection),
   ];
+
+  const router=useRouter()
+  const {slug}=router.query
+
+  console.log("sluggg",slug)
+  console.log("comparedataaa",compareData?.data)
 
 
 
@@ -644,16 +653,18 @@ export default function Compare() {
                 }}>
                 <button className="bg-[#EC1E24] text-white px-8 py-2.5 rounded-md text-xs font-bold uppercase shadow-lg">Attributes</button>
               </div>
-              {universities.map((uni) => (
+              {compareData?.data?.universities.map((uni) => (
                 <div key={uni.id} className="p-1 py-5 md:py-6  md:p-4 flex flex-col items-center border-r last:border-0  relative"
                   style={{
                     borderImage: "linear-gradient(180deg, rgba(255,255,255,0) 0%, #8b8b8b 47%, rgba(255,255,255,0) 80%) 1"
                   }}>
                   <XCircle className="absolute top-0 right-1 md:top-2 md:right-2 text-[#B5B4B4] cursor-pointer w-3 h-3 md:w-6 h-6" />
-                  <img src={uni.logo} className="h-8 md:h-12 object-contain mb-2" alt="logo" />
+                  <img src={uni.icon} className="h-8 md:h-12 object-contain mb-2" alt={uni.icon_alt} />
                   <p className="text-[10px] md:text-[16px]  text-center uppercase truncate w-full">{uni.name}</p>
                   <ScoreCircle score={uni.score} />
-                  <button className="mt-2 w-full bg-[#EC1E24] text-white text-[10px] md:text-[14px]  md:py-1.5 rounded uppercase">View University</button>
+                  <Link 
+                   href={`/university/${uni?.slug}`}
+                  className="mt-2 w-full bg-[#EC1E24] text-white text-[10px] md:text-[14px] text-center  md:py-1.5 rounded uppercase">View University</Link>
                 </div>
               ))}
             </div>
@@ -679,25 +690,12 @@ export default function Compare() {
 
       <BestPartnerCount />
       <ExploreUniversities />
-      <Confusion />
+      {/* <Confusion /> */}
     </Layout>
   );
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+export async function getServerSideProps(context) {
+    return await fetchComparisonDetails(context);
+}

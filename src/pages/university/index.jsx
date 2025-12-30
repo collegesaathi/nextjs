@@ -12,6 +12,7 @@ import { useFilterStore } from '@/store/filterStore';
 import Listing from "@/pages/api/Listing";
 import { Loader } from '@/common/Loader';
 import UniversityCard from '../components/UniversityCard';
+import CompareComponent from '../compare-universities';
 
 // Responsive hook replacement
 const useResponsive = () => {
@@ -371,6 +372,8 @@ export default function UniversityGrid() {
                     </div>
                 </div>
             </div>
+
+              <CompareComponent />
 
         </Layout>
     );
