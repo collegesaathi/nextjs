@@ -145,6 +145,10 @@ async CompareUniversities(slug){
 }
 
 
+async CategroyUniversities(slug){
+  return Api.get(`/categroy/university/${slug}`)
+}
+
   render() {
     return (
       <div>
