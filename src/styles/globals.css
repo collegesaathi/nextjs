@@ -209,4 +209,120 @@ margin-left: -5px;
           width: 16px;
           background-color: white;
         }
-   
+
+
+
+        /* Chrome / Safari / Edge */
+.loan .custom-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.loan .custom-scroll::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.loan.custom-scroll::-webkit-scrollbar-thumb {
+  background: #c4c4c4;
+  border-radius: 10px;
+}
+
+.loan .custom-scroll::-webkit-scrollbar-thumb:hover {
+  background: #a5a5a5;
+}
+
+/* Firefox */
+.loan .custom-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: #c4c4c4 #f1f1f1;
+}
+
+
+
+/* Swiper Grid & Pagination Custom Styles for Top Recruiters */
+
+/* Ensures the grid flows correctly in rows */
+.recruiters-swiper-container .swiper-wrapper {
+  flex-direction: row !important;
+}
+
+/* Adds spacing between the two rows */
+.recruiters-swiper-container .swiper-slide {
+  margin-top: 10px !important;
+  margin-bottom: 10px !important;
+}
+
+/* Inactive Dots (Grey) */
+.recruiters-pagination .swiper-pagination-bullet {
+  width: 8px !important;
+  height: 8px !important;
+  background-color: #D1D1D1 !important;
+  opacity: 1 !important;
+  border-radius: 50%;
+  display: inline-block;
+  margin: 0 6px !important;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Active Dot (Red) */
+.recruiters-pagination .swiper-pagination-bullet-active {
+  background-color: #EE1E24 !important;
+  width: 10px !important;
+  height: 10px !important;
+}
+
+
+/* Custom Pagination for University Slider */
+.university-pagination .swiper-pagination-bullet {
+  width: 8px !important;
+  height: 8px !important;
+  background-color: #D1D1D1 !important; /* Inactive dots */
+  opacity: 1 !important;
+  margin: 0 5px !important;
+  transition: all 0.3s ease;
+}
+
+.university-pagination .swiper-pagination-bullet-active {
+  background-color: #EE1E24 !important; /* RED active dot */
+  width: 10px !important;
+  height: 10px !important;
+}
+
+
+
+@keyframes pulseRingOnly {
+  0% {
+    transform: scale(0.9);
+    opacity: .8;
+  }
+  70% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.pulse-wrapper::after {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  border-radius: 9999px;
+  border: 13px solid #ef4444;   /* red ring */
+  animation: pulseRingOnly 1.6s infinite cubic-bezier(0.4, 0, 0.6, 1);
+  pointer-events: none;
+}
+
+.pulse-wrapper-green::after{
+    content: "";
+  position: absolute;
+  inset: 2px;
+  border-radius: 9999px;
+  border: 13px solid #037938;   /* red ring */
+  animation: pulseRingOnly 1.6s infinite cubic-bezier(0.4, 0, 0.6, 1);
+  pointer-events: none;
+
+}
+ 

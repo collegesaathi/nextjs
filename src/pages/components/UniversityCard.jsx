@@ -4,6 +4,7 @@ import { useMemo } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Loader } from '@/common/Loader';
+import { useRole } from '@/context/RoleContext'; 
 // import { useSelectionStore } from '@/store/selectedStore'; // React store (Zustand/Context equivalent)
 
 export default function UniversityCard({
@@ -20,10 +21,17 @@ export default function UniversityCard({
     card
 }) {
     //   const { selectedItems, toggleSelection } = useSelectionStore();
-    const selectedItems = ""
-    const isSelected = selectedItems;
-    const isMaxReached = selectedItems.size >= 3 && !isSelected;
-    const toggleSelection = "";
+    // const selectedItems = ""
+    // const isSelected = selectedItems;
+    // const isMaxReached = selectedItems.size >= 3 && !isSelected;
+    // const toggleSelection = "";
+
+      const { selectedUnis, toggleUniversity } = useRole();
+         const uniId = card?.id ;
+    const isSelected = selectedUnis.some(u => u.id === uniId);
+    const isMaxReached = selectedUnis.length >= 3;
+
+    console.log("cardd",card)
 
     const admissionTag = useMemo(() => {
       
@@ -40,7 +48,7 @@ export default function UniversityCard({
 
     return (
         <div className="bg-white w-full h-full rounded-2xl  shadow-md relative border border-neutral-200 flex flex-col hover:scale-105 transition-all hover:shadow-[0px_0px_15px_#c2c2c2]">
-
+        {/* <Link href={`/university/${card?.slug}`}> */}
             {/* University Image */}
             <div className="relative">
                 <Image
@@ -103,24 +111,29 @@ export default function UniversityCard({
                 {/* Actions */}
                 <div className="border-t border-neutral-200 pt-4 mt-4 mb-4 text-[0.75rem]">
 
-                    <button className="flex items-center justify-center w-full bg-neutral-100 text-neutral-700 px-4 h-[1.815rem] rounded-md hover:bg-neutral-200 mb-3 transition-colors">
+                    <a 
+                    href={`/pdf/sample.pdf`}
+                     target="_blank"
+                      onClick={(e) => { e.stopPropagation(); }}
+                      download
+                    className="flex items-center justify-center w-full bg-neutral-100 text-neutral-700 px-4 h-[1.815rem] rounded-md hover:bg-neutral-200 mb-3 transition-colors">
                         <span className="mr-2"><img src="/icons/download.svg" /></span> Download Prospectus
-                    </button>
+                    </a>
 
-                    <button
-                        onClick={() => toggleSelection(index)}
-                        disabled={isMaxReached}
-                        className={`flex items-center justify-center w-full px-4 h-[1.815rem] rounded-md transition-colors
-              ${isSelected ? 'bg-neutral-100' :
-                                isMaxReached ? 'bg-neutral-200 text-neutral-400 cursor-not-allowed'
-                                    : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'}
-            `}
+                <button
+
+                         onClick={(e) => {
+      e.stopPropagation(); // ← prevents outer Link click
+      toggleUniversity(card);
+    }}
+                        className={`flex items-center justify-center w-full px-4 h-[1.815rem] rounded-md transition-colors cursor-pointer mt-4
+                        ${isSelected ? 'bg-neutral-100 text-green-700 font-[600] ' : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'}`}
                     >
                         <input
                             type="checkbox"
                             checked={isSelected}
-                            onChange={() => toggleSelection(index)}
-                            className="w-3.5 h-3.5 rounded-lg border bg-white accent-[#EC1E24]"
+                            readOnly
+                            className="w-3.5 h-3.5 rounded-lg accent-[#EC1E24]"
                         />
                         <span className="ml-2">
                             {isSelected ? "Added to Compare" : "Add to Compare"}
@@ -132,7 +145,10 @@ export default function UniversityCard({
 
             {/* View Details */}
 
-            <Link href={`/university/${card?.slug}`}>
+            <Link 
+             href={`/university/${card?.slug}`}
+           
+              >
             <button
                 className="cursor-pointer absolute w-[7rem] h-[1.4rem] text-[0.75rem] -bottom-4 left-1/2 -translate-x-1/2 bg-[#EC1E24] text-white px-4 rounded-full hover:bg-red-600 transition-colors font-medium shadow-lg z-30"
             >
@@ -147,7 +163,7 @@ export default function UniversityCard({
                     dangerouslySetInnerHTML={{ __html: admissionTag }}
                 />
             )}
-
+{/* </Link> */}
         </div>
     );
 }

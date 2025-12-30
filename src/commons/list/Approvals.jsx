@@ -6,7 +6,7 @@ import 'swiper/css/navigation';
 import { useRef, useState } from "react";
 import BackNext from "@/pages/components/BackNext";
 function Approvals({approvals , approvalsdata}) {
-    console.log("approvalsdata" ,approvalsdata)
+
     const swiperRef = useRef(null);
     const [progress, setProgress] = useState(0);
     const [isBeginning, setIsBeginning] = useState(true);

@@ -16,6 +16,8 @@ const partners = [
 ];
 
 export default function PlacementPartners({ partners, PlacementPartners }) {
+
+
   const swiperRef = useRef(null);
 
   const [progress, setProgress] = useState(0);

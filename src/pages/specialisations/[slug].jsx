@@ -38,7 +38,7 @@ function Index({ data }) {
         setLoading(true)
         try {
             const main = new Listing();
-            const response = await main.SpecialisationCourseGet(uniId);
+            const response = await main.SpecializationGet(uniId);
             setCourseData(response?.data)
         }
         catch (error) {

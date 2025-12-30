@@ -1,6 +1,6 @@
 
 import Reviews from "@/commons/list/Reviews";
-import Layout from "../components/Layout";
+import Layout from "@/pages/components/Layout";
 import Universities from "@/commons/list/Universities";
 import SimilarUniversities from "@/commons/list/SimilarUniversities";
 import FAQSection from "@/commons/list/FAQSection";
@@ -18,7 +18,7 @@ import Approvals from "@/commons/list/Approvals";
 import Aboutdetails from "@/commons/list/Aboutdetails";
 import Hero from "@/commons/list/Hero";
 import Ranking from "@/commons/list/Rankings";
-import FrontendSidebar from "../common/FrontendSidebar";
+import FrontendSidebar from "@/pages/common/FrontendSidebar";
 import { fetchDetails } from "@/lib/ssrFetch";
 import Eligibility from "@/commons/list/Eligibility";
 import Curriculum from "@/commons/list/Curriculum";
@@ -27,13 +27,18 @@ import UpdatedFee from "@/commons/list/UpdatedFee";
 import CoursesSwiper from "@/commons/list/CoursesSwiper";
 import CarreerOppurtunity from "@/commons/list/CarreerOppurtunity";
 import { useEffect, useState } from "react";
-import Listing from "../api/Listing";
-import EnquiryForm from "../common/EnquiryForm";
+import Listing from "@/pages/api/Listing";
+import EnquiryForm from "@/pages/common/EnquiryForm";
 import EnquiryBox from "@/commons/list/EnquiryForm";
 function Index({ data }) {
         const uniId = data?.CourseData?.id;
         const [loading, setLoading] = useState(false);
         const [courseData, setCourseData] = useState([])
+
+
+
+        console.log("universitydata",data)
+        
     const fetchCourse = async (uniId) => {
         setLoading(true)
         try {

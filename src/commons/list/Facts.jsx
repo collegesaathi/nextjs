@@ -29,7 +29,7 @@ function Facts({ facts }) {
     tracking-[0px]
     text-[#282529]
     mb-4 md:mb-[30px]
-    w-[250px]
+ 
   "
               >
                 {facts?.title}

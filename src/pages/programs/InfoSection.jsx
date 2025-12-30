@@ -7,7 +7,7 @@ const InfoSection = () => {
   ];
 
   return (
-    <div className="max-w-[1230px]  font-poppins text-[#282529]">
+    <div className="max-w-[1230px] mx-auto font-poppins text-[#282529]">
  
       <div className="space-y-6 mb-12">
         <h2 className="text-[28px] md:text-3xl font-[600] leading-[28px]">

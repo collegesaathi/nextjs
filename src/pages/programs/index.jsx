@@ -15,19 +15,24 @@ import UniversityTable from "./UniversityTable";
 import YoutubePlayer from "./YoutubePlayer";
 import CollegesathiAdvantages from "./CollegesathiAdvantages";
 import WorkExperienceRequirement from "./WorkExperienceRequirement";
+import Durations from "./Durations";
+import FinancialAidSection from "./FinancialAidSection";
+import CurriculumSection from "./CurriculumSection";
+import ConnectExpertForm from "./ConnectExpertForm";
+import Specializations from "./Specializations";
+import PlacementOpportunities from "./PlacementOpportunities";
+import CareerTable from "./CareerTable";
+import TopRecruiters from "./TopRecruiters";
+import FutureTrends from "./FutureTrends";
+import BestUniversities from "./BestUniversities";
+import ConclusionFAQ from "./ConclusionFAQ";
 
 export default function TermsConditions() {
     return (
         <Layout>
-            <div className="mx-auto container sm:container md:container xl:max-w-[1230px]  px-2 md:px-4 py-4 md:mt-20 lg:mt-20 ">
+            <div className="mx-auto    px-2 md:px-4 py-4 md:mt-20 lg:mt-20 ">
                 {/* Breadcrumb */}
-                <div className=" py-4 text-sm text-gray-500 mt-6">
-                    <nav className="flex items-center gap-2">
-                        <span className="text-gray-400">Home</span>
-                        <span>{">"}</span>
-                        <span className="text-[#EC1E24] font-medium">All Online Programs</span>
-                    </nav>
-                </div>
+             
                 <ProgramHero />
                 <StatsCounter />
                 <UniversityApplyForm />
@@ -38,8 +43,22 @@ export default function TermsConditions() {
                 {/* <KeyHighlights /> */}
                 <YoutubePlayer  videoId="dQw4w9WgXcQ" />
                 <UniversityTable />
+                <ConnectExpertForm />
                 <CollegesathiAdvantages />
                 <WorkExperienceRequirement />
+                <Durations />
+                <FinancialAidSection />
+                <CurriculumSection />
+                <ConnectExpertForm />
+                <Specializations />
+                <PlacementOpportunities />
+                <CareerTable />
+                <TopRecruiters />
+                <ConnectExpertForm />
+                <FutureTrends />
+                <BestUniversities />
+                <ConclusionFAQ />
+               
 
       
             

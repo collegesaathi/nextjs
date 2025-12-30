@@ -11,7 +11,7 @@ export default function Universities() {
     const [compareUniversities, setcompareUniversities] = useState("")
     const [Loading, setLoading] = useState(false)
 
-    console.log("compareUniversities", compareUniversities)
+
     const fetchData = async () => {
         try {
 

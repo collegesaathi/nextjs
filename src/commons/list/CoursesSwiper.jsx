@@ -10,7 +10,10 @@ import Image from "next/image";
 import BackNext from "@/pages/components/BackNext";
 import Listing from "@/pages/api/Listing";
 
-export default function CoursesSwiper({ courseData, title, name }) {
+export default function CoursesSwiper({ courseData, title, name,slug }) {
+
+  console.log("sluggg",slug)
+
   const swiperRef = useRef(null);
 
   const [progress, setProgress] = useState(0);
@@ -96,7 +99,7 @@ export default function CoursesSwiper({ courseData, title, name }) {
               {courseData?.data?.map((course, index) => (
 
                 <SwiperSlide key={index}>
-                  <CourseCard course={course} name={name} />
+                  <CourseCard course={course} name={name} slug={slug} />
                 </SwiperSlide>
               ))}
             </Swiper>
@@ -108,7 +111,7 @@ export default function CoursesSwiper({ courseData, title, name }) {
 }
 
 /* ------------------ COURSE CARD ------------------ */
-function CourseCard({ course, mobile = false, name }) {
+function CourseCard({ course, mobile = false, name,slug }) {
   return (
     <div
       className={`bg-[#f7f6f6] border rounded-[14px] p-2 flex flex-col ${mobile ? "h-[270px]" : "h-[290px]"
@@ -123,7 +126,7 @@ function CourseCard({ course, mobile = false, name }) {
 
         <div className="absolute bottom-0 left-3 translate-y-[50%]">
           <div className="bg-white shadow-md rounded-[5px] w-[102px] h-[34px] flex justify-center items-center">
-            <img src={course.icon} className="h-5" alt="" />
+            <img src={course.icon} className="h-10 object-cover" alt={course.alt} />
           </div>
         </div>
       </div>
@@ -146,7 +149,7 @@ function CourseCard({ course, mobile = false, name }) {
           )}
 
           {name === "university" && (
-            <Link href={`/course/${course.slug}`}>
+            <Link href={`/university/${slug}/${course.slug}`}>
               <button className="cursor-pointer bg-red-600 hover:bg-red-700 text-white text-[10px] rounded-[6px] w-[81px] h-[18px]">
                 Read More
               </button></Link>

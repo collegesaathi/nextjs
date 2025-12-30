@@ -140,6 +140,11 @@ class Listing extends Component {
  async UniversityCategroyAll() {
     return Api.get("/all/catergoy/university",);
   }
+async CompareUniversities(slug){
+  return Api.get(`/compare/university/${slug}`)
+}
+
+
   render() {
     return (
       <div>
