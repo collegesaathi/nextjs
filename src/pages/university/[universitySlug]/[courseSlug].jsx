@@ -39,7 +39,7 @@ function Index({ data }) {
         setLoading(true)
         try {
             const main = new Listing();
-            const response = await main.UniveristyCourseGet(uniId);
+            const response = await main.CourseSpecialisationGet(uniId);
             setCourseData(response?.data)
         }
         catch (error) {
@@ -73,16 +73,11 @@ function Index({ data }) {
                         {data?.CourseData?.advantages && (<Advantages advantages={data?.CourseData?.advantages} />)}
 
                         {data?.CourseData?.rankings && (<Ranking rankings={data?.CourseData?.rankings} />)}
-                        <CoursesSwiper courseData={courseData} name={"course"} title={`${data?.CourseData?.name} - Specialisation`} />
+                        <CoursesSwiper courseData={courseData} name={"specialisation"} title={`${data?.CourseData?.name} - Specialisation`} />
 
                         <Eligibility eligibilitycriteria={data?.CourseData?.eligibilitycriteria} />
                         <EnquiryBox />
-
-
                         <Curriculum curriculum={data?.CourseData?.curriculum} />
-
-
-
                         {data?.CourseData?.certificates && (<SampleCertificate certificates={data?.CourseData?.certificates} />)}
 
                         {data?.CourseData?.skills && (<Skills skills={data?.CourseData?.skills} />)}

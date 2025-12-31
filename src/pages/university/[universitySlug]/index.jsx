@@ -29,7 +29,6 @@ import { fetchDetails } from "@/lib/ssrFetch";
 export default function UniversityPage({ data }) {
     console.log("data" ,data)
   const router = useRouter();
-  const { universitySlug, courseSlug } = router.query;
 
   const uniId = data?.university?.id;
   const [loading, setLoading] = useState(false);
