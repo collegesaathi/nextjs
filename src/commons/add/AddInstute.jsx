@@ -52,8 +52,8 @@ function AddInstute({ formData, handleChange, setinstitutes, institutes, handleQ
                 </label>
                 <input
                     type="text"
-                    name="onlinetitle"
-                    value={formData.onlinetitle}
+                    name="instututitle"
+                    value={formData.instututitle}
                     onChange={(e) => {
                         handleChange(e);
                     }}
@@ -64,8 +64,8 @@ function AddInstute({ formData, handleChange, setinstitutes, institutes, handleQ
             </div>
             <ReactQuillEditor
                 label="Description"
-                desc={formData.onlinedesc}
-                handleBioChange={(val) => handleQuillChange("onlinedesc", val)}
+                desc={formData.instutudesc}
+                handleBioChange={(val) => handleQuillChange("instutudesc", val)}
             />
 
             <>

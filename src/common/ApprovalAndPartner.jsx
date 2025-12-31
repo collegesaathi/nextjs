@@ -6,7 +6,7 @@ function ApprovalAndPartner({ toggleApproval, selectedApprovals, step, togglePar
     const [Loading, setLoading] = useState(false);
     const [approvalOptions, setapprovalOptions] = useState([]);
     const [PartnersOptions, setPartnersOptions] = useState([]);
-
+console.log("PartnersOptions" ,PartnersOptions)
     // Fetch data
     const fetchApprovalandPartnerLists = async () => {
         setLoading(true);
@@ -38,7 +38,6 @@ function ApprovalAndPartner({ toggleApproval, selectedApprovals, step, togglePar
                 <>
                     {step === 1 && (
                         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-
                             {approvalOptions && approvalOptions?.map((item) => (
                                 <label
                                     key={item.id}

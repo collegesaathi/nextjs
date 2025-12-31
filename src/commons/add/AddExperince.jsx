@@ -86,7 +86,7 @@ export default function AddExperince({ setExperinces, Experinces, htitle, formDa
             </div>
             {/* Header + Add Button */}
             <div className="flex justify-between items-center mb-5">
-                <h2 className="text-xl font-semibold text-[#CC2828]">{htitle || "Experinces"} Section</h2>
+                <h2 className="text-xl font-semibold text-[#CC2828]">{htitle || "Experince"} Section</h2>
                 <button
                     type="button"
                     onClick={addAdvantage}

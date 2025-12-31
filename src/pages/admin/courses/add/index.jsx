@@ -27,7 +27,6 @@ import ImagePreview from "@/common/ImagePreview";
 function Index() {
     const router = useRouter();
     const university_id = router?.query?.university_id
-    const [universities, setUniversities] = useState([])
     const [categroy, setCategroy] = useState([])
     const fetchData = async () => {
         try {

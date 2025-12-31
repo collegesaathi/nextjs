@@ -100,7 +100,7 @@ function Index() {
 
 
 
-console.log("selectedApprovals" ,selectedApprovals)
+    console.log("selectedApprovals", selectedApprovals)
     const [patterns, setPatterns] = useState([
         {
             image: "",
@@ -196,10 +196,13 @@ console.log("selectedApprovals" ,selectedApprovals)
         curriculum_title: "",       // curriculumname ki jagah ye use karein
         curriculum_description: "", // curriculum_desc ki jagah ye use karein
         curriculum_subtitle: "",    // subtitle ke liye naya field,
-        durationname:"",
-        durationdesc:'',
-        experincedesc:"",
-        experincename:""
+        durationname: "",
+        durationdesc: '',
+        experincedesc: "",
+        experincename: "",
+        placementname:"",
+        placementdescription:"",
+        experincenotes:""
     });
 
     const [monthlyData, setMonthlyData] = useState({
@@ -283,39 +286,58 @@ console.log("selectedApprovals" ,selectedApprovals)
             payload.append("career_growth", formData.career_growth);
             payload.append("duration", formData.duration);
             payload.append("subtitle", formData.subtitle);
+            payload.append("conclusion", formData.conclusion);
             payload.append("shortDescription", formData.shortDescription);
             payload.append("specialisationdesc", formData.specialisationdesc);
             payload.append("specialisationtitle", formData.specialisationtitle);
             payload.append("academictitle", formData.academictitle);
             payload.append("academicdesc", formData.academicdesc);
-            payload.append("cover_image", formData.academic_cover_image);
+            payload.append("academic_cover_image", formData.academic_cover_image);
             payload.append("entrace_cover_image", formData.entrace_cover_image);
             payload.append("entracedesc", formData.entracedesc);
             payload.append("entracetitle", formData.entracetitle);
             payload.append("futuretitle", formData.futuretitle)
             payload.append("futuredesc", formData.futuredesc);
+            payload.append("futurebtmdesc", formData.futurebtmdesc);
             payload.append("monthlyData", JSON.stringify(monthlyData));
             payload.append("universitytitle", formData.universitytitle);
             payload.append("universitybtmdesc", formData.universitybtmdesc);
             payload.append("universitydesc", formData.universitydesc);
-            payload.append("university_id" ,selectedApprovals)
+            payload.append("university_id", selectedApprovals)
             payload.append("onlinedesc", formData.onlinedesc);
             payload.append("onlinetitle", formData.onlinetitle);
             payload.append("onlines", JSON.stringify(onlines));
             payload.append("experincename", formData.experincename);
             payload.append("experincedesc", formData.experincedesc);
+            payload.append("experincenotes", formData.experincenotes);
             payload.append("Experinces", JSON.stringify(Experinces));
             payload.append("durationname", formData.durationname);
             payload.append("durationdesc", formData.durationdesc);
-            payload.append("Duration", JSON.stringify(Duration));
-             payload.append("financialname", formData.financialname);
+            payload.append("DurationData", JSON.stringify(Duration));
+            payload.append("financialname", formData.financialname);
             payload.append("financialdescription", formData.financialdescription);
-             payload.append("curriculum_title", formData.curriculum_title);
-             payload.append("curriculum_description", formData.curriculum_description);
-            payload.append("curriculm", JSON.stringify(curriculum));
-             const fincalceAdds = fincalceAdd.map(item => ({
+            payload.append("partnersname" ,  formData.partnersname)
+            payload.append("partnersdesc" ,  formData.partnersdesc)
+            payload.append("selectedPartners" ,  formData.selectedPartners)
+            payload.append("placementname" ,  formData.placementname)
+            payload.append("placementdescription" ,  formData.placementdescription)
+            payload.append("selectedPartners" ,  formData.selectedPartners)
+ const PlacementAdds = PlacementAdd.map(item => ({
                 name: item.name,
-                desc :  item.desc
+                description: item.description
+            }));
+            payload.append("PlacementAdds", JSON.stringify(PlacementAdds));
+            PlacementAdd.forEach((item, index) => {
+                if (item.image) {
+                    payload.append(`PlacementAddsimages[${index}]`, item.image);
+                }
+            });
+              payload.append("careername", formData.careername);
+            payload.append("careerdesc", formData.careerdesc);
+            payload.append("Careers", JSON.stringify(Careers));
+            const fincalceAdds = fincalceAdd.map(item => ({
+                name: item.name || "",
+                desc: item.desc || ""
             }));
             payload.append("fincalceAdds", JSON.stringify(fincalceAdds));
             fincalceAdd.forEach((item, index) => {
@@ -323,14 +345,26 @@ console.log("selectedApprovals" ,selectedApprovals)
                     payload.append(`fincalceAddsimages[${index}]`, item.image);
                 }
             });
+            payload.append("curriculum_title", formData.curriculum_title);
+            payload.append("curriculum_description", formData.curriculum_description);
+            payload.append("curriculm", JSON.stringify(curriculum));
             payload.append("keyhight", JSON.stringify(facts))
             payload.append("faqs", JSON.stringify(faqs))
+             payload.append("instutudesc", formData.instutudesc);
+            payload.append("instututitle", formData.instututitle);
             payload.append("institutes", JSON.stringify(institutes))
             payload.append("Careers", JSON.stringify(Careers))
-            console.log('faqs', faqs)
+             payload.append("meta_title", formData.meta_title);
+            payload.append("meta_description", formData.meta_description);
+            payload.append("meta_keywords", formData.meta_keywords);
+            payload.append("canonical_url", formData.canonical_url);
+            payload.append("purpusename" ,  formData.purpusename);
+            payload.append("purpsedesc" ,  formData.purpsedesc);
+
             const chooses = choose.map(item => ({
-                name: item.name,
+                name: item.name || "",
             }));
+            
             payload.append("choose", JSON.stringify(chooses));
             choose.forEach((item, index) => {
                 if (item.image) {
@@ -338,8 +372,8 @@ console.log("selectedApprovals" ,selectedApprovals)
                 }
             });
             const purpuses = purpuse.map(item => ({
-                name: item.name,
-                desc: item.desc
+                name: item.name || "",
+                desc: item.desc || ""
             }));
             payload.append("purpuse", JSON.stringify(purpuses));
             purpuses.forEach((item, index) => {
@@ -356,7 +390,7 @@ console.log("selectedApprovals" ,selectedApprovals)
 
             if (response?.data?.status) {
                 toast.success(response.data.message);
-                router.push("/admin/university")
+                router.push("/admin/program")
                 setPreview(null);
             } else {
                 toast.error(response.data.message);
@@ -374,13 +408,13 @@ console.log("selectedApprovals" ,selectedApprovals)
 
     const tabsData = [
         { id: "card", label: "Card " },
-        { id: "purpuse", label: "PurPuse" },
-        { id: "futures", label: "Future" },
-        { id: "onlines", label: "Onlines" },
-        { id: "experince", label: "Experince" },
+        { id: "purpuse", label: "Choose" },
+        { id: "keyhighlight", label: "HighLights" },
+        { id: "futures", label: "Graph" },
+        { id: "onlines", label: "Onlines Entrance" },
+        { id: "experince", label: "Experience " },
         { id: "duration", label: "Duration" },
         { id: "financial", label: "Financial" },
-        { id: "keyhighlight", label: "keyhighlight" },
         { id: "curriculum", label: "curriculum" },
         { id: "carrer", label: "Carrer" },
         { id: "partners", label: "Placement" },
@@ -479,8 +513,8 @@ console.log("selectedApprovals" ,selectedApprovals)
                                 </label>
                                 <input
                                     type="text"
-                                    name="title"
-                                    value={formData.title}
+                                    name="name"
+                                    value={formData.name}
                                     onChange={(e) => {
                                         handleChange(e);
                                     }}
@@ -503,6 +537,7 @@ console.log("selectedApprovals" ,selectedApprovals)
                                 <input
                                     type="file"
                                     name="pdf_download"
+                                    accept="application/pdf"
                                     value={formData.pdf_download}
                                     onChange={(e) => {
                                         handleChange(e);
@@ -620,44 +655,28 @@ console.log("selectedApprovals" ,selectedApprovals)
                             </div>
                             <div>
                                 <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
-                                    Name{" "}
-                                </label>
-                                <input
-                                    type="text"
-                                    name="name"
-                                    value={formData.name}
-                                    onChange={(e) => {
-                                        handleChange(e);
-                                    }}
-                                    placeholder="Enter name"
-                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
-                                    required
-                                />
-                            </div>
-                            <div>
-                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
-                                    Name{" "}
-                                </label>
-                                <input
-                                    type="text"
-                                    name="name"
-                                    value={formData.name}
-                                    onChange={(e) => {
-                                        handleChange(e);
-                                    }}
-                                    placeholder="Enter name"
-                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
-                                    required
-                                />
-                            </div>
-                            <div>
-                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
                                     career growth{" "}
                                 </label>
                                 <input
                                     type="text"
                                     name="career_growth"
                                     value={formData.career_growth}
+                                    onChange={(e) => {
+                                        handleChange(e);
+                                    }}
+                                    placeholder="Enter career_growth"
+                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
+                                    required
+                                />
+                            </div>
+                             <div>
+                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
+                                   Duration{" "}
+                                </label>
+                                <input
+                                    type="text"
+                                    name="duration"
+                                    value={formData.duration}
                                     onChange={(e) => {
                                         handleChange(e);
                                     }}
@@ -803,7 +822,7 @@ console.log("selectedApprovals" ,selectedApprovals)
                                     onChange={(e) => {
                                         handleChange(e);
                                     }}
-                                    placeholder="Enter short specialisationdesc"
+                                    placeholder="Enter short specialisation desc."
                                     className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
                                     required
                                 />
@@ -853,7 +872,7 @@ console.log("selectedApprovals" ,selectedApprovals)
                                     onChange={(e) => handleImageChange(e, "academic_cover_image")}
                                     className="w-full p-2 bg-gray-100 rounded-md cursor-pointer text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
                                 />
-                                <ImagePreview image={preview} />
+                                {/* <ImagePreview image={preview} /> */}
                             </div>
 
 
@@ -900,7 +919,7 @@ console.log("selectedApprovals" ,selectedApprovals)
                                     onChange={(e) => handleImageChange(e, "entrace_cover_image")}
                                     className="w-full p-2 bg-gray-100 rounded-md cursor-pointer text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
                                 />
-                                <ImagePreview image={preview} />
+                                {/* <ImagePreview image={preview} /> */}
                             </div>
                         </>
                     )}
@@ -1012,7 +1031,7 @@ console.log("selectedApprovals" ,selectedApprovals)
 
                     {activeTab === "university" && (
                         <>
-                            <AllUniversity toggleApproval={toggleApproval} formData={formData} handleChange={handleChange} selectedApprovals={selectedApprovals}/>
+                            <AllUniversity toggleApproval={toggleApproval} formData={formData} handleChange={handleChange} selectedApprovals={selectedApprovals} />
                         </>
                     )}
                     {activeTab === "faq" && (
