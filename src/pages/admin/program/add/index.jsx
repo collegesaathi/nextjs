@@ -28,6 +28,23 @@ import AddKeyHighlights from "@/commons/add/AddKeyHighlights";
 
 function Index() {
     const router = useRouter();
+
+
+      const [categroy, setCategroy] = useState([])
+    const fetchData = async () => {
+        try {
+            const main = new Listing();
+            const response = await main.CategroyAll();
+            setCategroy(response?.data?.data?.CategoryLists)
+        } catch (error) {
+            console.log("error", error);
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        fetchData();
+    }, []);
     const [advantages, setAdvantages] = useState([
         { title: "", description: "" }
     ]);
