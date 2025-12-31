@@ -282,6 +282,8 @@ function Index() {
             payload.append("entrace_cover_image", formData.entrace_cover_image);
             payload.append("entracedesc", formData.entracedesc);
             payload.append("entracetitle", formData.entracetitle);
+            payload.append("keyhight" , JSON.stringify(facts))
+                payload.append("monthly" , JSON.stringify(monthlyData))
              const choose = choose.map(item => ({
                 name: item.name,
             }));
@@ -291,13 +293,12 @@ function Index() {
                     payload.append(`chooseimages[${index}]`, item.image);
                 }
             });
-
                const purpuses = purpuse.map(item => ({
                 name: item.name,
                 desc:  item.desc
             }));
             payload.append("purpuse", JSON.stringify(purpuses));
-            choose.forEach((item, index) => {
+            purpuses.forEach((item, index) => {
                 if (item.image) {
                     payload.append(`purpuseimages[${index}]`, item.image);
                 }
