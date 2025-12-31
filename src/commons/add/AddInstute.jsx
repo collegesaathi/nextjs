@@ -8,19 +8,19 @@ import ReactQuillEditor from "@/common/ReactQuillEditor";
 // Dynamic import for Quill editor (SSR safe)
 const ReactQuill = dynamic(() => import("react-quill-new"), { ssr: false });
 
-function AddInstute({ formData, handleChange, onlines, setOnlines, handleQuillChange }) {
+function AddInstute({ formData, handleChange, setinstitutes, institutes, handleQuillChange }) {
     const addOnline = () => {
-        setOnlines([...onlines, { title: "", content: "", }]);
+        setinstitutes([...institutes, { title: "", content: "", }]);
     };
 
     const handleOnlineChange = (index, field, value) => {
-        const updated = [...onlines];
+        const updated = [...institutes];
         updated[index][field] = value;
-        setOnlines(updated);
+        setinstitutes(updated);
     };
 
     const deleteOnline = (index) => {
-        setOnlines(onlines.filter((_, i) => i !== index));
+        setinstitutes(institutes.filter((_, i) => i !== index));
     };
 
     // Quill modules & formats
@@ -74,7 +74,7 @@ function AddInstute({ formData, handleChange, onlines, setOnlines, handleQuillCh
                        Institutes Section
                     </h2>
                 </div>
-                {onlines && onlines?.map((faq, index) => (
+                {institutes && institutes?.map((faq, index) => (
                     <div key={index} className="grid grid-cols-2 gap-4 items-center">
                         {/* QUESTION */}
                         <div>

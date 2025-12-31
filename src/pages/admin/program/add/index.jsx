@@ -92,11 +92,13 @@ function Index() {
         }
     ]);
     const [faqs, setFaqs] = useState([
-        { question: "", answer: "", position: "" }
+        { question: "", answer: "" }
     ]);
     const [onlines, setOnlines] = useState([
         { title: "", content: "" }
     ]);
+
+
 
 
     const [patterns, setPatterns] = useState([
@@ -131,6 +133,10 @@ function Index() {
         { name: "", image: "", desc: "" }
     ]);
 
+
+    const [institutes, setinstitutes] = useState([
+        { name: "", desc: "" }
+    ]);
 
     const [purpuse, setpurpuse] = useState([
         { name: "", image: "", desc: "" }
@@ -282,20 +288,24 @@ function Index() {
             payload.append("entrace_cover_image", formData.entrace_cover_image);
             payload.append("entracedesc", formData.entracedesc);
             payload.append("entracetitle", formData.entracetitle);
-            payload.append("keyhight" , JSON.stringify(facts))
-                payload.append("monthly" , JSON.stringify(monthlyData))
-             const choose = choose.map(item => ({
+            payload.append("keyhight", JSON.stringify(facts))
+            payload.append("faqs", JSON.stringify(faqs))
+            payload.append("institutes", JSON.stringify(institutes))
+            payload.append("Careers",JSON.stringify(Careers))
+
+            console.log('faqs', faqs)
+            const chooses = choose.map(item => ({
                 name: item.name,
             }));
-            payload.append("choose", JSON.stringify(choose));
+            payload.append("choose", JSON.stringify(chooses));
             choose.forEach((item, index) => {
                 if (item.image) {
                     payload.append(`chooseimages[${index}]`, item.image);
                 }
             });
-               const purpuses = purpuse.map(item => ({
+            const purpuses = purpuse.map(item => ({
                 name: item.name,
-                desc:  item.desc
+                desc: item.desc
             }));
             payload.append("purpuse", JSON.stringify(purpuses));
             purpuses.forEach((item, index) => {
@@ -864,7 +874,7 @@ function Index() {
 
                     {activeTab === "purpuse" && (
                         <>
-                            <AddPurpuse formData={formData} handleChange={handleChange} handleQuillChange={handleQuillChange}  choose={choose} setchoose={setchoose} purpuse={purpuse} setpurpuse={setpurpuse}/>
+                            <AddPurpuse formData={formData} handleChange={handleChange} handleQuillChange={handleQuillChange} choose={choose} setchoose={setchoose} purpuse={purpuse} setpurpuse={setpurpuse} />
                         </>
                     )}
 
@@ -929,10 +939,9 @@ function Index() {
 
                     {activeTab === "institutes" && (
                         <>
-                            <AddInstute formData={formData} handleChange={handleChange} onlines={onlines} setOnlines={setOnlines} handleQuillChange={handleQuillChange} />
+                            <AddInstute formData={formData} handleChange={handleChange} institutes={institutes} setinstitutes={setinstitutes} handleQuillChange={handleQuillChange} />
                         </>
                     )}
-
 
                     {activeTab === "keyhighlight" && (
                         <AddKeyHighlights facts={facts} setFacts={setFacts} />
@@ -966,9 +975,6 @@ function Index() {
                             <Addcurriculum curriculum={curriculum} setCurriculum={setCurriculum} />
                         </>
                     )}
-
-
-
 
                     {activeTab === "university" && (
                         <>
