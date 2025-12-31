@@ -12,7 +12,8 @@ import Listing from "@/pages/api/Listing";
 
 export default function CoursesSwiper({ courseData, title, name,slug }) {
 
-  console.log("sluggg",slug)
+  const  router =  useRouter();
+  console.log("router",router)
 
   const swiperRef = useRef(null);
 
@@ -99,7 +100,7 @@ export default function CoursesSwiper({ courseData, title, name,slug }) {
               {courseData?.data?.map((course, index) => (
 
                 <SwiperSlide key={index}>
-                  <CourseCard course={course} name={name} slug={slug} />
+                  <CourseCard course={course} name={name} slug={slug} router={router}/>
                 </SwiperSlide>
               ))}
             </Swiper>
@@ -111,7 +112,7 @@ export default function CoursesSwiper({ courseData, title, name,slug }) {
 }
 
 /* ------------------ COURSE CARD ------------------ */
-function CourseCard({ course, mobile = false, name,slug }) {
+function CourseCard({ course, mobile = false, name,slug  , router}) {
   return (
     <div
       className={`bg-[#f7f6f6] border rounded-[14px] p-2 flex flex-col ${mobile ? "h-[270px]" : "h-[290px]"
@@ -141,15 +142,15 @@ function CourseCard({ course, mobile = false, name,slug }) {
 
         <div className="flex justify-end">
 
-          {name === "course" && (
-            <Link href={`/specialisations/${course.slug}`}>
+          {name === "specialisation" && (
+            <Link href={`/university/${router.query.universitySlug}/${router.query.courseSlug}/${course.slug}`}>
               <button className="cursor-pointer bg-red-600 hover:bg-red-700 text-white text-[10px] rounded-[6px] w-[81px] h-[18px]">
                 Read More
               </button></Link>
           )}
 
           {name === "university" && (
-            <Link href={`/university/${slug}/${course.slug}`}>
+            <Link href={`/university/${router.query.universitySlug}/${course.slug}`}>
               <button className="cursor-pointer bg-red-600 hover:bg-red-700 text-white text-[10px] rounded-[6px] w-[81px] h-[18px]">
                 Read More
               </button></Link>
