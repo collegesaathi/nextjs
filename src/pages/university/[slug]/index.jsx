@@ -25,6 +25,7 @@ import { fetchDetails } from "@/lib/ssrFetch";
 import { useEffect, useState } from "react";
 import EnquiryBox from "@/commons/list/EnquiryForm";
 import Head from 'next/head';
+import CompareComponent from "@/pages/compare-universities";
 
 function Index({ data }) {
     console.log("universitydata", data)
@@ -97,6 +98,8 @@ function Index({ data }) {
                     </div>
                 </div>
             </div>
+
+            <CompareComponent />
         </Layout>
     </>);
 }
