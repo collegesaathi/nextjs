@@ -23,6 +23,8 @@ import AddInternationalcapmus from "@/commons/add/AddInternationalcapmus";
 import ProgramCareer from "@/commons/add/ProgramCareer";
 import AllUniversity from "@/common/AllUniversity";
 import AddInstute from "@/commons/add/AddInstute";
+import Addcurriculum from "@/commons/add/Addcurriculum";
+import AddKeyHighlights from "@/commons/add/AddKeyHighlights";
 
 function Index() {
     const router = useRouter();
@@ -96,8 +98,8 @@ function Index() {
         }
     ]);
 
-    const [campusList, setCampusList] = useState([
-        { name: "", image: "", campus_images_alt: "" }
+    const [curriculum, setCurriculum] = useState([
+        { title: "", description: "", }
     ]);
 
     const [campusInterList, setCampusInterList] = useState([
@@ -106,6 +108,7 @@ function Index() {
     const [formData, setFormData] = useState({
         slug: "",
         name: "",
+        title:"",
         icon: null,
         descriptions: "",
         pdf_download: "",
@@ -147,7 +150,10 @@ function Index() {
         icon_alt: "",
         cover_image_alt: "",
         image_alt: "",
-        rank: ""
+        rank: "",
+        curriculum_title: "",       // curriculumname ki jagah ye use karein
+    curriculum_description: "", // curriculum_desc ki jagah ye use karein
+    curriculum_subtitle: "",    // subtitle ke liye naya field
     });
 
 
@@ -217,6 +223,7 @@ function Index() {
             payload.append("slug", formData.slug);
             payload.append("rank", formData.rank);
             payload.append("name", formData.name);
+              payload.append("title", formData.title);
             payload.append("position", formData.position);
             payload.append("about_title", formData.about_title);
             payload.append("about_desc", formData.about_desc);
@@ -250,12 +257,24 @@ function Index() {
             payload.append("cover_image_alt", formData.cover_image_alt)
             payload.append("icon_alt", formData.icon_alt)
             payload.append("image_alt", formData.image_alt)
+
             const cleanPatterns = patterns.map(item => ({
                 patternName: item.patternName,
                 percentage: item.percentage,
                 description: item.description,
                 pattern_images_alt: item?.pattern_images_alt
             }));
+
+             const cleanCurriculum = [
+    {
+        title: formData.curriculumname,
+        description: formData.curriculum_desc,
+    }
+];
+                   payload.append("Curriculum", JSON.stringify(cleanCurriculum));
+
+
+
             payload.append("patterns", JSON.stringify(cleanPatterns));
             patterns.forEach((item, index) => {
                 if (item.image) {
@@ -274,22 +293,27 @@ function Index() {
                     payload.append(`campusinterimages[${index}]`, item.image);
                 }
             });
-            const campusListmanage = campusList.map(item => ({
-                name: item.name,
-                campus_images_alt: item?.campus_images_alt
-            }));
-            payload.append("campusList", JSON.stringify(campusListmanage));
-            campusList.forEach((item, index) => {
-                if (item.image) {
-                    payload.append(`campusimages[${index}]`, item.image);
-                }
-            });
+            // const curriculumListmanage = curriculumList.map(item => ({
+            //     title: item.title,
+            //     campus_images_alt: item?.campus_images_alt
+            // }));
+            // payload.append("curriculumList", JSON.stringify(curriculumListmanage));
+            // curriculumList.forEach((item, index) => {
+            //     if (item.image) {
+            //         payload.append(`curriculumimages[${index}]`, item.image);
+            //     }
+            // });
             payload.append("partnersname", formData.partnersname);
             payload.append("partnersdesc", formData.partnersdesc);
             payload.append("servicetitle", formData.servicetitle);
             payload.append("servicedesc", formData.servicedesc);
             payload.append("onlinedesc", formData.onlinedesc);
             payload.append("onlinetitle", formData.onlinetitle);
+          payload.append("curriculum_title", formData.curriculum_title);
+        payload.append("curriculum_description", formData.curriculum_description);
+        payload.append("curriculum_subtitle", formData.curriculum_subtitle);
+
+
             const cleanonlines = onlines.map(item => ({
                 title: item.title,
                 content: item.content
@@ -318,7 +342,7 @@ function Index() {
             }
 
             // ✅ IMPORTANT FIX
-            const response = await main.AdminUniversityAdd(payload);
+            const response = await main.AdminProgramsAdd(payload);
 
             if (response?.data?.status) {
                 toast.success(response.data.message);
@@ -351,6 +375,8 @@ function Index() {
         { id: "partners", label: "Placement" },
         { id: "carrer", label: "Carrer" },
         { id: "institutes", label: "Institutes" },
+            { id: "keyhighlight", label: "keyhighlight" },
+        { id: "curriculum", label: "curriculum" },
         { id: "university", label: "University" },
         { id: "faq", label: "FAQ" },
         { id: "seo", label: "SEO" },
@@ -445,8 +471,8 @@ function Index() {
                                 </label>
                                 <input
                                     type="text"
-                                    name="name"
-                                    value={formData.name}
+                                    name="title"
+                                    value={formData.title}
                                     onChange={(e) => {
                                         handleChange(e);
                                     }}
@@ -884,16 +910,52 @@ function Index() {
                         </>
                     )}
 
-                       {activeTab === "institutes" && (
+                    {activeTab === "institutes" && (
                         <>
                             <AddInstute formData={formData} handleChange={handleChange} onlines={onlines} setOnlines={setOnlines} handleQuillChange={handleQuillChange} />
                         </>
                     )}
 
+
+                      {activeTab === "keyhighlight" && (
+                        <AddKeyHighlights facts={facts} setFacts={setFacts} />
+                    )}
+
+                    {activeTab === "curriculum" && (
+                        <>
+
+                            <div>
+                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
+                                    Name{" "}
+                                </label>
+                                <input
+                                    type="text"
+                                    name="curriculum_title"
+                                   value={formData.curriculum_title}
+                                    onChange={(e) => {
+                                        handleChange(e);
+                                    }}
+                                    placeholder="Enter name"
+                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
+                                    required
+                                />
+                            </div>
+
+                            <ReactQuillEditor
+                                label="Description"
+                                desc={formData.curriculum_description}
+                                handleBioChange={(val) => handleQuillChange("curriculum_description", val)}
+                            />
+                            {/* <Addcurriculum curriculumList={curriculumList} setCurriculumList={setCurriculumList}  /> */}
+                        </>
+                    )}
+
                     
+
+
                     {activeTab === "university" && (
                         <>
-                          <AllUniversity />  
+                            <AllUniversity />
                         </>
                     )}
                     {activeTab === "faq" && (
