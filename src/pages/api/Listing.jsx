@@ -37,7 +37,7 @@ class Listing extends Component {
     return Api.get(`/universities?page=${page}`,);
   }
 
-    async UniversityAll() {
+  async UniversityAll() {
     return Api.get("/all/university",);
   }
 
@@ -133,21 +133,23 @@ class Listing extends Component {
   }
 
   async UniversitySearch(query) {
-    // This produces: /all/university?search=manipal (CORRECT)
     return Api.get(`/all/university?search=${query}`);
-}
-
-async CompareUniversities(slug){
-  return Api.get(`/compare/university/${slug}`)
-}
-
-
- async UniversityCategroyAll() {
-    return Api.get("/all/catergoy/university",);
   }
 
+  async UniversityCategroyAll() {
+    return Api.get("/all/catergoy/university",);
+  }
+  async CompareUniversities(slug) {
+    return Api.get(`/compare/university/${slug}`)
+  }
 
- async AdminProgramsAdd(data) {
+  async CategroyUniversities(slug) {
+    return Api.get(`/categroy/university/${slug}`)
+  }
+  async UniversityCategroyAll() {
+    return Api.get("/all/catergoy/university",);
+  }
+  async AdminProgramsAdd(data) {
     return ApiallowFile.post("/admin/program/add", data);
   }
 
