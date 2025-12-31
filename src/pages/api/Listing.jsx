@@ -156,6 +156,15 @@ class Listing extends Component {
     return Api.get("/common/catergoy",);
   }
 
+async AdminPrograms(page) {
+    return Api.get(`/all/programs?page=${page}`,);
+  }
+
+    async ProgramDelete(id) {
+    return Api.delete(`/program/${id}`)
+  }
+
+
   render() {
     return (
       <div>

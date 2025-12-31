@@ -91,8 +91,8 @@ function Index({ data }) {
                                 PlacementPartners={data?.placementPartners}
                             />
                         )}
-                        {data?.university?.services && (<CareerServices services={data?.university?.services} />)}
-                        {data?.university?.admissionProcess  && (<StepsSection admissionProcess={data?.university?.admissionProcess} />)}
+                        {data?.university?.services.length>0 && (<CareerServices services={data?.university?.services} />)}
+                        {data?.university?.admissionProcess.length>0  && (<StepsSection admissionProcess={data?.university?.admissionProcess} />)}
                         {data?.university?.faq?.length>1  && (<FAQSection faq={data?.university?.faq} />)}
                         <SimilarUniversities />
                         <Universities />

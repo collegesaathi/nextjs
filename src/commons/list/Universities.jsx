@@ -6,10 +6,13 @@ import { Autoplay, Pagination } from 'swiper/modules'
 import 'swiper/css'
 import BackNext from '@/pages/components/BackNext'
 import Listing from '@/pages/api/Listing'
+import { useRole } from '@/context/RoleContext';
 
 export default function Universities() {
     const [compareUniversities, setcompareUniversities] = useState("")
     const [Loading, setLoading] = useState(false)
+
+
 
 
     const fetchData = async () => {
@@ -28,6 +31,12 @@ export default function Universities() {
     useEffect(() => {
         fetchData();
     }, []);
+
+
+    //  const { selectedUnis, toggleUniversity } = useRole();
+    // const uniId = universities.map(item)=>item?.id;
+    // const isSelected = selectedUnis.some(u => u.id === uniId);
+
     // Carousel breakpoints for responsive design
     const carouselBreakpoints = {
         320: { slidesPerView: 1, spaceBetween: 16 },
@@ -190,7 +199,9 @@ export default function Universities() {
                                         </div>
 
                                         {/* Button */}
-                                        <button className="w-[129px] h-[21px] rounded-[6px] bg-[#ec1e24] font-poppins text-[12px] leading-[18px] text-white flex items-center justify-center">
+                                        <button 
+                                        //  onClick={ toggleUniversity(card) }
+                                        className="w-[129px] h-[21px] rounded-[6px] bg-[#ec1e24] font-poppins text-[12px] leading-[18px] text-white flex items-center justify-center">
                                             Add to Compare
                                         </button>
                                     </div>

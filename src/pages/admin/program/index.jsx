@@ -20,7 +20,9 @@ export default function Index() {
             if (page === 1) { setLoading(true); }
             else { setButtonLoading(true); }
             const main = new Listing();
-            const response = await main.AdminUniveristy(page);
+            const response = await main.AdminPrograms(page);
+
+            console.log("programdata",response)
             if (response.data) {
                 const newData = response.data.data || {};
                 setData((prev) => {
@@ -32,9 +34,9 @@ export default function Index() {
                     // Next pages → append universities array and update pagination
                     return {
                         ...prev,
-                        universities: [
-                            ...(prev?.universities || []),
-                            ...(newData?.universities || [])
+                        programs: [
+                            ...(prev?.programs || []),
+                            ...(newData?.programs || [])
                         ],
                         pagination: newData?.pagination // Update pagination info
                     };
@@ -71,9 +73,9 @@ export default function Index() {
                     <button
                         className="cursor-pointer text-[18px] text-[#ffffff] p-2 bg-[#FF1B1B] bg-opacity-10 hover:bg-opacity-30 rounded inline-flex items-center justify-center"
 
-                        onClick={() => router.push("/admin/university/add")}
+                        onClick={() => router.push("/admin/program/add")}
                     >
-                        <MdAdd size={24} />   Add University
+                        <MdAdd size={24} />   Add Program
                     </button>
 
                     {/* <AddUniversity data={null}
@@ -99,7 +101,7 @@ export default function Index() {
                             </thead>
 
                             <tbody>
-                                {data?.universities?.map((item, index) => (
+                                {data?.programs?.map((item, index) => (
                                     <tr
                                         key={index}
                                         className={`border hover:bg-gray-750 ${item?.deleted_at ? "bg-gray-500 !text-white " : "text-gray-800"
@@ -118,7 +120,7 @@ export default function Index() {
                                         </td>
 
                                         {/* Name */}
-                                        <td className="p-3 border font-semibold">{item?.name}</td>
+                                        <td className="p-3 border font-semibold">{item?.title}</td>
 
                                         {/* Icon */}
                                         <td className="p-3 border">
@@ -147,7 +149,7 @@ export default function Index() {
                                             <div className="flex  justify-center items-center gap-4  ">
                                                 {!item?.deleted_at && (
                                                     <Link
-                                                        href={`/admin/university/add/${item?.slug}`}
+                                                        href={`/admin/program/add${item?.slug}`}
                                                         className="p-2 rounded bg-yellow-400 hover:bg-yellow-500 text-white"
                                                     >
                                                         <MdEdit size={20} />
@@ -156,7 +158,7 @@ export default function Index() {
 
                                                 {/* Delete Button */}
                                                 <Delete
-                                                    step={1}
+                                                    step={7}
                                                     fetch={fetchData}
                                                     deleteAt={item?.deleted_at}
                                                     Id={item?.id}
@@ -164,7 +166,7 @@ export default function Index() {
 
                                                 {/* View Button */}
                                                 <Link
-                                                    href={`/admin/university/${item?.slug}`}
+                                                    href={`/admin/program/${item?.slug}`}
                                                     target="_blank"
                                                     className="px-4 py-2 rounded bg-[#FF1B1B] hover:bg-[#ad0e0e] text-white"
                                                 >
@@ -180,7 +182,7 @@ export default function Index() {
                                                 target="_blank"
                                                 className="px-4 py-2 rounded bg-[#FF1B1B] hover:bg-[#ad0e0e] text-white"
                                             >
-                                                Add Course
+                                                Add Specialization
                                             </Link>
                                         </td>
 

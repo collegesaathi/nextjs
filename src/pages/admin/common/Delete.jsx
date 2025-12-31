@@ -39,6 +39,29 @@ export default function Delete({ step, Id, fetch, deleteAt, university_id, cours
         }
     };
 
+     const handleprogram = async () => {
+        try {
+            setLoading(true);
+            const main = new Listing();
+            console.log("Deleting ID:", Id);
+            const res = await main.ProgramDelete(Id);
+
+            if (res?.data?.status) {
+                toast.success(res.data.message);
+                fetch();
+            } else {
+                toast.error(res?.data?.message || "Something went wrong.");
+            }
+
+            toggleModal();
+        } catch (error) {
+            console.error("Package Delete Error:", error);
+            toast.error(error?.response?.data?.message || "Delete failed");
+        } finally {
+            setLoading(false);
+        }
+    };
+
     // ✅ Delete User
     const handleUserDelete = async () => {
         try {
@@ -155,7 +178,8 @@ export default function Delete({ step, Id, fetch, deleteAt, university_id, cours
         e.preventDefault();
         if (step === 1) {
             handleunivesity();
-        } else if (step === 2) {
+        } 
+        else if (step === 2) {
             handleUserDelete();
         }
         else if (step === 3) {
@@ -169,6 +193,9 @@ export default function Delete({ step, Id, fetch, deleteAt, university_id, cours
         }
         else if (step === 6) {
             handleSpecialisationDelete()
+        }
+         else if (step === 7) {
+            handleprogram()
         }
         else {
             console.warn("Invalid step");
@@ -206,6 +233,7 @@ export default function Delete({ step, Id, fetch, deleteAt, university_id, cours
                             {step === 3 && "Placements"}
                             {step === 4 && "Approvals"}
                             {step === 5 && "Course"}
+                              {step === 7 && "Program"}
                         </span>
                         ?
                     </p>

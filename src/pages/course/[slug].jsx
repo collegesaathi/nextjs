@@ -66,7 +66,7 @@ function Index({ data }) {
                     <div className="w-full lg:w-9/12 h-full lg:h-[100vh] overflow-y-auto " style={{ scrollbarWidth: "none", }}>
 
                         {data?.CourseData?.about && (<Aboutdetails about={data?.CourseData?.about} />) }
-                        {data?.CourseData?.fees && (<UpdatedFee fees={data?.CourseData?.fees} />) }
+                        {data?.CourseData?.fees.length>0 && (<UpdatedFee fees={data?.CourseData?.fees} />) }
 
                         {data?.CourseData?.approvals && (<Approvals approvals={data?.CourseData?.approvals} approvalsdata={data?.approvalsData} />) }
                         {data?.CourseData?.advantages &&(<Advantages advantages={data?.CourseData?.advantages} />) }
@@ -74,25 +74,25 @@ function Index({ data }) {
                         {data?.CourseData?.rankings && (<Ranking rankings={data?.CourseData?.rankings} />) }
                           <CoursesSwiper courseData={courseData} name={"course"} title={`${data?.CourseData?.name} - Specialisation`} />
 
-                        <Eligibility eligibilitycriteria={data?.CourseData?.eligibilitycriteria} />
+                       {data?.CourseData?.eligibilitycriteria.length>0 && (<Eligibility eligibilitycriteria={data?.CourseData?.eligibilitycriteria} />) }  
                         <EnquiryBox />
 
 
-                        <Curriculum curriculum={data?.CourseData?.curriculum} />
+                       {data?.CourseData?.curriculum.length>0 && (<Curriculum curriculum={data?.CourseData?.curriculum} />) } 
 
 
 
                         {data?.CourseData?.certificates && (<SampleCertificate certificates={data?.CourseData?.certificates} />) }
 
-                        {data?.CourseData?.skills &&( <Skills skills={data?.CourseData?.skills} />)}
+                        {data?.CourseData?.skills.length>0 &&( <Skills skills={data?.CourseData?.skills} />)}
                      
                         <ExaminationPattern examPatterns={data?.CourseData?.examPatterns} />
                         <Financial financialAid={data?.CourseData?.financialAid} />
-                        <CarreerOppurtunity career={data?.CourseData?.career}/>
+                         {data?.university?.admissionProcess.length>0  &&<CarreerOppurtunity career={data?.CourseData?.career}/>}
                         <PlacementPartners placements={data?.CourseData?.partners} PlacementPartners={data?.placementPartners} />
-                        <CareerServices services={data?.CourseData?.services} />
-                        <StepsSection admissionProcess={data?.CourseData?.admissionprocess} />
-                        <FAQSection faq={data?.CourseData?.faq} />
+                        {data?.university?.admissionProcess.length>0  && <CareerServices services={data?.CourseData?.services} /> }
+                        {data?.university?.admissionProcess.length>0  &&  <StepsSection admissionProcess={data?.CourseData?.admissionprocess} />}
+                       {data?.CourseData?.faq.length>0 && (<FAQSection faq={data?.CourseData?.faq} />) } 
                         <SimilarUniversities />
                         <Universities />
                         <Reviews />  
