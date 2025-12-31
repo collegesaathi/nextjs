@@ -77,7 +77,7 @@ export default function AddExperince({ setExperinces, Experinces, htitle, formDa
                 />
             </div>
 
-               <div className="mt-5 mb-5">
+            <div className="mt-5 mb-5">
                 <ReactQuillEditor
                     label="Notes"
                     desc={formData.experincenotes}
@@ -102,18 +102,18 @@ export default function AddExperince({ setExperinces, Experinces, htitle, formDa
 
                     {/* Title */}
                     <div>
-           <div className="flex items-center justify-between gap-2">
-                         <label className="block text-[#CC2828] font-medium mb-2">Title</label> 
-      <div className="flex items-center gap-2">
-                                    <button
-                                        type="button"
-                                        onClick={() => deleteAdvantage(index)}
-                                        className="bg-red-500 text-white rounded-full p-1 hover:bg-red-700"
-                                    >
-                                        <MdDelete />
-                                    </button>
-                                </div>
-            </div>
+                        <div className="flex items-center justify-between gap-2">
+                            <label className="block text-[#CC2828] font-medium mb-2">Title</label>
+                            <div className="flex items-center gap-2">
+                                <button
+                                    type="button"
+                                    onClick={() => deleteAdvantage(index)}
+                                    className="bg-red-500 text-white rounded-full p-1 hover:bg-red-700"
+                                >
+                                    <MdDelete />
+                                </button>
+                            </div>
+                        </div>
                         <input
                             type="text"
                             value={adv.title}

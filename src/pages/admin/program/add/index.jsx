@@ -100,7 +100,7 @@ function Index() {
 
 
 
-
+console.log("selectedApprovals" ,selectedApprovals)
     const [patterns, setPatterns] = useState([
         {
             image: "",
@@ -195,7 +195,11 @@ function Index() {
         rank: "",
         curriculum_title: "",       // curriculumname ki jagah ye use karein
         curriculum_description: "", // curriculum_desc ki jagah ye use karein
-        curriculum_subtitle: "",    // subtitle ke liye naya field
+        curriculum_subtitle: "",    // subtitle ke liye naya field,
+        durationname:"",
+        durationdesc:'',
+        experincedesc:"",
+        experincename:""
     });
 
     const [monthlyData, setMonthlyData] = useState({
@@ -288,11 +292,41 @@ function Index() {
             payload.append("entrace_cover_image", formData.entrace_cover_image);
             payload.append("entracedesc", formData.entracedesc);
             payload.append("entracetitle", formData.entracetitle);
+            payload.append("futuretitle", formData.futuretitle)
+            payload.append("futuredesc", formData.futuredesc);
+            payload.append("monthlyData", JSON.stringify(monthlyData));
+            payload.append("universitytitle", formData.universitytitle);
+            payload.append("universitybtmdesc", formData.universitybtmdesc);
+            payload.append("universitydesc", formData.universitydesc);
+            payload.append("university_id" ,selectedApprovals)
+            payload.append("onlinedesc", formData.onlinedesc);
+            payload.append("onlinetitle", formData.onlinetitle);
+            payload.append("onlines", JSON.stringify(onlines));
+            payload.append("experincename", formData.experincename);
+            payload.append("experincedesc", formData.experincedesc);
+            payload.append("Experinces", JSON.stringify(Experinces));
+            payload.append("durationname", formData.durationname);
+            payload.append("durationdesc", formData.durationdesc);
+            payload.append("Duration", JSON.stringify(Duration));
+             payload.append("financialname", formData.financialname);
+            payload.append("financialdescription", formData.financialdescription);
+             payload.append("curriculum_title", formData.curriculum_title);
+             payload.append("curriculum_description", formData.curriculum_description);
+            payload.append("curriculm", JSON.stringify(curriculum));
+             const fincalceAdds = fincalceAdd.map(item => ({
+                name: item.name,
+                desc :  item.desc
+            }));
+            payload.append("fincalceAdds", JSON.stringify(fincalceAdds));
+            fincalceAdd.forEach((item, index) => {
+                if (item.image) {
+                    payload.append(`fincalceAddsimages[${index}]`, item.image);
+                }
+            });
             payload.append("keyhight", JSON.stringify(facts))
             payload.append("faqs", JSON.stringify(faqs))
             payload.append("institutes", JSON.stringify(institutes))
-            payload.append("Careers",JSON.stringify(Careers))
-
+            payload.append("Careers", JSON.stringify(Careers))
             console.log('faqs', faqs)
             const chooses = choose.map(item => ({
                 name: item.name,
@@ -978,7 +1012,7 @@ function Index() {
 
                     {activeTab === "university" && (
                         <>
-                            <AllUniversity />
+                            <AllUniversity toggleApproval={toggleApproval} formData={formData} handleChange={handleChange} selectedApprovals={selectedApprovals}/>
                         </>
                     )}
                     {activeTab === "faq" && (
