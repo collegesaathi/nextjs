@@ -36,24 +36,58 @@ function AllUniversity({ toggleApproval, selectedApprovals, formData, handleChan
 
                 <>
 
-                
-                            <div>
-                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
-                                     university title{" "}
-                                </label>
-                                <input
-                                    type="text"
-                                    name="universitytitle"
-                                    value={formData?.universitytitle}
-                                    onChange={(e) => {
-                                        handleChange(e);
-                                    }}
-                                    placeholder="Enter short title"
-                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
-                                    required
-                                />
-                            </div>
 
+                    <div>
+                        <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
+                            university title{" "}
+                        </label>
+                        <input
+                            type="text"
+                            name="universitytitle"
+                            value={formData?.universitytitle}
+                            onChange={(e) => {
+                                handleChange(e);
+                            }}
+                            placeholder="Enter short title"
+                            className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
+                            required
+                        />
+                    </div>
+
+
+    <div>
+                        <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
+                            university Desc.{" "}
+                        </label>
+                        <input
+                            type="text"
+                            name="universitydesc"
+                            value={formData?.universitydesc}
+                            onChange={(e) => {
+                                handleChange(e);
+                            }}
+                            placeholder="Enter short title"
+                            className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
+                            required
+                        />
+                    </div>
+
+                     <div>
+                        <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
+                            university Bottom Desc.{" "}
+                        </label>
+                        <input
+                            type="text"
+                            name="universitybtmdesc"
+                            value={formData?.universitybtmdesc}
+                            onChange={(e) => {
+                                handleChange(e);
+                            }}
+                            placeholder="Enter short title"
+                            className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
+                            required
+                        />
+                    </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
 
                         {compareUniversities && compareUniversities?.map((item) => (

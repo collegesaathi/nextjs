@@ -32,15 +32,12 @@ function Index({ data }) {
     const [loading, setLoading] = useState(false);
     const [courseData, setCourseData] = useState([])
 
-       
-
     const fetchCourse = async (uniId) => {
         setLoading(true)
         try {
             const main = new Listing();
             const response = await main.UniveristyCourseGet(uniId);
             setCourseData(response?.data)
-
         }
         catch (error) {
             console.error("Error fetching projects:", error);

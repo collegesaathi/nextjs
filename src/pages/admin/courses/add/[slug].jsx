@@ -28,25 +28,29 @@ function Index() {
     const router = useRouter()
     const Id = router.query.slug;
     const university_id = router?.query?.university_id
-    const [universities, setUniversities] = useState([])
+    const [universities, setUniversities] = useState("")
+    console.log("universities", universities)
     const [categroy, setCategroy] = useState([])
     const [data, setData] = useState("")
     const fetchData = async () => {
         try {
-
             const main = new Listing();
-            const response = await main.UniversityCategroyAll();
-            const universities = response?.data?.data?.universities || [];
-            setCategroy(response?.data?.data?.CategoryLists)
-            setUniversities(universities);
+            const response = await main.CategroyAll();
+            console.log("response", response)
+            setCategroy(response?.data?.data)
+            setFormData({
+                university_id: university_id
+            })
         } catch (error) {
             console.log("error", error);
             setLoading(false);
         }
     };
+
     useEffect(() => {
         fetchData();
     }, []);
+
 
     const [activeTabs, setActiveTabs] = useState("indian");
 
@@ -634,7 +638,7 @@ function Index() {
                     {activeTab === "card" && (
                         <>
 
-                            <div>
+                            {/* <div>
                                 <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
                                     University {" "}
                                 </label>
@@ -660,7 +664,7 @@ function Index() {
 
                                     </select>
                                 </div>
-                            </div>
+                            </div> */}
 
 
                             <div>
@@ -823,7 +827,7 @@ function Index() {
                                     </button>
                                 </div>
 
-                                {formData.descriptions.map((desc, index) => (
+                                {formData?.descriptions?.map((desc, index) => (
                                     <div key={index} className="mb-4">
                                         <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
                                         </label>

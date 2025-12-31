@@ -32,13 +32,12 @@ function Index() {
     const fetchData = async () => {
         try {
             const main = new Listing();
-            const response = await main.UniversityCategroyAll();
-            const universities = response?.data?.data?.universities || [];
-            setCategroy(response?.data?.data?.CategoryLists)
+            const response = await main.CategroyAll();
+            console.log("response", response)
+            setCategroy(response?.data?.data)
             setFormData({
-                university_id :  university_id
+                university_id: university_id
             })
-            setUniversities(universities);
         } catch (error) {
             console.log("error", error);
             setLoading(false);
@@ -263,7 +262,7 @@ function Index() {
             payload.append("cover_image_alt", formData.cover_image_alt || "")
             payload.append("icon_alt", formData.icon_alt || "")
             payload.append("about_title", formData.about_title || "");
-            payload.append("about_desc", formData.about_desc || "") ;
+            payload.append("about_desc", formData.about_desc || "");
             payload.append("tuition_fees", formData.tuition_fees || "")
             payload.append("anuual_fees", formData.anuual_fees || "")
             payload.append("semester_fees", formData.semester_fees || "")
@@ -388,7 +387,7 @@ function Index() {
     };
     const [activeTab, setActiveTab] = useState("card");
 
-       const tabsData = [
+    const tabsData = [
         { id: "card", label: "Card " },
         { id: "about", label: "About " },
         { id: "fees", label: "Fees " },
@@ -497,7 +496,7 @@ function Index() {
                     {activeTab === "card" && (
                         <>
 
-                            <div>
+                            {/* <div>
                                 <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
                                     University  {" "}
                                 </label>
@@ -522,7 +521,7 @@ function Index() {
 
                                     </select>
                                 </div>
-                            </div>
+                            </div> */}
 
 
                             <div>

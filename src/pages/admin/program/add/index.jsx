@@ -2,40 +2,37 @@ import Listing from "@/pages/api/Listing";
 import { useEffect, useState } from "react";
 import AdminLayout from "../../common/AdminLayout";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
-import { MdDelete } from "react-icons/md";
 import ReactQuillEditor from "@/common/ReactQuillEditor";
 import toast from "react-hot-toast";
 import ApprovalAndPartner from "@/common/ApprovalAndPartner";
 import { useRouter } from "next/router";
-import Campus from "@/commons/add/AddCampus";
-import AddAbout from "@/commons/add/AddAbout";
-import FinancialAdd from "@/commons/add/FinancialAdd";
 import SEOAdd from "@/commons/add/SEOAdd";
 import FaqAdd from "@/commons/add/FaqAdd";
-import AddOnline from "@/commons/add/AddOnline";
-import ServicesAdd from "@/commons/add/ServicesAdd";
-import AddPattern from "@/commons/add/AddPattern";
-import AddCertificate from "@/commons/add/AddCertificate";
-import FactAdd from "@/commons/add/FactAdd";
-import AdvantageSectionAdd from "@/commons/add/AdvantageSectionAdd";
-import ImagePreview from "@/common/ImagePreview";
-import AddInternationalcapmus from "@/commons/add/AddInternationalcapmus";
-import ProgramCareer from "@/commons/add/ProgramCareer";
 import AllUniversity from "@/common/AllUniversity";
 import AddInstute from "@/commons/add/AddInstute";
-import Addcurriculum from "@/commons/add/Addcurriculum";
 import AddKeyHighlights from "@/commons/add/AddKeyHighlights";
+import AddPlacements from "@/commons/add/AddPlacements";
+import ImagePreview from "@/common/ImagePreview";
+import ProgramCareer from "@/commons/add/ProgramCareer";
+import Addcurriculum from "@/commons/add/Addcurriculum";
+import ProgramFincalceAdd from "@/commons/add/ProgramFincalceAdd";
+import AddDuration from "@/commons/add/AddDuration";
+import AddExperince from "@/commons/add/AddExperince";
+import AddOnline from "@/commons/add/AddOnline";
+import AdminOnlineMBA from "@/commons/add/AdminOnlineMBA";
+import AddPurpuse from "@/commons/add/AddPurpuse";
 
 function Index() {
     const router = useRouter();
 
 
-      const [categroy, setCategroy] = useState([])
+    const [categroy, setCategroy] = useState([])
     const fetchData = async () => {
         try {
             const main = new Listing();
             const response = await main.CategroyAll();
-            setCategroy(response?.data?.data?.CategoryLists)
+            console.log("response", response)
+            setCategroy(response?.data?.data)
         } catch (error) {
             console.log("error", error);
             setLoading(false);
@@ -53,6 +50,10 @@ function Index() {
 
     const [Careers, setCareers] = useState([
         { title: "", description: "", salary: "" }
+    ]);
+
+    const [PlacementAdd, setPlacementAdd] = useState([
+        { name: "", description: "", image: "" }
     ]);
     const [selectedApprovals, setSelectedApprovals] = useState([]);
 
@@ -119,17 +120,35 @@ function Index() {
         { title: "", description: "", }
     ]);
 
-    const [campusInterList, setCampusInterList] = useState([
-        { name: "", image: "", campus_images_alt: "" }
+    const [Duration, setDuration] = useState([
+        { title: "", description: "", }
     ]);
+
+    const [Experinces, setExperinces] = useState([
+        { title: "" }
+    ]);
+    const [fincalceAdd, setfincalceAdd] = useState([
+        { name: "", image: "", desc: "" }
+    ]);
+
+
+    const [purpuse, setpurpuse] = useState([
+        { name: "", image: "", desc: "" }
+    ]);
+
+    const [choose, setchoose] = useState([
+        { name: "", image: "", }
+    ]);
+
     const [formData, setFormData] = useState({
         slug: "",
         name: "",
-        title:"",
+        title: "",
         icon: null,
         descriptions: "",
         pdf_download: "",
         cover_image: null,
+        categroy_id: "",
         audio: "",
         video: "",
         career_growth: "",
@@ -169,11 +188,16 @@ function Index() {
         image_alt: "",
         rank: "",
         curriculum_title: "",       // curriculumname ki jagah ye use karein
-    curriculum_description: "", // curriculum_desc ki jagah ye use karein
-    curriculum_subtitle: "",    // subtitle ke liye naya field
+        curriculum_description: "", // curriculum_desc ki jagah ye use karein
+        curriculum_subtitle: "",    // subtitle ke liye naya field
     });
 
+    const [monthlyData, setMonthlyData] = useState({
+        Jan: "", Feb: "", Mar: "", Apr: "", May: "", Jun: "",
+        Jul: "", Aug: "", Sep: "", Oct: "", Nov: "", Dec: "",
+    });
 
+    console.log("monthlyData", monthlyData)
     const handleQuillChange = (field, value) => {
         setFormData((prev) => ({ ...prev, [field]: value }));
     };
@@ -240,7 +264,7 @@ function Index() {
             payload.append("slug", formData.slug);
             payload.append("rank", formData.rank);
             payload.append("name", formData.name);
-              payload.append("title", formData.title);
+            payload.append("title", formData.title);
             payload.append("position", formData.position);
             payload.append("about_title", formData.about_title);
             payload.append("about_desc", formData.about_desc);
@@ -282,13 +306,13 @@ function Index() {
                 pattern_images_alt: item?.pattern_images_alt
             }));
 
-             const cleanCurriculum = [
-    {
-        title: formData.curriculumname,
-        description: formData.curriculum_desc,
-    }
-];
-                   payload.append("Curriculum", JSON.stringify(cleanCurriculum));
+            const cleanCurriculum = [
+                {
+                    title: formData.curriculumname,
+                    description: formData.curriculum_desc,
+                }
+            ];
+            payload.append("Curriculum", JSON.stringify(cleanCurriculum));
 
 
 
@@ -300,12 +324,12 @@ function Index() {
             });
             payload.append("financialname", formData.financialname);
             payload.append("financialdescription", formData.financialdescription);
-            const campusInterLists = campusInterList.map(item => ({
+            const fincalceAdds = fincalceAdd.map(item => ({
                 name: item.name,
                 campus_images_alt: item?.campus_images_alt
             }));
-            payload.append("internationalcampus", JSON.stringify(campusInterLists));
-            campusInterList.forEach((item, index) => {
+            payload.append("internationalcampus", JSON.stringify(fincalceAdds));
+            fincalceAdd.forEach((item, index) => {
                 if (item.image) {
                     payload.append(`campusinterimages[${index}]`, item.image);
                 }
@@ -326,9 +350,9 @@ function Index() {
             payload.append("servicedesc", formData.servicedesc);
             payload.append("onlinedesc", formData.onlinedesc);
             payload.append("onlinetitle", formData.onlinetitle);
-          payload.append("curriculum_title", formData.curriculum_title);
-        payload.append("curriculum_description", formData.curriculum_description);
-        payload.append("curriculum_subtitle", formData.curriculum_subtitle);
+            payload.append("curriculum_title", formData.curriculum_title);
+            payload.append("curriculum_description", formData.curriculum_description);
+            payload.append("curriculum_subtitle", formData.curriculum_subtitle);
 
 
             const cleanonlines = onlines.map(item => ({
@@ -381,19 +405,17 @@ function Index() {
 
     const tabsData = [
         { id: "card", label: "Card " },
-        { id: "about", label: "About " },
-        { id: "approvals", label: "Approvals" },
-        { id: "rankings", label: "Rankings" },
-        { id: "advantages", label: "Advantages" },
-        { id: "facts", label: "Facts" },
-        { id: "certificate", label: "Certificate" },
-        { id: "pattern", label: "Pattern" },
+        { id: "purpuse", label: "PurPuse" },
+        { id: "futures", label: "Future" },
+        { id: "onlines", label: "Onlines" },
+        { id: "experince", label: "Experince" },
+        { id: "duration", label: "Duration" },
         { id: "financial", label: "Financial" },
-        { id: "partners", label: "Placement" },
-        { id: "carrer", label: "Carrer" },
-        { id: "institutes", label: "Institutes" },
-            { id: "keyhighlight", label: "keyhighlight" },
+        { id: "keyhighlight", label: "keyhighlight" },
         { id: "curriculum", label: "curriculum" },
+        { id: "carrer", label: "Carrer" },
+        { id: "partners", label: "Placement" },
+        { id: "institutes", label: "Institutes" },
         { id: "university", label: "University" },
         { id: "faq", label: "FAQ" },
         { id: "seo", label: "SEO" },
@@ -542,7 +564,7 @@ function Index() {
                                     Video {" "}
                                 </label>
                                 <input
-                                    type="file"
+                                    type="text"
                                     name="video"
                                     value={formData.video}
                                     onChange={(e) => {
@@ -553,7 +575,32 @@ function Index() {
                                     required
                                 />
                             </div>
+                            <div>
+                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
+                                    Categroy Id {" "}
+                                </label>
 
+                                <div className="relative">
+                                    <select
+                                        name="categroy_id"
+                                        value={formData?.categroy_id}
+                                        onChange={handleChange}
+                                        className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
+                                    >
+                                        <option value="" disabled>Select a categroy</option>
+                                        {categroy && categroy.length > 0 ? (
+                                            categroy.map((u, index) => (
+                                                <option key={index} value={u.id}>
+                                                    {u.name}
+                                                </option>
+                                            ))
+                                        ) : (
+                                            <option disabled>No data</option>
+                                        )}
+
+                                    </select>
+                                </div>
+                            </div>
                             <div>
                                 <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
                                     Slug{" "}
@@ -761,8 +808,7 @@ function Index() {
                                 <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
                                     specialisation title{" "}
                                 </label>
-                                <textarea
-                                    rows={5}
+                                <input
                                     type="text"
                                     name="specialisationtitle"
                                     value={formData.specialisationtitle}
@@ -780,7 +826,8 @@ function Index() {
                                 <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
                                     specialisationdesc
                                 </label>
-                                <input
+                                <textarea
+                                    rows={5}
                                     type="text"
                                     name="specialisationdesc"
                                     value={formData.specialisationdesc}
@@ -888,8 +935,36 @@ function Index() {
                             </div>
                         </>
                     )}
+
+
+                    {activeTab === "purpuse" && (
+                        <>
+                            <AddPurpuse formData={formData} handleChange={handleChange} handleQuillChange={handleQuillChange}  choose={choose} setchoose={setchoose} purpuse={purpuse} setpurpuse={setpurpuse}/>
+                        </>
+                    )}
+
+                    {activeTab === "futures" && (
+                        <AdminOnlineMBA formData={formData} handleChange={handleChange} monthlyData={monthlyData} setMonthlyData={setMonthlyData} handleQuillChange={handleQuillChange} />
+                    )}
+
+                    {activeTab === "onlines" && (
+                        <AddOnline formData={formData} handleChange={handleChange} onlines={onlines} setOnlines={setOnlines} handleQuillChange={handleQuillChange} />
+                    )}
+
+                    {activeTab === "experince" && (
+                        <AddExperince Experinces={Experinces} setExperinces={setExperinces} handleQuillChange={handleQuillChange} handleChange={handleChange} formData={formData} />
+                    )}
+                    {activeTab === "duration" && (
+                        <AddDuration Duration={Duration} setDuration={setDuration} handleQuillChange={handleQuillChange} handleChange={handleChange} formData={formData} />
+                    )}
+
+                    {activeTab === "financial" && (
+                        <ProgramFincalceAdd fincalceAdd={fincalceAdd} setfincalceAdd={setfincalceAdd} handleQuillChange={handleQuillChange} handleChange={handleChange} formData={formData} />
+                    )}
                     {activeTab === "partners" && (
                         <>
+                            <AddPlacements handleQuillChange={handleQuillChange} handleChange={handleChange} PlacementAdd={PlacementAdd} setPlacementAdd={setPlacementAdd} formData={formData} />
+                            <p className="font-poppins text-[18px] font-bold">Top Recruiters</p>
                             <div>
                                 <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
                                     Name{" "}
@@ -934,7 +1009,7 @@ function Index() {
                     )}
 
 
-                      {activeTab === "keyhighlight" && (
+                    {activeTab === "keyhighlight" && (
                         <AddKeyHighlights facts={facts} setFacts={setFacts} />
                     )}
 
@@ -948,7 +1023,7 @@ function Index() {
                                 <input
                                     type="text"
                                     name="curriculum_title"
-                                   value={formData.curriculum_title}
+                                    value={formData.curriculum_title}
                                     onChange={(e) => {
                                         handleChange(e);
                                     }}
@@ -963,11 +1038,11 @@ function Index() {
                                 desc={formData.curriculum_description}
                                 handleBioChange={(val) => handleQuillChange("curriculum_description", val)}
                             />
-                            {/* <Addcurriculum curriculumList={curriculumList} setCurriculumList={setCurriculumList}  /> */}
+                            <Addcurriculum curriculum={curriculum} setCurriculum={setCurriculum} />
                         </>
                     )}
 
-                    
+
 
 
                     {activeTab === "university" && (
