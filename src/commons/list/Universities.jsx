@@ -6,10 +6,15 @@ import { Autoplay, Pagination } from 'swiper/modules'
 import 'swiper/css'
 import BackNext from '@/pages/components/BackNext'
 import Listing from '@/pages/api/Listing'
+import { useRole } from '@/context/RoleContext';
 
 export default function Universities() {
     const [compareUniversities, setcompareUniversities] = useState("")
     const [Loading, setLoading] = useState(false)
+
+     const { selectedUnis, toggleUniversity } = useRole();
+
+
 
 
     const fetchData = async () => {
@@ -28,6 +33,9 @@ export default function Universities() {
     useEffect(() => {
         fetchData();
     }, []);
+
+
+
     // Carousel breakpoints for responsive design
     const carouselBreakpoints = {
         320: { slidesPerView: 1, spaceBetween: 16 },
@@ -143,7 +151,12 @@ export default function Universities() {
                             onSlideChange={updateProgress}
                             breakpoints={carouselBreakpoints}
                         >
-                            {compareUniversities && compareUniversities?.map((university, index) => (
+                            {compareUniversities && compareUniversities?.map((university, index) => {
+                                 const isSelected = selectedUnis.some(u => u.id === university.id);
+
+                                
+
+                                return(
                                 <SwiperSlide key={index}>
                                     <div className="w-full h-[232px] rounded-[10px] border border- [rgba(188,188,188,0.7)] p-3 flex flex-col justify-between items-center">
 
@@ -190,12 +203,16 @@ export default function Universities() {
                                         </div>
 
                                         {/* Button */}
-                                        <button className="w-[129px] h-[21px] rounded-[6px] bg-[#ec1e24] font-poppins text-[12px] leading-[18px] text-white flex items-center justify-center">
+                                        <button 
+                                         onClick={() => toggleUniversity(university)}
+                                        className={`w-[129px] h-[21px] rounded-[6px] bg-[#ec1e24] font-poppins text-[12px] leading-[18px] text-white flex items-center justify-center cursor-pointer ${isSelected ? "bg-gray-400" : "bg-[#ec1e24] text-white"}`}
+                                        >
                                             Add to Compare
                                         </button>
                                     </div>
                                 </SwiperSlide>
-                            ))}
+                                )
+})}
                         </Swiper>
 
                     </div>
