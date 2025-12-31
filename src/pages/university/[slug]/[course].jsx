@@ -37,8 +37,8 @@ function Index({ data }) {
 
 
 
-        console.log("universitydata",data)
-        
+    
+
     const fetchCourse = async (uniId) => {
         setLoading(true)
         try {
