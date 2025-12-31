@@ -152,7 +152,9 @@ class Listing extends Component {
   async AdminProgramsAdd(data) {
     return ApiallowFile.post("/admin/program/add", data);
   }
-
+ async CategroyAll() {
+    return Api.get("/common/catergoy",);
+  }
 
   render() {
     return (
