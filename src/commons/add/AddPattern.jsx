@@ -78,25 +78,17 @@ const AddPattern = ({ setPatterns, patterns, formData, handleQuillChange, handle
         handleBioChange={(val) => handleQuillChange("patterndescription", val)}
       />
 
-      <ReactQuillEditor
+      {/* <ReactQuillEditor
         label="Bottom  Description"
         desc={formData?.bottompatterndesc}
         handleBioChange={(val) => handleQuillChange("bottompatterndesc", val)}
-      />
+      /> */}
       <div className="flex justify-between items-center mb-5">
         <h2 className="text-xl font-semibold text-[#CC2828]">Multiple Pattern</h2>
-        <button
-          type="button"
-          onClick={addPattern}
-          className="border border-[#CC2828] bg-[#CC2828] hover:bg-red-700 text-white px-6 py-2 rounded-[10px] text-base transition"
-        >
-          + Add Pattern
-        </button>
       </div>
 
       {patterns && patterns?.map((item, index) => (
-        <div key={index} className="grid grid-cols-1 gap-4 items-center mb-4 border-b border-gray-200 pb-4">
-
+        <div key={index} className="grid grid-cols-2 gap-4 items-center mb-4 border-b border-gray-200 pb-4">
           {/* Image */}
           <div>
             <label className="block text-[#CC2828] font-medium mb-2">Image</label>
@@ -106,19 +98,44 @@ const AddPattern = ({ setPatterns, patterns, formData, handleQuillChange, handle
               onChange={(e) => handlePatternChange(index, "image", e.target.files[0])}
               className="w-full bg-[#F4F6F8] text-[#727272] border rounded-[10px] px-4 py-2"
             />
-          </div>
           <img
             src={
               typeof item?.image === "string"
                 ? item.image
                 : item?.image instanceof File || item?.image instanceof Blob
                   ? URL.createObjectURL(item.image)
-                  : "/Placeholder.png"
+                  : ""
             }
             alt="Preview"
             className="w-48 h-48 object-cover rounded border"
           />
+          </div>
+  {/* Description */}
+          <div>
+            <div className="flex justify-between items-center mb-2">
+              <label className="block text-[#CC2828] font-medium">Description</label>
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => deletePattern(index)}
+                  className="bg-red-500 text-white rounded-full p-1 hover:bg-red-700"
+                >
+                  <MdDelete />
+                </button>
+              </div>
+            </div>
 
+            <div className="border border-gray-300 rounded-md">
+              <ReactQuill
+                value={item.description}
+                onChange={(value) => handlePatternChange(index, "description", value)}
+                modules={quillModules}
+                formats={quillFormats}
+                theme="snow"
+                className="editor-wrapper"
+              />
+            </div>
+          </div>
 
 
           <div>
@@ -159,52 +176,19 @@ const AddPattern = ({ setPatterns, patterns, formData, handleQuillChange, handle
             />
           </div>
 
-          {/* Description */}
-          <div>
-            <div className="flex justify-between items-center mb-2">
-              <label className="block text-[#CC2828] font-medium">Description</label>
-
-              <div className="flex items-center gap-2">
-                {item._id ? (
-                  <button
-                    type="button"
-                    onClick={() => openPatternEdit(item)}
-                    className="bg-red-500 text-white rounded-full p-1 hover:bg-red-700"
-                  >
-                    <MdEdit />
-                  </button>
-                ) : (
-                  <button
-                    type="button"
-                    onClick={() => handlePatternSubmit(index)}
-                    className="bg-red-500 text-white rounded-full p-1 hover:bg-red-700"
-                  >
-                    <MdAdd />
-                  </button>
-                )}
-                <button
-                  type="button"
-                  onClick={() => deletePattern(index)}
-                  className="bg-red-500 text-white rounded-full p-1 hover:bg-red-700"
-                >
-                  <MdDelete />
-                </button>
-              </div>
-            </div>
-
-            <div className="border border-gray-300 rounded-md">
-              <ReactQuill
-                value={item.description}
-                onChange={(value) => handlePatternChange(index, "description", value)}
-                modules={quillModules}
-                formats={quillFormats}
-                theme="snow"
-                className="editor-wrapper"
-              />
-            </div>
-          </div>
+        
         </div>
       ))}
+
+         <div className="flex justify-end items-center mb-5">
+        <button
+          type="button"
+          onClick={addPattern}
+          className="border border-[#CC2828] bg-[#CC2828] hover:bg-red-700 text-white px-6 py-2 rounded-[10px] text-base transition"
+        >
+          + Add Pattern
+        </button>
+      </div>
     </div>
   );
 };

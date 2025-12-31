@@ -142,6 +142,16 @@ async CompareUniversities(slug){
 }
 
 
+ async UniversityCategroyAll() {
+    return Api.get("/all/catergoy/university",);
+  }
+
+
+ async AdminProgramsAdd(data) {
+    return ApiallowFile.post("/admin/program/add", data);
+  }
+
+
   render() {
     return (
       <div>

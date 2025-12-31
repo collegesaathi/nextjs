@@ -59,7 +59,7 @@ const FactAdd = ({ facts, setFacts }) => {
     return (
         <div>
             <div className="flex justify-between items-center mb-5">
-                <h2 className="text-xl font-semibold text-[#CC2828]">Multiple Facts</h2>
+                <h2 className="text-xl font-semibold text-[#CC2828]"> Multiple Key Hightlights </h2>
            
             </div>
 
@@ -68,7 +68,7 @@ const FactAdd = ({ facts, setFacts }) => {
 
                     {/* Pattern Name */}
                     <div>
-                        <label className="block text-[#CC2828] font-medium mb-2">Facts Name</label>
+                        <label className="block text-[#CC2828] font-medium mb-2">Key Hightlights Name</label>
                         <input
                             type="text"
                             value={item.patternName}
@@ -81,7 +81,7 @@ const FactAdd = ({ facts, setFacts }) => {
                     {/* Facts Description */}
                     <div>
                         <div className="flex justify-between items-center mb-2">
-                            <label className="block text-[#CC2828] font-medium">Facts Description</label>
+                            <label className="block text-[#CC2828] font-medium">Key Hightlights Description</label>
 
                             <div className="flex items-center gap-2">
                                 <button
@@ -104,14 +104,17 @@ const FactAdd = ({ facts, setFacts }) => {
                         </div>
 
                         <div className="border border-gray-300 rounded-md">
-                            <ReactQuill
-                                value={item.description}
-                                onChange={(value) => handleFactsChange(index, "description", value)}
-                                modules={quillModules}
-                                formats={quillFormats}
-                                theme="snow"
-                                className="editor-wrapper"
-                            />
+                        
+
+                            <textarea
+            name="description"
+            value={item.description}
+            // ✅ Fix: Pass index, field name, and the target value
+            onChange={(e) => handleFactsChange(index, "description", e.target.value)}
+            rows={4}
+            placeholder="Enter Facts Description"
+            className="w-full  text-[#727272]  px-4 py-2 focus:outline-none "
+        />
                         </div>
                     </div>
                 </div>
@@ -123,7 +126,7 @@ const FactAdd = ({ facts, setFacts }) => {
           onClick={addFacts}
           className="border border-[#CC2828] bg-[#CC2828] hover:bg-red-700 text-white px-6 py-2 rounded-[10px] text-base transition"
         >
-           + Add Facts
+           + Add Hightlights
         </button>
         </div>
              

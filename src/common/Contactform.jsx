@@ -6,13 +6,10 @@ import { IoChevronDown } from "react-icons/io5";
 import Listing from "@/pages/api/Listing";
 
 function Contactform() {
-
-
-
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [loading, setLoading] = useState(false);
     const router = useRouter();
-        const [isCourseOpen, setCourseOpen] = useState(false);
+    const [isCourseOpen, setCourseOpen] = useState(false);
 
     // Form data
     const [form, setForm] = useState({
@@ -181,9 +178,9 @@ function Contactform() {
                     <option value="" disabled selected className="text-red-500" >Select a Course</option>
                     {/* Add more options here */}
                 </select>
-                   <span className={`absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none   ${isCourseOpen ? "rotate-180" : "rotate-0"}`}>
-                                                        <IoChevronDown />
-                                                    </span>
+                <span className={`absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none   ${isCourseOpen ? "rotate-180" : "rotate-0"}`}>
+                    <IoChevronDown />
+                </span>
             </div>
 
             {/* Query Message Field */}

@@ -1,8 +1,14 @@
-import ReactQuillEditor from "@/common/ReactQuillEditor";
 import toast from "react-hot-toast";
 import { MdDelete } from "react-icons/md";
+import dynamic from "next/dynamic";
+import "react-quill-new/dist/quill.snow.css";
+import ReactQuillEditor from "@/common/ReactQuillEditor";
 
-function AddOnline({ formData, handleChange, onlines, setOnlines, handleQuillChange }) {
+
+// Dynamic import for Quill editor (SSR safe)
+const ReactQuill = dynamic(() => import("react-quill-new"), { ssr: false });
+
+function AddInstute({ formData, handleChange, onlines, setOnlines, handleQuillChange }) {
     const addOnline = () => {
         setOnlines([...onlines, { title: "", content: "", }]);
     };
@@ -16,6 +22,27 @@ function AddOnline({ formData, handleChange, onlines, setOnlines, handleQuillCha
     const deleteOnline = (index) => {
         setOnlines(onlines.filter((_, i) => i !== index));
     };
+
+    // Quill modules & formats
+  const quillModules = {
+    toolbar: [
+      [{ font: [] }],
+      [{ size: [] }],
+      [{ header: [1, 2, 3, 4, 5, 6, false] }],
+      ["bold", "italic", "underline", "strike", "blockquote"],
+      [{ list: "ordered" }, { list: "bullet" }],
+      [{ indent: "-1" }, { indent: "+1" }],
+      [{ align: [] }],
+      [{ color: [] }, { background: [] }],
+      ["link", "image", "video"],
+      ["clean"],
+    ],
+  };
+
+  const quillFormats = [
+    "header", "font", "size", "bold", "italic", "underline", "strike", "blockquote",
+    "list", "bullet", "indent", "align", "color", "background", "link", "image", "video"
+  ];
     return (
         <>
 
@@ -44,7 +71,7 @@ function AddOnline({ formData, handleChange, onlines, setOnlines, handleQuillCha
             <>
                 <div className="flex justify-between items-center mb-5">
                     <h2 className="text-xl font-semibold text-[#CC2828]">
-                        Adminssion Process Section
+                       Institutes Section
                     </h2>
                 </div>
                 {onlines && onlines?.map((faq, index) => (
@@ -77,14 +104,14 @@ function AddOnline({ formData, handleChange, onlines, setOnlines, handleQuillCha
                                 </div>
                             </div>
 
-                            <textarea
-                                rows={2}
-                                type="text"
-                                value={faq.content}
-                                onChange={(e) => handleOnlineChange(index, 'content', e.target.value)}
-                                placeholder="Enter content"
-                                className="w-full bg-[#F4F6F8] text-[#727272] border border-[#F4F6F8] rounded-[10px] px-4 py-2 focus:outline-none"
-                            />
+                               <ReactQuill
+                value={faq.content}
+                onChange={(value) => handleOnlineChange(index, "content", value)}
+                modules={quillModules}
+                formats={quillFormats}
+                theme="snow"
+                className="editor-wrapper"
+              />
                         </div>
                     </div>
                 ))}
@@ -106,4 +133,4 @@ function AddOnline({ formData, handleChange, onlines, setOnlines, handleQuillCha
     );
 }
 
-export default AddOnline;
+export default AddInstute;

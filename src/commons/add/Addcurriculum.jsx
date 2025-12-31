@@ -1,37 +1,37 @@
 import ImagePreview from "@/common/ImagePreview";
 
-function AddCampus({ setCampusList, campusList, }) {
+function Addcurriculum({ setCurriculumList, curriculumList, }) {
     const handleCampusChange = (index, field, value) => {
-        const list = [...campusList];
+        const list = [...curriculumList];
         list[index][field] = value;
-        setCampusList(list);
+        setCurriculumList(list);
     };
 
     const addCampus = () => {
-        setCampusList([...campusList, { name: "", image: "", campus_images_alt: "" }]);
+        setCurriculumList([...curriculumList, { name: "", image: "", campus_images_alt: "" }]);
     };
 
     const deleteCampus = (index) => {
-        const list = [...campusList];
+        const list = [...curriculumList];
         list.splice(index, 1);
-        setCampusList(list);
+        setCurriculumList(list);
     };
 
 
        const handleinterCampusChange = (index, field, value) => {
-        const list = [...campusList];
+        const list = [...curriculumList];
         list[index][field] = value;
-        setCampusList(list);
+        setCurriculumList(list);
     };
 
     const addinterCampus = () => {
-        setCampusList([...campusList, { name: "", image: "", campus_images_alt: "" }]);
+        setCurriculumList([...curriculumList, { name: "", image: "", campus_images_alt: "" }]);
     };
 
     const deleteinterCampus = (index) => {
-        const list = [...campusList];
+        const list = [...curriculumList];
         list.splice(index, 1);
-        setCampusList(list);
+        setCurriculumList(list);
     };
 
     return (<>
@@ -41,7 +41,7 @@ function AddCampus({ setCampusList, campusList, }) {
             </h2>
         </div>
         {/* MULTIPLE CAMPUS BLOCKS */}
-        {campusList?.map((campus, index) => (
+        {curriculumList?.map((campus, index) => (
             <div key={index} className="border px-2  rounded-xl bg-gray-100 mb-2 ">
                 {/* Name */}
                 <label className="flex  justify-between  items-center block text-[#CC2828] font-medium mb-2">
@@ -105,4 +105,4 @@ function AddCampus({ setCampusList, campusList, }) {
     </>);
 }
 
-export default AddCampus;
+export default Addcurriculum;

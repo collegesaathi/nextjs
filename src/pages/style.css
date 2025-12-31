@@ -697,8 +697,9 @@ select:focus {
 }
  
 .ql-container {
-    min-height: 300px !important;
-    max-height: 500px !important;
+    min-height: 200px !important;
+    max-height: 200px !important;
+    color : black ;
     overflow-y: auto !important;
 }
 /*

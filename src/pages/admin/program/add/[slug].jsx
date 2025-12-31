@@ -34,7 +34,7 @@ function Index() {
         icon: null,
         cover_image: null,
         position: "",
-        descriptions: [{ text: "" }],
+        descriptions: "",
         about_title: "",
         about_desc: "",
         rankings_point: "",
@@ -441,7 +441,6 @@ function Index() {
                 <Loader />
             ) : (
                 <div className="min-h-screen p-1 ">
-
                     <div className="w-full  border-b border-white/10">
                         <div className="flex justify-between items-center  text-center p-4 "
                         >
@@ -450,8 +449,8 @@ function Index() {
                                 <FaArrowLeft
                                     onClick={handleBack}
                                     className={`text-xl cursor-pointer text-black
-                    ${currentIndex === 0 ? "text-gray-500 cursor-not-allowed" : "text-black hover:text-gray-300"}
-                `}
+                                    ${currentIndex === 0 ? "text-gray-500 cursor-not-allowed" : "text-black hover:text-gray-300"}
+                                     `}
                                 />
 
                                 <h3 className="text-black text-[18px] lg:text-[20px] font-semibold tracking-tight">
@@ -538,6 +537,14 @@ function Index() {
                                         className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
                                     />
                                 </div>
+
+                                
+                                <ReactQuillEditor
+                                    label="Description"
+                                    desc={formData.descriptions}
+                                    handleBioChange={(val) => handleQuillChange("descriptions", val)}
+                                />
+
                                 <div>
                                     <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
                                         Slug{" "}
