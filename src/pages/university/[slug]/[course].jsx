@@ -31,13 +31,9 @@ import Listing from "@/pages/api/Listing";
 import EnquiryForm from "@/pages/common/EnquiryForm";
 import EnquiryBox from "@/commons/list/EnquiryForm";
 function Index({ data }) {
-        const uniId = data?.CourseData?.id;
-        const [loading, setLoading] = useState(false);
-        const [courseData, setCourseData] = useState([])
-
-
-
-    
+    const uniId = data?.CourseData?.id;
+    const [loading, setLoading] = useState(false);
+    const [courseData, setCourseData] = useState([])
 
     const fetchCourse = async (uniId) => {
         setLoading(true)
@@ -70,14 +66,14 @@ function Index({ data }) {
                     </div>
                     <div className="w-full lg:w-9/12 h-full lg:h-[100vh] overflow-y-auto " style={{ scrollbarWidth: "none", }}>
 
-                        {data?.CourseData?.about && (<Aboutdetails about={data?.CourseData?.about} />) }
-                        {data?.CourseData?.fees && (<UpdatedFee fees={data?.CourseData?.fees} />) }
+                        {data?.CourseData?.about && (<Aboutdetails about={data?.CourseData?.about} />)}
+                        {data?.CourseData?.fees && (<UpdatedFee fees={data?.CourseData?.fees} />)}
 
-                        {data?.CourseData?.approvals && (<Approvals approvals={data?.CourseData?.approvals} approvalsdata={data?.approvalsData} />) }
-                        {data?.CourseData?.advantages &&(<Advantages advantages={data?.CourseData?.advantages} />) }
+                        {data?.CourseData?.approvals && (<Approvals approvals={data?.CourseData?.approvals} approvalsdata={data?.approvalsData} />)}
+                        {data?.CourseData?.advantages && (<Advantages advantages={data?.CourseData?.advantages} />)}
 
-                        {data?.CourseData?.rankings && (<Ranking rankings={data?.CourseData?.rankings} />) }
-                          <CoursesSwiper courseData={courseData} name={"course"} title={`${data?.CourseData?.name} - Specialisation`} />
+                        {data?.CourseData?.rankings && (<Ranking rankings={data?.CourseData?.rankings} />)}
+                        <CoursesSwiper courseData={courseData} name={"course"} title={`${data?.CourseData?.name} - Specialisation`} />
 
                         <Eligibility eligibilitycriteria={data?.CourseData?.eligibilitycriteria} />
                         <EnquiryBox />
@@ -87,20 +83,20 @@ function Index({ data }) {
 
 
 
-                        {data?.CourseData?.certificates && (<SampleCertificate certificates={data?.CourseData?.certificates} />) }
+                        {data?.CourseData?.certificates && (<SampleCertificate certificates={data?.CourseData?.certificates} />)}
 
-                        {data?.CourseData?.skills &&( <Skills skills={data?.CourseData?.skills} />)}
-                     
+                        {data?.CourseData?.skills && (<Skills skills={data?.CourseData?.skills} />)}
+
                         <ExaminationPattern examPatterns={data?.CourseData?.examPatterns} />
                         <Financial financialAid={data?.CourseData?.financialAid} />
-                        <CarreerOppurtunity career={data?.CourseData?.career}/>
+                        <CarreerOppurtunity career={data?.CourseData?.career} />
                         <PlacementPartners placements={data?.CourseData?.partners} PlacementPartners={data?.placementPartners} />
                         <CareerServices services={data?.CourseData?.services} />
                         <StepsSection admissionProcess={data?.CourseData?.admissionprocess} />
                         <FAQSection faq={data?.CourseData?.faq} />
                         <SimilarUniversities />
                         <Universities />
-                        <Reviews />  
+                        <Reviews />
                     </div>
                 </div>
             </div>

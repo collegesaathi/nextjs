@@ -1,30 +1,57 @@
-import ImagePreview from "@/common/ImagePreview";
 
-function Addcurriculum({ setCurriculum, curriculum, }) {
+import ImagePreview from "@/common/ImagePreview";
+import ReactQuillEditor from "@/common/ReactQuillEditor";
+
+function ProgramFincalceAdd({ setfincalceAdd, fincalceAdd, handleQuillChange ,formData ,handleChange }) {
     const handleCampusChange = (index, field, value) => {
-        const list = [...curriculum];
+        const list = [...fincalceAdd];
         list[index][field] = value;
-        setCurriculum(list);
+        setfincalceAdd(list);
     };
 
     const addCampus = () => {
-        setCurriculum([...curriculum, { name: "", image: "", campus_images_alt: "" }]);
+        setfincalceAdd([...fincalceAdd, { name: "", image: "", desc: "" }]);
     };
 
     const deleteCampus = (index) => {
-        const list = [...curriculum];
+        const list = [...fincalceAdd];
         list.splice(index, 1);
-        setCurriculum(list);
+        setfincalceAdd(list);
     };
 
     return (<>
+
+
+       <div>
+                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
+                    Name{" "}
+                </label>
+                <input
+                    type="text"
+                    name="financialname"
+                    value={formData?.financialname}
+                    onChange={(e) => {
+                        handleChange(e);
+                    }}
+                    placeholder="Enter name"
+                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
+                    required
+                />
+            </div>
+            <ReactQuillEditor
+                label="Description"
+                desc={formData?.financialdescription}
+                handleBioChange={(val) => handleQuillChange("financialdescription", val)}
+            />
         <div className="flex justify-between items-center">
             <h2 className="text-xl font-semibold text-[#CC2828]">
-                Add Curriculum Section
+                Add financial  Section
             </h2>
         </div>
+
+        
         {/* MULTIPLE CAMPUS BLOCKS */}
-        {curriculum?.map((campus, index) => (
+        {fincalceAdd?.map((campus, index) => (
             <div
                 key={index}
                 className="border px-4 py-3 rounded-xl bg-gray-100 mb-4 grid grid-cols-3 gap-4"
@@ -102,9 +129,9 @@ function Addcurriculum({ setCurriculum, curriculum, }) {
             onClick={addCampus}
             className="border border-[#CC2828] bg-[#CC2828] hover:bg-red-700 text-white px-6 py-2 rounded-[10px] text-base transition"
         >
-            + Add More Curriculum
+            + Add More financial 
         </button>
     </>);
 }
 
-export default Addcurriculum;
+export default ProgramFincalceAdd;
