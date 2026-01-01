@@ -107,6 +107,9 @@ class Listing extends Component {
     return Api.get(`/university/${slug}`)
   }
 
+    async ProgramGet(slug) {
+    return Api.get(`/admin/program/${slug}`)
+  }
 
   // async UniveristyCourseList(id) {
   //   return Api.get(`/course/university/${id}`)
@@ -151,6 +154,9 @@ class Listing extends Component {
   }
   async AdminProgramsAdd(data) {
     return ApiallowFile.post("/admin/program/add", data);
+  }
+   async AdminProgramsUpdate(data) {
+    return ApiallowFile.post("/admin/program/update", data);
   }
  async CategroyAll() {
     return Api.get("/common/categroy",);

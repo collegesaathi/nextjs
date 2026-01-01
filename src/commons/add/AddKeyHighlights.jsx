@@ -71,8 +71,8 @@ const FactAdd = ({ facts, setFacts }) => {
                         <label className="block text-[#CC2828] font-medium mb-2">Key Hightlights Name</label>
                         <input
                             type="text"
-                            value={item.patternName}
-                            onChange={(e) => handleFactsChange(index, "patternName", e.target.value)}
+                            value={item.name}
+                            onChange={(e) => handleFactsChange(index, "name", e.target.value)}
                             placeholder="Enter Facts Name"
                             className="w-full h-[100px] bg-[#F4F6F8] text-[#727272] border rounded-[10px] px-4 py-2"
                         />
