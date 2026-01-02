@@ -2,7 +2,6 @@ export default function Custom404() {
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-100 px-6">
             <div className="text-center">
-                
                 {/* Big 404 */}
                 <h1 className="text-7xl font-bold text-[#D14B4B]">404</h1>
 
