@@ -23,6 +23,20 @@ import ImagePreview from "@/common/ImagePreview";
 import AddInternationalcapmus from "@/commons/add/AddInternationalcapmus";
 
 function Index() {
+
+    function sanitize(obj) {
+        if (Array.isArray(obj)) {
+            return obj.map(item => sanitize(item));
+        }
+
+        if (typeof obj === "object" && obj !== null) {
+            return Object.fromEntries(
+                Object.entries(obj).map(([k, v]) => [k, sanitize(v)])
+            );
+        }
+
+        return safeValue(obj);
+    }
     const router = useRouter()
     const Id = router.query.slug;
     const [processing, setprocessing] = useState(false);
@@ -131,105 +145,86 @@ function Index() {
     useEffect(() => {
         if (!data) return;
 
+        const safeData = sanitize(data);
+
         setFormData({
-            Id: data?.id || "",
+            Id: safeData.id,
 
-            // ---------- BASIC ----------
-            slug: data?.slug || "",
-            name: data?.name || "",
-            rank: data?.rank || "",
-            video: data?.video || "",
-            position: data?.position || "",
+            slug: safeData.slug,
+            name: safeData.name,
+            rank: safeData.rank,
+            video: safeData.video,
+            position: safeData.position,
 
-            // ---------- ABOUT ----------
-            about_title: data?.about?.title || "",
-            about_desc: data?.about?.description || "",
+            about_title: safeData.about?.title,
+            about_desc: safeData.about?.description,
 
-            // ---------- APPROVALS ----------
-            approvals_name: data?.approvals?.title || "",
-            approvals_desc: data?.approvals?.description || "",
+            approvals_name: safeData.approvals?.title,
+            approvals_desc: safeData.approvals?.description,
 
-            // ---------- RANKINGS ----------
-            rankings_name: data?.rankings?.title || "",
-            rankings_description: data?.rankings?.description || "",
+            rankings_name: safeData.rankings?.title,
+            rankings_description: safeData.rankings?.description,
 
-            // ---------- ADVANTAGES ----------
-            advantagesname: data?.advantages?.title || "",
-            advantagesdescription: data?.advantages?.description || "",
+            advantagesname: safeData.advantages?.title,
+            advantagesdescription: safeData.advantages?.description,
 
-            // ---------- FACTS ----------
-            factsname: data?.facts?.title || "",
+            factsname: safeData.facts?.title,
 
-            // ---------- CERTIFICATES ----------
-            certificatename: data?.certificates?.title || "",
-            certificatedescription: data?.certificates?.description || "",
-            certificatemage: data?.certificates?.image || "",
-            image_alt: data?.certificates?.image_alt || "",
+            certificatename: safeData.certificates?.title,
+            certificatedescription: safeData.certificates?.description,
+            certificatemage: safeData.certificates?.image,
+            image_alt: safeData.certificates?.image_alt,
 
-            // ---------- EXAM PATTERN ----------
-            patternname: data?.examPatterns?.title || "",
-            patterndescription: data?.examPatterns?.description || "",
-            bottompatterndesc: data?.examPatterns?.bottompatterndesc || "",
+            patternname: safeData.examPatterns?.title,
+            patterndescription: safeData.examPatterns?.description,
+            bottompatterndesc: safeData.examPatterns?.bottompatterndesc,
 
-            // ---------- FINANCIAL AID ----------
-            financialname: data?.financialAid?.title || "",
-            financialdescription: data?.financialAid?.description || "",
+            financialname: safeData.financialAid?.title,
+            financialdescription: safeData.financialAid?.description,
 
-            // ---------- PARTNERS ----------
-            partnersname: data?.partners?.title || "",
-            partnersdesc: data?.partners?.description || "",
+            partnersname: safeData.partners?.title,
+            partnersdesc: safeData.partners?.description,
 
-            // ---------- SERVICES ----------
-            servicetitle: data?.services?.title || "",
-            servicedesc: data?.services?.description || "",
+            servicetitle: safeData.services?.title,
+            servicedesc: safeData.services?.description,
 
-            // ---------- ADMISSION PROCESS ----------
-            onlinetitle: data?.admissionProcess?.title || "",
-            onlinedesc: data?.admissionProcess?.description || "",
+            onlinetitle: safeData.admissionProcess?.title,
+            onlinedesc: safeData.admissionProcess?.description,
 
-            // ---------- SEO ----------
-            meta_title: data?.seo?.meta_title || "",
-            meta_keywords: data?.seo?.meta_keywords || "",
-            meta_description: data?.seo?.meta_description || "",
-            canonical_url: data?.seo?.canonical_url || "",
+            meta_title: safeData.seo?.meta_title,
+            meta_keywords: safeData.seo?.meta_keywords,
+            meta_description: safeData.seo?.meta_description,
+            canonical_url: safeData.seo?.canonical_url,
 
-            // ---------- ALT ----------
-            icon_alt: data?.icon_alt || "",
-            cover_image_alt: data?.cover_image_alt || "",
+            icon_alt: safeData.icon_alt,
+            cover_image_alt: safeData.cover_image_alt,
 
-            // ---------- DESCRIPTION MULTI FIELD ----------
-            descriptions:
-                data?.description?.length
-                    ? data.description
-                    : [{ text: "" }],
+            descriptions: safeData.description?.length
+                ? safeData.description
+                : [{ text: "" }],
         });
 
-        // ---------- IMAGES ----------
-        setPreview(data?.cover_image || "");
-        setIcons(data?.icon || "");
+        setPreview(safeData.cover_image);
+        setIcons(safeData.icon);
 
-        // ---------- APPROVALS / PARTNERS ----------
-        setSelectedApprovals(data?.approvals?.approval_ids || []);
-        setSelectedPartners(data?.partners?.placement_partner_id || []);
+        setSelectedApprovals(safeData.approvals?.approval_ids || []);
+        setSelectedPartners(safeData.partners?.placement_partner_id || []);
 
-        // ---------- ADVANTAGES ----------
         setAdvantages(
-            data?.advantages?.advantages?.length
-                ? data?.advantages?.advantages
+            safeData.advantages?.advantages?.length
+                ? safeData.advantages.advantages
                 : [{ title: "", description: "" }]
         );
 
-        // ---------- FACTS ----------
         setFacts(
-            data?.facts?.facts?.length
-                ? data?.facts?.facts
+            safeData.facts?.facts?.length
+                ? safeData.facts.facts
                 : [{ title: "", description: "" }]
         );
 
-        // ---------- PATTERNS ----------
         setPatterns(
-            data?.examPatterns?.patterns?.length
-                ? data?.examPatterns?.patterns
+            safeData.examPatterns?.patterns?.length
+                ? safeData.examPatterns.patterns
                 : [{
                     patternName: "",
                     description: "",
@@ -239,10 +234,9 @@ function Index() {
                 }]
         );
 
-        // ---------- FEES ----------
         setFees(
-            data?.financialAid?.aid?.length
-                ? data?.financialAid?.aid
+            safeData.financialAid?.aid?.length
+                ? safeData.financialAid.aid
                 : [{
                     courseName: "",
                     totalFees: "",
@@ -254,24 +248,21 @@ function Index() {
                 }]
         );
 
-        // ---------- CAMPUS ----------
         setCampusList(
-            data?.universityCampuses?.campus?.length
-                ? data?.universityCampuses?.campus
+            safeData.universityCampuses?.campus?.length
+                ? safeData.universityCampuses.campus
                 : [{ name: "", image: "", campus_images_alt: "" }]
         );
 
-        // ---------- INTERNATIONAL CAMPUS ----------
         setCampusInterList(
-            data?.universityCampuses?.campusInternationList?.length
-                ? data?.universityCampuses?.campusInternationList
+            safeData.universityCampuses?.campusInternationList?.length
+                ? safeData.universityCampuses.campusInternationList
                 : [{ name: "", image: "", campus_images_alt: "" }]
         );
 
-        // ---------- SERVICES ----------
         setServices(
-            data?.services?.services?.length
-                ? data?.services?.services
+            safeData.services?.services?.length
+                ? safeData.services.services
                 : [{
                     title: "",
                     content: "",
@@ -282,21 +273,20 @@ function Index() {
                 }]
         );
 
-        // ---------- FAQ ----------
         setFaqs(
-            data?.faq?.faqs?.length
-                ? data?.faq?.faqs
+            safeData.faq?.faqs?.length
+                ? safeData.faq.faqs
                 : [{ question: "", answer: "", position: "" }]
         );
 
-        // ---------- ONLINE PROCESS ----------
         setOnlines(
-            data?.admissionProcess?.process?.length
-                ? data?.admissionProcess?.process
+            safeData.admissionProcess?.process?.length
+                ? safeData.admissionProcess.process
                 : [{ title: "", content: "" }]
         );
 
     }, [data]);
+
 
 
     const toggleApproval = (id) => {
@@ -388,48 +378,48 @@ function Index() {
             payload.append("slug", formData.slug || "");
             payload.append("rank", formData.rank || "");
             payload.append("name", formData.name || "");
-            payload.append("id", formData.Id);
-            payload.append("video", formData.video);
-            payload.append("position", formData.position);
-            payload.append("about_title", formData.about_title);
-            payload.append("about_desc", formData.about_desc);
-            payload.append("icon", formData.icon);
-            payload.append("cover_image", formData.cover_image);
-            payload.append("descriptions", JSON.stringify(formData.descriptions));
-            payload.append("advantages", JSON.stringify(advantages));
-            payload.append("services", JSON.stringify(services));
-            payload.append("fees", JSON.stringify(fees));
-            payload.append("faqs", JSON.stringify(faqs));
-            payload.append("facts", JSON.stringify(facts));
-            payload.append("approvals", JSON.stringify(selectedApprovals));
-            payload.append("partners", JSON.stringify(selectedPartners));
-            payload.append("patternname", formData.patternname);
-            payload.append("patterndescription", formData.patterndescription);
-            payload.append("bottompatterndesc", formData.bottompatterndesc);
-            payload.append("approvals_name", formData.approvals_name);
-            payload.append("approvals_desc", formData.approvals_desc);
-            payload.append("rankings_description", formData.rankings_description);
-            payload.append("rankings_name", formData.rankings_name);
-            payload.append("advantagesname", formData.advantagesname);
-            payload.append("advantagesdescription", formData.advantagesdescription);
-            payload.append("factsname", formData.factsname);
-            payload.append("certificatename", formData.certificatename);
-            payload.append("certificatedescription", formData.certificatedescription);
-            payload.append("meta_title", formData.meta_title);
-            payload.append("meta_description", formData.meta_description);
-            payload.append("meta_keywords", formData.meta_keywords);
-            payload.append("canonical_url", formData.canonical_url);
-            payload.append("certificatemage", formData.certificatemage);
-            payload.append("cover_image_alt", formData.cover_image_alt)
-            payload.append("icon_alt", formData.icon_alt)
-            payload.append("image_alt", formData.image_alt)
+            payload.append("id", formData.Id || "");
+            payload.append("video", formData.video || "");
+            payload.append("position", formData.position || "");
+            payload.append("about_title", formData.about_title || "");
+            payload.append("about_desc", formData.about_desc || "");
+            payload.append("icon", formData.icon || "");
+            payload.append("cover_image", formData.cover_image || "");
+            payload.append("descriptions", JSON.stringify(formData.descriptions || []));
+            payload.append("advantages", JSON.stringify(advantages || []));
+            payload.append("services", JSON.stringify(services || []));
+            payload.append("fees", JSON.stringify(fees || []));
+            payload.append("faqs", JSON.stringify(faqs || []));
+            payload.append("facts", JSON.stringify(facts || []));
+            payload.append("approvals", JSON.stringify(selectedApprovals || []));
+            payload.append("partners", JSON.stringify(selectedPartners || []));
+            payload.append("patternname", formData.patternname || "");
+            payload.append("patterndescription", formData.patterndescription || "");
+            payload.append("bottompatterndesc", formData.bottompatterndesc || "");
+            payload.append("approvals_name", formData.approvals_name || "");
+            payload.append("approvals_desc", formData.approvals_desc || "");
+            payload.append("rankings_description", formData.rankings_description || "");
+            payload.append("rankings_name", formData.rankings_name || "");
+            payload.append("advantagesname", formData.advantagesname || "");
+            payload.append("advantagesdescription", formData.advantagesdescription || "");
+            payload.append("factsname", formData.factsname || "");
+            payload.append("certificatename", formData.certificatename || "");
+            payload.append("certificatedescription", formData.certificatedescription || "");
+            payload.append("meta_title", formData.meta_title || "");
+            payload.append("meta_description", formData.meta_description || "");
+            payload.append("meta_keywords", formData.meta_keywords || "");
+            payload.append("canonical_url", formData.canonical_url || "");
+            payload.append("certificatemage", formData.certificatemage || "");
+            payload.append("cover_image_alt", formData.cover_image_alt || "")
+            payload.append("icon_alt", formData.icon_alt || "")
+            payload.append("image_alt", formData.image_alt || "")
             const cleanPatterns = patterns.map(item => ({
                 patternName: item.patternName,
                 percentage: item.percentage,
                 description: item.description,
                 pattern_images_alt: item?.pattern_images_alt
             }));
-            payload.append("patterns", JSON.stringify(cleanPatterns));
+            payload.append("patterns", JSON.stringify(cleanPatterns || []));
             patterns.forEach((item, index) => {
                 if (item.image) {
                     payload.append(`patternsimages[${index}]`, item.image);
@@ -441,23 +431,23 @@ function Index() {
                 name: item.name,
                 campus_images_alt: item?.campus_images_alt
             }));
-            payload.append("campusList", JSON.stringify(campusListmanage));
+            payload.append("campusList", JSON.stringify(campusListmanage || []));
             campusList.forEach((item, index) => {
                 if (item.image) {
                     payload.append(`campusimages[${index}]`, item.image);
                 }
             });
-            payload.append("partnersname", formData.partnersname);
-            payload.append("partnersdesc", formData.partnersdesc);
-            payload.append("servicetitle", formData.servicetitle);
-            payload.append("servicedesc", formData.servicedesc);
-            payload.append("onlinedesc", formData.onlinedesc);
-            payload.append("onlinetitle", formData.onlinetitle);
+            payload.append("partnersname", formData.partnersname || "");
+            payload.append("partnersdesc", formData.partnersdesc || "");
+            payload.append("servicetitle", formData.servicetitle || "");
+            payload.append("servicedesc", formData.servicedesc || "");
+            payload.append("onlinedesc", formData.onlinedesc || "");
+            payload.append("onlinetitle", formData.onlinetitle || "");
             const campusInterLists = campusInterList.map(item => ({
                 name: item.name,
                 campus_images_alt: item?.campus_images_alt
             }));
-            payload.append("internationalcampus", JSON.stringify(campusInterLists));
+            payload.append("internationalcampus", JSON.stringify(campusInterLists || []));
             campusInterList.forEach((item, index) => {
                 if (item.image) {
                     payload.append(`campusinterimages[${index}]`, item.image);
@@ -467,14 +457,14 @@ function Index() {
                 title: item.title,
                 content: item.content
             }));
-            payload.append("onlines", JSON.stringify(cleanonlines));
+            payload.append("onlines", JSON.stringify(cleanonlines || []));
             const cleanServices = services.map(item => ({
                 title: item.title,
                 content: item.content,
                 icons_alt: item?.icons_alt,
                 images_alt: item?.images_alt
             }));
-            payload.append("servcies", JSON.stringify(cleanServices));
+            payload.append("servcies", JSON.stringify(cleanServices || []));
 
             services.forEach((item, index) => {
                 if (item.image) {
@@ -509,6 +499,13 @@ function Index() {
 
         setLoading(false);
     };
+
+    function safeValue(value) {
+        if (value === undefined || value === null) return "";
+        return value;
+    }
+
+
     const [activeTab, setActiveTab] = useState("card");
 
     const tabsData = [
