@@ -346,12 +346,13 @@ function Index() {
 
     const currentIndex = tabsData.findIndex((tab) => tab.id === activeTab);
 
-    const handleNext = () => {
+    const handleNext = (e) => {
+        e.preventDefault();
         if (currentIndex < tabsData.length - 1) {
             setActiveTab(tabsData[currentIndex + 1].id);
         }
+        handleAdd(e);
     };
-
     const handleBack = () => {
         if (currentIndex > 0) {
             setActiveTab(tabsData[currentIndex - 1].id);

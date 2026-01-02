@@ -368,7 +368,8 @@ function Index() {
     };
 
     // ✅ ADD UNIVERSITY
-    const handleUpdate = async (e) => {
+  
+  const handleUpdate = async (e) => {
         e.preventDefault();
         if (loading) return;
         setLoading(true);
@@ -499,7 +500,6 @@ function Index() {
 
         setLoading(false);
     };
-
     function safeValue(value) {
         if (value === undefined || value === null) return "";
         return value;
@@ -529,11 +529,20 @@ function Index() {
 
     const currentIndex = tabsData.findIndex((tab) => tab.id === activeTab);
 
-    const handleNext = () => {
-        if (currentIndex < tabsData.length - 1) {
-            setActiveTab(tabsData[currentIndex + 1].id);
-        }
-    };
+    // const handleNext = () => {
+    //     if (currentIndex < tabsData.length - 1) {
+    //         setActiveTab(tabsData[currentIndex + 1].id);
+    //     }
+    // };
+
+
+    const handleNext = (e) => {
+    e.preventDefault();
+    if (currentIndex < tabsData.length - 1) {
+        setActiveTab(tabsData[currentIndex + 1].id);
+    }
+    handleUpdate(e);
+};
 
     const handleBack = () => {
         if (currentIndex > 0) {

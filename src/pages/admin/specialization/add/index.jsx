@@ -155,7 +155,7 @@ function Index() {
     const [formData, setFormData] = useState({
         slug: "",
         name: "",
-        video:"",
+        video: "",
         icon: null,
         cover_image: null,
         position: "",
@@ -278,8 +278,8 @@ function Index() {
             payload.append("icon", formData.icon || " ");
             payload.append("video", formData.video || " ");
             payload.append("cover_image", formData.cover_image || " ");
-            payload.append("fees_title", formData.fees_title || " " );
-            payload.append("category_id", formData?.categroy_id );
+            payload.append("fees_title", formData.fees_title || " ");
+            payload.append("category_id", formData?.categroy_id);
             payload.append("descriptions", JSON.stringify(formData.descriptions));
             payload.append("cover_image_alt", formData.cover_image_alt || " ")
             payload.append("icon_alt", formData.icon_alt || " ")
@@ -324,14 +324,14 @@ function Index() {
             payload.append("certificatedescription", formData.certificatedescription || " ");
             payload.append("certificatemage", formData.certificatemage || " ");
             payload.append("image_alt", formData.image_alt || " ")
-            payload.append("advantages", JSON.stringify(advantages ||[]));
+            payload.append("advantages", JSON.stringify(advantages || []));
             payload.append("advantagesname", formData.advantagesname || " ");
             payload.append("advantagesdescription", formData.advantagesdescription || " ");
             payload.append("skills", JSON.stringify(skills || []));
-            payload.append("skillsname", formData.skillname ||" ");
-            payload.append("skilldesc", formData.skilldesc ||" ");
-            payload.append("patternname", formData.patternname ||" ");
-            payload.append("patterndescription", formData.patterndescription ||" ");
+            payload.append("skillsname", formData.skillname || " ");
+            payload.append("skilldesc", formData.skilldesc || " ");
+            payload.append("patternname", formData.patternname || " ");
+            payload.append("patterndescription", formData.patterndescription || " ");
             payload.append("bottompatterndesc", formData.bottompatterndesc || " ");
             const cleanPatterns = patterns.map(item => ({
                 patternName: item.patternName,
@@ -339,35 +339,35 @@ function Index() {
                 description: item.description,
                 pattern_images_alt: item?.pattern_images_alt
             }));
-            payload.append("patterns", JSON.stringify(cleanPatterns ||[]));
+            payload.append("patterns", JSON.stringify(cleanPatterns || []));
             patterns.forEach((item, index) => {
                 if (item.image) {
                     payload.append(`patternsimages[${index}]`, item.image);
                 }
             });
-            payload.append("fees", JSON.stringify(fees ||[]));
-            payload.append("careerdesc", formData.careerdesc ||" ")
-            payload.append("careername", formData.careername ||" ")
-            payload.append("careermanages", JSON.stringify(Careers ||[]));
-            payload.append("partnersname", formData.partnersname ||" ");
-            payload.append("partnersdesc", formData.partnersdesc ||" ");
+            payload.append("fees", JSON.stringify(fees || []));
+            payload.append("careerdesc", formData.careerdesc || " ")
+            payload.append("careername", formData.careername || " ")
+            payload.append("careermanages", JSON.stringify(Careers || []));
+            payload.append("partnersname", formData.partnersname || " ");
+            payload.append("partnersdesc", formData.partnersdesc || " ");
             payload.append("partners", JSON.stringify(selectedPartners || []));
             payload.append("faqs", JSON.stringify(faqs || []));
-            payload.append("meta_title", formData.meta_title ||" ");
-            payload.append("meta_description", formData.meta_description ||" ");
-            payload.append("meta_keywords", formData.meta_keywords ||" ");
-            payload.append("canonical_url", formData.canonical_url ||" ");
-            payload.append("financialname", formData.financialname ||" ");
-            payload.append("financialdescription", formData.financialdescription ||" ");
-            payload.append("servicetitle", formData.servicetitle ||" ");
-            payload.append("servicedesc", formData.servicedesc ||" ");
-            payload.append("onlinedesc", formData.onlinedesc ||" ");
-            payload.append("onlinetitle", formData.onlinetitle ||" ");
+            payload.append("meta_title", formData.meta_title || " ");
+            payload.append("meta_description", formData.meta_description || " ");
+            payload.append("meta_keywords", formData.meta_keywords || " ");
+            payload.append("canonical_url", formData.canonical_url || " ");
+            payload.append("financialname", formData.financialname || " ");
+            payload.append("financialdescription", formData.financialdescription || " ");
+            payload.append("servicetitle", formData.servicetitle || " ");
+            payload.append("servicedesc", formData.servicedesc || " ");
+            payload.append("onlinedesc", formData.onlinedesc || " ");
+            payload.append("onlinetitle", formData.onlinetitle || " ");
             const cleanonlines = onlines.map(item => ({
                 title: item.title,
                 content: item.content
             }));
-            payload.append("onlines", JSON.stringify(cleanonlines ||[]));
+            payload.append("onlines", JSON.stringify(cleanonlines || []));
             const cleanServices = services.map(item => ({
                 title: item.title,
                 content: item.content,
@@ -433,11 +433,14 @@ function Index() {
 
     const currentIndex = tabsData.findIndex((tab) => tab.id === activeTab);
 
-    const handleNext = () => {
+    const handleNext = (e) => {
+        e.preventDefault();
         if (currentIndex < tabsData.length - 1) {
             setActiveTab(tabsData[currentIndex + 1].id);
         }
+        handleAdd(e);
     };
+
 
     const handleBack = () => {
         if (currentIndex > 0) {
@@ -577,7 +580,7 @@ function Index() {
                                     required
                                 />
                             </div>
-                                     <div>
+                            <div>
                                 <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
                                     Video {" "}
                                 </label>
