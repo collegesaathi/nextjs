@@ -1,7 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+
   transpilePackages: ["react-quill-new"],
+
   images: {
     remotePatterns: [
       // Localhost
@@ -24,7 +26,7 @@ const nextConfig = {
         pathname: "/uploads/**",
       },
 
-      // Production domains
+      // Production URLs
       {
         protocol: "https",
         hostname: "indiaprograms.com",
@@ -38,19 +40,9 @@ const nextConfig = {
     ],
   },
 
+  // ❌ Removed /505 redirect – it breaks build
   async redirects() {
-    return [
-      {
-        source: "/505",
-        destination: "/500",
-        permanent: false,
-      },
-      {
-        source: "/505/:path*",
-        destination: "/500",
-        permanent: false,
-      },
-    ];
+    return [];
   },
 };
 
