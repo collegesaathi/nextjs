@@ -38,7 +38,7 @@ function Index() {
         about_title: "",
         about_desc: "",
         rankings_point: "",
-        video:"",
+        video: "",
         rankings_name: "",
         rankings_description: "",
         approvals_name: "",
@@ -129,69 +129,175 @@ function Index() {
     }, [Id])
 
     useEffect(() => {
+        if (!data) return;
+
         setFormData({
-            slug: data?.slug,
-            name: data?.name,
-            video:data?.video,
-            position: data?.position,
-            about_title: data?.about?.title,
-            about_desc: data?.about?.description,
-            approvals_name: data?.approvals?.title,
-            approvals_desc: data?.approvals?.description,
-            rankings_name: data?.rankings?.title,
-            rank: data?.rank,
-            rankings_description: data?.rankings?.description,
-            advantagesname: data?.advantages?.title,
-            advantagesdescription: data?.advantages?.description,
-            factsname: data?.facts?.title,
-            certificatedescription: data?.certificates?.description,
-            certificatename: data?.certificates?.title,
-            certificatemage: data?.certificates?.image,
-            image_alt: data?.certificates?.image_alt,
-            patternname: data?.examPatterns?.title,
-            patterndescription: data?.examPatterns?.description,
-            financialname: data?.financialAid?.title,
-            financialdescription: data?.financialAid?.description,
-            partnersname: data?.partners?.title,
-            partnersdesc: data?.partners?.description,
-            servicetitle: data?.services?.title,
-            servicedesc: data?.services?.description,
-            onlinetitle: data?.admissionProcess?.title,
-            onlinedesc: data?.admissionProcess?.description,
-            bottompatterndesc: data?.examPatterns?.bottompatterndesc,
-            meta_title: data?.seo?.meta_title,
-            meta_keywords: data?.seo?.meta_keywords,
-            meta_description: data?.seo?.meta_description,
-            canonical_url: data?.seo?.canonical_url,
-            Id: data?.id,
-            icon_alt: data?.icon_alt,
-            cover_image_alt: data?.cover_image_alt,
-            descriptions: data?.description?.length
-                ? data.description
-                : [{ text: "" }],
-        })
-        setPreview(data?.cover_image);
-        setIcons(data?.icon);
-        setSelectedApprovals(data?.approvals?.approval_ids);
-        setSelectedPartners(data?.partners?.placement_partner_id);
-        setAdvantages(data?.advantages?.advantages?.length ? data?.advantages?.advantages : [{ title: "", description: "" }]);
-        setFacts(data?.facts?.facts?.length ? data?.facts?.facts : [{ patternName: "", description: "" }]);
-        setPatterns(data?.examPatterns?.patterns?.length ? data?.examPatterns?.patterns : [{ patternName: "", description: "", image: "", percentage: "", pattern_images_alt: "" }]);
-        setFees(data?.financialAid?.aid?.length ? data?.financialAid?.aid : [{
-            courseName: "",
-            totalFees: "",
-            loanAmount: "",
-            tenure: "",
-            interest: "",
-            emi: "",
-            description: "",
-        }])
-        setCampusList(data?.universityCampuses?.campus?.length ? data?.universityCampuses?.campus : [{ name: "", image: "", campus_images_alt: "" }])
-        setServices(data?.services?.services?.length ? data?.services?.services : [{ title: "", content: "", image: null, icon: null, icons_alt: "", images_alt: "" }])
-        setFaqs(data?.faq?.faqs?.length ? data?.faq?.faqs : [{ question: "", answer: "", position: "" }]);
-        setOnlines(data?.admissionProcess?.process?.length ? data?.admissionProcess?.process : [{ title: "", content: "" }])
-        setCampusInterList(data?.universityCampuses?.campusInternationList?.length ? data?.universityCampuses?.campusInternationList : [{ name: "", image: "", campus_images_alt: "" }])
-    }, [data])
+            Id: data?.id || "",
+
+            // ---------- BASIC ----------
+            slug: data?.slug || "",
+            name: data?.name || "",
+            rank: data?.rank || "",
+            video: data?.video || "",
+            position: data?.position || "",
+
+            // ---------- ABOUT ----------
+            about_title: data?.about?.title || "",
+            about_desc: data?.about?.description || "",
+
+            // ---------- APPROVALS ----------
+            approvals_name: data?.approvals?.title || "",
+            approvals_desc: data?.approvals?.description || "",
+
+            // ---------- RANKINGS ----------
+            rankings_name: data?.rankings?.title || "",
+            rankings_description: data?.rankings?.description || "",
+
+            // ---------- ADVANTAGES ----------
+            advantagesname: data?.advantages?.title || "",
+            advantagesdescription: data?.advantages?.description || "",
+
+            // ---------- FACTS ----------
+            factsname: data?.facts?.title || "",
+
+            // ---------- CERTIFICATES ----------
+            certificatename: data?.certificates?.title || "",
+            certificatedescription: data?.certificates?.description || "",
+            certificatemage: data?.certificates?.image || "",
+            image_alt: data?.certificates?.image_alt || "",
+
+            // ---------- EXAM PATTERN ----------
+            patternname: data?.examPatterns?.title || "",
+            patterndescription: data?.examPatterns?.description || "",
+            bottompatterndesc: data?.examPatterns?.bottompatterndesc || "",
+
+            // ---------- FINANCIAL AID ----------
+            financialname: data?.financialAid?.title || "",
+            financialdescription: data?.financialAid?.description || "",
+
+            // ---------- PARTNERS ----------
+            partnersname: data?.partners?.title || "",
+            partnersdesc: data?.partners?.description || "",
+
+            // ---------- SERVICES ----------
+            servicetitle: data?.services?.title || "",
+            servicedesc: data?.services?.description || "",
+
+            // ---------- ADMISSION PROCESS ----------
+            onlinetitle: data?.admissionProcess?.title || "",
+            onlinedesc: data?.admissionProcess?.description || "",
+
+            // ---------- SEO ----------
+            meta_title: data?.seo?.meta_title || "",
+            meta_keywords: data?.seo?.meta_keywords || "",
+            meta_description: data?.seo?.meta_description || "",
+            canonical_url: data?.seo?.canonical_url || "",
+
+            // ---------- ALT ----------
+            icon_alt: data?.icon_alt || "",
+            cover_image_alt: data?.cover_image_alt || "",
+
+            // ---------- DESCRIPTION MULTI FIELD ----------
+            descriptions:
+                data?.description?.length
+                    ? data.description
+                    : [{ text: "" }],
+        });
+
+        // ---------- IMAGES ----------
+        setPreview(data?.cover_image || "");
+        setIcons(data?.icon || "");
+
+        // ---------- APPROVALS / PARTNERS ----------
+        setSelectedApprovals(data?.approvals?.approval_ids || []);
+        setSelectedPartners(data?.partners?.placement_partner_id || []);
+
+        // ---------- ADVANTAGES ----------
+        setAdvantages(
+            data?.advantages?.advantages?.length
+                ? data?.advantages?.advantages
+                : [{ title: "", description: "" }]
+        );
+
+        // ---------- FACTS ----------
+        setFacts(
+            data?.facts?.facts?.length
+                ? data?.facts?.facts
+                : [{ title: "", description: "" }]
+        );
+
+        // ---------- PATTERNS ----------
+        setPatterns(
+            data?.examPatterns?.patterns?.length
+                ? data?.examPatterns?.patterns
+                : [{
+                    patternName: "",
+                    description: "",
+                    image: "",
+                    percentage: "",
+                    pattern_images_alt: ""
+                }]
+        );
+
+        // ---------- FEES ----------
+        setFees(
+            data?.financialAid?.aid?.length
+                ? data?.financialAid?.aid
+                : [{
+                    courseName: "",
+                    totalFees: "",
+                    loanAmount: "",
+                    tenure: "",
+                    interest: "",
+                    emi: "",
+                    description: "",
+                }]
+        );
+
+        // ---------- CAMPUS ----------
+        setCampusList(
+            data?.universityCampuses?.campus?.length
+                ? data?.universityCampuses?.campus
+                : [{ name: "", image: "", campus_images_alt: "" }]
+        );
+
+        // ---------- INTERNATIONAL CAMPUS ----------
+        setCampusInterList(
+            data?.universityCampuses?.campusInternationList?.length
+                ? data?.universityCampuses?.campusInternationList
+                : [{ name: "", image: "", campus_images_alt: "" }]
+        );
+
+        // ---------- SERVICES ----------
+        setServices(
+            data?.services?.services?.length
+                ? data?.services?.services
+                : [{
+                    title: "",
+                    content: "",
+                    image: null,
+                    icon: null,
+                    icons_alt: "",
+                    images_alt: ""
+                }]
+        );
+
+        // ---------- FAQ ----------
+        setFaqs(
+            data?.faq?.faqs?.length
+                ? data?.faq?.faqs
+                : [{ question: "", answer: "", position: "" }]
+        );
+
+        // ---------- ONLINE PROCESS ----------
+        setOnlines(
+            data?.admissionProcess?.process?.length
+                ? data?.admissionProcess?.process
+                : [{ title: "", content: "" }]
+        );
+
+    }, [data]);
+
 
     const toggleApproval = (id) => {
         if (selectedApprovals.includes(id)) {
