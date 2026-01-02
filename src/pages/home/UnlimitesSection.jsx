@@ -1,14 +1,14 @@
-import Shape from "../assets/home/shape11.avif";
+// import Shape from "../assets/home/shape11.avif";
 
 function UnlimitedSection() {
   return (
     <div className="w-full md:w-[1230px] mx-auto relative md:h-[207px] h-auto px-4">
       {/* Background Shape */}
-      <img
+      {/* <img
         src={Shape?.src}
         alt="university"
         className="w-full h-[200px] md:h-full object-cover rounded-lg"
-      />
+      /> */}
 
       {/* Content Overlay */}
       <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center text-center px-2 md:px-0">

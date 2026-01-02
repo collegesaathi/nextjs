@@ -149,7 +149,7 @@ export default function Index() {
                                             <div className="flex  justify-center items-center gap-4  ">
                                                 {!item?.deleted_at && (
                                                     <Link
-                                                        href={`/admin/program/add${item?.slug}`}
+                                                        href={`/admin/program/add/${item?.slug}`}
                                                         className="p-2 rounded bg-yellow-400 hover:bg-yellow-500 text-white"
                                                     >
                                                         <MdEdit size={20} />

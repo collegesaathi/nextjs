@@ -7,7 +7,7 @@ import ReactQuillEditor from "@/common/ReactQuillEditor";
 // Dynamic import for Quill editor (SSR safe)
 const ReactQuill = dynamic(() => import("react-quill-new"), { ssr: false });
 
-export default function AddPurpuse({ setchoose, choose, htitle, formData, handleQuillChange, handleChange  ,setpurpuse ,  purpuse }) {
+export default function AddPurpuse({ setchoose, choose, htitle, formData, handleQuillChange, handleChange, setpurpuse, purpuse }) {
 
     // Add new advantage
     const addAdvantage = () => {
@@ -28,7 +28,7 @@ export default function AddPurpuse({ setchoose, choose, htitle, formData, handle
 
 
 
-      const addpurpuse = () => {
+    const addpurpuse = () => {
         setpurpuse([...purpuse, { title: "", image: "" }]);
     };
 
@@ -74,13 +74,7 @@ export default function AddPurpuse({ setchoose, choose, htitle, formData, handle
                 />
             </div>
 
-            <div className="mt-5 mb-5">
-                <ReactQuillEditor
-                    label="Notes"
-                    desc={formData.experincenotes}
-                    handleBioChange={(val) => handleQuillChange("experincenotes", val)}
-                />
-            </div>
+
             {/* Header + Add Button */}
             <div className="flex justify-between items-center mb-5">
                 <h2 className="text-xl font-semibold text-[#CC2828]">Why Choose Section</h2>
@@ -160,7 +154,7 @@ export default function AddPurpuse({ setchoose, choose, htitle, formData, handle
 
 
 
-               {/* Header + Add Button */}
+            {/* Header + Add Button */}
             <div className="flex justify-between items-center mb-5">
                 <h2 className="text-xl font-semibold text-[#CC2828]">Purpuse Section</h2>
                 <button
@@ -194,7 +188,7 @@ export default function AddPurpuse({ setchoose, choose, htitle, formData, handle
                         />
                     </div>
 
-                        <div className="col-span-12 md:col-span-5">
+                    <div className="col-span-12 md:col-span-5">
                         <label className="block text-[#CC2828] font-medium mb-2">
                             Desc
                         </label>

@@ -20,7 +20,6 @@ import FactAdd from "@/commons/add/FactAdd";
 import AdvantageSectionAdd from "@/commons/add/AdvantageSectionAdd";
 import ImagePreview from "@/common/ImagePreview";
 import AddInternationalcapmus from "@/commons/add/AddInternationalcapmus";
-
 function Index() {
     const router = useRouter();
     const [advantages, setAdvantages] = useState([

@@ -52,20 +52,20 @@ function AddInstute({ formData, handleChange, setinstitutes, institutes, handleQ
                 </label>
                 <input
                     type="text"
-                    name="onlinetitle"
-                    value={formData.onlinetitle}
+                    name="instututitle"
+                    value={formData.instututitle}
                     onChange={(e) => {
                         handleChange(e);
                     }}
-                    placeholder="Enter partners name"
+                    placeholder="Enter instututitle name"
                     className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
                     required
                 />
             </div>
             <ReactQuillEditor
                 label="Description"
-                desc={formData.onlinedesc}
-                handleBioChange={(val) => handleQuillChange("onlinedesc", val)}
+                desc={formData.instutudesc}
+                handleBioChange={(val) => handleQuillChange("instutudesc", val)}
             />
 
             <>

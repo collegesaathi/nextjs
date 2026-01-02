@@ -8,7 +8,7 @@ import ExploreUniversities from "../home/ExploreUniversities";
 import Confusion from "../home/Confusion";
 import { useRouter } from "next/router";
 
-import { fetchComparisonDetails } from "@/lib/ssrFetch";
+// import { fetchComparisonDetails } from "@/lib/ssrFetch";
 
 
 const comparisonData = {
@@ -696,6 +696,6 @@ export default function Compare({compareData}) {
 }
 
 
-export async function getServerSideProps(context) {
-    return await fetchComparisonDetails(context);
-}
+// export async function getServerSideProps(context) {
+//     return await fetchComparisonDetails(context);
+// }

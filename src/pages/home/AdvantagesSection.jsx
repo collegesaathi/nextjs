@@ -5,7 +5,7 @@ import shape11 from "../assets/home/Lines.png"
 import { FaArrowRight, FaCaretLeft, FaCaretRight, FaSearch } from 'react-icons/fa';
 import { IoMdArrowDropdownCircle } from "react-icons/io";
 import { IoMdCheckmark } from "react-icons/io";
-import Effect from "../assets/home/effect.avif"
+// import Effect from "../assets/home/effect.avif"
 import Heading from '../../common/Heading';
 export default function AdvantagesSection() {
   // University Search Functionality
@@ -547,9 +547,9 @@ export default function AdvantagesSection() {
                   </div>
                 </div>
 
-                <div className="absolute top-0 left-0 w-full h-full pt-14">
+                {/* <div className="absolute top-0 left-0 w-full h-full pt-14">
                   <img src={Effect?.src} alt="" className="w-full" />
-                </div>
+                </div> */}
               </div>
             </div>
 
@@ -830,7 +830,7 @@ export default function AdvantagesSection() {
                 </div>
 
                 <div className="absolute top-0 left-0 w-full h-full pt-14">
-                  <img src={Effect?.src} alt="" className="w-full" />
+                  {/* <img src={Effect?.src} alt="" className="w-full" /> */}
                 </div>
               </div>
             </div>

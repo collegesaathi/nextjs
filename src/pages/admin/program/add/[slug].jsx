@@ -24,7 +24,9 @@ import AddPurpuse from "@/commons/add/AddPurpuse";
 
 function Index() {
     const router = useRouter();
-
+    const Id = router.query.slug;
+    const [data, setData] = useState("")
+    const [processing, setprocessing] = useState(false);
 
     const [categroy, setCategroy] = useState([])
     const fetchData = async () => {
@@ -49,7 +51,7 @@ function Index() {
     const [services, setServices] = useState([{ title: "", content: "", image: null, icon: null, icons_alt: "", images_alt: "" }]);
 
     const [Careers, setCareers] = useState([
-        { title: "", description: "", salary: "" }
+        { title: "", desc: "", salary: "" }
     ]);
 
     const [PlacementAdd, setPlacementAdd] = useState([
@@ -113,7 +115,7 @@ function Index() {
 
     const [facts, setFacts] = useState([
         {
-            patternName: "",
+            name: "",
             description: "",
         }
     ]);
@@ -135,7 +137,7 @@ function Index() {
 
 
     const [institutes, setinstitutes] = useState([
-        { name: "", desc: "" }
+        { name: "", content: "" }
     ]);
 
     const [purpuse, setpurpuse] = useState([
@@ -206,8 +208,8 @@ function Index() {
     });
 
     const [monthlyData, setMonthlyData] = useState({
-        Jan: "", Feb: "", Mar: "", Apr: "", May: "", Jun: "",
-        Jul: "", Aug: "", Sep: "", Oct: "", Nov: "", Dec: "",
+        Jan: 0, Feb: 0, Mar: 0, Apr: 0, May: 0, Jun: 0,
+        Jul: 0, Aug: 0, Sep: 0, Oct: 0, Nov: 0, Dec: 0,
     });
 
     console.log("monthlyData", monthlyData)
@@ -265,7 +267,7 @@ function Index() {
 
         }
     };
-
+    console.log("selectedApprovals", selectedApprovals)
     // ✅ ADD UNIVERSITY
     const handleAdd = async (e) => {
         e.preventDefault();
@@ -276,6 +278,7 @@ function Index() {
             const payload = new FormData();
             payload.append("slug", formData.slug);
             payload.append("name", formData.name);
+            payload.append("id", formData.Id);
             payload.append("descriptions", formData.descriptions);
             payload.append("categroy_id", formData.categroy_id);
             payload.append("pdf_download", formData.pdf_download);
@@ -303,7 +306,7 @@ function Index() {
             payload.append("universitytitle", formData.universitytitle);
             payload.append("universitybtmdesc", formData.universitybtmdesc);
             payload.append("universitydesc", formData.universitydesc);
-            payload.append("university_id", selectedApprovals)
+            payload.append("university_id", JSON.stringify(selectedApprovals))
             payload.append("onlinedesc", formData.onlinedesc);
             payload.append("onlinetitle", formData.onlinetitle);
             payload.append("onlines", JSON.stringify(onlines));
@@ -318,10 +321,9 @@ function Index() {
             payload.append("financialdescription", formData.financialdescription);
             payload.append("partnersname", formData.partnersname)
             payload.append("partnersdesc", formData.partnersdesc)
-            payload.append("selectedPartners", formData.selectedPartners)
+            payload.append("selectedPartners", JSON.stringify(selectedPartners))
             payload.append("placementname", formData.placementname)
             payload.append("placementdescription", formData.placementdescription)
-            payload.append("selectedPartners", formData.selectedPartners)
             const PlacementAdds = PlacementAdd.map(item => ({
                 name: item.name,
                 description: item.description
@@ -347,13 +349,21 @@ function Index() {
             });
             payload.append("curriculum_title", formData.curriculum_title);
             payload.append("curriculum_description", formData.curriculum_description);
-            payload.append("curriculm", JSON.stringify(curriculum));
+            const curriculums = curriculum.map(item => ({
+                name: item.name || "",
+                desc: item.desc || ""
+            }));
+            payload.append("curriculm", JSON.stringify(curriculums));
+            curriculum.forEach((item, index) => {
+                if (item.image) {
+                    payload.append(`curriculumsimages[${index}]`, item.image);
+                }
+            });
             payload.append("keyhight", JSON.stringify(facts))
             payload.append("faqs", JSON.stringify(faqs))
             payload.append("instutudesc", formData.instutudesc);
             payload.append("instututitle", formData.instututitle);
             payload.append("institutes", JSON.stringify(institutes))
-            payload.append("Careers", JSON.stringify(Careers))
             payload.append("meta_title", formData.meta_title);
             payload.append("meta_description", formData.meta_description);
             payload.append("meta_keywords", formData.meta_keywords);
@@ -362,7 +372,7 @@ function Index() {
             payload.append("purpsedesc", formData.purpsedesc);
 
             const chooses = choose.map(item => ({
-                name: item.name || "",
+                title: item.title || "",
             }));
 
             payload.append("choose", JSON.stringify(chooses));
@@ -376,7 +386,7 @@ function Index() {
                 desc: item.desc || ""
             }));
             payload.append("purpuse", JSON.stringify(purpuses));
-            purpuses.forEach((item, index) => {
+            purpuse.forEach((item, index) => {
                 if (item.image) {
                     payload.append(`purpuseimages[${index}]`, item.image);
                 }
@@ -386,11 +396,11 @@ function Index() {
             }
 
             // ✅ IMPORTANT FIX
-            const response = await main.AdminProgramsAdd(payload);
+            const response = await main.AdminProgramsUpdate(payload);
 
             if (response?.data?.status) {
                 toast.success(response.data.message);
-                router.push("/admin/program")
+                // router.push("/admin/program")
                 setPreview(null);
             } else {
                 toast.error(response.data.message);
@@ -439,6 +449,124 @@ function Index() {
         }
     };
 
+    const handleDetails = async (Id) => {
+        try {
+            setprocessing(true);
+            const main = new Listing();
+            const res = await main.ProgramGet(Id);
+            if (res?.data?.status) {
+                setData(res.data.data)
+                toast.success(res.data.message);
+            } else {
+                toast.error(res?.data?.ProgramData?.message || "Something went wrong.");
+            }
+        } catch (error) {
+            console.log("error", error)
+            console.error("Package Delete Error:", error);
+            toast.error(error?.response?.data?.university?.message || "Delete failed");
+        } finally {
+            setprocessing(false);
+        }
+    };
+
+    useEffect(() => {
+        if (Id) {
+            handleDetails(Id)
+        }
+    }, [Id])
+
+    console.log(data)
+    useEffect(() => {
+        setFormData({
+            slug: data?.slug,
+            Id: data?.id,
+            name: data?.title,
+            descriptions: data?.description,
+            position: data?.position,
+            specialisationdesc: data?.specialisationdesc,
+            specialisationtitle: data?.specialisationtitle,
+            category_id: data?.category_id,
+            conclusion: data?.conclusion,
+            universitybtmdesc: data?.universitybtmdesc,
+            universitydesc: data?.universitydesc,
+            universitytitle: data?.universitytitle,
+            video: data?.video,
+            shortDescription: data?.shortDescription,
+            subtitle: data?.subtitle,
+            audio: data?.audio,
+            specialization: data?.specialization,
+            duration: data?.duration,
+            career_growth: data?.career_growth,
+            pdf_download: data?.pdfdownlaod,
+            cover_image: data?.bannerImage,
+            financialname: data?.financialAid?.title,
+            financialdescription: data?.financialAid?.description,
+            partnersname: data?.partners?.title,
+            partnersdesc: data?.partners?.description,
+            servicetitle: data?.services?.title,
+            servicedesc: data?.services?.description,
+            onlinetitle: data?.admissionProcess?.title,
+            onlinedesc: data?.admissionProcess?.description,
+            bottompatterndesc: data?.examPatterns?.bottompatterndesc,
+            meta_title: data?.seo?.meta_title,
+            meta_keywords: data?.seo?.meta_keywords,
+            meta_description: data?.seo?.meta_description,
+            canonical_url: data?.seo?.canonical_url,
+            Id: data?.id,
+            icon_alt: data?.icon_alt,
+            cover_image_alt: data?.cover_image_alt,
+            instututitle: data?.institutes?.title,
+            instutudesc: data?.institutes?.description,
+            partnersname: data?.placement?.subtitle,
+            partnersdesc: data?.placement?.Subdesc,
+            placementname: data?.placement?.title,
+            placementdescription: data?.placement?.description,
+            careername: data?.careers?.careername,
+            careerdesc: data?.careers?.careerdesc,
+            curriculum_title: data?.curriculum?.title,
+            curriculum_description: data?.curriculum?.description,
+            financialdescription: data?.financial?.description,
+            financialname: data?.financial?.title,
+            durationdesc: data?.durationfees?.title,
+            durationdesc: data?.durationfees?.description,
+            experincedesc: data?.experience?.description,
+            experincename: data?.experience?.title,
+            experincenotes: data?.experience?.notes,
+            onlinetitle: data?.entrance?.title,
+            onlinedesc: data?.entrance?.description,
+            futurebtmdesc: data?.graph?.subdesc,
+            futuretitle: data?.graph?.title,
+            purpsedesc: data?.choose?.description,
+            purpusename: data?.choose?.title,
+            futuredesc: data?.graph?.description,
+            entrace_cover_image: data?.academic?.entra_image,
+            entracedesc: data?.academic?.entra_desc,
+            entracetitle: data?.academic?.entra_title,
+            academic_cover_image: data?.academic?.Image,
+            academictitle: data?.academic?.title,
+            academicdesc: data?.academic?.description
+        })
+        setPreview(data?.cover_image);
+        setIcons(data?.icon);
+        setinstitutes(data?.institutes?.Institutes?.length ? data?.institutes?.Institutes : [{ name: "", content: "" }]);
+        setPlacementAdd(data?.placement?.subplacement?.length ? data?.placement?.subplacement : [{ name: "", description: "", image: "" }]);
+        setCareers(data?.careers?.career?.length ? data?.careers?.career : [{ title: "", desc: "", salary: "" }]);
+        setCurriculum(data?.curriculum?.curriculum_id?.length ? data?.curriculum?.curriculum_id : [{ name: "", desc: "", image: "" }]);
+        setfincalceAdd(data?.financial?.financial?.length ? data?.financial?.financial : [{ name: "", desc: "", image: "" }]);
+        setDuration(data?.durationfees?.duration?.length ? data?.durationfees?.duration : [{ title: "", description: "" }]);
+        setExperinces(data?.experience?.experiences?.length ? data?.experience?.experiences : [{ title: "" }]);
+        setOnlines(data?.entrance?.Entrance?.length ? data?.entrance?.Entrance : [{ title: "", content: "" }]);
+        if (data?.graph?.monthly) {
+            setMonthlyData(data.graph.monthly);
+        }
+        setSelectedApprovals(data?.university_id);
+        setSelectedPartners(data?.placement?.placement_ids);
+        setFacts(data?.facts?.facts?.length ? data?.facts?.facts : [{ name: "", description: "" }]);
+        setchoose(data?.choose?.choose?.length ? data?.choose?.choose : [{ title: "", image: "" }]);
+        setpurpuse(data?.choose?.purpuse?.length ? data?.choose?.purpuse : [{ name: "", desc: "", image: "" }]);
+
+
+    }, [data])
     return (<>
         <AdminLayout>
             <div className="min-h-screen p-1 ">

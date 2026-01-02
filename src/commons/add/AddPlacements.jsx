@@ -79,7 +79,7 @@ const AddPlacements = ({ setPlacementAdd, PlacementAdd, formData, handleQuillCha
             {PlacementAdd && PlacementAdd?.map((item, index) => (
                 <div key={index} className="grid grid-cols-1 gap-4 items-center mb-4 border-b border-gray-200 pb-4">
                     {/* Image */}
-                      <div>
+                    <div>
                         <div className="flex justify-between items-center mb-2">
                             <label className="block text-[#CC2828] font-medium">Name</label>
                             <div className="flex items-center gap-2">
@@ -133,14 +133,6 @@ const AddPlacements = ({ setPlacementAdd, PlacementAdd, formData, handleQuillCha
                             className="w-full bg-[#F4F6F8] text-[#727272] border rounded-[10px] px-4 py-2"
                         />
                     </div>
-                    {/* Description */}
-                  
-
-
-
-                    {/* Pattern Name */}
-
-
                 </div>
             ))}
 
