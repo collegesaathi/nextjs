@@ -278,12 +278,12 @@ function Index() {
             payload.append("approvals_name", formData.approvals_name || "");
             payload.append("approvals_desc", formData.approvals_desc || "");
             payload.append("approvals", JSON.stringify(selectedApprovals));
-            payload.append("rankings_description", formData.rankings_description);
+            payload.append("rankings_description", formData.rankings_description || "");
             payload.append("rankings_name", formData.rankings_name || "");
             payload.append("creteria", formData.creteria || "")
             payload.append("fees_title", formData.fees_title || "")
             payload.append("category", formData.category || "")
-            const NRIDATA = formData.nri.map(item => ({
+            const NRIDATA = formData?.nri?.map(item => ({
                 title: item.title,
                 description: item.description,
                 images_alt: item?.images_alt

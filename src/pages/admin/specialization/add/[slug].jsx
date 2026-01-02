@@ -179,7 +179,7 @@ function Index() {
         partnersname: "",
         partnersdesc: "",
         onlinetitle: "",
-        video:"",
+        video: "",
         onlinedesc: "",
         category: "indian",
         indian: [],
@@ -280,10 +280,10 @@ function Index() {
             payload.append("icon", formData.icon || "");
             payload.append("cover_image", formData.cover_image || "");
             payload.append("course_id", course_id || "");
-            payload.append("descriptions", JSON.stringify(formData.descriptions));
+            payload.append("descriptions", JSON.stringify(formData.descriptions || []));
             payload.append("cover_image_alt", formData.cover_image_alt || "")
             payload.append("icon_alt", formData.icon_alt || "")
-            payload.append("about_title", formData.about_title || "")  ;
+            payload.append("about_title", formData.about_title || "");
             payload.append("about_desc", formData.about_desc || "");
             payload.append("tuition_fees", formData.tuition_fees || "")
             payload.append("anuual_fees", formData.anuual_fees || "")
@@ -291,7 +291,7 @@ function Index() {
             payload.append("approvals_name", formData.approvals_name || "");
             payload.append("approvals_desc", formData.approvals_desc || "");
             payload.append("approvals", JSON.stringify(selectedApprovals));
-            payload.append("rankings_description", formData.rankings_description || "") ;
+            payload.append("rankings_description", formData.rankings_description || "");
             payload.append("rankings_name", formData.rankings_name || "");
             payload.append("creteria", formData.creteria || "")
             payload.append("fees_title", formData.fees_title || "")
@@ -313,13 +313,13 @@ function Index() {
                 description: item.description,
                 images_alt: item?.images_alt
             }));
-            payload.append("indian", JSON.stringify(IndiaDATA));
+            payload.append("indian", JSON.stringify(IndiaDATA || []));
             formData?.indian?.forEach((item, index) => {
                 if (item.images) {
                     payload.append(`Indianimages[${index}]`, item.images);
                 }
             });
-            payload.append("semesters", JSON.stringify(semesters))
+            payload.append("semesters", JSON.stringify(semesters || []))
             payload.append("semesters_title", formData.semesters_title || "")
             payload.append("certificatename", formData.certificatename || "");
             payload.append("certificatedescription", formData.certificatedescription || "");
@@ -328,7 +328,7 @@ function Index() {
             payload.append("advantages", JSON.stringify(advantages));
             payload.append("advantagesname", formData.advantagesname || "");
             payload.append("advantagesdescription", formData.advantagesdescription || "");
-            payload.append("skills", JSON.stringify(skills));
+            payload.append("skills", JSON.stringify(skills || []));
             payload.append("skillsname", formData.skillname || "");
             payload.append("skilldesc", formData.skilldesc || "");
             payload.append("patternname", formData.patternname || "");
@@ -342,25 +342,25 @@ function Index() {
                     pattern_images_alt: item?.pattern_images_alt || ""
                 }))
                 : [];
-            payload.append("patterns", JSON.stringify(cleanPatterns));
+            payload.append("patterns", JSON.stringify(cleanPatterns || []));
             patterns?.forEach?.((item, index) => {
                 if (item?.image) {
                     payload.append(`patternsimages[${index}]`, item.image);
                 }
             });
 
-            payload.append("fees", JSON.stringify(fees));
+            payload.append("fees", JSON.stringify(fees || []));
             payload.append("careerdesc", formData.careerdesc || "")
             payload.append("careername", formData.careername || "")
             payload.append("careermanages", JSON.stringify(Careers));
-            payload.append("partnersname", formData.partnersname || "") ;
+            payload.append("partnersname", formData.partnersname || "");
             payload.append("partnersdesc", formData.partnersdesc || "");
             payload.append("partners", JSON.stringify(selectedPartners));
             payload.append("faqs", JSON.stringify(faqs));
             payload.append("meta_title", formData.meta_title || "");
             payload.append("meta_description", formData.meta_description || "");
             payload.append("meta_keywords", formData.meta_keywords || "");
-            payload.append("canonical_url", formData.canonical_url || "") ;
+            payload.append("canonical_url", formData.canonical_url || "");
             payload.append("financialname", formData.financialname || "");
             payload.append("financialdescription", formData.financialdescription || "");
             payload.append("servicetitle", formData.servicetitle || "");
@@ -371,14 +371,14 @@ function Index() {
                 title: item.title,
                 content: item.content
             }));
-            payload.append("onlines", JSON.stringify(cleanonlines));
+            payload.append("onlines", JSON.stringify(cleanonlines || []));
             const cleanServices = services.map(item => ({
                 title: item.title,
                 content: item.content,
                 icons_alt: item?.icons_alt,
                 images_alt: item?.images_alt
             }));
-            payload.append("servcies", JSON.stringify(cleanServices));
+            payload.append("servcies", JSON.stringify(cleanServices || []));
             services.forEach((item, index) => {
                 if (item.image) {
                     payload.append(`servicesimages[${index}]`, item.image);
@@ -712,7 +712,7 @@ function Index() {
                                 />
                             </div>
 
-         <div>
+                            <div>
                                 <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
                                     Video {" "}
                                 </label>
@@ -933,11 +933,11 @@ function Index() {
                                 />
                             </div>
 
-                                 <ReactQuillEditor
-                                    label="Description"
-                                    desc={formData.desccreteria}
-                                    handleBioChange={(val) => handleQuillChange("desccreteria", val)}
-                                />
+                            <ReactQuillEditor
+                                label="Description"
+                                desc={formData.desccreteria}
+                                handleBioChange={(val) => handleQuillChange("desccreteria", val)}
+                            />
 
                             <div className="flex mb-5 bg-gray-100 rounded-lg overflow-hidden">
                                 <button

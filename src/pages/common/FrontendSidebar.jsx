@@ -36,7 +36,7 @@ export default function FrontendSidebar({ data, courseData }) {
   const menuItems = fullMenuConfig.filter(item => {
     if (item.isStatic) return true;
     if (item.isCourse) return courseData && courseData.length > 0;
-    return data && data[item.dataKey.title] !== null && data[item.dataKey.title] !== undefined;
+    return data && data[item.dataKey] !== null && data[item.dataKey] !== undefined;
   });
 
 
