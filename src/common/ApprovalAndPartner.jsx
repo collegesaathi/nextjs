@@ -6,7 +6,6 @@ function ApprovalAndPartner({ toggleApproval, selectedApprovals, step, togglePar
     const [Loading, setLoading] = useState(false);
     const [approvalOptions, setapprovalOptions] = useState([]);
     const [PartnersOptions, setPartnersOptions] = useState([]);
-console.log("PartnersOptions" ,PartnersOptions)
     // Fetch data
     const fetchApprovalandPartnerLists = async () => {
         setLoading(true);

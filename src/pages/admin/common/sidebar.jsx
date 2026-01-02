@@ -1,18 +1,13 @@
 import React, { useState } from "react";
-import { MdSpaceDashboard, MdReviews, MdPayments, MdPlayLesson } from "react-icons/md";
+import { MdSpaceDashboard,} from "react-icons/md";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { IoIosMenu } from "react-icons/io";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import Image from "next/image";
-import { PiChalkboardTeacherFill } from "react-icons/pi";
-import { PiStudentFill } from "react-icons/pi";
 import { IoSettingsOutline } from "react-icons/io5";
-import { MdOutlineRateReview } from "react-icons/md";
-import { FaEdit } from "react-icons/fa";
-import { useRole } from "@/context/RoleContext";
-import { MdOutlineReviews } from "react-icons/md";
 import { FaUniversity } from "react-icons/fa";
+import { useRole } from "@/context/RoleContext";
 
 function SideBar() {
     const pathname = usePathname();

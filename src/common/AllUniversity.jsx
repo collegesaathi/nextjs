@@ -7,14 +7,12 @@ function AllUniversity({ toggleApproval, selectedApprovals, formData, handleChan
     const [compareUniversities, setcompareUniversities] = useState("")
     const [Loading, setLoading] = useState(false)
 
-    console.log("compareUniversities", compareUniversities)
     const fetchData = async () => {
         try {
 
             const main = new Listing();
             const response = await main.UniversityAll();
             const universities = response?.data?.data?.universities || [];
-            console.log("universities", universities)
             setcompareUniversities(universities);
         } catch (error) {
             console.log("error", error);

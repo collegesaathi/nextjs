@@ -311,10 +311,6 @@ export default function Compare({ compareData }) {
   const router = useRouter()
   const { slug } = router.query
 
-  console.log("sluggg", slug)
-  console.log("comparedataaa", compareData?.data)
-
-
 
   const renderSectionContent = (id) => {
     switch (id) {

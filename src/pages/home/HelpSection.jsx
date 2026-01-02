@@ -96,13 +96,6 @@ const HelpSection = () => {
   const navigateNext = () => {
     swiperRef.current?.slideNext();
   };
-  const progressBarTotalWidth =
-    typeof window !== "undefined" && window.innerWidth >= 1024 ? "180px" : "120px";
-
-  const progressWidthStyle = {
-    width: `${progress}%`,
-  };
-
   const handleAction = (item) => {
     // Handle action button clicks
     // You can handle routing or other actions here

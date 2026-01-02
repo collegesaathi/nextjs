@@ -43,7 +43,6 @@ export default function VideoModalDetail({ video, image, name, divClass, imgClas
   const [thumbnail, setThumbnail] = useState(EmilyCarter);
   const youTubeId = getYouTubeID(video);
   const vimeoId = getVimeoID(video);
-  // console.log("vineoId", vimeoId);
 
   let videoSrc = "";
 
