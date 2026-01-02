@@ -98,6 +98,7 @@ function Index() {
     ]);
     const [formData, setFormData] = useState({
         slug: "",
+        video:"",
         name: "",
         icon: null,
         cover_image: null,
@@ -202,6 +203,7 @@ function Index() {
             payload.append("slug", formData.slug);
             payload.append("rank", formData.rank);
             payload.append("name", formData.name);
+            payload.append("video", formData.video);
             payload.append("position", formData.position);
             payload.append("about_title", formData.about_title);
             payload.append("about_desc", formData.about_desc);
@@ -453,6 +455,22 @@ function Index() {
                                         handleChange(e);
                                     }}
                                     placeholder="Enter rank"
+                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
+                                    required
+                                />
+                            </div>
+                                     <div>
+                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
+                                    Video {" "}
+                                </label>
+                                <input
+                                    type="text"
+                                    name="video"
+                                    value={formData.video}
+                                    onChange={(e) => {
+                                        handleChange(e);
+                                    }}
+                                    placeholder="Enter video"
                                     className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
                                     required
                                 />

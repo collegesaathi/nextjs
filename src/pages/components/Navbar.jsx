@@ -8,6 +8,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import 'swiper/css/effect-fade';
 import SearchBar from './SearchBar';
+import Link from 'next/link';
 
 export default function Navbar() {
   const [dropdowns, setDropdowns] = useState({
@@ -102,13 +103,13 @@ export default function Navbar() {
             </svg>
           </button>
           <div className="logo">
-            <a href="/">
+           <Link href="/">
               <img
                 src={Logo.src}
                 alt="University Logo"
                 className="w-[103px] lg:w-[182px] h-auto mt-2"
               />
-            </a>
+            </Link>
           </div>
         </div>
 
@@ -139,24 +140,24 @@ export default function Navbar() {
                 <div className="absolute top-full left-0 mt-1 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
                   <ul className="py-2">
                     <li>
-                      <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                     <Link href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                         MBA Programs
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                     <Link href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                         Engineering
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                     <Link href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                         Medical
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                     <Link href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                         Arts & Science
-                      </a>
+                      </Link>
                     </li>
                   </ul>
                 </div>
@@ -164,12 +165,12 @@ export default function Navbar() {
             </li>
 
             <li className="flex items-center space-x-2">
-              <a
+             <Link
                 href="/university"
                 className="font-[Poppins] font-normal text-[13px] leading-[100%] tracking-[0px] text-right text-[#282529]"
               >
                 Top Universities
-              </a>
+              </Link>
               <div className="w-[100px] h-[15px] rounded-[11px] bg-[#EC1E24] flex items-center justify-center space-x-1.5">
                 <img src="/img/university-main/icons/swap.svg" alt="" />
                 <span className="font-[Poppins] font-normal text-[10px] leading-[100%] tracking-[0px] text-right text-white">
@@ -179,12 +180,12 @@ export default function Navbar() {
             </li>
 
             <li>
-              <a
+             <Link
                 href=""
                 className="font-normal text-[13px] leading-[100%] tracking-[0px] text-right text-[#282529] capitalize"
               >
                 ClikPick
-              </a>
+              </Link>
             </li>
 
             <li className="relative">
@@ -207,24 +208,24 @@ export default function Navbar() {
                 <div className="absolute top-full right-0 mt-1 w-40 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
                   <ul className="py-2">
                     <li>
-                      <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                     <Link href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                         About Us
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                     <Link href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                         Contact
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <a href="#" className="block px-4-y-2 text-sm text-gray-700 hover:bg-gray-100">
+                     <Link href="#" className="block px-4-y-2 text-sm text-gray-700 hover:bg-gray-100">
                         Blog
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                     <Link href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                         Support
-                      </a>
+                      </Link>
                     </li>
                   </ul>
                 </div>
@@ -254,24 +255,24 @@ export default function Navbar() {
                   <div className="bg-gray-50">
                     <ul className="pl-4">
                       <li>
-                        <a href="#" className="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-100">
+                       <Link href="#" className="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-100">
                           MBA Programs
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a href="#" className="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-100">
+                       <Link href="#" className="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-100">
                           Engineering
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a href="#" className="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-100">
+                       <Link href="#" className="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-100">
                           Medical
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a href="#" className="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-100">
+                       <Link href="#" className="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-100">
                           Arts & Science
-                        </a>
+                        </Link>
                       </li>
                     </ul>
                   </div>
@@ -279,15 +280,15 @@ export default function Navbar() {
               </li>
 
               <li className="border-b border-gray-100">
-                <a href="/university" className="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50">
+               <Link href="/university" className="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50">
                   Top Universities
-                </a>
+                </Link>
               </li>
 
               <li className="border-b border-gray-100">
-                <a href="#" className="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50">
+               <Link href="#" className="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50">
                   ClikPick
-                </a>
+                </Link>
               </li>
 
               <li className="border-b border-gray-100">
@@ -307,24 +308,24 @@ export default function Navbar() {
                   <div className="bg-gray-50">
                     <ul className="pl-4">
                       <li>
-                        <a href="#" className="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-100">
+                       <Link href="#" className="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-100">
                           About Us
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a href="#" className="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-100">
+                       <Link href="#" className="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-100">
                           Contact
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a href="#" className="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-100">
+                       <Link href="#" className="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-100">
                           Blog
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a href="#" className="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-100">
+                       <Link href="#" className="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-100">
                           Support
-                        </a>
+                        </Link>
                       </li>
                     </ul>
                   </div>

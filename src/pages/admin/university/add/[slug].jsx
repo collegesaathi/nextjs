@@ -38,6 +38,7 @@ function Index() {
         about_title: "",
         about_desc: "",
         rankings_point: "",
+        video:"",
         rankings_name: "",
         rankings_description: "",
         approvals_name: "",
@@ -66,7 +67,7 @@ function Index() {
         icon_alt: "",
         cover_image_alt: "",
         image_alt: "",
-        rank :""
+        rank: ""
     });
     const [data, setData] = useState("")
     const [selectedApprovals, setSelectedApprovals] = useState([]);
@@ -131,6 +132,7 @@ function Index() {
         setFormData({
             slug: data?.slug,
             name: data?.name,
+            video:data?.video,
             position: data?.position,
             about_title: data?.about?.title,
             about_desc: data?.about?.description,
@@ -281,6 +283,7 @@ function Index() {
             payload.append("rank", formData.rank || "");
             payload.append("name", formData.name || "");
             payload.append("id", formData.Id);
+            payload.append("video", formData.video);
             payload.append("position", formData.position);
             payload.append("about_title", formData.about_title);
             payload.append("about_desc", formData.about_desc);
@@ -523,7 +526,7 @@ function Index() {
                                         required
                                     />
                                 </div>
-                                  <div>
+                                <div>
                                     <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
                                         Rank{" "}
                                     </label>
@@ -573,7 +576,22 @@ function Index() {
                                         required
                                     />
                                 </div>
-
+                                <div>
+                                    <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
+                                        Video {" "}
+                                    </label>
+                                    <input
+                                        type="text"
+                                        name="video"
+                                        value={formData.video}
+                                        onChange={(e) => {
+                                            handleChange(e);
+                                        }}
+                                        placeholder="Enter video"
+                                        className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
+                                        required
+                                    />
+                                </div>
                                 {/* thumbnail Upload Field */}
                                 <div>
                                     <label className="block text-[#FF1B1B] font-medium mb-1">

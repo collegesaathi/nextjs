@@ -179,6 +179,7 @@ function Index() {
         partnersname: "",
         partnersdesc: "",
         onlinetitle: "",
+        video:"",
         onlinedesc: "",
         category: "indian",
         indian: [],
@@ -274,6 +275,7 @@ function Index() {
             payload.append("name", formData.name || "");
             payload.append("university_id", university_id || "")
             payload.append("id", formData.Id || "");
+            payload.append("video", formData.video || "");
             payload.append("position", formData.position || "");
             payload.append("icon", formData.icon || "");
             payload.append("cover_image", formData.cover_image || "");
@@ -502,6 +504,7 @@ function Index() {
             semester_fees: data?.fees?.semester_wise_fees,
             university_id: data?.university_id,
             course_id: data?.course_id,
+            video: data?.video || "",
             position: data?.position,
             about_title: data?.about?.title,
             about_desc: data?.about?.description,
@@ -708,6 +711,24 @@ function Index() {
                                     required
                                 />
                             </div>
+
+         <div>
+                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
+                                    Video {" "}
+                                </label>
+                                <input
+                                    type="text"
+                                    name="video"
+                                    value={formData.video}
+                                    onChange={(e) => {
+                                        handleChange(e);
+                                    }}
+                                    placeholder="Enter video"
+                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
+                                    required
+                                />
+                            </div>
+
                             <div>
                                 <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
                                     Slug{" "}
