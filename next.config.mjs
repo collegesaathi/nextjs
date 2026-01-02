@@ -37,6 +37,21 @@ const nextConfig = {
       },
     ],
   },
+
+  async redirects() {
+    return [
+      {
+        source: "/505",
+        destination: "/500",
+        permanent: false,
+      },
+      {
+        source: "/505/:path*",
+        destination: "/500",
+        permanent: false,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
