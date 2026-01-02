@@ -16,7 +16,7 @@ export default function SampleCertificate({ certificates }) {
 
             <div
               className="font-poppins text-[14px] sm:text-[16px] md:text-[17px] 
-              text-[#282529] leading-6 sm:leading-7"
+              text-[#282529] leading-6 sm:leading-7 break-words whitespace-normal"
               dangerouslySetInnerHTML={{
                 __html: certificates?.description || "",
               }}

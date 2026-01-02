@@ -70,7 +70,7 @@ function Facts({ facts }) {
                               </h3>
 
                               <div
-                                className="font-poppins  text-[14px] md:text-[16px] leading-[20px] md:leading-[22px] text-[#282529]  md:w-2/3 "
+                                className="break-words whitespace-normal font-poppins  text-[14px] md:text-[16px] leading-[20px] md:leading-[22px] text-[#282529]  md:w-2/3 "
                                 dangerouslySetInnerHTML={{ __html: item?.description || "" }}
                               />
                             </div>

@@ -76,7 +76,7 @@ export default function CareerServices({ services }) {
                         />
 
                         <div
-                            className="font-poppins text-[14px] sm:text-[16px] text-[#282529] leading-6 sm:leading-7 mb-4"
+                            className="font-poppins text-[14px] sm:text-[16px] text-[#282529] leading-6 sm:leading-7 mb-4 break-words whitespace-normal"
                             dangerouslySetInnerHTML={{ __html: services?.description || "" }}
                         />
 

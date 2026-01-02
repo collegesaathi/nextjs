@@ -12,7 +12,7 @@ function Advantages({ advantages }) {
                             <Heading title={advantages?.title} />
 
                             <div
-                                className="font-poppins text-[14px] sm:text-[16px] text-[#282529] leading-6 sm:leading-7 mb-4"
+                                className="break-words whitespace-normal font-poppins text-[14px] sm:text-[16px] text-[#282529] leading-6 sm:leading-7 mb-4"
                                 dangerouslySetInnerHTML={{ __html: advantages?.description || "" }}
                             />
 
@@ -39,7 +39,7 @@ function Advantages({ advantages }) {
 
                                             <div className="bg-white border-b-2 border-r-2 border-[#f47c80] p-2 md:p-4 font-poppins w-7/12 sm:w-8/12">
                                                 <div
-                                                    className=" text-[12px] md:text-[17px] font-[400] text-[#363535] leading-relaxed  line-clamp-4 md:line-clamp-none"
+                                                    className=" break-words whitespace-normal text-[12px] md:text-[17px] font-[400] text-[#363535] leading-relaxed  line-clamp-4 md:line-clamp-none"
                                                     dangerouslySetInnerHTML={{
                                                         __html: advantage.description,
                                                     }}
