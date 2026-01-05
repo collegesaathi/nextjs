@@ -21,6 +21,21 @@ export default function CultureBenefits() {
 
   const cultureItems = [
     {
+      title: "Sick & Casual Leaves",
+      text: "Health always comes first. To give time to focus on your well-being, we offer sick leaves and casuals dedicated to your mental and physical well-being.",
+    },
+    {
+      title: "Wellness Brews",
+      text: "We offer fresh, flavourful coffee to keep you energized and inspired throughout the day",
+    },
+    {
+      title: "Work-life Balance",
+      text: "We all need time to balance our work and personal commitments. Collegesathi offers flexible timings, short breaks and half-days to allow you focus on your personal lives. Also, we don’t ask for extra work after office hours as we understand that personal time is important.",
+    },
+   
+  ];
+    const wellbeingItems = [
+    {
       title: "Easy Onboarding",
       text: "We love to welcome new energy to our family. The manager introduces the newcomer to the team and welcomes him/her with a paid lunch.",
     },
@@ -37,6 +52,48 @@ export default function CultureBenefits() {
       text: "Apart from work, we believe everyone needs trips & parties to refresh. We organize two trips every year & regular team events.",
     },
   ];
+
+      const recognitionItems = [
+    {
+      title: "Summit",
+      text: "We appreciate efforts and hard work of our team. To encourage them we organize summits and award the best performers to motivate them and others.",
+    },
+    {
+      title: "Ride, Dine & Shine",
+      text: "At collegesathi, success is celebrated in different ways, team leaders organize lunches, dinners and outings to celebrate small achievements. The company celebrate the success of target achievers by organizes international trips (to Thailand/Dubai & beyond) and other rewards",
+    },
+   
+  ];
+
+    const opportunitiesItems = [
+    {
+      title: "Pay & Perk",
+      text: "We value your dedication and results. Our performance-based incentives ensure your hard work and achievements are recognized and rewarded fairly. Also, here you can earn exciting rewards by referring to talented individuals who share our passion and commitment to excellence.",
+    },
+    {
+      title: "Continuous Development",
+      text: "At collegesathi, learning never stops. We offer continuous professional development, mentorship, and upskilling opportunities to help you grow personally and professionally",
+    },
+    {
+      title: "Collaborative Team",
+      text: "Teamwork is the heart of everything we do. You will work with passionate, supportive colleagues who share knowledge, celebrate wins, and grow together.",
+    },
+   
+  ];
+
+      const techItems = [
+    {
+      title: "Hardware Accessorie",
+      text: "Collegesathi provides all the hardware accessories like laptops, computer systems, and high-speed internet access to encourage a productive workplace.",
+    },
+    {
+      title: "Tools",
+      text: "We offer top tools for the efficient working of our teams and to provide them a better workplace environment.",
+    },
+  
+   
+  ];
+
 
   return (
     <div className="py-10  font-poppins ">
@@ -128,13 +185,74 @@ export default function CultureBenefits() {
                   </p>
                 </div>
               ))}
+
+
+                {activeTab === "wellbeing" &&
+              wellbeingItems.map((item, index) => (
+                <div
+                  key={index}
+                  className="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition-all border border-transparent hover:border-red-100"
+                >
+                  <h4 className="text-[18px] font-bold text-[#EF5350] mb-3">
+                    {item.title}
+                  </h4>
+                  <p className="text-[15px] leading-[26px] text-gray-600">
+                    {item.text}
+                  </p>
+                </div>
+              ))}
+                   {activeTab === "recognition" &&
+              recognitionItems.map((item, index) => (
+                <div
+                  key={index}
+                  className="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition-all border border-transparent hover:border-red-100"
+                >
+                  <h4 className="text-[18px] font-bold text-[#EF5350] mb-3">
+                    {item.title}
+                  </h4>
+                  <p className="text-[15px] leading-[26px] text-gray-600">
+                    {item.text}
+                  </p>
+                </div>
+              ))}
+
+                {activeTab === "opportunities" &&
+            opportunitiesItems.map((item, index) => (
+                <div
+                  key={index}
+                  className="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition-all border border-transparent hover:border-red-100"
+                >
+                  <h4 className="text-[18px] font-bold text-[#EF5350] mb-3">
+                    {item.title}
+                  </h4>
+                  <p className="text-[15px] leading-[26px] text-gray-600">
+                    {item.text}
+                  </p>
+                </div>
+              ))}
+
+              
+                {activeTab === "tech" &&
+            techItems.map((item, index) => (
+                <div
+                  key={index}
+                  className="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition-all border border-transparent hover:border-red-100"
+                >
+                  <h4 className="text-[18px] font-bold text-[#EF5350] mb-3">
+                    {item.title}
+                  </h4>
+                  <p className="text-[15px] leading-[26px] text-gray-600">
+                    {item.text}
+                  </p>
+                </div>
+              ))}
               
              {/* Example Placeholder for other tabs */}
-             {activeTab !== "culture" && (
+             {/* {activeTab !== "culture" && (
                 <div className="col-span-full text-center py-10 bg-white rounded-2xl">
                    <p className="text-gray-500">Content for {activeTab} goes here...</p>
                 </div>
-             )}
+             )} */}
 
           </div>
         </div>

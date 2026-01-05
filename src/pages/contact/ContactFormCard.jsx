@@ -120,7 +120,7 @@ function ContactForm() {
 
 
     return (<>
-        < div className="py-4 md:py-8 bg-white" >
+        < div className="py-4 md:py-8" >
             <div className="mx-auto container sm:container md:container xl:max-w-[1230px]  md:px-4   " >
                 <div className="lg:grid lg:grid-cols-2 px-2 md:px-4 py-5 border-2  border-[#DFDFDF] rounded-[30px] shadow-[0px_14px_20px_0px_#0000001F]">
                     <div className="bg-white md:px-4 md:py-4 flex flex-col justify-between">
@@ -140,11 +140,11 @@ function ContactForm() {
                             {/* Jaipur button */}
                             <button
                                 onClick={() => { setMapSrc(jaipurMap); setActive("jaipur"); }}
-                                className={`w-full flex items-center justify-between px-6 py-4 cursor-pointer 
+                                className={`w-full flex items-center justify-between px-6  py-2 md:py-4 cursor-pointer 
   group text-gray-800 rounded-[8px] transition hover:bg-[#EC1E24] hover:text-white
   ${active === "jaipur" ? "bg-[#ED1F24] text-white" : "bg-gray-100"}`}
                             >
-                                <span className="text-lg font-medium">Find Jaipur Office</span>
+                                <span className="text-[16px] font-[400]">Find Jaipur Office</span>
 
                                 <div
                                     className={`
@@ -168,11 +168,11 @@ function ContactForm() {
                             {/* Gurugram button */}
                             <button
                                 onClick={() => { setMapSrc(gurugramMap); setActive("Gurugram"); }}
-                                className={`w-full flex items-center justify-between px-6 py-4 cursor-pointer 
+                                className={`w-full flex items-center justify-between px-6 py-2 md:py-4 cursor-pointer 
   group text-gray-800 rounded-[8px] transition hover:bg-[#EC1E24] hover:text-white
   ${active === "Gurugram" ? "bg-[#ED1F24] text-white" : "bg-gray-100"}`}
                             >
-                                <span className="text-lg font-medium">Find Gurugram Office</span>
+                                <span className="text-[16px] font-[400]">Find Gurugram Office</span>
 
                                 {/* Arrow Circle */}
                                 <div
@@ -196,7 +196,7 @@ function ContactForm() {
                         </div>
                     </div>
                     {/* 2. Right Section (Contact Form) */}
-                    <div className="px-4 py-4 rounded-[20px] border-2  border-[#DFDFDF] ">
+                    <div className="lg:px-4 py-4 mt-4 lg:mt-0 rounded-[20px] lg:border-2  border-[#DFDFDF] ">
                         <h2 className="font-poppins font-semibold text-[18px] leading-[14px] text-left text-[#282529] mt-10 mb-6">
                             Contact Form
                         </h2>
@@ -311,40 +311,7 @@ function ContactForm() {
                                 </div>
                             </div>
 
-                            {/* Select State & City (2 Columns) */}
-                            {/* <div className="md:flex  space-y-4 md:space-y-0 md:space-x-4 mb-4 md:mb-6">
-                                <div className="md:w-1/2 relative">
-                                    <select
-                                        name="state"
-                                        value={data?.state}
-                                        onChange={handleChange}
-                                        className="w-full px-4 py-3 pr-10 border border-[#808080] rounded-[8px] bg-white 
-                 focus:outline-none focus:ring-2 focus:ring-red-500 text-gray-500"
-                                    >
-                                        <option value="" disabled>Select State</option>
-                                    </select>
-
-                                    <span className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
-                                        <IoChevronDown />
-                                    </span>
-                                </div>
-
-                                <div className="md:w-1/2 relative">
-                                    <select
-                                        name="city"
-                                        value={data?.city}
-                                        onChange={handleChange}
-                                        className="w-full px-4 py-3 pr-10 border border-[#808080] rounded-[8px] bg-white 
-                 focus:outline-none focus:ring-2 focus:ring-red-500 text-gray-500"
-                                    >
-                                        <option value="" disabled>Select City</option>
-                                    </select>
-
-                                    <span className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
-                                        <IoChevronDown />
-                                    </span>
-                                </div>
-                            </div> */}
+                           
 
                             <InputBox data={data} handleChange={handleChange} />
 

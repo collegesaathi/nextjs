@@ -57,17 +57,17 @@ export default function BlogHero() {
                 }
             `}</style>
 
-            <div className="my-20 font-poppins px-4 md:px-10">
+            <div className=" my-4 lg:my-20 font-poppins  md:px-10">
                 <div className="text-center mb-10 ">
                     <h1 className="text-[24px] md:text-[36px] font-[600] text-[#282529]">Collegesathi Blog</h1>
-                    <p className="text-gray-500 mt-2 max-w-3xl text-[16px] mx-auto">
+                    <p className="text-[#282529] mt-2 max-w-3xl text-[14px] md:text-[16px] mx-auto">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incid
                     </p>
                 </div>
 
-                <div className="flex flex-col md:flex-row w-full gap-8">
+                <div className="flex flex-col lg:flex-row w-full gap-8">
                     {/* Featured Post (Left) */}
-                    <div className="w-full md:w-1/2 relative group cursor-pointer">
+                    <div className="w-full lg:w-1/2 relative group cursor-pointer">
                         <div className="relative w-full overflow-hidden rounded-3xl">
                             <img
                                 src="/images/blog/bloghero.png"
@@ -78,7 +78,7 @@ export default function BlogHero() {
                     </div>
 
                     {/* Small Posts List (Right) */}
-                    <div className="w-full md:w-1/2 flex flex-col justify-between gap-4">
+                    <div className="w-full lg:w-1/2 flex flex-col justify-between gap-4">
                         {smallPosts.map((post, index) => (
                             <div key={index} className="flex gap-4 items-start group cursor-pointer">
                                 <div className="relative w-32 h-24 md:w-40 md:h-20 shrink-0 overflow-hidden rounded-[5px]">

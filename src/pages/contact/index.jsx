@@ -19,9 +19,19 @@ function Index() {
     return (<>
  
         <Layout>
+                            <div className="
+  absolute right-0 top-0 h-full w-[60%]
+  bg-gradient-to-l
+  from-red-300/10
+  via-red-200/5
+  to-transparent
+  -z-[8]
+  blur-2xl
+" />
              <div className={`absolute inset-0 bg-[url("/images/Oval.png")] opacity-80 pointer-events-none   [mask-image:linear-gradient(to_bottom,black,transparent)]`}></div>
-            <div className="mx-auto container sm:container md:container xl:max-w-[1230px]  px-4 py-4 md:mt-20 lg:mt-20 ">
-                <section className="relative w-full py-16 px-4 ">
+            <div className="mx-auto container sm:container md:container xl:max-w-[1230px] px-2 md:px-4 py-4 md:mt-20 lg:mt-20 ">
+                <section className="relative w-full py-8 md:py-16 md:px-4 ">
+    
 
                     {/* Background Grid Pattern */}
                    
@@ -35,13 +45,13 @@ function Index() {
                         </div>
 
                         {/* Heading */}
-                        <h1 className="text-[30px] md:text-[50px] font-[600] font-poppins mt-[10px] md:mt-[25px]">Contact Our Friendly Team</h1>
-                        <p className="text-gray-600 nt-[18px] md:mt-[20px]">
+                        <h1 className="text-[26px] md:text-[50px] font-[600] font-poppins mt-[10px] md:mt-[25px]">Contact Our Friendly Team</h1>
+                        <p className="text-gray-600 text-[18px] md:mt-[20px]">
                             Let’s Make It Happen Together
                         </p>
 
                         {/* Cards Section */}
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-12 w-full" >
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mt-6 md:mt-12 w-full" >
 
                             {/* Support */}
                             <div className="bg-white shadow-md rounded-2xl  p-6 flex flex-col gap-3 hover:shadow-lg cursor-pointer  transition font-poppins"  onClick={() => setActive("support")}>
