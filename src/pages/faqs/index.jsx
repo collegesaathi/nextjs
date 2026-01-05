@@ -4,7 +4,7 @@ import Layout from "../components/Layout";
 import ContactSection from "../home/ContactSection";
 import Link from "next/link";
 import Image from "next/image";
-
+import Head from 'next/head'
 // 1. Updated JSON Data with 'category' keys
 const faqData = [
   // --- General ---
@@ -95,6 +95,18 @@ export default function FaqSection() {
 
   return (
     <>
+       <Head>
+            <title>FAQs on Online Degrees | MBA, BBA, MCA – Collegesathi</title>
+            <meta
+                name="description"
+                content="Get answers to frequently asked questions about online MBA, BBA, BCA & MCA programs, eligibility, fees & admissions."
+            />
+
+            <meta
+                name="keywords"
+                content=""
+            />
+        </Head>
       <Layout>
         {/* Hero Section */}
         <div className="relative py-10">

@@ -29,10 +29,10 @@ const VisionaryLeaders = () => {
 
     const FounderCard = ({ leader }) => (
 <div className="bg-gradient-to-tr from-[rgba(255,244,230,0.5)] to-[rgba(255,255,255,0.5)]
-rounded-[30px] border border-[#F8E0C1] overflow-hidden p-6 sm:p-10
+rounded-[30px] border border-[#F8E0C1] overflow-hidden p-6 lg:p-10
 flex flex-col lg:flex-row space-y-8 lg:space-y-0 lg:space-x-10">
             <div className="lg:w-3/5 order-1 lg:order-1">
-                <h3 className="text-[26px] md:text-[32px] font-[600] text-[#282529] leading-tight">
+                <h3 className="text-[30px]  lg:text-[43px] font-[600] text-[#282529] leading-tight">
                     {leader.name}
                 </h3>
                 <p className="mt-1 text-lg font-medium text-[#282529]">
@@ -42,7 +42,7 @@ flex flex-col lg:flex-row space-y-8 lg:space-y-0 lg:space-x-10">
                     {leader.bio}
                 </p>
             </div>
-            <div className="lg:w-2/5 order-2 lg:order-2 self-start rounded-xl overflow-hidden aspect-w-4 aspect-h-3">
+            <div className=" w-full lg:w-2/5 order-2 lg:order-2 self-start rounded-xl overflow-hidden ">
                 <img
                     src={leader.imageSrc}
                     alt={leader.name}
@@ -53,7 +53,7 @@ flex flex-col lg:flex-row space-y-8 lg:space-y-0 lg:space-x-10">
     );
 
     const CoFounderCard = ({ leader }) => (
-        <div className="bg-gradient-to-tl from-[rgba(255,244,230,0.5)] to-[rgba(255,255,255,0.5)] border border-[#F8E0C1] p-10 rounded-[30px] overflow-hidden ">
+        <div className="bg-gradient-to-tl from-[rgba(255,244,230,0.5)] to-[rgba(255,255,255,0.5)] border border-[#F8E0C1] p-6 lg:p-10 rounded-[30px] overflow-hidden ">
              
       
       <div className="">
@@ -64,7 +64,7 @@ flex flex-col lg:flex-row space-y-8 lg:space-y-0 lg:space-x-10">
                 />
             </div>
             <div className=" pt-8 flex flex-col justify-center font-poppins">
-                <h4 className="text-xl sm:text-[36px] font-[600] text-[#282529] ">
+                <h4 className="text-[26px] lg:text-[36px] font-[600] text-[#282529] ">
                     {leader.name}
                 </h4>
                 <p className=" text-[18px] font-[600] text-[#282529] ">
@@ -80,8 +80,8 @@ flex flex-col lg:flex-row space-y-8 lg:space-y-0 lg:space-x-10">
     );
 
     return (
-        <section className="py-10 md:py-10 ">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section className="py-6 lg:py-10 ">
+            <div className="max-w-7xl mx-auto px-2  lg:px-8">
 
                 <div className="text-center mb-12 sm:mb-16 font-popins ">
                     <h2 className="text-[32px] font-[600] leading-[32px]  text-[#282529]">

@@ -55,7 +55,7 @@ export default function ContactSection() {
                         </div>
                         <div className="flex flex-wrap items-center justify-between pt-10 gap-5">
                             {/* Left Side - Contact Info */}
-                            <div className="space-y-8 w-[463px]">
+                            <div className="space-y-8 w-full lg:w-[463px]">
                                 {/* Header */}
                                 <div>
                                     <h2
@@ -63,18 +63,22 @@ export default function ContactSection() {
     font-poppins
     font-[600]
     text-[20px]
-    md:text-[44px]
-    leading-[40px]
-    md:leading-[60px]
+    md:text-[30px]
+    lg:text-[44px]
+    leading-[22px]
+    md:leading-[40px]
+    lg:leading-[60px]
     tracking-[0px]
     text-[#282529]
     mb-1
+    text-center
+    lg:text-start
   "
                                     >
                                         Collegesathi Learner Support
                                     </h2>
 
-                                    <p className="font-poppins font-[400] text-[14px] md:text-[16px] tracking-[0px] text-[#282529]">
+                                    <p className="font-poppins font-[400] text-center lg:text-start text-[14px] md:text-[16px] tracking-[0px] text-[#282529]">
                                         We are here to help you at every step!
                                     </p>
                                 </div>
@@ -139,7 +143,7 @@ export default function ContactSection() {
 
                             {/* Right Side - Contact Form */}
                             <div
-                                className="w-[636px]  rounded-[24px] bg-white border border-[#E8E8E8] shadow-[0px_4px_16px_0px_#00000021] p-[30px]"
+                                className="w-full lg:w-[636px]  rounded-[24px] bg-white border border-[#E8E8E8] shadow-[0px_4px_16px_0px_#00000021] p-4 lg:p-[30px]"
                             >
                                 <Contactform />
 

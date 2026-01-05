@@ -3,6 +3,7 @@ import Layout from "../components/Layout";
 import Image from "next/image";
 import Link from "next/link";
 import ContactSection from "../home/ContactSection";
+import Head from 'next/head'
 
 // Simple Chevron Icon Component for the button
 const ChevronIcon = ({ isOpen }) => (
@@ -84,6 +85,19 @@ function Sitemap() {
   };
 
   return (
+    <>
+     <Head>
+            <title>Universities & Online Courses Map | Collegesathi</title>
+            <meta
+                name="description"
+                content="Browse universities and online courses across India using Collegesathi’s interactive map. Find programs that fit your goals."
+            />
+
+            <meta
+                name="keywords"
+                content=""
+            />
+        </Head>
     <Layout>
 
           <div className=" block lg:hidden absolute top-0 left-0 w-[100%] h-[40%] z-0 pointer-events-none">
@@ -206,6 +220,7 @@ function Sitemap() {
 
       <ContactSection />
     </Layout>
+    </>
   );
 }
 

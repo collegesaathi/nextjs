@@ -6,8 +6,8 @@ import { FaMapMarkerAlt } from 'react-icons/fa';
 
 const AcrossIndia = () => {
     return (
-        <section className="py-16 sm:py-24 bg-gradient-to-b from-[#FCF9F9] to-[#E8E8E8]">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section className="py-8 sm:py-24 bg-gradient-to-b from-[#FCF9F9] to-[#E8E8E8]">
+            <div className="max-w-7xl mx-auto px-2 lg:px-8">
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                     

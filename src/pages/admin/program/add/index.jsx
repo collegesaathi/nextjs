@@ -52,6 +52,8 @@ function Index() {
         { title: "", description: "", salary: "" }
     ]);
 
+    console.log("Careers"  ,Careers)
+
     const [PlacementAdd, setPlacementAdd] = useState([
         { name: "", description: "", image: "" }
     ]);
@@ -288,7 +290,8 @@ function Index() {
             payload.append("video", formData.video || " " );
             payload.append("specialization", formData.specialization || " " );
             payload.append("career_growth", formData.career_growth || " " );
-            payload.append("duration", formData.duration || " " );
+            payload.append("duration", formData.durationname || " " );
+                payload.append("durationname", formData.durationname || " " );
             payload.append("subtitle", formData.subtitle || " " );
             payload.append("conclusion", formData.conclusion || " " );
             payload.append("shortDescription", formData.shortDescription || " " );
@@ -307,7 +310,8 @@ function Index() {
             payload.append("universitytitle", formData.universitytitle || " " );
             payload.append("universitybtmdesc", formData.universitybtmdesc || " " );
             payload.append("universitydesc", formData.universitydesc || " " );
-            payload.append("university_id", selectedApprovals || " " )
+            // payload.append("university_id", selectedApprovals || " " )
+             payload.append("university_id", JSON.stringify(selectedApprovals || []))
             payload.append("onlinedesc", formData.onlinedesc || " " );
             payload.append("onlinetitle", formData.onlinetitle || " " );
             payload.append("onlines", JSON.stringify(onlines || [] ));
@@ -322,10 +326,11 @@ function Index() {
             payload.append("financialdescription", formData.financialdescription || " " );
             payload.append("partnersname", formData.partnersname || " " )
             payload.append("partnersdesc", formData.partnersdesc || " " )
-            payload.append("selectedPartners", formData.selectedPartners || " " )
+            // payload.append("selectedPartners", formData.selectedPartners || " " )
+              payload.append("selectedPartners", JSON.stringify(selectedPartners || []))
             payload.append("placementname", formData.placementname || " " )
             payload.append("placementdescription", formData.placementdescription || " " )
-            payload.append("selectedPartners", formData.selectedPartners || " " )
+           
             const PlacementAdds = PlacementAdd.map(item => ({
                 name: item.name,
                 description: item.description
@@ -357,7 +362,6 @@ function Index() {
             payload.append("instutudesc", formData.instutudesc || " " );
             payload.append("instututitle", formData.instututitle || " " );
             payload.append("institutes", JSON.stringify(institutes || [] ))
-            payload.append("Careers", JSON.stringify(Careers || [] ))
             payload.append("meta_title", formData.meta_title || " " );
             payload.append("meta_description", formData.meta_description || " " );
             payload.append("meta_keywords", formData.meta_keywords || " " );
@@ -375,9 +379,10 @@ function Index() {
                     payload.append(`chooseimages[${index}]`, item.image);
                 }
             });
-            const purpuses = purpuse.map(item => ({
+            const purpuses = purpuse.map(item => ({      
                 name: item.name || "",
-                desc: item.desc || ""
+                desc: item.desc || "",
+                image:item.image || null
             }));
             payload.append("purpuse", JSON.stringify(purpuses || [] ));
             purpuses.forEach((item, index) => {

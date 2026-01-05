@@ -11,8 +11,8 @@ const achievements = [
 
 const TeamAndAchievements = () => {
     return (
-        <section className="py-10 md:py-10 bg-white">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section className="py-6 lg:py-10 bg-white">
+            <div className="max-w-7xl mx-auto px-2  lg:px-8">
                 
                 {/* --- 1. Our Team Section --- */}
                 
@@ -58,7 +58,7 @@ const TeamAndAchievements = () => {
 
                 {/* --- 2. Our Achievements Section --- */}
 
-                <div className="text-center mt-20 mb-6 md:mb-16">
+                <div className="text-center mt-10 mb-6 md:mb-16">
                     <h2 className="text-[26px] md:text-[32px] font-[600] leading-[32px] text-[#282529]">
                         Our Achievements
                     </h2>

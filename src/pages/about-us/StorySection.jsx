@@ -6,7 +6,7 @@ export default function StorySection() {
 
   return (
     <div className="bg-[#F3F4F6] py-15 md:px-4" data-aos="fade-up">
-      <div className="mx-auto container sm:container md:container xl:max-w-[1230px] px-4 ">
+      <div className="mx-auto container sm:container md:container xl:max-w-[1230px] px-2 md:px-4 ">
         
         {/* HEADER SECTION */}
         <div className="max-w-7xl mx-auto text-center mb-10 font-poppins">
@@ -15,8 +15,8 @@ export default function StorySection() {
           </h2>
 
           {/* Tabs */}
-          <div className="flex justify-center mt-8 ">
-            <div className="bg-white shadow-xl rounded-[20px] flex gap-1 md:gap-7 py-4 px-6 md:px-10 " >
+          <div className="flex justify-center mt-8  ">
+            <div className="bg-white shadow-xl rounded-[7px] md:rounded-[20px] flex gap-1 md:gap-7 py-4 px-1 md:px-6 md:px-10 " >
               <TabButton label="Who We Are" active={active === "who"} onClick={() => setActive("who")} />
               <TabButton label="Our Mission" active={active === "mission"} onClick={() => setActive("mission")} />
               <TabButton label="Our Vision" active={active === "vision"} onClick={() => setActive("vision")} />
@@ -28,7 +28,7 @@ export default function StorySection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
 
           {/* Left Image Side */}
-          <div className="relative h-[400px] lg:h-auto w-full rounded-[30px] overflow-hidden shadow-sm">
+          <div className="relative h-[200px] md:h-[400px] lg:h-auto w-full rounded-[30px] overflow-hidden shadow-sm">
             <Image
               src="/images/about/mission.png" // Ensure this is your group photo
               alt="Team"
@@ -87,29 +87,31 @@ function TabButton({ label, active, onClick }) {
 
 function ContentCard({ highlight, text, subtext }) {
   return (
-    <div className=" w-full h-full min-h-[400px] bg-white rounded-[30px] shadow-sm overflow-hidden flex flex-col ">
-      
-      <div className="w-full h-1/2 relative">
-         <Image 
-            src="/images/about/missionbg.png" 
-            alt="Background Pattern" 
-         fill
-            className=" object-cover object-top " // Adjust opacity if needed
-         />
-      
-      </div>
+<div className="w-full h-full min-h-[350px] md:min-h-[450px] bg-white rounded-[30px] shadow-md overflow-hidden flex flex-col border border-slate-100">
+  
+  {/* Image Container: Fixed height on mobile, grows on desktop */}
+  <div className="w-full h-32 md:h-48 relative shrink-0">
+    <Image 
+      src="/images/about/missionbg.png" 
+      alt="Background Pattern" 
+      fill
+      priority // Performance ke liye
+      className="object-cover object-top" 
+    />
+  </div>
 
-      <div className=" z-10 mt-16 md:mt-10 px-4 h-1/2 font-poppins">
-        <p className="text-[#282529] text-[16px] font-[400] leading-[26px]">
-          At <span className="text-[#EC1E24] font-[600]">{highlight}</span>, {text}
-        </p>
-        
-        {subtext && (
-          <p className="text-[#282529] text-[16px]  font-[400] mt-2">
-            {subtext}
-          </p>
-        )}
-      </div>
-    </div>
+  {/* Text Content Area: Padding is improved, height is now dynamic (flex-1) */}
+  <div className="flex-1 p-3 md:p-10 flex flex-col font-poppins">
+    <p className="text-[#282529] text-[15px] md:text-[16px] font-[400] leading-[20px] md:leading-[28px]">
+      At <span className="text-[#EC1E24] font-[600]">{highlight}</span>, {text}
+    </p>
+    
+    {subtext && (
+      <p className="text-[#282529] text-[14px] md:text-[16px] font-[400] mt-4 ">
+        {subtext}
+      </p>
+    )}
+  </div>
+</div>
   );
 }
