@@ -62,7 +62,6 @@ export default function FAQSection({ faq }) {
                   <SVGIcon name="plus" size={18} />
                 </div>
               </button>
-
               {/* Answer */}
               <div
                 className={`transition-[max-height,opacity] duration-500 ease-in-out overflow-hidden`}
