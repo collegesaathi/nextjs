@@ -16,7 +16,6 @@ export default function Index() {
     const [data, setData] = useState([]);
     const [buttonLoading, setButtonLoading] = useState(false);
     const [loading, setLoading] = useState(false);
-
     const fetchData = async (course_id) => {
         try {
             const main = new Listing();
