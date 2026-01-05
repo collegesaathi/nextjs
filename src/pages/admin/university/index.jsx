@@ -98,7 +98,7 @@ export default function Index() {
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
                             placeholder='Search "University" (Min 3 characters)'
-                            className="w-full h-[45px] rounded-full pl-12 pr-4 text-sm border outline-none focus:border-red-400"
+                            className="w-full h-[45px] rounded-full pl-12 pr-4 text-sm border text-black outline-none focus:border-red-400"
                         />
                     </div>
 
@@ -118,7 +118,7 @@ export default function Index() {
                 ) : (
                     <div className="overflow-x-auto bg-white shadow rounded">
                         <table className="min-w-full border">
-                            <thead className="bg-gray-100 text-sm">
+                            <thead className="bg-gray-100 text-sm !text-black">
                                 <tr>
                                     <th className="p-3 border">#</th>
                                     <th className="p-3 border">Cover</th>
@@ -133,7 +133,7 @@ export default function Index() {
                             <tbody>
                                 {data?.universities?.length > 0 ? (
                                     data.universities.map((item, index) => (
-                                        <tr key={item.id} className="hover:bg-gray-50">
+                                        <tr key={item.id} className="hover:bg-gray-50 !text-black">
                                             <td className="p-3 border">
                                                 {(page - 1) * (data?.pagination?.limit || 10) + index + 1}
                                             </td>

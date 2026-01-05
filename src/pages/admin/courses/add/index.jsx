@@ -187,7 +187,7 @@ function Index() {
     const addDescription = () => {
         setFormData(prev => ({
             ...prev,
-            descriptions: [...prev.descriptions, { text: "" }]
+            descriptions: [...(Array.isArray(prev.descriptions) ? prev.descriptions : []), { text: "" }]
         }));
     };
 
@@ -412,16 +412,14 @@ function Index() {
     const currentIndex = tabsData.findIndex((tab) => tab.id === activeTab);
 
 
-     const handleNext = (e) => {
-    e.preventDefault();
-    if (currentIndex < tabsData.length - 1) {
-        setActiveTab(tabsData[currentIndex + 1].id);
-    }
-    handleAdd(e);
-};
+    const handleNext = (e) => {
+        e.preventDefault();
+        if (currentIndex < tabsData.length - 1) {
+            setActiveTab(tabsData[currentIndex + 1].id);
+        }
+        handleAdd(e);
+    };
 
-
-    
 
     const handleBack = () => {
         if (currentIndex > 0) {
