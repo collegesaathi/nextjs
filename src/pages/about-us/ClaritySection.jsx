@@ -68,7 +68,7 @@ const ClaritySection = () => {
 
   {/* --- LEFT SIDE --- */}
   <div className="lg:w-1/2 py-8 lg:pr-12 flex flex-col justify-center">
-    <ul className="space-y-8 md:space-y-12 text-center">
+    <ul className="space-y-8 md:space-y-16 text-center">
       {features.map((feature) => {
         const isActive = activeFeatureId === feature.id;
         return (
@@ -95,7 +95,7 @@ const ClaritySection = () => {
   </div>
 
   {/* --- RIGHT SIDE --- */}
-  <div className="lg:w-1/2 p-6  lg:pl-12 mt-8 lg:mt-0 flex flex-col justify-center space-y-10">
+  <div className="lg:w-1/2 p-6  lg:pl-12 mt-8 lg:mt-0 flex flex-col justify-center space-y-8">
     {features.map((feature) => {
       const isActive = activeFeatureId === feature.id;
       const Icon = feature.icon;

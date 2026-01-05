@@ -80,6 +80,8 @@ function Index() {
     const [loading, setLoading] = useState(false);
     const [preview, setPreview] = useState(null);
     const [icons, setIcons] = useState(null);
+       const [entrance, setEntrance] = useState(null);
+    const [academic,setAcademic]=useState(null)
 
     // FEES STATE
     const [fees, setFees] = useState([
@@ -199,6 +201,7 @@ function Index() {
         curriculum_description: "", // curriculum_desc ki jagah ye use karein
         curriculum_subtitle: "",    // subtitle ke liye naya field,
         durationname: "",
+        durationtitle: "",
         durationdesc: '',
         experincedesc: "",
         experincename: "",
@@ -259,13 +262,19 @@ function Index() {
             [field]: file,
         }));
 
-        if (field === "icon") {
-            setIcons(URL.createObjectURL(file));
-        } else {
+        if (field === "academic_cover_image") {
+            setAcademic(URL.createObjectURL(file));
+        } else if(field === "entrace_cover_image"){
+            setEntrance(URL.createObjectURL(file));
+
+        }
+        else {
             setPreview(URL.createObjectURL(file));
 
         }
     };
+
+  
     console.log("selectedApprovals", selectedApprovals)
     // ✅ ADD UNIVERSITY
     const handleAdd = async (e) => {
@@ -275,106 +284,106 @@ function Index() {
         try {
             const main = new Listing();
             const payload = new FormData();
-            payload.append("slug", formData.slug);
-            payload.append("name", formData.name);
-            payload.append("id", formData.Id);
-            payload.append("descriptions", formData.descriptions);
-            payload.append("categroy_id", formData.categroy_id);
+            payload.append("slug", formData.slug || " ");
+            payload.append("name", formData.name || " ");
+            payload.append("id", formData.Id || " ");
+            payload.append("descriptions", formData.descriptions || " ");
+            payload.append("categroy_id", formData.categroy_id || " ");
             payload.append("pdf_download", formData.pdf_download);
-            payload.append("cover_image", formData.cover_image);
-            payload.append("audio", formData.audio);
-            payload.append("video", formData.video);
-            payload.append("specialization", formData.specialization);
-            payload.append("career_growth", formData.career_growth);
-            payload.append("duration", formData.duration);
-            payload.append("subtitle", formData.subtitle);
-            payload.append("conclusion", formData.conclusion);
-            payload.append("shortDescription", formData.shortDescription);
-            payload.append("specialisationdesc", formData.specialisationdesc);
-            payload.append("specialisationtitle", formData.specialisationtitle);
-            payload.append("academictitle", formData.academictitle);
-            payload.append("academicdesc", formData.academicdesc);
-            payload.append("academic_cover_image", formData.academic_cover_image);
-            payload.append("entrace_cover_image", formData.entrace_cover_image);
-            payload.append("entracedesc", formData.entracedesc);
-            payload.append("entracetitle", formData.entracetitle);
-            payload.append("futuretitle", formData.futuretitle)
-            payload.append("futuredesc", formData.futuredesc);
-            payload.append("futurebtmdesc", formData.futurebtmdesc);
-            payload.append("monthlyData", JSON.stringify(monthlyData));
-            payload.append("universitytitle", formData.universitytitle);
-            payload.append("universitybtmdesc", formData.universitybtmdesc);
-            payload.append("universitydesc", formData.universitydesc);
-            payload.append("university_id", JSON.stringify(selectedApprovals))
-            payload.append("onlinedesc", formData.onlinedesc);
-            payload.append("onlinetitle", formData.onlinetitle);
-            payload.append("onlines", JSON.stringify(onlines));
-            payload.append("experincename", formData.experincename);
-            payload.append("experincedesc", formData.experincedesc);
+            payload.append("cover_image", formData.cover_image || " ");
+            payload.append("audio", formData.audio || " ");
+            payload.append("video", formData.video || " ");
+            payload.append("specialization", formData.specialization || " ");
+            payload.append("career_growth", formData.career_growth || " ");
+            payload.append("duration", formData.duration || " ");
+            payload.append("subtitle", formData.subtitle || " ");
+            payload.append("conclusion", formData.conclusion || " ");
+            payload.append("shortDescription", formData.shortDescription || " ");
+            payload.append("specialisationdesc", formData.specialisationdesc || " ");
+            payload.append("specialisationtitle", formData.specialisationtitle || " ");
+            payload.append("academictitle", formData.academictitle || " ");
+            payload.append("academicdesc", formData.academicdesc || " ");
+            payload.append("academic_cover_image", formData.academic_cover_image || " ");
+            payload.append("entrace_cover_image", formData.entrace_cover_image || " ");
+            payload.append("entracedesc", formData.entracedesc || " ");
+            payload.append("entracetitle", formData.entracetitle || " ");
+            payload.append("futuretitle", formData.futuretitle || " ")
+            payload.append("futuredesc", formData.futuredesc || " ");
+            payload.append("futurebtmdesc", formData.futurebtmdesc || " ");
+            payload.append("monthlyData", JSON.stringify(monthlyData || [] ));
+            payload.append("universitytitle", formData.universitytitle || " ");
+            payload.append("universitybtmdesc", formData.universitybtmdesc || " ");
+            payload.append("universitydesc", formData.universitydesc || " ");
+            payload.append("university_id", JSON.stringify(selectedApprovals || []))
+            payload.append("onlinedesc", formData.onlinedesc || " ");
+            payload.append("onlinetitle", formData.onlinetitle || " ");
+            payload.append("onlines", JSON.stringify(onlines || []));
+            payload.append("experincename", formData.experincename || " ");
+            payload.append("experincedesc", formData.experincedesc || " ");
             payload.append("experincenotes", formData.experincenotes);
-            payload.append("Experinces", JSON.stringify(Experinces));
-            payload.append("durationname", formData.durationname);
-            payload.append("durationdesc", formData.durationdesc);
-            payload.append("DurationData", JSON.stringify(Duration));
-            payload.append("financialname", formData.financialname);
-            payload.append("financialdescription", formData.financialdescription);
-            payload.append("partnersname", formData.partnersname)
-            payload.append("partnersdesc", formData.partnersdesc)
-            payload.append("selectedPartners", JSON.stringify(selectedPartners))
-            payload.append("placementname", formData.placementname)
-            payload.append("placementdescription", formData.placementdescription)
+            payload.append("Experinces", JSON.stringify(Experinces || []));
+            payload.append("durationname", formData.durationname || " ");
+            payload.append("durationdesc", formData.durationdesc || " ");
+            payload.append("DurationData", JSON.stringify(Duration || []));
+            payload.append("financialname", formData.financialname || " ");
+            payload.append("financialdescription", formData.financialdescription || " ");
+            payload.append("partnersname", formData.partnersname || " ")
+            payload.append("partnersdesc", formData.partnersdesc || " ")
+            payload.append("selectedPartners", JSON.stringify(selectedPartners || []))
+            payload.append("placementname", formData.placementname || " ")
+            payload.append("placementdescription", formData.placementdescription || " ")
             const PlacementAdds = PlacementAdd.map(item => ({
                 name: item.name,
                 description: item.description
             }));
-            payload.append("PlacementAdds", JSON.stringify(PlacementAdds));
+            payload.append("PlacementAdds", JSON.stringify(PlacementAdds || []));
             PlacementAdd.forEach((item, index) => {
                 if (item.image) {
                     payload.append(`PlacementAddsimages[${index}]`, item.image);
                 }
             });
-            payload.append("careername", formData.careername);
-            payload.append("careerdesc", formData.careerdesc);
-            payload.append("Careers", JSON.stringify(Careers));
+            payload.append("careername", formData.careername || " ");
+            payload.append("careerdesc", formData.careerdesc || " ");
+            payload.append("Careers", JSON.stringify(Careers || []));
             const fincalceAdds = fincalceAdd.map(item => ({
                 name: item.name || "",
                 desc: item.desc || ""
             }));
-            payload.append("fincalceAdds", JSON.stringify(fincalceAdds));
+            payload.append("fincalceAdds", JSON.stringify(fincalceAdds ||[]));
             fincalceAdd.forEach((item, index) => {
                 if (item.image) {
                     payload.append(`fincalceAddsimages[${index}]`, item.image);
                 }
             });
-            payload.append("curriculum_title", formData.curriculum_title);
-            payload.append("curriculum_description", formData.curriculum_description);
+            payload.append("curriculum_title", formData.curriculum_title || " ");
+            payload.append("curriculum_description", formData.curriculum_description || " ");
             const curriculums = curriculum.map(item => ({
                 name: item.name || "",
                 desc: item.desc || ""
             }));
-            payload.append("curriculm", JSON.stringify(curriculums));
+            payload.append("curriculm", JSON.stringify(curriculums || []));
             curriculum.forEach((item, index) => {
                 if (item.image) {
                     payload.append(`curriculumsimages[${index}]`, item.image);
                 }
             });
-            payload.append("keyhight", JSON.stringify(facts))
-            payload.append("faqs", JSON.stringify(faqs))
-            payload.append("instutudesc", formData.instutudesc);
-            payload.append("instututitle", formData.instututitle);
-            payload.append("institutes", JSON.stringify(institutes))
-            payload.append("meta_title", formData.meta_title);
-            payload.append("meta_description", formData.meta_description);
-            payload.append("meta_keywords", formData.meta_keywords);
-            payload.append("canonical_url", formData.canonical_url);
-            payload.append("purpusename", formData.purpusename);
-            payload.append("purpsedesc", formData.purpsedesc);
+            payload.append("keyhight", JSON.stringify(facts || []))
+            payload.append("faqs", JSON.stringify(faqs || [] ))
+            payload.append("instutudesc", formData.instutudesc || " ");
+            payload.append("instututitle", formData.instututitle || " " );
+            payload.append("institutes", JSON.stringify(institutes || []))
+            payload.append("meta_title", formData.meta_title  || " ");
+            payload.append("meta_description", formData.meta_description  || " ");
+            payload.append("meta_keywords", formData.meta_keywords  || " ");
+            payload.append("canonical_url", formData.canonical_url  || " ");
+            payload.append("purpusename", formData.purpusename || " ");
+            payload.append("purpsedesc", formData.purpsedesc || " ");
 
             const chooses = choose.map(item => ({
                 title: item.title || "",
             }));
 
-            payload.append("choose", JSON.stringify(chooses));
+            payload.append("choose", JSON.stringify(chooses || []));
             choose.forEach((item, index) => {
                 if (item.image) {
                     payload.append(`chooseimages[${index}]`, item.image);
@@ -384,7 +393,7 @@ function Index() {
                 name: item.name || "",
                 desc: item.desc || ""
             }));
-            payload.append("purpuse", JSON.stringify(purpuses));
+            payload.append("purpuse", JSON.stringify(purpuses || []));
             purpuse.forEach((item, index) => {
                 if (item.image) {
                     payload.append(`purpuseimages[${index}]`, item.image);
@@ -475,7 +484,11 @@ function Index() {
     }, [Id])
 
     console.log(data)
+     console.log("categoryid",data.category_id)
+     console.log("career",data?.careers?.title)
+
     useEffect(() => {
+
         setFormData({
             slug: data?.slug,
             Id: data?.id,
@@ -484,7 +497,7 @@ function Index() {
             position: data?.position,
             specialisationdesc: data?.specialisationdesc,
             specialisationtitle: data?.specialisationtitle,
-            category_id: data?.category_id,
+            category_id: data.category_id,
             conclusion: data?.conclusion,
             universitybtmdesc: data?.universitybtmdesc,
             universitydesc: data?.universitydesc,
@@ -513,20 +526,20 @@ function Index() {
             canonical_url: data?.seo?.canonical_url,
             Id: data?.id,
             icon_alt: data?.icon_alt,
-            cover_image_alt: data?.cover_image_alt,
+            cover_image_alt: data?.bannerImageAlt,
             instututitle: data?.institutes?.title,
             instutudesc: data?.institutes?.description,
             partnersname: data?.placement?.subtitle,
-            partnersdesc: data?.placement?.Subdesc,
+            partnersdesc: data?.placement?.Subdec,
             placementname: data?.placement?.title,
             placementdescription: data?.placement?.description,
-            careername: data?.careers?.careername,
-            careerdesc: data?.careers?.careerdesc,
+            careername: data?.careers?.title,
+            careerdesc: data?.careers?.description,
             curriculum_title: data?.curriculum?.title,
             curriculum_description: data?.curriculum?.description,
             financialdescription: data?.financial?.description,
             financialname: data?.financial?.title,
-            durationdesc: data?.durationfees?.title,
+           durationname: data?.durationfees?.title,
             durationdesc: data?.durationfees?.description,
             experincedesc: data?.experience?.description,
             experincename: data?.experience?.title,
@@ -543,10 +556,21 @@ function Index() {
             entracetitle: data?.academic?.entra_title,
             academic_cover_image: data?.academic?.Image,
             academictitle: data?.academic?.title,
-            academicdesc: data?.academic?.description
+            academicdesc: data?.academic?.description,
+            faqs:data?.faqs?.faqs?.question
+
+
+
+            
+
         })
-        setPreview(data?.cover_image);
-        setIcons(data?.icon);
+    
+   
+      
+        setPreview(data?.bannerImage);
+        // setIcons(data?.academic?.Image);
+        setAcademic(data?.academic?.Image);
+          setEntrance(data?.academic?.entra_image);
         setinstitutes(data?.institutes?.Institutes?.length ? data?.institutes?.Institutes : [{ name: "", content: "" }]);
         setPlacementAdd(data?.placement?.subplacement?.length ? data?.placement?.subplacement : [{ name: "", description: "", image: "" }]);
         setCareers(data?.careers?.career?.length ? data?.careers?.career : [{ title: "", desc: "", salary: "" }]);
@@ -560,12 +584,16 @@ function Index() {
         }
         setSelectedApprovals(data?.university_id);
         setSelectedPartners(data?.placement?.placement_ids);
-        setFacts(data?.facts?.facts?.length ? data?.facts?.facts : [{ name: "", description: "" }]);
+        setFacts(data?.highlights?.Highlights?.length ? data?.highlights?.Highlights : [{ name: "", description: "" }]);
         setchoose(data?.choose?.choose?.length ? data?.choose?.choose : [{ title: "", image: "" }]);
         setpurpuse(data?.choose?.purpuse?.length ? data?.choose?.purpuse : [{ name: "", desc: "", image: "" }]);
 
 
+    
+
     }, [data])
+
+
     return (<>
         <AdminLayout>
             <div className="min-h-screen p-1 ">
@@ -675,6 +703,32 @@ function Index() {
                                     className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
                                     required
                                 />
+
+                            {formData?.pdf_download && (
+  <>
+    {formData.pdf_download instanceof File ? (
+      <p>
+        Selected: {formData.pdf_download.name} (
+        {(formData.pdf_download.size / 1024).toFixed(2)} KB)
+      </p>
+    ) : (
+      <p>
+        Current PDF:{" "}
+        <a
+          href={formData.pdf_download}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-blue-500 underline"
+        >
+          View PDF
+        </a>
+      </p>
+    )}
+  </>
+)}
+
+
+                                   
                             </div>
                             <div>
                                 <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
@@ -695,21 +749,48 @@ function Index() {
                                     }}
                                 />
 
-                                {formData?.audio && (
-                                    <>
-                                        <p>Selected: {formData.audio.name}</p>
+                           {formData?.audio && (
+  <>
+    {formData.audio instanceof File ? (
+      <>
+        <p>Selected: {formData.audio.name}</p>
 
-                                        {/* If audio */}
-                                        {formData.audio.type.startsWith("audio") && (
-                                            <audio controls src={URL.createObjectURL(formData.audio)} />
-                                        )}
+        {/* Audio preview */}
+        {formData.audio.type.startsWith("audio") && (
+          <audio
+            controls
+            src={URL.createObjectURL(formData.audio)}
+          />
+        )}
 
-                                        {/* If MP4 */}
-                                        {formData.audio.type === "video/mp4" && (
-                                            <video controls width={300} src={URL.createObjectURL(formData.audio)} />
-                                        )}
-                                    </>
-                                )}
+        {/* Video preview */}
+        {formData.audio.type === "video/mp4" && (
+          <video
+            controls
+            width={300}
+            src={URL.createObjectURL(formData.audio)}
+          />
+        )}
+      </>
+    ) : (
+      <>
+        <p>Current Media:</p>
+
+        {/* Existing audio/video from API */}
+        {formData.audio.endsWith(".mp3") && (
+          <audio controls src={formData.audio} />
+        )}
+
+        {formData.audio.endsWith(".mp4") && (
+          <video controls width={300} src={formData.audio} />
+        )}
+      </>
+    )}
+  </>
+)}
+
+
+
 
 
                             </div>
@@ -737,7 +818,7 @@ function Index() {
                                 <div className="relative">
                                     <select
                                         name="categroy_id"
-                                        value={formData?.categroy_id}
+                                        value={formData?.category_id}
                                         onChange={handleChange}
                                         className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
                                     >
@@ -987,7 +1068,7 @@ function Index() {
                                     onChange={(e) => handleImageChange(e, "academic_cover_image")}
                                     className="w-full p-2 bg-gray-100 rounded-md cursor-pointer text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
                                 />
-                                {/* <ImagePreview image={preview} /> */}
+                                <ImagePreview image={academic} />
                             </div>
 
 
@@ -1034,7 +1115,7 @@ function Index() {
                                     onChange={(e) => handleImageChange(e, "entrace_cover_image")}
                                     className="w-full p-2 bg-gray-100 rounded-md cursor-pointer text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
                                 />
-                                {/* <ImagePreview image={preview} /> */}
+                                <ImagePreview image={entrance} />
                             </div>
                         </>
                     )}

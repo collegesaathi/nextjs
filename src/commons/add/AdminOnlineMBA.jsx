@@ -28,7 +28,7 @@ const AdminOnlineMBA = ({ setMonthlyData, monthlyData, formData, handleQuillChan
 
 
     return (
-        <div className="max-w-6xl mx-auto p-6">
+        <div className="max-w-6xl  p-6">
             <div>
                 <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
                     Name{" "}

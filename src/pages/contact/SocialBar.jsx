@@ -25,10 +25,10 @@ export default function SocialBar() {
         < div className="py-4 md:py-8 " >
             <div className="mx-auto container sm:container md:container xl:max-w-[1230px]  md:px-4" >
                 <div className="w-full flex justify-center mt-6">
-                    <div className="flex items-center justify-between gap-4 bg-white rounded-full shadow-md px-6 py-3 max-w-3xl w-full">
+                    <div className="flex items-center justify-between gap-4 bg-white rounded-full shadow-md px-4 md:px-6 py-3 max-w-3xl w-full">
 
                         {/* Left Red Icon (YouTube example) */}
-                        <div className="flex items-center justify-center gap-3">
+                        <div className="flex items-center justify-center gap-1 md:gap-3">
                             {icons.map((item) => (
                                 <a
                                     key={item.id}
