@@ -57,7 +57,7 @@ function ApprovalAndPartner({ toggleApproval, selectedApprovals, step, togglePar
                                             alt={item.title}
                                             className="w-10 h-10 object-contain"
                                         />
-                                        <span className="text-sm font-medium">{item.title}</span>
+                                        <span className="text-sm font-medium text-black">{item.title}</span>
                                     </div>
                                 </label>
                             ))}
@@ -89,7 +89,7 @@ function ApprovalAndPartner({ toggleApproval, selectedApprovals, step, togglePar
                                             alt={item.title}
                                             className="w-10 h-10 object-contain"
                                         />
-                                        <span className="text-sm font-medium">{item.title}</span>
+                                        <span className="text-sm font-medium text-black" >{item.title}</span>
                                     </div>
                                 </label>
                             ))}
