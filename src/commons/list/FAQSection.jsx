@@ -23,11 +23,11 @@ export default function FAQSection({ Faq }) {
             <div className="container mx-auto">
                 <Heading title="Frequently Asked " midtitle="Questions" />
 
-                {Faq.length === 0 && (
+                {Faq?.length === 0 && (
                     <p className="text-center text-gray-500 mt-4">No FAQs available.</p>
                 )}
 
-                  {Faq.map((item, index) => (
+                  {Faq?.map((item, index) => (
                     <div
                         key={index}
                         className="bg-white rounded-[10px] mb-8 shadow-md border-l-[13px] border-red-500 transition-all duration-300"
