@@ -5,9 +5,9 @@ import SVGIcon from '@/common/SVGIcon';
 
 function Ranking({ rankings }) {
     const [activeTab, setActiveTab] = useState("indian");
-  const rankingItems = rankings?.description
-  ? Array.from(rankings.description.matchAll(/<li>(.*?)<\/li>/g), m => m[1])
-  : [];
+    const rankingItems = rankings?.description
+        ? Array.from(rankings.description.matchAll(/<li>(.*?)<\/li>/g), m => m[1])
+        : [];
 
     return (
         <>
