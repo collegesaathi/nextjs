@@ -27,7 +27,6 @@ export default function Hero({ data, approvalsdata, exisitng }) {
         /<ul>/g,
         '<ul class="flex flex-col gap-2">'
       )
-
       // 2️⃣ li second (open + text wrapper)
       ?.replace(
         /<li>/g,

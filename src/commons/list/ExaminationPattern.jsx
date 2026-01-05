@@ -49,13 +49,11 @@ export default function ExaminationPattern({ examPatterns = [] }) {
                           )}
 
                         </div>
-
                         {/* TEXT SECTION */}
                         <div className="w-full md:max-w-[600px] ">
                           <h3 className="font-poppins font-bold text-[22px] md:text-[28px] text-[#282529] mb-4">
                             {item?.patternName}
                           </h3>
-
                           <div
                             className="font-poppins text-[14px] custom-description md:text-[17px] leading-[22px] md:leading-[25px] text-[#282529] line-clamp-4  [&_*]:!bg-transparent"
                             dangerouslySetInnerHTML={{ __html: item?.description }}
