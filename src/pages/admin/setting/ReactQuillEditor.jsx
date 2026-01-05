@@ -1,19 +1,25 @@
+"use client";
+
 import dynamic from "next/dynamic";
-import React from "react";
-import 'react-quill-new/dist/quill.snow.css';
+import "react-quill/dist/quill.snow.css";
 
+const ReactQuill = dynamic(() => import("react-quill"), {
+  ssr: false,
+});
 
-// Dynamically import with SSR disabled
-const ReactQuill = dynamic(() => import("react-quill-new"), { ssr: false });
-
-const ReactQuillEditor = ({ label, desc, handleBioChange }) => {
+export default function ReactQuillEditor({
+  label,
+  desc = "",
+  handleBioChange,
+}) {
   const modules = {
     toolbar: [
-      [{ header: [1, 2, 3, 4, 5, 6, false] }],
-      ["bold", "italic", "underline", "strike", "blockquote"],
+      [{ header: [1, 2, 3, false] }],
+      ["bold", "italic", "underline"],
       [{ list: "ordered" }, { list: "bullet" }],
+      [{ script: "sub" }, { script: "super" }],
+      ["code-block"],
       ["link", "image"],
-      ["clean"],
     ],
   };
 
@@ -22,26 +28,27 @@ const ReactQuillEditor = ({ label, desc, handleBioChange }) => {
     "bold",
     "italic",
     "underline",
-    "strike",
-    "blockquote",
     "list",
     "bullet",
+    "script",
+    "code-block",
     "link",
     "image",
   ];
+
   return (
-    <div className="mb-6">
-      <div className="bg-white border border-gray-300 rounded-md">
-        <ReactQuill
-          value={desc}
-          onChange={handleBioChange}
-          modules={modules}
-          formats={formats}
-          theme="snow"
-        />
-      </div>
+    <div className="mb-3 mt-3">
+      <label className="block text-[#FF1B1B] font-semibold mb-2">
+        {label}
+      </label>
+
+      <ReactQuill
+        theme="snow"
+        value={desc}
+        onChange={handleBioChange}
+        modules={modules}
+        formats={formats}
+      />
     </div>
   );
-};
-
-export default ReactQuillEditor;
+}
