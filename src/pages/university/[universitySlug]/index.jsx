@@ -145,7 +145,7 @@ console.log("data" ,data)
                 <StepsSection admissionProcess={data?.university?.admissionProcess} />
               )}
               {data?.university?.faq && (
-                <FAQSection faq={data?.university?.faq} />
+                <FAQSection Faq={data?.university?.faq?.faqs} />
               )}
 
               <SimilarUniversities />
