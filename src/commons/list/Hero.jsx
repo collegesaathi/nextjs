@@ -119,7 +119,7 @@ export default function Hero({ data, approvalsdata, exisitng }) {
                   height={20}
                   alt="ranking logo"
                 />
-                <span>Ranking</span>
+                {/* <span>Ranking</span> */}
                 <strong># {data?.rank}</strong>
               </button>
 

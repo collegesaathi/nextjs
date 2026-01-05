@@ -7,7 +7,6 @@ import Blogs from "./Blogs";
 // import Confusion from "./Confusion";
 import ContactSection from "./ContactSection";
 import ExploreUniversities from "./ExploreUniversities";
-import FAQSection from "../../commons/list/FAQSection";
 import HelpSection from "./HelpSection";
 import Logo from "./Logo";
 import LogoSlider from "./LogoSlider";
@@ -27,17 +26,17 @@ function Home() {
             <Programs />
             <HelpSection />
             {/* <AdvantagesSection universities={[{ id: 1, name: "Amity", location: "Noida" }]} /> */}
-            <University />
+            {/* <University />
             <IndustryExpertsSection />
             <ExploreUniversities />
             <BestPartnerCount />
-            <Trending />
+            <Trending /> */}
             {/* <Confusion /> */}
-            <Blogs />
+            {/* <Blogs />
             <MediaCarousel />
             <AwardsCarousel />
-            <QuickTipsCarousel />
-            <FAQSection />
+            <QuickTipsCarousel /> */}
+            {/* <FAQSection /> */}
             <ContactSection />
         </Layout>
     </>);

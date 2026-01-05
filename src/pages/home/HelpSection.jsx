@@ -67,7 +67,7 @@ const HelpSection = () => {
   const updateProgress = (swiper) => {
     if (!swiper) return;
 
-    const totalCards = helpCards.length;
+    const totalCards = helpCards?.length;
     const visibleSlides = swiper.params.slidesPerView;
 
     if (visibleSlides === 4) {
