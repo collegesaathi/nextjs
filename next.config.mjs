@@ -17,14 +17,24 @@ const nextConfig = {
         pathname: "/uploads/**",
       },
       {
-        protocol: "https",
-        hostname: "indiaprograms.com",
-        pathname: "/**",
+        protocol: "http",
+        hostname: "api.indiaprograms.com",
+        pathname: "/uploads/**",
       },
       {
         protocol: "https",
         hostname: "api.indiaprograms.com",
-        pathname: "/**",
+        pathname: "/uploads/**",
+      },
+       {
+        protocol: "http",
+        hostname: "api.amityonlines.com",
+        pathname: "/uploads/**",
+      },
+      {
+        protocol: "https",
+        hostname: "api.amityonlines.com",
+        pathname: "/uploads/**",
       },
     ],
   },

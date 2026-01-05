@@ -3,37 +3,49 @@
 import Image from "next/image";
 import StarRating from "@/common/Rating";
 
-export default function Hero({data,approvalsdata , exisitng}) {
+export default function Hero({ data, approvalsdata, exisitng }) {
   return (
     <div className="mt-8 md:mt-[60px] lg:mt-[90px] ">
       <div className="flex flex-col-reverse lg:flex-row items-start justify-between">
         {/* LEFT SIDE */}
-        <div className="w-full lg:w-[480px] py-6  md:px-5 lg:px-0 ">
+        <div className="w-full  py-6  md:px-5 lg:px-0 ">
           {/* TITLE */}
           <h1 className="font-poppins font-[700] text-[28px] sm:text-[36px] md:text-[48px] leading-[50px] text-[#282529]">
-          {data?.name || ""}
+            {data?.name || ""}
           </h1>
           {/* BADGES */}
           {data?.description?.length === 1 && (
-          <div className="flex flex-wrap gap-3 sm:gap-4 pt-4">
-            {data?.description?.map((item, index) => (
-              <div
-                key={index}
-                className="w-full sm:w-[48%] lg:w-[208px] min-h-[46px] rounded-[12px] border border-[#f8dbdd] flex items-center gap-2 px-3 py-1"
-              >
-                <span className="font-poppins text-[12px] text-[#282529] flex-wrap document-image items-center"  dangerouslySetInnerHTML={{ __html: item?.text || "" }} />
-              </div>
-            ))}
-          </div>
-          )}
+  <div className="flex flex-wrap gap-3 sm:gap-4 pt-4">
+    {data?.description?.map((item, index) => (
+      <div
+        key={index}
+        className="w-full sm:w-[48%] lg:w-[350px] min-h-[46px]
+        rounded-[12px] border border-[#f8dbdd]
+        flex items-center justify-between px-3 py-2"
+      >
+        {/* LEFT TEXT */}
+        <span
+          className="font-poppins text-[12px] text-[#282529] leading-snug"
+          dangerouslySetInnerHTML={{ __html: item?.text || "" }}
+        />
 
-              
+        {/* RIGHT TICK */}
+        <span className="ml-2 flex-shrink-0 text-green-600">
+          ✔
+        </span>
+      </div>
+    ))}
+  </div>
+)}
+
+
+
           {/* STAR + LOGOS */}
           <div className="flex items-center gap-2 md:gap-4 pt-6 max-w-[70px]">
-{exisitng ==="university" && (  <Image src="/images/university/hero/reviews.png" alt="" width={356} height={150} />) }
-               {approvalsdata && approvalsdata?.slice(0,3).map((item) => (
-            <img src={item?.image}  alt={item.title} width={356} height={150}  />
-              ))}
+            {exisitng === "university" && (<Image src="/images/university/hero/reviews.png" alt="" width={356} height={150} />)}
+            {approvalsdata && approvalsdata?.slice(0, 3).map((item) => (
+              <img src={item?.image} alt={item.title} width={356} height={150} />
+            ))}
           </div>
 
           {/* BUTTONS */}
@@ -71,31 +83,38 @@ export default function Hero({data,approvalsdata , exisitng}) {
           </div>
         </div>
         {/* RIGHT IMAGE BLOCK */}
-        {data?.cover_image != "null" &&(
-        <div className="w-full lg:w-[648px] relative pt-3">
-          <img
-            src={data?.cover_image}
-            alt={data?.cover_image_alt || data?.name || "university Images"}
-            width={648}
-            height={400}
-            className="rounded-[8px] w-full h-auto"
-          />
+        {data?.cover_image != "null" && (
+          <div className="w-full  relative pt-3">
+            <img
+              src={data?.cover_image}
+              alt={data?.cover_image_alt || data?.name || "university Images"}
+              width={648}
+              height={400}
+              className="rounded-[8px] w-full h-auto"
+            />
 
-          
 
-          {/* TOP BADGES */}
-           <div className="absolute top-2 left-0 right-0 w-full flex gap-4 justify-between px-3 sm:px-6 md:px-10 pt-3">
-            <button className="min-w-[110px] sm:w-[140px] h-[32px] sm:h-[40px] rounded-[26px] bg-white shadow-md flex items-center justify-center text-xs sm:text-sm font-poppins gap-1.5 px-4">
-              <Image src="/images/university/hero/ranking.png" width={30} height={30} alt="ranking logo" />
-              Ranking <strong>#21 </strong>
-            </button>
 
-            <button className="w-[100px] sm:w-[156px] h-[40px] sm:h-[52px] rounded-[5px] bg-white shadow-md flex items-center justify-center">
-              <img src={data?.icon} width={60} height={30} alt="" className="sm:w-[127px]" />
-            </button>
-          </div> 
-        </div>
-        ) }
+            {/* TOP BADGES */}
+            <div className="absolute top-2 left-0 right-0 w-full flex gap-4 justify-between px-3 sm:px-6 md:px-10 pt-3">
+              <button className="min-w-[110px] sm:w-[160px] h-[32px] sm:h-[40px] rounded-[26px] bg-white shadow-md flex items-center justify-center text-xs sm:text-sm font-poppins gap-2 px-4 whitespace-nowrap">
+                <Image
+                  src="/images/university/hero/ranking.png"
+                  width={20}
+                  height={20}
+                  alt="ranking logo"
+                />
+                <span>Ranking</span>
+                <strong># {data?.rank}</strong>
+              </button>
+
+
+              <button className="w-[100px] sm:w-[156px] h-[40px] sm:h-[52px] rounded-[5px] bg-white shadow-md flex items-center justify-center">
+                <img src={data?.icon} width={60} height={30} alt="" className="sm:w-[127px]" />
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -17,10 +17,10 @@ export default function Index() {
     const [buttonLoading, setButtonLoading] = useState(false);
     const [loading, setLoading] = useState(false);
 
-    const fetchData = async (university_id, course_id) => {
+    const fetchData = async (course_id) => {
         try {
             const main = new Listing();
-            const response = await main.CourseSpecialisationGet(university_id, course_id);
+            const response = await main.CourseSpecialisationGet(course_id);
             if (response.data) {
                 const newData = response.data.data || {};
                 setData(newData);
@@ -36,8 +36,8 @@ export default function Index() {
     };
 
     useEffect(() => {
-        fetchData(university_id, course_id);
-    }, [university_id, course_id]);
+        fetchData(course_id);
+    }, [course_id]);
 
     const LoadMore = () => {
         const nextPage = page + 1;

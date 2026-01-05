@@ -83,10 +83,10 @@ export default function Navbar() {
   }, []);
 
   return (
-    <div className="bg-no-repeat bg-cover bg-center pt-[10px] lg:pt-[10px] px-4 lg:px-0 relative   md:absolute md:top-6 md:left-1/2 md:-translate-x-1/2 w-full md:w-[92%] md:max-w-[1350px] z-50">
+    <div className="bg-no-repeat bg-cover bg-center pt-[10px] lg:pt-[10px] px-4 lg:px-0 relative   md:absolute md:top-6 md:left-1/2 md:-translate-x-1/2 w-full md:w-[92%] md:max-w-[1430px] z-50">
       <div
         ref={dropdownRef}
-        className="max-w-[1276px] mx-auto flex items-center justify-between h-[54px] lg:h-[77px] rounded-[12px] px-4 lg:p-[20px] shadow-[0_0_16px_0_#0000004A] bg-white relative z-10"
+        className="max-w-[1430px] mx-auto flex items-center justify-between h-[54px] lg:h-[77px] rounded-[12px] px-4 lg:p-[20px] shadow-[0_0_16px_0_#0000004A] bg-white relative z-10"
       >
         <div className="flex space-x-2 lg:space-x-0">
           <button

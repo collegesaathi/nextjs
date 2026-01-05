@@ -48,8 +48,8 @@ export default function UniversityCard({
             <div className="relative z-10 pointer-events-none"> 
                 {/* pointer-events-none ensures image clicks go to the overlay link */}
                 <Image
-                    src='/images/cambridge.png'
-                    alt={universityName}
+                    src={card?.cover_image}
+                    alt={card?.name}
                     width={200}
                     height={600}
                     className="w-full md:h-[11.563rem] object-cover p-2 rounded-2xl"
