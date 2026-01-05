@@ -35,6 +35,22 @@ const icons = {
         </svg>
     ),
 
+    rank:(
+                                   <svg width="18" height="17" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M16.5532 0H17.2359C17.4245 0 17.5854 0.0668299 17.7187 0.200489C17.852 0.334149 17.9187 0.49549 17.9187 0.684513V15.5704C17.9187 15.7594 17.852 15.9207 17.7187 16.0544C17.5854 16.188 17.4245 16.2549 17.2359 16.2549L1.36553 16.2549L0.682764 16.2549C0.494225 16.2549 0.333296 16.188 0.199977 16.0544C0.0666585 15.9207 0 15.7594 0 15.5704V0.684513C0 0.49549 0.0666597 0.334149 0.199978 0.200489C0.333296 0.0668299 0.494225 0 0.682764 0H16.5532Z" fill="url(#paint0_linear_0_79636)"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M15.3094 7.37389L5.38618 2L5 2.50797L6.62813 7.37389L5 12.2398L5.38618 12.7478L15.3094 7.37389V7.37389Z" fill="url(#paint1_linear_0_79636)"/>
+<defs>
+<linearGradient id="paint0_linear_0_79636" x1="0.677703" y1="0.597771" x2="0.677703" y2="15.623" gradientUnits="userSpaceOnUse">
+<stop stop-color="#FDECED"/>
+<stop offset="1" stop-color="#FAC7C8"/>
+</linearGradient>
+<linearGradient id="paint1_linear_0_79636" x1="15.3095" y1="2.00157" x2="5.00308" y2="2.00157" gradientUnits="userSpaceOnUse">
+<stop stop-color="#F0565B"/>
+<stop offset="1" stop-color="#F7A1A4"/>
+</linearGradient>
+</defs>
+</svg>
+    ),
     phone: (
         <svg viewBox="0 0 24 24">
             <circle cx="12" cy="6" r="4" stroke="currentColor" fill="none" strokeWidth="1.6" />

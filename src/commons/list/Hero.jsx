@@ -15,28 +15,44 @@ export default function Hero({ data, approvalsdata, exisitng }) {
           </h1>
           {/* BADGES */}
           {data?.description?.length === 1 && (
-  <div className="flex flex-wrap gap-3 sm:gap-4 pt-4">
-    {data?.description?.map((item, index) => (
-      <div
-        key={index}
-        className="w-full sm:w-[48%] lg:w-[350px] min-h-[46px]
-        rounded-[12px] border border-[#f8dbdd]
-        flex items-center justify-between px-3 py-2"
-      >
-        {/* LEFT TEXT */}
-        <span
-          className="font-poppins text-[12px] text-[#282529] leading-snug"
-          dangerouslySetInnerHTML={{ __html: item?.text || "" }}
-        />
+            <div className="flex flex-wrap gap-3 sm:gap-4 pt-4">
+            {data?.description?.map((item, index) => (
+  <div key={index} className="w-full sm:w-[48%] lg:w-[350px]">
+<div
+  className=""
+  dangerouslySetInnerHTML={{
+    __html: item?.text
+      // 1️⃣ ul first
+      ?.replace(
+        /<ul>/g,
+        '<ul class="flex flex-col gap-2">'
+      )
 
-        {/* RIGHT TICK */}
-        <span className="ml-2 flex-shrink-0 text-green-600">
-          ✔
-        </span>
-      </div>
-    ))}
+      // 2️⃣ li second (open + text wrapper)
+      ?.replace(
+        /<li>/g,
+        `<li class="w-full min-h-[46px] rounded-[12px] border border-[#f8dbdd]
+        flex items-center justify-start  px-3 py-2">
+          <span class="ml-3 flex-shrink-0 text-green-600">✔</span>
+          <span class="mr-2 custom-description text-start font-poppins text-[12px] text-[#282529] leading-snug">`
+      )
+
+      // 3️⃣ li close LAST (close text)
+      ?.replace(
+        /<\/li>/g,
+        `</span>
+         </li>`
+      ),
+  }}
+/>
+
+
   </div>
-)}
+))}
+
+
+            </div>
+          )}
 
 
 

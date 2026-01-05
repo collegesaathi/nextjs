@@ -8,12 +8,9 @@ import SVGIcon from '@/common/SVGIcon';
 export default function FAQSection({ faq }) {
 
     // Correct: faq.faqs contains the array, not faq
-    const [faqs, setFaqs] = useState(() =>
-        faq?.faqs
-            ?.sort((a, b) => Number(a.position) - Number(b.position))
-            .map(item => ({ ...item, open: false })) || []
-    );
+    const [faqs, setFaqs] = useState(faq.faqs)
 
+    console.log(faq)
     // Toggle open/close
     const toggle = (index) => {
         setFaqs(prev =>
@@ -42,7 +39,7 @@ export default function FAQSection({ faq }) {
                     </p>
                 )}
 
-                {faqs.map((item, index) => (
+                {faq?.faqs.map((item, index) => (
                     <div
                         key={index}
                         className="bg-white rounded-[10px] mb-8 shadow-md border-l-[13px] border-red-500 transition-all duration-300"

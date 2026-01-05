@@ -7,20 +7,19 @@ export default function SampleCertificate({ certificates }) {
     {certificates?.title && (
     <section className="w-full px-2 sm:px-6 py-8 mx-auto" id="certificate-section">
       <div className="max-w-[1230px] ">
-        
         <div className="flex flex-col lg:flex-row items-center gap-6 lg:gap-10">
-          
           {/* LEFT CONTENT */}
           <div className="w-full lg:w-1/2">
             <Heading title={certificates?.title} />
+          <div
+  className="font-poppins text-[14px] sm:text-[16px] md:text-[17px] 
+             text-[#282529] leading-6 sm:leading-7 break-words whitespace-normal custom-description
+             "
+  dangerouslySetInnerHTML={{
+    __html: certificates?.description || "",
+  }}
+/>
 
-            <div
-              className="font-poppins text-[14px] sm:text-[16px] md:text-[17px] 
-              text-[#282529] leading-6 sm:leading-7 break-words whitespace-normal"
-              dangerouslySetInnerHTML={{
-                __html: certificates?.description || "",
-              }}
-            />
           </div>
 
           {/* RIGHT IMAGE SECTION */}

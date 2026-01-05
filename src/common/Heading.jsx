@@ -12,9 +12,7 @@ export default function Heading({ lattitle, midtitle, title, classes }) {
           md:leading-[100%]
           tracking-[0px]
           text-[#282529]
-          mb-4 md:mb-[30px]
-        
-         
+          mb-4 md:mb-[10px]
           ${classes}
         `}
       >
@@ -24,3 +22,4 @@ export default function Heading({ lattitle, midtitle, title, classes }) {
 }
 
  // w-2/3
+ 

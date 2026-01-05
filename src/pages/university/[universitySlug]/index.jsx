@@ -28,7 +28,7 @@ import { fetchDetails } from "@/lib/ssrFetch";
 
 export default function UniversityPage({ data }) {
   const router = useRouter();
-
+console.log("data" ,data)
   const uniId = data?.university?.id;
   const [loading, setLoading] = useState(false);
   const [courseData, setCourseData] = useState([]);
@@ -144,7 +144,7 @@ export default function UniversityPage({ data }) {
               {data?.university?.admissionProcess && (
                 <StepsSection admissionProcess={data?.university?.admissionProcess} />
               )}
-              {data?.university?.faq?.length > 0 && (
+              {data?.university?.faq && (
                 <FAQSection faq={data?.university?.faq} />
               )}
 

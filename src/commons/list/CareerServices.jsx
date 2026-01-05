@@ -105,7 +105,7 @@ export default function CareerServices({ services }) {
                                     <div className="w-full bg-white rounded-[30px] transition-all duration-300 group relative cursor-pointer my-3 ">
                                         <div className="overflow-hidden rounded-t-[30px]">
                                             <img
-                                                src={service.image}
+                                                src={service.image || "/images/new/Group1.webp"}
                                                 alt={service.title}
                                                 height={300}
                                                 width={600}
@@ -116,7 +116,7 @@ export default function CareerServices({ services }) {
                                         <div className="p-5  border border-t-0 border-[#D4D2D2] px-16 rounded-b-[30px] h-full relative z-10 group-hover:border-[#EC1E24]/30 transition-colors duration-300 py-10 min-h-[200px]">
                                             <div className="flex items-center space-x-4 ">
                                                 <img
-                                                    src={service.icon}
+                                                    src={service.icon || "/images/new/Group1.webp"}
                                                     alt={service.title}
                                                     width={25}
                                                     height={25}

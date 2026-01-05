@@ -62,16 +62,13 @@ export default function AddSkills({ setSkills, skills, htitle, handleChange, for
             <div>
                 <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
                     Name{" "}
-                    <span className="text-sm text-gray-500">
-                        ({formData.skillname?.length}/50)
-                    </span>
                 </label>
                 <input
                     type="text"
                     name="skillname"
                     value={formData.skillname}
                     onChange={(e) => {
-                        if (e.target.value.length <= 50) handleChange(e);
+                       handleChange(e);
                     }}
                     placeholder="Enter name"
                     className="w-full p-3 rounded-md bg-gray-100 text-gray-700 

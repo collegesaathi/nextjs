@@ -2,7 +2,8 @@
 
 body {
   font-family: "Poppins", sans-serif !important;
-  color: #000 ;
+  color: #000 !important;
+  background-color: #ffffff !important;
 }
 
 .font-poppins {
@@ -994,4 +995,29 @@ select:focus {
   top: 6.48px;
   left: 6.55px;
   object-fit: contain;
+}
+
+
+/* global.css ya component module CSS */
+.custom-description p {
+  margin-bottom: 1rem;      /* paragraph spacing */
+  word-break: break-word;   /* long text wrap */
+}
+
+.custom-description ul {
+  padding-left: 1.25rem;    /* list indent */
+  margin-bottom: 1rem;
+}
+
+.custom-description li {
+  margin-bottom: 0.5rem;    /* spacing between list items */
+  list-style: disc;
+}
+
+.custom-description strong {
+  font-weight: 600;
+}
+
+.custom-description span {
+  display: inline;          /* ensure inline span wrap correctly */
 }
