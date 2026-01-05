@@ -432,13 +432,13 @@ function Index() {
 
     const currentIndex = tabsData.findIndex((tab) => tab.id === activeTab);
 
-      const handleNext = (e) => {
-    e.preventDefault();
-    if (currentIndex < tabsData.length - 1) {
-        setActiveTab(tabsData[currentIndex + 1].id);
-    }
-    handleAdd(e);
-};
+    const handleNext = (e) => {
+        e.preventDefault();
+        if (currentIndex < tabsData.length - 1) {
+            setActiveTab(tabsData[currentIndex + 1].id);
+        }
+        handleAdd(e);
+    };
 
 
     const handleBack = () => {

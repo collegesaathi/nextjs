@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { MdDelete, MdAdd } from "react-icons/md";
 import dynamic from "next/dynamic";
-import "react-quill-new/dist/quill.snow.css";
+import "react-quill/dist/quill.snow.css";
 import ReactQuillEditor from "@/common/ReactQuillEditor";
 
 // Dynamic import for Quill editor (SSR safe)
-const ReactQuill = dynamic(() => import("react-quill-new"), { ssr: false });
+const ReactQuill = dynamic(() => import("react-quill"), {
+  ssr: false,
+});
 
 export default function Addcareer({ setCareers, Careers, htitle  ,formData ,handleQuillChange  ,handleChange}) {
 

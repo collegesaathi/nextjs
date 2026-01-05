@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import { MdAdd, MdEdit, MdDelete } from "react-icons/md";
-import "react-quill-new/dist/quill.snow.css";
+import "react-quill/dist/quill.snow.css";
 import ReactQuillEditor from "@/common/ReactQuillEditor";
 import ImagePreview from "@/common/ImagePreview";
 
 // ✅ Dynamic import ReactQuill (SSR false)
-const ReactQuill = dynamic(() => import("react-quill-new"), { ssr: false });
+const ReactQuill = dynamic(() => import("react-quill"), {
+  ssr: false,
+});
 
 const AddPlacements = ({ setPlacementAdd, PlacementAdd, formData, handleQuillChange, handleChange }) => {
     const addPattern = () => {

@@ -1,10 +1,12 @@
 import React from "react";
 import { MdDelete, MdAdd } from "react-icons/md";
 import dynamic from "next/dynamic";
-import "react-quill-new/dist/quill.snow.css";
+import "react-quill/dist/quill.snow.css";
 import ImagePreview from "@/common/ImagePreview";
 
-const ReactQuill = dynamic(() => import("react-quill-new"), { ssr: false });
+const ReactQuill = dynamic(() => import("react-quill"), {
+  ssr: false,
+});
 
 export default function AddCriteria({ setCriteria, criteria = [] }) {
   // ensure criteria default to array to avoid map errors

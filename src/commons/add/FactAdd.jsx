@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import dynamic from "next/dynamic";
 import { MdAdd, MdEdit, MdDelete } from "react-icons/md";
-import "react-quill-new/dist/quill.snow.css";
+import "react-quill/dist/quill.snow.css";
 
 // ✅ Dynamic import ReactQuill (SSR false)
-const ReactQuill = dynamic(() => import("react-quill-new"), { ssr: false });
+const ReactQuill = dynamic(() => import("react-quill"), {
+  ssr: false,
+});
 
 const FactAdd = ({ facts, setFacts }) => {
 
