@@ -293,7 +293,7 @@ const RatingRow = ({ label, values, isPink, type }) => (
 
 
 
-export default function Compare({compareData}) {
+export default function Compare({ compareData }) {
   const [activeDetail, setActiveDetail] = useState(null);
   const [activeSection, setActiveSection] = useState("approvals");
 
@@ -308,12 +308,8 @@ export default function Compare({compareData}) {
     ...tabList.map((s) => s.id).filter((id) => id !== activeSection),
   ];
 
-  const router=useRouter()
-  const {slug}=router.query
-
-  console.log("sluggg",slug)
-  console.log("comparedataaa",compareData?.data)
-
+  const router = useRouter()
+  const { slug } = router.query
 
 
   const renderSectionContent = (id) => {
@@ -662,9 +658,9 @@ export default function Compare({compareData}) {
                   <img src={uni.icon} className="h-8 md:h-12 object-contain mb-2" alt={uni.icon_alt} />
                   <p className="text-[10px] md:text-[16px]  text-center uppercase truncate w-full">{uni.name}</p>
                   <ScoreCircle score={uni.score} />
-                  <Link 
-                   href={`/university/${uni?.slug}`}
-                  className="mt-2 w-full bg-[#EC1E24] text-white text-[10px] md:text-[14px] text-center  md:py-1.5 rounded uppercase">View University</Link>
+                  <Link
+                    href={`/university/${uni?.slug}`}
+                    className="mt-2 w-full bg-[#EC1E24] text-white text-[10px] md:text-[14px] text-center  md:py-1.5 rounded uppercase">View University</Link>
                 </div>
               ))}
             </div>

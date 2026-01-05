@@ -30,7 +30,6 @@ import CarreerOppurtunity from "@/commons/list/CarreerOppurtunity";
 import { useEffect, useState } from "react";
 import Listing from "../api/Listing";
 function Index({ data }) {
-    console.log("data", data)
     const uniId = data?.SpecialisationData?.id;
     const [loading, setLoading] = useState(false);
     const [courseData, setCourseData] = useState([])

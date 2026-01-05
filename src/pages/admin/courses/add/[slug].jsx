@@ -148,6 +148,7 @@ function Index() {
         cover_image: null,
         position: "",
         tuition_fees: "",
+        video: "",
         anuual_fees: "",
         semester_fees: "",
         descriptions: [{ text: "" }],
@@ -259,6 +260,7 @@ function Index() {
             const payload = new FormData();
             payload.append("slug", formData.slug || "");
             payload.append("name", formData.name || "");
+            payload.append("video", formData.video || "");
             payload.append("university_id", formData.university_id || "")
             payload.append("id", formData.Id || "");
             payload.append("position", formData.position || "");
@@ -276,12 +278,12 @@ function Index() {
             payload.append("approvals_name", formData.approvals_name || "");
             payload.append("approvals_desc", formData.approvals_desc || "");
             payload.append("approvals", JSON.stringify(selectedApprovals));
-            payload.append("rankings_description", formData.rankings_description);
+            payload.append("rankings_description", formData.rankings_description || "");
             payload.append("rankings_name", formData.rankings_name || "");
             payload.append("creteria", formData.creteria || "")
             payload.append("fees_title", formData.fees_title || "")
             payload.append("category", formData.category || "")
-            const NRIDATA = formData.nri.map(item => ({
+            const NRIDATA = formData?.nri?.map(item => ({
                 title: item.title,
                 description: item.description,
                 images_alt: item?.images_alt
@@ -417,11 +419,13 @@ function Index() {
 
     const currentIndex = tabsData.findIndex((tab) => tab.id === activeTab);
 
-    const handleNext = () => {
-        if (currentIndex < tabsData.length - 1) {
-            setActiveTab(tabsData[currentIndex + 1].id);
-        }
-    };
+       const handleNext = (e) => {
+    e.preventDefault();
+    if (currentIndex < tabsData.length - 1) {
+        setActiveTab(tabsData[currentIndex + 1].id);
+    }
+    handleAdd(e);
+};
 
     const handleBack = () => {
         if (currentIndex > 0) {
@@ -490,6 +494,7 @@ function Index() {
             university_id: data?.university_id || university_id,
             categroy_id: data?.category_id,
             position: data?.position,
+            video: data?.video,
             about_title: data?.about?.title,
             about_desc: data?.about?.description,
             approvals_name: data?.approvals?.title,
@@ -744,6 +749,22 @@ function Index() {
                                 />
                             </div>
 
+                            <div>
+                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
+                                    Video {" "}
+                                </label>
+                                <input
+                                    type="text"
+                                    name="video"
+                                    value={formData.video}
+                                    onChange={(e) => {
+                                        handleChange(e);
+                                    }}
+                                    placeholder="Enter video"
+                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
+                                    required
+                                />
+                            </div>
                             {/* thumbnail Upload Field */}
                             <div>
                                 <label className="block text-[#FF1B1B] font-medium mb-1">

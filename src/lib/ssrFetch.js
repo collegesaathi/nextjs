@@ -1,39 +1,68 @@
 import Listing from "@/pages/api/Listing";
 
 export async function fetchDetails(context, type) {
-    try {
-        const { universitySlug, courseSlug, specializationSlug } = context.query;
-        console.log("context.query", context.query.specializationSlug)
-        const main = new Listing();
-        let res;
-        if (type === "course") {
-            if (!courseSlug) return { notFound: true };
-            res = await main.CourseGet(courseSlug);
+  try {
+    // Prefer query → fallback params (Next.js sometimes shifts values)
+    const query = context?.query || {};
+    const params = context?.params || {};
 
-        } else if (type === "university") {
-            if (!universitySlug) return { notFound: true };
-            res = await main.UniveristyGet(universitySlug);
+    const universitySlug =
+      query?.universitySlug || params?.universitySlug || null;
 
-        } else if (type === "specialisation") {
-            if (!specializationSlug) return { notFound: true };
-            res = await main.SpecializationGet(specializationSlug);
-        } else {
-            return { notFound: true };
-        }
+    const courseSlug =
+      query?.courseSlug || params?.courseSlug || null;
 
-        console.log("SSR Response:", res);
+    const specializationSlug =
+      query?.specializationSlug || params?.specializationSlug || null;
 
-        if (res?.data) {
-            return {
-                props: {
-                    data: res.data.data || res.data,
-                },
-            };
-        }
+    const main = new Listing();
+    let res;
 
-        return { notFound: true };
-    } catch (err) {
-        console.error("SSR Error:", err.message);
+    switch (type) {
+      case "course":
+        if (!courseSlug) return { notFound: true };
+        res = await main.CourseGet(courseSlug.trim());
+        break;
+
+      case "university":
+        if (!universitySlug) return { notFound: true };
+        res = await main.UniveristyGet(universitySlug.trim());
+        break;
+
+      case "specialisation":
+        if (!specializationSlug) return { notFound: true };
+        res = await main.SpecializationGet(specializationSlug.trim());
+        break;
+
+      default:
         return { notFound: true };
     }
+
+    console.log("SSR Response Status:", res?.status);
+    console.log("SSR Data:", res?.data);
+
+    // If API returned proper data
+    if (res?.data?.data) {
+      return {
+        props: {
+          data: res.data.data,
+        },
+      };
+    }
+
+    // If API format is different
+    if (res?.data) {
+      return {
+        props: {
+          data: res.data,
+        },
+      };
+    }
+
+    // If empty
+    return { notFound: true };
+  } catch (err) {
+    console.error("SSR Error:", err?.message || err);
+    return { notFound: true };
+  }
 }

@@ -157,6 +157,7 @@ function Index() {
         certificatedescription: "",
         certificatename: "",
         partnersname: "",
+        video: "",
         partnersdesc: "",
         onlinetitle: "",
         onlinedesc: "",
@@ -250,6 +251,7 @@ function Index() {
             const payload = new FormData();
             payload.append("slug", formData.slug || "");
             payload.append("name", formData.name || "");
+            payload.append("video", formData.video || "");
             payload.append("university_id", university_id || "")
             payload.append("position", formData.position || "");
             payload.append("icon", formData.icon || "");
@@ -257,7 +259,7 @@ function Index() {
             payload.append("cover_image", formData.cover_image || "");
             payload.append("fees_title", formData.fees_title || "");
             payload.append("category_id", formData?.categroy_id || "");
-            payload.append("descriptions", JSON.stringify(formData.descriptions));
+            payload.append("descriptions", JSON.stringify(formData.descriptions || []));
             payload.append("cover_image_alt", formData.cover_image_alt || "")
             payload.append("icon_alt", formData.icon_alt || "")
             payload.append("about_title", formData.about_title || "");
@@ -277,7 +279,7 @@ function Index() {
                 description: item.description,
                 images_alt: item?.images_alt
             }));
-            payload.append("nri", JSON.stringify(NRIDATA));
+            payload.append("nri", JSON.stringify(NRIDATA || []));
             formData?.nri?.forEach((item, index) => {
                 if (item.images) {
                     payload.append(`nriimages[${index}]`, item.images);
@@ -289,13 +291,13 @@ function Index() {
                 description: item.description,
                 images_alt: item?.images_alt
             }));
-            payload.append("indian", JSON.stringify(IndiaDATA));
+            payload.append("indian", JSON.stringify(IndiaDATA || []));
             formData?.indian?.forEach((item, index) => {
                 if (item.images) {
                     payload.append(`Indianimages[${index}]`, item.images);
                 }
             });
-            payload.append("semesters", JSON.stringify(semesters))
+            payload.append("semesters", JSON.stringify(semesters || []))
             payload.append("semesters_title", formData.semesters_title || "")
             payload.append("certificatename", formData.certificatename || "");
             payload.append("certificatedescription", formData.certificatedescription || "");
@@ -308,15 +310,15 @@ function Index() {
             payload.append("skillsname", formData.skillname || "");
             payload.append("skilldesc", formData.skilldesc || "");
             payload.append("patternname", formData.patternname || "");
-            payload.append("patterndescription", formData.patterndescription);
-            payload.append("bottompatterndesc", formData.bottompatterndesc);
+            payload.append("patterndescription", formData.patterndescription || "");
+            payload.append("bottompatterndesc", formData.bottompatterndesc || "");
             const cleanPatterns = patterns.map(item => ({
                 patternName: item.patternName,
                 percentage: item.percentage,
                 description: item.description,
                 pattern_images_alt: item?.pattern_images_alt
             }));
-            payload.append("patterns", JSON.stringify(cleanPatterns));
+            payload.append("patterns", JSON.stringify(cleanPatterns || []));
             patterns.forEach((item, index) => {
                 if (item.image) {
                     payload.append(`patternsimages[${index}]`, item.image);
@@ -335,11 +337,11 @@ function Index() {
             payload.append("meta_keywords", formData.meta_keywords || "");
             payload.append("canonical_url", formData.canonical_url || "");
             payload.append("financialname", formData.financialname || "");
-            payload.append("financialdescription", formData.financialdescription);
+            payload.append("financialdescription", formData.financialdescription || "");
             payload.append("servicetitle", formData.servicetitle || "");
             payload.append("servicedesc", formData.servicedesc || "");
             payload.append("onlinedesc", formData.onlinedesc || "");
-            payload.append("onlinetitle", formData.onlinetitle);
+            payload.append("onlinetitle", formData.onlinetitle || "");
             const cleanonlines = onlines.map(item => ({
                 title: item.title,
                 content: item.content
@@ -409,11 +411,17 @@ function Index() {
 
     const currentIndex = tabsData.findIndex((tab) => tab.id === activeTab);
 
-    const handleNext = () => {
-        if (currentIndex < tabsData.length - 1) {
-            setActiveTab(tabsData[currentIndex + 1].id);
-        }
-    };
+
+     const handleNext = (e) => {
+    e.preventDefault();
+    if (currentIndex < tabsData.length - 1) {
+        setActiveTab(tabsData[currentIndex + 1].id);
+    }
+    handleAdd(e);
+};
+
+
+    
 
     const handleBack = () => {
         if (currentIndex > 0) {
@@ -577,6 +585,23 @@ function Index() {
                                         handleChange(e);
                                     }}
                                     placeholder="Enter Slug"
+                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
+                                    required
+                                />
+                            </div>
+
+                            <div>
+                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
+                                    Video {" "}
+                                </label>
+                                <input
+                                    type="text"
+                                    name="video"
+                                    value={formData.video}
+                                    onChange={(e) => {
+                                        handleChange(e);
+                                    }}
+                                    placeholder="Enter video"
                                     className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
                                     required
                                 />

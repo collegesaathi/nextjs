@@ -7,6 +7,8 @@ import logo from "../assets/home/Logo.png"
 import hand from "../assets/home/hand.png"
 import grostart from "../assets/home/Groupstart.png"
 import Image from 'next/image'
+import ContactFloatingButton from '@/common/ContactFloatingButton'
+import ChatBot from '@/common/ChatBot'
 export default function Footer() {
   useEffect(() => {
     // AOS initialization (if you're using AOS)
@@ -21,48 +23,50 @@ export default function Footer() {
     <>
       {/* Desktop Version */}
       <div className="py-4 md:py-8 bg-[#001136] relative  ">
-                     
-  <div
-    className="absolute bottom-0 left-0 w-full h-1/2 bg-no-repeat bg-bottom bg-cover opacity-50"
-    style={{ backgroundImage: "url('/images/footerbg.png')",
+        <ContactFloatingButton />
+        <ChatBot />
+        <div
+          className="absolute bottom-0 left-0 w-full h-1/2 bg-no-repeat bg-bottom bg-cover opacity-50"
+          style={{
+            backgroundImage: "url('/images/footerbg.png')",
             WebkitMaskImage:
-        "linear-gradient(to top, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%)",
-      maskImage:
-        "linear-gradient(to top, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%)",
-     }}
-  ></div>
+              "linear-gradient(to top, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%)",
+            maskImage:
+              "linear-gradient(to top, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%)",
+          }}
+        ></div>
 
-        
+
 
 
         <div className="mx-auto container sm:container md:container lg:container xl:max-w-[1230px]  px-4 z-20">
-          
 
 
-           <div class="w-full mx-auto relative h-[108px] block lg:hidden ">
-      <img    src={Bgfooter?.src} alt="" class="h-[108px]" />
-      <div class="absolute top-0 left-0 w-full h-full flex items-center justify-between px-[40px]">
-        <h2 class="font-semibold text-[20px] leading-[100%] tracking-[0px] text-white">
-          Get Clarity with Us!
-        </h2>
-        <div class="flex items-center flex-col space-y-2 justify-end">
-          <button
-            type="button"
-            class="w-[146px] h-[33px] rounded-[5px] border-[1.5px] border-white font-poppins font-normal text-[12px] tracking-[0px] text-white flex items-center justify-center space-x-2"
-          >
-            <img src="/img/university-main/footer/1.svg" alt="" class="w-[10px]" />
-            <span>Schedule Your Call</span>
-          </button>
-          <button
-            type="button"
-            class="w-[146px] h-[33px] rounded-[5px] bg-[#EC1E24] font-poppins font-normal text-[12px] tracking-[0px] text-white flex items-center justify-center space-x-2"
-          >
-            <img src="/img/university-main/footer/2.svg" alt="" class="w-[10px]" />
-            <span>Let's Talk Now</span>
-          </button>
-        </div>
-      </div>
-    </div>
+
+          <div class="w-full mx-auto relative h-[108px] block lg:hidden ">
+            <img src={Bgfooter?.src} alt="" class="h-[108px]" />
+            <div class="absolute top-0 left-0 w-full h-full flex items-center justify-between px-[40px]">
+              <h2 class="font-semibold text-[20px] leading-[100%] tracking-[0px] text-white">
+                Get Clarity with Us!
+              </h2>
+              <div class="flex items-center flex-col space-y-2 justify-end">
+                <button
+                  type="button"
+                  class="w-[146px] h-[33px] rounded-[5px] border-[1.5px] border-white font-poppins font-normal text-[12px] tracking-[0px] text-white flex items-center justify-center space-x-2"
+                >
+                  <img src="/img/university-main/footer/1.svg" alt="" class="w-[10px]" />
+                  <span>Schedule Your Call</span>
+                </button>
+                <button
+                  type="button"
+                  class="w-[146px] h-[33px] rounded-[5px] bg-[#EC1E24] font-poppins font-normal text-[12px] tracking-[0px] text-white flex items-center justify-center space-x-2"
+                >
+                  <img src="/img/university-main/footer/2.svg" alt="" class="w-[10px]" />
+                  <span>Let's Talk Now</span>
+                </button>
+              </div>
+            </div>
+          </div>
           <div
             className="relative  hidden lg:block"
             data-aos="fade-in"

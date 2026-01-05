@@ -90,8 +90,8 @@ class Listing extends Component {
   async CourseAll() {
     return Api.get("/all/course",);
   }
-  async AdminUniveristy(page) {
-    return Api.get(`/admin/university?page=${page}`,);
+  async AdminUniveristy(page ,search) {
+    return Api.get(`/admin/university?page=${page}&search=${search}`,);
   }
 
   async AdminSpecialisation(page) {

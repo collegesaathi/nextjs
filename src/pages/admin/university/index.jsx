@@ -1,209 +1,234 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import AdminLayout from "../common/AdminLayout";
-import MCA from "../../assets/home/Media.png"
+import MCA from "../../assets/home/Media.png";
 import Listing from "@/pages/api/Listing";
 import Delete from "../common/Delete";
 import Link from "next/link";
 import { MdAdd, MdEdit } from "react-icons/md";
 import { Loader } from "@/common/Loader";
 import { useRouter } from "next/router";
+import { Search } from "lucide-react";
 
 export default function Index() {
     const router = useRouter();
+
     const [page, setPage] = useState(1);
-    const [data, setData] = useState([]);
-    const [buttonLoading, setButtonLoading] = useState(false);
+    const [data, setData] = useState({});
     const [loading, setLoading] = useState(false);
+    const [buttonLoading, setButtonLoading] = useState(false);
+    const [searchQuery, setSearchQuery] = useState("");
 
-    const fetchData = async (page = 1) => {
+    const debounceRef = useRef(null);
+
+    // ================= FETCH DATA =================
+    const fetchData = async (pageNo = 1, search = searchQuery) => {
         try {
-            if (page === 1) { setLoading(true); }
-            else { setButtonLoading(true); }
-            const main = new Listing();
-            const response = await main.AdminUniveristy(page);
-            if (response.data) {
-                const newData = response.data.data || {};
-                setData((prev) => {
-                    if (page === 1) {
-                        // First page → replace entire object
-                        return newData;
-                    }
+            pageNo === 1 ? setLoading(true) : setButtonLoading(true);
 
-                    // Next pages → append universities array and update pagination
+            const main = new Listing();
+            const response = await main.AdminUniveristy(pageNo, search);
+
+            if (response?.data?.data) {
+                const newData = response.data.data;
+
+                setData((prev) => {
+                    if (pageNo === 1) return newData;
+
                     return {
                         ...prev,
                         universities: [
                             ...(prev?.universities || []),
-                            ...(newData?.universities || [])
+                            ...(newData?.universities || []),
                         ],
-                        pagination: newData?.pagination // Update pagination info
+                        pagination: newData.pagination,
                     };
                 });
-
             }
-            setLoading(false);
-            setButtonLoading(false);
         } catch (error) {
-            console.log("error", error);
+            console.log("Fetch Error:", error);
+        } finally {
             setLoading(false);
-
             setButtonLoading(false);
         }
     };
 
+    // ================= INITIAL LOAD =================
     useEffect(() => {
-        fetchData();
+        fetchData(1);
     }, []);
 
-    const LoadMore = () => {
+    // ================= SEARCH WITH DEBOUNCE =================
+    useEffect(() => {
+        if (debounceRef.current) {
+            clearTimeout(debounceRef.current);
+        }
+
+        debounceRef.current = setTimeout(() => {
+            if (searchQuery.length === 0 || searchQuery.length >= 3) {
+                setPage(1);
+                fetchData(1, searchQuery);
+            }
+        }, 500);
+
+        return () => clearTimeout(debounceRef.current);
+    }, [searchQuery]);
+
+    // ================= LOAD MORE =================
+    const loadMore = () => {
         const nextPage = page + 1;
         setPage(nextPage);
         fetchData(nextPage);
-    }
+    };
 
     return (
-        <AdminLayout page={"university Panel"}>
+        <AdminLayout page={"University Panel"}>
             <div className="min-h-screen p-5 lg:p-[30px]">
-                <div className="flex flex-col md:flex-row justify-between md:items-center mb-4 lg:mb-5">
-                    <h1 className="capitalize font-inter text-lg lg:text-2xl font-bold text-[#FF1B1B] tracking-[-0.04em] mb-6">
-                        Manage university
+
+                {/* HEADER */}
+                <div className="flex flex-col md:flex-row gap-4 justify-between md:items-center mb-6">
+                    <h1 className="font-bold text-2xl text-[#FF1B1B]">
+                        Manage University
                     </h1>
+
+                    {/* SEARCH */}
+                    <div className="relative w-full md:w-[350px]">
+                        <Search className="absolute top-3 left-4 w-5 h-5 text-gray-400" />
+                        <input
+                            type="text"
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                            placeholder='Search "University" (Min 3 characters)'
+                            className="w-full h-[45px] rounded-full pl-12 pr-4 text-sm border outline-none focus:border-red-400"
+                        />
+                    </div>
+
+                    {/* ADD BUTTON */}
                     <button
-                        className="cursor-pointer text-[18px] text-[#ffffff] p-2 bg-[#FF1B1B] bg-opacity-10 hover:bg-opacity-30 rounded inline-flex items-center justify-center"
-
                         onClick={() => router.push("/admin/university/add")}
+                        className="flex items-center gap-2 bg-[#FF1B1B] text-white px-4 py-2 rounded"
                     >
-                        <MdAdd size={24} />   Add University
+                        <MdAdd size={22} />
+                        Add University
                     </button>
-
-                    {/* <AddUniversity data={null}
-                        fetchData={fetchData}
-                    /> */}
                 </div>
+
+                {/* TABLE */}
                 {loading ? (
                     <Loader />
                 ) : (
-                    <div className="overflow-x-auto bg-white shadow-md rounded-lg">
-                        <table className="min-w-full text-left border">
-                            <thead className="bg-gray-100">
-                                <tr className="text-sm font-semibold text-gray-700">
+                    <div className="overflow-x-auto bg-white shadow rounded">
+                        <table className="min-w-full border">
+                            <thead className="bg-gray-100 text-sm">
+                                <tr>
                                     <th className="p-3 border">#</th>
                                     <th className="p-3 border">Cover</th>
                                     <th className="p-3 border">Name</th>
                                     <th className="p-3 border">Icon</th>
                                     <th className="p-3 border">Status</th>
                                     <th className="p-3 border">Actions</th>
-                                    <th className="p-3 border">Course Add </th>
-
+                                    <th className="p-3 border">Course</th>
                                 </tr>
                             </thead>
 
                             <tbody>
-                                {data?.universities?.map((item, index) => (
-                                    <tr
-                                        key={index}
-                                        className={`border hover:bg-gray-750 ${item?.deleted_at ? "bg-gray-500 !text-white " : "text-gray-800"
-                                            }`}
-                                    >
-                                        {/* Index */}
-                                        <td className="p-3 border">{index + 1}</td>
+                                {data?.universities?.length > 0 ? (
+                                    data.universities.map((item, index) => (
+                                        <tr key={item.id} className="hover:bg-gray-50">
+                                            <td className="p-3 border">
+                                                {(page - 1) * (data?.pagination?.limit || 10) + index + 1}
+                                            </td>
 
-                                        {/* Cover Image */}
-                                        <td className="p-3 border">
-                                            <img
-                                                src={item?.cover_image || MCA?.src || "/Placeholder.png"}
-                                                alt={item?.name}
-                                                className="w-24 h-14 object-cover rounded"
-                                            />
-                                        </td>
-
-                                        {/* Name */}
-                                        <td className="p-3 border font-semibold">{item?.name}</td>
-
-                                        {/* Icon */}
-                                        <td className="p-3 border">
-                                            <img
-                                                src={item?.icon || MCA?.src || "/Placeholder.png"}
-                                                alt={item?.name}
-                                                className="w-10 h-10 object-contain"
-                                            />
-                                        </td>
-
-                                        {/* Status */}
-                                        <td className="p-3 border">
-                                            {item?.deleted_at ? (
-                                                <span className="px-3 py-1 text-sm bg-gray-400 text-white rounded-full">
-                                                    Deleted
-                                                </span>
-                                            ) : (
-                                                <span className="px-3 py-1 text-sm bg-green-500 text-white rounded-full">
-                                                    Active
-                                                </span>
-                                            )}
-                                        </td>
-
-                                        {/* Actions */}
-                                        <td className="p-3 border ">
-                                            <div className="flex  justify-center items-center gap-4  ">
-                                                {!item?.deleted_at && (
-                                                    <Link
-                                                        href={`/admin/university/add/${item?.slug}`}
-                                                        className="p-2 rounded bg-yellow-400 hover:bg-yellow-500 text-white"
-                                                    >
-                                                        <MdEdit size={20} />
-                                                    </Link>
-                                                )}
-
-                                                {/* Delete Button */}
-                                                <Delete
-                                                    step={1}
-                                                    fetch={fetchData}
-                                                    deleteAt={item?.deleted_at}
-                                                    Id={item?.id}
+                                            <td className="p-3 border">
+                                                <img
+                                                    src={item.cover_image || MCA?.src}
+                                                    className="w-24 h-14 object-cover rounded"
+                                                    alt=""
                                                 />
+                                            </td>
 
-                                                {/* View Button */}
+                                            <td className="p-3 border font-semibold">
+                                                {item.name}
+                                            </td>
+
+                                            <td className="p-3 border">
+                                                <img
+                                                    src={item.icon || MCA?.src}
+                                                    className="w-10 h-10 object-contain"
+                                                    alt=""
+                                                />
+                                            </td>
+
+                                            <td className="p-3 border">
+                                                <span className={`px-3 py-1 rounded-full text-white text-xs ${
+                                                    item.deleted_at ? "bg-gray-400" : "bg-green-500"
+                                                }`}>
+                                                    {item.deleted_at ? "Deleted" : "Active"}
+                                                </span>
+                                            </td>
+
+                                            <td className="p-3 border">
+                                                <div className="flex gap-2 justify-center">
+                                                    {!item.deleted_at && (
+                                                        <Link
+                                                            href={`/admin/university/add/${item.slug}`}
+                                                            className="bg-yellow-400 p-2 rounded text-white"
+                                                        >
+                                                            <MdEdit />
+                                                        </Link>
+                                                    )}
+
+                                                    <Delete
+                                                        step={1}
+                                                        fetch={() => fetchData(1)}
+                                                        deleteAt={item.deleted_at}
+                                                        Id={item.id}
+                                                    />
+
+                                                    <Link
+                                                        href={`/admin/university/${item.slug}`}
+                                                        target="_blank"
+                                                        className="bg-[#FF1B1B] px-3 py-1 rounded text-white"
+                                                    >
+                                                        View
+                                                    </Link>
+                                                </div>
+                                            </td>
+
+                                            <td className="p-3 border text-center">
                                                 <Link
-                                                    href={`/admin/university/${item?.slug}`}
+                                                    href={`/admin/courses?university_id=${item.id}`}
                                                     target="_blank"
-                                                    className="px-4 py-2 rounded bg-[#FF1B1B] hover:bg-[#ad0e0e] text-white"
+                                                    className="bg-[#FF1B1B] px-3 py-1 rounded text-white"
                                                 >
-                                                    View
+                                                    Add Course
                                                 </Link>
-                                            </div>
-                                            {/* Edit Button */}
-
+                                            </td>
+                                        </tr>
+                                    ))
+                                ) : (
+                                    <tr>
+                                        <td colSpan="7" className="text-center p-6 text-gray-500">
+                                            No universities found
                                         </td>
-                                        <td className="p-3 border ">
-                                            <Link
-                                                href={`/admin/courses?university_id=${item?.id}`}
-                                                target="_blank"
-                                                className="px-4 py-2 rounded bg-[#FF1B1B] hover:bg-[#ad0e0e] text-white"
-                                            >
-                                                Add Course
-                                            </Link>
-                                        </td>
-
-
                                     </tr>
-                                ))}
+                                )}
                             </tbody>
                         </table>
                     </div>
                 )}
 
-                {/* Load More Button */}
+                {/* LOAD MORE */}
                 {data?.pagination?.page < data?.pagination?.totalPages && (
-                    <div className="flex justify-center mt-4">
+                    <div className="flex justify-center mt-6">
                         <button
-                            onClick={LoadMore}
-                            className="w-fit px-6 h-[44px] hover:bg-white hover:text-[#FF1B1B] border border-[#FF1B1B] rounded-full text-sm font-medium bg-[#FF1B1B] text-white cursor-pointer"
+                            onClick={loadMore}
+                            disabled={buttonLoading}
+                            className="px-6 py-2 rounded-full bg-[#FF1B1B] text-white border hover:bg-white hover:text-[#FF1B1B]"
                         >
                             {buttonLoading ? "Loading..." : "See More"}
                         </button>
                     </div>
                 )}
-
             </div>
         </AdminLayout>
     );

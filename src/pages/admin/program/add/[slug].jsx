@@ -215,7 +215,6 @@ function Index() {
         Jul: 0, Aug: 0, Sep: 0, Oct: 0, Nov: 0, Dec: 0,
     });
 
-    console.log("monthlyData", monthlyData)
     const handleQuillChange = (field, value) => {
         setFormData((prev) => ({ ...prev, [field]: value }));
     };

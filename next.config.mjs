@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
+  reactStrictMode: false,
+
   images: {
     remotePatterns: [
       {
@@ -16,12 +17,20 @@ const nextConfig = {
         pathname: "/uploads/**",
       },
       {
-        protocol: "http",
-        hostname: "192.168.x.x", // your LAN IP (optional)
-        port: "5000",
-        pathname: "/uploads/**",
+        protocol: "https",
+        hostname: "indiaprograms.com",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "api.indiaprograms.com",
+        pathname: "/**",
       },
     ],
+  },
+
+  async redirects() {
+    return [];
   },
 };
 

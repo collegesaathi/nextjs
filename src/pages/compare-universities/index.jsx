@@ -6,8 +6,6 @@ import toast from "react-hot-toast";
 import Listing from "../api/Listing";
 import { useRole } from '@/context/RoleContext';
 
-
-
 export default function CompareComponent() {
   const [isOpen, setIsOpen] = useState(false);
   // const [selectedUnis, setSelectedUnis] = useState([]);
@@ -83,10 +81,6 @@ export default function CompareComponent() {
   };
 
   return (
-
-
-
-
 
     <div className="fixed inset-0 z-[999] flex items-center justify-center ">
       {/* Background Blur/Transparency Layer */}

@@ -8,7 +8,6 @@ const ReactQuill = dynamic(() => import("react-quill-new"), { ssr: false });
 
 export default function AddCriteria({ setCriteria, criteria = [] }) {
   // ensure criteria default to array to avoid map errors
-  console.log("criteria", criteria)
 
   const addCriteria = () => {
     // use functional update to be safe

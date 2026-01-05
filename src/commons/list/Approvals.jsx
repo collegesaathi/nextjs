@@ -57,7 +57,7 @@ function Approvals({approvals , approvalsdata}) {
                     onNext={navigateNext}
                 />
                  <div
-                            className="text-[14px] md:text-[17px] font-poppins font-[400] text-[#363535] mb-6 font-poppins"
+                            className="text-[14px] md:text-[17px] font-poppins font-[400] text-[#363535] mb-6 font-poppins break-words whitespace-normal"
                             dangerouslySetInnerHTML={{ __html: approvals?.description || "" }}
                         />
                 <Swiper
