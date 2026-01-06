@@ -531,7 +531,7 @@ function Index() {
             meta_description: data?.seo?.meta_description,
             canonical_url: data?.seo?.canonical_url,
             Id: data?.id,
-            fees_desc : data?.fees.fees_desc,
+            fees_desc : data?.fees?.fees_desc,
             icon_alt: data?.icon_alt,
             cover_image_alt: data?.cover_image_alt,
             careerdesc: data?.career?.description,

@@ -25,7 +25,7 @@ function AddFees({ formData, handleChange }) {
                 <input
                     type="text"
                     name="fees_desc"
-                    value={formData.fees_desc}
+                    value={formData?.fees_desc}
                     onChange={(e) => {
                         handleChange(e);
                     }}
