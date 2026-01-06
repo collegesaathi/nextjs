@@ -23,6 +23,7 @@ import { useRouter } from "next/router";
 import AddSkills from "@/commons/add/AddSkills";
 import AddFees from "@/commons/add/AddFees";
 import ImagePreview from "@/common/ImagePreview";
+import Link from "next/link";
 function Index() {
     const router = useRouter()
     const Id = router.query.slug;
