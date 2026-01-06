@@ -788,7 +788,7 @@ function Index() {
                                     name="creteria"
                                     value={formData.creteria}
                                     onChange={(e) => {
-                                        if (e.target.value.length <= 50) handleChange(e);
+                                       handleChange(e);
                                     }}
                                     placeholder="Enter name"
                                     className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"

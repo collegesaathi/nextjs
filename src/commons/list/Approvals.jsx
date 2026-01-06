@@ -3,11 +3,39 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, A11y } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import BackNext from "@/pages/components/BackNext";
 import { sanitizeHtml } from "@/common/sanitizeHtml";
+import { useRouter } from "next/router";
+import Listing from "@/pages/api/Listing";
 function Approvals({approvals , approvalsdata}) {
+const router = useRouter()
+console.log("router" ,router)
+const slug  = router.query.universitySlug;
 
+
+console.log("slug" ,slug)
+
+
+   const [courseData, setCourseData] = useState([])
+const[Loading ,setLoading] =useState(false);
+    const fetchCourse = async (uniId) => {
+        setLoading(true)
+        try {
+            const main = new Listing();
+            const response = await main.ApprovalSpeGet(uniId);
+            setCourseData(response?.data)
+        }
+        catch (error) {
+            console.error("Error fetching projects:", error);
+        } finally {
+            setLoading(false);
+        }
+    }
+
+    useEffect(() => {
+        fetchCourse(slug)
+    }, [slug])
     const swiperRef = useRef(null);
     const [progress, setProgress] = useState(0);
     const [isBeginning, setIsBeginning] = useState(true);
