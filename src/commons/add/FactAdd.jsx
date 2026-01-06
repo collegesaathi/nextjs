@@ -27,15 +27,10 @@ const FactAdd = ({ facts, setFacts }) => {
         setFacts(updated);
     };
 
-    // Placeholder save / submit function
-    const handlefactsSubmit = (index) => {
-        console.log("Saving fact:", facts[index]);
-    };
+
 
     // Placeholder edit function
-    const openfactEdit = (item) => {
-        console.log("Edit fact:", item);
-    };
+  
 
     // ReactQuill modules & formats
     const quillModules = {
@@ -86,14 +81,6 @@ const FactAdd = ({ facts, setFacts }) => {
                             <label className="block text-[#CC2828] font-medium">Facts Description</label>
 
                             <div className="flex items-center gap-2">
-                                <button
-                                type="button"
-                                    onClick={() => handlefactsSubmit(index)}
-                                    className="bg-red-500 text-white rounded-full p-1 hover:bg-red-700"
-                                    title="Save Fact"
-                                >
-                                    <MdAdd />
-                                </button>
                                 <button
                                 type="button"
                                     onClick={() => deleteFacts(index)}

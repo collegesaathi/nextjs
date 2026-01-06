@@ -3,7 +3,7 @@ import Heading from "@/common/Heading";
 
 export default function ExaminationPattern({ examPatterns = [] }) {
 
-  const examPattern = examPatterns?.patterns ? (examPatterns?.patterns) : (JSON.parse(examPatterns?.patterns))
+  const examPattern = examPatterns?.patterns && (examPatterns?.patterns) 
 
   return (
     <>

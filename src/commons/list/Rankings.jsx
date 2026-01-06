@@ -5,9 +5,25 @@ import SVGIcon from '@/common/SVGIcon';
 
 function Ranking({ rankings }) {
     const [activeTab, setActiveTab] = useState("indian");
-    const rankingItems = rankings?.description
-        ? Array.from(rankings.description.matchAll(/<li>(.*?)<\/li>/g), m => m[1])
-        : [];
+ const getRankingItems = (description) => {
+  if (!description) return [];
+
+  // Case 1: already array
+  if (Array.isArray(description)) {
+    return description;
+  }
+
+  // Case 2: HTML string with <li>
+  if (typeof description === "string") {
+    return Array.from(
+      description.matchAll(/<li[^>]*>(.*?)<\/li>/gis),
+      m => m[1]
+    );
+  }
+
+  return [];
+};
+const rankingItems = getRankingItems(rankings?.description);
 
     return (
         <>

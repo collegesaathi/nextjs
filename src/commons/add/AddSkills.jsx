@@ -6,7 +6,7 @@ import ReactQuillEditor from "@/common/ReactQuillEditor";
 
 // Dynamic import for Quill editor (SSR safe)
 const ReactQuill = dynamic(() => import("react-quill"), {
-  ssr: false,
+    ssr: false,
 });
 
 export default function AddSkills({ setSkills, skills, htitle, handleChange, formData, handleQuillChange }) {
@@ -28,33 +28,6 @@ export default function AddSkills({ setSkills, skills, htitle, handleChange, for
         setSkills(skills.filter((_, i) => i !== index));
     };
 
-    // Save advantage (example)
-    const saveAdvantage = (index) => {
-        console.log("Saving advantage:", skills[index]);
-        // Add API call here
-    };
-
-    // Quill modules & formats
-    const quillModules = {
-        toolbar: [
-            [{ font: [] }],
-            [{ size: [] }],
-            [{ header: [1, 2, 3, 4, 5, 6, false] }],
-            ["bold", "italic", "underline", "strike", "blockquote"],
-            [{ list: "ordered" }, { list: "bullet" }],
-            [{ indent: "-1" }, { indent: "+1" }],
-            [{ align: [] }],
-            [{ color: [] }, { background: [] }],
-            ["link", "image", "video"],
-            ["clean"],
-        ],
-    };
-
-    const quillFormats = [
-        "header", "font", "size", "bold", "italic", "underline", "strike", "blockquote",
-        "list", "bullet", "indent", "align", "color", "background", "link", "image", "video"
-    ];
-
     return (
         <div>
 
@@ -68,7 +41,7 @@ export default function AddSkills({ setSkills, skills, htitle, handleChange, for
                     name="skillname"
                     value={formData.skillname}
                     onChange={(e) => {
-                       handleChange(e);
+                        handleChange(e);
                     }}
                     placeholder="Enter name"
                     className="w-full p-3 rounded-md bg-gray-100 text-gray-700 
@@ -98,7 +71,14 @@ export default function AddSkills({ setSkills, skills, htitle, handleChange, for
             {/* skills List */}
             {skills.map((adv, index) => (
                 <div key={index} className="grid grid-cols-1 gap-4 mb-6 border-b border-gray-200 pb-4">
-
+                    <button
+                        type="button"
+                        onClick={() => deleteAdvantage(index)}
+                        className="bg-red-500 text-white rounded-full p-1 hover:bg-red-700"
+                        title="Delete Fact"
+                    >
+                        <MdDelete />
+                    </button>
                     {/* Title */}
                     <div>
                         <label className="block text-[#CC2828] font-medium mb-2">Title</label>

@@ -20,7 +20,31 @@ import Eligibility from "@/commons/list/Eligibility";
 import Curriculum from "@/commons/list/Curriculum";
 import Skills from "@/commons/list/Skills";
 import AdminLayout from "../common/AdminLayout";
-function Index({ data }) {
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import Listing from "@/pages/api/Listing";
+function Index() {
+    const router = useRouter();
+    const id = router.query.slug;
+    console.log(id);
+    const [data, setData] = useState("");
+
+    console.log(data)
+    useEffect(() => {
+        if (!id) return; // wait for router to provide slug
+
+        const fetchData = async () => {
+            try {
+                const main = new Listing();
+                const response = await main.CourseGet(id);
+                setData(response.data.data); // set your fetched data
+            } catch (error) {
+                console.error("Error fetching course:", error);
+            }
+        };
+
+        fetchData();
+    }, [id]);
     return (<>
         <AdminLayout>
             <div className="py-4 md:py-8 ">
@@ -29,7 +53,7 @@ function Index({ data }) {
                 </div>
                 <div className="w-full flex items-start pt-10 justify-center h-full relative flex-wrap">
                     <Aboutdetails about={data?.CourseData?.about} />
-                    <CourseFees />
+                    <CourseFees  />
                     <Approvals approvals={data?.CourseData?.approvals} approvalsdata={data?.approvalsData} />
                     <Ranking rankings={data?.CourseData?.rankings} />
                     <Eligibility />
@@ -52,8 +76,3 @@ function Index({ data }) {
     </>);
 }
 export default Index;
-
-
-export async function getServerSideProps(context) {
-    return fetchDetails(context, "course");
-}

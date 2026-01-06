@@ -7,6 +7,7 @@ import Link from "next/link";
 import { MdAdd, MdEdit } from "react-icons/md";
 import { Loader } from "@/common/Loader";
 import { useRouter } from "next/router";
+import { FaArrowLeft } from "react-icons/fa6";
 
 export default function Index() {
     const router = useRouter();
@@ -48,9 +49,17 @@ export default function Index() {
         <AdminLayout page={"Specialization Panel"}>
             <div className="min-h-screen p-5 lg:p-[30px]">
                 <div className="flex flex-col md:flex-row justify-between md:items-center mb-4 lg:mb-5">
+                       <Link
+                                                href={`/admin/courses?university_id=${university_id}`}
+                                                className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#FF1B1B] hover:bg-[#ad0e0e] text-white font-semibold transition-all"
+                                            >
+                                                <FaArrowLeft size={20} />
+                                                Back To Course Page
+                                            </Link>
                     <h1 className="capitalize font-inter text-lg lg:text-2xl font-bold text-[#FF1B1B] tracking-[-0.04em] mb-6">
                         Manage Specialization
                     </h1>
+                    
                     <Link href={`/admin/specialization/add?university_id=${university_id}&course_id=${course_id}`}
                         className="cursor-pointer text-[#ffffff] p-2  bg-[#FF1B1B] bg-opacity-10 hover:bg-opacity-30 rounded inline-flex items-center justify-center"
                     >
@@ -142,7 +151,7 @@ export default function Index() {
 
                                                 {/* View Button */}
                                                 <Link
-                                                    href={`/admin/university/${item?.slug}`}
+                                                    href={`/admin/specialization/${item?.slug}`}
                                                     target="_blank"
                                                     className="px-4 py-2 rounded bg-[#FF1B1B] hover:bg-[#ad0e0e] text-white"
                                                 >

@@ -34,7 +34,7 @@ export default function FAQSection({ Faq }) {
                     >
                         <button
                             className="w-full flex justify-between items-center px-4 py-4 text-left"
-                            onClick={() => toggle(index)}
+                            onClick={() => ToggleFaq(index)}
                         >
                             <span className="font-poppins font-[400] text-[14px] md:text-[20px] text-[#282529] max-w-[200px] sm:max-w-[390px] md:max-w-[800px]">
                                 {item.question}

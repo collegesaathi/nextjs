@@ -25,13 +25,6 @@ const AddPattern = ({ setPatterns, patterns, formData, handleQuillChange, handle
     setPatterns(updated);
   };
 
-  const handlePatternSubmit = (index) => {
-    console.log("Saving pattern:", patterns[index]);
-  };
-
-  const openPatternEdit = (item) => {
-    console.log("Editing pattern:", item);
-  };
 
   // ReactQuill modules & formats
   const quillModules = {
