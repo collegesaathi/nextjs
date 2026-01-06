@@ -295,7 +295,7 @@ function Index() {
             payload.append("rankings_name", formData.rankings_name || " ");
             payload.append("creteria", formData.creteria || " ")
             payload.append("category", formData.category || " ")
-            const NRIDATA = formData.nri.map(item => ({
+            const NRIDATA = formData?.nri?.map(item => ({
                 title: item.title,
                 description: item.description,
                 images_alt: item?.images_alt
@@ -307,7 +307,7 @@ function Index() {
                 }
             });
 
-            const IndiaDATA = formData.indian.map(item => ({
+            const IndiaDATA = formData?.indian?.map(item => ({
                 title: item.title,
                 description: item.description,
                 images_alt: item?.images_alt
@@ -333,7 +333,7 @@ function Index() {
             payload.append("patternname", formData.patternname || " ");
             payload.append("patterndescription", formData.patterndescription || " ");
             payload.append("bottompatterndesc", formData.bottompatterndesc || " ");
-            const cleanPatterns = patterns.map(item => ({
+            const cleanPatterns = patterns?.map(item => ({
                 patternName: item.patternName,
                 percentage: item.percentage,
                 description: item.description,

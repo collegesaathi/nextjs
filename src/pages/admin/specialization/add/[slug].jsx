@@ -298,7 +298,7 @@ function Index() {
             payload.append("fees_title", formData.fees_title || "")
             payload.append("category", formData.category || "")
             payload.append("desccreteria", formData.desccreteria || "")
-            const NRIDATA = formData.nri.map(item => ({
+            const NRIDATA = formData?.nri?.map(item => ({
                 title: item.title,
                 description: item.description,
                 images_alt: item?.images_alt
@@ -309,7 +309,7 @@ function Index() {
                     payload.append(`nriimages[${index}]`, item.images);
                 }
             });
-            const IndiaDATA = formData.indian.map(item => ({
+            const IndiaDATA = formData?.indian?.map(item => ({
                 title: item.title,
                 description: item.description,
                 images_alt: item?.images_alt
@@ -368,12 +368,12 @@ function Index() {
             payload.append("servicedesc", formData.servicedesc || "");
             payload.append("onlinedesc", formData.onlinedesc || "");
             payload.append("onlinetitle", formData.onlinetitle || "");
-            const cleanonlines = onlines.map(item => ({
+            const cleanonlines = onlines?.map(item => ({
                 title: item.title,
                 content: item.content
             }));
             payload.append("onlines", JSON.stringify(cleanonlines || []));
-            const cleanServices = services.map(item => ({
+            const cleanServices = services?.map(item => ({
                 title: item.title,
                 content: item.content,
                 icons_alt: item?.icons_alt,
