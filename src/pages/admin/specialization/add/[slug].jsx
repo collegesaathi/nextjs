@@ -498,8 +498,8 @@ function Index() {
                 console.error("Semester JSON parse error:", error);
             }
         }
-        const indianData = data?.eligibilitycriteria?.IndianCriteria;
-        const nriData = data?.eligibilitycriteria?.NRICriteria;
+        const indianData = data?.eligibilitycriteria?.IndianCriteria || [];
+        const nriData = data?.eligibilitycriteria?.NRICriteria || [];
         const carrerData = (data?.career?.Career ? data?.career?.Career : safeParse(data?.career?.Career));
         setFormData({
             slug: data?.slug,
@@ -519,7 +519,6 @@ function Index() {
             rankings_description: data?.rankings?.description,
             creteria: data?.eligibilitycriteria?.title,
             desccreteria: data?.eligibilitycriteria?.description,
-            //  indian: data?.eligibilitycriteria?.IndianCriteria,
             advantagesname: data?.advantages?.title,
             advantagesdescription: data?.advantages?.description,
             factsname: data?.facts?.title,
