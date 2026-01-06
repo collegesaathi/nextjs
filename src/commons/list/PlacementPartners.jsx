@@ -18,7 +18,7 @@ const partners = [
 
 export default function PlacementPartners({ partners, PlacementPartners }) {
 
-
+console.log("partners" ,partners)
   const swiperRef = useRef(null);
 
   const [progress, setProgress] = useState(0);

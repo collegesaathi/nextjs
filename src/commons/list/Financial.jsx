@@ -29,7 +29,6 @@ function Financial({ financialAid, name, scholarshipData }) {
                     </h3>
                   </div>
 
-                  {/* --- RESPONSIVE SCROLL WRAPPER --- */}
 
 
                   <div className="overflow-x-auto">

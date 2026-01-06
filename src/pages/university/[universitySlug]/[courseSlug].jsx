@@ -31,6 +31,7 @@ import Listing from "@/pages/api/Listing";
 import EnquiryForm from "@/pages/common/EnquiryForm";
 import EnquiryBox from "@/commons/list/EnquiryForm";
 function Index({ data }) {
+    console.log("data"  , data)
     const uniId = data?.CourseData?.id;
     const [loading, setLoading] = useState(false);
     const [courseData, setCourseData] = useState([])
@@ -74,7 +75,9 @@ function Index({ data }) {
                         {data?.CourseData?.advantages && (<Advantages advantages={data?.CourseData?.advantages} />)}
                         {data?.CourseData?.rankings && (<Ranking rankings={data?.CourseData?.rankings} />)}
                         <CoursesSwiper courseData={courseData} name={"specialisation"} title={`${data?.CourseData?.name} - Specialisation`} />
-                        {/* <Eligibility eligibilitycriteria={data?.CourseData?.eligibilitycriteria} /> */}
+                        {data?.CourseData?.eligibilitycriteria &&(
+                            <Eligibility eligibilitycriteria={data?.CourseData?.eligibilitycriteria} />
+                        )}
                         <EnquiryBox />
                         <Curriculum curriculum={data?.CourseData?.curriculum} />
                         {data?.CourseData?.certificates && (<SampleCertificate certificates={data?.CourseData?.certificates} />)}
@@ -84,7 +87,7 @@ function Index({ data }) {
                         <ExaminationPattern examPatterns={data?.CourseData?.examPatterns} />
                         <Financial financialAid={data?.CourseData?.financialAid} />
                         <CarreerOppurtunity career={data?.CourseData?.career} />
-                        <PlacementPartners placements={data?.CourseData?.partners} PlacementPartners={data?.placementPartners} />
+                        <PlacementPartners partners={data?.CourseData?.partners} PlacementPartners={data?.placementPartners} />
                         <CareerServices services={data?.CourseData?.services} />
                         <StepsSection admissionProcess={data?.CourseData?.admissionprocess} />
                         <FAQSection Faq={data?.CourseData?.faq?.faqs} />

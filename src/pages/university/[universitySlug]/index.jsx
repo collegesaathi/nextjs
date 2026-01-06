@@ -29,6 +29,7 @@ import { fetchDetails } from "@/lib/ssrFetch";
 
 export default function UniversityPage({ data }) {
   const router = useRouter();
+  console.log("data" ,data)
   const uniId = data?.university?.id;
   const [loading, setLoading] = useState(false);
   const [courseData, setCourseData] = useState([]);
@@ -135,6 +136,7 @@ console.log("Scholarship Data:", scholarshipData);
               {data?.university?.universityCampuses && (
                 <UniversityCampusCarousel
                   universityCampuses={data?.university?.universityCampuses}
+                  campusInternationList={data?.university?.campusInternationList}
                   name={data?.university?.name}
                 />
               )}
