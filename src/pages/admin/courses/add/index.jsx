@@ -67,7 +67,7 @@ function Index() {
         {
             title: "Semester I",
             subjects: [
-                { description: "" }
+                { description: "" ,credit :"" }
             ]
         }
     ]);
@@ -795,13 +795,11 @@ function Index() {
                                     required
                                 />
                             </div>
-
-
-                            <ReactQuillEditor
+                            {/* <ReactQuillEditor
                                 label="Description"
                                 desc={formData.desccreteria}
                                 handleBioChange={(val) => handleQuillChange("desccreteria", val)}
-                            />
+                            /> */}
                             <div className="flex mb-5 bg-gray-100 rounded-lg overflow-hidden">
                                 <button
                                     type="button"

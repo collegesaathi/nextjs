@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import Heading from "@/common/Heading";
+import { sanitizeHtml } from "@/common/sanitizeHtml";
 
 export default function StepsSection({ admissionProcess }) {
     const [activeStep, setActiveStep] = useState(1); // default selected step
@@ -28,8 +29,8 @@ export default function StepsSection({ admissionProcess }) {
         </div>
 
         <div
-          className="font-poppins text-[14px] sm:text-[16px] text-[#282529] leading-6 sm:leading-7 mb-4 [&_*]:!bg-transparent  break-words whitespace-normal"
-          dangerouslySetInnerHTML={{ __html: admissionProcess?.description || "" }}
+          className="font-poppins text-[14px] sm:text-[16px] text-[#282529] leading-6 sm:leading-7 mb-4 [&_*]:!bg-transparent "
+          dangerouslySetInnerHTML={{ __html: sanitizeHtml( admissionProcess?.description || "") || "" }}
         />
       </div>
 

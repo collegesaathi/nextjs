@@ -90,7 +90,7 @@ console.log("Scholarship Data:", scholarshipData);
               )}
 
               {courseData?.data?.length > 0 && (
-                <CourseFees courseData={courseData?.data} />
+                <CourseFees courseData={courseData?.data}        slug={`${data?.university?.slug}`} />
               )}
 
               {data?.university?.approvals && (

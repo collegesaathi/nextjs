@@ -7,6 +7,7 @@ import SVGIcon from '@/common/SVGIcon';
 import 'aos/dist/aos.css';
 
 export default function FAQSection({ Faq }) {
+    console.log("Faq" ,Faq)
 
     const [openIndex, setOpenIndex] = useState(null);
 

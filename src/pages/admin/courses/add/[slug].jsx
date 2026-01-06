@@ -74,7 +74,7 @@ function Index() {
         {
             title: "Semester I",
             subjects: [
-                { description: "" }
+                { description: "" ,credit:"" }
             ]
         }
     ]);
@@ -477,7 +477,7 @@ function Index() {
                 setSemesters(parsedSemesters?.length ? parsedSemesters : [
                     {
                         title: "Semester I",
-                        subjects: [{ description: "" }]
+                        subjects: [{ description: "" ,credit :"" }]
                     }
                 ]);
             } catch (error) {

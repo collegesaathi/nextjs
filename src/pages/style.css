@@ -1000,8 +1000,8 @@ select:focus {
 
 .custom-description h2{position:relative;font-family:"Oswald";font-style:normal;font-weight:600;font-size:48px;line-height:48px;text-transform:uppercase;color:#ffffff;margin-bottom:20px;}
 .custom-description p{font-family:"Poppins";font-weight:400;font-size:16px;line-height:25px;color:#000;margin-bottom: 1rem;}
-.custom-description a{font-family:"Oswald";font-style:normal;font-weight:600;font-size:18px;line-height:27px;text-align:right;text-transform:uppercase;color:#00a77e;}
-.custom-description a:hover{color:#ffffff;}
+.custom-description a{font-family:"Oswald";font-style:normal;font-weight:600;font-size:18px;line-height:27px;text-align:right;text-transform:uppercase;color:#000000;}
+.custom-description a:hover{color:#000000;}
 .custom-description ul {
   padding-left: 1.25rem;    /* list indent */
   margin-bottom: 1rem;

@@ -52,6 +52,8 @@ function Index({ data }) {
     useEffect(() => {
         fetchCourse(uniId)
     }, [uniId])
+
+    console.log("data" ,data)
     return (<>
         <Layout>
             <div className=" md:py-8 ">
@@ -68,14 +70,11 @@ function Index({ data }) {
 
                         {data?.CourseData?.about && (<Aboutdetails about={data?.CourseData?.about} />)}
                         {data?.CourseData?.fees && (<UpdatedFee fees={data?.CourseData?.fees} />)}
-
                         {data?.CourseData?.approvals && (<Approvals approvals={data?.CourseData?.approvals} approvalsdata={data?.approvalsData} />)}
                         {data?.CourseData?.advantages && (<Advantages advantages={data?.CourseData?.advantages} />)}
-
                         {data?.CourseData?.rankings && (<Ranking rankings={data?.CourseData?.rankings} />)}
                         <CoursesSwiper courseData={courseData} name={"specialisation"} title={`${data?.CourseData?.name} - Specialisation`} />
-
-                        <Eligibility eligibilitycriteria={data?.CourseData?.eligibilitycriteria} />
+                        {/* <Eligibility eligibilitycriteria={data?.CourseData?.eligibilitycriteria} /> */}
                         <EnquiryBox />
                         <Curriculum curriculum={data?.CourseData?.curriculum} />
                         {data?.CourseData?.certificates && (<SampleCertificate certificates={data?.CourseData?.certificates} />)}
@@ -88,7 +87,7 @@ function Index({ data }) {
                         <PlacementPartners placements={data?.CourseData?.partners} PlacementPartners={data?.placementPartners} />
                         <CareerServices services={data?.CourseData?.services} />
                         <StepsSection admissionProcess={data?.CourseData?.admissionprocess} />
-                        <FAQSection faq={data?.CourseData?.faq} />
+                        <FAQSection Faq={data?.CourseData?.faq?.faqs} />
                         <SimilarUniversities />
                         <Universities />
                         <Reviews />

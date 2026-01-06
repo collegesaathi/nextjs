@@ -92,11 +92,21 @@ export default function Addcareer({ setCareers, Careers, htitle  ,formData ,hand
 
             {/* Careers List */}
             {Careers?.map((adv, index) => (
-                <div key={index} className="grid grid-cols-1 gap-4 mb-6 border-b border-gray-200 pb-4">
+                <div key={index} className="grid grid-cols-2 gap-4 mb-6 border-b border-gray-200 pb-4">
 
                     {/* Title */}
                     <div>
-                        <label className="block text-[#CC2828] font-medium mb-2">Title</label>
+                             <div className="flex justify-between items-center mb-2">
+                            <label className="block text-[#CC2828] font-medium">Title</label>
+                            <button
+                            type="button"
+                                onClick={() => deleteAdvantage(index)}
+                                className="bg-red-500 text-white rounded-full p-1 hover:bg-red-700"
+                                title="Delete Advantage"
+                            >
+                                <MdDelete />
+                            </button>
+                        </div>
                         <input
                             type="text"
                             value={adv.title}
@@ -107,8 +117,7 @@ export default function Addcareer({ setCareers, Careers, htitle  ,formData ,hand
                     </div>
 
                     {/* Description */}
-                    <div>
-                        <div className="flex justify-between items-center mb-2">
+                        {/* <div className="flex justify-between items-center mb-2">
                             <label className="block text-[#CC2828] font-medium">Description</label>
                             <button
                             type="button"
@@ -118,9 +127,9 @@ export default function Addcareer({ setCareers, Careers, htitle  ,formData ,hand
                             >
                                 <MdDelete />
                             </button>
-                        </div>
+                        </div> */}
 
-                        <div className="border border-gray-300 rounded-md">
+                        {/* <div className="border border-gray-300 rounded-md">
                             <ReactQuill
                                 value={adv.description}
                                 onChange={(value) => handleAdvantageChange(index, "description", value)}
@@ -129,8 +138,7 @@ export default function Addcareer({ setCareers, Careers, htitle  ,formData ,hand
                                 theme="snow"
                                 className="editor-wrapper"
                             />
-                        </div>
-                    </div>
+                        </div> */}
                     <div>
                         <label className="block text-[#CC2828] font-medium mb-2">Salary</label>
                         <input

@@ -1,7 +1,19 @@
 import Heading from "@/common/Heading";
 import Link from "next/link";
 
-function CourseFees({ courseData }) {
+function CourseFees({ courseData ,slug }) {
+    const showPerSemester = courseData?.some(
+        (row) => row?.fees?.semester_wise_fees
+    );
+
+    const showTotalFees = courseData?.some(
+        (row) => row?.fees?.annual_fees
+    );
+
+    const showOneTimeFees = courseData?.some(
+        (row) => row?.fees?.tuition_fees
+    );
+
     return (
         <>
             <section className="w-full px-2 md:px-6 py-6 mx-auto" id="fee-section">
@@ -11,54 +23,62 @@ function CourseFees({ courseData }) {
                         <table className="w-full  font-poppins tracking-wide">
                             <thead>
                                 <tr className="bg-red-600 text-white h-[65px]">
-                                    <th
-                                        className={`py-1 md:py-3 px-1 md:px-4 text-left font-[500]  min-w-[150px] text-[14px] md:text-[17px] leading-[25px] 
-                                              `}
-                                    >
+                                    <th className="py-3 px-4 text-left min-w-[150px]">
                                         Course
                                     </th>
-                                    <th
-                                        className={`py-1 md:py-3 px-1 md:px-4 text-left font-[500] min-w-[150px] text-[14px] md:text-[17px] leading-[25px] 
-                                              `}
-                                    >
-                                        Per Semester
-                                    </th>
-                                    <th
-                                        className={`py-1 md:py-3 px-1 md:px-4 text-left font-[500] min-w-[150px] text-[14px] md:text-[17px] leading-[25px] 
-                                              `}
-                                    >
-                                        Total Fees
-                                    </th>
 
-                                    <th
-                                        className={`py-1 md:py-3 px-1 md:px-4 text-left font-[500]  min-w-[150px] text-[14px] md:text-[17px] leading-[25px] 
-                                              `}
-                                    >
-                                        One Time Fees
-                                    </th>
+                                    {showPerSemester && (
+                                        <th className="py-3 px-4 text-left min-w-[150px]">
+                                            Per Semester
+                                        </th>
+                                    )}
+
+                                    {showTotalFees && (
+                                        <th className="py-3 px-4 text-left min-w-[150px]">
+                                            Total Fees
+                                        </th>
+                                    )}
+
+                                    {showOneTimeFees && (
+                                        <th className="py-3 px-4 text-left min-w-[150px]">
+                                            One Time Fees
+                                        </th>
+                                    )}
                                 </tr>
                             </thead>
 
+
                             <tbody>
-                                {
-                                    courseData && courseData?.map((row, index) => (
-                                        <tr key={index} className="border-t hover:bg-[#f9fafb]">
-                                            <td className="py-3 px-1 md:px-4 text-[12px] md:text-[17px] border-r-2 border-[#f47c80] underline">
-                                         <Link href={`/course/${row?.slug}`}>
+                                {courseData?.map((row, index) => (
+                                    <tr key={index} className="border-t hover:bg-[#f9fafb]">
+
+                                        <td className="py-3 px-4 border-r underline">
+                                            <Link href={`/university/${slug}/${row?.slug}`}>
                                                 {row?.name}
-                                         </Link>
-                                            </td>
-                                            <td className="py-3 px-1 md:px-4 border-r-2 text-[12px] md:text-[17px] border-[#f47c80]">
-                                                {row?.fees?.semester_wise_fees}
-                                            </td>
+                                            </Link>
+                                        </td>
 
-                                            <td className="py-3 px-1 md:px-4 border-r-2 text-[12px] md:text-[17px] border-[#f47c80]">    {row?.fees?.annual_fees}</td>
-                                            <td className="py-3 px-1 md:px-4 border-r-2 text-[12px] md:text-[17px] border-[#f47c80]">    {row?.fees?.tuition_fees}</td>
+                                        {showPerSemester && (
+                                            <td className="py-3 px-4 border-r">
+                                                {row?.fees?.semester_wise_fees || "-"}
+                                            </td>
+                                        )}
 
-                                        </tr>
-                                    ))
-                                }
+                                        {showTotalFees && (
+                                            <td className="py-3 px-4 border-r">
+                                                {row?.fees?.annual_fees || "-"}
+                                            </td>
+                                        )}
+
+                                        {showOneTimeFees && (
+                                            <td className="py-3 px-4 border-r">
+                                                {row?.fees?.tuition_fees || "-"}
+                                            </td>
+                                        )}
+                                    </tr>
+                                ))}
                             </tbody>
+
                         </table>
                     </div>
                 </div>
