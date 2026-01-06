@@ -34,15 +34,15 @@ export default function HeroGallery() {
     return (
 
 
-        <div className="mx-auto container sm:container md:container xl:max-w-[1230px]  px-4 py-4 md:mt-20 lg:mt-20 " >
+        <div className="mx-auto container sm:container md:container xl:max-w-[1230px]  px-2 md:px-4 py-4 md:mt-20 lg:mt-20 " >
             <div className="w-full bg-white overflow-hidden">
 
 
 
-                <div className="block md:hidden pt-2">
+                <div className="block lg:hidden pt-2">
 
 
-                    <div className="grid grid-cols-3 gap-3 px-2">
+                    <div className="grid grid-cols-3 gap-3 md:px-2">
                         {mobileImages.map((img, i) => (
 
                             <div key={`mobile-${i}`} className={`flex flex-col gap-2 ${i === 1 ? 'mt-8' : ''}`}>
@@ -77,7 +77,7 @@ export default function HeroGallery() {
                 </div>
 
                 {/* desktop view */}
-                <div className="hidden md:block ">
+                <div className="hidden lg:block ">
 
                     {/* GRID CONTAINER - 6 Columns */}
                     <div className="relative max-w-[1400px] mx-auto pt-10 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-9 gap-4">

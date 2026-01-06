@@ -6,10 +6,23 @@ import AwardsCarousel from "../home/AwardsCarousel";
 import CultureBenefits from "./CultureBenefits";
 import OfficeSection from "./OfficeSection";
 import Link from "next/link";
+import Head from 'next/head'
 
 
 function Index() {
     return (<>
+        <Head>
+            <title>Careers at Collegesathi | Join India’s Growing EdTech Platform</title>
+            <meta
+                name="description"
+                content="Explore career opportunities at Collegesathi. Work with a fast-growing education platform shaping the future of online learning in India."
+            />
+
+            <meta
+                name="keywords"
+                content=""
+            />
+        </Head>
 
         <Layout>
 

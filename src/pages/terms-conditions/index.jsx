@@ -2,9 +2,23 @@
 import Link from "next/link";
 import Layout from "../components/Layout";
 import ContactSection from "../home/ContactSection";
+import Head from 'next/head'
 
 export default function TermsConditions() {
-    return (    
+    return ( 
+        <>  
+               <Head>
+            <title>Terms & Conditions | Collegesathi</title>
+            <meta
+                name="description"
+                content="Review the terms and conditions governing the use of Collegesathi’s website, services and educational resources."
+            />
+
+            <meta
+                name="keywords"
+                content=""
+            />
+        </Head>
         <Layout>
             <div className="mx-auto container sm:container md:container xl:max-w-[1230px]   px-2 md:px-4 py-4 md:mt-20 lg:mt-20 ">
                 {/* Breadcrumb */}
@@ -267,5 +281,6 @@ export default function TermsConditions() {
 
             </div>
         </Layout>
+        </>
     );
 }

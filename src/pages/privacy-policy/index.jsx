@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Layout from "../components/Layout";
 import Link from "next/link";
+import Head from 'next/head'
 
 export default function PrivacyPolicy() {
 const sections = [
@@ -72,6 +73,19 @@ const scrollToSection = (id) => {
 };
 
     return (
+        <>
+          <Head>
+            <title>Privacy Policy | Collegesathi</title>
+            <meta
+                name="description"
+                content="Read Collegesathi’s privacy policy to understand how we collect, use and protect your personal information."
+            />
+
+            <meta
+                name="keywords"
+                content=""
+            />
+        </Head>
         <Layout>
             <div className="mx-auto container sm:container md:container xl:max-w-[1230px]  px-4 py-4 md:mt-20 lg:mt-20 ">
                 {/* Breadcrumb */}
@@ -484,5 +498,6 @@ Last updated on 03 December 2025
                 </div>
             </div>
         </Layout>
+        </>
     );
 }

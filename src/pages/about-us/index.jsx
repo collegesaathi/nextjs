@@ -12,6 +12,8 @@ import WhyChooseUs from "./WhyChooseUs";
 import AcrossIndia from "./AcrossIndia";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import Head from 'next/head'
+import CardStack from "./CardStack";
 
 
 function Index() {
@@ -26,6 +28,18 @@ function Index() {
   }, []);
 
     return (<>
+    <Head>
+            <title>About Collegesathi | Trusted Platform for Online Degrees in India</title>
+            <meta
+                name="description"
+                content="Learn about Collegesathi, our mission and how we help students choose the right UGC-approved online degree programs."
+            />
+
+            <meta
+                name="keywords"
+                content=""
+            />
+        </Head>
 
         <Layout>
 {/* 
@@ -39,6 +53,7 @@ function Index() {
                 <IndustryExperts />
                 <AcrossIndia />
                 <WhyChooseUs/>
+                {/* <CardStack /> */}
                 <ContactSection/>
             {/* </div> */}
 

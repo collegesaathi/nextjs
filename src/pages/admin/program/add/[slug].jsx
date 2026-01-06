@@ -484,7 +484,7 @@ function Index() {
     }, [Id])
 
     console.log(data)
-     console.log("categoryid",data.category_id)
+     console.log("categoryid",data?.category_id)
      console.log("career",data?.careers?.title)
 
     useEffect(() => {
@@ -497,7 +497,7 @@ function Index() {
             position: data?.position,
             specialisationdesc: data?.specialisationdesc,
             specialisationtitle: data?.specialisationtitle,
-            category_id: data.category_id,
+            category_id: data?.category_id,
             conclusion: data?.conclusion,
             universitybtmdesc: data?.universitybtmdesc,
             universitydesc: data?.universitydesc,
@@ -586,6 +586,7 @@ function Index() {
         setSelectedPartners(data?.placement?.placement_ids);
         setFacts(data?.highlights?.Highlights?.length ? data?.highlights?.Highlights : [{ name: "", description: "" }]);
         setchoose(data?.choose?.choose?.length ? data?.choose?.choose : [{ title: "", image: "" }]);
+        setFaqs(data?.faqs?.faqs?.length ? data?.faqs?.faqs:[{question:"",answer:""}])
         setpurpuse(data?.choose?.purpuse?.length ? data?.choose?.purpuse : [{ name: "", desc: "", image: "" }]);
 
 
@@ -818,7 +819,7 @@ function Index() {
                                 <div className="relative">
                                     <select
                                         name="categroy_id"
-                                        value={formData?.category_id}
+                                        value={formData.categroy_id}
                                         onChange={handleChange}
                                         className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
                                     >
