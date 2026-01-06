@@ -65,7 +65,7 @@ function Addcurriculum({ setCurriculum, curriculum, }) {
                         }
                         className="w-full bg-white text-[#727272] border rounded-[10px] px-4 py-2 focus:outline-none"
                     />
-                    {campus.image && (
+                    {/* {campus.image && (
                         <div className="mt-2">
                             <ImagePreview
                                 image={
@@ -75,7 +75,7 @@ function Addcurriculum({ setCurriculum, curriculum, }) {
                                 }
                             />
                         </div>
-                    )}
+                    )} */}
                 </div>
 
                 {/* Description */}

@@ -3,39 +3,40 @@ import Layout from "@/pages/components/Layout";
 import Image from "next/image";
 import SideBarBlog from "../SideBarBlog";
 import HighPay from "../HighPay";
+import ComparisionTable from "../ComparisionTable";
+import ConnectExpertForm from "@/pages/programs/ConnectExpertForm";
+import styles from "../../../styles/Blog.module.css" // Assuming CSS Module usage
+import JobProfessions from "../JobProfessions";
 
 export default function Blog() {
-   
-  
-
     return (
         <Layout>
-            <div className="mx-auto container xl:max-w-[1230px] px-4 py-4 md:mt-40">
-                
-       
-                <nav className="flex items-center gap-2 text-sm text-gray-500 mb-6">
-                    <Link href="/" className=" text-[#EE1E24] hover:text-red-500">Home</Link>
-                    <span>&gt;</span>
-                    <Link href="/blog" className=" text-[#EE1E24] hover:text-red-500">Blog</Link>
-                    <span>&gt;</span>
-                    <span className="text-[#282529]">Top High-Paying Job In India 2025 Edition</span>
+            <div className={styles.blogWrapper}>
+                {/* Breadcrumb Navigation */}
+                <nav className={styles.breadcrumbNav}>
+                    <Link href="/" className={styles.redLink}>Home</Link>
+                    <span className={styles.separator}>&gt;</span>
+                    <Link href="/blog" className={styles.redLink}>Blog</Link>
+                    <span className={styles.separator}>&gt;</span>
+                    <span className={styles.currentPage}>Top High-Paying Job In India 2025 Edition</span>
                 </nav>
 
-      
-            
+                {/* Main Content Grid */}
+                <div className={styles.mainGrid}>
+                    <aside className={styles.sidebarSection}>
+                        <SideBarBlog />
+                    </aside>
 
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
-                    
-           
-                    <SideBarBlog />
-                  
-
-        
-                    <main className="lg:col-span-9">
-                        
-                <HighPay />
+                    <main className={styles.contentSection}>
+                        <HighPay />
+                       <div id="comparison-section">
+                         <ComparisionTable /></div> 
+                       
+                        <ConnectExpertForm />
+                        <div id="professions-section">
+                            <JobProfessions />
+                        </div>
                     </main>
-
                 </div>
             </div>
         </Layout>

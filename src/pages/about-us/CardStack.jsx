@@ -59,10 +59,10 @@ export default function CardStack() {
 
   // Icons only for Desktop
   const SIDE_ICONS = [
-    { id: 0, x: config.iconDist, y: -config.cardH * 0.6, icon: "💳" }, 
-    { id: 1, x: config.iconDist + 20, y: config.cardH * 0.4, icon: "📈" },  
-    { id: 2, x: -config.iconDist, y: -config.cardH * 0.5, icon: "📦" },  
-    { id: 3, x: -(config.iconDist + 20), y: config.cardH * 0.6, icon: "🛡️" },  
+    { id: 0, x: config.iconDist, y: -config.cardH * 0.6, icon: "/images/about/cardicon1.png" }, 
+    { id: 1, x: config.iconDist + 20, y: config.cardH * 0.4, icon: "/images/about/cardicon1.png" },  
+    { id: 2, x: -config.iconDist, y: -config.cardH * 0.5,icon: "/images/about/cardicon1.png"},  
+    { id: 3, x: -(config.iconDist + 20), y: config.cardH * 0.6, icon: "/images/about/cardicon1.png"},  
   ];
 
   const stack = [
@@ -121,7 +121,7 @@ export default function CardStack() {
                 key={item.id}
                 animate={{ 
                   scale: isActive ? 1.1 : 1, 
-                  opacity: isActive ? 1 : 0.1,
+                  opacity: isActive ? 1 : 0.5,
                   x: item.x,
                   y: item.y 
                 }}
@@ -129,13 +129,21 @@ export default function CardStack() {
                   width: config.iconSize,
                   height: config.iconSize,
                   background: isActive 
-                    ? `linear-gradient(white, white) padding-box, linear-gradient(to right, ${activeAccent[0]}, ${activeAccent[1]}) border-box`
+                    ? `linear-gradient(white, white)`
                     : "white",
-                  border: "2px solid transparent"
+                 border: isActive ? "none" : "1px solid #C9C9C9",
                 }}
-                className="absolute rounded-xl shadow-xl flex items-center justify-center text-2xl transition-all duration-700 bg-white"
+                className="absolute    flex items-center justify-center text-xl transition-all duration-700 bg-white"
               >
-                {item.icon}
+             <img 
+    src={item.icon} 
+    alt="icon"
+    style={{ 
+      // Jab isActive false hoga toh filter grayscale(100%) apply ho jayega
+      filter: isActive ? "grayscale(0%) " : "grayscale(100%) ",
+      transition: "filter 0.7s ease" // Smooth transition ke liye
+    }} 
+  />
               </motion.div>
             );
           })}
