@@ -290,6 +290,7 @@ function Index() {
             payload.append("anuual_fees", formData.anuual_fees || "")
             payload.append("semester_fees", formData.semester_fees || "")
             payload.append("approvals_name", formData.approvals_name || "");
+            payload.append("advantages", JSON.stringify(advantages || []));
             payload.append("approvals_desc", formData.approvals_desc || "");
             payload.append("approvals", JSON.stringify(selectedApprovals));
             payload.append("rankings_description", formData.rankings_description || "");

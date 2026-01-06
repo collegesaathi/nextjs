@@ -324,7 +324,8 @@ function Index() {
             payload.append("certificatedescription", formData.certificatedescription || " ");
             payload.append("certificatemage", formData.certificatemage || " ");
             payload.append("image_alt", formData.image_alt || " ")
-            payload.append("advantages", JSON.stringify(advantages || []));
+         payload.append("advantages", JSON.stringify(advantages || []));
+
             payload.append("advantagesname", formData.advantagesname || " ");
             payload.append("advantagesdescription", formData.advantagesdescription || " ");
             payload.append("skills", JSON.stringify(skills || []));
