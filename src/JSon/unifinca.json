@@ -1,0 +1,40 @@
+{
+  "manipal-online-university": [
+    {
+      "category": "Defence personnel",
+      "slug": "defence-personnel",
+      "scholarship_credit": "20%",
+      "eligibility_documents": "Personnel / Service / IC number"
+    },
+    {
+      "category": "Alumni of Manipal University Jaipur",
+      "slug": "manipal-university-jaipur-alumni",
+      "scholarship_credit": "20%",
+      "eligibility_documents": "UG/PG alumni of Manipal University Jaipur"
+    },
+    {
+      "category": "Government employees",
+      "slug": "government-employees",
+      "scholarship_credit": "10%",
+      "eligibility_documents": "Identity card"
+    },
+    {
+      "category": "Merit (80% and above in bachelor's degree)",
+      "slug": "merit-80-percent-and-above",
+      "scholarship_credit": "10%",
+      "eligibility_documents": "Mark sheet"
+    },
+    {
+      "category": "Fee concession (Full program fee)",
+      "slug": "fee-concession-full-program-fee",
+      "scholarship_credit": "10%",
+      "eligibility_documents": "Upfront payment of full program fee"
+    },
+    {
+      "category": "Fee concession (Annual fee)",
+      "slug": "fee-concession-annual-fee",
+      "scholarship_credit": "5%",
+      "eligibility_documents": "Upfront payment of annual fee"
+    }
+  ]
+}

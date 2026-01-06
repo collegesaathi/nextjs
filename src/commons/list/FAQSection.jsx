@@ -27,7 +27,7 @@ export default function FAQSection({ Faq }) {
                     <p className="text-center text-gray-500 mt-4">No FAQs available.</p>
                 )}
 
-                  {Faq?.map((item, index) => (
+                {Faq?.map((item, index) => (
                     <div
                         key={index}
                         className="bg-white rounded-[10px] mb-8 shadow-md border-l-[13px] border-red-500 transition-all duration-300"
@@ -40,18 +40,16 @@ export default function FAQSection({ Faq }) {
                                 {item.question}
                             </span>
                             <div
-                                className={`w-[30px] h-[30px] flex items-center justify-center border border-[#ED2024] rounded-full transition-all duration-200 text-[#ED2024] ${item.open ? 'rotate-45' : ''}`}
+                                className={`w-[30px] h-[30px] flex items-center justify-center border border-[#ED2024] rounded-full transition-all duration-200 text-[#ED2024] ${openIndex === index ? 'rotate-45' : ''}`}
                             >
                                 <SVGIcon name="plus" size={18} />
                             </div>
-
                         </button>
 
                         <div
-                            className={`transition-all duration-300 overflow-hidden ${item.open ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
-                                }`}
+                            className={`transition-all duration-300 overflow-hidden ${openIndex === index ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}`}
                         >
-                            {item.open && (
+                            {openIndex === index && (
                                 <div className="px-4 pb-4 text-[14px] md:text-[18px] text-[#282529]">
                                     {item.answer}
                                 </div>
@@ -59,6 +57,7 @@ export default function FAQSection({ Faq }) {
                         </div>
                     </div>
                 ))}
+
             </div>
         </section>
     );

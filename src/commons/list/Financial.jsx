@@ -1,7 +1,8 @@
 import React from "react";
 import Heading from "@/common/Heading";
+import { sanitizeHtml } from "@/common/sanitizeHtml";
 
-function Financial({ financialAid, name }) {
+function Financial({ financialAid, name, scholarshipData }) {
   console.log(name)
   return (
     <>
@@ -13,7 +14,7 @@ function Financial({ financialAid, name }) {
                 <Heading title={financialAid?.title} />
                 <div
                   className="font-poppins text-[14px] sm:text-[16px] text-[#282529] leading-6 sm:leading-7 mb-4 custom-description"
-                  dangerouslySetInnerHTML={{ __html: financialAid?.description || "" }}
+                  dangerouslySetInnerHTML={{ __html: sanitizeHtml(financialAid?.description || "")|| "" }}
                 />
               </div>
 
@@ -83,6 +84,44 @@ function Financial({ financialAid, name }) {
                       </tbody>
                     </table>
                   </div>
+                </div>
+              )}
+
+              {scholarshipData?.length > 1 && (
+                <div className="overflow-hidden mt-[30px]">
+                  <table className="w-full border-collapse font-poppins">
+                    {/* Header */}
+                    <thead>
+                      <tr>
+                        <th className="bg-[#ec1e24] text-white p-4 font-semibold text-[14px] md:text-[17px] border-r-2 border-[#f47c80] h-[65px] text-left w-4/12">
+                          Category
+                        </th>
+                        <th className="bg-[#ec1e24] text-white p-4 font-semibold text-[14px] md:text-[17px] border-r-2 border-[#f47c80] h-[65px] text-left w-4/12">
+                          Scholarship Credit
+                        </th>
+                        <th className="bg-[#ec1e24] text-white p-4 font-semibold text-[14px] md:text-[17px] h-[65px] text-left w-4/12">
+                          Eligibility / Documents
+                        </th>
+                      </tr>
+                    </thead>
+
+                    {/* Rows */}
+                    <tbody>
+                      {scholarshipData?.map((item, index) => (
+                        <tr key={index} className="border-b-2 border-[#f47c80]">
+                          <td className="bg-white border-r-2 border-l-2 border-[#f47c80] p-2 md:p-4 text-[11px] md:text-[17px] text-[#282529]">
+                            {item?.category}
+                          </td>
+                          <td className="bg-white border-r-2 border-[#f47c80] p-2 md:p-4">
+                            {item?.scholarship_credit}
+                          </td>
+                          <td className="bg-white border-r-2 border-[#f47c80] p-2 md:p-4">
+                            {item?.eligibility_documents}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
                 </div>
               )}
 

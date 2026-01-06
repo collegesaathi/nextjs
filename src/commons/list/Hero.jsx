@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import StarRating from "@/common/Rating";
+import { sanitizeHtml } from "@/common/sanitizeHtml";
 
 export default function Hero({ data, approvalsdata, exisitng }) {
   return (
@@ -14,44 +15,35 @@ export default function Hero({ data, approvalsdata, exisitng }) {
             {data?.name || ""}
           </h1>
           {/* BADGES */}
-          {data?.description?.length === 1 && (
+          {data?.description?.length > 0 && (
             <div className="flex flex-wrap gap-3 sm:gap-4 pt-4">
-            {data?.description?.map((item, index) => (
-  <div key={index} className="w-full sm:w-[48%] lg:w-[350px]">
-<div
-  className=""
-  dangerouslySetInnerHTML={{
-    __html: item?.text
-      // 1️⃣ ul first
-      ?.replace(
-        /<ul>/g,
-        '<ul class="flex flex-col gap-2">'
-      )
-      // 2️⃣ li second (open + text wrapper)
-      ?.replace(
-        /<li>/g,
-        `<li class="w-full min-h-[46px] rounded-[12px] border border-[#f8dbdd]
-        flex items-center justify-start  px-3 py-2">
-          <span class="ml-3 flex-shrink-0 text-green-600">✔</span>
-          <span class="mr-2 custom-description text-start font-poppins text-[12px] text-[#282529] leading-snug">`
-      )
-
-      // 3️⃣ li close LAST (close text)
-      ?.replace(
-        /<\/li>/g,
-        `</span>
-         </li>`
-      ),
-  }}
-/>
-
-
-  </div>
-))}
-
-
+              {data?.description?.map((item, index) => (
+                <div key={index} className="w-full sm:w-[48%] lg:w-[350px]">
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: sanitizeHtml( item?.text || "")
+                        // 1️⃣ ul styling
+                        ?.replace(
+                          /<ul>/g,
+                          '<ul class="flex flex-col gap-2">'
+                        )
+                        // 2️⃣ li open
+                        ?.replace(
+                          /<li>/g,
+                          `<li class="w-full min-h-[46px] rounded-[12px] border border-[#f8dbdd]
+                  flex items-start gap-3 px-3 py-2">
+                    <span class="flex-shrink-0 text-green-600 mt-1">✔</span>
+                    <span class="flex-1 custom-description text-start font-poppins text-[12px] text-[#282529] leading-snug break-words">`
+                        )
+                        // 3️⃣ li close
+                        ?.replace(/<\/li>/g, `</span></li>`),
+                    }}
+                  />
+                </div>
+              ))}
             </div>
           )}
+
 
 
 
@@ -112,7 +104,7 @@ export default function Hero({ data, approvalsdata, exisitng }) {
 
             {/* TOP BADGES */}
             <div className="absolute top-2 left-0 right-0 w-full flex gap-4 justify-between px-3 sm:px-6 md:px-10 pt-3">
-              <button className="min-w-[110px] sm:w-[160px] h-[32px] sm:h-[40px] rounded-[26px] bg-white shadow-md flex items-center justify-center text-xs sm:text-sm font-poppins gap-2 px-4 whitespace-nowrap">
+              <button className="min-w-[250px] sm:w-[200px] h-[32px] sm:h-[40px] rounded-[26px] bg-white shadow-md flex items-center justify-center text-xs sm:text-sm font-poppins gap-2 px-4 whitespace-nowrap">
                 <Image
                   src="/images/university/hero/ranking.png"
                   width={20}

@@ -5,6 +5,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import { useRef, useState } from "react";
 import BackNext from "@/pages/components/BackNext";
+import { sanitizeHtml } from "@/common/sanitizeHtml";
 function Approvals({approvals , approvalsdata}) {
 
     const swiperRef = useRef(null);
@@ -56,10 +57,7 @@ function Approvals({approvals , approvalsdata}) {
                     onPrev={navigatePrev}
                     onNext={navigateNext}
                 />
-                 <div
-                            className="text-[14px] md:text-[17px] font-poppins font-[400] text-[#363535] mb-6 font-poppins break-words whitespace-normal"
-                            dangerouslySetInnerHTML={{ __html: approvals?.description || "" }}
-                        />
+                 <div className="custom-description mb-6 mt-2" dangerouslySetInnerHTML={{ __html: sanitizeHtml(approvals?.description || "") }} />
                 <Swiper
                     ref={swiperRef}
                     modules={[Navigation, A11y]}

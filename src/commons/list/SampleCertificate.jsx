@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Heading from "@/common/Heading";
+import { sanitizeHtml } from "@/common/sanitizeHtml";
 
 export default function SampleCertificate({ certificates }) {
   return (
@@ -16,7 +17,7 @@ export default function SampleCertificate({ certificates }) {
              text-[#282529] leading-6 sm:leading-7 break-words whitespace-normal custom-description
              "
                   dangerouslySetInnerHTML={{
-                    __html: certificates?.description || "",
+                    __html: sanitizeHtml(certificates?.description || ""),
                   }}
                 />
 

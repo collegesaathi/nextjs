@@ -7,6 +7,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import Image from "next/image";
 import BackNext from "@/pages/components/BackNext";
+import { sanitizeHtml } from "@/common/sanitizeHtml";
 
 const partners = [
   { name: "Zalaris India", logo: "/images/university/showcase/1.png" },
@@ -59,7 +60,7 @@ export default function PlacementPartners({ partners, PlacementPartners }) {
               {/* Description */}
               <div
                 className="ont-poppins text-[14px] sm:text-[16px] text-[#282529] leading-6 sm:leading-7 mb-4 break-words whitespace-normal"
-                dangerouslySetInnerHTML={{ __html: partners?.description || "" }}
+                dangerouslySetInnerHTML={{ __html: sanitizeHtml(partners?.description || "")|| "" }}
               />
 
               {/* Swiper */}
