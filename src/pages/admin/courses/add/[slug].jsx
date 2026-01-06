@@ -149,6 +149,7 @@ function Index() {
         position: "",
         tuition_fees: "",
         video: "",
+        fees_desc:"",
         anuual_fees: "",
         semester_fees: "",
         descriptions: [{ text: "" }],
@@ -272,6 +273,7 @@ function Index() {
             payload.append("icon_alt", formData.icon_alt || "")
             payload.append("about_title", formData.about_title || "");
             payload.append("about_desc", formData.about_desc || "");
+            payload.append("fees_desc", formData.fees_desc || "");
             payload.append("tuition_fees", formData.tuition_fees || "")
             payload.append("anuual_fees", formData.anuual_fees || "")
             payload.append("semester_fees", formData.semester_fees || "")
@@ -529,6 +531,7 @@ function Index() {
             meta_description: data?.seo?.meta_description,
             canonical_url: data?.seo?.canonical_url,
             Id: data?.id,
+            fees_desc : data?.fees.fees_desc,
             icon_alt: data?.icon_alt,
             cover_image_alt: data?.cover_image_alt,
             careerdesc: data?.career?.description,

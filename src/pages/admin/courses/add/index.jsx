@@ -141,6 +141,7 @@ function Index() {
         position: "",
         fees_title: "",
         tuition_fees: "",
+        fees_desc: "",
         anuual_fees: "",
         semester_fees: "",
         descriptions: [{ text: "" }],
@@ -255,6 +256,7 @@ function Index() {
             payload.append("university_id", university_id || "")
             payload.append("position", formData.position || "");
             payload.append("icon", formData.icon || "");
+            payload.append("fees_desc", formData.fees_desc || "");
             payload.append("desccreteria", formData.desccreteria || "");
             payload.append("cover_image", formData.cover_image || "");
             payload.append("fees_title", formData.fees_title || "");
