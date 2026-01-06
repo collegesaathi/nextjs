@@ -393,7 +393,6 @@ function Index() {
             const response = await main.AdminSpecializationAdd(payload);
             if (response?.data?.status) {
                 router.push(`/admin/specialization?university_id=${university_id}&course_id=${course_id}`)
-                router.push("/admin/specialization")
                 toast.success(response.data.message);
                 setPreview(null);
             } else {
