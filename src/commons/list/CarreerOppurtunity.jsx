@@ -23,9 +23,7 @@ function CarreerOppurtunity({ career }) {
                     Job Roles
                   </th>
 
-                  <th className="bg-[#ec1e24] text-white p-2 md:p-4 font-poppins font-semibold text-[12px] md:text-[17px] border-2 border-[#f47c80] h-[65px] text-left">
-                    Responsibilities
-                  </th>
+                
 
                   <th className="bg-[#ec1e24] text-white p-2 md:p-4 font-poppins font-semibold text-[12px] md:text-[17px] border-2 border-[#f47c80] h-[65px] text-left">
                     Annual Average Salary
@@ -40,14 +38,6 @@ function CarreerOppurtunity({ career }) {
                     {/* Job Role */}
                     <td className="bg-white border-2 border-[#f47c80] p-3 md:p-4 font-poppins text-[12px] md:text-[17px] text-[#282529]">
                       {item.title}
-                    </td>
-
-                    {/* Responsibilities */}
-                    <td className="bg-white border-2 border-[#f47c80] p-3 md:p-4 font-poppins">
-                      <div
-                        className="text-[12px] md:text-[17px] text-[#363535] leading-relaxed"
-                        dangerouslySetInnerHTML={{ __html: item.description }}
-                      />
                     </td>
 
                     {/* Salary */}

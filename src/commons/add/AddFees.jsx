@@ -17,6 +17,23 @@ function AddFees({ formData, handleChange }) {
                     required
                 />
             </div>
+
+              <div>
+                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
+                    Course Desc.
+                </label>
+                <input
+                    type="text"
+                    name="fees_desc"
+                    value={formData?.fees_desc}
+                    onChange={(e) => {
+                        handleChange(e);
+                    }}
+                    placeholder="Enter fees Desc "
+                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
+                    required
+                />
+            </div>
             <div>
                 <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
                     Total Tuition Fee:

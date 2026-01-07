@@ -3,29 +3,31 @@
 import { useState } from "react";
 import Heading from "@/common/Heading";
 import Image from "next/image";
+import SVGIcon from "@/common/SVGIcon";
 
-function Eligibility({eligibilitycriteria}) {
+function Eligibility({ eligibilitycriteria }) {
+  console.log("eligibilitycriteria", eligibilitycriteria)
   const [activeTab, setActiveTab] = useState("indian"); // default tab
 
   return (
     <>
       <section className="w-full px-2 md:px-6 py-6">
         <div className="max-w-[1230px]">
-          <Heading title="NMIMS Online MBA Eligibility Criteria" />
+          <Heading title={eligibilitycriteria?.title} />
 
           {/* MAIN WRAPPER */}
           <div className="bg-[#FEE4E4] rounded-[18px] mt-10 border border-[#BCBCBCCC]">
 
             {/* TABS */}
             <div className="w-full flex font-poppins font-[600] text-[14px] md:text-[17px]">
-              
+
               {/* Indian Students Tab */}
               <button
                 onClick={() => setActiveTab("indian")}
                 className={`w-1/2 py-4 rounded-br-[17px] rounded-tl-[17px] text-center transition-all
-                ${activeTab === "indian" 
-                  ? "bg-[#FEE4E4] text-black" 
-                  : "bg-white text-[#666]"}
+                ${activeTab === "indian"
+                    ? "bg-[#FEE4E4] text-black"
+                    : "bg-white text-[#666]"}
                 `}
               >
                 Indian Students
@@ -35,9 +37,9 @@ function Eligibility({eligibilitycriteria}) {
               <button
                 onClick={() => setActiveTab("foreign")}
                 className={`w-1/2 py-4 rounded-bl-[17px] rounded-tr-[17px] text-center transition-all
-                ${activeTab === "foreign" 
-                  ? "bg-[#FEE4E4] text-black" 
-                  : "bg-white text-[#666]"}
+                ${activeTab === "foreign"
+                    ? "bg-[#FEE4E4] text-black"
+                    : "bg-white text-[#666]"}
                 `}
               >
                 Foreign Students
@@ -53,23 +55,38 @@ function Eligibility({eligibilitycriteria}) {
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-1">
 
                     {/* CARD 1 */}
-                    
-                    { eligibilitycriteria?.IndianCriteria?.map((item,index)=>(
-                          <div className=" p-2 md:p-6 border-b md:border-b-0 md:border-r last:border-r-0 border-[#FCF0EE] space-y-2 md:space-y-8">
-                      <div className="bg-[#FCF0EE] h-12 w-12 rounded-full flex justify-center items-center">
-                        <img src={item.image} width={30} height={40} />
-                      </div>
-                      <h3 className="font-semibold text-[16px] md:text-[18px]">{item.title}</h3>
-                      {/* <p className="text-[14px] leading-6" dangerouslySetInnerHTML={{ __html: item?.description || "" }}> */}
-                            <div className="text-[14px] leading-6"  dangerouslySetInnerHTML={{ __html: item?.description || "" }}>
-                
-                      </div>
-                    </div>
 
-                    ))}
-                
+                    {Array.isArray(eligibilitycriteria?.IndianCriteria) &&
+                      eligibilitycriteria.IndianCriteria.map((item, index) => (
+                        <div className=" p-2 md:p-6 border-b md:border-b-0 md:border-r last:border-r-0 border-[#FCF0EE] space-y-2 md:space-y-8">
+                          {item.title === "Educational Qualifications" && (
+                            <div className="bg-[#FCF0EE] h-12 w-12 rounded-full flex justify-center items-center">
+                              <SVGIcon name={"eduction"} size={24} />
+                            </div>
+                          )}
 
-        
+                          {item.title === "Grades" && (
+                            <div className="bg-[#FCF0EE] h-12 w-12 rounded-full flex justify-center items-center">
+                              <SVGIcon name={"grade"} size={24} />
+                            </div>
+                          )}
+
+                          {item.title === "Work Experience" && (
+                            <div className="bg-[#FCF0EE] h-12 w-12 rounded-full flex justify-center items-center">
+                              <SVGIcon name={"work"} size={24} />
+                            </div>
+                          )}
+                          <h3 className="font-semibold text-[16px] md:text-[18px]">{item.title}</h3>
+                          {/* <p className="text-[14px] leading-6" dangerouslySetInnerHTML={{ __html: item?.description || "" }}> */}
+                          <div className="text-[14px] leading-6" dangerouslySetInnerHTML={{ __html: item?.description || "" }}>
+
+                          </div>
+                        </div>
+
+                      ))}
+
+
+
 
                   </div>
                 )}
@@ -78,19 +95,34 @@ function Eligibility({eligibilitycriteria}) {
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-1">
 
                     {/* CARD 1 */}
-                     {eligibilitycriteria?.NRICriteria?.map((item,index)=>(
-                          <div className=" p-2 md:p-6  border-b md:border-b-0 md:border-r last:border-r-0 border-[#FCF0EE] space-y-2 md:space-y-8">
-                      <div className="bg-[#FCF0EE] h-12 w-12 rounded-full flex justify-center items-center">
-                        <img src={item.image} width={30} height={40} />
-                      </div>
-                      <h3 className="font-semibold text-[18px]">{item.title}</h3>
-                      {/* <p className="text-[14px] leading-6" dangerouslySetInnerHTML={{ __html: item?.description || "" }}> */}
-                            <div className="text-[14px] leading-6"   dangerouslySetInnerHTML={{ __html: item?.description || "" }} >
-                
-                      </div>
-                    </div>
+                    {Array.isArray(eligibilitycriteria?.NRICriteria) &&
+                      eligibilitycriteria.NRICriteria?.map((item, index) => (
+                        <div className=" p-2 md:p-6  border-b md:border-b-0 md:border-r last:border-r-0 border-[#FCF0EE] space-y-2 md:space-y-8">
+                          {item.title === "Educational Qualifications" && (
+                            <div className="bg-[#FCF0EE] h-12 w-12 rounded-full flex justify-center items-center">
+                              <SVGIcon name={"eduction"} size={24} />
+                            </div>
+                          )}
 
-                    ))}
+                          {item.title === "Grades" && (
+                            <div className="bg-[#FCF0EE] h-12 w-12 rounded-full flex justify-center items-center">
+                              <SVGIcon name={"grade"} size={24} />
+                            </div>
+                          )}
+
+                          {item.title === "Work Experience" && (
+                            <div className="bg-[#FCF0EE] h-12 w-12 rounded-full flex justify-center items-center">
+                              <SVGIcon name={"work"} size={24} />
+                            </div>
+                          )}
+
+
+                          <h3 className="font-semibold text-[18px]">{item.title}</h3>
+                          <div className="text-[14px] leading-6" dangerouslySetInnerHTML={{ __html: item?.description || "" }} >
+                          </div>
+                        </div>
+
+                      ))}
 
                   </div>
                 )}
@@ -99,7 +131,7 @@ function Eligibility({eligibilitycriteria}) {
             </div>
 
           </div>
-    
+
         </div>
       </section>
     </>
@@ -126,9 +158,9 @@ function EnquiryBox() {
 
       {/* Form */}
       <div className=" w-full md:w-1/2 md:mx-auto">
-          <FormBox />
+        <FormBox />
       </div>
-    
+
     </div>
   );
 }

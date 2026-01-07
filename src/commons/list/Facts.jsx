@@ -2,6 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
+import { sanitizeHtml } from "@/common/sanitizeHtml";
 
 
 
@@ -54,7 +55,7 @@ function Facts({ facts }) {
                                 {/* Description */}
                                 <div
                                   className="font-poppins text-[14px] md:text-[16px] leading-[24px] md:leading-[28px] text-[#282529] w-full md:w-2/3 custom-description"
-                                  dangerouslySetInnerHTML={{ __html: item?.description || "" }}
+                                  dangerouslySetInnerHTML={{ __html:  sanitizeHtml(item?.description || "") }}
                                 />
                               </div>
                             </div>

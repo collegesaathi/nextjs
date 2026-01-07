@@ -7,7 +7,7 @@ export default function SemesterFormAdd({ semesters, setSemesters }) {
     const addSemester = () => {
         setSemesters(prev => [
             ...prev,
-            { title: `Semester ${prev.length + 1}`, subjects: [{ description: "" }] }
+            { title: `Semester ${prev.length + 1}`, subjects: [{ description: "" , credit :""}] }
         ]);
     };
 
@@ -82,9 +82,9 @@ export default function SemesterFormAdd({ semesters, setSemesters }) {
                     </div>
 
                     {/* SUBJECTS */}
-                    {semester.subjects.map((subject, subIndex) => (
-                        <div key={subIndex} className="grid grid-cols-1 gap-3 bg-white p-3 mb-3 rounded">
-                            <textarea
+                    {semester?.subjects.map((subject, subIndex) => (
+                        <div key={subIndex} className="grid grid-cols-2 gap-3 bg-white p-3 mb-3 rounded">
+                            <input
                                 rows="3"
                                 value={subject.description}
                                 onChange={(e) =>
@@ -92,7 +92,16 @@ export default function SemesterFormAdd({ semesters, setSemesters }) {
                                 }
                                 className="border p-2 rounded"
                                 placeholder="Subject Description"
-                            ></textarea>
+                            />
+                                <input
+                                rows="3"
+                                value={subject.credit}
+                                onChange={(e) =>
+                                    handleSubjectChange(sIndex, subIndex, "credit", e.target.value)
+                                }
+                                className="border p-2 rounded"
+                                placeholder="Subject credit"
+                           />
 
                             <button
                              type="button"

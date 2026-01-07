@@ -1,12 +1,15 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import Image from "next/image";
 import BackNext from "@/pages/components/BackNext";
+import { sanitizeHtml } from "@/common/sanitizeHtml";
+import Listing from "@/pages/api/Listing";
+import { useRouter } from "next/router";
 
 const partners = [
   { name: "Zalaris India", logo: "/images/university/showcase/1.png" },
@@ -16,9 +19,35 @@ const partners = [
 ];
 
 export default function PlacementPartners({ partners, PlacementPartners }) {
+const router = useRouter();
+  const slug = router.query.universitySlug;
 
 
+  console.log("slug", slug)
+  console.log("partners", partners)
   const swiperRef = useRef(null);
+
+
+  const [courseData, setCourseData] = useState([]);
+  console.log("courseData", courseData)
+  const [Loading, setLoading] = useState(false);
+  const fetchCourse = async (uniId) => {
+    setLoading(true)
+    try {
+      const main = new Listing();
+      const response = await main.ApprovalSpeGet(uniId);
+      setCourseData(response?.data?.data?.placementPartners)
+    }
+    catch (error) {
+      console.error("Error fetching projects:", error);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    fetchCourse(slug)
+  }, [slug])
 
   const [progress, setProgress] = useState(0);
   const [isBeginning, setIsBeginning] = useState(true);
@@ -27,7 +56,7 @@ export default function PlacementPartners({ partners, PlacementPartners }) {
   const updateProgress = (swiper) => {
     if (!swiper) return;
 
-    const totalCards = partners?.length;
+    const totalCards = courseData?.length;
     const visibleSlides = swiper.params.slidesPerView;
 
     setIsBeginning(swiper.isBeginning);
@@ -44,7 +73,7 @@ export default function PlacementPartners({ partners, PlacementPartners }) {
 
   return (
     <>
-      {PlacementPartners?.length > 1 && (
+      {courseData?.length > 1 && (
         <div className="px-2 md:px-6 py-6  bg-white">
           <section className="w-full mx-auto" id="placement-partners-section">
             <div className="max-w-[1230px]">
@@ -53,13 +82,13 @@ export default function PlacementPartners({ partners, PlacementPartners }) {
                 progress={progress}
                 isBeginning={isBeginning}
                 isEnd={isEnd}
-                onPrev={navigatePrev} 
+                onPrev={navigatePrev}
                 onNext={navigateNext}
               />
               {/* Description */}
               <div
                 className="ont-poppins text-[14px] sm:text-[16px] text-[#282529] leading-6 sm:leading-7 mb-4 break-words whitespace-normal"
-                dangerouslySetInnerHTML={{ __html: partners?.description || "" }}
+                dangerouslySetInnerHTML={{ __html: sanitizeHtml(partners?.description || "") || "" }}
               />
 
               {/* Swiper */}
@@ -81,7 +110,7 @@ export default function PlacementPartners({ partners, PlacementPartners }) {
                 style={{ scrollbarWidth: "none" }}
                 className="py-4"
               >
-                {PlacementPartners?.map((partner, index) => (
+                {courseData?.map((partner, index) => (
                   <SwiperSlide key={index} className="py-4">
                     <div
                       className="w-full h-[170px] sm:h-[180px] lg:h-[202px] 

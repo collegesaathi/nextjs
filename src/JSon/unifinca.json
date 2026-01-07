@@ -1,0 +1,68 @@
+{
+  "manipal-online-university": [
+    {
+      "category": "Defence personnel",
+      "slug": "defence-personnel",
+      "scholarship_credit": "20%",
+      "eligibility_documents": "Personnel / Service / IC number"
+    },
+    {
+      "category": "Alumni of Manipal University Jaipur",
+      "slug": "manipal-university-jaipur-alumni",
+      "scholarship_credit": "20%",
+      "eligibility_documents": "UG/PG alumni of Manipal University Jaipur"
+    },
+    {
+      "category": "Government employees",
+      "slug": "government-employees",
+      "scholarship_credit": "10%",
+      "eligibility_documents": "Identity card"
+    },
+    {
+      "category": "Merit (80% and above in bachelor's degree)",
+      "slug": "merit-80-percent-and-above",
+      "scholarship_credit": "10%",
+      "eligibility_documents": "Mark sheet"
+    },
+    {
+      "category": "Fee concession (Full program fee)",
+      "slug": "fee-concession-full-program-fee",
+      "scholarship_credit": "10%",
+      "eligibility_documents": "Upfront payment of full program fee"
+    },
+    {
+      "category": "Fee concession (Annual fee)",
+      "slug": "fee-concession-annual-fee",
+      "scholarship_credit": "5%",
+      "eligibility_documents": "Upfront payment of annual fee"
+    }
+  ],
+  "amity-online-university":[
+  {
+    "category": "Divyaang (for persons with special needs)",
+    "scholarship_credit": "20%",
+    "eligibility_documents": "Valid certificate of disability as per government norms."
+  },
+  {
+    "category": "Defense Personnel",
+    "scholarship_credit": "20%",
+    "eligibility_documents": "Minimum 2 years of service in the defence forces with a valid Identity Card Number."
+  },
+  {
+    "category": "Amity University Alumni",
+    "scholarship_credit": "20%",
+    "eligibility_documents": "For alumni of Amity University's undergraduate or postgraduate courses."
+  },
+  {
+    "category": "Merit Based",
+    "scholarship_credit": "20%",
+    "eligibility_documents": "Academic excellence with a minimum of 85% aggregate in the previous qualification."
+  },
+  {
+    "category": "Sports Scholarship (CHAMPS)",
+    "scholarship_credit": "30-100%",
+    "eligibility_documents": "State, national, or international-level sportspersons with a valid affiliation from the respective sports federation."
+  }
+]
+
+}

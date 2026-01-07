@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+
 import { useEffect, useState } from "react";
 import Head from "next/head";
 import Layout from "@/pages/components/Layout";
@@ -25,10 +26,9 @@ import FrontendSidebar from "@/pages/common/FrontendSidebar";
 import EnquiryBox from "@/commons/list/EnquiryForm";
 import Listing from "@/pages/api/Listing";
 import { fetchDetails } from "@/lib/ssrFetch";
-
 export default function UniversityPage({ data }) {
   const router = useRouter();
-console.log("data" ,data)
+  console.log("data" ,data)
   const uniId = data?.university?.id;
   const [loading, setLoading] = useState(false);
   const [courseData, setCourseData] = useState([]);
@@ -85,7 +85,7 @@ console.log("data" ,data)
               )}
 
               {courseData?.data?.length > 0 && (
-                <CourseFees courseData={courseData?.data} />
+                <CourseFees courseData={courseData?.data} slug={`${data?.university?.slug}`} feesDesc = {data?.university?.fees_desc} />
               )}
 
               {data?.university?.approvals && (
@@ -129,6 +129,7 @@ console.log("data" ,data)
               {data?.university?.universityCampuses && (
                 <UniversityCampusCarousel
                   universityCampuses={data?.university?.universityCampuses}
+                  campusInternationList={data?.university?.campusInternationList}
                   name={data?.university?.name}
                 />
               )}

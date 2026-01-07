@@ -40,11 +40,11 @@ function ServicesAdd({ formData, handleQuillChange, handleChange, setServices, s
                     required
                 />
             </div>
-            <ReactQuillEditor
+            {/* <ReactQuillEditor
                 label="Description"
                 desc={formData.servicedesc}
                 handleBioChange={(val) => handleQuillChange("servicedesc", val)}
-            />
+            /> */}
 
             {/* SERVICES REPEATING SECTION */}
             <>

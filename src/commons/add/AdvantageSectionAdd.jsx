@@ -90,7 +90,7 @@ export default function AdvantageSectionAdd({ setAdvantages, advantages, htitle,
       </div>
 
       {/* Advantages List */}
-      {advantages.map((adv, index) => (
+      {advantages && advantages?.map((adv, index) => (
         <div key={index} className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6 border-b border-gray-200 pb-4">
 
           {/* Title */}

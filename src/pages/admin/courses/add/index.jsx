@@ -67,7 +67,7 @@ function Index() {
         {
             title: "Semester I",
             subjects: [
-                { description: "" }
+                { description: "" ,credit :"" }
             ]
         }
     ]);
@@ -141,6 +141,7 @@ function Index() {
         position: "",
         fees_title: "",
         tuition_fees: "",
+        fees_desc: "",
         anuual_fees: "",
         semester_fees: "",
         descriptions: [{ text: "" }],
@@ -255,6 +256,7 @@ function Index() {
             payload.append("university_id", university_id || "")
             payload.append("position", formData.position || "");
             payload.append("icon", formData.icon || "");
+            payload.append("fees_desc", formData.fees_desc || "");
             payload.append("desccreteria", formData.desccreteria || "");
             payload.append("cover_image", formData.cover_image || "");
             payload.append("fees_title", formData.fees_title || "");
@@ -353,7 +355,7 @@ function Index() {
                 icons_alt: item?.icons_alt,
                 images_alt: item?.images_alt
             }));
-            payload.append("servcies", JSON.stringify(cleanServices));
+            payload.append("services", JSON.stringify(cleanServices));
 
             services.forEach((item, index) => {
                 if (item.image) {
@@ -786,20 +788,18 @@ function Index() {
                                     name="creteria"
                                     value={formData.creteria}
                                     onChange={(e) => {
-                                        if (e.target.value.length <= 50) handleChange(e);
+                                       handleChange(e);
                                     }}
                                     placeholder="Enter name"
                                     className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
                                     required
                                 />
                             </div>
-
-
-                            <ReactQuillEditor
+                            {/* <ReactQuillEditor
                                 label="Description"
                                 desc={formData.desccreteria}
                                 handleBioChange={(val) => handleQuillChange("desccreteria", val)}
-                            />
+                            /> */}
                             <div className="flex mb-5 bg-gray-100 rounded-lg overflow-hidden">
                                 <button
                                     type="button"

@@ -135,6 +135,9 @@ class Listing extends Component {
     return Api.get(`/course/specialisation/${cui}`)
   }
 
+   async ApprovalSpeGet(cui) {
+    return Api.get(`/approval/placement/${cui}`)
+  }
   async UniversitySearch(query) {
     return Api.get(`/all/university?search=${query}`);
   }

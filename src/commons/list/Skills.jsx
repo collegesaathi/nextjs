@@ -21,7 +21,7 @@ function Skills({ skills }) {
         <div className="overflow-hidden mt-[30px] border-2 border-[#f47c80] rounded-t-lg">
 
           <div className="bg-[#ec1e24] text-white p-4 font-poppins font-bold text-[16px] md:text-[18px] text-center w-full">
-            Skills
+            Skills You Will Gain
           </div>
 
           {/* 2. Grid Rows (2 Columns) */}

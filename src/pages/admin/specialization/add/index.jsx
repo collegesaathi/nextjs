@@ -324,7 +324,8 @@ function Index() {
             payload.append("certificatedescription", formData.certificatedescription || " ");
             payload.append("certificatemage", formData.certificatemage || " ");
             payload.append("image_alt", formData.image_alt || " ")
-            payload.append("advantages", JSON.stringify(advantages || []));
+         payload.append("advantages", JSON.stringify(advantages || []));
+
             payload.append("advantagesname", formData.advantagesname || " ");
             payload.append("advantagesdescription", formData.advantagesdescription || " ");
             payload.append("skills", JSON.stringify(skills || []));
@@ -374,7 +375,7 @@ function Index() {
                 icons_alt: item?.icons_alt,
                 images_alt: item?.images_alt
             }));
-            payload.append("servcies", JSON.stringify(cleanServices || []));
+            payload.append("services", JSON.stringify(cleanServices || []));
 
             services.forEach((item, index) => {
                 if (item.image) {

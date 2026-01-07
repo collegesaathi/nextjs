@@ -290,6 +290,7 @@ function Index() {
             payload.append("anuual_fees", formData.anuual_fees || "")
             payload.append("semester_fees", formData.semester_fees || "")
             payload.append("approvals_name", formData.approvals_name || "");
+            payload.append("advantages", JSON.stringify(advantages || []));
             payload.append("approvals_desc", formData.approvals_desc || "");
             payload.append("approvals", JSON.stringify(selectedApprovals));
             payload.append("rankings_description", formData.rankings_description || "");
@@ -379,7 +380,7 @@ function Index() {
                 icons_alt: item?.icons_alt,
                 images_alt: item?.images_alt
             }));
-            payload.append("servcies", JSON.stringify(cleanServices || []));
+            payload.append("services", JSON.stringify(cleanServices || []));
             services.forEach((item, index) => {
                 if (item.image) {
                     payload.append(`servicesimages[${index}]`, item.image);
@@ -497,8 +498,8 @@ function Index() {
                 console.error("Semester JSON parse error:", error);
             }
         }
-        const indianData = data?.eligibilitycriteria?.IndianCriteria;
-        const nriData = data?.eligibilitycriteria?.NRICriteria;
+        const indianData = data?.eligibilitycriteria?.IndianCriteria || [];
+        const nriData = data?.eligibilitycriteria?.NRICriteria || [];
         const carrerData = (data?.career?.Career ? data?.career?.Career : safeParse(data?.career?.Career));
         setFormData({
             slug: data?.slug,
@@ -518,7 +519,6 @@ function Index() {
             rankings_description: data?.rankings?.description,
             creteria: data?.eligibilitycriteria?.title,
             desccreteria: data?.eligibilitycriteria?.description,
-            //  indian: data?.eligibilitycriteria?.IndianCriteria,
             advantagesname: data?.advantages?.title,
             advantagesdescription: data?.advantages?.description,
             factsname: data?.facts?.title,

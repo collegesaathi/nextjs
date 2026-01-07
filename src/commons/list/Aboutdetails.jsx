@@ -1,4 +1,5 @@
 import Heading from "@/common/Heading";
+import { sanitizeHtml } from "@/common/sanitizeHtml";
 
 function Aboutdetails({ about }) {
 
@@ -9,10 +10,7 @@ function Aboutdetails({ about }) {
                     <div className="max-w-[1230px]">
                         <div >
                             <Heading title={about?.title} />
-                            <div
-                                className="font-poppins font-[400] text-[14px] md:text-[17px] leading-[25px] text-[#282529] break-words"
-                                dangerouslySetInnerHTML={{ __html: about?.description || "" }}
-                            />
+ <div className="custom-description" dangerouslySetInnerHTML={{ __html: sanitizeHtml(about?.description || "") }} />
 
                         </div>
                     </div>

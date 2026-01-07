@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Heading from "@/common/Heading";
+import { sanitizeHtml } from "@/common/sanitizeHtml";
 
 export default function ExaminationPattern({ examPatterns = [] }) {
 
@@ -15,7 +16,7 @@ export default function ExaminationPattern({ examPatterns = [] }) {
                 <Heading title={examPatterns?.title} classes={""} />
                 <div
                   className="custom-description font-poppins text-[14px] sm:text-[16px] text-[#282529] leading-6 sm:leading-7 mb-4 [&_*]:!bg-transparent"
-                  dangerouslySetInnerHTML={{ __html: examPatterns?.description || "" }}
+                  dangerouslySetInnerHTML={{ __html: sanitizeHtml(examPatterns?.description || "") }}
                 />
                 {examPattern?.length > 1 && (
                   <>
@@ -56,7 +57,7 @@ export default function ExaminationPattern({ examPatterns = [] }) {
                           </h3>
                           <div
                             className="font-poppins text-[14px] custom-description md:text-[17px] leading-[22px] md:leading-[25px] text-[#282529] line-clamp-4  [&_*]:!bg-transparent"
-                            dangerouslySetInnerHTML={{ __html: item?.description }}
+                            dangerouslySetInnerHTML={{ __html:sanitizeHtml(item?.description || "") }}
                           />
                         </div>
                       </div>
