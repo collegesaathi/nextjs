@@ -98,6 +98,7 @@ function Index() {
     ]);
     const [formData, setFormData] = useState({
         slug: "",
+        fees_desc:"",
         video: "",
         name: "",
         icon: null,
@@ -201,6 +202,7 @@ function Index() {
             const main = new Listing();
             const payload = new FormData();
             payload.append("slug", formData.slug || "");
+            payload.append("fees_desc", formData.fees_desc || "");
             payload.append("rank", formData.rank || "");
             payload.append("name", formData.name || "");
             payload.append("video", formData.video || "");
@@ -472,6 +474,23 @@ function Index() {
                                         handleChange(e);
                                     }}
                                     placeholder="Enter video"
+                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
+                                    required
+                                />
+                            </div>
+
+                              <div>
+                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
+                                    Course Fees Desc.{" "}
+                                </label>
+                                <input
+                                    type="text"
+                                    name="fees_desc"
+                                    value={formData.fees_desc}
+                                    onChange={(e) => {
+                                        handleChange(e);
+                                    }}
+                                    placeholder="Enter Course fees des"
                                     className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
                                     required
                                 />

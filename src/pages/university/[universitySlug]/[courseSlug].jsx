@@ -35,7 +35,6 @@ function Index({ data }) {
     const uniId = data?.CourseData?.id;
     const [loading, setLoading] = useState(false);
     const [courseData, setCourseData] = useState([])
-
     const fetchCourse = async (uniId) => {
         setLoading(true)
         try {

@@ -85,7 +85,7 @@ export default function UniversityPage({ data }) {
               )}
 
               {courseData?.data?.length > 0 && (
-                <CourseFees courseData={courseData?.data}        slug={`${data?.university?.slug}`} />
+                <CourseFees courseData={courseData?.data} slug={`${data?.university?.slug}`} feesDesc = {data?.university?.fees_desc} />
               )}
 
               {data?.university?.approvals && (

@@ -44,6 +44,7 @@ function Index() {
     const [icons, setIcons] = useState(null);
     const [formData, setFormData] = useState({
         slug: "",
+        fees_desc:"",
         name: "",
         icon: null,
         cover_image: null,
@@ -54,6 +55,7 @@ function Index() {
         rankings_point: "",
         video: "",
         rankings_name: "",
+        fees_desc:"",
         rankings_description: "",
         approvals_name: "",
         approvals_desc: "",
@@ -149,7 +151,7 @@ function Index() {
 
         setFormData({
             Id: safeData.id,
-
+fees_desc :  safeData.fees_desc ,
             slug: safeData.slug,
             name: safeData.name,
             rank: safeData.rank,
@@ -377,6 +379,7 @@ function Index() {
             const main = new Listing();
             const payload = new FormData();
             payload.append("slug", formData.slug || "");
+            payload.append("fees_desc", formData.fees_desc || "");
             payload.append("rank", formData.rank || "");
             payload.append("name", formData.name || "");
             payload.append("id", formData.Id || "");
@@ -634,6 +637,23 @@ function Index() {
                                             handleChange(e);
                                         }}
                                         placeholder="Enter name"
+                                        className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
+                                        required
+                                    />
+                                </div>
+
+                                <div>
+                                    <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
+                                        Course Desc Fees{" "}
+                                    </label>
+                                    <input
+                                        type="text"
+                                        name="fees_desc"
+                                        value={formData.fees_desc}
+                                        onChange={(e) => {
+                                            handleChange(e);
+                                        }}
+                                        placeholder="Enter Course fees_desc "
                                         className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
                                         required
                                     />

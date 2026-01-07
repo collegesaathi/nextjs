@@ -1,7 +1,7 @@
 import Heading from "@/common/Heading";
 import Link from "next/link";
 
-function CourseFees({ courseData ,slug }) {
+function CourseFees({ courseData, slug, feesDesc }) {
     const showPerSemester = courseData?.some(
         (row) => row?.fees?.semester_wise_fees
     );
@@ -19,6 +19,12 @@ function CourseFees({ courseData ,slug }) {
             <section className="w-full px-2 md:px-6 py-6 mx-auto" id="fee-section">
                 <div className="max-w-[1230px]">
                     <Heading title=" Updated Course Fees for 2025" />
+                    <p
+                        className="custom-description mt-2 mb-2"
+                    >
+                        {feesDesc}
+                    </p>
+
                     <div className="overflow-x-auto rounded-[13px] border-2 border-[#f47c80]">
                         <table className="w-full  font-poppins tracking-wide">
                             <thead>
@@ -41,7 +47,7 @@ function CourseFees({ courseData ,slug }) {
 
                                     {showOneTimeFees && (
                                         <th className="py-3 px-4 text-left min-w-[150px]">
-                                           Total Tuition Fees
+                                            Total Tuition Fees
                                         </th>
                                     )}
                                 </tr>

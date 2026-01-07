@@ -1,10 +1,8 @@
 "use client";
-
 import Image from "next/image";
-import StarRating from "@/common/Rating";
 import { sanitizeHtml } from "@/common/sanitizeHtml";
-
 export default function Hero({ data, approvalsdata, exisitng }) {
+  const desc  = data.description || data.university.description || []
   return (
     <div className="mt-8 md:mt-[60px] lg:mt-[90px] ">
       <div className="flex flex-col-reverse lg:flex-row items-start justify-between">
@@ -15,9 +13,10 @@ export default function Hero({ data, approvalsdata, exisitng }) {
             {data?.name || ""}
           </h1>
           {/* BADGES */}
-          {data?.description?.length > 0 && (
+          {desc?.length > 0 && (
             <div className="flex flex-wrap gap-3 sm:gap-4 pt-4">
-              {data?.description?.map((item, index) => (
+              {desc
+              ?.map((item, index) => (
                 <div key={index} className="w-full sm:w-[48%] lg:w-[350px]">
                   <div
                     dangerouslySetInnerHTML={{
@@ -93,7 +92,7 @@ export default function Hero({ data, approvalsdata, exisitng }) {
         {data?.cover_image != "null" && (
           <div className="w-full  relative pt-3">
             <img
-              src={data?.cover_image}
+              src={data?.cover_image || data?.university?.cover_image}
               alt={data?.cover_image_alt || data?.name || "university Images"}
               width={648}
               height={400}
@@ -112,12 +111,12 @@ export default function Hero({ data, approvalsdata, exisitng }) {
                   alt="ranking logo"
                 />
                 {/* <span>Ranking</span> */}
-                <strong># {data?.rank}</strong>
+                <strong># {data?.rank || data?.university?.rank}</strong>
               </button>
 
 
               <button className="w-[100px] sm:w-[156px] h-[40px] sm:h-[52px] rounded-[5px] bg-white shadow-md flex items-center justify-center">
-                <img src={data?.icon} width={60} height={30} alt="" className="sm:w-[127px]" />
+                <img src={data?.icon || data?.university?.icon} width={60} height={30} alt="" className="sm:w-[127px]" />
               </button>
             </div>
           </div>
