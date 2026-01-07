@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { sanitizeHtml } from "@/common/sanitizeHtml";
 export default function Hero({ data, approvalsdata, exisitng }) {
-  const desc  = data.description || data.university.description || []
+  const desc  = data?.description || data?.university?.description || []
   return (
     <div className="mt-8 md:mt-[60px] lg:mt-[90px] ">
       <div className="flex flex-col-reverse lg:flex-row items-start justify-between">
