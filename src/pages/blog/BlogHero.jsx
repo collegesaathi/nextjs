@@ -17,78 +17,89 @@ export default function BlogHero() {
     const smallPosts = [
         {
             tag: "Online MBA",
-            tagColor: "bg-orange-100 ",
+            tagColor: "bg-orange-100 text-orange-700",
             title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed",
             img: "/images/blog/online.png"
         },
         {
             tag: "Doctorate",
-            tagColor: "bg-green-100 ",
+            tagColor: "bg-green-100 text-green-700",
             title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed",
             img: "/images/blog/doctorate.png"
         },
         {
             tag: "Career Development",
-            tagColor: "bg-purple-100 ",
+            tagColor: "bg-purple-100 text-purple-700",
             title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed",
             img: "/images/blog/carrer.png"
         }
     ];
 
-    // Slider Data (Aap isse dynamic bana sakte hain)
     const sliderItems = [1, 2, 3]; 
 
     return (
         <>
-            {/* Custom CSS for Red Pagination Dots */}
             <style jsx global>{`
                 .swiper-pagination-bullet {
-                    background: #d1d5db !important; /* gray-300 */
+                    background: #d1d5db !important;
                     opacity: 1;
                 }
                 .swiper-pagination-bullet-active {
-                    background: #dc2626 !important; /* red-600 */
-              
-                    border-radius: 5px;
+                    background: #dc2626 !important;
+                    width: 20px !important;
+                    border-radius: 5px !important;
                 }
                 .swiper-pagination {
                     position: relative !important;
-                    margin-top: 20px;
+                    margin-top: 20px !important;
                 }
             `}</style>
 
-            <div className=" my-4 lg:my-20 font-poppins  md:px-10">
-                <div className="text-center mb-10 ">
-                    <h1 className="text-[24px] md:text-[36px] font-[600] text-[#282529]">Collegesathi Blog</h1>
-                    <p className="text-[#282529] mt-2 max-w-3xl text-[14px] md:text-[16px] mx-auto">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incid
+            <div className="max-w-7xl mx-auto  md:px-10 my-8 lg:my-16 font-poppins">
+                {/* Header Section */}
+                <div className="text-center mb-8 md:mb-12">
+                    <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold text-[#282529]">
+                        Collegesathi Blog
+                    </h1>
+                    <p className="text-[#282529] mt-3 max-w-2xl text-sm md:text-base mx-auto opacity-80">
+                        Stay updated with the latest insights, career advice, and education trends from our experts.
                     </p>
                 </div>
 
-                <div className="flex flex-col lg:flex-row w-full gap-8">
+                {/* Main Content Grid */}
+                <div className="flex flex-col lg:flex-row w-full gap-8 lg:gap-10">
+                    
                     {/* Featured Post (Left) */}
-                    <div className="w-full lg:w-1/2 relative group cursor-pointer">
-                        <div className="relative w-full overflow-hidden rounded-3xl">
-                            <img
+                    <div className="w-full lg:w-3/5 group cursor-pointer">
+                        <div className="relative aspect-video lg:aspect-auto lg:h-full overflow-hidden rounded-2xl md:rounded-3xl">
+                            <Image
                                 src="/images/blog/bloghero.png"
                                 alt="Featured Blog"
-                                className="object-cover w-full h-full transition-transform duration-300 "
+                                fill
+                                className="object-cover transition-transform duration-500 group-hover:scale-105"
                             />
+                            {/* Overlay for mobile readability if needed */}
+                            <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors"></div>
                         </div>
                     </div>
 
                     {/* Small Posts List (Right) */}
-                    <div className="w-full lg:w-1/2 flex flex-col justify-between gap-4">
+                    <div className="w-full lg:w-2/5 flex flex-col gap-6 justify-between">
                         {smallPosts.map((post, index) => (
-                            <div key={index} className="flex gap-4 items-start group cursor-pointer">
-                                <div className="relative w-32 h-24 md:w-40 md:h-20 shrink-0 overflow-hidden rounded-[5px]">
-                                    <Image src={post.img} alt="blog" fill className="object-cover" />
+                            <div key={index} className="flex gap-4 items-center group cursor-pointer">
+                                <div className="relative shrink-0 overflow-hidden rounded-xl shadow-sm">
+                                    <img 
+                                        src={post.img} 
+                                        alt="blog" 
+                                        fill 
+                                        className="object-cover  " 
+                                    />
                                 </div>
-                                <div className="flex flex-col justify-between gap-2">
-                                    <span className={`text-[11px] uppercase font-[400] px-2 py-0.5 rounded w-fit ${post.tagColor}`}>
+                                <div className="flex flex-col gap-1">
+                                    <span className={`text-[10px] md:text-[11px] uppercase font-semibold px-2 py-1 rounded w-fit ${post.tagColor}`}>
                                         {post.tag}
                                     </span>
-                                    <h3 className="text-sm md:text-lg font-[600] text-[#282529] line-clamp-2 font-poppins">
+                                    <h3 className="text-sm md:text-base lg:text-lg font-[600] text-[#282529] line-clamp-2 leading-snug group-hover:text-red-600 transition-colors">
                                         {post.title}
                                     </h3>
                                 </div>
@@ -98,42 +109,47 @@ export default function BlogHero() {
                 </div>
 
                 {/* --- SWIPER SLIDER SECTION --- */}
-                <div className="mt-16">
+                <div className="mt-12 md:mt-20">
                     <Swiper
                         modules={[Pagination, Autoplay]}
-                        spaceBetween={30}
+                        spaceBetween={20}
                         slidesPerView={1}
-                        autoplay={{ delay: 3000 }}
+                        autoplay={{ delay: 4000 }}
                         pagination={{ clickable: true }}
-                        className="mySwiper"
+                        className="rounded-3xl overflow-hidden"
                     >
                         {sliderItems.map((item, index) => (
                             <SwiperSlide key={index}>
-                                <div className="flex flex-col relative bg-[url('/images/blog/sliderbg.png')] bg-no-repeat bg-cover rounded-3xl border border-gray-100 px-6 md:px-20  overflow-hidden">
-                                    <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-                                        {/* Left: Character Image & Text Container */}
-                                        <div className="flex items-center gap-6 w-full justify-between">
-                                            <div className="relative w-20 h-20 md:w-32 md:h-32 shrink-0">
-                                                <Image
-                                                    src="/images/blog/scholarboy.png"
-                                                    alt="CS Clikpick"
-                                                    fill
-                                                    className="object-cover"
-                                                />
-                                            </div>
-                                            <div className="text-center  flex-1">
-                                                <h3 className="text-lg md:text-[22px] font-[500] max-w-xl text-gray-800  mx-auto ">
-                                                    Compare & Explore Verified Online Universities at one place with <span className="text-red-600 font-[600] ">CS Clikpick!</span>
-                                                </h3>
-                                            </div>
-                                            <div>
-                                                <Link href="/compare">
-                                                    <button className="bg-red-600 hover:bg-red-700 text-white  md:px-8 py-1 rounded-2xl transition-all shadow-lg flex items-center justify-center">
-                                                       <FaArrowRightLong size={20} />
-                                                    </button>
-                                                </Link>
-                                            </div>
+                                <div className="relative bg-[#FFF5F5] bg-[url('/images/blog/sliderbg.png')] bg-no-repeat bg-cover rounded-3xl border border-red-50 p-6 md:px-12 lg:px-20 min-h-[140px] flex items-center">
+                                    <div className="flex flex-row items-center justify-between w-full gap-4">
+                                        
+                                        {/* Left: Character Image */}
+                                        <div className="relative w-16 h-16 md:w-28 md:h-28 lg:w-36 lg:h-36 shrink-0">
+                                            <Image
+                                                src="/images/blog/scholarboy.png"
+                                                alt="CS Clikpick"
+                                                fill
+                                                className="object-contain"
+                                            />
                                         </div>
+
+                                        {/* Center: Text Container */}
+                                        <div className="flex-1 text-left px-2 md:px-6">
+                                            <h3 className="text-sm md:text-xl lg:text-2xl font-medium text-gray-800 leading-tight">
+                                                Compare & Explore Verified Online Universities at one place with 
+                                                <span className="text-red-600 font-bold ml-1">CS Clikpick!</span>
+                                            </h3>
+                                        </div>
+
+                                        {/* Right: Button */}
+                                        <div className="shrink-0">
+                                            <Link href="/compare">
+                                                <button className="bg-red-600 hover:bg-red-700 text-white p-3 md:px-8 md:py-3 rounded-full md:rounded-2xl transition-all shadow-lg flex items-center justify-center group">
+                                                   <FaArrowRightLong className="text-lg md:text-xl group-hover:translate-x-1 transition-transform" />
+                                                </button>
+                                            </Link>
+                                        </div>
+
                                     </div>
                                 </div>
                             </SwiperSlide>

@@ -1,17 +1,21 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useRouter } from "next/router";
 import toast from "react-hot-toast";
 import { IoChevronDown } from "react-icons/io5";
-
 import Listing from "@/pages/api/Listing";
 
 function Contactform() {
-    const [isSubmitting, setIsSubmitting] = useState(false)
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const [loading, setLoading] = useState(false);
     const router = useRouter();
     const [isCourseOpen, setCourseOpen] = useState(false);
 
-    // Form data
+    // OTP States
+    const [otpSent, setOtpSent] = useState(false);
+    const [isVerified, setIsVerified] = useState(false);
+    const [timer, setTimer] = useState(0);
+    const [otpLoading, setOtpLoading] = useState(false);
+
     const [form, setForm] = useState({
         name: '',
         phone_number: '',
@@ -22,54 +26,89 @@ function Contactform() {
         city: 'jaipur',
         state: 'rajasthan',
         page_name: router?.pathname
+    });
 
-    })
+    // Timer logic for Resend OTP
+    useEffect(() => {
+        let interval;
+        if (timer > 0) {
+            interval = setInterval(() => {
+                setTimer((prev) => prev - 1);
+            }, 1000);
+        } else {
+            clearInterval(interval);
+        }
+        return () => clearInterval(interval);
+    }, [timer]);
 
-    // Form state
-
-
-    // Handle form input changes
     const handleInputChange = (e) => {
-        const { name, value } = e.target
-        setForm(prev => ({
-            ...prev,
-            [name]: value
-        }))
+        const { name, value } = e.target;
+        setForm(prev => ({ ...prev, [name]: value }));
     }
 
-    // Form submission
+    // --- OTP Logic Functions ---
+    const handleSendOtp = async () => {
+        if (form.phone_number.length !== 10) {
+            return toast.error("Please enter a valid 10-digit mobile number");
+        }
+        setOtpLoading(true);
+        try {
+            // Replace with your actual Send OTP API call
+            // await main.SendOTP(form.phone_number); 
+
+               const main = new Listing();
+            const response = await main.SendOtp();
+            toast.success("OTP sent successfully!");
+            setOtpSent(true);
+            setTimer(30); // 30 seconds timer
+        } catch (error) {
+            toast.error("Failed to send OTP");
+        } finally {
+            setOtpLoading(false);
+        }
+    };
+
+    const handleVerifyOtp = async () => {
+        if (form.otp.length < 4) return toast.error("Enter valid OTP");
+        setOtpLoading(true);
+        try {
+            const res = await main.VerifyOTP(form.phone_number, form.otp);
+            if(res){
+            toast.success("Mobile number verified!");
+            }
+            setIsVerified(true);
+        } catch (error) {
+            toast.error("Invalid OTP");
+        } finally {
+            setOtpLoading(false);
+        }
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (!isVerified) return toast.error("Please verify your mobile number first!");
         if (loading) return;
+
         setLoading(true);
         try {
             const main = new Listing();
             const response = await main.ContactAdd({
-                name: form?.name || "",
-                email: form?.email || "",
-                phone_number: form?.phone_number || "",
-                course_id: form?.course_id || "",
-                content: form?.content || "",
-                otp: form?.otp || "1234",
-                city: form?.city || "jaipur",
-                state: form?.state || "rajasthan",
+                ...form,
+                otp: form.otp, // Already verified
                 page_name: router?.pathname
             });
 
             if (response?.data?.status) {
                 toast.success(response.data.message);
-            }
-            else {
+                setIsSubmitting(true);
+            } else {
                 toast.error(response.data.message);
             }
-
         } catch (error) {
-            console.error("API error:", error);
             toast.error(error?.response?.data?.message || "Something went wrong!");
+        } finally {
             setLoading(false);
         }
-        setLoading(false);
-        setIsSubmitting(true)
     };
 
     return (
@@ -82,13 +121,13 @@ function Contactform() {
                     onChange={handleInputChange}
                     type="text"
                     placeholder="Name"
-                    className="w-full h-[61px] px-4 rounded-[11px] bg-[#F7F6F6] font-normal text-[14px] tracking-[0px] text-left text-black focus:outline-none focus:ring-2 focus:ring-[#EC1E24] focus:border-transparent transition-all duration-200"
+                    className="w-full h-[61px] px-4 rounded-[11px] bg-[#F7F6F6] font-normal text-[14px] text-black focus:ring-0 "
                     required
                 />
             </div>
 
-            {/* Mobile Number Field */}
-            <div>
+            {/* Mobile Number Field with Send OTP */}
+            <div className="relative">
                 <input
                     name="phone_number"
                     value={form?.phone_number}
@@ -96,13 +135,69 @@ function Contactform() {
                         const value = e.target.value.replace(/\D/g, "");
                         if (value.length <= 10) handleInputChange({ target: { name: "phone_number", value } });
                     }}
+                    disabled={isVerified}
                     maxLength="10"
                     type="tel"
                     placeholder="Mobile Number"
-                    className="w-full h-[61px] px-4 rounded-[11px] bg-[#F7F6F6] font-normal text-[14px] tracking-[0px] text-left text-black focus:outline-none focus:ring-2 focus:ring-[#EC1E24] focus:border-transparent transition-all duration-200"
+                    className="w-full h-[61px] px-4 pr-28 rounded-[11px] bg-[#F7F6F6] font-normal text-[14px] text-black focus:outline-none focus:ring-2 focus:ring-[#EC1E24] disabled:opacity-70"
                     required
                 />
+                {!isVerified && (
+                    <button
+                        type="button"
+                        onClick={handleSendOtp}
+                        disabled={otpLoading || form.phone_number.length !== 10}
+                        className="absolute right-2 top-1/2 -translate-y-1/2 bg-[#EC1E24] text-white text-[12px] px-3 py-2 rounded-lg hover:bg-red-700 disabled:bg-gray-400 transition-all"
+                    >
+                        {otpSent ? "Resend" : "Send OTP"}
+                    </button>
+                )}
+                {isVerified && (
+                    <span className="absolute right-4 top-1/2 -translate-y-1/2 text-green-600 text-sm font-bold">Verified ✓</span>
+                )}
             </div>
+
+            {/* OTP Input - Only shows after Send OTP is clicked */}
+            {otpSent && !isVerified && (
+                <div className="space-y-2">
+                    <div className="relative">
+                        <input
+                            name="otp"
+                            value={form?.otp}
+                            onChange={(e) => {
+                                const digitsOnly = e.target.value.replace(/\D/g, "");
+                                handleInputChange({ target: { name: "otp", value: digitsOnly } });
+                            }}
+                            maxLength="6"
+                            type="text"
+                            placeholder="Enter OTP"
+                            className="w-full h-[61px] px-4 pr-28 rounded-[11px] bg-[#F7F6F6] font-normal text-[14px] text-black focus:outline-none focus:ring-2 focus:ring-[#EC1E24]"
+                            required
+                        />
+                        <button
+                            type="button"
+                            onClick={handleVerifyOtp}
+                            disabled={otpLoading || form.otp.length < 4}
+                            className="absolute right-2 top-1/2 -translate-y-1/2 bg-black text-white text-[12px] px-4 py-2 rounded-lg hover:bg-gray-800 disabled:bg-gray-400 transition-all"
+                        >
+                            Verify
+                        </button>
+                    </div>
+                    <div className="flex justify-between px-2">
+                        {timer > 0 ? (
+                            <p className="text-[12px] text-gray-500">Resend OTP in <span className="font-bold text-red-500">{timer}s</span></p>
+                        ) : (
+                            <button
+                                type="button"
+                                onClick={handleSendOtp}
+                                className="text-[12px] text-[#EC1E24] font-semibold underline"
+                            >
+                                Resend OTP
+                            </button>
+                        )}
+                    </div>
+                </div>
+            )}
 
             {/* Email Field */}
             <div>
@@ -112,61 +207,12 @@ function Contactform() {
                     onChange={handleInputChange}
                     type="email"
                     placeholder="Email"
-                    className="w-full h-[61px] px-4 rounded-[11px] bg-[#F7F6F6] font-normal text-[14px] tracking-[0px] text-left text-black focus:outline-none focus:ring-2 focus:ring-[#EC1E24] focus:border-transparent transition-all duration-200"
+                    className="w-full h-[61px] px-4 rounded-[11px] bg-[#F7F6F6] font-normal text-[14px] text-black focus:outline-none focus:ring-2 focus:ring-[#EC1E24]"
                     required
                 />
             </div>
 
-            {/* Location Dropdown */}
-            {/* <div className="relative">
-                <select
-                    name="location"
-                    value={form.location}
-                    onChange={handleInputChange}
-                    className="w-full h-[61px] px-4 rounded-[11px] bg-[#F7F6F6] font-normal text-[14px] tracking-[0px] text-left text-[#8E8E8E] focus:outline-none focus:ring-2 focus:ring-[#EC1E24] focus:border-transparent transition-all duration-200 appearance-none cursor-pointer"
-                    required
-                >
-                    <option value="" disabled>Location</option>
-                    <option value="mumbai">Mumbai</option>
-                    <option value="delhi">Delhi</option>
-                    <option value="bangalore">Bangalore</option>
-                    <option value="hyderabad">Hyderabad</option>
-                    <option value="chennai">Chennai</option>
-                    <option value="kolkata">Kolkata</option>
-                    <option value="pune">Pune</option>
-                    <option value="ahmedabad">Ahmedabad</option>
-                    <option value="other">Other</option>
-                </select>
-                <div className="absolute inset-y-0 right-0 flex items-center px-3 pointer-events-none">
-                    <svg
-                        className="w-5 h-5 text-gray-400"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                    >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                    </svg>
-                </div>
-            </div> */}
-
-            <div>
-                <input
-                    name="otp"
-                    value={form?.otp}
-                    onChange={(e) => {
-                        const digitsOnly = e.target.value.replace(/\D/g, "");
-                        handleInputChange({ target: { name: "otp", value: digitsOnly } });
-                    }}
-                    maxLength="6"
-                    type="text"
-                    inputMode="numeric"
-                    placeholder="OTP"
-                    className="w-full h-[61px] px-4 rounded-[11px] bg-[#F7F6F6] font-normal text-[14px] tracking-[0px] text-left text-black focus:outline-none focus:ring-2 focus:ring-[#EC1E24] focus:border-transparent transition-all duration-200"
-                    required
-                />
-            </div>
-
-
+            {/* Course Dropdown */}
             <div className="relative">
                 <select
                     name="course_id"
@@ -174,11 +220,14 @@ function Contactform() {
                     onChange={handleInputChange}
                     onFocus={() => setCourseOpen(true)}
                     onBlur={() => setCourseOpen(false)}
-                    className="w-full h-[61px] px-4 rounded-[11px] bg-[#F7F6F6] font-normal text-[14px] tracking-[0px] text-left text-black focus:outline-none focus:ring-2 focus:ring-[#EC1E24] focus:border-transparent transition-all duration-200 ">
-                    <option value="" disabled selected className="text-red-500" >Select a Course</option>
-                    {/* Add more options here */}
+                    className="w-full h-[61px] px-4 rounded-[11px] bg-[#F7F6F6] font-normal text-[14px] text-black focus:outline-none focus:ring-2 focus:ring-[#EC1E24] appearance-none"
+                    required
+                >
+                    <option value="" disabled>Select a Course</option>
+                    <option value="1">MBA</option>
+                    <option value="2">BCA</option>
                 </select>
-                <span className={`absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none   ${isCourseOpen ? "rotate-180" : "rotate-0"}`}>
+                <span className={`absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none transition-transform ${isCourseOpen ? "rotate-180" : "rotate-0"}`}>
                     <IoChevronDown />
                 </span>
             </div>
@@ -191,7 +240,7 @@ function Contactform() {
                     onChange={handleInputChange}
                     placeholder="Write down your query..."
                     rows="4"
-                    className="w-full h-[131px] p-4 rounded-[11px] bg-[#F7F6F6] font-normal text-[14px] tracking-[0px] text-left text-black focus:outline-none focus:ring-2 focus:ring-[#EC1E24] focus:border-transparent transition-all duration-200 resize-none"
+                    className="w-full h-[100px] p-4 rounded-[11px] bg-[#F7F6F6] font-normal text-[14px] text-black focus:outline-none focus:ring-2 focus:ring-[#EC1E24] resize-none"
                     required
                 ></textarea>
             </div>
@@ -199,33 +248,17 @@ function Contactform() {
             {/* Submit Button */}
             <button
                 type="submit"
-                disabled={isSubmitting}
-                className="w-[139px] h-[40px] text-left rounded-[20px] bg-[#EC1E24] font-poppins font-[600] text-[16px] md:text-[20px] tracking-[0px] text-white flex items-center justify-start px-4 hover:bg-[#d11a1f] focus:outline-none focus:ring-2 focus:ring-[#EC1E24] focus:ring-offset-2 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed relative"
+                disabled={loading || !isVerified}
+                className="w-full md:w-[160px] h-[50px] rounded-[30px] bg-[#EC1E24] font-semibold text-white flex items-center justify-between px-6 hover:bg-[#d11a1f] transition-all disabled:opacity-50"
             >
-                <span>{isSubmitting ? 'Submitting...' : 'Submit'}</span>
-
-                {isSubmitting && (
-                    <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent ml-2"></div>
-                )}
-                <div className="absolute top-0 right-2 h-full flex items-center z-10">
-                    <div
-                        className="w-[28px] h-[28px] rounded-full flex items-center justify-center bg-white text-[#EC1E24]"
-                    >
-                        {!isSubmitting && (
-                            <svg
-                                className="w-4 h-4"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                            >
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                            </svg>
-                        )}
-                    </div>
+                <span>{loading ? 'Processing...' : 'Submit'}</span>
+                <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center text-[#EC1E24]">
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
                 </div>
             </button>
         </form>
-
     );
 }
 

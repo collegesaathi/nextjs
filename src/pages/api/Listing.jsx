@@ -171,6 +171,12 @@ async AdminPrograms(page) {
   }
 
 
+    async SendOtp() {
+    return Api.post(`/send-otp`)
+  }
+
+
+
   render() {
     return (
       <div>

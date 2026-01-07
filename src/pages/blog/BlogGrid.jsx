@@ -40,119 +40,108 @@ const BlogGrid = () => {
     };
 
     return (
-        <section className="max-w-7xl mx-auto px-2  font-poppins">
-            
-            {/* --- Top Category Bar (Working Tabs) --- */}
-            <div className="flex flex-wrap justify-center gap-3 mb-8">
-                {categories.map((cat, index) => (
-                    <button 
-                        key={index}
-                        onClick={() => {
-                            setActiveCategory(cat);
-                            setVisibleCount(6); // Category change hone par wapas 6 par reset
-                        }}
-                        className={`px-4 py-1.5 text-[14px] font-[400] rounded-md transition-all duration-300 leading-[16px]  ${
-                            activeCategory === cat 
-                            ? "bg-[#FFF5F5] text-[#EC1E24] " 
-                            : "bg-gray-100 text-[#282529]  "
-                        }`}
-                    >
-                        {cat}
-                    </button>
-                ))}
-            </div>
+       <section className="max-w-7xl mx-auto px-4 md:px-10 font-poppins">
+    
+    {/* --- Top Category Bar (Scrollable on Mobile) --- */}
+    <div className="flex flex-nowrap overflow-x-auto md:justify-center gap-3 mb-8 pb-2 no-scrollbar">
+        {categories.map((cat, index) => (
+            <button 
+                key={index}
+                onClick={() => {
+                    setActiveCategory(cat);
+                    setVisibleCount(6); 
+                }}
+                className={`px-3 py-2 text-[14px] font-[400] rounded-md transition-all duration-300 whitespace-nowrap flex-shrink-0 ${
+                    activeCategory === cat 
+                    ? "bg-[#FFF5F5] text-[#EC1E24] border border-[#EC1E24]/10" 
+                    : "bg-gray-100 text-[#282529] hover:bg-gray-200"
+                }`}
+            >
+                {cat}
+            </button>
+        ))}
+    </div>
 
-            {/* --- All Categories & Search Row --- */}
-            <div className="flex justify-between items-center border-t border-gray-100 pt-6 mb-10">
-                <div className="relative group">
-                    <button className="text-[#949494] text-sm flex items-center gap-1 hover:text-black font-medium">
-                        {activeCategory === "All" ? "All categories" : activeCategory} 
-                        <span className="text-[10px]"><MdArrowRight  size={24}/></span>
-                    </button>
-                </div>
-                <div className="flex items-center gap-2 text-gray-400 border-b border-transparent focus-within:border-gray-300 transition-all">
-                    <Search size={18} />
-                    <input 
-                        type="text" 
-                        placeholder="Search" 
-                        className="text-sm outline-none bg-transparent w-24 focus:w-40 transition-all text-gray-700"
+    {/* --- All Categories & Search Row --- */}
+    <div className="flex justify-between items-center border-t border-gray-100 pt-6 mb-10">
+            <div className="relative group">
+                <button className="text-[#949494] text-sm flex items-center gap-1 hover:text-black font-medium">
+                    {activeCategory === "All" ? "All categories" : activeCategory} 
+                    <span className="text-[10px]"><MdArrowRight  size={24}/></span>
+                </button>
+            </div>
+            <div className="flex items-center gap-2 text-gray-400 border-b border-transparent focus-within:border-gray-300 transition-all">
+                <Search size={18} />
+                <input 
+                    type="text" 
+                    placeholder="Search" 
+                    className="text-sm outline-none bg-transparent w-24 focus:w-40 transition-all text-gray-700"
+                />
+            </div>
+        </div>
+
+    {/* --- Blog Grid --- */}
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12 items-stretch">
+        {filteredPosts.slice(0, visibleCount).map((post) => (
+            <div key={post.id} className="group cursor-pointer animate-fadeIn h-full flex flex-col">
+                <div className="relative aspect-[16/9] overflow-hidden rounded-[15px] mb-4 shadow-sm">
+                    <img 
+                        src={post.image} 
+                        alt={post.title}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                 </div>
+
+                <div className="px-2 py-2 flex flex-col flex-1">
+                    <div className="flex flex-wrap gap-3 mb-3">
+                        {post.tags.slice(0, 3).map((tag, i) => (
+                            <span key={i} className="text-[11px] text-[#EC1E24] bg-red-50 px-2 py-0.5 rounded font-[500]">
+                                {tag}
+                            </span>
+                        ))}
+                    </div>
+
+                    <h3 className="text-lg md:text-[22px] font-[600] text-[#282529] leading-tight md:leading-[32px] mb-4 line-clamp-2 group-hover:text-red-600 transition-colors">
+                        {post.title}
+                    </h3>
+
+                    <div className="flex items-center gap-4 text-gray-500 text-[12px] mt-auto">
+                        <div className="flex items-center gap-1">
+                            <span className="text-gray-400 font-bold">+</span>
+                            <span>{post.views} Views</span>
+                        </div>
+                        <div className="flex items-center gap-1 ml-2">
+                            <FaStopwatch size={14} className="text-gray-400" />
+                            <span>{post.readTime}</span>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-            {/* --- Blog Grid --- */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12 items-stretch">
-  {filteredPosts.slice(0, visibleCount).map((post) => (
-    <div key={post.id} className="group cursor-pointer animate-fadeIn h-full flex flex-col">
-
-      <div className="relative aspect-[16/8] overflow-hidden rounded-[15px] mb-4 shadow-sm">
-        <img 
-          src={post.image} 
-          alt={post.title}
-          className="w-full h-full object-cover transition-transform duration-500"
-        />
-      </div>
-
-      <div className="px-5 py-4 flex flex-col flex-1">
-
-        <div className="flex flex-wrap gap-3 mb-3">
-          {post.tags.slice(0, 3).map((tag, i) => (
-            <span key={i} className="text-[11px] text-[#282529] font-[400] leading-[12px]">
-              {tag}
-            </span>
-          ))}
-        </div>
-
-        <h3 className="text-[22px] font-[600] text-[#282529] leading-[36px] -tracking-[0.5] mb-4 line-clamp-3">
-          {post.title}
-        </h3>
-
-        <div className="flex items-center gap-4 text-gray-400 text-[12px] mt-auto">
-          <div className="flex items-center gap-1">
-            <span className="text-gray-300 text-lg leading-none">+</span>
-            <span>{post.views}</span>
-          </div>
-          <div className="flex items-center gap-1 ml-2">
-            <FaStopwatch size={14} className="text-gray-300" />
-            <span>{post.readTime}</span>
-          </div>
-        </div>
-
-      </div>
+        ))}
     </div>
-  ))}
-</div>
 
+    {/* No Results Message */}
+    {filteredPosts.length === 0 && (
+        <div className="text-center py-20 text-gray-400">
+            No blogs found in this category.
+        </div>
+    )}
 
-            {/* No Results Message */}
-            {filteredPosts.length === 0 && (
-                <div className="text-center py-20 text-gray-400">
-                    No blogs found in this category.
-                </div>
-            )}
+    {/* --- View All Button --- */}
+    {visibleCount < filteredPosts.length && (
+        <div className="mt-16 flex justify-center">
+            <button 
+                onClick={handleViewAll}
+                className="bg-[#EC1E24] hover:bg-red-700 text-white font-semibold py-3 px-12 rounded-xl transition-all shadow-lg active:scale-95"
+            >
+                View All
+            </button>
+        </div>
+    )}
 
-            {/* --- View All Button (Working) --- */}
-            {visibleCount < filteredPosts.length && (
-                <div className="mt-16 flex justify-center">
-                    <button 
-                        onClick={handleViewAll}
-                        className="bg-[#f02d2d] hover:bg-red-700 text-white font-semibold py-3 px-12 rounded-xl transition-all shadow-lg hover:shadow-red-200 active:scale-95"
-                    >
-                        View All
-                    </button>
-                </div>
-            )}
-
-            <style jsx>{`
-                @keyframes fadeIn {
-                    from { opacity: 0; transform: translateY(10px); }
-                    to { opacity: 1; transform: translateY(0); }
-                }
-                .animate-fadeIn {
-                    animation: fadeIn 0.5s ease forward;
-                }
-            `}</style>
-        </section>
+    {/* Custom Styles for Scrolling and Animations */}
+ 
+</section>
     );
 };
 
