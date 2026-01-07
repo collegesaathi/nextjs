@@ -377,7 +377,7 @@ indianArray.forEach((item, index) => {
                 icons_alt: item?.icons_alt,
                 images_alt: item?.images_alt
             }));
-            payload.append("servcies", JSON.stringify(cleanServices));
+            payload.append("services", JSON.stringify(cleanServices));
             services.forEach((item, index) => {
                 if (item.image) {
                     payload.append(`servicesimages[${index}]`, item.image);
