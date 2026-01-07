@@ -23,7 +23,6 @@ const router = useRouter();
   const slug = router.query.universitySlug;
 
 
-  console.log("slug", slug)
   console.log("partners", partners)
   const swiperRef = useRef(null);
 

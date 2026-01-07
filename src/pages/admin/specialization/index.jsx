@@ -15,6 +15,7 @@ export default function Index() {
     const course_id = router?.query?.course_id
     const [page, setPage] = useState(1);
     const [data, setData] = useState([]);
+    console.log("data" ,data)
     const [buttonLoading, setButtonLoading] = useState(false);
     const [loading, setLoading] = useState(false);
     const fetchData = async (course_id) => {
@@ -151,7 +152,7 @@ export default function Index() {
 
                                                 {/* View Button */}
                                                 <Link
-                                                    href={`/admin/specialization/${item?.slug}`}
+                                                    href={`/university/${item?.university?.slug}/${item?.course?.slug}/${item?.slug}`}
                                                     target="_blank"
                                                     className="px-4 py-2 rounded bg-[#FF1B1B] hover:bg-[#ad0e0e] text-white"
                                                 >

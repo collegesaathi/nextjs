@@ -54,7 +54,7 @@ export default function Specialization({ data }) {
                         <ExaminationPattern examPatterns={data?.SpecialisationData?.examPatterns} />
                         <Financial financialAid={data?.SpecialisationData?.financialAid} />
                         <CarreerOppurtunity career={data?.SpecialisationData?.career} />
-                        <PlacementPartners placements={data?.SpecialisationData?.partners} PlacementPartners={data?.placementPartners} />
+                        <PlacementPartners partners={data?.SpecialisationData?.partners} PlacementPartners={data?.placementPartners} />
                         <CareerServices services={data?.SpecialisationData?.services} />
                         <StepsSection admissionProcess={data?.SpecialisationData?.admissionprocess} />
                         <FAQSection faq={data?.SpecialisationData?.faq} />

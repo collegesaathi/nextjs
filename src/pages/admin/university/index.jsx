@@ -185,7 +185,7 @@ export default function Index() {
                                                     />
 
                                                     <Link
-                                                        href={`/admin/university/${item.slug}`}
+                                                        href={`/university/${item.slug}`}
                                                         target="_blank"
                                                         className="bg-[#FF1B1B] px-3 py-1 rounded text-white"
                                                     >

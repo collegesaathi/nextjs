@@ -21,6 +21,7 @@ import FinancialAdd from "@/commons/add/FinancialAdd";
 import AddCampus from "@/commons/add/AddCampus";
 import ImagePreview from "@/common/ImagePreview";
 import AddInternationalcapmus from "@/commons/add/AddInternationalcapmus";
+import Link from "next/link";
 
 function Index() {
 
@@ -44,7 +45,7 @@ function Index() {
     const [icons, setIcons] = useState(null);
     const [formData, setFormData] = useState({
         slug: "",
-        fees_desc:"",
+        fees_desc: "",
         name: "",
         icon: null,
         cover_image: null,
@@ -55,7 +56,7 @@ function Index() {
         rankings_point: "",
         video: "",
         rankings_name: "",
-        fees_desc:"",
+        fees_desc: "",
         rankings_description: "",
         approvals_name: "",
         approvals_desc: "",
@@ -151,7 +152,7 @@ function Index() {
 
         setFormData({
             Id: safeData.id,
-fees_desc :  safeData.fees_desc ,
+            fees_desc: safeData.fees_desc,
             slug: safeData.slug,
             name: safeData.name,
             rank: safeData.rank,
@@ -370,8 +371,8 @@ fees_desc :  safeData.fees_desc ,
     };
 
     // ✅ ADD UNIVERSITY
-  
-  const handleUpdate = async (e) => {
+
+    const handleUpdate = async (e) => {
         e.preventDefault();
         if (loading) return;
         setLoading(true);
@@ -540,12 +541,12 @@ fees_desc :  safeData.fees_desc ,
 
 
     const handleNext = (e) => {
-    e.preventDefault();
-    if (currentIndex < tabsData.length - 1) {
-        setActiveTab(tabsData[currentIndex + 1].id);
-    }
-    handleUpdate(e);
-};
+        e.preventDefault();
+        if (currentIndex < tabsData.length - 1) {
+            setActiveTab(tabsData[currentIndex + 1].id);
+        }
+        handleUpdate(e);
+    };
 
     const handleBack = () => {
         if (currentIndex > 0) {
@@ -588,6 +589,11 @@ fees_desc :  safeData.fees_desc ,
                                 />
 
                             </div>
+
+                            <Link href="/admin/university" className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#FF1B1B] hover:bg-[#ad0e0e] text-white font-semibold transition-all"
+                            >
+                                Back
+                            </Link>
 
                             {/* Right: Save Button */}
 
