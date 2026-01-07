@@ -11,129 +11,135 @@ function Eligibility({ eligibilitycriteria }) {
 
   return (
     <>
-      <section className="w-full px-2 md:px-6 py-6">
-        <div className="max-w-[1230px]">
-          <Heading title={eligibilitycriteria?.title} />
+      {eligibilitycriteria?.IndianCriteria && (
+        <section className="w-full px-2 md:px-6 py-6">
+          <div className="max-w-[1230px]">
+            <Heading title={eligibilitycriteria?.title} />
 
-          {/* MAIN WRAPPER */}
-          <div className="bg-[#FEE4E4] rounded-[18px] mt-10 border border-[#BCBCBCCC]">
+            {/* MAIN WRAPPER */}
+            <div className="bg-[#FEE4E4] rounded-[18px] mt-10 border border-[#BCBCBCCC]">
 
-            {/* TABS */}
-            <div className="w-full flex font-poppins font-[600] text-[14px] md:text-[17px]">
+              {/* TABS */}
+              <div className="w-full flex font-poppins font-[600] text-[14px] md:text-[17px]">
 
-              {/* Indian Students Tab */}
-              <button
-                onClick={() => setActiveTab("indian")}
-                className={`w-1/2 py-4 rounded-br-[17px] rounded-tl-[17px] text-center transition-all
+                {/* Indian Students Tab */}
+                <button
+                  onClick={() => setActiveTab("indian")}
+                  className={`w-1/2 py-4 rounded-br-[17px] rounded-tl-[17px] text-center transition-all
                 ${activeTab === "indian"
-                    ? "bg-[#FEE4E4] text-black"
-                    : "bg-white text-[#666]"}
+                      ? "bg-[#FEE4E4] text-black"
+                      : "bg-white text-[#666]"}
                 `}
-              >
-                Indian Students
-              </button>
+                >
+                  Indian Students
+                </button>
 
-              {/* Foreign Students Tab */}
-              <button
-                onClick={() => setActiveTab("foreign")}
-                className={`w-1/2 py-4 rounded-bl-[17px] rounded-tr-[17px] text-center transition-all
+                {/* Foreign Students Tab */}
+                <button
+                  onClick={() => setActiveTab("foreign")}
+                  className={`w-1/2 py-4 rounded-bl-[17px] rounded-tr-[17px] text-center transition-all
                 ${activeTab === "foreign"
-                    ? "bg-[#FEE4E4] text-black"
-                    : "bg-white text-[#666]"}
+                      ? "bg-[#FEE4E4] text-black"
+                      : "bg-white text-[#666]"}
                 `}
-              >
-                Foreign Students
-              </button>
-
-            </div>
-
-            {/* CONTENT BOX */}
-            <div className="px-4 pb-6">
-              <div className="bg-white w-full px-6 md:px-8 md:py-10 mt-10 rounded-[12px]">
-
-                {activeTab === "indian" && (
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-1">
-
-                    {/* CARD 1 */}
-
-                    {Array.isArray(eligibilitycriteria?.IndianCriteria) &&
-                      eligibilitycriteria.IndianCriteria.map((item, index) => (
-                        <div className=" p-2 md:p-6 border-b md:border-b-0 md:border-r last:border-r-0 border-[#FCF0EE] space-y-2 md:space-y-8">
-                          {item.title === "Educational Qualifications" && (
-                            <div className="bg-[#FCF0EE] h-12 w-12 rounded-full flex justify-center items-center">
-                              <SVGIcon name={"eduction"} size={24} />
-                            </div>
-                          )}
-
-                          {item.title === "Grades" && (
-                            <div className="bg-[#FCF0EE] h-12 w-12 rounded-full flex justify-center items-center">
-                              <SVGIcon name={"grade"} size={24} />
-                            </div>
-                          )}
-
-                          {item.title === "Work Experience" && (
-                            <div className="bg-[#FCF0EE] h-12 w-12 rounded-full flex justify-center items-center">
-                              <SVGIcon name={"work"} size={24} />
-                            </div>
-                          )}
-                          <h3 className="font-semibold text-[16px] md:text-[18px]">{item.title}</h3>
-                          {/* <p className="text-[14px] leading-6" dangerouslySetInnerHTML={{ __html: item?.description || "" }}> */}
-                          <div className="text-[14px] leading-6" dangerouslySetInnerHTML={{ __html: item?.description || "" }}>
-
-                          </div>
-                        </div>
-
-                      ))}
-
-
-
-
-                  </div>
-                )}
-
-                {activeTab === "foreign" && (
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-1">
-
-                    {/* CARD 1 */}
-                    {Array.isArray(eligibilitycriteria?.NRICriteria) &&
-                      eligibilitycriteria.NRICriteria?.map((item, index) => (
-                        <div className=" p-2 md:p-6  border-b md:border-b-0 md:border-r last:border-r-0 border-[#FCF0EE] space-y-2 md:space-y-8">
-                          {item.title === "Educational Qualifications" && (
-                            <div className="bg-[#FCF0EE] h-12 w-12 rounded-full flex justify-center items-center">
-                              <SVGIcon name={"eduction"} size={24} />
-                            </div>
-                          )}
-
-                          {item.title === "Grades" && (
-                            <div className="bg-[#FCF0EE] h-12 w-12 rounded-full flex justify-center items-center">
-                              <SVGIcon name={"grade"} size={24} />
-                            </div>
-                          )}
-
-                          {item.title === "Work Experience" && (
-                            <div className="bg-[#FCF0EE] h-12 w-12 rounded-full flex justify-center items-center">
-                              <SVGIcon name={"work"} size={24} />
-                            </div>
-                          )}
-
-
-                          <h3 className="font-semibold text-[18px]">{item.title}</h3>
-                          <div className="text-[14px] leading-6" dangerouslySetInnerHTML={{ __html: item?.description || "" }} >
-                          </div>
-                        </div>
-
-                      ))}
-
-                  </div>
-                )}
+                >
+                  Foreign Students
+                </button>
 
               </div>
+
+              {/* CONTENT BOX */}
+              <div className="px-4 pb-6">
+                <div className="bg-white w-full px-6 md:px-8 md:py-10 mt-10 rounded-[12px]">
+
+                  {activeTab === "indian" && (
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-1">
+
+                      {/* CARD 1 */}
+
+                      {Array.isArray(eligibilitycriteria?.IndianCriteria) &&
+                        eligibilitycriteria.IndianCriteria.map((item, index) => (
+                          <div className=" p-2 md:p-6 border-b md:border-b-0 md:border-r last:border-r-0 border-[#FCF0EE] space-y-2 md:space-y-8">
+                            {(item.title === "Educational Qualifications" ||
+                              item.title === "Educational Qualification") && (
+                                <div className="bg-[#FCF0EE] h-12 w-12 rounded-full flex justify-center items-center">
+                                  <SVGIcon name="eduction" size={24} />
+                                </div>
+                              )}
+
+
+                            {item.title === "Grades" && (
+                              <div className="bg-[#FCF0EE] h-12 w-12 rounded-full flex justify-center items-center">
+                                <SVGIcon name={"grade"} size={24} />
+                              </div>
+                            )}
+
+                            {item.title === "Work Experience" && (
+                              <div className="bg-[#FCF0EE] h-12 w-12 rounded-full flex justify-center items-center">
+                                <SVGIcon name={"work"} size={24} />
+                              </div>
+                            )}
+                            <h3 className="font-semibold text-[16px] md:text-[18px]">{item.title}</h3>
+                            {/* <p className="text-[14px] leading-6" dangerouslySetInnerHTML={{ __html: item?.description || "" }}> */}
+                            <div className="text-[14px] leading-6" dangerouslySetInnerHTML={{ __html: item?.description || "" }}>
+
+                            </div>
+                          </div>
+
+                        ))}
+
+
+
+
+                    </div>
+                  )}
+
+                  {activeTab === "foreign" && (
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-1">
+
+                      {/* CARD 1 */}
+                      {Array.isArray(eligibilitycriteria?.NRICriteria) &&
+                        eligibilitycriteria.NRICriteria?.map((item, index) => (
+                          <div className=" p-2 md:p-6  border-b md:border-b-0 md:border-r last:border-r-0 border-[#FCF0EE] space-y-2 md:space-y-8">
+                            {(item.title === "Educational Qualifications" ||
+                              item.title === "Educational Qualification") && (
+                                <div className="bg-[#FCF0EE] h-12 w-12 rounded-full flex justify-center items-center">
+                                  <SVGIcon name="eduction" size={24} />
+                                </div>
+                              )}
+
+
+                            {item.title === "Grades" && (
+                              <div className="bg-[#FCF0EE] h-12 w-12 rounded-full flex justify-center items-center">
+                                <SVGIcon name={"grade"} size={24} />
+                              </div>
+                            )}
+
+                            {item.title === "Work Experience" && (
+                              <div className="bg-[#FCF0EE] h-12 w-12 rounded-full flex justify-center items-center">
+                                <SVGIcon name={"work"} size={24} />
+                              </div>
+                            )}
+
+
+                            <h3 className="font-semibold text-[18px]">{item.title}</h3>
+                            <div className="text-[14px] leading-6" dangerouslySetInnerHTML={{ __html: item?.description || "" }} >
+                            </div>
+                          </div>
+
+                        ))}
+
+                    </div>
+                  )}
+
+                </div>
+              </div>
+
             </div>
 
           </div>
-
-        </div>
-      </section>
+        </section>
+      )}
     </>
   );
 }

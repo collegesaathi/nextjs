@@ -6,10 +6,10 @@ import ReactQuillEditor from "@/common/ReactQuillEditor";
 
 // Dynamic import for Quill editor (SSR safe)
 const ReactQuill = dynamic(() => import("react-quill"), {
-  ssr: false,
+    ssr: false,
 });
 
-export default function Addcareer({ setCareers, Careers, htitle  ,formData ,handleQuillChange  ,handleChange}) {
+export default function Addcareer({ setCareers, Careers, htitle, formData, handleQuillChange, handleChange }) {
 
     // Add new advantage
     const addAdvantage = () => {
@@ -28,7 +28,7 @@ export default function Addcareer({ setCareers, Careers, htitle  ,formData ,hand
         setCareers(Careers.filter((_, i) => i !== index));
     };
 
-   
+
 
     // Quill modules & formats
     const quillModules = {
@@ -54,40 +54,34 @@ export default function Addcareer({ setCareers, Careers, htitle  ,formData ,hand
     return (
         <div>
 
-             <div>
-        <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
-          Name{" "}
-        </label>
-        <input
-          type="text"
-          name="careername"
-          value={formData.careername}
-          onChange={(e) => {
-             handleChange(e);
-          }}
-          placeholder="Enter name"
-          className="w-full p-3 rounded-md bg-gray-100 text-gray-700 
+            <div>
+                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
+                    Name{" "}
+                </label>
+                <input
+                    type="text"
+                    name="careername"
+                    value={formData.careername}
+                    onChange={(e) => {
+                        handleChange(e);
+                    }}
+                    placeholder="Enter name"
+                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 
                 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
-          required
-        />
-      </div>
-      <div className="mt-5 mb-5">
-        <ReactQuillEditor
-          label="Description"
-          desc={formData.careerdesc}
-          handleBioChange={(val) => handleQuillChange("careerdesc", val)}
-        />
-      </div>
+                    required
+                />
+            </div>
+            <div className="mt-5 mb-5">
+                <ReactQuillEditor
+                    label="Description"
+                    desc={formData.careerdesc}
+                    handleBioChange={(val) => handleQuillChange("careerdesc", val)}
+                />
+            </div>
             {/* Header + Add Button */}
             <div className="flex justify-between items-center mb-5">
                 <h2 className="text-xl font-semibold text-[#CC2828]">{htitle || "Careers"} Section</h2>
-                <button
-                type="button"
-                    onClick={addAdvantage}
-                    className="border border-[#CC2828] bg-[#CC2828] hover:bg-red-700 text-white px-6 py-2 rounded-[10px] text-base transition"
-                >
-                    + Add More
-                </button>
+
             </div>
 
             {/* Careers List */}
@@ -96,10 +90,10 @@ export default function Addcareer({ setCareers, Careers, htitle  ,formData ,hand
 
                     {/* Title */}
                     <div>
-                             <div className="flex justify-between items-center mb-2">
+                        <div className="flex justify-between items-center mb-2">
                             <label className="block text-[#CC2828] font-medium">Title</label>
                             <button
-                            type="button"
+                                type="button"
                                 onClick={() => deleteAdvantage(index)}
                                 className="bg-red-500 text-white rounded-full p-1 hover:bg-red-700"
                                 title="Delete Advantage"
@@ -117,7 +111,7 @@ export default function Addcareer({ setCareers, Careers, htitle  ,formData ,hand
                     </div>
 
                     {/* Description */}
-                        {/* <div className="flex justify-between items-center mb-2">
+                    {/* <div className="flex justify-between items-center mb-2">
                             <label className="block text-[#CC2828] font-medium">Description</label>
                             <button
                             type="button"
@@ -129,7 +123,7 @@ export default function Addcareer({ setCareers, Careers, htitle  ,formData ,hand
                             </button>
                         </div> */}
 
-                        {/* <div className="border border-gray-300 rounded-md">
+                    {/* <div className="border border-gray-300 rounded-md">
                             <ReactQuill
                                 value={adv.description}
                                 onChange={(value) => handleAdvantageChange(index, "description", value)}
@@ -152,6 +146,14 @@ export default function Addcareer({ setCareers, Careers, htitle  ,formData ,hand
 
                 </div>
             ))}
+
+            <button
+                type="button"
+                onClick={addAdvantage}
+                className="border border-[#CC2828] bg-[#CC2828] hover:bg-red-700 text-white px-6 py-2 rounded-[10px] text-base transition"
+            >
+                + Add More
+            </button>
         </div>
     );
 }

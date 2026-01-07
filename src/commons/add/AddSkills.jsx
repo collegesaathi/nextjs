@@ -59,17 +59,11 @@ export default function AddSkills({ setSkills, skills, htitle, handleChange, for
             {/* Header + Add Button */}
             <div className="flex justify-between items-center mb-5">
                 <h2 className="text-xl font-semibold text-[#CC2828]">{htitle || "skills"} Section</h2>
-                <button
-                    type="button"
-                    onClick={addAdvantage}
-                    className="border border-[#CC2828] bg-[#CC2828] hover:bg-red-700 text-white px-6 py-2 rounded-[10px] text-base transition"
-                >
-                    + Add More
-                </button>
+           
             </div>
 
             {/* skills List */}
-            {skills.map((adv, index) => (
+            {skills && skills?.map((adv, index) => (
                 <div key={index} className="grid grid-cols-1 gap-4 mb-6 border-b border-gray-200 pb-4">
                     <button
                         type="button"
@@ -92,6 +86,14 @@ export default function AddSkills({ setSkills, skills, htitle, handleChange, for
                     </div>
                 </div>
             ))}
+
+                 <button
+                    type="button"
+                    onClick={addAdvantage}
+                    className="border border-[#CC2828] bg-[#CC2828] hover:bg-red-700 text-white px-6 py-2 rounded-[10px] text-base transition"
+                >
+                    + Add More
+                </button>
         </div>
     );
 }

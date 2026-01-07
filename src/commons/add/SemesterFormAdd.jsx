@@ -50,17 +50,11 @@ export default function SemesterFormAdd({ semesters, setSemesters }) {
             {/* HEADER */}
             <div className="flex justify-between mb-5">
                 <h2 className="text-xl font-semibold text-red-600">Semester Management</h2>
-                <button
-                    type="button"
-                    onClick={addSemester}
-                    className="bg-red-600 text-white px-4 py-2 rounded-lg"
-                >
-                    + Add Semester
-                </button>
+           
             </div>
 
             {/* SEMESTERS */}
-            {semesters.map((semester, sIndex) => (
+            {semesters && semesters?.map((semester, sIndex) => (
                 <div key={sIndex} className="border p-4 rounded-lg mb-6 bg-gray-50">
 
                     {/* Semester Title */}
@@ -125,6 +119,14 @@ export default function SemesterFormAdd({ semesters, setSemesters }) {
 
                 </div>
             ))}
+
+                 <button
+                    type="button"
+                    onClick={addSemester}
+                    className="bg-red-600 text-white px-4 py-2 rounded-lg"
+                >
+                    + Add Semester
+                </button>
         </div>
     );
 }

@@ -134,7 +134,7 @@ function CourseCard({ course, mobile = false, name,slug  , router}) {
 
       <div className="pt-7 px-2 flex-1 flex flex-col justify-between">
         <div>
-          <span className="text-[12px] text-[#282529]">NMIMS Online</span>
+          {/* <span className="text-[12px] text-[#282529]">NMIMS Online</span> */}
           <h3 className="font-semibold text-[16px] mt-1">
             {course.name}
           </h3>

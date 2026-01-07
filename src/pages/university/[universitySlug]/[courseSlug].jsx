@@ -73,16 +73,16 @@ function Index({ data }) {
                         {data?.CourseData?.approvals && (<Approvals approvals={data?.CourseData?.approvals} approvalsdata={data?.approvalsData} />)}
                         {data?.CourseData?.advantages && (<Advantages advantages={data?.CourseData?.advantages} />)}
                         {data?.CourseData?.rankings && (<Ranking rankings={data?.CourseData?.rankings} />)}
+                        {courseData?.data?.length >0  && (
                         <CoursesSwiper courseData={courseData} name={"specialisation"} title={`${data?.CourseData?.name} - Specialisation`} />
+                        )}
                         {data?.CourseData?.eligibilitycriteria &&(
                             <Eligibility eligibilitycriteria={data?.CourseData?.eligibilitycriteria} />
                         )}
                         <EnquiryBox />
                         <Curriculum curriculum={data?.CourseData?.curriculum} />
                         {data?.CourseData?.certificates && (<SampleCertificate certificates={data?.CourseData?.certificates} />)}
-
                         {data?.CourseData?.skills && (<Skills skills={data?.CourseData?.skills} />)}
-
                         <ExaminationPattern examPatterns={data?.CourseData?.examPatterns} />
                         <Financial financialAid={data?.CourseData?.financialAid} />
                         <CarreerOppurtunity career={data?.CourseData?.career} />

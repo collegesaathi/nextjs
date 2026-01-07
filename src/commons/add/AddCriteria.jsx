@@ -67,16 +67,10 @@ export default function AddCriteria({ setCriteria, criteria = [] }) {
         <h2 className="text-lg font-semibold text-red-600">
           Eligibility Criteria
         </h2>
-        <button
-          type="button"
-          onClick={addCriteria}
-          className="bg-red-600 text-white px-4 py-2 rounded-lg flex items-center"
-        >
-          <MdAdd className="mr-1" /> Add New
-        </button>
+      
       </div>
 
-      {safeCriteria.map((item, index) => (
+      {safeCriteria && safeCriteria?.map((item, index) => (
         <div
           key={index}
           className="border rounded-lg p-4 mb-6 bg-gray-50 shadow-sm"
@@ -147,6 +141,14 @@ export default function AddCriteria({ setCriteria, criteria = [] }) {
           </div>
         </div>
       ))}
+
+        <button
+          type="button"
+          onClick={addCriteria}
+          className="bg-red-600 text-white px-4 py-2 rounded-lg flex items-center"
+        >
+          <MdAdd className="mr-1" /> Add New
+        </button>
     </div>
   );
 }

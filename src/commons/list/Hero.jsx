@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { sanitizeHtml } from "@/common/sanitizeHtml";
 export default function Hero({ data, approvalsdata, exisitng }) {
-  const desc  = data?.description || data?.university?.description || []
+  const desc = data?.description || data?.university?.description || []
   return (
     <div className="mt-8 md:mt-[60px] lg:mt-[90px] ">
       <div className="flex flex-col-reverse lg:flex-row items-start justify-between">
@@ -13,38 +13,37 @@ export default function Hero({ data, approvalsdata, exisitng }) {
             {data?.name || ""}
           </h1>
           {/* BADGES */}
-          {desc?.length > 0 && (
+          {Array.isArray(desc) && desc.length > 0 && (
             <div className="flex flex-wrap gap-3 sm:gap-4 pt-4">
-              {desc
-              ?.map((item, index) => (
+              {desc.map((item, index) => (
                 <div key={index} className="w-full sm:w-[48%] lg:w-[350px]">
                   <div
                     dangerouslySetInnerHTML={{
-                      __html: sanitizeHtml( item?.text || "")
-                        // 1️⃣ ul styling
-                        ?.replace(
+                      __html: sanitizeHtml(item?.text || "")
+                        // 1️⃣ UL styling
+                        .replace(
                           /<ul>/g,
                           '<ul class="flex flex-col gap-2">'
                         )
-                        // 2️⃣ li open
-                        ?.replace(
+
+                        // 2️⃣ LI open — FIXED ALIGNMENT
+                        .replace(
                           /<li>/g,
                           `<li class="w-full min-h-[46px] rounded-[12px] border border-[#f8dbdd]
-                  flex items-start gap-3 px-3 py-2">
-                    <span class="flex-shrink-0 text-green-600 mt-1">✔</span>
-                    <span class="flex-1 custom-description text-start font-poppins text-[12px] text-[#282529] leading-snug break-words">`
+                flex items-center gap-3 px-3 py-2">
+                  <span class="flex-shrink-0 text-green-600">✔</span>
+                  <span class="flex-1 custom-description text-start font-poppins text-[12px]
+                  text-[#282529] leading-snug break-words">`
                         )
-                        // 3️⃣ li close
-                        ?.replace(/<\/li>/g, `</span></li>`),
+
+                        // 3️⃣ LI close
+                        .replace(/<\/li>/g, `</span></li>`),
                     }}
                   />
                 </div>
               ))}
             </div>
           )}
-
-
-
 
           {/* STAR + LOGOS */}
           <div className="flex items-center gap-2 md:gap-4 pt-6 max-w-[70px]">
@@ -103,16 +102,18 @@ export default function Hero({ data, approvalsdata, exisitng }) {
 
             {/* TOP BADGES */}
             <div className="absolute top-2 left-0 right-0 w-full flex gap-4 justify-between px-3 sm:px-6 md:px-10 pt-3">
-              <button className="min-w-[250px] sm:w-[200px] h-[32px] sm:h-[40px] rounded-[26px] bg-white shadow-md flex items-center justify-center text-xs sm:text-sm font-poppins gap-2 px-4 whitespace-nowrap">
+              <button className="h-[32px] sm:h-[40px] rounded-[26px] bg-white shadow-md
+flex items-center justify-center gap-2
+px-4 text-xs sm:text-sm font-poppins whitespace-nowrap">
                 <Image
                   src="/images/university/hero/ranking.png"
                   width={20}
                   height={20}
                   alt="ranking logo"
                 />
-                {/* <span>Ranking</span> */}
                 <strong># {data?.rank || data?.university?.rank}</strong>
               </button>
+
 
 
               <button className="w-[100px] sm:w-[156px] h-[40px] sm:h-[52px] rounded-[5px] bg-white shadow-md flex items-center justify-center">

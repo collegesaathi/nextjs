@@ -19,8 +19,10 @@ export default function FAQSection({ Faq }) {
         Aos.init({ once: true, easing: 'ease-out-quad', offset: 120 });
     }, []);
 
-    return (
-        <section className="px-2 md:px-6 py-6 max-w-[1230px] mx-auto" id="faq-section">
+    return ( 
+        <>
+        {Faq?.length > 1 &&  (
+    <section className="px-2 md:px-6 py-6 max-w-[1230px] mx-auto" id="faq-section">
             <div className="container mx-auto">
                 <Heading title="Frequently Asked " midtitle="Questions" />
 
@@ -61,5 +63,8 @@ export default function FAQSection({ Faq }) {
 
             </div>
         </section>
+        )}
+        </>
+    
     );
 }

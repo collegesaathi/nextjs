@@ -22,39 +22,42 @@ export default function SampleCertificate({ certificates }) {
                 />
 
               </div>
-
               {/* RIGHT IMAGE SECTION */}
-              <div className="w-full lg:w-1/2 flex justify-center">
-                <div className="relative 
+
+              {certificates?.image && (
+                <div className="w-full lg:w-1/2 flex justify-center">
+                  <div className="relative 
               w-[240px] h-[230px] 
               sm:w-[300px] sm:h-[290px] 
               md:w-[350px] md:h-[340px] 
               lg:w-[380px] lg:h-[360px]"
-                >
-                  {/* Frame Image */}
-                  <Image
-                    src="/images/university/certificatebg.png"
-                    alt="Certificate Frame"
-                    fill
-                    className="object-contain"
-                    priority
-                  />
+                  >
+                    {/* Frame Image */}
+                    <Image
+                      src="/images/university/certificatebg.png"
+                      alt="Certificate Frame"
+                      fill
+                      className="object-contain"
+                      priority
+                    />
 
-                  {/* Inner Certificate */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <img
-                      src={certificates?.image}
-                      alt="Certificate"
-                      width={260}
-                      height={180}
-                      className="object-contain 
+                    {/* Inner Certificate */}
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <img
+                        src={certificates?.image}
+                        alt="Certificate"
+                        width={260}
+                        height={180}
+                        className="object-contain 
                     w-[170px] 
                     sm:w-[210px] 
                     md:w-[240px]"
-                    />
+                      />
+                    </div>
                   </div>
                 </div>
-              </div>
+              )}
+
 
             </div>
           </div>
