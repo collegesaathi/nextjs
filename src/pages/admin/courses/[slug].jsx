@@ -23,6 +23,9 @@ import AdminLayout from "../common/AdminLayout";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Listing from "@/pages/api/Listing";
+import CoursesSwiper from "@/commons/list/CoursesSwiper";
+import CarreerOppurtunity from "@/commons/list/CarreerOppurtunity";
+import UpdatedFee from "@/commons/list/UpdatedFee";
 function Index() {
     const router = useRouter();
     const id = router.query.slug;
@@ -51,22 +54,29 @@ function Index() {
                 <div className="mx-auto container sm:container md:container lg:container xl:max-w-[1430px]  px-4">
                     <Hero data={data?.CourseData} />
                 </div>
-                <div className="w-full flex items-start pt-10 justify-center h-full relative flex-wrap">
-                    <Aboutdetails about={data?.CourseData?.about} />
-                    <CourseFees  />
-                    <Approvals approvals={data?.CourseData?.approvals} approvalsdata={data?.approvalsData} />
-                    <Ranking rankings={data?.CourseData?.rankings} />
-                    <Eligibility />
-                    <Curriculum />
-                    <Skills advantages={data?.CourseData?.advantages} />
-                    <Advantages advantages={data?.CourseData?.advantages} />
-                    <SampleCertificate certificates={data?.CourseData?.certificates} />
+                <div className="w-full lg:w-9/12 h-full lg:h-[100vh] overflow-y-auto " style={{ scrollbarWidth: "none", }}>
+
+                    {data?.CourseData?.about && (<Aboutdetails about={data?.CourseData?.about} />)}
+                    {data?.CourseData?.fees && (<UpdatedFee fees={data?.CourseData?.fees} />)}
+                    {data?.CourseData?.approvals && (<Approvals approvals={data?.CourseData?.approvals} approvalsdata={data?.approvalsData} />)}
+                    {data?.CourseData?.advantages && (<Advantages advantages={data?.CourseData?.advantages} />)}
+                    {data?.CourseData?.rankings && (<Ranking rankings={data?.CourseData?.rankings} />)}
+                    {/* <CoursesSwiper courseData={courseData} name={"specialisation"} title={`${data?.CourseData?.name} - Specialisation`} /> */}
+                    {data?.CourseData?.eligibilitycriteria && (
+                        <Eligibility eligibilitycriteria={data?.CourseData?.eligibilitycriteria} />
+                    )}
+                    <Curriculum curriculum={data?.CourseData?.curriculum} />
+                    {data?.CourseData?.certificates && (<SampleCertificate certificates={data?.CourseData?.certificates} />)}
+
+                    {data?.CourseData?.skills && (<Skills skills={data?.CourseData?.skills} />)}
+
                     <ExaminationPattern examPatterns={data?.CourseData?.examPatterns} />
                     <Financial financialAid={data?.CourseData?.financialAid} />
-                    <PlacementPartners placements={data?.CourseData?.partners} PlacementPartners={data?.placementPartners} />
+                    <CarreerOppurtunity career={data?.CourseData?.career} />
+                    <PlacementPartners partners={data?.CourseData?.partners} PlacementPartners={data?.placementPartners} />
                     <CareerServices services={data?.CourseData?.services} />
-                    <StepsSection admissionProcess={data?.CourseData?.admissionProcess} />
-                    <FAQSection faq={data?.CourseData?.faq} />
+                    <StepsSection admissionProcess={data?.CourseData?.admissionprocess} />
+                    <FAQSection Faq={data?.CourseData?.faq?.faqs} />
                     <SimilarUniversities />
                     <Universities />
                     <Reviews />
