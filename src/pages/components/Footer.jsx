@@ -421,7 +421,7 @@ const companyLinks = [
   { text: 'About Us', href: '/about-us' },
   { text: 'Privacy Policy', href: '/privacy-policy' },
   { text: 'Contact Us', href: '/contact-us' },
-  { text: 'Terms & Conditions', href: '/terms-conditionss' },
+  { text: 'Terms & Conditions', href: '/terms-conditions' },
   { text: 'FAQs', href: '/faqs' },
   { text: 'Disclaimer', href: '/disclaimer' },
   { text: 'Blogs', href: '/blogs' },

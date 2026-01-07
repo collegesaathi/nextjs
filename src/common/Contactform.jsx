@@ -28,13 +28,11 @@ function Contactform() {
         page_name: router?.pathname
     });
 
-    // Timer logic for Resend OTP
+    // Timer logic
     useEffect(() => {
         let interval;
         if (timer > 0) {
-            interval = setInterval(() => {
-                setTimer((prev) => prev - 1);
-            }, 1000);
+            interval = setInterval(() => setTimer((prev) => prev - 1), 1000);
         } else {
             clearInterval(interval);
         }
@@ -46,6 +44,11 @@ function Contactform() {
         setForm(prev => ({ ...prev, [name]: value }));
     }
 
+    // Email Validator
+    const validateEmail = (email) => {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    };
+
     // --- OTP Logic Functions ---
     const handleSendOtp = async () => {
         if (form.phone_number.length !== 10) {
@@ -53,32 +56,30 @@ function Contactform() {
         }
         setOtpLoading(true);
         try {
-            // Replace with your actual Send OTP API call
-            // await main.SendOTP(form.phone_number); 
-
-               const main = new Listing();
-            const response = await main.SendOtp();
+            const main = new Listing();
+            await main.SendOtp(form.phone_number); 
             toast.success("OTP sent successfully!");
             setOtpSent(true);
-            setTimer(30); // 30 seconds timer
+            setTimer(90); 
         } catch (error) {
-            toast.error("Failed to send OTP");
+            toast.error(error?.response?.data?.message || "Failed to send OTP");
         } finally {
             setOtpLoading(false);
         }
     };
 
     const handleVerifyOtp = async () => {
-        if (form.otp.length < 4) return toast.error("Enter valid OTP");
+        if (form.otp.length < 4) return toast.error("Enter valid 4-digit OTP");
         setOtpLoading(true);
         try {
-            const res = await main.VerifyOTP(form.phone_number, form.otp);
+            const main = new Listing();
+            const res = await main.VerifyOtp(form.phone_number, form.otp);
             if(res){
-            toast.success("Mobile number verified!");
+                toast.success("Mobile number verified!");
+                setIsVerified(true);
             }
-            setIsVerified(true);
         } catch (error) {
-            toast.error("Invalid OTP");
+            toast.error(error?.response?.data?.message || "Invalid OTP");
         } finally {
             setOtpLoading(false);
         }
@@ -86,26 +87,29 @@ function Contactform() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (!validateEmail(form.email)) return toast.error("Please enter a valid email!");
         if (!isVerified) return toast.error("Please verify your mobile number first!");
-        if (loading) return;
-
+        
         setLoading(true);
         try {
             const main = new Listing();
             const response = await main.ContactAdd({
                 ...form,
-                otp: form.otp, // Already verified
                 page_name: router?.pathname
             });
 
             if (response?.data?.status) {
                 toast.success(response.data.message);
                 setIsSubmitting(true);
+                // Reset form
+                setForm({ name: '', phone_number: '', email: '', content: '', otp: '', course_id: "", city: 'jaipur', state: 'rajasthan', page_name: router?.pathname });
+                setOtpSent(false);
+                setIsVerified(false);
             } else {
                 toast.error(response.data.message);
             }
         } catch (error) {
-            toast.error(error?.response?.data?.message || "Something went wrong!");
+            toast.error("Something went wrong!");
         } finally {
             setLoading(false);
         }
@@ -117,20 +121,24 @@ function Contactform() {
             <div>
                 <input
                     name="name"
-                    value={form?.name}
+                    value={form.name}
                     onChange={handleInputChange}
                     type="text"
                     placeholder="Name"
-                    className="w-full h-[61px] px-4 rounded-[11px] bg-[#F7F6F6] font-normal text-[14px] text-black focus:ring-0 "
+                    className="w-full h-[61px] px-4 rounded-[11px] bg-[#F7F6F6] font-normal text-[14px] text-black focus:outline-none focus:ring-2 focus:ring-[#EC1E24]"
                     required
                 />
             </div>
 
-            {/* Mobile Number Field with Send OTP */}
-            <div className="relative">
+            {/* Mobile Number Field with +91 Prefix */}
+            <div className="relative flex items-center">
+                {/* Visual Prefix */}
+                <span className="absolute left-4 text-[14px] text-black font-semibold border-r border-gray-300 pr-2 pointer-events-none">
+                    +91
+                </span>
                 <input
                     name="phone_number"
-                    value={form?.phone_number}
+                    value={form.phone_number}
                     onChange={(e) => {
                         const value = e.target.value.replace(/\D/g, "");
                         if (value.length <= 10) handleInputChange({ target: { name: "phone_number", value } });
@@ -139,17 +147,18 @@ function Contactform() {
                     maxLength="10"
                     type="tel"
                     placeholder="Mobile Number"
-                    className="w-full h-[61px] px-4 pr-28 rounded-[11px] bg-[#F7F6F6] font-normal text-[14px] text-black focus:outline-none focus:ring-2 focus:ring-[#EC1E24] disabled:opacity-70"
+                    // pl-14 adds space for the +91 prefix
+                    className="w-full h-[61px] pl-14 pr-28 rounded-[11px] bg-[#F7F6F6] font-normal text-[14px] text-black focus:outline-none focus:ring-2 focus:ring-[#EC1E24] disabled:opacity-70"
                     required
                 />
                 {!isVerified && (
                     <button
                         type="button"
                         onClick={handleSendOtp}
-                        disabled={otpLoading || form.phone_number.length !== 10}
+                      disabled={otpLoading || form.phone_number.length !== 10 || timer > 0} 
                         className="absolute right-2 top-1/2 -translate-y-1/2 bg-[#EC1E24] text-white text-[12px] px-3 py-2 rounded-lg hover:bg-red-700 disabled:bg-gray-400 transition-all"
                     >
-                        {otpSent ? "Resend" : "Send OTP"}
+                     {otpSent ? (timer > 0 ? `Resend in ${timer}s` : "Resend OTP") : "Send OTP"}
                     </button>
                 )}
                 {isVerified && (
@@ -157,20 +166,20 @@ function Contactform() {
                 )}
             </div>
 
-            {/* OTP Input - Only shows after Send OTP is clicked */}
+            {/* OTP Input */}
             {otpSent && !isVerified && (
                 <div className="space-y-2">
                     <div className="relative">
                         <input
                             name="otp"
-                            value={form?.otp}
+                            value={form.otp}
                             onChange={(e) => {
                                 const digitsOnly = e.target.value.replace(/\D/g, "");
-                                handleInputChange({ target: { name: "otp", value: digitsOnly } });
+                                if (digitsOnly.length <= 4) handleInputChange({ target: { name: "otp", value: digitsOnly } });
                             }}
-                            maxLength="6"
+                            maxLength="4"
                             type="text"
-                            placeholder="Enter OTP"
+                            placeholder="Enter 4-digit OTP"
                             className="w-full h-[61px] px-4 pr-28 rounded-[11px] bg-[#F7F6F6] font-normal text-[14px] text-black focus:outline-none focus:ring-2 focus:ring-[#EC1E24]"
                             required
                         />
@@ -183,19 +192,7 @@ function Contactform() {
                             Verify
                         </button>
                     </div>
-                    <div className="flex justify-between px-2">
-                        {timer > 0 ? (
-                            <p className="text-[12px] text-gray-500">Resend OTP in <span className="font-bold text-red-500">{timer}s</span></p>
-                        ) : (
-                            <button
-                                type="button"
-                                onClick={handleSendOtp}
-                                className="text-[12px] text-[#EC1E24] font-semibold underline"
-                            >
-                                Resend OTP
-                            </button>
-                        )}
-                    </div>
+                
                 </div>
             )}
 
@@ -203,7 +200,7 @@ function Contactform() {
             <div>
                 <input
                     name="email"
-                    value={form?.email}
+                    value={form.email}
                     onChange={handleInputChange}
                     type="email"
                     placeholder="Email"
@@ -216,7 +213,7 @@ function Contactform() {
             <div className="relative">
                 <select
                     name="course_id"
-                    value={form?.course_id}
+                    value={form.course_id}
                     onChange={handleInputChange}
                     onFocus={() => setCourseOpen(true)}
                     onBlur={() => setCourseOpen(false)}
@@ -236,7 +233,7 @@ function Contactform() {
             <div>
                 <textarea
                     name="content"
-                    value={form?.content}
+                    value={form.content}
                     onChange={handleInputChange}
                     placeholder="Write down your query..."
                     rows="4"

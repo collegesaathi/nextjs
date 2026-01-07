@@ -171,12 +171,14 @@ export default function Navbar() {
               >
                 Top Universities
               </Link>
-              <div className="w-[100px] h-[15px] rounded-[11px] bg-[#EC1E24] flex items-center justify-center space-x-1.5">
+              <Link 
+              href="/find-programs"
+              className="w-[100px] h-[15px] rounded-[11px] bg-[#EC1E24] flex items-center justify-center space-x-1.5">
                 <img src="/img/university-main/icons/swap.svg" alt="" />
                 <span className="font-[Poppins] font-normal text-[10px] leading-[100%] tracking-[0px] text-right text-white">
                   Compare Now
                 </span>
-              </div>
+              </Link>
             </li>
 
             <li>
