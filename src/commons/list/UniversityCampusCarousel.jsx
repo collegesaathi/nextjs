@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useMemo } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
@@ -9,16 +9,24 @@ import "swiper/css/pagination";
 import BackNext from "@/pages/components/BackNext";
 
 export default function UniversityCampusCarousel({ universityCampuses, name }) {
-  const nationalCampuses = universityCampuses?.campus || [];
-  const internationalCampuses =
-    universityCampuses?.campusInternationList || [];
+  /* ================= SAFE DATA ================= */
+  const nationalCampuses = Array.isArray(universityCampuses?.campus)
+    ? universityCampuses.campus
+    : [];
+
+  const internationalCampuses = Array.isArray(
+    universityCampuses?.campusInternationList
+  )
+    ? universityCampuses.campusInternationList
+    : [];
 
   const hasNational = nationalCampuses.length > 1;
   const hasInternational = internationalCampuses.length > 1;
 
-  // Tabs only if BOTH exist
+  // Tabs only when BOTH have data
   const showTabs = hasNational && hasInternational;
 
+  /* ================= STATE ================= */
   const [activeTab, setActiveTab] = useState(
     hasNational ? "national" : "international"
   );
@@ -28,28 +36,32 @@ export default function UniversityCampusCarousel({ universityCampuses, name }) {
   const [isBeginning, setIsBeginning] = useState(true);
   const [isEnd, setIsEnd] = useState(false);
 
+  /* ================= BREAKPOINTS ================= */
   const carouselBreakpoints = {
     320: { slidesPerView: 2, spaceBetween: 16 },
     640: { slidesPerView: 2, spaceBetween: 20 },
     768: { slidesPerView: 3, spaceBetween: 24 },
-    1024: { slidesPerView: 3, spaceBetween: 24 },
+    1024: { slidesPerView: 4, spaceBetween: 24 },
   };
 
-  const getActiveData =
-    activeTab === "international"
+  /* ================= ACTIVE DATA ================= */
+  const activeData = useMemo(() => {
+    return activeTab === "international"
       ? internationalCampuses
       : nationalCampuses;
+  }, [activeTab, nationalCampuses, internationalCampuses]);
 
-  const updateProgress = (swiper, totalCards) => {
-    if (!swiper || !totalCards) return;
+  /* ================= PROGRESS ================= */
+  const updateProgress = (swiper) => {
+    if (!swiper || !activeData.length) return;
 
     const visibleSlides = swiper.params.slidesPerView;
     const currentVisibleEnd = swiper.activeIndex + visibleSlides;
 
-    let progressValue = (currentVisibleEnd / totalCards) * 100;
-    progressValue = Math.min(100, Math.max(0, progressValue));
+    let value = (currentVisibleEnd / activeData.length) * 100;
+    value = Math.min(100, Math.max(0, value));
 
-    setProgress(progressValue);
+    setProgress(value);
     setIsBeginning(swiper.isBeginning);
     setIsEnd(swiper.isEnd);
   };
@@ -57,6 +69,7 @@ export default function UniversityCampusCarousel({ universityCampuses, name }) {
   const navigatePrev = () => swiperRef.current?.slidePrev();
   const navigateNext = () => swiperRef.current?.slideNext();
 
+  // Nothing to show
   if (!hasNational && !hasInternational) return null;
 
   return (
@@ -113,6 +126,7 @@ export default function UniversityCampusCarousel({ universityCampuses, name }) {
 
         {/* ================= SLIDER ================= */}
         <Swiper
+          key={activeTab} // 🔥 important: reset swiper on tab change
           slidesPerView={4}
           spaceBetween={24}
           autoplay={{ delay: 4000, disableOnInteraction: false }}
@@ -120,13 +134,11 @@ export default function UniversityCampusCarousel({ universityCampuses, name }) {
           breakpoints={carouselBreakpoints}
           onSwiper={(swiper) => {
             swiperRef.current = swiper;
-            updateProgress(swiper, getActiveData.length);
+            updateProgress(swiper);
           }}
-          onSlideChange={(swiper) =>
-            updateProgress(swiper, getActiveData.length)
-          }
+          onSlideChange={updateProgress}
         >
-          {getActiveData.map((campus, index) => (
+          {activeData.map((campus, index) => (
             <SwiperSlide key={`${activeTab}-${index}`}>
               <CampusCard campus={campus} />
             </SwiperSlide>
@@ -151,14 +163,14 @@ function CampusCard({ campus }) {
     >
       <div className="w-[46px] h-[46px] sm:w-[60px] sm:h-[60px] lg:w-[71px] lg:h-[71px] rounded-full overflow-hidden flex-shrink-0">
         <img
-          src={campus.image || "/images/default-campus.png"}
-          alt={campus.name}
+          src={campus?.image || "/images/default-campus.png"}
+          alt={campus?.name || "Campus"}
           className="w-full h-full object-cover"
         />
       </div>
 
       <span className="font-poppins text-[13px] sm:text-[15px] lg:text-[17px] text-[#333]">
-        {campus.name}
+        {campus?.name}
       </span>
     </div>
   );
