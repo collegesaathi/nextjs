@@ -36,5 +36,33 @@
       "scholarship_credit": "5%",
       "eligibility_documents": "Upfront payment of annual fee"
     }
-  ]
+  ],
+  "amity-online-university":[
+  {
+    "category": "Divyaang (for persons with special needs)",
+    "scholarship_credit": "20%",
+    "eligibility_documents": "Valid certificate of disability as per government norms."
+  },
+  {
+    "category": "Defense Personnel",
+    "scholarship_credit": "20%",
+    "eligibility_documents": "Minimum 2 years of service in the defence forces with a valid Identity Card Number."
+  },
+  {
+    "category": "Amity University Alumni",
+    "scholarship_credit": "20%",
+    "eligibility_documents": "For alumni of Amity University's undergraduate or postgraduate courses."
+  },
+  {
+    "category": "Merit Based",
+    "scholarship_credit": "20%",
+    "eligibility_documents": "Academic excellence with a minimum of 85% aggregate in the previous qualification."
+  },
+  {
+    "category": "Sports Scholarship (CHAMPS)",
+    "scholarship_credit": "30-100%",
+    "eligibility_documents": "State, national, or international-level sportspersons with a valid affiliation from the respective sports federation."
+  }
+]
+
 }

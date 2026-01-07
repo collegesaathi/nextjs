@@ -35,13 +35,13 @@ function CourseFees({ courseData ,slug }) {
 
                                     {showTotalFees && (
                                         <th className="py-3 px-4 text-left min-w-[150px]">
-                                            Total Fees
+                                            Annual Fees
                                         </th>
                                     )}
 
                                     {showOneTimeFees && (
                                         <th className="py-3 px-4 text-left min-w-[150px]">
-                                            One Time Fees
+                                           Total Tuition Fees
                                         </th>
                                     )}
                                 </tr>

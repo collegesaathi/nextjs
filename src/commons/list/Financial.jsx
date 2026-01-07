@@ -1,8 +1,14 @@
 import React from "react";
 import Heading from "@/common/Heading";
 import { sanitizeHtml } from "@/common/sanitizeHtml";
-
-function Financial({ financialAid, name, scholarshipData }) {
+import scholarship from "@/JSon/unifinca"
+import { useRouter } from "next/router";
+function Financial({ financialAid, name }) {
+  const router = useRouter();
+  const universitySlug = router.query.universitySlug;
+  const scholarshipData =  scholarship?.[universitySlug] || [];
+  console.log("University Slug:", universitySlug);
+  console.log("Scholarship Data:", scholarshipData);
   console.log(name)
   return (
     <>
@@ -14,7 +20,7 @@ function Financial({ financialAid, name, scholarshipData }) {
                 <Heading title={financialAid?.title} />
                 <div
                   className="font-poppins text-[14px] sm:text-[16px] text-[#282529] leading-6 sm:leading-7 mb-4 custom-description"
-                  dangerouslySetInnerHTML={{ __html: sanitizeHtml(financialAid?.description || "")|| "" }}
+                  dangerouslySetInnerHTML={{ __html: sanitizeHtml(financialAid?.description || "") || "" }}
                 />
               </div>
 
@@ -28,7 +34,6 @@ function Financial({ financialAid, name, scholarshipData }) {
                       {name} Loan Facilities
                     </h3>
                   </div>
-
 
 
                   <div className="overflow-x-auto">

@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import scholarship from "@/JSon/unifinca"
+
 import { useEffect, useState } from "react";
 import Head from "next/head";
 import Layout from "@/pages/components/Layout";
@@ -26,19 +26,13 @@ import FrontendSidebar from "@/pages/common/FrontendSidebar";
 import EnquiryBox from "@/commons/list/EnquiryForm";
 import Listing from "@/pages/api/Listing";
 import { fetchDetails } from "@/lib/ssrFetch";
-
 export default function UniversityPage({ data }) {
   const router = useRouter();
   console.log("data" ,data)
   const uniId = data?.university?.id;
   const [loading, setLoading] = useState(false);
   const [courseData, setCourseData] = useState([]);
-  const universitySlug = data?.university?.slug;
 
-const scholarshipData =
-  scholarship?.[universitySlug] || [];
-  console.log("University Slug:", universitySlug);
-console.log("Scholarship Data:", scholarshipData);
   // Fetch courses dynamically
   const fetchCourse = async (uniId) => {
     setLoading(true);
@@ -130,7 +124,6 @@ console.log("Scholarship Data:", scholarshipData);
                 <Financial
                   financialAid={data?.university?.financialAid}
                   name={data?.university?.name}
-                  scholarshipData={scholarshipData}
                 />
               )}
               {data?.university?.universityCampuses && (

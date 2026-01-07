@@ -68,8 +68,6 @@ function Index() {
     ]);
 
 
-    const [creteria, setCriteria] = useState([])
-
     const [semesters, setSemesters] = useState([
         {
             title: "Semester I",
@@ -285,28 +283,40 @@ function Index() {
             payload.append("creteria", formData.creteria || "")
             payload.append("fees_title", formData.fees_title || "")
             payload.append("category", formData.category || "")
-            const NRIDATA = formData?.nri?.map(item => ({
-                title: item.title,
-                description: item.description,
-                images_alt: item?.images_alt
-            }));
-            payload.append("nri", JSON.stringify(NRIDATA));
-            formData?.nri?.forEach((item, index) => {
-                if (item.images) {
-                    payload.append(`nriimages[${index}]`, item.images);
-                }
-            });
-            const IndiaDATA = formData.indian.map(item => ({
-                title: item.title,
-                description: item.description,
-                images_alt: item?.images_alt
-            }));
-            payload.append("indian", JSON.stringify(IndiaDATA));
-            formData?.indian?.forEach((item, index) => {
-                if (item.images) {
-                    payload.append(`Indianimages[${index}]`, item.images);
-                }
-            });
+          const NRIDATA = Array.isArray(formData?.nri)
+  ? formData.nri.map(item => ({
+      title: item.title,
+      description: item.description,
+      images_alt: item?.images_alt,
+    }))
+  : [];
+payload.append("nri", JSON.stringify(NRIDATA));
+if (Array.isArray(formData?.nri)) {
+  formData.nri.forEach((item, index) => {
+    if (item.images) {
+      payload.append(`nriimages[${index}]`, item.images);
+    }
+  });
+}
+     const indianArray = Array.isArray(formData?.indian)
+  ? formData.indian
+  : formData?.indian
+    ? [formData.indian]
+    : [];
+          const IndiaDATA = indianArray.map(item => ({
+  title: item.title,
+  description: item.description,
+  images_alt: item?.images_alt,
+}));
+
+      payload.append("indian", JSON.stringify(IndiaDATA));
+indianArray.forEach((item, index) => {
+  if (item?.images) {
+    payload.append(`Indianimages[${index}]`, item.images);
+  }
+});
+ 
+
             payload.append("semesters", JSON.stringify(semesters))
             payload.append("semesters_title", formData.semesters_title || "")
             payload.append("certificatename", formData.certificatename || "");
@@ -356,7 +366,7 @@ function Index() {
             payload.append("servicedesc", formData.servicedesc || "");
             payload.append("onlinedesc", formData.onlinedesc || "");
             payload.append("onlinetitle", formData.onlinetitle || "");
-            const cleanonlines = onlines.map(item => ({
+            const cleanonlines = onlines?.map(item => ({
                 title: item.title,
                 content: item.content
             }));
