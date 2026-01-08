@@ -6,19 +6,20 @@ import { Search } from "lucide-react";
 import { IoChevronForwardOutline } from "react-icons/io5";
 import { ImCross } from "react-icons/im";
 import { FaArrowRightLong } from "react-icons/fa6";
+import { useRole } from '@/context/RoleContext';
 
 // --- DATA SECTION ---
 
 // 1. DUMMY UNIVERSITY DATA (Level 3)
 const universityData = [
-    { name: "Manipal Online University", logo: "/images/programs/program1.svg" },
-    { name: "NMIMS Online", logo: "/images/programs/program2.svg" },
-    { name: "Chandigarh University", logo: "/images/programs/program3.svg" },
-    { name: "Jain University", logo: "/images/programs/program4.svg" },
-    { name: "DY Patil Navi Mumbai", logo: "/images/programs/program1.svg" },
-    { name: "Deakin business school", logo: "/images/programs/program2.svg" },
-    { name: "Amity University", logo: "/images/programs/program3.svg" },
-    { name: "Lovely Professional University", logo: "/images/programs/program4.svg" },
+    { id:1,name: "Manipal Online University", logo: "/images/programs/program1.svg" },
+    {  id:2,name: "NMIMS Online", logo: "/images/programs/program2.svg" },
+    { id:3, name: "Chandigarh University", logo: "/images/programs/program3.svg" },
+    {  id:4,name: "Jain University", logo: "/images/programs/program4.svg" },
+    {  id:5,name: "DY Patil Navi Mumbai", logo: "/images/programs/program1.svg" },
+    {  id:6,name: "Deakin business school", logo: "/images/programs/program2.svg" },
+    {  id:7,name: "Amity University", logo: "/images/programs/program3.svg" },
+    { id:8, name: "Lovely Professional University", logo: "/images/programs/program4.svg" },
 ];
 
 const bbaSpecs = [
@@ -64,6 +65,11 @@ function Index() {
   const handleDomainToggle = () => {
   setOpenDomain(prev => !prev);
 };
+
+
+    const { selectedUnis, toggleUniversity } = useRole();
+    const uniId = universityData?.id;
+    const isSelected = selectedUnis.some(u => u.id === uniId);
 
 const courseData = [
   { name: "Online BBA", image: "/images/programs/program1.svg", specializations: bbaSpecs, domain: "PG Courses" },
@@ -278,7 +284,7 @@ const courseData = [
                                                     ? `Search in ${selectedParentCourse.name}`
                                                     : 'Search "University"'
                                         }
-                                        className="flex-1 outline-none text-[15px] placeholder:text-gray-400"
+                                         className="flex-1 bg-transparent border-none outline-none focus:outline-none focus:ring-0 focus:border-none text-[15px] placeholder:text-gray-400"
                                     />
                                     <Image src="/icons/normal/voice.svg" alt="mic" width={20} height={20} />
                                 </div>
@@ -291,13 +297,13 @@ const courseData = [
 
                                     if (isUniversityView) {
                                         return (
-                                            <div key={index} className="bg-white shadow-md hover:shadow-xl rounded-xl p-1 py-4  md:p-5 md:py-8  flex flex-col gap-5 items-center md:items-start text-center justify-between transition-all group ">
+                                            <div key={index} className="bg-white shadow-sm hover:shadow-xl rounded-xl p-1 py-4  md:p-5 md:py-8  flex flex-col gap-5 items-center md:items-start text-center justify-between transition-all group ">
                                                <div className=" flex justify-center md:justify-left flex-col">
                                                 <div className="w-16 h-16 flex  mb-2 self-center md:self-start ">
                                                     <Image src={item.logo} width={60} height={60} alt={item.name} className="object-contain " />
                                                 </div>
 
-                                                <h3 className="text-[14px] font-poppins font-[600] text-black leading-tight ">
+                                                <h3 className="text-[14px] font-poppins font-[600] text-black leading-tight text-center md:text-left">
                                                     {item.name}
                                                 </h3>
                                                 </div>
@@ -311,9 +317,11 @@ const courseData = [
                                                         <div><IoChevronForwardOutline /></div>
                                                     </div>
 
-                                                    <div className="flex md:self-start items-center gap-2 cursor-pointer">
-                                                        <input type="checkbox" id={`compare-${index}`} className="md:w-4 md:h-4 accent-red-600 cursor-pointer" />
-                                                        <label htmlFor={`compare-${index}`} className="text-[12px] md:text-[14px] font-poppins text-[#2825297F] cursor-pointer select-none">Add to compare</label>
+                                                    <div
+                                                     onClick={(e) => {   toggleUniversity(item); }}
+                                                    className="flex md:self-start items-center gap-2 cursor-pointer">
+                                                        <input type="checkbox"   checked={isSelected} id={`compare-${index}`} className="md:w-4 md:h-4 accent-red-600 cursor-pointer" />
+                                                        <label htmlFor={`compare-${index}`} className="text-[12px] md:text-[14px] font-poppins text-[#2825297F] cursor-pointer select-none">{isSelected ? "Added to Compare" : "Add to Compare"}</label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -321,8 +329,7 @@ const courseData = [
                                     }
 
                                     return (
-                                        <div  className="bg-white shadow-xl hover:shadow-[3px_4px_18px_0px_rgba(0,0,0,0.25)] rounded-xl p-2 md:p-5 md:py-8  flex flex-col gap-5 justify-between group"
-  key={index}>
+                                        <div  className="bg-white shadow-xl hover:shadow-[3px_4px_18px_0px_rgba(0,0,0,0.25)] rounded-xl p-2 md:p-5 md:py-8  flex flex-col gap-5 justify-between group" key={index}>
                                             <div className="flex flex-col justify-center">
                                                 <Image src={item.image} width={50} height={50} alt={item.name} className="self-center md:self-start"/>
                                             <h3 className="text-[14px] font-poppins font-[600] mt-2 text-center md:self-start">{item.name}</h3>
