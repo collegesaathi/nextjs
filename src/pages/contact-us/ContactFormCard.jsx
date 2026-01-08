@@ -207,8 +207,8 @@ function ContactForm() {
                             <button
                                 onClick={() => { setMapSrc(jaipurMap); setActive("jaipur"); }}
                                 className={`w-full flex items-center justify-between px-6  py-2 md:py-4 cursor-pointer 
-  group text-gray-800 rounded-[8px] transition hover:bg-[#EC1E24] hover:text-white
-  ${active === "jaipur" ? "bg-[#ED1F24] text-white" : "bg-gray-100"}`}
+  group text-gray-800 rounded-[8px] transition hover:bg-[#FFEEEE] 
+  ${active === "jaipur" ? "bg-[#FFEEEE] " : "bg-gray-100"}`}
                             >
                                 <span className="text-[16px] font-[400]">Find Jaipur Office</span>
 
@@ -222,7 +222,7 @@ function ContactForm() {
                                     <FaArrowRightLong
                                         className={`
         w-4 h-4 transform transition-all 
-        ${active === "jaipur" ? "text-white rotate-[290deg]" : "text-white"}
+        ${active === "jaipur" ? "text-white rotate-[320deg]" : "text-white"}
         group-hover:text-black
       `}
                                     />
@@ -236,7 +236,7 @@ function ContactForm() {
                                 onClick={() => { setMapSrc(gurugramMap); setActive("Gurugram"); }}
                                 className={`w-full flex items-center justify-between px-6 py-2 md:py-4 cursor-pointer 
   group text-gray-800 rounded-[8px] transition hover:bg-[#EC1E24] hover:text-white
-  ${active === "Gurugram" ? "bg-[#ED1F24] text-white" : "bg-gray-100"}`}
+  ${active === "Gurugram" ? "bg-[#FFEEEE] " : "bg-gray-100"}`}
                             >
                                 <span className="text-[16px] font-[400]">Find Gurugram Office</span>
 
@@ -251,7 +251,7 @@ function ContactForm() {
                                     <FaArrowRightLong
                                         className={`
         w-4 h-4 transform transition-all 
-        ${active === "Gurugram" ? "text-white rotate-[290deg]" : "text-white"}
+        ${active === "Gurugram" ? "text-white rotate-[320deg]" : "text-white"}
         group-hover:text-black
       `}
                                     />

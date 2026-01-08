@@ -67,8 +67,9 @@ export default function VisitUs() {
                 </div>
 
                 {/* Address Box */}
-                <div className="w-full max-w-[1174px] mx-auto mt-6 bg-white shadow p-6 rounded-[12px] border-2 border-[#DFDFDF]">
-                    <div className="flex items-center justify-between">
+                <div className="w-full max-w-[1174px]  flex justify-between mx-auto mt-6 bg-white shadow p-6 rounded-[12px] border-2 border-[#DFDFDF]">
+                    <div>
+                    <div className="flex items-center justify-between mb-4">
                         <h3 className="font-[600] font-poppins text-center text-[18px] md:text-[20px] leading-[26px] md:leading-[30px]">
                             {activeCity === "jaipur" ? "Jaipur Address:" : "Gurugram Address:"}
                         </h3>
@@ -78,6 +79,9 @@ export default function VisitUs() {
                     <p className="font-poppins font-normal text-[16px] leading-[23px] text-[#282529] text-left">
                         {data[activeCity].address}
                     </p>
+                    </div>
+
+                    <ChevronDown />
 
                 </div>
             </div>

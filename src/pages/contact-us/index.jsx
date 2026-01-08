@@ -72,26 +72,34 @@ function Index() {
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mt-6 md:mt-12 w-full" >
 
                             {/* Support */}
-                            <div className="bg-white shadow-md rounded-2xl  p-6 flex flex-col gap-3 hover:shadow-lg cursor-pointer  transition font-poppins" onClick={() => setActive("support")}>
-                                <div className="flex flex-col justify-start items-start md:gap-10 gap-6">
-                                    <div className={`w-12 h-12 border border-[#DFDFDF] flex items-center justify-center rounded-[9px]  ${active === "support" ? "bg-[#ED1F24] text-white" : "bg-transparent text-bvlack"}`}>
-                                        <RiChatSmileFill size={27} />
-                                    </div>
-                                    <div className=" flex flex-col justify-start items-start gap-2">
-                                        <h3 className="font-[700] text-[14px] md:text-[16px] font-poppins">Chat to support</h3>
-                                        <p className="text-gray-500 font-[400] text-[12px] font-poppins">Let’s Connect</p>
-                                        <a href="mailto:support@collegesathi.com" className="text-[#ED1F24] font-[400] font-poppins text-[15px] underline">
-                                            support@collegesathi.com
-                                        </a>
-                                    </div>
+                         <div 
+  className="group bg-white border border-[#DFDFDF] rounded-2xl p-6 flex flex-col gap-3 hover:shadow-lg cursor-pointer transition font-poppins" 
+  onClick={() => setActive("support")}
+>
+    <div className="flex flex-col justify-start items-start md:gap-10 gap-6">
+        {/* यहाँ group-hover:bg-[#ED1F24] और group-hover:text-white ऐड किया गया है */}
+        <div className={`w-12 h-12 border border-[#DFDFDF] flex items-center justify-center rounded-[9px] transition-all duration-300 
+            ${active === "support" 
+                ? "bg-[#ED1F24] text-white" 
+                : "bg-transparent text-black group-hover:bg-[#ED1F24] group-hover:text-white"
+            }`}
+        >
+            <RiChatSmileFill size={27} />
+        </div>
+        
+        <div className="flex flex-col justify-start items-start gap-2">
+            <h3 className="font-[700] text-[14px] md:text-[16px] font-poppins">Chat to support</h3>
+            <p className="text-gray-500 font-[400] text-[12px] font-poppins">Let’s Connect</p>
+            <a href="mailto:support@collegesathi.com" className="text-[#ED1F24] font-[400] font-poppins text-[15px] underline">
+                support@collegesathi.com
+            </a>
+        </div>
+    </div>
+</div>
 
-                                </div>
-
-                            </div>
-
-                            <div className="bg-white shadow-md rounded-2xl  p-6 flex flex-col gap-3 hover:shadow-lg cursor-pointer  transition font-poppins" onClick={() => setActive("hr")}>
+                            <div className=" group bg-white border border-[#DFDFDF] rounded-2xl  p-6 flex flex-col gap-3 hover:shadow-lg cursor-pointer  transition font-poppins" onClick={() => setActive("hr")}>
                                 <div className="flex flex-col justify-start items-start md:gap-10 gap-6 ">
-                                    <div className={`w-12 h-12 border border-[#DFDFDF] flex items-center justify-center rounded-[9px]  ${active === "hr" ? "bg-[#ED1F24] text-white" : "bg-transparent text-black"}`}>
+                                    <div className={`w-12 h-12 border border-[#DFDFDF] flex items-center justify-center rounded-[9px]  ${active === "hr" ? "bg-[#ED1F24] text-white" : "bg-transparent text-black group-hover:bg-[#ED1F24] group-hover:text-white"}`}>
                                         <IoMailUnreadOutline size={27} />
                                     </div>
                                     <div className=" flex flex-col justify-start items-start gap-2">
@@ -106,9 +114,9 @@ function Index() {
 
                             </div>
 
-                            <div className="bg-white shadow-md rounded-2xl  p-6 flex flex-col gap-3 hover:shadow-lg cursor-pointer transition font-poppins" onClick={() => setActive("DM")}>
+                            <div className=" group bg-white border border-[#DFDFDF] rounded-2xl  p-6 flex flex-col gap-3 hover:shadow-lg cursor-pointer transition font-poppins" onClick={() => setActive("DM")}>
                                 <div className="flex flex-col justify-start items-start md:gap-10 gap-6 ">
-                                    <div className={`w-12 h-12 border border-[#DFDFDF] flex items-center justify-center rounded-[9px]  ${active === "DM" ? "bg-[#ED1F24] text-white" : "bg-transparent text-bvlack"}`}>
+                                    <div className={`w-12 h-12 border border-[#DFDFDF] flex items-center justify-center rounded-[9px]  ${active === "DM" ? "bg-[#ED1F24] text-white" : "bg-transparent text-bvlack group-hover:bg-[#ED1F24] group-hover:text-white"}`}>
                                         <PiWhatsappLogoLight size={27} />
                                     </div>
                                     <div className=" flex flex-col justify-start items-start gap-2">
@@ -126,9 +134,9 @@ function Index() {
 
 
 
-                            <div className="bg-white shadow-md rounded-2xl  p-6 flex flex-col gap-3 hover:shadow-lg cursor-pointer  transition font-poppins" onClick={() => setActive("Call")}>
+                            <div className=" group bg-white border border-[#DFDFDF] rounded-2xl  p-6 flex flex-col gap-3 hover:shadow-lg cursor-pointer  transition font-poppins" onClick={() => setActive("Call")}>
                                 <div className="flex flex-col justify-start items-start gap-10 ">
-                                    <div className={`w-12 h-12 border border-[#DFDFDF] flex items-center justify-center rounded-[9px]  ${active === "Call" ? "bg-[#ED1F24] text-white" : "bg-transparent text-bvlack"}`}>
+                                    <div className={`w-12 h-12 border border-[#DFDFDF] flex items-center justify-center rounded-[9px]  ${active === "Call" ? "bg-[#ED1F24] text-white" : "bg-transparent text-bvlack group-hover:bg-[#ED1F24] group-hover:text-white"}`}>
                                         <MdPhoneCallback size={27} />
                                     </div>
                                     <div className=" flex flex-col justify-start items-start gap-2">

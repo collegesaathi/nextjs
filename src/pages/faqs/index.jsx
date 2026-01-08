@@ -107,10 +107,7 @@ export default function FaqSection() {
                 content=""
             />
         </Head>
-      <Layout>
-        {/* Hero Section */}
-        <div className="relative py-10">
-          <div className="absolute top-0 left-0 w-full h-[100%] -z-2 pointer-events-none">
+          <div className="absolute top-0 left-0 w-full h-1/2 -z-2 pointer-events-none bg-no-repeat">
             <Image
               src="/images/faqbg.png"
               alt="Background Wave"
@@ -119,7 +116,15 @@ export default function FaqSection() {
               priority
             />
           </div>
-          <div className="mx-auto container sm:container md:container xl:max-w-[1230px] px-4 py-4 md:mt-20 lg:mt-20 ">
+      <Layout>
+        {/* Hero Section */}
+        <div className="relative py-10">
+             <div className="absolute top-10 md:top-30 lg:top-20 left-0 w-full h-[100%] -z-2 pointer-events-none    bg-white/10
+  backdrop-blur-lg">
+        
+          </div>
+        
+          <div className="mx-auto container sm:container md:container xl:max-w-[1230px] px-4 py-4 md:mt-20 lg:mt-20 z-10">
             <div className="py-4 text-sm text-gray-500 mt-6">
               <nav className="flex items-center gap-2">
                 <span className="text-gray-400">
@@ -133,7 +138,7 @@ export default function FaqSection() {
             <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
               {/* Left Content */}
               <div>
-                <p className="text-[36px] text-center md:text-start md:text-[60px] font-[600] leading-[48px] md:leading-[68px]">
+                <p className="text-[36px] text-center md:text-start md:text-[40px] lg:text-[60px] font-[600] leading-[48px] md:leading-[68px]">
                   Frequently Asked Questions
                 </p>
 
@@ -161,11 +166,11 @@ export default function FaqSection() {
         </div>
 
         {/* FAQ Body */}
-        <div className="mx-auto container sm:container md:container xl:max-w-[1230px] px-4 py-4 grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div className="mx-auto container sm:container md:container xl:max-w-[1230px] px-4 py-4 mb-25 md:mb-10 grid grid-cols-1 md:grid-cols-4 gap-6">
           
           {/* --- SIDEBAR MENU --- */}
           <div className="pr-0 md:pr-4">
-            <p className="text-[22px] font-[600] font-poppins mb-3 hidden md:block">
+            <p className="text-[22px] font-[600] font-poppins mb-8 hidden md:block">
               Categories
             </p>
             

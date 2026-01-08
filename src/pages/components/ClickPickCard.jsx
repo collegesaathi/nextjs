@@ -16,24 +16,24 @@ export default function ClickPickCard() {
       <div className="relative flex justify-center mt-4 h-40 overflow-visible">
         {/* Main items */}
         <img 
-          src="	https://collegesathi.co.in/icons/clickpick-items/it_1.svg" 
-          className="absolute top-[5.5rem] w-28 animate-twinkle" 
+          src="/animation/clickcard/clickshape.svg" 
+          className="absolute top-[5.5rem] w-2 animate-twinkle" 
           alt="CS ClickPick Logo" 
         />
         <img 
-          src="	https://collegesathi.co.in/icons/clickpick-items/it_2.svg" 
-          className="absolute top-[4.25rem] w-28" 
+          src="/animation/clickcard/clickshape1.svg"
+          className="absolute top-[4.25rem] w-8" 
           alt="CS ClickPick Logo" 
         />
         <img 
-          src="	https://collegesathi.co.in/icons/clickpick-items/it_3.svg" 
-          className="absolute top-[4.5rem] w-24" 
+          src="/animation/clickcard/clickshape3.svg"
+          className="absolute top-[4.5rem] w-4" 
           alt="CS ClickPick Logo" 
         />
 
         {/* Side items */}
         <img 
-          src="	https://collegesathi.co.in/icons/clickpick-items/it_6.svg" 
+          src="/animation/clickcard/clickshape1.svg" 
           className="absolute top-[9rem] left-[6rem] w-10" 
           alt="CS ClickPick Logo" 
         />

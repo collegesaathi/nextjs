@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState,useRef } from "react";
+
 import Layout from "../components/Layout";
 import Link from "next/link";
-import { Search, ChevronRight, ChevronLeft, XCircle } from "lucide-react";
+import { Search, ChevronRight, ChevronLeft, XCircle,ChevronDown } from "lucide-react";
 import StarRating from "@/common/Rating";
 import BestPartnerCount from "../home/BestPartnerCount";
 import ExploreUniversities from "../home/ExploreUniversities";
@@ -14,7 +15,13 @@ import { useRouter } from "next/router";
 const comparisonData = {
   approvals: {
     show: true,
-    nirf: ["21", "73", "151"]
+    
+    nirf: ["21", "73", "151"],
+     icons: [
+      ["/icons/UGCLogo.svg", "/icons/deb.svg", "/icons/deb.svg", "/icons/aprovallogo.svg", "/icons/aprovallogo.svg", "/icons/aprovallogo.svg"], // Uni 1
+      ["/icons/aprovallogo.svg","/icons/deb.svg", "/icons/aprovallogo.svg", "/icons/aprovallogo.svg"],                   
+  ["/icons/aprovallogo.svg", "/icons/deb.svg", "/icons/aprovallogo.svg", "/icons/aprovallogo.svg"],                  
+    ]
   },
 
   duration: {
@@ -94,8 +101,8 @@ const tabList = [
   { id: "approvals", title: "Approvals & Rankings" },
   { id: "duration", title: "Duration & Mode" },
   { id: "fees", title: "Fees Structure" },
-  { id: "finance", title: "finance" },
-  { id: "placement", title: "placement" },
+  { id: "finance", title: "Financial Aid" },
+  { id: "placement", title: "Placement" },
 
   { id: "eligibility", title: "Eligibility" },
 
@@ -118,24 +125,65 @@ const ScoreCircle = ({ score }) => (
   </div>
 );
 
-const ApprovalIcons = () => (
-  <div className="flex flex-col items-center">
-    <div className="flex items-center -space-x-1.5 mb-1">
-      {[1, 2, 3].map((i) => (
-        <div key={i} className={`w-6 h-6 md:w-8 md:h-8 rounded-full border border-white shadow-sm bg-white overflow-hidden flex items-center justify-center ${i === 2 ? 'z-10 w-7 h-7 md:w-9 md:h-9' : ''}`}>
-          <img src="/images/comparelogo.png" alt="logo" className="w-[80%] h-[80%] object-contain" />
-        </div>
-      ))}
+const ApprovalIcons = ({ icons }) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+  
+  if (!icons) return null;
+  
+  const initialIcons = icons.slice(0, 3);
+  const extraIcons = icons.slice(3);
+
+  return (
+    <div className="flex flex-col items-center py-3 w-full">
+      {/* Overlapping Icons (First 3) */}
+      <div className="flex -space-x-3 mb-2">
+        {initialIcons.map((iconPath, index) => (
+          <div 
+            key={index} 
+            className="w-6 h-6 md:w-10 md:h-10 bg-white border border-gray-200 rounded-full p-1.5 shadow-sm flex items-center justify-center z-[1]"
+          >
+            <img 
+              src={iconPath} 
+              alt="approval" 
+              className="w-full h-full object-contain" 
+              onError={(e) => e.target.src = "/icons/default-approval.svg"} 
+            />
+          </div>
+        ))}
+      </div>
+
+      {/* Extra Icons (Shown on Expand) */}
+      {extraIcons.length > 0 && (
+        <>
+          <div className={`flex flex-wrap justify-center gap-2 overflow-hidden transition-all duration-300 ${isExpanded ? "max-h-40 opacity-100 mt-2" : "max-h-0 opacity-0"}`}>
+            {extraIcons.map((iconPath, index) => (
+              <div key={index} className="w-8 h-8 bg-white border border-gray-100 rounded-full p-1 shadow-sm flex items-center justify-center">
+                <img src={iconPath} alt="extra-approval" className="w-full h-full object-contain" />
+              </div>
+            ))}
+          </div>
+
+          {/* Toggle Arrow */}
+          <button 
+            onClick={() => setIsExpanded(!isExpanded)}
+            className="mt-1 hover:scale-110 transition-transform"
+          >
+            <ChevronDown 
+                className={`w-4 h-4 text-[#EC1E24] transition-transform duration-300 ${isExpanded ? "rotate-180" : ""}`} 
+                strokeWidth={3} 
+            />
+          </button>
+        </>
+      )}
     </div>
-    <ChevronRight className="w-4 h-4 text-[#EC1E24] rotate-90" strokeWidth={3} />
-  </div>
-);
+  );
+};
 
 const SatisfactionGauge = ({ percentage }) => (
   <div className="relative w-16 h-12 md:w-30 md:h-15 overflow-hidden">
     <svg viewBox="0 0 100 50" className="w-full h-full">
-      <path d="M 10 50 A 40 40 0 0 1 90 50" fill="none" stroke="#E5E7EB" strokeWidth="12" />
-      <path d="M 10 50 A 40 40 0 0 1 90 50" fill="none" stroke="#22C55E" strokeWidth="12"
+      <path d="M 10 50 A 40 40 0 0 1 90 50" fill="none" stroke="#E5E7EB" strokeWidth="8" />
+      <path d="M 10 50 A 40 40 0 0 1 90 50" fill="none" stroke="#22C55E" strokeWidth="8"
         strokeDasharray="126" strokeDashoffset={126 - (percentage / 100) * 126} />
     </svg>
     <div className="absolute bottom-0 w-full text-center text-[12px] md:text-[16px]  text-[#282529]">{percentage}%</div>
@@ -147,13 +195,13 @@ const SatisfactionGauge = ({ percentage }) => (
 const RowWrapper = ({ label, children, isPink = false, highlight = false }) => (
   <div className={highlight ? "border-2 border-red-400 rounded-lg overflow-hidden my-2" : ""}>
     {/* Mobile Label */}
-    <div className={`md:hidden ${isPink ? "bg-[#FFF2F2]" : "md:bg-white"} py-1 md:py-2 text-center text-[12px] font-bold bg-[#FFF2F2] uppercase border-y border-red-50`}>
+    <div className={`md:hidden ${isPink ? "bg-[#FFF2F2]" : "md:bg-white"} py-1 md:py-2 text-center text-[11px] font-[600] bg-[#FFF2F2] uppercase border-y border-red-50`}>
       {label}
     </div>
     {/* Content Grid */}
     <div className={`grid grid-cols-3 md:grid-cols-4 shadow-md  ${isPink ? "bg-[#FFF2F2]" : "bg-white"}`}>
-      <div className="hidden md:flex md:p-6 text-sm font-bold text-gray-700 border-r items-center" style={{
-        borderImage: "linear-gradient(180deg, rgba(255,255,255,0) 0%, #8b8b8b 47%, rgba(255,255,255,0) 80%) 1"
+      <div className="hidden md:flex md:p-6 text-sm font-[600] text-[#282529] border-r items-center" style={{
+       borderImage: "linear-gradient(180deg, rgba(206, 203, 203, 0) 0%, #cac2c2ff 47%, rgba(173, 170, 170, 0) 80%) 1"
       }}>
         {label}
       </div>
@@ -163,9 +211,9 @@ const RowWrapper = ({ label, children, isPink = false, highlight = false }) => (
 );
 
 const DataCell = ({ children }) => (
-  <div className="md:p-4 flex items-center py-2 justify-center border-r last:border-0 bg-white md:bg-transparent md:min-h-[70px]  text-center"
+  <div className=" flex items-center  py-1 justify-center border-r last:border-0 bg-white md:bg-transparent min-h-[20px]  text-center"
     style={{
-      borderImage: "linear-gradient(180deg, rgba(255,255,255,0) 0%, #8b8b8b 47%, rgba(255,255,255,0) 80%) 1"
+      borderImage: "linear-gradient(180deg, rgba(206, 203, 203, 0) 0%, #cac2c2ff 47%, rgba(173, 170, 170, 0) 80%) 1"
     }}>
     {children}
   </div>
@@ -173,9 +221,13 @@ const DataCell = ({ children }) => (
 
 
 
-const ApprovalRow = ({ isPink }) => (
+const ApprovalRow = ({ isPink,data }) => (
   <RowWrapper label="Approvals" isPink={isPink}>
-    {[1, 2, 3].map((i) => <DataCell key={i}><ApprovalIcons /></DataCell>)}
+   {data.icons.map((uniIcons, i) => (
+      <DataCell key={i}>
+        <ApprovalIcons icons={uniIcons} nirfRank={data.nirf[i]} />
+      </DataCell>
+    ))}
   </RowWrapper>
 );
 
@@ -190,7 +242,7 @@ const StatusRow = ({ label, values, isPink }) => (
     {values.map((v, i) => (
       <DataCell key={i}>
         <div className="flex items-center py-2 gap-1.5">
-          <div className="w-2 h-2 rounded-full  bg-gradient-to-b from-[#A6FF38] to-[#1DBF20]"></div>
+          <div className="w-2 h-2 rounded-full  bg-gradient-to-b from-[#A6FF38] to-[#1DBF20]   animate-[softPulse_1.5s_ease-in-out_infinite]"></div>
           <span className="text-[10px] md:text-[16px] ">{v}</span>
         </div>
       </DataCell>
@@ -227,10 +279,10 @@ const EligibilityRow = ({ label, details = [], isPink, activeDetail, onToggle })
       {details.map((_, i) => (
         <DataCell key={i}>
           <div
-            onClick={() => onToggle(label)}
-            className="flex flex-col items-center cursor-pointer hover:opacity-70"
+           onClick={() => onToggle(activeDetail === label ? null : label)}
+            className="flex flex-col items-center gap-1 cursor-pointer hover:opacity-70"
           >
-            <img src="/images/viewfile.png" className=" w-4 h-4 md:w-7 md:h-7 object-cover" alt="view" />
+            <img src="/images/view_file.svg" className="w-4 md:w-6  object-cover" alt="view" />
             <span className="text-[8px] font-bold underline text-red-400 uppercase">
               {activeDetail === label ? "Hide" : "View"}
             </span>
@@ -262,7 +314,7 @@ const Curriculum = ({ label, values = [], isPink }) => (
         <DataCell key={i}>
           {item && (
             <div className="flex flex-col items-center  ">
-              <img src="/images/pdf.png" className="w-5 h-5 md:w-10 md:h-10 object-cover" alt="view" />
+              <img src="/images/pdf_file.svg" className="w-5 h-5 md:w-10 md:h-10 object-cover" alt="view" />
 
             </div>
           )}
@@ -296,6 +348,7 @@ const RatingRow = ({ label, values, isPink, type }) => (
 export default function Compare({ compareData }) {
   const [activeDetail, setActiveDetail] = useState(null);
   const [activeSection, setActiveSection] = useState("approvals");
+   const [isExpanded, setIsExpanded] = useState(false);
 
   const universities = [
     { id: 1, name: "NMIMS CDOE", logo: "/images/compare/unilogo.png", score: 9.8 },
@@ -312,6 +365,20 @@ export default function Compare({ compareData }) {
   const { slug } = router.query
 
 
+  const scrollRef = useRef(null);
+
+const scroll = (direction) => {
+  if (scrollRef.current) {
+    const { scrollLeft, clientWidth } = scrollRef.current;
+    const scrollTo = direction === "left" 
+      ? scrollLeft - 200 
+      : scrollLeft + 200;
+    
+    scrollRef.current.scrollTo({ left: scrollTo, behavior: "smooth" });
+  }
+};
+
+
   const renderSectionContent = (id) => {
     switch (id) {
       case "approvals":
@@ -323,7 +390,10 @@ export default function Compare({ compareData }) {
               </p>
             </div>
 
-            <ApprovalRow isPink={false} />
+         <ApprovalRow 
+        data={comparisonData.approvals} 
+        isPink={false} 
+      />
 
             {comparisonData.approvals?.nirf && (
               <TextRow
@@ -565,7 +635,7 @@ export default function Compare({ compareData }) {
       <div className="mx-auto container xl:max-w-[1280px] px-2 md:px-4 py-6 md:mt-24 font-poppins">
 
         {/* Header Logic (Search/Tabs) */}
-        <div className="flex items-center justify-end text-[#282529] mb-4 gap-3 font-semibold cursor-pointer text-xs md:text-sm">
+        <div className="flex items-center justify-end text-[#282529] md:mt-3 lg:mt-8 mb-4 gap-3 font-semibold cursor-pointer text-xs md:text-sm">
           <div className="bg-[#EFF3F6] rounded p-0.5"><ChevronRight size={18} color="#EC1E24" /></div>
           Get insights of your perfect university!
         </div>
@@ -582,7 +652,7 @@ export default function Compare({ compareData }) {
           <div className="bg-[#F9FAFB]  py-4 md:p-4 border-[1px] border-[#CECECE] rounded-[16px]">
 
             {/* --- HEADER TITLE --- */}
-            <div className="flex flex-row justify-between items-center  mb-6">
+            <div className="flex flex-row justify-between items-center px-2  mb-6">
               <div className="px-2 md:px-0 ">
                 <h1 className="text-[14px] md:text-[24px] font-[600] items-center font-poppins  text-[#282529]">
                   Choose criteria to filter
@@ -590,11 +660,11 @@ export default function Compare({ compareData }) {
               </div>
 
 
-              <div className="block bg-white md:hidden relative w-20">
+              <div className="block bg-white md:hidden items-center relative w-30">
                 <input
                   type="text"
                   placeholder="Search"
-                  className="w-full pl-6 pr-4 py-1.5 text-[10px] md:text-xs border border-gray-300 rounded-md focus:outline-none focus:border-red-500"
+                  className="w-full pl-8 pr-4 py-1.5 text-[11px] md:text-xs border border-gray-300 rounded-md focus:outline-none focus:border-red-500"
                 />
                 <Search className="w-3.5 h-3.5 text-gray-400 absolute left-2.5 top-2" />
               </div>
@@ -602,40 +672,62 @@ export default function Compare({ compareData }) {
             </div>
 
             {/* --- FILTER BAR & SEARCH --- */}
-            <div className="p-2 flex flex-col md:flex-row items-center justify-between gap-4 mb-8">
+         <div className="p-2 flex flex-col md:flex-row items-center justify-between gap-4 mb-8">
+    
+    {/* Scrollable Tabs Wrapper */}
+    <div className="relative flex items-center w-full md:max-w-[700px] group">
+      
+      {/* Left Arrow */}
+      <button 
+        onClick={() => scroll("left")}
+        className="absolute left-0 z-10 bg-white shadow-md rounded-full p-1.5 border border-gray-100 hover:bg-gray-50 md:flex items-center justify-center"
+      >
+        <ChevronLeft size={18} className="text-[#EC1E24]" />
+      </button>
 
-              {/* Scrollable Tabs */}
-              <div className="w-full md:w-auto overflow-x-auto no-scrollbar max-w-[500px]">
-                <div className="flex gap-2 w-max px-2 overflow-x-auto">
-                  {tabList.map((tab) => (
-                    <button
-                      key={tab.id}
-                      onClick={() => {
-                        setActiveSection(tab.id);
-                        setActiveDetail(null);
-                      }}
-                      className={`px-6 py-2 rounded-full text-xs font-medium whitespace-nowrap transition-all
-            ${activeSection === tab.id
-                          ? "bg-[#EC1E24] text-white shadow-md"
-                          : "bg-white text-gray-500 border"}`}
-                    >
-                      {tab.title}
-                    </button>
-                  ))}
-                </div>
-              </div>
+      {/* Tabs Container */}
+      <div 
+        ref={scrollRef}
+        className="flex gap-2 overflow-x-auto no-scrollbar scroll-smooth px-10 w-full"
+      >
+        {tabList.map((tab) => (
+          <button
+            key={tab.id}
+            onClick={() => {
+              setActiveSection(tab.id);
+              setActiveDetail(null);
+            }}
+            className={`px-6 py-2 rounded-full text-[11px] md:text-xs font-medium whitespace-nowrap transition-all shrink-0
+              ${activeSection === tab.id
+                ? "bg-[#EC1E24] text-white shadow-md"
+                : "bg-white text-gray-500 border border-gray-200 hover:bg-gray-50"
+              }`}
+          >
+            {tab.title}
+          </button>
+        ))}
+      </div>
 
-              {/* Search Box */}
-              <div className="hidden md:block relative w-full md:w-64 bg-white">
-                <input
-                  type="text"
-                  placeholder="Search"
-                  className="w-full pl-8 pr-4 py-1.5 text-xs border border-gray-300 rounded-[8px] focus:outline-none focus:border-red-500"
-                />
-                <Search className="w-3.5 h-3.5 text-gray-400 absolute left-2.5 top-2" />
-              </div>
+      {/* Right Arrow */}
+      <button 
+        onClick={() => scroll("right")}
+        className="absolute right-0 z-10 bg-white shadow-md rounded-full p-1.5 border border-gray-100 hover:bg-gray-50 md:flex items-center justify-center"
+      >
+        <ChevronRight size={18} className="text-[#282529]" />
+      </button>
+    </div>
 
-            </div>
+    {/* Search Box */}
+    <div className="hidden md:block relative w-full md:w-64 bg-white">
+      <input
+        type="text"
+        placeholder="Search"
+        className="w-full pl-8 pr-4 py-1.5 text-xs border border-gray-300 rounded-[8px] focus:outline-none focus:border-red-500"
+      />
+      <Search className="w-3.5 h-3.5 text-gray-400 absolute left-2.5 top-2" />
+    </div>
+
+  </div>
 
 
 
@@ -643,16 +735,16 @@ export default function Compare({ compareData }) {
 
             {/* Top Comparison Header */}
             <div className="grid grid-cols-3 md:grid-cols-4 bg-white rounded-t-xl overflow-hidden">
-              <div className="hidden md:flex md:p-6 items-center justify-center border-r "
+              <div className="hidden md:flex md:p-1 items-center justify-center border-r "
                 style={{
-                  borderImage: "linear-gradient(180deg, rgba(255,255,255,0) 0%, #8b8b8b 47%, rgba(255,255,255,0) 80%) 1"
+               borderImage: "linear-gradient(180deg, rgba(206, 203, 203, 0) 0%, #cac2c2ff 47%, rgba(173, 170, 170, 0) 80%) 1"
                 }}>
                 <button className="bg-[#EC1E24] text-white px-8 py-2.5 rounded-md text-xs font-bold uppercase shadow-lg">Attributes</button>
               </div>
               {compareData?.data?.universities.map((uni) => (
                 <div key={uni.id} className="p-1 py-5 md:py-6  md:p-4 flex flex-col items-center border-r last:border-0  relative"
                   style={{
-                    borderImage: "linear-gradient(180deg, rgba(255,255,255,0) 0%, #8b8b8b 47%, rgba(255,255,255,0) 80%) 1"
+                 borderImage: "linear-gradient(180deg, rgba(206, 203, 203, 0) 0%, #cac2c2ff 47%, rgba(173, 170, 170, 0) 80%) 1"
                   }}>
                   <XCircle className="absolute top-0 right-1 md:top-2 md:right-2 text-[#B5B4B4] cursor-pointer w-3 h-3 md:w-6 h-6" />
                   <img src={uni.icon} className="h-8 md:h-12 object-contain mb-2" alt={uni.icon_alt} />

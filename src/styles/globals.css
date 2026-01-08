@@ -329,9 +329,71 @@ margin-left: -5px;
 
 input, input:focus, input:active, input:focus-visible {
     outline: none !important;
-    border: none !important;
+
     box-shadow: none !important;
     ring: 0 !important;
     --tw-ring-color: transparent !important; /* Specific to Tailwind pink defaults */
 }
+
+@keyframes softPulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+    box-shadow: 0 0 0px #1DBF20;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.8;
+    box-shadow: 0 0 10px #1DBF20;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+    box-shadow: 0 0 0px #1DBF20;
+  }
+}
+
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-moving-pink {
+  /* Pink के अलग-अलग shades का मेल */
+  background: linear-gradient(-45deg, #f1dbd5, #f7e1ee, #fefbfb, #f0d4cc);
+  background-size: 400% 400%;
+  animation: gradientMove 15s ease infinite;
+}
+
+
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fadeInUp 0.5s ease forwards;
+}
  
+
+
+ @keyframes expandHeight {
+    0%, 100% { 
+        height: 4px;      /* Shuruat mein ek patli line (underline) */
+    }
+    50% { 
+        height: 100%;    /* Beech mein poora text cover kar lega (highlighter) */
+    }
+  }
+  .animate-highlight {
+    animation: expandHeight 3s ease-in-out infinite;
+  }

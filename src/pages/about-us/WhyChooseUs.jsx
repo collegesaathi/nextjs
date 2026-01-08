@@ -3,7 +3,7 @@ import CardStack from "./CardStack";
 
 const WhyChooseUs = () => {
     return (
-        <section className="py-10 lg:py-24 bg-white overflow-hidden">
+        <section className="py-10 lg:py-15 bg-white overflow-hidden">
             <div className="max-w-7xl mx-auto px-2 lg:px-8">
                 {/* FIRST ROW */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-10 items-center">
@@ -19,7 +19,7 @@ const WhyChooseUs = () => {
                     </div>
 
                     {/* RIGHT ANIMATION */}
-                    <div className="relative flex justify-center items-center lg:h-[500px]">
+                    <div className="relative flex justify-center mt-10 items-center lg:h-[500px]">
                         <CardStack />
                     </div>
                 </div>

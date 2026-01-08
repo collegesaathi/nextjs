@@ -34,12 +34,12 @@ export default function HeroGallery() {
     return (
 
 
-        <div className="mx-auto container sm:container md:container xl:max-w-[1230px]  px-2 md:px-4 py-4 md:mt-20 lg:mt-20 " >
+        <div className="mx-auto container sm:container md:container xl:max-w-[1430px]  px-2 md:px-4 py-4 md:mt-20 lg:mt-20 " >
             <div className="w-full bg-white overflow-hidden">
 
 
 
-                <div className="block lg:hidden pt-2">
+                <div className="block lg:hidden ">
 
 
                     <div className="grid grid-cols-3 gap-3 md:px-2">
@@ -64,7 +64,7 @@ export default function HeroGallery() {
                     </div>
 
                     {/* Mobile Text (Below Images) */}
-                    <div className="text-center mt-12 px-2 font-poppins">
+                    <div className="text-center mt-12 mb-10  px-2 font-poppins">
                         <h1 className="text-[26px] font-[600] text-[#282529] leading-tight">
                             Every image tells the story <br />
                             <span className="text-gray-900">of a team that cares.</span>
@@ -80,7 +80,7 @@ export default function HeroGallery() {
                 <div className="hidden lg:block ">
 
                     {/* GRID CONTAINER - 6 Columns */}
-                    <div className="relative max-w-[1400px] mx-auto pt-10 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-9 gap-4">
+                    <div className="relative max-w-[1400px] mx-auto  grid grid-cols-2 md:grid-cols-4 lg:grid-cols-9 gap-4">
 
                         {columns.map((colImages, colIndex) => (
                             <div key={colIndex} className="flex flex-col gap-2">
