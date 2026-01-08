@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { motion } from "framer-motion";
 
 const leaders = [
     {
@@ -28,9 +29,14 @@ const leaders = [
 const VisionaryLeaders = () => {
 
     const FounderCard = ({ leader }) => (
-<div className="bg-gradient-to-tr from-[rgba(255,244,230,0.5)] to-[rgba(255,255,255,0.5)]
-rounded-[30px] border border-[#F8E0C1] overflow-hidden p-6 lg:p-10
-flex flex-col lg:flex-row space-y-8 lg:space-y-0 lg:space-x-10">
+  <motion.div
+    whileHover={{ backgroundPosition: "100% 100%" }}
+    transition={{ duration: 0.8, ease: "easeOut" }}
+    className="rounded-[30px] border border-[#F8E0C1] p-6 lg:p-10
+    flex flex-col lg:flex-row space-y-8 lg:space-y-0 lg:space-x-10
+    bg-[linear-gradient(120deg,#FFF6EB,#FFF6EB,#FFE9D0,#FFFFFF)]
+    bg-[length:300%_300%]"
+  >
             <div className="lg:w-3/5 order-1 lg:order-1">
                 <h3 className="text-[30px]  lg:text-[43px] font-[600] text-[#282529] leading-tight">
                     {leader.name}
@@ -49,11 +55,21 @@ flex flex-col lg:flex-row space-y-8 lg:space-y-0 lg:space-x-10">
                     className="w-full h-full object-cover rounded-xl"
                 />
             </div>
-        </div>
+         </motion.div>
     );
 
     const CoFounderCard = ({ leader }) => (
-        <div className="bg-gradient-to-tl from-[rgba(255,244,230,0.5)] to-[rgba(255,255,255,0.5)] border border-[#F8E0C1] p-6 lg:p-10 rounded-[30px] overflow-hidden ">
+<motion.div
+  initial={{ backgroundPosition: "0% 0%" }}
+  whileHover={{ backgroundPosition: "0% 100%" }}
+  transition={{ duration: 0.8, ease: "easeOut" }}
+  className="
+    border border-[#F8E0C1] p-6 lg:p-10 rounded-[30px] overflow-hidden
+    bg-[linear-gradient(180deg,#FFF4E6_0%,#FFF4E6_45%,#FFFFFF_70%,#FFE9D0_100%)]
+    bg-[length:100%_300%]
+  "
+>
+
              
       
       <div className="">
@@ -76,7 +92,7 @@ flex flex-col lg:flex-row space-y-8 lg:space-y-0 lg:space-x-10">
             </div>
 
            
-        </div>
+        </motion.div>
     );
 
     return (

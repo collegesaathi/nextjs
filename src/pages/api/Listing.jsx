@@ -90,7 +90,7 @@ class Listing extends Component {
   async CourseAll() {
     return Api.get("/all/course",);
   }
-  async AdminUniveristy(page ,search) {
+  async AdminUniveristy(page, search) {
     return Api.get(`/admin/university?page=${page}&search=${search}`,);
   }
 
@@ -107,7 +107,7 @@ class Listing extends Component {
     return Api.get(`/university/${slug}`)
   }
 
-    async ProgramGet(slug) {
+  async ProgramGet(slug) {
     return Api.get(`/admin/program/${slug}`)
   }
 
@@ -131,11 +131,11 @@ class Listing extends Component {
     return Api.get(`/course/university/${id}`)
   }
 
-  async CourseSpecialisationGet( cui) {
+  async CourseSpecialisationGet(cui) {
     return Api.get(`/course/specialisation/${cui}`)
   }
 
-   async ApprovalSpeGet(cui) {
+  async ApprovalSpeGet(cui) {
     return Api.get(`/approval/placement/${cui}`)
   }
   async UniversitySearch(query) {
@@ -158,20 +158,29 @@ class Listing extends Component {
   async AdminProgramsAdd(data) {
     return ApiallowFile.post("/admin/program/add", data);
   }
-   async AdminProgramsUpdate(data) {
+  async AdminProgramsUpdate(data) {
     return ApiallowFile.post("/admin/program/update", data);
   }
- async CategroyAll() {
+  async CategroyAll() {
     return Api.get("/common/categroy",);
   }
 
-async AdminPrograms(page) {
+  async AdminPrograms(page) {
     return Api.get(`/all/programs?page=${page}`,);
   }
 
-    async ProgramDelete(id) {
+  async ProgramDelete(id) {
     return Api.delete(`/program/${id}`)
   }
+
+
+  async SendOtp(phone_number) {
+  return Api.post('/send-otp', {   mobile: phone_number });  }
+
+  async VerifyOtp(phone_number,otp){
+    return Api.post('/verify-otp',{mobile:phone_number,otp:otp})
+  }
+
 
 
   render() {

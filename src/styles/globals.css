@@ -325,4 +325,13 @@ margin-left: -5px;
   pointer-events: none;
 
 }
+
+
+input, input:focus, input:active, input:focus-visible {
+    outline: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    ring: 0 !important;
+    --tw-ring-color: transparent !important; /* Specific to Tailwind pink defaults */
+}
  

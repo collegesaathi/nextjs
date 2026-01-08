@@ -103,7 +103,7 @@ export default function ContactSection() {
                                                 </div>
                                                 <div class="absolute bottom-0 right-4">
                                                     <button class="flex items-center justify-center w-[68px] h-[68px] relative z-10">
-                                                    <img src={WhatsApp?.src} alt="shape Icon" class="" />
+                                                        <img src={WhatsApp?.src} alt="shape Icon" class="" />
                                                     </button>
                                                 </div>
                                                 <div class="absolute bottom-0 right-0">

@@ -113,7 +113,7 @@ export default function UniversityCard({
                             toggleUniversity(card);
                         }}
                         className={`flex items-center justify-center w-full px-4 h-[1.815rem] rounded-md transition-colors cursor-pointer mt-4
-                        ${isSelected ? 'bg-neutral-100 text-green-700 font-[600]' : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'}`}
+                        ${isSelected ? 'bg-neutral-100 text-black font-[600]' : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'}`}
                     >
                         <input
                             type="checkbox"
