@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect  } from "react";
 import Layout from "../components/Layout";
 import CultureGallery from "./CultureGallery";
 import OpenPositions from "./OpenPositions";
@@ -10,6 +10,32 @@ import Head from 'next/head'
 
 
 function Index() {
+
+        const videoRef = useRef(null);
+    const [isPlaying, setIsPlaying] = useState(true);
+    const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+    const [isHovering, setIsHovering] = useState(false);
+
+
+
+
+
+    const handleVideoClick = () => {
+        if (videoRef.current) {
+            if (isPlaying) {
+                videoRef.current.pause();
+            } else {
+                videoRef.current.play();
+            }
+            setIsPlaying(!isPlaying);
+        }
+    };
+
+    // Track Mouse Position
+    const handleMouseMove = (e) => {
+        setMousePos({ x: e.clientX, y: e.clientY });
+    };
+
     return (<>
         <Head>
             <title>Careers at Collegesathi | Join India’s Growing EdTech Platform</title>
@@ -53,22 +79,45 @@ function Index() {
                         </Link>
                     </div>
                 </section>
-                <section className="bg-white py-10 md:py-10">
-                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                        <div className="relative w-full h-[574px] overflow-hidden rounded-xl shadow-2xl">
-                            <div className="absolute inset-0 bg-cover bg-center"
-                                style={{ backgroundImage: "url('/images/careerhero.png')" }}>
-                            </div>
-
-
-                            <div className="absolute inset-0 bg-black opacity-30"></div>
-
-                            {/* <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-blue-500 text-white px-4 py-2 rounded text-sm font-mono">
-                                1440 × 643
-                            </div> */}
-                        </div>
+               <section className="bg-white py-10 md:py-10">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div 
+                    className="relative w-full h-[300px] md:h-[574px] overflow-hidden rounded-xl shadow-2xl cursor-none group"
+                    onClick={handleVideoClick}
+                    onMouseMove={handleMouseMove}
+                    onMouseEnter={() => setIsHovering(true)}
+                    onMouseLeave={() => setIsHovering(false)}
+                >
+                    {/* Custom Circle Cursor */}
+                    <div 
+                        className={`fixed pointer-events-none z-50 flex items-center justify-center rounded-full bg-white/90 text-black font-bold text-[12px] uppercase transition-transform duration-100 ease-out
+                        ${isHovering ? "scale-100 opacity-100" : "scale-0 opacity-0"}`}
+                        style={{
+                            width: "80px",
+                            height: "80px",
+                            left: mousePos.x,
+                            top: mousePos.y,
+                            transform: `translate(-50%, -50%)`, // Centers the circle on the cursor
+                        }}
+                    >
+                        {isPlaying ? "Pause" : "Play"}
                     </div>
-                </section>
+
+                    {/* Video Element */}
+                    <div className="absolute inset-0 bg-cover bg-center">
+                        <video 
+                            ref={videoRef}
+                            src="/video/office.mp4" 
+                            loop 
+                            muted 
+                            autoPlay 
+                            playsInline
+                            className="w-full h-full object-cover"
+                        />
+                    </div>
+                </div>
+            </div>
+        </section>
 
             </div>
 

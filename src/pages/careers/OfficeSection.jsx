@@ -95,7 +95,7 @@ export default function OfficeSection() {
       <div className="relative  w-full overflow-hidden">
         
         {/* Horizontal Dashed Line */}
-        <div className="absolute top-1/2 left-0 w-full border-t-2 border-dashed border-blue-400 -translate-y-1/2 z-0"></div>
+  
 
         {/* Scrollable Container with Refs and Events */}
         <div 
@@ -119,7 +119,7 @@ export default function OfficeSection() {
      
                 {/* Vertical Dashed Line (Active only) */}
                 {isActive && (
-                  <div className="absolute bottom-full left-1/2 h-20 border-l-2 border-dashed border-blue-400 -translate-x-1/2 mb-4">
+                  <div className="absolute bottom-full left-1/2 h-20 -translate-x-1/2 mb-4">
                     <div className="absolute -top-1 -left-[5px] w-3 h-3 bg-blue-500 rounded-full"></div>
                   </div>
                 )}
@@ -142,11 +142,7 @@ export default function OfficeSection() {
                 </div>
 
                 {/* Size Tag */}
-                {isActive && (
-                  <div className="mt-3 bg-[#2D9CDB] text-white text-xs font-semibold px-2 py-1 rounded">
-                    {img.width} × {img.height}
-                  </div>
-                )}
+                
               </div>
             );
           })}

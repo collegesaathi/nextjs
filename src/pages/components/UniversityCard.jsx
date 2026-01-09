@@ -98,7 +98,7 @@ export default function UniversityCard({
                 <div className="flex-grow">
                     {features?.map((feature, i) => (
                         <div key={i} className="flex items-center text-neutral-700 text-[0.75rem] mb-1">
-                            <span className="text-green-500 mr-2">●</span>
+                            <span className="text-green-500 mr-2 animate-pulse">●</span>
                             <span className="line-clamp-2">{feature}</span>
                         </div>
                     ))}

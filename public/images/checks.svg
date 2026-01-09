@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="1440" height="971" viewBox="0 0 1440 971" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gradient_1" gradientUnits="userSpaceOnUse" x1="1440" y1="485.5" x2="-1" y2="485.5">
+      <stop offset="0" stop-color="#FFFFFF" />
+      <stop offset="0.443" stop-color="#FEEFEF" />
+      <stop offset="0.491" stop-color="#FEEEEE" />
+      <stop offset="1" stop-color="#FFFFFF" />
+    </linearGradient>
+    <mask id="mask_2" x="-30610" y="-7533" width="1440" height="971">
+      <rect width="1440" height="971" fill="url(#gradient_1)" fill-rule="evenodd" />
+    </mask>
+  </defs>
+  <g>
+    <g mask="url(#mask_2)">
+      <g transform="translate(-559 0)">
+        <rect width="3.541" height="1416.216" fill="#FFFFFF" fill-rule="evenodd" fill-opacity="0.5" transform="translate(10.622 12.392)" />
+        <rect width="3.541" height="1419.756" fill="#FFFFFF" fill-rule="evenodd" fill-opacity="0.2" transform="translate(79.839 10.622)" />
+        <rect width="3.541" height="1419.756" fill="#FFFFFF" fill-rule="evenodd" fill-opacity="0.2" transform="translate(150.824 10.622)" />
+        <rect width="3.541" height="1419.756" fill="#FFFFFF" fill-rule="evenodd" fill-opacity="0.2" transform="translate(221.817 10.622)" />
+        <rect width="3.541" height="1419.756" fill="#FFFFFF" fill-rule="evenodd" fill-opacity="0.2" transform="translate(292.803 10.622)" />
+        <rect width="3.541" height="1419.756" fill="#FFFFFF" fill-rule="evenodd" fill-opacity="0.5" transform="translate(363.791 10.622)" />
+        <rect width="3.541" height="1419.756" fill="#FFFFFF" fill-rule="evenodd" fill-opacity="0.2" transform="translate(434.777 10.622)" />
+        <rect width="3.541" height="1419.756" fill="#FFFFFF" fill-rule="evenodd" fill-opacity="0.2" transform="translate(505.764 10.622)" />
+        <rect width="3.541" height="1419.756" fill="#FFFFFF" fill-rule="evenodd" fill-opacity="0.2" transform="translate(576.756 10.622)" />
+        <rect width="3.541" height="1419.756" fill="#FFFFFF" fill-rule="evenodd" fill-opacity="0.2" transform="translate(647.742 10.622)" />
+        <rect width="3.541" height="1419.756" fill="#FFFFFF" fill-rule="evenodd" fill-opacity="0.5" transform="translate(718.728 10.622)" />
+        <rect width="3.541" height="1419.756" fill="#FFFFFF" fill-rule="evenodd" fill-opacity="0.2" transform="translate(789.716 10.622)" />
+        <rect width="3.541" height="1419.756" fill="#FFFFFF" fill-rule="evenodd" fill-opacity="0.2" transform="translate(860.704 10.622)" />
+        <rect width="3.541" height="1419.756" fill="#FFFFFF" fill-rule="evenodd" fill-opacity="0.2" transform="translate(931.694 10.622)" />
+        <rect width="3.541" height="1419.756" fill="#FFFFFF" fill-rule="evenodd" fill-opacity="0.2" transform="translate(1002.681 10.622)" />
+        <rect width="3.541" height="1419.756" fill="#FFFFFF" fill-rule="evenodd" fill-opacity="0.5" transform="translate(1073.669 10.622)" />
+        <rect width="3.541" height="1419.756" fill="#FFFFFF" fill-rule="evenodd" fill-opacity="0.2" transform="translate(1144.655 10.622)" />
+        <rect width="3.541" height="1419.756" fill="#FFFFFF" fill-rule="evenodd" fill-opacity="0.2" transform="translate(1215.643 10.622)" />
+        <rect width="3.541" height="1419.756" fill="#FFFFFF" fill-rule="evenodd" fill-opacity="0.2" transform="translate(1286.631 10.622)" />
+        <rect width="3.541" height="1419.756" fill="#FFFFFF" fill-rule="evenodd" fill-opacity="0.2" transform="translate(1357.619 10.622)" />
+        <rect width="3.541" height="1416.216" fill="#FFFFFF" fill-rule="evenodd" fill-opacity="0.5" transform="translate(1426.836 12.392)" />
+        <rect width="1416.215" height="3.541" fill="#FFFFFF" fill-rule="evenodd" fill-opacity="0.5" transform="translate(12.392 10.622)" />
+        <rect width="1419.755" height="3.541" fill="#FFFFFF" fill-rule="evenodd" fill-opacity="0.2" transform="translate(10.622 79.839)" />
+        <rect width="1419.755" height="3.541" fill="#FFFFFF" fill-rule="evenodd" fill-opacity="0.2" transform="translate(10.622 150.828)" />
+        <rect width="1419.755" height="3.541" fill="#FFFFFF" fill-rule="evenodd" fill-opacity="0.2" transform="translate(10.622 221.815)" />
+        <rect width="1419.755" height="3.541" fill="#FFFFFF" fill-rule="evenodd" fill-opacity="0.2" transform="translate(10.622 292.803)" />
+        <rect width="1419.755" height="3.541" fill="#FFFFFF" fill-rule="evenodd" fill-opacity="0.5" transform="translate(10.622 363.791)" />
+        <rect width="1419.755" height="3.541" fill="#FFFFFF" fill-rule="evenodd" fill-opacity="0.2" transform="translate(10.622 434.778)" />
+        <rect width="1419.755" height="3.541" fill="#FFFFFF" fill-rule="evenodd" fill-opacity="0.2" transform="translate(10.622 505.767)" />
+        <rect width="1419.755" height="3.541" fill="#FFFFFF" fill-rule="evenodd" fill-opacity="0.2" transform="translate(10.622 576.754)" />
+        <rect width="1419.755" height="3.541" fill="#FFFFFF" fill-rule="evenodd" fill-opacity="0.2" transform="translate(10.622 647.743)" />
+        <rect width="1419.755" height="3.541" fill="#FFFFFF" fill-rule="evenodd" fill-opacity="0.5" transform="translate(10.622 718.73)" />
+        <rect width="1419.755" height="3.541" fill="#FFFFFF" fill-rule="evenodd" fill-opacity="0.2" transform="translate(10.622 789.716)" />
+        <rect width="1419.755" height="3.541" fill="#FFFFFF" fill-rule="evenodd" fill-opacity="0.2" transform="translate(10.622 860.706)" />
+        <rect width="1419.755" height="3.541" fill="#FFFFFF" fill-rule="evenodd" fill-opacity="0.2" transform="translate(10.622 931.693)" />
+        <rect width="1419.755" height="3.541" fill="#FFFFFF" fill-rule="evenodd" fill-opacity="0.2" transform="translate(10.622 1002.682)" />
+        <rect width="1419.755" height="3.541" fill="#FFFFFF" fill-rule="evenodd" fill-opacity="0.5" transform="translate(10.622 1073.669)" />
+        <rect width="1419.755" height="3.541" fill="#FFFFFF" fill-rule="evenodd" fill-opacity="0.2" transform="translate(10.622 1144.655)" />
+        <rect width="1419.755" height="3.541" fill="#FFFFFF" fill-rule="evenodd" fill-opacity="0.2" transform="translate(10.622 1215.645)" />
+        <rect width="1419.755" height="3.541" fill="#FFFFFF" fill-rule="evenodd" fill-opacity="0.2" transform="translate(10.622 1286.632)" />
+        <rect width="1419.755" height="3.541" fill="#FFFFFF" fill-rule="evenodd" fill-opacity="0.2" transform="translate(10.622 1357.62)" />
+        <rect width="1416.215" height="3.541" fill="#FFFFFF" fill-rule="evenodd" fill-opacity="0.5" transform="translate(12.392 1426.837)" />
+        <g>
+          <rect width="3.541" height="24.784" fill="#FFFFFF" fill-rule="evenodd" transform="translate(10.623 0)" />
+          <rect width="24.784" height="3.541" fill="#FFFFFF" fill-rule="evenodd" transform="translate(0 10.622)" />
+        </g>
+        <g transform="translate(1416.217 0)">
+          <rect width="3.541" height="24.784" fill="#FFFFFF" fill-rule="evenodd" transform="translate(10.623 0)" />
+          <rect width="24.784" height="3.541" fill="#FFFFFF" fill-rule="evenodd" transform="translate(0 10.622)" />
+        </g>
+        <g transform="translate(0 354.054)">
+          <rect width="3.541" height="24.784" fill="#FFFFFF" fill-rule="evenodd" transform="translate(10.623 0)" />
+          <rect width="24.784" height="3.541" fill="#FFFFFF" fill-rule="evenodd" transform="translate(0 10.622)" />
+        </g>
+        <g transform="translate(1416.217 354.054)">
+          <rect width="3.541" height="24.784" fill="#FFFFFF" fill-rule="evenodd" transform="translate(10.623 0)" />
+          <rect width="24.784" height="3.541" fill="#FFFFFF" fill-rule="evenodd" transform="translate(0 10.622)" />
+        </g>
+        <g transform="translate(0 708.108)">
+          <rect width="3.541" height="24.784" fill="#FFFFFF" fill-rule="evenodd" transform="translate(10.623 0)" />
+          <rect width="24.784" height="3.541" fill="#FFFFFF" fill-rule="evenodd" transform="translate(0 10.622)" />
+        </g>
+        <g transform="translate(1416.217 708.108)">
+          <rect width="3.541" height="24.784" fill="#FFFFFF" fill-rule="evenodd" transform="translate(10.623 0)" />
+          <rect width="24.784" height="3.541" fill="#FFFFFF" fill-rule="evenodd" transform="translate(0 10.622)" />
+        </g>
+        <g transform="translate(0 1062.161)">
+          <rect width="3.541" height="24.784" fill="#FFFFFF" fill-rule="evenodd" transform="translate(10.623 0)" />
+          <rect width="24.784" height="3.541" fill="#FFFFFF" fill-rule="evenodd" transform="translate(0 10.621)" />
+        </g>
+        <g transform="translate(1416.217 1062.161)">
+          <rect width="3.541" height="24.784" fill="#FFFFFF" fill-rule="evenodd" transform="translate(10.623 0)" />
+          <rect width="24.784" height="3.541" fill="#FFFFFF" fill-rule="evenodd" transform="translate(0 10.621)" />
+        </g>
+        <g transform="translate(0 1416.216)">
+          <rect width="3.541" height="24.784" fill="#FFFFFF" fill-rule="evenodd" transform="translate(10.623 0)" />
+          <rect width="24.784" height="3.541" fill="#FFFFFF" fill-rule="evenodd" transform="translate(0 10.621)" />
+        </g>
+        <g transform="translate(354.055 0)">
+          <rect width="3.541" height="24.784" fill="#FFFFFF" fill-rule="evenodd" transform="translate(10.623 0)" />
+          <rect width="24.784" height="3.541" fill="#FFFFFF" fill-rule="evenodd" transform="translate(0 10.622)" />
+        </g>
+        <g transform="translate(354.055 354.054)">
+          <rect width="3.541" height="24.784" fill="#FFFFFF" fill-rule="evenodd" transform="translate(10.623 0)" />
+          <rect width="24.784" height="3.541" fill="#FFFFFF" fill-rule="evenodd" transform="translate(0 10.622)" />
+        </g>
+        <g transform="translate(354.055 708.108)">
+          <rect width="3.541" height="24.784" fill="#FFFFFF" fill-rule="evenodd" transform="translate(10.623 0)" />
+          <rect width="24.784" height="3.541" fill="#FFFFFF" fill-rule="evenodd" transform="translate(0 10.622)" />
+        </g>
+        <g transform="translate(354.055 1062.161)">
+          <rect width="3.541" height="24.784" fill="#FFFFFF" fill-rule="evenodd" transform="translate(10.623 0)" />
+          <rect width="24.784" height="3.541" fill="#FFFFFF" fill-rule="evenodd" transform="translate(0 10.621)" />
+        </g>
+        <g transform="translate(354.055 1416.216)">
+          <rect width="3.541" height="24.784" fill="#FFFFFF" fill-rule="evenodd" transform="translate(10.623 0)" />
+          <rect width="24.784" height="3.541" fill="#FFFFFF" fill-rule="evenodd" transform="translate(0 10.621)" />
+        </g>
+        <g transform="translate(708.108 0)">
+          <rect width="3.541" height="24.784" fill="#FFFFFF" fill-rule="evenodd" transform="translate(10.623 0)" />
+          <rect width="24.784" height="3.541" fill="#FFFFFF" fill-rule="evenodd" transform="translate(0 10.622)" />
+        </g>
+        <g transform="translate(708.108 354.054)">
+          <rect width="3.541" height="24.784" fill="#FFFFFF" fill-rule="evenodd" transform="translate(10.623 0)" />
+          <rect width="24.784" height="3.541" fill="#FFFFFF" fill-rule="evenodd" transform="translate(0 10.622)" />
+        </g>
+        <g transform="translate(708.108 708.108)">
+          <rect width="3.541" height="24.784" fill="#FFFFFF" fill-rule="evenodd" transform="translate(10.623 0)" />
+          <rect width="24.784" height="3.541" fill="#FFFFFF" fill-rule="evenodd" transform="translate(0 10.622)" />
+        </g>
+        <g transform="translate(708.108 1062.161)">
+          <rect width="3.541" height="24.784" fill="#FFFFFF" fill-rule="evenodd" transform="translate(10.623 0)" />
+          <rect width="24.784" height="3.541" fill="#FFFFFF" fill-rule="evenodd" transform="translate(0 10.621)" />
+        </g>
+        <g transform="translate(708.108 1416.216)">
+          <rect width="3.541" height="24.784" fill="#FFFFFF" fill-rule="evenodd" transform="translate(10.623 0)" />
+          <rect width="24.784" height="3.541" fill="#FFFFFF" fill-rule="evenodd" transform="translate(0 10.621)" />
+        </g>
+        <g transform="translate(1062.16 0)">
+          <rect width="3.541" height="24.784" fill="#FFFFFF" fill-rule="evenodd" transform="translate(10.623 0)" />
+          <rect width="24.784" height="3.541" fill="#FFFFFF" fill-rule="evenodd" transform="translate(0 10.622)" />
+        </g>
+        <g transform="translate(1062.16 354.054)">
+          <rect width="3.541" height="24.784" fill="#FFFFFF" fill-rule="evenodd" transform="translate(10.623 0)" />
+          <rect width="24.784" height="3.541" fill="#FFFFFF" fill-rule="evenodd" transform="translate(0 10.622)" />
+        </g>
+        <g transform="translate(1062.16 708.108)">
+          <rect width="3.541" height="24.784" fill="#FFFFFF" fill-rule="evenodd" transform="translate(10.623 0)" />
+          <rect width="24.784" height="3.541" fill="#FFFFFF" fill-rule="evenodd" transform="translate(0 10.622)" />
+        </g>
+        <g transform="translate(1062.16 1062.161)">
+          <rect width="3.541" height="24.784" fill="#FFFFFF" fill-rule="evenodd" transform="translate(10.623 0)" />
+          <rect width="24.784" height="3.541" fill="#FFFFFF" fill-rule="evenodd" transform="translate(0 10.621)" />
+        </g>
+        <g transform="translate(1062.16 1416.216)">
+          <rect width="3.541" height="24.784" fill="#FFFFFF" fill-rule="evenodd" transform="translate(10.623 0)" />
+          <rect width="24.784" height="3.541" fill="#FFFFFF" fill-rule="evenodd" transform="translate(0 10.621)" />
+        </g>
+        <g transform="translate(1416.217 1416.216)">
+          <rect width="3.541" height="24.784" fill="#FFFFFF" fill-rule="evenodd" transform="translate(10.623 0)" />
+          <rect width="24.784" height="3.541" fill="#FFFFFF" fill-rule="evenodd" transform="translate(0 10.621)" />
+        </g>
+        <rect width="3.541" height="3.541" fill="#FFFFFF" fill-rule="evenodd" transform="translate(187.648 187.649)" />
+        <rect width="3.541" height="3.541" fill="#FFFFFF" fill-rule="evenodd" transform="translate(541.703 187.649)" />
+        <rect width="3.541" height="3.541" fill="#FFFFFF" fill-rule="evenodd" transform="translate(895.756 187.649)" />
+        <rect width="3.541" height="3.541" fill="#FFFFFF" fill-rule="evenodd" transform="translate(1249.81 187.649)" />
+        <rect width="3.541" height="3.541" fill="#FFFFFF" fill-rule="evenodd" transform="translate(187.648 541.703)" />
+        <rect width="3.541" height="3.541" fill="#FFFFFF" fill-rule="evenodd" transform="translate(541.703 541.703)" />
+        <rect width="3.541" height="3.541" fill="#FFFFFF" fill-rule="evenodd" transform="translate(895.756 541.703)" />
+        <rect width="3.541" height="3.541" fill="#FFFFFF" fill-rule="evenodd" transform="translate(1249.81 541.703)" />
+        <rect width="3.541" height="3.541" fill="#FFFFFF" fill-rule="evenodd" transform="translate(187.648 895.756)" />
+        <rect width="3.541" height="3.541" fill="#FFFFFF" fill-rule="evenodd" transform="translate(541.703 895.756)" />
+        <rect width="3.541" height="3.541" fill="#FFFFFF" fill-rule="evenodd" transform="translate(895.756 895.756)" />
+        <rect width="3.541" height="3.541" fill="#FFFFFF" fill-rule="evenodd" transform="translate(1249.81 895.756)" />
+        <rect width="3.541" height="3.541" fill="#FFFFFF" fill-rule="evenodd" transform="translate(187.648 1249.811)" />
+        <rect width="3.541" height="3.541" fill="#FFFFFF" fill-rule="evenodd" transform="translate(541.703 1249.811)" />
+        <rect width="3.541" height="3.541" fill="#FFFFFF" fill-rule="evenodd" transform="translate(895.756 1249.811)" />
+        <rect width="3.541" height="3.541" fill="#FFFFFF" fill-rule="evenodd" transform="translate(1249.81 1249.811)" />
+      </g>
+    </g>
+  </g>
+</svg>

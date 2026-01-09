@@ -11,7 +11,7 @@ const achievements = [
 
 const TeamAndAchievements = () => {
     return (
-        <section className="py-6 lg:py-10 bg-white">
+        <section className="py-6 lg:py-15 bg-white">
             <div className="max-w-7xl mx-auto px-2  lg:px-8">
                 
                 {/* --- 1. Our Team Section --- */}
@@ -27,7 +27,13 @@ const TeamAndAchievements = () => {
                         <img 
                             src="/images/about/teamhero.png" 
                             alt="Collegesathi Main Team" 
-                            className="w-full h-auto object-cover"
+                            className=" w-full 
+      h-auto 
+      object-cover
+      transition-transform 
+      duration-500 
+      ease-out
+      hover:scale-105"
                         />
                     </div>
                     
@@ -36,21 +42,30 @@ const TeamAndAchievements = () => {
                             <img 
                                 src="/images/about/team1.png" 
                                 alt="Team event 1" 
-                                className="w-full h-full object-cover"
+                                className="w-full h-full object-cover  transition-transform 
+      duration-500 
+      ease-out
+      hover:scale-105"
                             />
                         </div>
                         <div className="rounded-xl shadow-md overflow-hidden aspect-w-16 aspect-h-9 sm:aspect-h-7">
                             <img 
                                 src="/images/about/team2.png" 
                                 alt="Team event 2" 
-                                className="w-full h-full object-cover"
+                                className="w-full h-full object-cover  transition-transform 
+      duration-500 
+      ease-out
+      hover:scale-105"
                             />
                         </div>
                         <div className="rounded-xl shadow-md overflow-hidden aspect-w-16 aspect-h-9 sm:aspect-h-7">
                             <img 
                                 src="/images/about/team3.png" 
                                 alt="Team event 3" 
-                                className="w-full h-full object-cover"
+                                className="w-full h-full object-cover  transition-transform 
+      duration-500 
+      ease-out
+      hover:scale-105"
                             />
                         </div>
                     </div>
@@ -58,7 +73,7 @@ const TeamAndAchievements = () => {
 
                 {/* --- 2. Our Achievements Section --- */}
 
-                <div className="text-center mt-10 mb-6 md:mb-16">
+                <div className="text-center mt-15 mb-6 md:mb-16">
                     <h2 className="text-[26px] md:text-[32px] font-[600] leading-[32px] text-[#282529]">
                         Our Achievements
                     </h2>
@@ -70,7 +85,10 @@ const TeamAndAchievements = () => {
                         <img 
                             src="/images/about/achievements.png" 
                             alt="Modern Office Working" 
-                            className="w-full h-full object-cover rounded-2xl"
+                            className="w-full h-full object-cover rounded-2xl  transition-transform 
+      duration-500 
+      ease-out
+      hover:scale-105"
                         />
                     </div>
 
@@ -84,7 +102,7 @@ const TeamAndAchievements = () => {
                                  <li className="flex items-center">
                                     <Image src="/images/about/tick.svg"  width={20} height={20} alt="tickmark"/>
                                     <div className="ml-3 text-[14px] md:text-[16px] text-[#282529] z-10 flex flex-wrap gap-1 ">
-                                     Guided <p className='relative'> <span className='absolute bg-[#FFB8B8] left-1 bottom-1 w-33 h-[5px] -z-10 '></span> 30,000+ students</p> toward better futures
+                                     Guided <p className='relative z-10  text-[#282529]'> <span className='absolute bg-[#FFB8B8] left-0 bottom-1 rounded-md w-30 md:w-34 animate-highlight -z-10 '></span> 30,000+ students</p> toward better futures
                                     </div>
                                 </li>
                   
@@ -94,7 +112,7 @@ const TeamAndAchievements = () => {
                                     <Image src="/images/about/tick.svg"  width={20} height={20} alt="tickmark"/>
                                     <div className="ml-3 text-[14px] md:text-[16px] text-[#282529] z-10 flex flex-wrap gap-1 ">
                                   Partnered with
-                                  <p className='relative'> <span className='absolute bg-[#FFB8B8] left-1 bottom-1 w-45 h-[5px] -z-10 '> </span>100+ online universities & institutions</p>
+                                  <p className='relative z-10 text-[#282529]'> <span className='absolute bg-[#FFB8B8] left-0 bottom-1 w-40 md:w-46 rounded-md -z-10 animate-highlight '> </span>100+ online universities & institutions</p>
                                     </div>
                                 </li>
 
@@ -104,9 +122,14 @@ const TeamAndAchievements = () => {
                                     <Image src="/images/about/tick.svg"  width={20} height={20} alt="tickmark"/>
                                     <div className="ml-3 text-[14px] md:text-[16px] text-[#282529] z-10 flex flex-wrap gap-1">
                          
-                                <p className='relative'> <span className='absolute bg-[#FFB8B8] top-3 md:bottom-1 w-22 h-[5px] -z-10 '></span> Recognized & institutions
-                                by leading online education platform
-                                    </p>
+                            <div className="relative inline-block">
+
+    <p className='relative z-10  text-[#282529]'> 
+        {/* top-3 hata diya hai, sirf bottom-0 rakha hai taaki upar ki taraf expand ho */}
+        <span className='absolute bg-[#FFB8B8] left-0 bottom-0 w-24 -z-10 rounded-md animate-highlight'></span>
+        Recognized by leading online education platform
+    </p>
+</div>
                                     </div>
                                 </li>
                           

@@ -16,7 +16,7 @@ export default function StorySection() {
 
           {/* Tabs */}
           <div className="flex justify-center mt-8  ">
-            <div className="bg-white shadow-xl rounded-[7px] md:rounded-[20px] flex gap-1 md:gap-7 py-4 px-1 md:px-6 md:px-10 " >
+            <div className="bg-white shadow-xl rounded-[7px] md:rounded-[20px] flex gap-2 md:gap-7 py-2 px-4 md:px-6 md:px-10 " >
               <TabButton label="Who We Are" active={active === "who"} onClick={() => setActive("who")} />
               <TabButton label="Our Mission" active={active === "mission"} onClick={() => setActive("mission")} />
               <TabButton label="Our Vision" active={active === "vision"} onClick={() => setActive("vision")} />
@@ -28,7 +28,7 @@ export default function StorySection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
 
           {/* Left Image Side */}
-          <div className="relative h-[200px] md:h-[400px] lg:h-auto w-full rounded-[30px] overflow-hidden shadow-sm">
+          <div className="relative h-[250px] md:h-[400px] lg:h-auto w-full rounded-[20px] md:rounded-[30px] overflow-hidden shadow-sm">
             <Image
               src="/images/about/mission.png" // Ensure this is your group photo
               alt="Team"
@@ -90,15 +90,10 @@ function ContentCard({ highlight, text, subtext }) {
 <div className="w-full h-full min-h-[350px] md:min-h-[450px] bg-white rounded-[30px] shadow-md overflow-hidden flex flex-col border border-slate-100">
   
   {/* Image Container: Fixed height on mobile, grows on desktop */}
-  <div className="w-full h-32 md:h-48 relative shrink-0">
-    <Image 
-      src="/images/about/missionbg.png" 
-      alt="Background Pattern" 
-      fill
-      priority // Performance ke liye
-      className="object-cover object-top" 
-    />
-  </div>
+ <div className="w-full h-32 md:h-48 relative shrink-0 overflow-hidden animate-moving-pink">
+    {/* अगर आपको इसके ऊपर कोई हल्का सा blur या glass effect चाहिए तो नीचे वाला div जोड़ सकते हैं */}
+    <div className="absolute inset-0 bg-white/20 backdrop-blur-[2px]"></div>
+</div>
 
   {/* Text Content Area: Padding is improved, height is now dynamic (flex-1) */}
   <div className="flex-1 p-3 md:p-10 flex flex-col font-poppins">

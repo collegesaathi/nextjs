@@ -37,25 +37,45 @@ const sections = [
 
     const [activeSection, setActiveSection] = useState("introduction");
 
-    useEffect(() => {
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        setActiveSection(entry.target.id);
-                    }
-                });
-            },
-            { threshold: 0.6 } // Section must be 60% visible
-        );
+useEffect(() => {
+  const handleScroll = () => {
+    const offset = 120; // header height / top gap
+    let currentSection = sections[0]?.id;
 
-        sections.forEach((sec) => {
-            const element = document.getElementById(sec.id);
-            if (element) observer.observe(element);
-        });
+    sections.forEach((sec) => {
+      const el = document.getElementById(sec.id);
+      if (!el) return;
 
-        return () => observer.disconnect();
-    }, []);
+      const top = el.getBoundingClientRect().top;
+
+      if (top <= offset) {
+        currentSection = sec.id;
+      }
+    });
+
+    setActiveSection(currentSection);
+  };
+
+  window.addEventListener("scroll", handleScroll, { passive: true });
+  handleScroll(); // initial run
+
+  return () => window.removeEventListener("scroll", handleScroll);
+}, []);
+
+useEffect(() => {
+  if (window.innerWidth < 768) { // सिर्फ मोबाइल व्यू के लिए
+    const activeTab = document.getElementById(`tab-${activeSection}`);
+    if (activeTab) {
+      activeTab.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+        inline: "center", // यह टैब को हॉरिजॉन्टल बार के सेंटर में लाएगा
+      });
+    }
+  }
+}, [activeSection]);
+
+
 
 
 
@@ -63,12 +83,10 @@ const scrollToSection = (id) => {
     const element = document.getElementById(id);
     if (!element) return;
 
-    const offset = 120; // adjust navbar height
-    const topPos = element.getBoundingClientRect().top + window.pageYOffset - offset;
-
-    window.scrollTo({
-        top: topPos,
+    // यह फंक्शन एलिमेंट को सीधे व्यूपोर्ट के टॉप पर ले जाता है
+    element.scrollIntoView({
         behavior: "smooth",
+        block: "start", // "start" का मतलब है कि एलिमेंट का टॉप व्यूपोर्ट के टॉप से मैच होगा
     });
 };
 
@@ -87,7 +105,7 @@ const scrollToSection = (id) => {
             />
         </Head>
         <Layout>
-            <div className="mx-auto container sm:container md:container xl:max-w-[1230px]  px-4 py-4 md:mt-20 lg:mt-20 ">
+            <div className="mx-auto container sm:container md:container xl:max-w-[1230px] px-2 md:px-4 py-4 md:mt-20 lg:mt-20 ">
                 {/* Breadcrumb */}
 
                 {/* Breadcrumb */}
@@ -100,7 +118,7 @@ const scrollToSection = (id) => {
                 </div>
 
                 {/* Header Section */}
-                <div className=" px-4 py-8 md:flex md:items-center md:justify-between font-poppins ">
+                <div className=" px-2 md:px-4 md:flex md:items-center md:justify-between font-poppins ">
 
                     {/* Left Side */}
                     <div className="md:w-1/2">
@@ -133,36 +151,42 @@ Last updated on 03 December 2025
                 <div className="border-t border-gray-200  my-6"></div>
 
                 {/* Main Content Section */}
-                <div className=" px-4 pb-20 md:flex gap-10 relative">
+                <div className=" px-2 md:px-4 pb-20 md:flex gap-10 relative">
 
                     {/* Left Sidebar Navigation */}
 <aside
     className="
-        md:w-1/4
-        md:sticky md:top-28 md:h-max
+        /* MOBILE STICKY SETTINGS */
+        sticky top-2 z-40 bg-white w-full 
+        /* DESKTOP STICKY SETTINGS */
+        md:w-1/4 md:sticky md:top-28 md:h-max md:bg-transparent
+        
+        /* LAYOUT & SCROLL */
         flex md:block
         overflow-x-auto md:overflow-visible
         gap-4 md:gap-0
-        pb-3 md:pb-0
+       px-4 md:px-0 md:pb-0
         mb-4 md:mb-0 
-        whitespace-nowrap
-      md:whitespace-normal
+        whitespace-nowrap md:whitespace-normal
         text-[#282529] font-medium
         md:border-l-2 border-gray-300
+        no-scrollbar
+        border-b md:border-b-0 border-gray-100 /* Mobile में नीचे एक हल्की लाइन */
     "
 >
-    <div className="md:block flex gap-6 space-y-4">
+    <div className="md:block flex gap-2 mt-6 mb-2 md:mb-0 md:mt-0 md:gap-6 md:space-y-4">
         {sections.map((sec) => (
             <div key={sec.id} className="w-full">
                 {/* MAIN ITEM */}
                 <div
+                id={`tab-${sec.id}`}
                     onClick={() => scrollToSection(sec.id)}
                     className={`
                         cursor-pointer transition-all 
-                        py-2 px-3 md:px-4 border-l-4 
+                        py-2 pt-0 px-3 md:px-4 border-l-4 
                         ${activeSection === sec.id
-                            ? "border-red-600 text-red-600 font-[600]"
-                            : "border-transparent text-gray-800"
+                            ? "border-red-600 text-[#282529] font-[600]"
+                            : "border-transparent text-[#282529] font-[400] text-[16px] "
                         }
                     `}
                 >
@@ -200,7 +224,7 @@ Last updated on 03 December 2025
                         {/* 1. Introduction */}
 
                         <div>
-                            <h2 id="introduction" className="text-[28px] font-[600] mb-1">1. Introduction</h2>
+                            <h2 id="introduction" className="text-[28px] font-[600] mb-1 ">1. Introduction</h2>
                             <p className="mb-1 text-[16px] font-[400]">
                                 At Collegesathi (and our affiliates and subsidiaries, "we", "our", or "us") we care to keep your personal data safe.
                                 The following Privacy Policy ("Policy") explains how we collect, utilize, store, and disclose your personal information
@@ -211,7 +235,7 @@ Last updated on 03 December 2025
 
                         {/* 2. Purpose of this Policy */}
                         <div>
-                            <h2 id="purpose" className="text-[28px] font-[600] mb-1">2. Purpose of this Policy</h2>
+                            <h2 id="purpose" className="text-[28px] font-[600] mb-1 ">2. Purpose of this Policy</h2>
                             <p className="mb-1">
                                 This Policy outlines how Collegesathi gathers and processes personal information via its websites and applications,
                                 including our website  <span className="text-[#EC1E24] font-[600]">
@@ -223,7 +247,7 @@ Last updated on 03 December 2025
 
                         {/* 3. Scope */}
                         <div>
-                            <h2 id="scope" className="text-[28px] font-[600] mb-1">3. Scope</h2>
+                            <h2 id="scope" className="text-[28px] font-[600] mb-1 ">3. Scope</h2>
                             <p className="mb-1">
                                 This Policy is effective to all users of our platform, such as students, potential applicants, educational institutions,
                                 affiliates, loan and placement partners,

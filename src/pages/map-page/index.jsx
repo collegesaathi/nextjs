@@ -102,7 +102,7 @@ function Sitemap() {
 
           <div className=" block lg:hidden absolute top-0 left-0 w-[100%] h-[40%] z-0 pointer-events-none">
           <Image
-            src="/images/wave.png"
+            src="/images/sitemap.webp"
             alt="Background Wave"
             fill
             className="object-cover object-bottom"

@@ -38,7 +38,7 @@ const VisionaryLeaders = () => {
     bg-[length:300%_300%]"
   >
             <div className="lg:w-3/5 order-1 lg:order-1">
-                <h3 className="text-[30px]  lg:text-[43px] font-[600] text-[#282529] leading-tight">
+                <h3 className="text-[24px]  lg:text-[43px] font-[600] text-[#282529] leading-tight">
                     {leader.name}
                 </h3>
                 <p className="mt-1 text-lg font-medium text-[#282529]">
@@ -80,7 +80,7 @@ const VisionaryLeaders = () => {
                 />
             </div>
             <div className=" pt-8 flex flex-col justify-center font-poppins">
-                <h4 className="text-[26px] lg:text-[36px] font-[600] text-[#282529] ">
+                <h4 className="text-[24px] lg:text-[36px] font-[600] text-[#282529] ">
                     {leader.name}
                 </h4>
                 <p className=" text-[18px] font-[600] text-[#282529] ">
@@ -96,11 +96,11 @@ const VisionaryLeaders = () => {
     );
 
     return (
-        <section className="py-6 lg:py-10 ">
+        <section className="py-10 lg:py-15 ">
             <div className="max-w-7xl mx-auto px-2  lg:px-8">
 
                 <div className="text-center mb-12 sm:mb-16 font-popins ">
-                    <h2 className="text-[32px] font-[600] leading-[32px]  text-[#282529]">
+                    <h2 className="text-[26px] md:text-[32px] font-[600] leading-[32px]  text-[#282529]">
                         Our Visionary Leaders
                     </h2>
                     <p className="mt-4 text-[16px] font-[400] leading-[26px] text-[#282529] max-w-3xl mx-auto">
