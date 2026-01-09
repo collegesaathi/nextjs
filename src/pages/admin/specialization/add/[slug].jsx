@@ -184,6 +184,10 @@ function Index() {
         onlinedesc: "",
         category: "indian",
         indian: [],
+        finacial_notes:'',
+        semesters_notes:"",
+        fees_notes:"",
+        notescreteria:'',
         nri: [],
         creteria: "",
         semesters_title: "",
@@ -297,8 +301,11 @@ function Index() {
             payload.append("rankings_name", formData.rankings_name || "");
             payload.append("creteria", formData.creteria || "")
             payload.append("fees_title", formData.fees_title || "")
+            payload.append("fees_notes", formData.fees_notes || " ");
             payload.append("category", formData.category || "")
-            payload.append("desccreteria", formData.desccreteria || "")
+            payload.append("desccreteria", formData.desccreteria || "");
+            payload.append("notescreteria", formData.notescreteria || "");
+
             const NRIDATA = formData?.nri?.map(item => ({
                 title: item.title,
                 description: item.description,
@@ -368,6 +375,9 @@ function Index() {
             payload.append("servicetitle", formData.servicetitle || "");
             payload.append("servicedesc", formData.servicedesc || "");
             payload.append("onlinedesc", formData.onlinedesc || "");
+            payload.append("semesters_notes", formData.semesters_notes || "");
+            payload.append("finacial_notes", formData.finacial_notes || "");
+
             payload.append("onlinetitle", formData.onlinetitle || "");
             const cleanonlines = onlines?.map(item => ({
                 title: item.title,
@@ -425,11 +435,11 @@ function Index() {
         { id: "financial", label: "Financial" },
         { id: "career", label: "Career" },
         { id: "partners", label: "Partners" },
-        { id: "services", label: "Services" },
+        // { id: "services", label: "Services" },
         { id: "online", label: "Admission Process" },
         { id: "faq", label: "FAQ" },
         { id: "seo", label: "SEO" },
-        { id: "advantages", label: "Advantages" },
+        // { id: "advantages", label: "Advantages" },
     ];
 
     const currentIndex = tabsData.findIndex((tab) => tab.id === activeTab);
@@ -834,7 +844,7 @@ function Index() {
 
                             </div>
 
-                            <div className="mb-4">
+                            {/* <div className="mb-4">
                                 <div className="flex justify-between items-center mb-3">
                                     <h2 className="text-xl font-semibold text-[#CC2828]">Multiple Description</h2>
                                     <button
@@ -870,7 +880,7 @@ function Index() {
 
                                     </div>
                                 ))}
-                            </div>
+                            </div> */}
                         </>
                     )}
 
@@ -945,6 +955,11 @@ function Index() {
                                 handleBioChange={(val) => handleQuillChange("desccreteria", val)}
                             />
 
+   <ReactQuillEditor
+                                label="Notes"
+                                desc={formData.notescreteria}
+                                handleBioChange={(val) => handleQuillChange("notescreteria", val)}
+                            />
                             <div className="flex mb-5 bg-gray-100 rounded-lg overflow-hidden">
                                 <button
                                     type="button"
@@ -1000,6 +1015,11 @@ function Index() {
                                     required
                                 />
                             </div>
+                                <ReactQuillEditor
+                                                            label="Notes"
+                                                            desc={formData.semesters_notes}
+                                                            handleBioChange={(val) => handleQuillChange("semesters_notes", val)}
+                                                        />
                             <SemesterFormAdd semesters={semesters} setSemesters={setSemesters} /></>
 
                     )}

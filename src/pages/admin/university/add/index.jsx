@@ -60,6 +60,7 @@ function Index() {
             loanAmount: "",
             tenure: "",
             interest: "",
+
             emi: "",
             description: "",
         }
@@ -98,7 +99,7 @@ function Index() {
     ]);
     const [formData, setFormData] = useState({
         slug: "",
-        fees_desc:"",
+        fees_desc: "",
         video: "",
         name: "",
         icon: null,
@@ -107,7 +108,9 @@ function Index() {
         descriptions: [{ text: "" }],
         about_title: "",
         about_desc: "",
+        fees_notes: "",
         rankings_point: "",
+        pdf_download:"",
         rankings_name: "",
         rankings_description: "",
         approvals_name: "",
@@ -222,6 +225,7 @@ function Index() {
             payload.append("patternname", formData.patternname || "");
             payload.append("patterndescription", formData.patterndescription || "");
             payload.append("bottompatterndesc", formData.bottompatterndesc || "");
+            payload.append("pdf_download", formData.pdf_download || "");
             payload.append("approvals_name", formData.approvals_name || "");
             payload.append("approvals_desc", formData.approvals_desc || "");
             payload.append("rankings_description", formData.rankings_description || "");
@@ -235,6 +239,7 @@ function Index() {
             payload.append("meta_description", formData.meta_description || "");
             payload.append("meta_keywords", formData.meta_keywords || "");
             payload.append("canonical_url", formData.canonical_url || "");
+            payload.append("fees_notes", formData.fees_notes || "");
             payload.append("certificatemage", formData.certificatemage || "");
             payload.append("cover_image_alt", formData.cover_image_alt || "")
             payload.append("icon_alt", formData.icon_alt || "")
@@ -446,6 +451,51 @@ function Index() {
                                 />
                             </div>
 
+     <div>
+                                <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
+                                    Download  Pdf {" "}
+                                </label>
+                                <input
+                                    type="file"
+                                    name="pdf_download"
+                                    accept="application/pdf"
+                                    onChange={(e) => {
+                                        setFormData({
+                                            ...formData,
+                                            pdf_download: e.target.files[0]
+                                        });
+                                    }}
+                                    placeholder="Enter Pdf Downlaod"
+                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
+                                    required
+                                />
+
+                            {formData?.pdf_download && (
+  <>
+    {formData.pdf_download instanceof File ? (
+      <p>
+        Selected: {formData.pdf_download.name} (
+        {(formData.pdf_download.size / 1024).toFixed(2)} KB)
+      </p>
+    ) : (
+      <p>
+        Current PDF:{" "}
+        <a
+          href={formData.pdf_download}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-blue-500 underline"
+        >
+          View PDF
+        </a>
+      </p>
+    )}
+  </>
+)}
+
+
+                                   
+                            </div>
                             <div>
                                 <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
                                     Rank{" "}
@@ -479,7 +529,7 @@ function Index() {
                                 />
                             </div>
 
-                              <div>
+                            <div>
                                 <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
                                     Course Fees Desc.{" "}
                                 </label>
@@ -491,6 +541,26 @@ function Index() {
                                         handleChange(e);
                                     }}
                                     placeholder="Enter Course fees des"
+                                    className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
+                                    required
+                                />
+                            </div>
+
+                            <div>
+
+                                <ReactQuillEditor
+                                    label="fees notes"
+                                    desc={formData.fees_notes}
+                                    handleBioChange={(val) => handleQuillChange("fees_notes", val)}
+                                />
+                                <input
+                                    type="text"
+                                    name="fees_notes"
+                                    value={formData.fees_notes}
+                                    onChange={(e) => {
+                                        handleChange(e);
+                                    }}
+                                    placeholder="Enter Course fees Notes."
                                     className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
                                     required
                                 />
@@ -693,18 +763,12 @@ function Index() {
                                     required
                                 />
                             </div>
-
                             {/* Description Field changed to textarea with 300 character limit */}
-
                             <ReactQuillEditor
                                 label="Description"
                                 desc={formData.rankings_description}
                                 handleBioChange={(val) => handleQuillChange("rankings_description", val)}
                             />
-
-
-
-
                         </>
 
                     )}

@@ -1000,7 +1000,9 @@ select:focus {
 
 .custom-description h2{position:relative;font-family:"Poppins";font-style:normal;font-weight:600;font-size:48px;line-height:48px;text-transform:uppercase;color:#ffffff;margin-bottom:20px;}
 .custom-description p{font-family:"Poppins";font-weight:400;font-size:16px;line-height:25px;color:#000;margin-bottom: 1rem;}
-.custom-description a{font-family:"Poppins";font-weight:400;font-size:16px;line-height:25px;color:#000;margin-bottom: 1rem;color:#FF070F;}
+.custom-description a{font-family:"Poppins";font-weight:700;font-size:16px;line-height:25px;margin-bottom: 1rem;color:#FF070F;}
+
+
 
 .custom-description ul {
   padding-left: 1.25rem;    /* list indent */

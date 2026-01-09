@@ -67,7 +67,7 @@ function Index() {
         {
             title: "Semester I",
             subjects: [
-                { description: "" ,credit :"" }
+                { description: "", credit: "" }
             ]
         }
     ]);
@@ -136,7 +136,9 @@ function Index() {
     const [formData, setFormData] = useState({
         slug: "",
         name: "",
+        finacial_notes: "",
         icon: null,
+        fees_notes: "",
         cover_image: null,
         position: "",
         fees_title: "",
@@ -146,6 +148,7 @@ function Index() {
         semester_fees: "",
         descriptions: [{ text: "" }],
         about_title: "",
+        semesters_notes: "",
         about_desc: "",
         rankings_point: "",
         rankings_name: "",
@@ -178,7 +181,8 @@ function Index() {
         meta_description: "",
         meta_keywords: "",
         canonical_url: "",
-        desccreteria: ""
+        desccreteria: "",
+        notescreteria: "",
     });
 
     const handleQuillChange = (field, value) => {
@@ -258,6 +262,7 @@ function Index() {
             payload.append("icon", formData.icon || "");
             payload.append("fees_desc", formData.fees_desc || "");
             payload.append("desccreteria", formData.desccreteria || "");
+            payload.append("notescreteria", formData.notescreteria || "");
             payload.append("cover_image", formData.cover_image || "");
             payload.append("fees_title", formData.fees_title || "");
             payload.append("category_id", formData?.categroy_id || "");
@@ -266,6 +271,7 @@ function Index() {
             payload.append("icon_alt", formData.icon_alt || "")
             payload.append("about_title", formData.about_title || "");
             payload.append("about_desc", formData.about_desc || "");
+            payload.append("fees_notes", formData.fees_notes || "");
             payload.append("tuition_fees", formData.tuition_fees || "")
             payload.append("anuual_fees", formData.anuual_fees || "")
             payload.append("semester_fees", formData.semester_fees || "")
@@ -340,6 +346,8 @@ function Index() {
             payload.append("canonical_url", formData.canonical_url || "");
             payload.append("financialname", formData.financialname || "");
             payload.append("financialdescription", formData.financialdescription || "");
+            payload.append("finacial_notes", formData.finacial_notes || "");
+            payload.append("semesters_notes", formData.semesters_notes || "");
             payload.append("servicetitle", formData.servicetitle || "");
             payload.append("servicedesc", formData.servicedesc || "");
             payload.append("onlinedesc", formData.onlinedesc || "");
@@ -404,7 +412,7 @@ function Index() {
         { id: "financial", label: "Financial" },
         { id: "career", label: "Career" },
         { id: "partners", label: "Partners" },
-        { id: "services", label: "Services" },
+        // { id: "services", label: "Services" },
         { id: "online", label: "Admission Process" },
         { id: "faq", label: "FAQ" },
         { id: "seo", label: "SEO" },
@@ -686,8 +694,7 @@ function Index() {
                                 {/* Image Preview */}
                                 <ImagePreview image={icons} />
                             </div>
-
-                            <div className="mb-4">
+                            {/* <div className="mb-4">
                                 <div className="flex justify-between items-center mb-3">
                                     <h2 className="text-xl font-semibold text-[#CC2828]">Multiple Description</h2>
                                     <button
@@ -723,7 +730,7 @@ function Index() {
 
                                     </div>
                                 ))}
-                            </div>
+                            </div> */}
                         </>
                     )}
 
@@ -732,7 +739,7 @@ function Index() {
                     )}
 
                     {activeTab === "fees" && (
-                        <AddFees handleChange={handleChange} formData={formData} />
+                        <AddFees handleChange={handleChange} formData={formData} handleQuillChange={handleQuillChange} />
                     )}
 
                     {activeTab === "approvals" && (
@@ -788,18 +795,18 @@ function Index() {
                                     name="creteria"
                                     value={formData.creteria}
                                     onChange={(e) => {
-                                       handleChange(e);
+                                        handleChange(e);
                                     }}
                                     placeholder="Enter name"
                                     className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
                                     required
                                 />
                             </div>
-                            {/* <ReactQuillEditor
-                                label="Description"
-                                desc={formData.desccreteria}
-                                handleBioChange={(val) => handleQuillChange("desccreteria", val)}
-                            /> */}
+                            <ReactQuillEditor
+                                label="Notes"
+                                desc={formData.notescreteria}
+                                handleBioChange={(val) => handleQuillChange("notescreteria", val)}
+                            />
                             <div className="flex mb-5 bg-gray-100 rounded-lg overflow-hidden">
                                 <button
                                     type="button"
@@ -854,6 +861,11 @@ function Index() {
                                     required
                                 />
                             </div>
+                            <ReactQuillEditor
+                                label="Notes"
+                                desc={formData.semesters_notes}
+                                handleBioChange={(val) => handleQuillChange("semesters_notes", val)}
+                            />
                             <SemesterFormAdd semesters={semesters} setSemesters={setSemesters} /></>
 
                     )}
@@ -930,9 +942,9 @@ function Index() {
                         </>
 
                     )}
-                    {activeTab === "services" && (
+                    {/* {activeTab === "services" && (
                         <ServicesAdd services={services} setServices={setServices} handleChange={handleChange} handleQuillChange={handleQuillChange} formData={formData} />
-                    )}
+                    )} */}
                     {activeTab === "online" && (
                         <AddOnline formData={formData} handleChange={handleChange} onlines={onlines} setOnlines={setOnlines} handleQuillChange={handleQuillChange} />
                     )}

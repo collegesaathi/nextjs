@@ -156,6 +156,11 @@ class Listing extends Component {
   async ApprovalSpeGet(cui) {
     return Api.get(`/approval/placement/${cui}`)
   }
+
+    async UniServices(cui) {
+    return Api.get(`/university/services/${cui}`)
+  }
+
   async UniversitySearch(query) {
     return Api.get(`/all/university?search=${query}`);
   }

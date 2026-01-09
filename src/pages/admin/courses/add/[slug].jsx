@@ -143,11 +143,14 @@ function Index() {
         slug: "",
         name: "",
         icon: null,
+        notescreteria:"",
         cover_image: null,
+        semesters_notes :"",
         position: "",
         tuition_fees: "",
         video: "",
         fees_desc:"",
+        fees_notes:"",
         anuual_fees: "",
         semester_fees: "",
         descriptions: [{ text: "" }],
@@ -281,6 +284,7 @@ function Index() {
             payload.append("rankings_description", formData.rankings_description || "");
             payload.append("rankings_name", formData.rankings_name || "");
             payload.append("creteria", formData.creteria || "")
+            payload.append("fees_notes", formData.fees_notes || "");
             payload.append("fees_title", formData.fees_title || "")
             payload.append("category", formData.category || "")
           const NRIDATA = Array.isArray(formData?.nri)
@@ -329,6 +333,8 @@ indianArray.forEach((item, index) => {
             payload.append("skills", JSON.stringify(skills));
             payload.append("skillsname", formData.skillname || "");
             payload.append("desccreteria", formData.desccreteria || "");
+            payload.append("notescreteria", formData.notescreteria || "");
+
             payload.append("skilldesc", formData.skilldesc || "");
             payload.append("patternname", formData.patternname || "");
             payload.append("patterndescription", formData.patterndescription || "");
@@ -361,6 +367,8 @@ indianArray.forEach((item, index) => {
             payload.append("meta_keywords", formData.meta_keywords || "");
             payload.append("canonical_url", formData.canonical_url || "");
             payload.append("financialname", formData.financialname || "");
+                  payload.append("finacial_notes", formData.finacial_notes || "");
+            payload.append("semesters_notes", formData.semesters_notes || "");
             payload.append("financialdescription", formData.financialdescription || "");
             payload.append("servicetitle", formData.servicetitle || "");
             payload.append("servicedesc", formData.servicedesc || "");
@@ -422,13 +430,12 @@ indianArray.forEach((item, index) => {
         { id: "financial", label: "Financial" },
         { id: "career", label: "Career" },
         { id: "partners", label: "Partners" },
-        { id: "services", label: "Services" },
+        // { id: "services", label: "Services" },
         { id: "online", label: "Admission Process" },
         { id: "faq", label: "FAQ" },
         { id: "seo", label: "SEO" },
         { id: "advantages", label: "Advantages" },
     ];
-
     const currentIndex = tabsData.findIndex((tab) => tab.id === activeTab);
 
        const handleNext = (e) => {
@@ -514,7 +521,10 @@ indianArray.forEach((item, index) => {
             rankings_name: data?.rankings?.title,
             rankings_description: data?.rankings?.description,
             creteria: data?.eligibilitycriteria?.title,
+            creteria: data?.eligibilitycriteria?.title,
+
             desccreteria: data?.eligibilitycriteria?.desccreteria,
+            notescreteria:data?.eligibilitycriteria?.notes ,
             advantagesname: data?.advantages?.title,
             advantagesdescription: data?.advantages?.description,
             factsname: data?.facts?.title,
@@ -528,6 +538,8 @@ indianArray.forEach((item, index) => {
             patternname: data?.examPatterns?.title,
             patterndescription: data?.examPatterns?.description,
             financialname: data?.financialAid?.title,
+            financialname: data?.financialAid?.title,
+
             financialdescription: data?.financialAid?.description,
             partnersname: data?.partners?.title,
             partnersdesc: data?.partners?.description,
@@ -655,7 +667,6 @@ indianArray.forEach((item, index) => {
                 >
                     {activeTab === "card" && (
                         <>
-
                             {/* <div>
                                 <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
                                     University {" "}
@@ -849,7 +860,7 @@ indianArray.forEach((item, index) => {
 
                             </div>
 
-                            <div className="mb-4">
+                            {/* <div className="mb-4">
                                 <div className="flex justify-between items-center mb-3">
                                     <h2 className="text-xl font-semibold text-[#CC2828]">Multiple Description</h2>
                                     <button
@@ -885,7 +896,7 @@ indianArray.forEach((item, index) => {
 
                                     </div>
                                 ))}
-                            </div>
+                            </div> */}
                         </>
                     )}
 
@@ -966,6 +977,13 @@ indianArray.forEach((item, index) => {
                                 handleBioChange={(val) => handleQuillChange("desccreteria", val)}
                             />
 
+                            
+                            <ReactQuillEditor
+                                label="Notes "
+                                desc={formData.notescreteria}
+                                handleBioChange={(val) => handleQuillChange("notescreteria", val)}
+                            />
+
                             <div className="flex mb-5 bg-gray-100 rounded-lg overflow-hidden">
                                 <button
                                     type="button"
@@ -1023,6 +1041,12 @@ indianArray.forEach((item, index) => {
                                     required
                                 />
                             </div>
+
+                                             <ReactQuillEditor
+                                            label="Notes"
+                                            desc={formData.semesters_notes}
+                                            handleBioChange={(val) => handleQuillChange("semesters_notes", val)}
+                                        />
                             <SemesterFormAdd semesters={semesters} setSemesters={setSemesters} /></>
 
                     )}
@@ -1101,9 +1125,9 @@ indianArray.forEach((item, index) => {
                         </>
 
                     )}
-                    {activeTab === "services" && (
+                    {/* {activeTab === "services" && (
                         <ServicesAdd services={services} setServices={setServices} handleChange={handleChange} handleQuillChange={handleQuillChange} formData={formData} />
-                    )}
+                    )} */}
                     {activeTab === "online" && (
                         <AddOnline formData={formData} handleChange={handleChange} onlines={onlines} setOnlines={setOnlines} handleQuillChange={handleQuillChange} />
                     )}

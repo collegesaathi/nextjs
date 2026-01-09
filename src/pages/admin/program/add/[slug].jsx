@@ -289,7 +289,7 @@ function Index() {
             payload.append("id", formData.Id || " ");
             payload.append("descriptions", formData.descriptions || " ");
             payload.append("categroy_id", formData.categroy_id || " ");
-            payload.append("pdf_download", formData.pdf_download);
+            payload.append("pdf_download", formData.pdf_download || "");
             payload.append("cover_image", formData.cover_image || " ");
             payload.append("audio", formData.audio || " ");
             payload.append("video", formData.video || " ");
@@ -378,7 +378,6 @@ function Index() {
             payload.append("canonical_url", formData.canonical_url  || " ");
             payload.append("purpusename", formData.purpusename || " ");
             payload.append("purpsedesc", formData.purpsedesc || " ");
-
             const chooses = choose.map(item => ({
                 title: item.title || "",
             }));

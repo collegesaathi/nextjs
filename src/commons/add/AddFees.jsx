@@ -1,4 +1,6 @@
-function AddFees({ formData, handleChange }) {
+import ReactQuillEditor from "@/common/ReactQuillEditor";
+
+function AddFees({ formData, handleChange ,handleQuillChange }) {
     return (
         <>
             <div>
@@ -34,6 +36,12 @@ function AddFees({ formData, handleChange }) {
                     required
                 />
             </div>
+
+             <ReactQuillEditor
+                                               label="Fees Notes"
+                                               desc={formData.fees_notes}
+                                               handleBioChange={(val) => handleQuillChange("fees_notes", val)}
+                                           />
             <div>
                 <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
                     Total Tuition Fee:

@@ -45,7 +45,7 @@ export default function Specialization({ data }) {
                         {data?.SpecialisationData?.about && (<Aboutdetails about={data?.SpecialisationData?.about} />)}
                         {data?.SpecialisationData?.fees && (<UpdatedFee fees={data?.SpecialisationData?.fees} />)}
                         {data?.SpecialisationData?.approvals && (<Approvals approvals={data?.SpecialisationData?.approvals} approvalsdata={data?.approvalsData} />)}
-                        {data?.SpecialisationData?.advantages && (<Advantages advantages={data?.SpecialisationData?.advantages} />)}
+                        {/* {data?.SpecialisationData?.advantages && (<Advantages advantages={data?.SpecialisationData?.advantages} />)} */}
                         {data?.SpecialisationData?.rankings && (<Ranking rankings={data?.SpecialisationData?.rankings} />)}
                         <Eligibility eligibilitycriteria={data?.SpecialisationData?.eligibilitycriteria} />
                         <Curriculum curriculum={data?.SpecialisationData?.curriculum} />

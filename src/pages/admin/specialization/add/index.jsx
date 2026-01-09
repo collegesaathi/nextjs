@@ -182,6 +182,9 @@ function Index() {
         onlinedesc: "",
         category: "indian",
         indian: [],
+        finacial_notes:"",
+        semesters_notes:"",
+        notescreteria:"",
         nri: [],
         creteria: "",
         semesters_title: "",
@@ -197,7 +200,8 @@ function Index() {
         meta_description: "",
         meta_keywords: "",
         canonical_url: "",
-        desccreteria: ""
+        desccreteria: "",
+        fees_notes:"",
     });
 
     const handleQuillChange = (field, value) => {
@@ -279,21 +283,27 @@ function Index() {
             payload.append("video", formData.video || " ");
             payload.append("cover_image", formData.cover_image || " ");
             payload.append("fees_title", formData.fees_title || " ");
+            payload.append("fees_notes", formData.fees_notes || " ");
             payload.append("category_id", formData?.categroy_id);
             payload.append("descriptions", JSON.stringify(formData.descriptions));
             payload.append("cover_image_alt", formData.cover_image_alt || " ")
             payload.append("icon_alt", formData.icon_alt || " ")
             payload.append("about_title", formData.about_title || " ");
             payload.append("about_desc", formData.about_desc || " ");
-            payload.append("tuition_fees", formData.tuition_fees || " ")
-            payload.append("anuual_fees", formData.anuual_fees || " ")
-            payload.append("semester_fees", formData.semester_fees || " ")
-            payload.append("approvals_name", formData.approvals_name || " ");
-            payload.append("approvals_desc", formData.approvals_desc || " ");
+            payload.append("tuition_fees", formData.tuition_fees || "")
+            payload.append("anuual_fees", formData.anuual_fees || "")
+            payload.append("semesters_notes", formData.semesters_notes || "");
+            payload.append("finacial_notes", formData.finacial_notes || "");
+
+            payload.append("semester_fees", formData.semester_fees || "")
+            payload.append("approvals_name", formData.approvals_name || "");
+            payload.append("approvals_desc", formData.approvals_desc || "");
             payload.append("approvals", JSON.stringify(selectedApprovals));
             payload.append("rankings_description", formData.rankings_description || " ");
             payload.append("rankings_name", formData.rankings_name || " ");
             payload.append("creteria", formData.creteria || " ")
+            payload.append("notescreteria", formData.notescreteria || "");
+
             payload.append("category", formData.category || " ")
             const NRIDATA = formData?.nri?.map(item => ({
                 title: item.title,
@@ -321,19 +331,19 @@ function Index() {
             payload.append("semesters", JSON.stringify(semesters || []))
             payload.append("semesters_title", formData.semesters_title || " ")
             payload.append("certificatename", formData.certificatename || " ");
-            payload.append("certificatedescription", formData.certificatedescription || " ");
-            payload.append("certificatemage", formData.certificatemage || " ");
+            payload.append("certificatedescription", formData.certificatedescription || "");
+            payload.append("certificatemage", formData.certificatemage || "");
             payload.append("image_alt", formData.image_alt || " ")
-         payload.append("advantages", JSON.stringify(advantages || []));
+            payload.append("advantages", JSON.stringify(advantages || []));
 
-            payload.append("advantagesname", formData.advantagesname || " ");
-            payload.append("advantagesdescription", formData.advantagesdescription || " ");
+            payload.append("advantagesname", formData.advantagesname || "");
+            payload.append("advantagesdescription", formData.advantagesdescription || "");
             payload.append("skills", JSON.stringify(skills || []));
-            payload.append("skillsname", formData.skillname || " ");
-            payload.append("skilldesc", formData.skilldesc || " ");
-            payload.append("patternname", formData.patternname || " ");
-            payload.append("patterndescription", formData.patterndescription || " ");
-            payload.append("bottompatterndesc", formData.bottompatterndesc || " ");
+            payload.append("skillsname", formData.skillname || "");
+            payload.append("skilldesc", formData.skilldesc || "");
+            payload.append("patternname", formData.patternname || "");
+            payload.append("patterndescription", formData.patterndescription || "");
+            payload.append("bottompatterndesc", formData.bottompatterndesc || "");
             const cleanPatterns = patterns?.map(item => ({
                 patternName: item.patternName,
                 percentage: item.percentage,
@@ -424,11 +434,11 @@ function Index() {
         { id: "financial", label: "Financial" },
         { id: "career", label: "Career" },
         { id: "partners", label: "Partners" },
-        { id: "services", label: "Services" },
+        // { id: "services", label: "Services" },
         { id: "online", label: "Admission Process" },
         { id: "faq", label: "FAQ" },
         { id: "seo", label: "SEO" },
-        { id: "advantages", label: "Advantages" },
+        // { id: "advantages", label: "Advantages" },
     ];
 
     const currentIndex = tabsData.findIndex((tab) => tab.id === activeTab);
@@ -708,7 +718,7 @@ function Index() {
                                     </div>
                                 )}
                             </div>
-
+                            {/* 
                             <div className="mb-4">
                                 <div className="flex justify-between items-center mb-3">
                                     <h2 className="text-xl font-semibold text-[#CC2828]">Multiple Description</h2>
@@ -745,7 +755,7 @@ function Index() {
 
                                     </div>
                                 ))}
-                            </div>
+                            </div> */}
                         </>
                     )}
 
@@ -822,6 +832,11 @@ function Index() {
                                     handleBioChange={(val) => handleQuillChange("desccreteria", val)}
                                 />
                             </div>
+                             <ReactQuillEditor
+                                                            label="Notes"
+                                                            desc={formData.notescreteria}
+                                                            handleBioChange={(val) => handleQuillChange("notescreteria", val)}
+                                                        />
                             <div className="flex mb-5 bg-gray-100 rounded-lg overflow-hidden">
                                 <button
                                     type="button"
@@ -876,6 +891,11 @@ function Index() {
                                     required
                                 />
                             </div>
+                                <ReactQuillEditor
+                                                            label="Notes"
+                                                            desc={formData.semesters_notes}
+                                                            handleBioChange={(val) => handleQuillChange("semesters_notes", val)}
+                                                        />
                             <SemesterFormAdd semesters={semesters} setSemesters={setSemesters} /></>
 
                     )}

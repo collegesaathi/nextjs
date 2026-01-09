@@ -1,13 +1,40 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import Image from "next/image";
 import BackNext from "@/pages/components/BackNext";
+import { useRouter } from "next/router";
+import Listing from "@/pages/api/Listing";
 
 export default function CareerServices({ services }) {
+   const router = useRouter()
+    console.log("router", router)
+    const slug = router.query.universitySlug;
+    console.log("slug", slug)
 
+    const [ServciesData, setServciesData] = useState([]);
+    console.log("ServciesData   " ,ServciesData)
+    const [Loading, setLoading] = useState(false);
+    const fetchCourse = async (uniId) => {
+        setLoading(true)
+        try {
+            const main = new Listing();
+            const response = await main.UniServices(uniId);
+            console.log("response" ,response)
+            setServciesData(response?.data?.data)
+        }
+        catch (error) {
+            console.error("Error fetching projects:", error);
+        } finally {
+            setLoading(false);
+        }
+    }
+
+    useEffect(() => {
+        fetchCourse(slug)
+    }, [slug])
 
     const swiperRef = useRef(null);
 
@@ -26,7 +53,7 @@ export default function CareerServices({ services }) {
     const updateProgress = (swiper) => {
         if (!swiper) return;
 
-        const totalCards = services?.services?.length;
+        const totalCards = ServciesData?.services?.length;
         const visibleSlides = swiper.params.slidesPerView;
 
         if (visibleSlides === 4) {
@@ -68,7 +95,7 @@ export default function CareerServices({ services }) {
 
                                 <BackNext
 
-                                    title={services?.title}
+                                    title={ServciesData?.title}
 
                                     progress={progress}
                                     isBeginning={isBeginning}
@@ -79,7 +106,7 @@ export default function CareerServices({ services }) {
 
                                 <div
                                     className="font-poppins text-[14px] sm:text-[16px] text-[#282529] leading-6 sm:leading-7 mb-4 break-words whitespace-normal"
-                                    dangerouslySetInnerHTML={{ __html: services?.description || "" }}
+                                    dangerouslySetInnerHTML={{ __html: ServciesData?.description || "" }}
                                 />
 
 
@@ -102,7 +129,7 @@ export default function CareerServices({ services }) {
                                     }}
                                     style={{ scrollbarWidth: "none" }}
                                 >
-                                    {Array.isArray(services?.services) && services?.services?.map((service, index) => (
+                                    {Array.isArray(ServciesData?.services) && ServciesData?.services?.map((service, index) => (
                                         <SwiperSlide key={index} className="overflow-hidden">
                                             <div className="w-full bg-white rounded-[30px] transition-all duration-300 group relative cursor-pointer my-3 ">
                                                 <div className="overflow-hidden rounded-t-[30px]">

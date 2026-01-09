@@ -70,6 +70,12 @@ function FinancialAdd({ formData, fees, handleChange, handleQuillChange,setFees 
                 desc={formData.financialdescription}
                 handleBioChange={(val) => handleQuillChange("financialdescription", val)}
             />
+
+               <ReactQuillEditor
+                label="Notes "
+                desc={formData.finacial_notes}
+                handleBioChange={(val) => handleQuillChange("finacial_notes", val)}
+            />
             <div className="flex justify-between items-center mb-5">
                 <h2 className="text-xl font-semibold text-[#CC2828]">
                     Multiple Financial

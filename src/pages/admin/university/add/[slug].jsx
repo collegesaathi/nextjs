@@ -68,6 +68,7 @@ function Index() {
         partnersname: "",
         partnersdesc: "",
         onlinetitle: "",
+        pdf_download: "",
         onlinedesc: "",
         patterndescription: "",
         patternname: "",
@@ -157,40 +158,31 @@ function Index() {
             name: safeData.name,
             rank: safeData.rank,
             video: safeData.video,
+            pdf_download: safeData.pdf_download,
+            fees_notes: safeData.fees_notes,
             position: safeData.position,
-
             about_title: safeData.about?.title,
             about_desc: safeData.about?.description,
-
             approvals_name: safeData.approvals?.title,
             approvals_desc: safeData.approvals?.description,
-
             rankings_name: safeData.rankings?.title,
             rankings_description: safeData.rankings?.description,
-
             advantagesname: safeData.advantages?.title,
             advantagesdescription: safeData.advantages?.description,
-
             factsname: safeData.facts?.title,
-
             certificatename: safeData.certificates?.title,
             certificatedescription: safeData.certificates?.description,
             certificatemage: safeData.certificates?.image,
             image_alt: safeData.certificates?.image_alt,
-
             patternname: safeData.examPatterns?.title,
             patterndescription: safeData.examPatterns?.description,
             bottompatterndesc: safeData.examPatterns?.bottompatterndesc,
-
             financialname: safeData.financialAid?.title,
             financialdescription: safeData.financialAid?.description,
-
             partnersname: safeData.partners?.title,
             partnersdesc: safeData.partners?.description,
-
             servicetitle: safeData.services?.title,
             servicedesc: safeData.services?.description,
-
             onlinetitle: safeData.admissionProcess?.title,
             onlinedesc: safeData.admissionProcess?.description,
 
@@ -387,6 +379,7 @@ function Index() {
             payload.append("video", formData.video || "");
             payload.append("position", formData.position || "");
             payload.append("about_title", formData.about_title || "");
+            payload.append("pdf_download", formData.pdf_download || "");
             payload.append("about_desc", formData.about_desc || "");
             payload.append("icon", formData.icon || "");
             payload.append("cover_image", formData.cover_image || "");
@@ -400,6 +393,7 @@ function Index() {
             payload.append("partners", JSON.stringify(selectedPartners || []));
             payload.append("patternname", formData.patternname || "");
             payload.append("patterndescription", formData.patterndescription || "");
+            payload.append("fees_notes", formData.fees_notes || "");
             payload.append("bottompatterndesc", formData.bottompatterndesc || "");
             payload.append("approvals_name", formData.approvals_name || "");
             payload.append("approvals_desc", formData.approvals_desc || "");
@@ -609,7 +603,7 @@ function Index() {
                                             key={tab.id}
                                             onClick={() => setActiveTab(tab.id)}
                                             className={`px-4 py-2 rounded-lg text-[14px] font-medium transition 
-                            ${activeTab === tab.id
+                                          ${activeTab === tab.id
                                                     ? "bg-white text-black shadow"
                                                     : "text-gray-300 hover:bg-gray-200 hover:text-black"
                                                 }
@@ -647,7 +641,56 @@ function Index() {
                                         required
                                     />
                                 </div>
+                                <div>
+                                    <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
+                                        Download  Pdf {" "}
+                                    </label>
+                                    <input
+                                        type="file"
+                                        name="pdf_download"
+                                        accept="application/pdf"
+                                        onChange={(e) => {
+                                            setFormData({
+                                                ...formData,
+                                                pdf_download: e.target.files[0]
+                                            });
+                                        }}
+                                        placeholder="Enter Pdf Downlaod"
+                                        className="w-full p-3 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#CECECE]"
+                                        required
+                                    />
 
+                                    {formData?.pdf_download && (
+                                        <>
+                                            {formData.pdf_download instanceof File ? (
+                                                <p>
+                                                    Selected: {formData.pdf_download.name} (
+                                                    {(formData.pdf_download.size / 1024).toFixed(2)} KB)
+                                                </p>
+                                            ) : (
+                                                <p>
+                                                    Current PDF:{" "}
+                                                    <a
+                                                        href={formData.pdf_download}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        className="text-blue-500 underline"
+                                                    >
+                                                        View PDF
+                                                    </a>
+                                                </p>
+                                            )}
+                                        </>
+                                    )}
+
+
+
+                                </div>
+                                <ReactQuillEditor
+                                    label="Fees Notes"
+                                    desc={formData.fees_notes}
+                                    handleBioChange={(val) => handleQuillChange("fees_notes", val)}
+                                />
                                 <div>
                                     <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
                                         Course Desc Fees{" "}

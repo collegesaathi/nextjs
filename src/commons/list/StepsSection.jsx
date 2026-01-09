@@ -32,7 +32,7 @@ export default function StepsSection({ admissionProcess }) {
                   </div>
 
                   <div
-                    className="font-poppins text-[14px] sm:text-[16px] text-[#282529] leading-6 sm:leading-7 mb-4 [&_*]:!bg-transparent "
+                    className="custom-description font-poppins text-[14px] sm:text-[16px] text-[#282529] leading-6 sm:leading-7 mb-4 [&_*]:!bg-transparent "
                     dangerouslySetInnerHTML={{ __html: sanitizeHtml(admissionProcess?.description || "") || "" }}
                   />
                 </div>
