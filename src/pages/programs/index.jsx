@@ -27,7 +27,7 @@ import FutureTrends from "./FutureTrends";
 import BestUniversities from "./BestUniversities";
 import ConclusionFAQ from "./ConclusionFAQ";
 
-export default function TermsConditions() {
+export default function Index() {
     return (
         <Layout>
             <div className="mx-auto    px-2 md:px-4 py-4 md:mt-20 lg:mt-20 ">
@@ -44,7 +44,7 @@ export default function TermsConditions() {
                 <YoutubePlayer  videoId="dQw4w9WgXcQ" />
                 <UniversityTable />
                 <ConnectExpertForm />
-                <CollegesathiAdvantages />
+                <CollegesathiAdvantages  bgColor="#FFFBE6" sideBgColor="#FFEDCC" />
                 <WorkExperienceRequirement />
                 <Durations />
                 <FinancialAidSection />

@@ -1,20 +1,19 @@
 "use client";
 import { useState } from "react";
-import { Heart, Flower, Award, Briefcase, Laptop } from "lucide-react";
+import { Heart, Flower, Award, Briefcase, Laptop, ChevronDown, ChevronUp } from "lucide-react";
 
 export default function CultureBenefits() {
   const [activeTab, setActiveTab] = useState("culture");
+  const [isMenuOpen, setIsMenuOpen] = useState(false); // Mobile menu state
 
-  // 1. Added a 'color' property to each tab
   const tabs = [
-    { id: "culture", label: "Culture", icon: <Heart size={20} />, color: "#EF5350" }, // Red
-    { id: "wellbeing", label: "Wellbeing", icon: <Flower size={20} />, color: "#d9b2f0ff" }, // Green
-    { id: "recognition", label: "Recognition", icon: <Award size={20} />, color: "#f0b78fff" }, // Purple
-    { id: "opportunities", label: "Opportunities", icon: <Briefcase size={20} />, color: "#b8eb9bff" }, // Blue
-    { id: "tech", label: "Tech Support", icon: <Laptop size={20} />, color: "#FF9800" }, // Orange
+    { id: "culture", label: "Culture", icon: <Heart size={20} />, color: "#EF5350" },
+    { id: "wellbeing", label: "Wellbeing", icon: <Flower size={20} />, color: "#d9b2f0ff" },
+    { id: "recognition", label: "Recognition", icon: <Award size={20} />, color: "#f0b78fff" },
+    { id: "opportunities", label: "Opportunities", icon: <Briefcase size={20} />, color: "#b8eb9bff" },
+    { id: "tech", label: "Tech Support", icon: <Laptop size={20} />, color: "#FF9800" },
   ];
 
-  // 2. Organized items into a single object for cleaner rendering
   const allContent = {
     culture: [
       { title: "Sick & Casual Leaves", text: "Health always comes first. To give time to focus on your well-being..." },
@@ -28,30 +27,25 @@ export default function CultureBenefits() {
       { title: "Trips & Parties", text: "We organize two trips every year & regular team events." },
     ],
     recognition: [
-      { title: "Summit", text: "We organize summits and award the best performers to motivate them." },
-      { title: "Ride, Dine & Shine", text: "Success is celebrated with lunches, dinners and international trips." },
+      { title: "Summit", text: "We appreciate efforts and hard work of our team. To encourage them we organize summits." },
+      { title: "Ride, Dine & Shine", text: "Success is celebrated in different ways, team leaders organize lunches, dinners and outings." },
     ],
     opportunities: [
-      { title: "Pay & Perk", text: "Our performance-based incentives ensure your achievements are rewarded." },
-      { title: "Continuous Development", text: "We offer professional development, mentorship, and upskilling." },
-      { title: "Collaborative Team", text: "Work with passionate colleagues who share knowledge and celebrate wins." },
+      { title: "Pay & Perk", text: "Our performance-based incentives ensure your achievements are recognized." },
+      { title: "Continuous Development", text: "We offer continuous professional development, mentorship, and upskilling." },
+      { title: "Collaborative Team", text: "Teamwork is the heart of everything we do. You will work with passionate colleagues." },
     ],
     tech: [
-      { title: "Hardware Accessories", text: "We provide laptops, systems, and high-speed internet access." },
+      { title: "Hardware Accessories", text: "Collegesathi provides all the hardware accessories like laptops." },
       { title: "Tools", text: "We offer top tools for the efficient working of our teams." },
     ],
   };
 
-  // Helper to get current active color
-  const activeColor = tabs.find((t) => t.id === activeTab)?.color || "#EF5350";
+  const activeTabDetails = tabs.find((t) => t.id === activeTab);
+  const activeColor = activeTabDetails?.color || "#EF5350";
 
   return (
-    <div className="py-10 font-poppins">
-      <style jsx global>{`
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-      `}</style>
-
+    <div className="py-10 md:py-16 font-poppins">
       <div className="max-w-7xl mx-auto px-4">
         {/* Header Section */}
         <h2 className="text-[24px] md:text-[40px] font-[600] text-center text-gray-900">
@@ -61,33 +55,47 @@ export default function CultureBenefits() {
           Collegesathi is a growing company that values hard work and dedication...
         </p>
 
-        {/* MOBILE TABS */}
-        <div className="md:hidden mb-8">
-          <div className="flex overflow-x-auto gap-3 pb-4 items-center px-2 no-scrollbar">
-            {tabs.map((tab) => {
-              const isActive = activeTab === tab.id;
-              return (
+        {/* MOBILE DROPDOWN (Replaced horizontal pills) */}
+        <div className="md:hidden relative mb-8 z-20">
+          {/* Header/Toggle Button */}
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            style={{ backgroundColor: activeColor }}
+            className={`w-full flex items-center justify-between px-5 py-4 text-white font-medium transition-all shadow-md ${
+                isMenuOpen ? "rounded-t-2xl" : "rounded-2xl"
+            }`}
+          >
+            <div className="flex items-center gap-3">
+              {activeTabDetails.icon}
+              <span className="text-lg">{activeTabDetails.label}</span>
+            </div>
+            {isMenuOpen ? <ChevronUp size={24} /> : <ChevronDown size={24} />}
+          </button>
+
+          {/* Dropdown Options */}
+          {isMenuOpen && (
+            <div className="absolute top-full left-0 w-full bg-white border-x border-b border-gray-100 rounded-b-2xl shadow-2xl overflow-hidden animate-in fade-in slide-in-from-top-2">
+              {tabs.map((tab) => (
                 <button
                   key={tab.id}
-                  onClick={() => setActiveTab(tab.id)}
-                  style={{
-                    backgroundColor: isActive ? tab.color : "white",
-                    borderColor: isActive ? tab.color : "#E5E7EB",
-                    color: isActive ? "white" : "#4B5563",
+                  onClick={() => {
+                    setActiveTab(tab.id);
+                    setIsMenuOpen(false);
                   }}
-                  className={`flex items-center gap-2 px-6 py-3 rounded-full text-sm font-medium transition-all whitespace-nowrap border ${
-                    isActive ? "shadow-lg scale-105" : ""
+                  className={`w-full flex items-center gap-4 px-6 py-4 text-left transition-colors border-t border-gray-50 ${
+                    activeTab === tab.id ? "bg-gray-50 font-semibold" : "text-gray-700 bg-white"
                   }`}
                 >
-                  {tab.icon} {tab.label}
+                  <span style={{ color: tab.color }}>{tab.icon}</span>
+                  {tab.label}
                 </button>
-              );
-            })}
-          </div>
+              ))}
+            </div>
+          )}
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
-          {/* DESKTOP SIDEBAR */}
+          {/* DESKTOP SIDEBAR (Kept original logic) */}
           <div className="hidden md:block col-span-1 bg-white rounded-xl p-4 shadow-md h-max">
             {tabs.map((tab) => {
               const isActive = activeTab === tab.id;
@@ -114,12 +122,11 @@ export default function CultureBenefits() {
             {allContent[activeTab].map((item, index) => (
               <div
                 key={index}
-                className="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition-all border border-transparent"
+                className="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition-all border-2 border-transparent"
                 style={{ borderColor: "transparent" }}
-                onMouseEnter={(e) => (e.currentTarget.style.borderColor = `${activeColor}33`)} // 33 is 20% opacity
+                onMouseEnter={(e) => (e.currentTarget.style.borderColor = `${activeColor}44`)}
                 onMouseLeave={(e) => (e.currentTarget.style.borderColor = "transparent")}
               >
-                {/* Heading color matches the active tab color */}
                 <h4 
                   className="text-[18px] font-bold mb-3"
                   style={{ color: activeColor }}
