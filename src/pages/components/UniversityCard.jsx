@@ -1,25 +1,35 @@
 'use client';
 
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRole } from '@/context/RoleContext';
+import Listing from '../api/Listing';
 
 export default function UniversityCard({
-    universityName,
     rating,
     reviews,
     approvals,
     features,
-    imageUrl,
     tag,
     admissionClosing,
     logoUrl,
     index,
     card
 }) {
-    const { selectedUnis, toggleUniversity } = useRole();
+    const { selectedUnis, toggleUniversity, setCourse  ,course , toggleCourse} = useRole();
     const uniId = card?.id;
+
+    const CouseCompare = async (id) => {
+        try {
+            const main = new Listing();
+            const response = await main.CompareCourse(id);
+            setCourse(response?.data?.data)
+        } catch (error) {
+            console.error("Error fetching projects:", error);
+        }
+    };
+
     const isSelected = selectedUnis.some(u => u.id === uniId);
 
     const admissionTag = useMemo(() => {
@@ -36,16 +46,16 @@ export default function UniversityCard({
     return (
         // 1. Change outer Link to Div
         <div className="group bg-white w-full h-full rounded-2xl shadow-md relative border border-neutral-200 flex flex-col hover:scale-105 transition-all hover:shadow-[0px_0px_15px_#c2c2c2]">
-            
+
             {/* 2. Invisible Overlay Link: Yeh poore card ko clickable banayega */}
-            <Link 
-                href={`/university/${card?.slug}`} 
-                className="absolute inset-0 z-0" 
+            <Link
+                href={`/university/${card?.slug}`}
+                className="absolute inset-0 z-0"
                 aria-label="View University Details"
             />
 
             {/* University Image */}
-            <div className="relative z-10 pointer-events-none"> 
+            <div className="relative z-10 pointer-events-none">
                 {/* pointer-events-none ensures image clicks go to the overlay link */}
                 <Image
                     src={card?.cover_image}
@@ -106,11 +116,12 @@ export default function UniversityCard({
                         <span className="mr-2"><img src="/icons/download.svg" /></span> Download Prospectus
                     </a>
 
-                    <button
+                    {/* <button
                         onClick={(e) => {
                             e.preventDefault(); // Extra safety
                             e.stopPropagation();
-                            toggleUniversity(card);
+                          CouseCompare(card?.id)
+                            toggleUniversity(card)
                         }}
                         className={`flex items-center justify-center w-full px-4 h-[1.815rem] rounded-md transition-colors cursor-pointer mt-4
                         ${isSelected ? 'bg-neutral-100 text-black font-[600]' : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'}`}
@@ -124,7 +135,7 @@ export default function UniversityCard({
                         <span className="ml-2">
                             {isSelected ? "Added to Compare" : "Add to Compare"}
                         </span>
-                    </button>
+                    </button> */}
                 </div>
             </div>
 

@@ -5,40 +5,37 @@ import { FaCheck } from "react-icons/fa";
 import toast from "react-hot-toast";
 import Listing from "../api/Listing";
 import { useRole } from '@/context/RoleContext';
+import { MdClose } from "react-icons/md";
+import Link from "next/link";
 
 export default function CompareComponent() {
   const [isOpen, setIsOpen] = useState(false);
-  // const [selectedUnis, setSelectedUnis] = useState([]);
   const [loading, setLoading] = useState(false);
   const scrollRef = useRef(null);
   const [universities, setUniversities] = useState([])
+  const [Courseuniversities, setCourseUniversities] = useState([])
 
-
+  console.log("universities" ,universities)
   const {
     selectedUnis,
-    setSelectedUnis,
     isCompareOpen,
+    selectedCourses,
     setIsCompareOpen,
+    course,
+    toggleCourse,
     toggleUniversity
   } = useRole();
 
 
   const comparisonSlug = selectedUnis.map(u => u.slug).join('-vs-');
   const comparisonUrl = `/compare-universities/${comparisonSlug}`;
-
-
-
-
-
   useEffect(() => {
     const fetchUniversity = async () => {
       setLoading(true)
       try {
         const main = new Listing();
         const response = await main.UniversityAll();
-
         setUniversities(response?.data?.data)
-        console.log("compareuniversites", response?.data?.data)
       } catch (error) {
         console.error("Error fetching projects:", error);
       } finally {
@@ -50,27 +47,49 @@ export default function CompareComponent() {
 
 
 
+useEffect(() => {
+  const fetchCourseNames = async () => {
+    try {
+      if (!Array.isArray(course) || course.length === 0) return;
+
+      setLoading(true);
+
+      const selectedCourse = course[0];
+
+      const payload = {
+        course_name: selectedCourse?.name,
+        category_id: selectedCourse?.category_id || null,
+      };
+
+      const main = new Listing();
+      const response = await main.CompareUniversity(payload);
+
+      const apiUniversities = response?.data?.data || [];
+
+      // 🔥 already selected university IDs
+      const selectedUniIds = selectedUnis?.map((u) => u.id) || [];
+
+      // 🔥 filter out already selected universities
+      const filteredUniversities = apiUniversities.filter(
+        (uni) => !selectedUniIds.includes(uni.id)
+      );
+
+      setCourseUniversities(filteredUniversities);
+    } catch (error) {
+      console.error("Error fetching universities:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  fetchCourseNames();
+}, [course, selectedUnis]);
+
+
+
+
   if (!isCompareOpen) return null;
-
-
-
-
-
-  const handleOpen = () => setIsOpen(true);
   const handleClose = () => setIsCompareOpen(false);
-
-  // const toggleUniversity = (uni) => {
-  //   const isAlreadySelected = selectedUnis.find((item) => item.id === uni.id);
-  //   if (isAlreadySelected) {
-  //     setSelectedUnis(selectedUnis.filter((item) => item.id !== uni.id));
-  //   } else {
-  //     if (selectedUnis.length < 3) {
-  //       setSelectedUnis([...selectedUnis, uni]);
-  //     } else {
-  //       toast.error("Maximum 3 universities allowed");
-  //     }
-  //   }
-  // };
 
   const scroll = (direction) => {
     if (scrollRef.current) {
@@ -79,6 +98,9 @@ export default function CompareComponent() {
       scrollRef.current.scrollTo({ left: scrollTo, behavior: 'smooth' });
     }
   };
+
+  
+
 
   return (
 
@@ -90,25 +112,23 @@ export default function CompareComponent() {
       ></div>
 
       {/* Modal Content Box */}
-      <div className="relative w-full  bg-white rounded-xl shadow-2xl overflow-hidden max-h-[95vh] overflow-y-auto">
+      <div className="relative w-full  bg-white shadow-2xl overflow-hidden max-h-[95vh] overflow-y-auto">
 
         {/* Close Button */}
         <button
           onClick={handleClose}
           className="absolute top-4 right-4 text-gray-400 hover:text-black transition-colors"
         >
-          <X size={28} />
+          <MdClose size={28} />
         </button>
-
         <div className="w-full flex flex-col items-center py-10 px-6">
-
           {/* Heading */}
-          <h2 className="text-3xl font-bold text-gray-900 mb-12">
-            Add University To Compare
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">
+            Add Course To Compare
           </h2>
 
           {/* Horizontal Slider Section */}
-          <div className="relative w-full px-12 mb-12">
+          <div className="relative w-full px-12 mb-4">
             <button
               onClick={() => scroll('left')}
               className="absolute left-0 top-1/2 -translate-y-1/2 bg-white border shadow-lg p-2 rounded-full text-gray-500 hover:text-black z-10"
@@ -121,38 +141,85 @@ export default function CompareComponent() {
               className="flex overflow-x-auto gap-5 no-scrollbar scroll-smooth pb-4 px-2"
               style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
             >
-              {universities?.universities?.map((uni) => (
+              {course?.map((uni) => (
                 <div
                   key={uni.id}
-                  className="min-w-[300px] h-[250px] border border-gray-100 rounded-2xl bg-white p-5 flex flex-col items-center justify-between shadow-sm hover:shadow-md transition-shadow"
+                  className="min-w-[200px] h-[180px] border border-gray-100 rounded-2xl bg-white p-2 flex flex-col items-center justify-between shadow-sm hover:shadow-md transition-shadow"
                 >
-                  <div className="h-16 flex items-center justify-center">
-                    <img src={uni.icon} alt={uni.icon_alt} className="max-h-full object-contain" />
+                  <div className="flex items-center justify-center">
+                    <img src={uni?.university.icon} alt={uni.icon_alt} className="max-h-full object-contain" />
                   </div>
-                  <p className="text-[14px] font-[600] text-center text-[#282529] h-10 ">
+                  <p className="text-[14px] font-[600] text-center text-[#282529]">
+                    {uni.name}
+                  </p>
+                  <button
+                    onClick={() => toggleCourse(uni)}
+                    className="relative w-10 h-10 self-start z-[1]"
+                  >
+                    {!selectedCourses.find(u => u.id === uni.id) && (
+                      <span className="pulse-wrapper absolute inset-0 -z-10"></span>
+                    )}
+
+                    {selectedCourses.find(u => u.id === uni.id) && (
+                      <span className="pulse-wrapper-green absolute inset-0 -z-10"></span>
+                    )}
+                    <span className={`w-10 h-10 rounded-full flex items-center justify-center text-white
+                    ${selectedCourses.find(u => u.id === uni.id) ? 'bg-[#037938]' : 'bg-red-600'}`}>
+                      {selectedCourses.find(u => u.id === uni.id) ? <FaCheck size={20} /> : <Plus size={20} className="z-1" />}
+                    </span>
+                  </button>
+                </div>
+              ))}
+            </div>
+
+            <button
+              onClick={() => scroll('right')}
+              className="absolute right-0 top-1/2 -translate-y-1/2 bg-white border shadow-lg p-2 rounded-full text-gray-500 hover:text-black z-10"
+            >
+              <ChevronRight size={24} />
+            </button>
+          </div>
+
+           <div className="relative w-full px-12 mb-4">
+            <button
+              onClick={() => scroll('left')}
+              className="absolute left-0 top-1/2 -translate-y-1/2 bg-white border shadow-lg p-2 rounded-full text-gray-500 hover:text-black z-10"
+            >
+              <ChevronLeft size={24} />
+            </button>
+
+            <div
+              ref={scrollRef}
+              className="flex overflow-x-auto gap-5 no-scrollbar scroll-smooth pb-4 px-2"
+              style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            >
+              {Courseuniversities?.map((uni) => (
+                <div
+                  key={uni.id}
+                  className="min-w-[200px] h-[180px] border border-gray-100 rounded-2xl bg-white p-2 flex flex-col items-center justify-between shadow-sm hover:shadow-md transition-shadow"
+                >
+                  <div className="flex items-center justify-center">
+                    <img src={uni?.icon} alt={uni.icon_alt} className="max-h-full object-contain" />
+                  </div>
+                  <p className="text-[14px] font-[600] text-center text-[#282529]">
                     {uni.name}
                   </p>
                   <button
                     onClick={() => toggleUniversity(uni)}
                     className="relative w-10 h-10 self-start z-[1]"
                   >
-                    {!selectedUnis.find(u => u.id === uni.id) && (
+                    {!selectedCourses.find(u => u.id === uni.id) && (
                       <span className="pulse-wrapper absolute inset-0 -z-10"></span>
                     )}
 
-                    {selectedUnis.find(u => u.id === uni.id) && (
+                    {selectedCourses.find(u => u.id === uni.id) && (
                       <span className="pulse-wrapper-green absolute inset-0 -z-10"></span>
                     )}
-
-
-
                     <span className={`w-10 h-10 rounded-full flex items-center justify-center text-white
-    ${selectedUnis.find(u => u.id === uni.id) ? 'bg-[#037938]' : 'bg-red-600'}`}>
-                      {selectedUnis.find(u => u.id === uni.id) ? <FaCheck size={20} /> : <Plus size={20} className="z-1" />}
+                    ${selectedCourses.find(u => u.id === uni.id) ? 'bg-[#037938]' : 'bg-red-600'}`}>
+                      {selectedCourses.find(u => u.id === uni.id) ? <FaCheck size={20} /> : <Plus size={20} className="z-1" />}
                     </span>
                   </button>
-
-
                 </div>
               ))}
             </div>
@@ -173,11 +240,11 @@ export default function CompareComponent() {
                 <p className="text-lg">Select universities from above to start comparing</p>
               </div>
             ) : (
-              selectedUnis.map((uni) => (
-
+              selectedUnis && selectedUnis?.map((uni) => (
                 <div
+                
                   key={uni.id}
-                  className="relative w-[320px] h-[300px] bg-gray-100 rounded-2xl shadow-xl flex flex-col items-center justify-center"
+                  className="relative w-[280px] h-[250px] bg-gray-100 rounded-2xl shadow-xl flex flex-col items-center justify-center"
                 >
 
                   {/* Inner Light Gray Box */}
@@ -193,7 +260,7 @@ export default function CompareComponent() {
                   <div className="absolute top-4 w-[170px] h-[120px] bg-white rounded-2xl shadow-lg flex items-center justify-center">
 
                     <img
-                      src={uni.icon}
+                      src={uni?.icon}
                       alt={uni.icon_alt}
                       className="max-h-[75px] object-cover"
                     />
@@ -203,7 +270,7 @@ export default function CompareComponent() {
                       onClick={() => toggleUniversity(uni)}
                       className="absolute -right-14 top-4 w-7 h-7 bg-red-600 text-white rounded-full flex items-center justify-center shadow-lg hover:bg-red-700 transition"
                     >
-                      <X size={16} />
+                      <MdClose size={16} />
                     </button>
                   </div>
 
@@ -214,8 +281,8 @@ export default function CompareComponent() {
 
           {/* Action Button */}
           <div className="mt-6">
-            <a
-               href={comparisonUrl}
+            <Link
+              href={comparisonUrl}
               disabled={selectedUnis.length < 2}
               className={`px-16 py-4 rounded-xl font-bold text-white text-xl shadow-xl transition-all ${selectedUnis.length >= 2
                 ? 'bg-red-600 hover:bg-red-700 hover:-translate-y-1 active:translate-y-0'
@@ -223,7 +290,7 @@ export default function CompareComponent() {
                 }`}
             >
               Compare Now
-            </a>
+            </Link>
           </div>
 
         </div>

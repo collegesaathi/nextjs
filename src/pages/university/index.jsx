@@ -353,12 +353,9 @@ export default function UniversityGrid() {
                                         universities?.map((card, index) => (
                                             <UniversityCard card={card} key={index} />
                                         ))
-
                                     }
                                 </div>
                             )}
-
-
 
                             {pagination?.page < pagination?.totalPages && (
                                 <div className="flex justify-center mt-8">

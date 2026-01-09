@@ -41,6 +41,13 @@ class Listing extends Component {
     return Api.get("/all/university",);
   }
 
+  async CompareCourse(id) {
+    return Api.get(`/compare/courses/${id}`,);
+  }
+  async CompareUniversity(data) {
+    return Api.post(`/compare/universities`,data);
+  }
+
   async AddApprovals(data) {
     return ApiallowFile.post("/approval/add", data);
   }
@@ -57,6 +64,17 @@ class Listing extends Component {
     return ApiallowFile.post("/placement/edit", data);
   }
 
+  async ProInsight(id){
+    return  Api.get(`/proinsight` )
+  }
+
+  async ProCourseInsight(id){
+    return  Api.get(`/proinsight?category_id=${id}` )
+  }
+
+  async ProSpeInsight(id){
+    return  Api.get(`/proinsight?course_id=${id}` )
+  }
   async PlacementDelete(id) {
     return Api.get(`/placement/delete/${id}`)
   }
