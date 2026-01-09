@@ -491,19 +491,18 @@ Scholarship Category: ${scholarshipCat}
       const response = await main.ContactAdd({
         ...form,
         ...utms,
+        proInsights: JSON.stringify(proinsight),
         page_name: router?.pathname
       });
-
       if (response?.data?.status) {
         toast.success(response.data.message);
         setIsSubmitting(true);
         // Reset form
+        setStep(1)
         setForm({ name: '', phone_number: '', email: '', content: '', otp: '', course_id: "", city: 'jaipur', state: 'rajasthan', page_name: router?.pathname });
         setOtpSent(false);
         setProinsight()
         setIsVerified(false);
-      } else {
-        toast.error(response.data.message);
       }
     } catch (error) {
       toast.error("Something went wrong!");
