@@ -2,7 +2,6 @@
 import React, { useState, useRef, useEffect } from "react"
 import { X, Plus, ChevronLeft, ChevronRight } from "lucide-react"
 import { FaCheck } from "react-icons/fa";
-import toast from "react-hot-toast";
 import Listing from "../api/Listing";
 import { useRole } from '@/context/RoleContext';
 import { MdClose } from "react-icons/md";

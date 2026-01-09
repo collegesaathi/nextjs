@@ -503,6 +503,7 @@ Scholarship Category: ${scholarshipCat}
         setOtpSent(false);
         setProinsight()
         setIsVerified(false);
+        router.push("/thank-you");
       }
     } catch (error) {
       toast.error("Something went wrong!");
