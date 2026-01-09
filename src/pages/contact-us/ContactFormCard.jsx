@@ -5,6 +5,7 @@ import Listing from "../api/Listing";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { IoChevronDown } from "react-icons/io5";
 import { InputBox } from "@/common/InputBox";
+import { getUTMParams } from "@/utils/utm";
 
 
 function ContactForm() {
@@ -19,6 +20,9 @@ function ContactForm() {
     const [isVerified, setIsVerified] = useState(false);
     const [timer, setTimer] = useState(0);
     const [otpLoading, setOtpLoading] = useState(false);
+        const [isOfficesVisible, setIsOfficesVisible] = useState(false);
+
+        const utms=getUTMParams();
 
 
     const [data, setData] = useState({
@@ -147,7 +151,8 @@ function ContactForm() {
                 city: data?.city || "jaipur",
                 state: data?.state || "rajasthan",
                 university_id: data?.university_id || "",
-                page_name: router?.pathname
+                page_name: router?.pathname,
+                ...utms
             });
 
             if (response?.data?.status) {
@@ -188,10 +193,10 @@ function ContactForm() {
     return (<>
         < div className="py-4 md:py-8" >
             <div className="mx-auto container sm:container md:container xl:max-w-[1230px]  md:px-4   " >
-                <div className="lg:grid lg:grid-cols-2 px-2 md:px-4 py-5 border-2  border-[#DFDFDF] rounded-[30px] shadow-[0px_14px_20px_0px_#0000001F]">
+                <div className="  flex flex-col-reverse lg:grid lg:grid-cols-2 gap-6 px-2 md:px-4 py-5 md:border-2  border-[#DFDFDF] rounded-[30px] shadow-[0px_14px_20px_0px_#0000001F]">
                     <div className="bg-white md:px-4 md:py-4 flex flex-col justify-between">
                         {/* Map */}
-                        <div className="h-[500px] sm:h-[800px] rounded-[8px] overflow-hidden">
+                        <div className="h-[200px] md:h-[800px] rounded-[8px] overflow-hidden">
                             <iframe
                                 src={mapSrc}
                                 allowFullScreen=""
@@ -200,70 +205,42 @@ function ContactForm() {
                                 className="w-full h-full rounded-[8px] border-0"
                             ></iframe>
                         </div>
+   <div className="lg:hidden flex justify-center py-6">
+                            <button 
+                                onClick={() => setIsOfficesVisible(!isOfficesVisible)}
+                                className="flex items-center gap-2 px-6 py-2 border border-gray-300 rounded-full shadow-sm text-gray-700 bg-white font-medium active:scale-95 transition-all"
+                            >
+                                Find Our Offices 
+                                <IoChevronDown className={`transition-transform duration-300 ${isOfficesVisible ? "rotate-180" : ""}`} />
+                            </button>
+                        </div>
 
-                        {/* Office Buttons */}
-                        <div className="space-y-4 mt-6">
-                            {/* Jaipur button */}
+                        {/* 3. Office Buttons: Collapsible logic applied ONLY here */}
+                        <div className={`space-y-4 mt-2 lg:mt-6 transition-all duration-300 ${isOfficesVisible ? "block" : "hidden lg:block"}`}>
                             <button
                                 onClick={() => { setMapSrc(jaipurMap); setActive("jaipur"); }}
-                                className={`w-full flex items-center justify-between px-6  py-2 md:py-4 cursor-pointer 
-  group text-gray-800 rounded-[8px] transition hover:bg-[#FFEEEE] 
-  ${active === "jaipur" ? "bg-[#FFEEEE] " : "bg-gray-100"}`}
+                                className={`w-full flex items-center justify-between px-6 py-3 md:py-4 cursor-pointer group rounded-[8px] transition ${active === "jaipur" ? "bg-[#FFEEEE]" : "bg-gray-100"}`}
                             >
                                 <span className="text-[16px] font-[400]">Find Jaipur Office</span>
-
-                                <div
-                                    className={`
-      w-8 h-8 rounded-full flex items-center justify-center transition-all 
-      ${active === "Gurugram" ? "bg-black -translate-y-1" : "bg-black/80"}
-      group-hover:bg-white
-    `}
-                                >
-                                    <FaArrowRightLong
-                                        className={`
-        w-4 h-4 transform transition-all 
-        ${active === "jaipur" ? "text-white rotate-[320deg]" : "text-white"}
-        group-hover:text-black
-      `}
-                                    />
+                                <div className="w-8 h-8 rounded-full flex items-center justify-center transition-all bg-black group-hover:bg-white">
+                                    <FaArrowRightLong className={`w-4 h-4 text-white ${active === "jaipur" && "rotate-[320deg]"} group-hover:text-black`} />
                                 </div>
                             </button>
 
-
-
-                            {/* Gurugram button */}
                             <button
                                 onClick={() => { setMapSrc(gurugramMap); setActive("Gurugram"); }}
-                                className={`w-full flex items-center justify-between px-6 py-2 md:py-4 cursor-pointer 
-  group text-gray-800 rounded-[8px] transition hover:bg-[#EC1E24] hover:text-white
-  ${active === "Gurugram" ? "bg-[#FFEEEE] " : "bg-gray-100"}`}
+                                className={`w-full flex items-center justify-between px-6 py-3 md:py-4 cursor-pointer group rounded-[8px] transition ${active === "Gurugram" ? "bg-[#FFEEEE]" : "bg-gray-100"}`}
                             >
                                 <span className="text-[16px] font-[400]">Find Gurugram Office</span>
-
-                                {/* Arrow Circle */}
-                                <div
-                                    className={`
-      w-8 h-8 rounded-full flex items-center justify-center transition-all 
-      ${active === "Gurugram" ? "bg-black -translate-y-1" : "bg-black/80"}
-      group-hover:bg-white
-    `}
-                                >
-                                    <FaArrowRightLong
-                                        className={`
-        w-4 h-4 transform transition-all 
-        ${active === "Gurugram" ? "text-white rotate-[320deg]" : "text-white"}
-        group-hover:text-black
-      `}
-                                    />
+                                <div className="w-8 h-8 rounded-full flex items-center justify-center transition-all bg-black group-hover:bg-white">
+                                    <FaArrowRightLong className={`w-4 h-4 text-white ${active === "Gurugram" && "rotate-[320deg]"} group-hover:text-black`} />
                                 </div>
                             </button>
-
-
                         </div>
                     </div>
                     {/* 2. Right Section (Contact Form) */}
                     <div className="lg:px-4 py-4 mt-4 lg:mt-0 rounded-[20px] lg:border-2  border-[#DFDFDF] ">
-                        <h2 className="font-poppins font-semibold text-[18px] leading-[14px] text-left text-[#282529] mt-10 mb-6">
+                        <h2 className="font-poppins font-semibold text-[18px] leading-[14px] text-left text-[#282529] lg:mt-10 mb-6">
                             Contact Form
                         </h2>
 

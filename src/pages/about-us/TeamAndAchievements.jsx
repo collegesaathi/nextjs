@@ -102,7 +102,7 @@ const TeamAndAchievements = () => {
                                  <li className="flex items-center">
                                     <Image src="/images/about/tick.svg"  width={20} height={20} alt="tickmark"/>
                                     <div className="ml-3 text-[14px] md:text-[16px] text-[#282529] z-10 flex flex-wrap gap-1 ">
-                                     Guided <p className='relative z-10  text-[#282529]'> <span className='absolute bg-[#FFB8B8] left-0 bottom-1 w-33 animate-highlight -z-10 '></span> 30,000+ students</p> toward better futures
+                                     Guided <p className='relative z-10  text-[#282529]'> <span className='absolute bg-[#FFB8B8] left-0 bottom-1 rounded-md w-30 md:w-34 animate-highlight -z-10 '></span> 30,000+ students</p> toward better futures
                                     </div>
                                 </li>
                   
@@ -112,7 +112,7 @@ const TeamAndAchievements = () => {
                                     <Image src="/images/about/tick.svg"  width={20} height={20} alt="tickmark"/>
                                     <div className="ml-3 text-[14px] md:text-[16px] text-[#282529] z-10 flex flex-wrap gap-1 ">
                                   Partnered with
-                                  <p className='relative z-10 text-[#282529]'> <span className='absolute bg-[#FFB8B8] left-0 bottom-1 w-45  -z-10 animate-highlight '> </span>100+ online universities & institutions</p>
+                                  <p className='relative z-10 text-[#282529]'> <span className='absolute bg-[#FFB8B8] left-0 bottom-1 w-40 md:w-46 rounded-md -z-10 animate-highlight '> </span>100+ online universities & institutions</p>
                                     </div>
                                 </li>
 
@@ -126,7 +126,7 @@ const TeamAndAchievements = () => {
 
     <p className='relative z-10  text-[#282529]'> 
         {/* top-3 hata diya hai, sirf bottom-0 rakha hai taaki upar ki taraf expand ho */}
-        <span className='absolute bg-[#FFB8B8] left-0 bottom-0 w-24 -z-10 animate-highlight'></span>
+        <span className='absolute bg-[#FFB8B8] left-0 bottom-0 w-24 -z-10 rounded-md animate-highlight'></span>
         Recognized by leading online education platform
     </p>
 </div>

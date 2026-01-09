@@ -397,3 +397,29 @@ input, input:focus, input:active, input:focus-visible {
   .animate-highlight {
     animation: expandHeight 3s ease-in-out infinite;
   }
+
+
+
+ .mySwipercontact .swiper-button-next,
+.mySwipercontact .swiper-button-prev {
+    background-color: #fdfcfc; /* Your brand red */
+    width: 45px;
+    height: 45px;
+    border-radius: 50%; /* Makes it a circle */
+    transition: all 0.3s ease;
+    padding:10px
+}
+
+/* 2. Change Arrow Color and Size */
+.mySwipercontact .swiper-button-next:after,
+.mySwipercontact .swiper-button-prev:after {
+    color: white; /* Arrow color */
+    font-size: 18px; /* Arrow size */
+    font-weight: bold;
+}
+
+/* 3. Hover Effect (Optional) */
+.mySwipercontact .swiper-button-next:hover,
+.mySwipercontact .swiper-button-prev:hover {
+    background-color: #282529; /* Darker on hover */
+}

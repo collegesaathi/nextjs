@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 // --- Gallery Item Component ---
-const GalleryCard = ({ year, src, heightClass, margin }) => (
+const GalleryCard = ({ year, src, heightClass, margin,celebration }) => (
   <div className="relative mb-4 break-inside-avoid">
 
     {/* Image Box as group (important!) */}
@@ -15,6 +15,7 @@ const GalleryCard = ({ year, src, heightClass, margin }) => (
 
     {/* Year */}
     <p className="text-black font-[400] font-poppins text-[14px] mt-2">{year}</p>
+        <p className="text-black font-[400] font-poppins text-[14px] mt-2">{celebration}</p>
   </div>
 );
 
@@ -23,7 +24,7 @@ const GalleryCard = ({ year, src, heightClass, margin }) => (
 
 const galleryData = [
   // Column 1 (Left)
-  { id: 1, year: 2021, category: "Moments", src: '/images/career/career1.png', heightClass: 'h-96',  },
+  { id: 1, year: 2021,celebration: "Diwali", category: "Moments", src: '/images/career/career1.png', heightClass: 'h-96',  },
   { id: 5, year: 2023, category: "Moments",src: '/images/career/career5.png', heightClass: 'h-64', margin:'mt-[50px]' },
   
   // Column 2

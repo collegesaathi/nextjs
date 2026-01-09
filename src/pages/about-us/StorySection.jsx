@@ -16,7 +16,7 @@ export default function StorySection() {
 
           {/* Tabs */}
           <div className="flex justify-center mt-8  ">
-            <div className="bg-white shadow-xl rounded-[7px] md:rounded-[20px] flex gap-1 md:gap-7 py-4 px-6 md:px-6 md:px-10 " >
+            <div className="bg-white shadow-xl rounded-[7px] md:rounded-[20px] flex gap-2 md:gap-7 py-2 px-4 md:px-6 md:px-10 " >
               <TabButton label="Who We Are" active={active === "who"} onClick={() => setActive("who")} />
               <TabButton label="Our Mission" active={active === "mission"} onClick={() => setActive("mission")} />
               <TabButton label="Our Vision" active={active === "vision"} onClick={() => setActive("vision")} />
@@ -28,7 +28,7 @@ export default function StorySection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
 
           {/* Left Image Side */}
-          <div className="relative h-[200px] md:h-[400px] lg:h-auto w-full rounded-[30px] overflow-hidden shadow-sm">
+          <div className="relative h-[250px] md:h-[400px] lg:h-auto w-full rounded-[20px] md:rounded-[30px] overflow-hidden shadow-sm">
             <Image
               src="/images/about/mission.png" // Ensure this is your group photo
               alt="Team"
