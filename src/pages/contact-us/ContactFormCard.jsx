@@ -5,7 +5,7 @@ import Listing from "../api/Listing";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { IoChevronDown } from "react-icons/io5";
 import { InputBox } from "@/common/InputBox";
-import { getUTMParams } from "@/utils/utm";
+import { getUTMParams } from "@/common/utm";
 
 
 function ContactForm() {
@@ -20,9 +20,9 @@ function ContactForm() {
     const [isVerified, setIsVerified] = useState(false);
     const [timer, setTimer] = useState(0);
     const [otpLoading, setOtpLoading] = useState(false);
-        const [isOfficesVisible, setIsOfficesVisible] = useState(false);
+    const [isOfficesVisible, setIsOfficesVisible] = useState(false);
 
-        const utms=getUTMParams();
+    const utms = getUTMParams();
 
 
     const [data, setData] = useState({
@@ -148,8 +148,8 @@ function ContactForm() {
                 phone_number: data?.phone_number || "",
                 course_id: data?.course_id || "",
                 content: data?.content || "",
-                city: data?.city || "jaipur",
-                state: data?.state || "rajasthan",
+                city: data?.city || "",
+                state: data?.state || "",
                 university_id: data?.university_id || "",
                 page_name: router?.pathname,
                 ...utms
@@ -161,17 +161,9 @@ function ContactForm() {
             else {
                 toast.error(response.data.message);
             }
-            setData({
-                name: "",
-                email: "",
-                phone_number: "",
-                course_id: "",
-                content: "",
-                city: "",
-                state: "",
-                university_id: "",
-                page_name: router?.pathname
-            });
+            setForm({ name: '', phone_number: '', email: '', content: '', otp: '', course_id: "", city: 'jaipur', state: 'rajasthan', page_name: router?.pathname });
+            setOtpSent(false);
+            setIsVerified(false);
 
         } catch (error) {
             console.error("API error:", error);
@@ -186,7 +178,7 @@ function ContactForm() {
     const gurugramMap =
         "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3499.6078345120447!2d77.101979!3d28.441948!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d19494c9d97a7%3A0xa9f6d4fc6352f5f8!2sCentrum%20Plaza%2C%20Golf%20Course%20Rd%2C%20Suncity%2C%20Sector%2054%2C%20Gurugram%2C%20Haryana%20122011!5e0!3m2!1sen!2sin!4v1704812222222";
 
-    const [mapSrc, setMapSrc] = useState( jaipurMap);
+    const [mapSrc, setMapSrc] = useState(jaipurMap);
 
 
 
@@ -205,12 +197,12 @@ function ContactForm() {
                                 className="w-full h-full rounded-[8px] border-0"
                             ></iframe>
                         </div>
-   <div className="lg:hidden flex justify-center py-6">
-                            <button 
+                        <div className="lg:hidden flex justify-center py-6">
+                            <button
                                 onClick={() => setIsOfficesVisible(!isOfficesVisible)}
                                 className="flex items-center gap-2 px-6 py-2 border border-gray-300 rounded-full shadow-sm text-gray-700 bg-white font-medium active:scale-95 transition-all"
                             >
-                                Find Our Offices 
+                                Find Our Offices
                                 <IoChevronDown className={`transition-transform duration-300 ${isOfficesVisible ? "rotate-180" : ""}`} />
                             </button>
                         </div>
@@ -399,7 +391,7 @@ function ContactForm() {
                                 <button
                                     onClick={handleSubmit}
                                     type="submit"
-                                   disabled={loading || !isVerified}
+                                    disabled={loading || !isVerified}
                                     className="w-full py-3 bg-red-600 text-white font-[600] cursor-pointer rounded-[8px] text-[16px] font-poppins hover:bg-red-700 transition duration-150 shadow-md"
                                 >
                                     {loading ? "Loading.." : "Submit"}

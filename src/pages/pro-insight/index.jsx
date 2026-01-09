@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import { IoChevronDown } from "react-icons/io5";
 import toast from "react-hot-toast";
 import Listing from "../api/Listing";
+import { getUTMParams } from "@/common/utm";
 
 // --- DATA FOR STEPS 4-9 ---
 const studyHourOptions = [
@@ -328,8 +329,8 @@ export default function CourseSelectionWizard() {
     content: '',
     otp: '',
     course_id: "",
-    city: 'jaipur',
-    state: 'rajasthan',
+    city: '',
+    state: '',
     page_name: router?.pathname,
     proinsight: proinsight
   });
@@ -443,14 +444,15 @@ Scholarship Category: ${scholarshipCat}
   }, [selectedCourse]);
 
   // --- OTP Logic Functions ---
+  // --- OTP Logic Functions ---
   const handleSendOtp = async () => {
     if (form.phone_number.length !== 10) {
-      toast.error("Please enter a valid 10-digit mobile number");
-      return;
+      return toast.error("Please enter a valid 10-digit mobile number");
     }
     setOtpLoading(true);
     try {
-      console.log("OTP sent to:", form.phone_number);
+      const main = new Listing();
+      await main.SendOtp(form.phone_number);
       toast.success("OTP sent successfully!");
       setOtpSent(true);
       setTimer(90);
@@ -462,70 +464,54 @@ Scholarship Category: ${scholarshipCat}
   };
 
   const handleVerifyOtp = async () => {
-    if (form.otp.length < 4) {
-      toast.error("Enter valid 4-digit OTP");
-      return;
-    }
+    if (form.otp.length < 4) return toast.error("Enter valid 4-digit OTP");
     setOtpLoading(true);
     try {
-      // Demo verification
-      if (form.otp.length === 4) {
+      const main = new Listing();
+      const res = await main.VerifyOtp(form.phone_number, form.otp);
+      if (res) {
         toast.success("Mobile number verified!");
         setIsVerified(true);
-      } else {
-        throw new Error("Invalid OTP");
       }
     } catch (error) {
-      toast.error("Invalid OTP");
+      toast.error(error?.response?.data?.message || "Invalid OTP");
     } finally {
       setOtpLoading(false);
     }
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!isVerified) {
-      toast.error("Please verify your mobile number first!");
-      return;
-    }
-
-    if (!validateEmail(form.email)) {
-      toast.error("Please enter a valid email!");
-      return;
-    }
-    if (!isVerified) {
-      toast.error("Please verify your mobile number first!");
-      return;
-    }
+    // e.preventDefault();
+    if (!validateEmail(form.email)) return toast.error("Please enter a valid email!");
+    if (!isVerified) return toast.error("Please verify your mobile number first!");
 
     setLoading(true);
     try {
-      console.log("Form submitted:", form);
-      toast.success("Form submitted successfully!");
-      setIsSubmitting(true);
-      // Reset form
-      setForm({
-        name: '',
-        phone_number: '',
-        email: '',
-        content: '',
-        otp: '',
-        course_id: "",
-        city: 'jaipur',
-        state: 'rajasthan',
-        page_name: router?.pathname,
-        proinsight: proinsight
+      const main = new Listing();
+      const response = await main.ContactAdd({
+        ...form,
+        ...utms,
+        page_name: router?.pathname
       });
-      setOtpSent(false);
-      setIsVerified(false);
 
+      if (response?.data?.status) {
+        toast.success(response.data.message);
+        setIsSubmitting(true);
+        // Reset form
+        setForm({ name: '', phone_number: '', email: '', content: '', otp: '', course_id: "", city: 'jaipur', state: 'rajasthan', page_name: router?.pathname });
+        setOtpSent(false);
+        setProinsight()
+        setIsVerified(false);
+      } else {
+        toast.error(response.data.message);
+      }
     } catch (error) {
       toast.error("Something went wrong!");
     } finally {
       setLoading(false);
     }
   };
-
+  const utms = getUTMParams();
   // Auto-navigation effect
   useEffect(() => {
     const timer = setTimeout(() => {
