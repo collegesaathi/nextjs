@@ -32,7 +32,7 @@ const KeyHighlights = () => {
   return (
     <div className="max-w-[1200px] mx-auto  py-12 font-sans">
       {/* Main Beige Container */}
-      <div className="bg-[#FFF9F1] rounded-[40px] relative pt-16 pb-12 px-2 lg:px-4 ">
+      <div className="bg-[#FFF9F1] rounded-[40px] relative pt-10  md:pt-20 pb-10 px-2 lg:px-4 ">
         
         {/* Top Header Banner */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[300px] md:w-[450px]">
@@ -45,13 +45,13 @@ const KeyHighlights = () => {
         </div>
 
         {/* Desktop Layout Grid (Hidden on Mobile) */}
-        <div className="hidden lg:grid grid-cols-3 grid-rows-3 gap-y-4 items-center">
+        <div className="hidden lg:grid grid-cols-3  gap-y-1 items-center">
           
           {/* Central Key Icon */}
           <div className="col-start-2 row-start-2 flex justify-center z-10">
             <div className="relative">
                 {/* Glow Effect */}
-                <div className="absolute inset-0 bg-[#FFF5F5] rounded-full "></div>
+               
                 <img 
                     src="/images/programs/key.svg" // Replace with your actual key asset
                     alt="Key Icon" 
@@ -69,10 +69,8 @@ const KeyHighlights = () => {
         </div>
 
         {/* Mobile Layout (Stacked) */}
-        <div className="lg:hidden flex flex-col gap-10 mt-8">
-            <div className="flex justify-center mb-4">
-                <img src="/images/programs/key-icon.png" alt="Key" className="w-32 h-32 object-contain" />
-            </div>
+        <div className="lg:hidden flex flex-col gap-6 mt-8">
+          
             {highlights.map((item, index) => (
                 <HighlightCard key={index} title={item.title} description={item.description} />
             ))}
@@ -96,7 +94,7 @@ const KeyHighlights = () => {
 const HighlightCard = ({ title, description }) => (
   <div className="relative pt-5 group h-full">
     {/* Red Header Pill */}
-    <div className="absolute -top-1 left-1/2 -translate-x-1/2 bg-gradient-to-b from-[#E31C22] to-[#BF1318] text-white px-6 py-2 leadinf-[22px] rounded-full text-[14px] md:text-[16px] font-[600] whitespace-nowrap z-30 shadow-md group-hover:scale-105 transition-transform">
+    <div className="absolute -top-1 left-1/2 -translate-x-1/2 bg-gradient-to-b from-[#E31C22] to-[#BF1318] text-white px-6 py-2 leadinf-[22px] rounded-full text-[12px] md:text-[16px] font-[600] whitespace-nowrap z-30 shadow-md group-hover:scale-105 transition-transform line-clamp-1 ">
       {title}
     </div>
     

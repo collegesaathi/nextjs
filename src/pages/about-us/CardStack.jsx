@@ -5,19 +5,19 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const CARDS = [
   { 
-    id: 1, name: "KAVHOLM", textColor: "white",   img:"/images/about/card1.png",accent: ["#658554ff"],
+    id: 1, name: "KAVHOLM", textColor: "white",   img:"/images/about/Greencard.svg",accent: ["#658554ff"],
     gradient: "linear-gradient(135deg, #fcfdffff 0%, #f3f6f8ff 50%, #f2f7f5ff 100%)" 
   },
   { 
-    id: 2, name: "powdur", textColor: "black", img:"/images/about/card2.png", accent: ["#6B69DC"],
+    id: 2, name: "powdur", textColor: "black", img:"/images/about/purplecard.svg", accent: ["#6B69DC"],
     gradient: "linear-gradient(135deg, #fcfdffff 0%, #f3f6f8ff 50%, #f2f7f5ff 100%)" 
   },
   { 
-    id: 3, name: "ROCKET RIDES", textColor: "white",  img:"/images/about/card3.png",accent: ["#F3D9C7"],
+    id: 3, name: "ROCKET RIDES", textColor: "white",  img:"/images/about/orangecard.svg",accent: ["#F3D9C7"],
     gradient: "linear-gradient(135deg, #fcfdffff 0%, #f3f6f8ff 50%, #f2f7f5ff 100%)" 
   },
   { 
-    id: 4, name: "ABSTRACT", textColor: "white",  img:"/images/about/card2.png", accent: ["#F1EFE9"],
+    id: 4, name: "ABSTRACT", textColor: "white",  img:"/images/about/graycard.svg", accent: ["#F1EFE9"],
     gradient: "linear-gradient(135deg, #f7f7faff 0%rgba(241, 241, 245, 1)d9 50%, #f6f7f8ff 100%)" 
   },
 ];

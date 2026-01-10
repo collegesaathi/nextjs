@@ -26,6 +26,7 @@ import TopRecruiters from "./TopRecruiters";
 import FutureTrends from "./FutureTrends";
 import BestUniversities from "./BestUniversities";
 import ConclusionFAQ from "./ConclusionFAQ";
+import ProgramFuture from "./ProgramFuture";
 
 export default function Index() {
     return (
@@ -40,8 +41,9 @@ export default function Index() {
                 <InfoSection />
                 <AcademicValueSection />
                 <WhyPursue />
-                {/* <KeyHighlights /> */}
+                <KeyHighlights />
                 <YoutubePlayer  videoId="dQw4w9WgXcQ" />
+                <ProgramFuture />
                 <UniversityTable />
                 <ConnectExpertForm />
                 <CollegesathiAdvantages  bgColor="#FFFBE6" sideBgColor="#FFEDCC" />
