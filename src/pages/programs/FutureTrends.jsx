@@ -42,6 +42,17 @@ const FutureTrends = () => {
     { id: 'evolution', label: 'Evolution of Management Education Innovations' }
   ];
 
+
+
+   const points = [
+    "Professionals looking for growth in career without changing jobs",
+    "Online MBA degrees provide flexibility, affordability, and relevant work skills.",
+    "A preference for MBA-qualified HR leaders has been witnessed by employers.",
+    "The skill gap between the classical roles in HR functions and the contemporary outlook in HR that is challenging",
+    "professionals to upskill."
+  ];
+
+
   return (
     <div className="max-w-[1230px] mx-auto font-poppins text-[#282529] py-12 md:px-0">
       {/* Header Section */}
@@ -107,6 +118,49 @@ const FutureTrends = () => {
         <p className="text-[#282529] text-[16px] leading-[28px] font-[400]">
           {contentData[activeTab].footer}
         </p>
+      </div>
+
+
+
+        <div className="bg-[linear-gradient(to_right,rgba(243,106,106,0.25),rgba(255,241,241,1))] border border-[#FEE2E2] rounded-[24px] overflow-hidden py-6 md:py-10 mt-6 relative max-w-6xl mx-auto ">
+        
+        {/* Arrow Header */}
+        <div className="relative mb-8">
+          <div 
+            className="bg-[linear-gradient(to_right,#E64545,#F6A3A3)] text-white py-3 px-6 inline-block font-[600] text-[16px] md:text-[20px] leading-tight"
+            style={{
+              clipPath: 'polygon(0% 0%, 95% 0%, 100% 50%, 95% 100%, 0% 100%)',
+              paddingRight: '60px' // Extra space for the arrow point
+            }}
+          >
+            Why This Directly Increases Demand for Online MBA in HR Management
+          </div>
+        </div>
+
+        {/* Content Section */}
+        <div className="space-y-6 px-6">
+          <p className="text-[#282529] text-[16px] leading-[26px]">
+            The increase of demand of HR Professionals increases the demand of the professional course offering HR skills. The following are the main reasons leading to the increase in demand.
+          </p>
+
+          <div className="w-full h-[1px] bg-[#FEE2E2] my-4"></div>
+
+          {/* Bullet List with Plus Icons */}
+          <ul className="space-y-4 list-disc px-10 marker:text-[#DF5F5F] ">
+            {points.map((text, index) => (
+              <li key={index} className="items-start  gap-3">
+        
+                <span className="text-[#282529] text-[16px] leading-[24px]">
+                  {text}
+                </span>
+              </li>
+            ))}
+          </ul>
+
+          <p className="text-[#282529] text-[16px] leading-[26px] mt-6">
+            With an increasing trend being observed in more strategic HR roles, participation in Online MBA in HR Management programs is also increasing.
+          </p>
+        </div>
       </div>
     </div>
   );

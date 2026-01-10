@@ -46,7 +46,7 @@ const advantageSlides = [
   }
 ];
 
-const CollegesathiAdvantages = () => {
+const CollegesathiAdvantages = ({ bgColor, sideBgColor }) => {
   return (
     <div className="max-w-[1200px] mx-auto  py-3 my-12 font-poppins text-[#282529]">
       <div className="flex flex-col md:flex-row w-full md:gap-24 items-start">
@@ -129,8 +129,8 @@ The following are the reasons why you should choose CollegeSathi to be your educ
 
 
             </p>
-          <div className="bg-[#FFFBE6] rounded-[12px] overflow-hidden flex flex-col sm:flex-row min-h-[220px]  mt-4">
-            <div className="w-full sm:w-[40%] p-6 space-y-4 bg-[#FFEDCC] flex flex-col justify-center text-[14px]">
+          <div className=" rounded-[12px] overflow-hidden flex flex-col sm:flex-row min-h-[220px]  mt-4"style={{ backgroundColor: bgColor }}>
+            <div className="w-full sm:w-[40%] p-6 space-y-4  flex flex-col justify-center text-[14px]"style={{ backgroundColor: sideBgColor }}>
                <div className="text-gray-600 font-medium px-4">Educational Qualification</div>
                <div className="bg-white text-[#282529] font-bold py-3 px-6 rounded-xl shadow-sm border border-orange-100">Grades</div>
                <div className="text-gray-600 font-medium px-4">Work Experience</div>

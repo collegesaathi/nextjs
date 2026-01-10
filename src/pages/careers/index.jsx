@@ -7,6 +7,7 @@ import CultureBenefits from "./CultureBenefits";
 import OfficeSection from "./OfficeSection";
 import Link from "next/link";
 import Head from 'next/head'
+import Image from "next/image";
 
 
 function Index() {
@@ -36,7 +37,7 @@ function Index() {
         setMousePos({ x: e.clientX, y: e.clientY });
     };
 
-    return (<>
+    return (< section className="bg-[#F4F5F6]">
         <Head>
             <title>Careers at Collegesathi | Join India’s Growing EdTech Platform</title>
             <meta
@@ -52,7 +53,8 @@ function Index() {
 
         <Layout>
 
-            <div className="mx-auto container sm:container md:container xl:max-w-[1230px]  md:px-4 py-4 md:mt-20 lg:mt-20 ">
+            <div className=" mx-auto container sm:container md:container xl:max-w-[1230px]  md:px-4 py-4 md:pt-20 lg:pt-20 ">
+              
 
 
   <div className="  px-2 md:px-4 py-4 text-sm text-gray-500 mt-6">
@@ -63,7 +65,7 @@ function Index() {
                     </nav>
                 </div>
 
-                <section className="py-8 md:py-10 bg-white text-center">
+                <section className="py-8 md:py-10  text-center">
                     <div className="max-w-4xl mx-auto px-2 sm:px-6 lg:px-8">
                         <h1 className="text-[26px] md:text-[60px] font-[600] text-[#282529] font-poppins leading-tight mb-6">
                             Build Your Career with Collegesathi
@@ -79,10 +81,10 @@ function Index() {
                         </Link>
                     </div>
                 </section>
-               <section className="bg-white py-10 md:py-10">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+               <section className=" py-10 md:py-10">
+            <div className="max-w-7xl mx-auto px-2 md:px-6 lg:px-8">
                 <div 
-                    className="relative w-full h-[300px] md:h-[574px] overflow-hidden rounded-xl shadow-2xl cursor-none group"
+                    className="relative w-full h-[200px] md:h-[574px] overflow-hidden rounded-xl shadow-2xl cursor-none group"
                     onClick={handleVideoClick}
                     onMouseMove={handleMouseMove}
                     onMouseEnter={() => setIsHovering(true)}
@@ -132,7 +134,7 @@ function Index() {
 
         </Layout>
 
-    </>);
+    </section>);
 }
 
 export default Index;

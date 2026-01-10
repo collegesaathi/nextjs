@@ -9,6 +9,7 @@ import grostart from "../assets/home/Groupstart.png"
 import Image from 'next/image'
 import ContactFloatingButton from '@/common/ContactFloatingButton'
 import ChatBot from '@/common/ChatBot'
+import Link from 'next/link'
 export default function Footer() {
   useEffect(() => {
     // AOS initialization (if you're using AOS)
@@ -153,9 +154,9 @@ export default function Footer() {
               transition-colors duration-200
             "
                     >
-                      <a href="#" className="flex items-center justify-center w-full h-full">
+                      <Link href="#" className="flex items-center justify-center w-full h-full">
                         <SocialIcon platform={platform} />
-                      </a>
+                      </Link>
                     </li>
                   ))}
                 </ul>
@@ -203,7 +204,7 @@ export default function Footer() {
       ">
                   {companyLinks.map((link, index) => (
                     <li key={index} className="relative flex">
-                      <a
+                      <Link
                         href={link.href}
                         className="hover:text-gray-300 transition gap-2"
                       >
@@ -216,7 +217,7 @@ export default function Footer() {
                             {link.badge}
                           </span>
                         )}
-                      </a>
+                      </Link>
                     </li>
 
                   ))}
@@ -237,9 +238,9 @@ export default function Footer() {
       ">
                   {quickLinks.map((link, index) => (
                     <li key={index} className={link.span ? 'col-span-2' : ''}>
-                      <a href={link.href} className="hover:text-gray-300 transition">
+                      <Link href={link.href} className="hover:text-gray-300 transition">
                         {link.text}
-                      </a>
+                      </Link>
                     </li>
                   ))}
                 </ul>
@@ -361,12 +362,12 @@ const ProgramSection = ({ title, links }) => (
     <ul className="font-poppins font-[400] text-[14px] leading-[38px] tracking-[0px] text-white space-y-2">
       {links.map((link, index) => (
         <li key={index}>
-          <a
+          <Link
             href={link.href}
             className="hover:text-gray-300 transition-colors duration-200"
           >
             {link.text}
-          </a>
+          </Link>
         </li>
       ))}
     </ul>
@@ -383,12 +384,12 @@ const SpecializationSection = ({ title, links }) => (
     <ul className="font-poppins font-[400] text-[14px] leading-[38px] tracking-[0px] text-white space-y-2">
       {links.map((link, index) => (
         <li key={index}>
-          <a
+          <Link
             href={link.href}
             className="hover:text-gray-300 transition-colors duration-200"
           >
             {link.text}
-          </a>
+          </Link>
         </li>
       ))}
     </ul>
@@ -404,12 +405,12 @@ const DetailedSpecializationSection = ({ title, items }) => (
     <ul className="font-poppins font-[400] text-[14px] leading-[38px] tracking-[0px] text-white space-y-2">
       {items.map((link, index) => (
         <li key={index}>
-          <a
-            href={link.href}
+          <Link
+            href="#"
             className="hover:text-gray-300 transition-colors duration-200"
           >
             {link}
-          </a>
+          </Link>
         </li>
       ))}
     </ul>

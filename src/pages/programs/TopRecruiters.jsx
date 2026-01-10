@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Grid, A11y } from "swiper/modules";
+import { Navigation, Pagination, Grid, A11y,Autoplay } from "swiper/modules";
 import BackNext from "@/pages/components/BackNext";
 
 // Import Swiper styles (Required for functionality)
@@ -81,32 +81,44 @@ const TopRecruiters = () => {
 
             <div className="bg-[#F7F6F6] rounded-[17px] p-2 md:p-6 ">
           
-          <Swiper
-            onSwiper={(swiper) => (swiperRef.current = swiper)}
-            onSlideChange={updateStatus}
-            modules={[Grid, Pagination, Navigation, A11y]}
-            slidesPerView={3}
-            slidesPerGroup={3}
-            grid={{ rows: 2, fill: "row" }}
-            spaceBetween={15}
-            pagination={{
-              el: '.recruiters-pagination',
-              clickable: true,
-            }}
-            breakpoints={{
-              640: { slidesPerView: 8, slidesPerGroup: 8 },
-              1024: { slidesPerView: 8, slidesPerGroup: 8 },
-            }}
-            className="recruiters-swiper-container  "
-          >
-            {recruitersJSON.logos.map((logo) => (
-              <SwiperSlide key={logo.id} className="!h-auto ">
-                <div className="bg-white rounded-[15px] h-[80px] md:h-[110px] flex items-center justify-center p-4 shadow-sm">
-                  <img src={logo.img} alt="logo" className="max-h-full max-w-full object-contain" />
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
+       <Swiper
+  onSwiper={(swiper) => (swiperRef.current = swiper)}
+  onSlideChange={updateStatus}
+  modules={[Grid, Pagination, Navigation, A11y, Autoplay]}
+  slidesPerView={3}
+  slidesPerGroup={3}
+  grid={{ rows: 2, }}
+  spaceBetween={15}
+
+  autoplay={{
+    delay: 2000,              // 2 sec me auto scroll
+    disableOnInteraction: false,
+    pauseOnMouseEnter: true,  // hover par ruk jaye
+  }}
+
+  loop={true}                 // continuous scroll
+  pagination={{
+    el: ".recruiters-pagination",
+    clickable: true,
+  }}
+  breakpoints={{
+    640: { slidesPerView: 8, slidesPerGroup: 8 },
+    1024: { slidesPerView: 8, slidesPerGroup: 8 },
+  }}
+  className="recruiters-swiper-container"
+>
+  {recruitersJSON.logos.map((logo) => (
+    <SwiperSlide key={logo.id} className="!h-auto">
+      <div className="bg-white rounded-[15px] h-[80px] md:h-[110px] flex items-center justify-center p-4 shadow-sm">
+        <img
+          src={logo.img}
+          alt="logo"
+          className="max-h-full max-w-full object-contain"
+        />
+      </div>
+    </SwiperSlide>
+  ))}
+</Swiper>
           </div>
 
           {/* Navigation Dots (Centered at bottom) */}

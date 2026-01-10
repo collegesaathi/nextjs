@@ -26,8 +26,9 @@ import TopRecruiters from "./TopRecruiters";
 import FutureTrends from "./FutureTrends";
 import BestUniversities from "./BestUniversities";
 import ConclusionFAQ from "./ConclusionFAQ";
+import ProgramFuture from "./ProgramFuture";
 
-export default function TermsConditions() {
+export default function Index() {
     return (
         <Layout>
             <div className="mx-auto    px-2 md:px-4 py-4 md:mt-20 lg:mt-20 ">
@@ -40,11 +41,12 @@ export default function TermsConditions() {
                 <InfoSection />
                 <AcademicValueSection />
                 <WhyPursue />
-                {/* <KeyHighlights /> */}
+                <KeyHighlights />
                 <YoutubePlayer  videoId="dQw4w9WgXcQ" />
+                <ProgramFuture />
                 <UniversityTable />
                 <ConnectExpertForm />
-                <CollegesathiAdvantages />
+                <CollegesathiAdvantages  bgColor="#FFFBE6" sideBgColor="#FFEDCC" />
                 <WorkExperienceRequirement />
                 <Durations />
                 <FinancialAidSection />

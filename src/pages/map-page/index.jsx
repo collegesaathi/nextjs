@@ -100,9 +100,9 @@ function Sitemap() {
         </Head>
     <Layout>
 
-          <div className=" block lg:hidden absolute top-0 left-0 w-[100%] h-[40%] z-0 pointer-events-none">
+          <div className=" block lg:hidden absolute top-0 left-0 w-[100%] h-[60%] z-[-10] pointer-events-none">
           <Image
-            src="/images/sitemap.webp"
+            src="/images/mobilewave.webp"
             alt="Background Wave"
             fill
             className="object-cover object-bottom"
@@ -114,7 +114,7 @@ function Sitemap() {
   
         <div className=" hidden lg:block absolute top-0 left-0 w-full h-[100%] z-0 pointer-events-none">
           <Image
-            src="/images/wave.png"
+            src="/images/wavebanner.webp"
             alt="Background Wave"
             fill
             className="object-cover object-bottom"
@@ -137,7 +137,7 @@ function Sitemap() {
           </h1>
 
           {/* Navigation Tabs */}
-          <div className="flex flex-wrap gap-6 md:gap-16">
+          <div className="flex  gap-4 md:gap-16">
             {sitemapTabs.map((tab) => (
               <button
                 key={tab}
@@ -156,7 +156,7 @@ function Sitemap() {
       </div>
 
       {/* --- CONTENT SECTION --- */}
-      <div className="max-w-7xl mx-3 xl:mx-auto md:mt-10 mb-5 bg-white rounded-xl p-8 shadow-[0px_0px_20px_rgba(0,0,0,0.05)]">
+      <div className="max-w-7xl mx-3 xl:mx-auto md:mt-10 mb-5 bg-white rounded-xl p-4 md:p-8 shadow-[0px_0px_20px_rgba(0,0,0,0.05)]">
         {activeTab === "Programs" && (
           <>
             <h2 className="text-[20px] md:text-[28px] font-[700] border-b border-[#BDBDBD] py-4 mb-6">
