@@ -128,10 +128,11 @@ function Eligibility({ eligibilitycriteria }) {
                   {/* Foreign */}
                   {activeTab === "foreign" && hasForeign &&
                     renderCards(foreignData)}
-
                 </div>
               </div>
             </div>
+
+                     <div className="custom-description mt-3 mb-2" dangerouslySetInnerHTML={{ __html: sanitizeHtml(eligibilitycriteria?.notes || "") }} />
 
           </div>
 

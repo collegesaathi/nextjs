@@ -1,7 +1,8 @@
 import Heading from "@/common/Heading";
+import { sanitizeHtml } from "@/common/sanitizeHtml";
 import Link from "next/link";
 
-function CourseFees({ courseData, slug, feesDesc }) {
+function CourseFees({ courseData, slug, feesDesc ,feesnotes }) {
     const showPerSemester = courseData?.some(
         (row) => row?.fees?.semester_wise_fees
     );
@@ -87,6 +88,9 @@ function CourseFees({ courseData, slug, feesDesc }) {
 
                         </table>
                     </div>
+
+                     <div className="custom-description" dangerouslySetInnerHTML={{ __html: sanitizeHtml(feesnotes || "") }} />
+                    
                 </div>
 
 

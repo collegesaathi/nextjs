@@ -2,7 +2,7 @@ import Heading from "@/common/Heading";
 import { sanitizeHtml } from "@/common/sanitizeHtml";
 
 function UpdatedFee({ fees }) {
-  console.log("fees", fees) 
+  console.log("fees", fees)
   const feeItems = [
     fees?.tuition_fees && {
       label: "Total Tuition Fee",
@@ -28,10 +28,10 @@ function UpdatedFee({ fees }) {
       <div className="max-w-[1230px]">
         <Heading title={fees?.fees_title} />
 
-         <div
-                        className="ont-poppins text-[14px] sm:text-[16px] text-[#282529] leading-6 sm:leading-7 mb-4 break-words whitespace-normal"
-                        dangerouslySetInnerHTML={{ __html: sanitizeHtml(fees?.fees_desc || "") || "" }}
-                      />
+        <div
+          className="custom-description mb-2 "
+          dangerouslySetInnerHTML={{ __html: sanitizeHtml(fees?.fees_desc || "") || "" }}
+        />
 
         <div className="bg-[#FEE4E4] p-5 sm:p-10 font-poppins rounded-[18px]">
 
@@ -84,6 +84,11 @@ function UpdatedFee({ fees }) {
           )}
 
         </div>
+
+        <div
+          className="custom-description mb-2 mt-3"
+          dangerouslySetInnerHTML={{ __html: sanitizeHtml(fees?.fees_notes || "") || "" }}
+        />
       </div>
     </section>
   );

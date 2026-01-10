@@ -117,6 +117,7 @@ function Index() {
         approvals_desc: "",
         advantagesdescription: "",
         advantagesname: "",
+        finacial_notes:"",
         certificatemage: "",
         certificatedescription: "",
         certificatename: "",
@@ -226,6 +227,7 @@ function Index() {
             payload.append("patterndescription", formData.patterndescription || "");
             payload.append("bottompatterndesc", formData.bottompatterndesc || "");
             payload.append("pdf_download", formData.pdf_download || "");
+            payload.append("finacial_notes", formData.finacial_notes || "");
             payload.append("approvals_name", formData.approvals_name || "");
             payload.append("approvals_desc", formData.approvals_desc || "");
             payload.append("rankings_description", formData.rankings_description || "");

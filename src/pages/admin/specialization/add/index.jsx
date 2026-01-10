@@ -764,7 +764,7 @@ function Index() {
                     )}
 
                     {activeTab === "fees" && (
-                        <AddFees handleChange={handleChange} formData={formData} />
+                        <AddFees handleChange={handleChange} formData={formData} handleQuillChange={handleQuillChange} />
                     )}
 
                     {activeTab === "approvals" && (

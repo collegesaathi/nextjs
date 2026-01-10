@@ -2,7 +2,7 @@ import Heading from "@/common/Heading";
 import { sanitizeHtml } from "@/common/sanitizeHtml";
 
 function Advantages({ advantages }) {
-
+console.log("advantages" ,advantages)
     return (
         <>
             {advantages?.title && (
@@ -43,7 +43,7 @@ function Advantages({ advantages }) {
                                                 <div
                                                     className=" break-words whitespace-normal text-[12px] md:text-[17px] font-[400] text-[#363535] leading-relaxed  line-clamp-4 md:line-clamp-none"
                                                     dangerouslySetInnerHTML={{
-                                                        __html: sanitizeHtml(advantages?.description || ""),
+                                                        __html: sanitizeHtml(advantage?.description || ""),
                                                     }}
                                                 />
                                             </div>

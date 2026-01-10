@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 function Financial({ financialAid, name }) {
   const router = useRouter();
   const universitySlug = router.query.universitySlug;
-  const scholarshipData =  scholarship?.[universitySlug] || [];
+  const scholarshipData = scholarship?.[universitySlug] || [];
   console.log("University Slug:", universitySlug);
   console.log("Scholarship Data:", scholarshipData);
   console.log(name)
@@ -129,6 +129,11 @@ function Financial({ financialAid, name }) {
                 </div>
               )}
 
+
+              <div
+                className="mt-3 font-poppins text-[14px] sm:text-[16px] text-[#282529] leading-6 sm:leading-7 mb-4 custom-description"
+                dangerouslySetInnerHTML={{ __html: sanitizeHtml(financialAid?.notes || "") || "" }}
+              />
             </div>
           </section>
         </div>

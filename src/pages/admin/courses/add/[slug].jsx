@@ -521,12 +521,12 @@ indianArray.forEach((item, index) => {
             rankings_name: data?.rankings?.title,
             rankings_description: data?.rankings?.description,
             creteria: data?.eligibilitycriteria?.title,
-            creteria: data?.eligibilitycriteria?.title,
-
+               finacial_notes: data?.financialAid?.notes,
             desccreteria: data?.eligibilitycriteria?.desccreteria,
             notescreteria:data?.eligibilitycriteria?.notes ,
             advantagesname: data?.advantages?.title,
             advantagesdescription: data?.advantages?.description,
+            semesters_notes : data?.curriculum?.note,
             factsname: data?.facts?.title,
             certificatedescription: data?.certificates?.description,
             certificatename: data?.certificates?.title,
@@ -554,6 +554,7 @@ indianArray.forEach((item, index) => {
             canonical_url: data?.seo?.canonical_url,
             Id: data?.id,
             fees_desc : data?.fees?.fees_desc,
+            fees_notes : data?.fees?.fees_notes,
             icon_alt: data?.icon_alt,
             cover_image_alt: data?.cover_image_alt,
             careerdesc: data?.career?.description,
@@ -905,7 +906,7 @@ indianArray.forEach((item, index) => {
                     )}
 
                     {activeTab === "fees" && (
-                        <AddFees handleChange={handleChange} formData={formData} />
+                        <AddFees handleChange={handleChange} formData={formData} handleQuillChange={handleQuillChange} />
                     )}
 
                     {activeTab === "approvals" && (

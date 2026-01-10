@@ -62,6 +62,7 @@ function Index() {
         approvals_desc: "",
         advantagesdescription: "",
         advantagesname: "",
+        finacial_notes:"",
         certificatemage: "",
         certificatedescription: "",
         certificatename: "",
@@ -178,7 +179,9 @@ function Index() {
             patterndescription: safeData.examPatterns?.description,
             bottompatterndesc: safeData.examPatterns?.bottompatterndesc,
             financialname: safeData.financialAid?.title,
+            notescreteria: data?.eligibilitycriteria?.notes,
             financialdescription: safeData.financialAid?.description,
+            finacial_notes: safeData.financialAid?.notes,
             partnersname: safeData.partners?.title,
             partnersdesc: safeData.partners?.description,
             servicetitle: safeData.services?.title,
@@ -725,7 +728,6 @@ function Index() {
                                 <div>
                                     <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
                                         Slug{" "}
-
                                     </label>
                                     <input
                                         type="text"

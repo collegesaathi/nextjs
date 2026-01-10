@@ -528,6 +528,9 @@ function Index() {
             rankings_name: data?.rankings?.title,
             rankings_description: data?.rankings?.description,
             creteria: data?.eligibilitycriteria?.title,
+                     semesters_notes : data?.curriculum?.note,
+            notescreteria: data?.eligibilitycriteria?.notes,
+            finacial_notes: data?.financialAid?.notes,
             desccreteria: data?.eligibilitycriteria?.description,
             advantagesname: data?.advantages?.title,
             advantagesdescription: data?.advantages?.description,
@@ -538,6 +541,7 @@ function Index() {
             skillname: data?.skills?.title,
             skilldesc: data?.skills?.description,
             semesters_title: data?.curriculum?.title,
+            fees_notes : data?.fees?.fees_notes,
             image_alt: data?.certificates?.image_alt,
             patternname: data?.examPatterns?.title,
             patterndescription: data?.examPatterns?.description,
@@ -889,7 +893,7 @@ function Index() {
                     )}
 
                     {activeTab === "fees" && (
-                        <AddFees handleChange={handleChange} formData={formData} />
+                        <AddFees handleChange={handleChange} formData={formData} handleQuillChange={handleQuillChange} />
                     )}
 
                     {activeTab === "approvals" && (

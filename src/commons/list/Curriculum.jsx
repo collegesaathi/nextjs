@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Heading from "@/common/Heading";
 import { TiArrowSortedDown } from "react-icons/ti";
+import { sanitizeHtml } from "@/common/sanitizeHtml";
 function Curriculum(curriculum) {
   const [openIndex, setOpenIndex] = useState(0);
   const toggleAccordion = (index) => {
@@ -59,8 +60,11 @@ function Curriculum(curriculum) {
             </div>
 
           </div>
+          <div className="custom-description mt-3 mb-2" dangerouslySetInnerHTML={{ __html: sanitizeHtml(curriculum?.curriculum?.notes || "") }} />
         </section>
       )}
+
+
     </>
   );
 }
