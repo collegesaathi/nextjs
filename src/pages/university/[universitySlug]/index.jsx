@@ -52,6 +52,30 @@ export default function UniversityPage({ data }) {
     if (uniId) fetchCourse(uniId);
   }, [uniId]);
 
+  const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://www.collegesathi.com/university/nmims-online/online-mba#webpage",
+      "url": "https://www.collegesathi.com/university/nmims-online/online-mba",
+      "name": "NMIMS Online MBA: Fees, Eligibility, Admission & Specializations",
+      "headline": "NMIMS Online MBA: Fees, Eligibility, Admission & Specializations",
+      "description": "NMIMS Online MBA is a two-year online postgraduate management program designed for working professionals and graduates who want to build modern management and leadership skills with flexible learning and industry-relevant specializations.",
+      "isPartOf": {
+        "@id": "https://www.collegesathi.com/#website"
+      },
+      "publisher": {
+        "@id": "https://www.collegesathi.com/#organization"
+      },
+      "mainEntity": {
+        "@id": "https://www.collegesathi.com/university/nmims-online/online-mba#course"
+      }
+    }
+  ]
+};
+
+
   return (
     <>
       <Head>
