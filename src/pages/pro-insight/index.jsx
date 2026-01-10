@@ -257,7 +257,6 @@ export default function CourseSelectionWizard() {
   const [degreesData, setDegreesData] = useState([]); // Store Degree API response
   const [coursesData, setCoursesData] = useState([]); // Store Course API response
   const [specializationsData, setSpecializationsData] = useState([]); // Store Specialization API response
-  console.log("coursesData", coursesData)
   // Selections Steps 4-5
   const [studyHours, setStudyHours] = useState(null);
   const [scorePercentage, setScorePercentage] = useState(null);
@@ -307,7 +306,6 @@ export default function CourseSelectionWizard() {
 
   const currentItems = getItemsToDisplay();
   const [proinsight, setProinsight] = useState("");
-  console.log("proinsight", proinsight)
   // Progress Bar Logic
   const progressWidth = `${(step / 10) * 100}%`;
 
@@ -411,7 +409,6 @@ Scholarship Category: ${scholarshipCat}
         try {
           const main = new Listing();
           const response = await main.ProCourseInsight(selectedDegree);
-          console.log("response", response)
           if (response) {
             setCoursesData(response?.data?.data);
           }

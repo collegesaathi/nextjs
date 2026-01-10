@@ -1,4 +1,5 @@
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 function Add() {
   // yahan existing link aayega (edit ke time)
@@ -9,16 +10,14 @@ function Add() {
     e.preventDefault();
 
     if (!videoLink) {
-      alert("Please enter video link");
+      toast.error("Please enter video link");
       return;
     }
 
     if (isEdit) {
-      console.log("Updated Video Link:", videoLink);
-      alert("Video link updated");
+      toast.error("Video link updated");
     } else {
-      console.log("Added Video Link:", videoLink);
-      alert("Video link added");
+      toast.error("Video link added");
       setIsEdit(true); // add ke baad edit mode
     }
   };

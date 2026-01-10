@@ -10,15 +10,9 @@ import { useRouter } from "next/router";
 import Listing from "@/pages/api/Listing";
 function Approvals({ approvals, approvalsdata }) {
     const router = useRouter()
-    console.log("router", router)
     const slug = router.query.universitySlug;
 
-
-    console.log("slug", slug)
-
-
     const [courseData, setCourseData] = useState([]);
-    console.log("courseData" ,courseData)
     const [Loading, setLoading] = useState(false);
     const fetchCourse = async (uniId) => {
         setLoading(true)

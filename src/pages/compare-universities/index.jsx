@@ -14,7 +14,6 @@ export default function CompareComponent() {
   const [universities, setUniversities] = useState([])
   const [Courseuniversities, setCourseUniversities] = useState([])
 
-  console.log("universities" ,universities)
   const {
     selectedUnis,
     isCompareOpen,

@@ -29,10 +29,7 @@ import UpdatedFee from "@/commons/list/UpdatedFee";
 function Index() {
     const router = useRouter();
     const id = router.query.slug;
-    console.log(id);
     const [data, setData] = useState("");
-
-    console.log(data)
     useEffect(() => {
         if (!id) return; // wait for router to provide slug
 

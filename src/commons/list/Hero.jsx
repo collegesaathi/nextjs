@@ -7,7 +7,6 @@ const descText =
   data?.university?.description?.[0]?.text ||
   "";
 
-    console.log("descText" ,descText)
 
   return (
     <div className="mt-8 md:mt-[60px] lg:mt-[90px] ">

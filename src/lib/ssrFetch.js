@@ -4,9 +4,6 @@ export async function fetchDetails(context, type) {
   try {
     const query = context?.query || {};
     const params = context?.params || {};
-console.log("SSR TYPE:", type);
-console.log("QUERY:", context.query);
-console.log("PARAMS:", context.params);
 
     const universitySlug =
       query?.universitySlug || params?.universitySlug || null;

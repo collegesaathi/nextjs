@@ -28,15 +28,12 @@ function Index() {
     const router = useRouter()
     const Id = router.query.slug;
     const university_id = router?.query?.university_id
-    const [universities, setUniversities] = useState("")
-    console.log("universities", universities)
     const [categroy, setCategroy] = useState([])
     const [data, setData] = useState("")
     const fetchData = async () => {
         try {
             const main = new Listing();
             const response = await main.CategroyAll();
-            console.log("response", response)
             setCategroy(response?.data?.data)
             setFormData({
                 university_id: university_id

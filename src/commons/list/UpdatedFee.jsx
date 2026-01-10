@@ -2,7 +2,6 @@ import Heading from "@/common/Heading";
 import { sanitizeHtml } from "@/common/sanitizeHtml";
 
 function UpdatedFee({ fees }) {
-  console.log("fees", fees)
   const feeItems = [
     fees?.tuition_fees && {
       label: "Total Tuition Fee",

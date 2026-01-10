@@ -9,20 +9,15 @@ import { useRouter } from "next/router";
 import Listing from "@/pages/api/Listing";
 
 export default function CareerServices({ services }) {
-   const router = useRouter()
-    console.log("router", router)
     const slug = router.query.universitySlug;
-    console.log("slug", slug)
 
     const [ServciesData, setServciesData] = useState([]);
-    console.log("ServciesData   " ,ServciesData)
     const [Loading, setLoading] = useState(false);
     const fetchCourse = async (uniId) => {
         setLoading(true)
         try {
             const main = new Listing();
             const response = await main.UniServices(uniId);
-            console.log("response" ,response)
             setServciesData(response?.data?.data)
         }
         catch (error) {

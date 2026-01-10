@@ -31,9 +31,6 @@ export default function SearchBar() {
             try {
                 const api = new Listing();
                 const response = await api.UniversitySearch(searchQuery);
-
-                console.log("Search Results:", response.data);
-
                 const foundUniversities = response.data?.data?.universities || [];
                 setResults(foundUniversities);
             } catch (error) {

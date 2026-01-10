@@ -7,7 +7,6 @@ import SVGIcon from "@/common/SVGIcon";
 import { sanitizeHtml } from "@/common/sanitizeHtml";
 
 function Eligibility({ eligibilitycriteria }) {
-  console.log("eligibilitycriteria", eligibilitycriteria)
   const [activeTab, setActiveTab] = useState("indian"); // default tab
 
   const indianData = eligibilitycriteria?.IndianCriteria || [];

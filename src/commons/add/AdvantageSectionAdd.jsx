@@ -29,10 +29,6 @@ export default function AdvantageSectionAdd({ setAdvantages, advantages, htitle,
   };
 
   // Save advantage (example)
-  const saveAdvantage = (index) => {
-    console.log("Saving advantage:", advantages[index]);
-    // Add API call here
-  };
 
   // Quill modules & formats
   const quillModules = {

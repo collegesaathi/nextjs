@@ -7,9 +7,6 @@ function Financial({ financialAid, name }) {
   const router = useRouter();
   const universitySlug = router.query.universitySlug;
   const scholarshipData = scholarship?.[universitySlug] || [];
-  console.log("University Slug:", universitySlug);
-  console.log("Scholarship Data:", scholarshipData);
-  console.log(name)
   return (
     <>
       {financialAid?.title && (

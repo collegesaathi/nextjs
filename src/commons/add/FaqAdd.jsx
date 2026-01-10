@@ -25,7 +25,6 @@ function FaqAdd({faqs ,  setFaqs}) {
         setFaqs(updatedFaqs);
     };
 
-    console.log("faqs",faqs)
     return (
         <>
             <div className="flex justify-between items-center mb-5">

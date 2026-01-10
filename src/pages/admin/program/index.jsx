@@ -21,8 +21,6 @@ export default function Index() {
             else { setButtonLoading(true); }
             const main = new Listing();
             const response = await main.AdminPrograms(page);
-
-            console.log("programdata",response)
             if (response.data) {
                 const newData = response.data.data || {};
                 setData((prev) => {

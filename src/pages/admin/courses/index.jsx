@@ -14,7 +14,6 @@ export default function Index() {
     const university_id = router?.query?.university_id
     const [page, setPage] = useState(1);
     const [data, setData] = useState([]);
-    console.log("data" ,data)
     const [buttonLoading, setButtonLoading] = useState(false);
     const [loading, setLoading] = useState(false);
     const fetchData = async (university_id) => {

@@ -13,7 +13,6 @@ import Listing from "@/pages/api/Listing";
 export default function CoursesSwiper({ courseData, title, name,slug }) {
 
   const  router =  useRouter();
-  console.log("router",router)
 
   const swiperRef = useRef(null);
 

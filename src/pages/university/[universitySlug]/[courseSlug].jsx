@@ -31,7 +31,6 @@ import Listing from "@/pages/api/Listing";
 import EnquiryForm from "@/pages/common/EnquiryForm";
 import EnquiryBox from "@/commons/list/EnquiryForm";
 function Index({ data }) {
-    console.log("data"  , data)
     const uniId = data?.CourseData?.id;
     const [loading, setLoading] = useState(false);
     const [courseData, setCourseData] = useState([])
@@ -53,7 +52,6 @@ function Index({ data }) {
         fetchCourse(uniId)
     }, [uniId])
 
-    console.log("data" ,data)
     return (<>
         <Layout>
             <div className=" md:py-8 ">

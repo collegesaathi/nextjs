@@ -28,7 +28,6 @@ export default function ProgramCareer({ setCareers, Careers, htitle, formData, h
         setCareers(Careers.filter((_, i) => i !== index));
     
     };
-    console.log("carrers",Careers)
 
 
 

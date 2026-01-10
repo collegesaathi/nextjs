@@ -51,11 +51,8 @@ export const RoleProvider = ({ children }) => {
     setIsCompareOpen(true);
   };
 
-  console.log("selectedCourses" ,selectedCourses)
   const toggleCourse = (uni) => {
-    console.log("uni"  ,uni)
     const uniId = uni?.id;
-    console.log("uniId" ,uniId)
     if (!uniId) return;
     // safety check
     if (!Array.isArray(course)) {

@@ -28,7 +28,6 @@ import Listing from "@/pages/api/Listing";
 import { fetchDetails } from "@/lib/ssrFetch";
 export default function UniversityPage({ data }) {
   const router = useRouter();
-  console.log("data" ,data)
   const uniId = data?.university?.id;
   const [loading, setLoading] = useState(false);
   const [courseData, setCourseData] = useState([]);

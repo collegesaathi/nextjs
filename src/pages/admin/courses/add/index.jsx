@@ -32,7 +32,6 @@ function Index() {
         try {
             const main = new Listing();
             const response = await main.CategroyAll();
-            console.log("response", response)
             setCategroy(response?.data?.data)
             setFormData({
                 university_id: university_id

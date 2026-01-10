@@ -2,7 +2,6 @@ import Heading from "@/common/Heading";
 import { sanitizeHtml } from "@/common/sanitizeHtml";
 
 function Advantages({ advantages }) {
-console.log("advantages" ,advantages)
     return (
         <>
             {advantages?.title && (
