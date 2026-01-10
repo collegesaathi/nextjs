@@ -50,10 +50,44 @@ export default function UniversityPage({ data }) {
     if (uniId) fetchCourse(uniId);
   }, [uniId]);
 
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "CollegeOrUniversity",
+    "name": data?.university?.name,
+    "url": `https://www.indiaprograms.com/university/${data?.university?.slug}`
+  };
   return (
     <>
       <Head>
-        <title>{data?.university?.name} - University</title>
+        <title>{data?.university?.seo?.meta_title || data?.university?.name} - University</title>
+        <meta
+          name="description"
+          content={
+            data?.university?.seo?.meta_description ||
+            `Get complete details about ${data?.university?.name}, including courses, fees, eligibility, approvals and admission process.`
+          }
+        />
+
+        <meta
+          name="keywords"
+          content={
+            data?.university?.seo?.meta_keywords ||
+            `Get complete details about ${data?.university?.name}, including courses, fees, eligibility, approvals and admission process.`
+          }
+        />
+
+
+        <link
+          rel="canonical"
+          href={`https://www.indiaprograms.com/university/${data?.university?.slug}`}
+        />
+
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(schema),
+          }}
+        />
       </Head>
       <Layout>
         <div className="md:py-8">
@@ -84,7 +118,7 @@ export default function UniversityPage({ data }) {
               )}
 
               {courseData?.data?.length > 0 && (
-                <CourseFees courseData={courseData?.data} slug={`${data?.university?.slug}`} feesDesc = {data?.university?.fees_desc} feesnotes ={data?.university?.fees_notes}   />
+                <CourseFees courseData={courseData?.data} slug={`${data?.university?.slug}`} feesDesc={data?.university?.fees_desc} feesnotes={data?.university?.fees_notes} />
               )}
 
               {data?.university?.approvals && (

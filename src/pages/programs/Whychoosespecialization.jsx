@@ -16,8 +16,6 @@ import {
 const Whychoosespecialization = () => {
 const [active, setActive] = useState(null);
 
-
-
   const details = [
     {
       title: "Flexibility with No Career Break",
