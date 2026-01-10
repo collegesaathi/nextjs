@@ -9,6 +9,7 @@ import { useRouter } from "next/router";
 import Listing from "@/pages/api/Listing";
 
 export default function CareerServices({ services }) {
+    const router =  useRouter();
     const slug = router.query.universitySlug;
 
     const [ServciesData, setServciesData] = useState([]);
