@@ -119,7 +119,7 @@ export default function Universities() {
     return (
         <>
             {/* Desktop Version */}
-            <div className="py-6 px-2 md:px-6 " id="universities-comparison-section">
+            <div className="py-6 px-2 md:px-6 " id="universities-comparison-section"  data-aos="fade-up">
                 <div className=" container sm:container md:container lg:container xl:max-w-[1230px] ">
 
 
@@ -158,7 +158,7 @@ export default function Universities() {
 
                                 return(
                                 <SwiperSlide key={index}>
-                                    <div className="w-full h-[232px] rounded-[10px] border border- [rgba(188,188,188,0.7)] p-3 flex flex-col justify-between items-center">
+                                    <div className="w-full h-[232px] rounded-[10px] border border-[#B2BCBCBC]/30 p-3 flex flex-col justify-between items-center mt-6 ">
 
                                         {/* University Logo */}
                                         <div className="rounded-[14px] h-[81px] bg-white border border-[rgba(188,188,188,0.3)] shadow-[0px_0px_2px_rgba(0,0,0,0.11)] flex items-center justify-center p-3 text-center">

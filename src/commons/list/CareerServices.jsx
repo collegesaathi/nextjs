@@ -60,7 +60,7 @@ export default function CareerServices({ services }) {
     return (
         <>
             {services?.title && (
-                <div className="px-2 md:px-6 py-6 bg-white">
+                <div className="px-2 md:px-6 py-6 bg-white"  data-aos="fade-up" >
                     <section className="w-full  mx-auto" id="career-services-section">
                         <div className="max-w-[1230px]">
                             {/* Desktop */}
@@ -104,7 +104,7 @@ export default function CareerServices({ services }) {
                                 >
                                     {Array.isArray(services?.services) && services?.services?.map((service, index) => (
                                         <SwiperSlide key={index} className="overflow-hidden">
-                                            <div className="w-full bg-white rounded-[30px] transition-all duration-300 group relative cursor-pointer my-3 ">
+                                            <div className="w-full bg-white rounded-[30px] transition-all duration-300 group relative cursor-pointer my-3 " data-aos="flip-left">
                                                 <div className="overflow-hidden rounded-t-[30px]">
                                                     <img
                                                         src={service.image || "/images/new/Group1.webp"}

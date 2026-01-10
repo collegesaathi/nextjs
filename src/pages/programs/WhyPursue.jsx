@@ -83,7 +83,7 @@ const [active, setActive] = useState(null);
   ];
 
   return (
-    <div className="max-w-[1230px] mx-auto  py-12 font-poppins text-[#282529]">
+    <div className="max-w-[1230px] mx-auto  py-6 md:py-10 font-poppins text-[#282529]">
       {/* Header Section */}
       <div className="mb-10">
         <h2 className="text-[20px] md:text-[28px] font-[600] mb-4 leading-[28px]">Why Should I Pursue Online MBA?</h2>

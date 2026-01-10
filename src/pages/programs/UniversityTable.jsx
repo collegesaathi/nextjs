@@ -14,7 +14,7 @@ const UniversityTable = () => {
   ];
 
   return (
-    <div className="max-w-[1230px] mx-auto  py-12 font-sans text-[#282529] font-poppins">
+    <div className="max-w-[1230px] mx-auto py-6 md:py-10 font-sans text-[#282529] font-poppins">
       {/* Heading & Intro */}
       <div className="mb-8">
         <h2 className="text-2xl md:text-[28px] font-[600] mb-4">

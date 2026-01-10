@@ -53,7 +53,7 @@ const PlacementOpportunities = () => {
 
   return (
     <>
-      <div className='max-w-[1230px] mx-auto font-poppins text-[#282529] md:px-4 py-8'>
+      <div className='max-w-[1230px] mx-auto font-poppins text-[#282529] md:px-4 py-6 md:py-10'>
         <div>
           <h2 className="text-[20px] md:text-[28px] font-[600] font-poppins mb-4 leading-[28px]">
             Placement Opportunities After an Online MBA Degree

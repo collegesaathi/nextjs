@@ -6,7 +6,7 @@ export default function SampleCertificate({ certificates }) {
   return (
     <>
       {certificates?.title && (
-        <section className="w-full px-2 sm:px-6 py-8 mx-auto" id="certificate-section">
+        <section className="w-full px-2 sm:px-6 py-8 mx-auto" id="certificate-section" data-aos="fade-up">
           <div className="max-w-[1230px] ">
             <div className="flex flex-col lg:flex-row items-center gap-6 lg:gap-10">
               {/* LEFT CONTENT */}

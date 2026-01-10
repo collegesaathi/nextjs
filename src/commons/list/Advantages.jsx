@@ -6,7 +6,7 @@ function Advantages({ advantages }) {
     return (
         <>
             {advantages?.title && (
-                <section className="px-2 md:px-6 py-6 " id="advantages-section">
+                <section className="px-2 md:px-6 py-6 " id="advantages-section" data-aos="fade-up">
                     <div className="max-w-[1230px]">
                         <div className="mb-8">
 

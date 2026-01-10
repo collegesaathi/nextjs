@@ -28,7 +28,7 @@ const ConclusionFAQ = () => {
   ];
 
   return (
-    <div className="max-w-[1230px] mx-auto py-12 font-poppins text-[#282529]">
+    <div className="max-w-[1230px] mx-auto py-6 md:py-10  font-poppins text-[#282529]">
       
       {/* Conclusion Section */}
       <section className="mb-16">

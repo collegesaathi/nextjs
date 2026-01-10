@@ -115,8 +115,8 @@ export default function CoursesSwiper({ courseData, title, name,slug }) {
 function CourseCard({ course, mobile = false, name,slug  , router}) {
   return (
     <div
-      className={`bg-[#f7f6f6] border rounded-[14px] p-2 flex flex-col ${mobile ? "h-[270px]" : "h-[290px]"
-        }`}
+      className={`bg-[#f7f6f6] border border-[#BCBCBC] md:w-[80%] rounded-[14px] p-2 flex flex-col mt-6  ${mobile ? "h-[270px]" : "h-[290px]"
+        }`} data-aos="flip-left"
     >
       <div className="relative">
         <img
@@ -144,14 +144,14 @@ function CourseCard({ course, mobile = false, name,slug  , router}) {
 
           {name === "specialisation" && (
             <Link href={`/university/${router.query.universitySlug}/${router.query.courseSlug}/${course.slug}`}>
-              <button className="cursor-pointer bg-red-600 hover:bg-red-700 text-white text-[10px] rounded-[6px] w-[81px] h-[18px]">
+              <button className="cursor-pointer bg-red-600 hover:bg-red-700 text-white text-[12px] rounded-[6px] w-[81px] h-[18px]">
                 Read More
               </button></Link>
           )}
 
           {name === "university" && (
             <Link href={`/university/${router.query.universitySlug}/${course.slug}`}>
-              <button className="cursor-pointer bg-red-600 hover:bg-red-700 text-white text-[10px] rounded-[6px] w-[81px] h-[18px]">
+              <button className="cursor-pointer bg-red-600 hover:bg-red-700 text-white text-[12px] rounded-[6px] w-[81px] h-[18px]">
                 Read More
               </button></Link>
           )}

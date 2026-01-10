@@ -22,9 +22,9 @@ export default function FAQSection({ Faq }) {
     return ( 
         <>
         {Faq?.length > 1 &&  (
-    <section className="px-2 md:px-6 py-6 max-w-[1230px] mx-auto" id="faq-section">
-            <div className="container mx-auto">
-                <Heading title="Frequently Asked " midtitle="Questions" />
+    <section className="px-2 md:px-6 py-6 max-w-[1230px] " id="faq-section" >
+            <div className="container" >
+                <Heading title="Frequently Asked " midtitle="Questions"  data-aos="fade-up" />
 
                 {Faq?.length === 0 && (
                     <p className="text-center text-gray-500 mt-4">No FAQs available.</p>
@@ -33,7 +33,8 @@ export default function FAQSection({ Faq }) {
                 {Faq?.map((item, index) => (
                     <div
                         key={index}
-                        className="bg-white rounded-[10px] mb-8 shadow-md border-l-[13px] border-red-500 transition-all duration-300"
+                        className="bg-white rounded-[10px] mb-8 mt-4 md:mt-6 shadow-md border-l-[13px] border-red-500 transition-all duration-300"
+                         data-aos="fade-up"
                     >
                         <button
                             className="w-full flex justify-between items-center px-4 py-4 text-left"

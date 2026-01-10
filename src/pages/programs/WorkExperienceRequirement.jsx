@@ -25,7 +25,7 @@ const WorkExperienceRequirement = () => {
   ];
 
   return (
-    <div className="max-w-[1230px] mx-auto  font-poppins text-[#282529]">
+    <div className="max-w-[1230px] mx-auto py-6 md:py-10 font-poppins text-[#282529]">
       
       {/* First Section */}
       <div className="mb-8">

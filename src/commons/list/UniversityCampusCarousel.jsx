@@ -73,8 +73,8 @@ export default function UniversityCampusCarousel({ universityCampuses, name }) {
   if (!hasNational && !hasInternational) return null;
 
   return (
-    <section className="px-2 md:px-6 py-6 bg-white">
-      <div className="max-w-[1230px] mx-auto">
+    <section className="px-2 md:px-6 py-6 bg-white" data-aos="fade-up">
+      <div className="max-w-[1230px] ">
         {/* ================= TABS ================= */}
         {showTabs && (
           <div className="flex gap-3 mb-4">

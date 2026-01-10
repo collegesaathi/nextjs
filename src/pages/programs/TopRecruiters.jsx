@@ -60,7 +60,7 @@ const TopRecruiters = () => {
   };
 
   return (
-    <section className="w-full  md:px-6 md:py-12 bg-white font-poppins">
+    <section className="w-full  md:px-6 md:py-10 bg-white font-poppins">
       <div className="max-w-[1230px] mx-auto">
         
         <BackNext

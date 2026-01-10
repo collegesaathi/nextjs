@@ -17,7 +17,7 @@ const Durations = () => {
   };
 
   return (
-    <div className="max-w-[1230px] mx-auto font-poppins text-[#282529] py-4 my-12 ">
+    <div className="max-w-[1230px] mx-auto font-poppins text-[#282529] py-6 md:py-10 ">
       {/* Header Section */}
       <div className="mb-8">
         <h2 className="text-[20px] md:text-[28px] font-[600] mb-4 font-poppins">

@@ -21,7 +21,7 @@ const Specializations = () => {
   const visibleItems = isExpanded ? specializations : specializations.slice(0, 24);
 
   return (
-    <div className="max-w-[1230px] mx-auto font-poppins text-[#282529]  py-12">
+    <div className="max-w-[1230px] mx-auto font-poppins text-[#282529] py-6 md:py-10 ">
       {/* Header Section */}
       <div className="mb-10">
         <h2 className="text-2xl md:text-[20px] font-[600] mb-4 leading-[30px]">

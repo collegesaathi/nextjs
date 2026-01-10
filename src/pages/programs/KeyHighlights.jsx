@@ -30,7 +30,7 @@ const KeyHighlights = () => {
   ];
 
   return (
-    <div className="max-w-[1200px] mx-auto  py-12 font-sans">
+    <div className="max-w-[1200px] mx-auto  py-6 md:py-10 font-sans">
       {/* Main Beige Container */}
       <div className="bg-[#FFF9F1] rounded-[40px] relative pt-10  md:pt-20 pb-10 px-2 lg:px-4 ">
         

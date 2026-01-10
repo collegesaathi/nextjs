@@ -51,7 +51,7 @@ const AudioPlayer = ({ src = "https://www.soundhelix.com/examples/mp3/SoundHelix
   };
 
   return (
-    <div className='mx-auto container sm:container md:container xl:max-w-[1230px] border-y border-gray-200 py-4 my-12 '>
+    <div className='mx-auto container sm:container md:container xl:max-w-[1230px] border-y border-gray-200 py-6 md:py-10 '>
     <div className="w-full max-w-3xl   bg-white px-2">
       <h3 className="text-[20px] md:text-[24px] font-[400] text-[#282529] mb-6 leading-[14px] tracking-[0]">Listen to this audio</h3>
       

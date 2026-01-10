@@ -11,7 +11,7 @@ export default function ExaminationPattern({ examPatterns = [] }) {
       {examPatterns?.title && (
         <div className=" px-2 md:px-6 py-6  bg-[#f7f6f6]">
           <section className="w-full py-6 mx-auto" id="examination-section">
-            <div className=" max-w-[1230px]">
+            <div className=" max-w-[1230px]" data-aos="fade-up">
               <div className="space-y-6  pt-5  pb-5">
                 <Heading title={examPatterns?.title} classes={""} />
                 <div
@@ -27,7 +27,7 @@ export default function ExaminationPattern({ examPatterns = [] }) {
       ${index % 2 !== 0 ? "md:flex-row-reverse" : ""}`}
                       >
                         {/* IMAGE + PERCENTAGE BOX */}
-                        <div className={`relative w-full max-w-[450px] min-h-[200px] p-4 flex items-center  rounded-xl shadow-lg hover:shadow-2xl ${index % 2 !== 0 ? "bg-[#FCF0EE] justify-end" : "bg-[#F1EAFD] justify-start"}`}>
+                        <div className={`relative w-full max-w-[450px] min-h-[200px] p-4 flex items-center  rounded-xl shadow-lg hover:shadow-2xl ${index % 2 !== 0 ? "bg-[#FCF0EE] justify-end" : "bg-[#F1EAFD] justify-start"}`} data-aos="flip-left">
                           <p className="font-poppins font-bold text-[60px] sm:text-[80px] md:text-[96px] leading-[100%] text-[#282529] text-right">
                             {item?.percentage}
                           </p>

@@ -58,7 +58,7 @@ const BestUniversities = () => {
   ];
 
   return (
-    <section className="bg-[linear-gradient(168.35deg,_#FFFFFF_-6.26%,_#FFF4E6_137.86%)] py-2 md:py-16 px-2 md:px-6 font-poppins">
+    <section className="bg-[linear-gradient(168.35deg,_#FFFFFF_-6.26%,_#FFF4E6_137.86%)] py-4 md:py-10 px-2 md:px-6 font-poppins">
       <div className="max-w-[1230px] mx-auto">
         
         {/* Section Heading */}

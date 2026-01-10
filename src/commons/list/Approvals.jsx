@@ -77,7 +77,7 @@ function Approvals({ approvals, approvalsdata }) {
     return (<>
         {approvals?.title && (
             <section className="w-full px-2 md:px-6 py-6 mx-auto" id="approvals-section">
-                <div className="max-w-[1230px]">
+                <div className="max-w-[1230px]" data-aos="fade-up">
                     <BackNext
                         title={approvals?.title}
                         progress={progress}
@@ -131,6 +131,7 @@ function Approvals({ approvals, approvalsdata }) {
                                         tabIndex={0}
                                         role="button"
                                         aria-label={`${item.title} - ${item.description}`}
+                                        data-aos="flip-left"
                                     >
 
                                         {/* Image */}
