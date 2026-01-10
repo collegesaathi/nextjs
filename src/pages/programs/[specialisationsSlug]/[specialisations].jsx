@@ -28,7 +28,6 @@ import BestUniversities from "../BestUniversities";
 import ConclusionFAQ from "../ConclusionFAQ";
 import Syllabus from "../Syllabus";
 import AdmissionProcess from "../AdmissionProcess";
-import Whychoosespecialization from "../whychoosespecialization";
 import Jobroles from "../Jobroles";
 import SalaryTrends from "../SalaryTrends";
 import OnlineDemand from "../OnlineDemand";
@@ -50,7 +49,7 @@ export default function TermsConditions() {
 
                 <UniversityTable />
                 <ConnectExpertForm />
-            <CollegesathiAdvantages  bgColor="#E6E7FF" sideBgColor="#CCD5FF" />
+                <CollegesathiAdvantages bgColor="#E6E7FF" sideBgColor="#CCD5FF" />
 
                 <Durations />
 
@@ -59,7 +58,7 @@ export default function TermsConditions() {
                 <Syllabus />
                 <Specializations />
                 <AdmissionProcess />
-                <Whychoosespecialization />
+                {/* <Whychoosespecialization /> */}
                 <CareerTable />
 
                 <Jobroles />
