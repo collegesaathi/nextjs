@@ -2,7 +2,7 @@ import React from 'react';
 
 const AcademicValueSection = () => {
   return (
-    <div className="max-w-[1200px] mx-auto  py-16 space-y-14 font-poppins text-[#282529]">
+    <div className="max-w-[1200px] mx-auto  py-6 md:py-10 space-y-14 font-poppins text-[#282529]">
       
       {/* Section 1: Accreditation (Text Left, Image Right) */}
       <div className="flex flex-col md:flex-row items-center gap-12 lg:gap-20">

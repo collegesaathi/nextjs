@@ -19,8 +19,8 @@ export default function StepsSection({ admissionProcess }) {
     <>
       {admissionProcess?.process?.length > 1 && (
 
-        <div className="mt-[20px]  md:mt-[50px] bg-[#FCF0EE]">
-          <section className="px-3 sm:px-5 md:px-6 py-6" id="admission-process-section">
+        <div className="mt-[20px] py-6 md:mt-[50px] bg-[#FCF0EE] "  data-aos="fade-up">
+          <section className="px-3 sm:px-5 md:px-6 " id="admission-process-section">
             <div className="max-w-[1230px] ">
 
               <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-8 mt-6 items-center ">
@@ -53,7 +53,7 @@ export default function StepsSection({ admissionProcess }) {
                 transition-all duration-300
                 hover:bg-[#ED2024] hover:text-white group
                 bg-white text-black mx-auto
-              "
+              "  data-aos="fade-up"
                       >
                         {/* STEP NUMBER */}
                         <div
@@ -63,7 +63,7 @@ export default function StepsSection({ admissionProcess }) {
                   text-[16px] sm:text-[20px] font-bold shadow-md
                   group-hover:bg-white group-hover:text-[#ED2024]
                   bg-[#ED2024] text-white 
-                "
+                " 
                         >
                           {index + 1}
                         </div>

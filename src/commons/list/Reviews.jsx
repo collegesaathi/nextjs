@@ -8,6 +8,7 @@ import "aos/dist/aos.css";
 import StarRating from "@/common/StarRating";
 import Image from "next/image";
 import BackNext from "@/pages/components/BackNext";
+import { Autoplay,Grid } from "swiper/modules"; 
 
 
 export default function Reviews({ name }) {
@@ -35,6 +36,10 @@ export default function Reviews({ name }) {
 
     const tabs = [
         { id: "average", name: "Average Ratings" },
+        { id: "infrastructure", name: "Digital Infrastructure" },
+        { id: "curriculum", name: "Curriculum" },
+        { id: "value", name: "Value For Money" },
+          { id: "average", name: "Average Ratings" },
         { id: "infrastructure", name: "Digital Infrastructure" },
         { id: "curriculum", name: "Curriculum" },
         { id: "value", name: "Value For Money" },
@@ -119,7 +124,7 @@ export default function Reviews({ name }) {
     };
 
     return (
-        <section className="px-2 md:px-6 py-6 block" >
+        <section className="px-2 md:px-6 py-6 block"  data-aos="fade-up" >
             <div className="max-w-[1230px]">
 
 
@@ -137,8 +142,8 @@ export default function Reviews({ name }) {
 
 
                 {/* Rating Overview */}
-                <div className="mt-14 grid grid-cols-1 lg:grid-cols-2 gap-8" >
-                    <div className="border p-5 rounded-lg">
+                <div className="mt-14 grid grid-cols-1 lg:grid-cols-2 gap-8" data-aos="fade-up" >
+                    <div className="border border-[#BCBCBC] p-5 rounded-lg">
                         <h3 className="text-xl font-semibold mb-4">Ratings Overview</h3>
 
                         {ratingsBreakdown.map((r, i) => (
@@ -163,9 +168,9 @@ export default function Reviews({ name }) {
 
 
 
-                    <div className=" justify-center flex flex-col gap-4 h-full" id="reviews-section">
+                    <div className=" justify-center flex flex-col gap-4 h-full" id="reviews-section" data-aos="fade-up" >
 
-                        <div className="flex items-center justify-center gap-4  rounded-[8px] py-2 bg-[#fcf0ee] h-1/3">
+                        <div className="flex items-center justify-center gap-4  rounded-[8px] py-10 bg-[#fcf0ee] h-1/3">
                             <div className=" w-full h-auto  flex flex-col items-center justify-center py-6">
                                 <h3 className="font-poppins font-semibold text-[30px] sm:text-[55px] text-[#282529]">4.5</h3>
                                 <StarRating rating="4.5" />
@@ -175,7 +180,7 @@ export default function Reviews({ name }) {
                             </div>
 
                         </div>
-                        <div className="border p-5 rounded-lg h-2/3">
+                        <div className="border border-[#BCBCBC] p-5 rounded-lg h-2/3">
                             <h3 className="text-xl font-semibold mb-4">Peripheral Ratings</h3>
                             {peripheralRatings.map((cat, i) => (
                                 <div key={i} className="flex justify-between text-sm ">
@@ -210,7 +215,14 @@ export default function Reviews({ name }) {
                         <Swiper
                             key={tab.id}
                             spaceBetween={15}
+                                modules={[Autoplay,Grid]}
                             loop
+                              autoplay={{
+                                delay: 3000,
+                                disableOnInteraction: false,
+                            }}
+                
+                              grid={{ rows: 2, }}
                             breakpoints={{
                                 0: {
                                     slidesPerView: 1, // Mobile

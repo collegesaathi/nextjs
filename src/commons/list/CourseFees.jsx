@@ -18,7 +18,7 @@ function CourseFees({ courseData, slug, feesDesc ,feesnotes }) {
     return (
         <>
             <section className="w-full px-2 md:px-6 py-6 mx-auto" id="fee-section">
-                <div className="max-w-[1230px]">
+                <div className="max-w-[1230px]" data-aos="fade-up">
                     <Heading title=" Updated Course Fees for 2025" />
                     <p
                         className="custom-description mt-2 mb-2"
@@ -59,26 +59,26 @@ function CourseFees({ courseData, slug, feesDesc ,feesnotes }) {
                                 {courseData?.map((row, index) => (
                                     <tr key={index} className="border-t hover:bg-[#f9fafb]">
 
-                                        <td className="py-3 px-4 border-r underline">
+                                        <td className="py-3 px-4 border-r border-[#f47c80] underline">
                                             <Link href={`/university/${slug}/${row?.slug}`}>
                                                 {row?.name}
                                             </Link>
                                         </td>
 
                                         {showPerSemester && (
-                                            <td className="py-3 px-4 border-r">
+                                            <td className="py-3 px-4 border-r border-[#f47c80]">
                                                 {row?.fees?.semester_wise_fees || "-"}
                                             </td>
                                         )}
 
                                         {showTotalFees && (
-                                            <td className="py-3 px-4 border-r">
+                                            <td className="py-3 px-4 border-r border-[#f47c80]">
                                                 {row?.fees?.annual_fees || "-"}
                                             </td>
                                         )}
 
                                         {showOneTimeFees && (
-                                            <td className="py-3 px-4 border-r">
+                                            <td className="py-3 px-4 border-r border-[#f47c80]">
                                                 {row?.fees?.tuition_fees || "-"}
                                             </td>
                                         )}

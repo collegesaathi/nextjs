@@ -73,7 +73,7 @@ const router = useRouter();
   return (
     <>
       {courseData?.length > 1 && (
-        <div className="px-2 md:px-6 py-6  bg-white">
+        <div className="px-2 md:px-6 py-6  bg-white" data-aos="fade-up">
           <section className="w-full mx-auto" id="placement-partners-section">
             <div className="max-w-[1230px]">
               <BackNext
@@ -117,6 +117,7 @@ const router = useRouter();
                 flex flex-col
                 items-center  justify-between
                 cursor-pointer transition-all duration-300 "
+                data-aos="flip-left"
                     >
                       <div className="bg-white w-[100px] h-[100px] sm:w-[110px] sm:h-[110px] lg:w-full lg:h-[110px] rounded-[15px] flex items-center justify-center">
                         <img

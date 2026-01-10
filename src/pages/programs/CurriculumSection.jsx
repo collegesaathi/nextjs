@@ -62,7 +62,7 @@ const CurriculumSection = () => {
 
   return (
     <>
-    <div className='max-w-[1230px] mx-auto font-poppins text-[#282529] md:px-4 py-12'>
+    <div className='max-w-[1230px] mx-auto font-poppins text-[#282529] md:px-4 py-6 md:py-10'>
          <div className="">
           <h2 className="text-[20px] md:text-[28px] font-[600] font-poppins mb-4 leading-[28px]">
             Curriculum & Specializations in Online MBA Programs

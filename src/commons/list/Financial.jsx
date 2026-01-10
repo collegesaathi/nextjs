@@ -10,7 +10,7 @@ function Financial({ financialAid, name }) {
   return (
     <>
       {financialAid?.title && (
-        <div className="w-full px-2 md:px-6 py-6 ">
+        <div className="w-full px-2 md:px-6 py-6 " data-aos="fade-up">
           <section className="" id="financial-aid-section">
             <div className="max-w-[1230px]">
               <div>

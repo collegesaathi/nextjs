@@ -106,7 +106,7 @@ export default function SimilarUniversities() {
     return (
         <>
             {/* Desktop Version */}
-            <div className="py-6 px-2 md:px-6  " id="similar-universities-section">
+            <div className="py-6 px-2 md:px-6  " id="similar-universities-section"  data-aos="fade-up">
                 <div className=" container sm:container md:container lg:container xl:max-w-[1230px] ">
 
                   

@@ -28,16 +28,16 @@ const ProgramFuture = () => {
   ];
 
   return (
-    <div className="max-w-[1230px] mx-auto py-10 px-4 font-poppins">
+    <div className="max-w-[1230px] mx-auto py-6 md:py-10 px-4 font-poppins">
 
 
          <div className="mb-8">
         <h2 className="text-[22px] md:text-[28px] font-[600] mb-6 leading-tight">
-          The Rising Demand for Online MBA Programs by 2026
+  What will be the future of Online MBA in the coming 10 years?
         </h2>
         
         <div className="mb-10">
-          <h3 className="text-[20px] font-[600] mb-3">Why Online MBA Programs are Growing So Fast</h3>
+  
           <p className="text-[#4a4a4a] text-[16px] leading-[26px]">
             By 2026, Online MBA programs are becoming popular on account of flexibility, affordability, and global access. 
             With remote work and digital learning platforms gaining more importance, professionals are increasingly 
@@ -123,7 +123,7 @@ const ProgramFuture = () => {
       </div>
 
             <div className="space-y-6 mt-6">
-        <h3 className="text-[20px] font-[600]">Increasing Demand for HR Professionals in 2026</h3>
+
         <p className="text-[#4a4a4a] text-[16px] leading-[28px]">
           With increased focus by organizations on talent management, employee engagement, and transformation of the 
           workplace, skilled HR professionals are likely to be in demand through 2026. The companies are looking for 

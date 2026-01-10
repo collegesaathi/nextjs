@@ -72,8 +72,8 @@ export default function FrontendSidebar({ data, courseData }) {
   return (
     <>
       {/* DESKTOP */}
-      <div className="hidden lg:block sticky top-0 h-screen overflow-y-auto p-2 red-scroll py-8">
-        <ul className="space-y-4">
+      <div className="hidden lg:block sticky top-0 h-screen overflow-y-auto p-2 red-scroll py-8 ">
+        <ul className="space-y-4 flex flex-col justify-end items-end">
           {menuItems.map((item, index) => (
             <li key={index}>
               <button

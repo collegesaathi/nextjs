@@ -3,17 +3,42 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import Listing from "@/pages/api/Listing";
 import { toast } from "react-hot-toast";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay ,EffectFade } from "swiper/modules";
+import "swiper/css";
 
 function EnquiryBox() {
+
+    const bannerImages = [
+    "/images/university/formbg.webp",
+    "/images/university/formbg2.webp", // Doosri image ka path yahan likhein
+    "/images/university/formbg3.webp", // Teesri image ka path yahan likhein
+  ];
   return (
-    <div className="max-w-[1230px] px-2 md:px-6 py-6 ">
+    <div className="max-w-[1230px] px-2 md:px-6 py-6 " data-aos="fade-up">
       <div className="lg:w-full mt-8 rounded-[18px] min-h-[400px] bg-gradient-to-br from-[#fef0f0] to-[#fbdbdc] grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
-        <div className="hidden md:flex justify-center">
-          <img
-            src="/images/formimage.png"
-            alt="course form"
-            className="w-full h-auto object-contain"
-          />
+        <div className="hidden md:flex justify-center w-full h-full">
+          <Swiper
+            modules={[Autoplay, EffectFade]}
+            effect="fade"
+             fadeEffect={{ crossFade: true }} // Image change hote waqt smooth lagega
+            autoplay={{
+              delay: 2000, // 2 seconds
+              disableOnInteraction: false,
+            }}
+            loop={true}
+            className="w-full h-full"
+          >
+            {bannerImages.map((src, index) => (
+              <SwiperSlide key={index}>
+                <img
+                  src={src}
+                  alt={`banner-${index}`}
+                  className="w-full h-full object-contain"
+                />
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
         <div className="w-full ">
           <FormBox />
@@ -44,6 +69,20 @@ function FormBox() {
     page_name: router?.asPath
 
   });
+
+
+
+    const logos = [
+    
+    "/images/university/Amrita.svg",
+    "/images/university/sharda.svg",
+  
+    "/images/university/Amrita.svg",
+    "/images/university/sharda.svg",
+  ];
+
+
+ 
 
   useEffect(() => {
     let interval;
@@ -141,9 +180,29 @@ function FormBox() {
     <div className="w-full p-4 flex justify-center md:justify-start">
       <div className="w-full max-w-lg">
         <div className="flex gap-2 justify-center border-b border-gray-300 pb-2 mb-5">
-          <Image src="/images/university/course/4.png" alt="logo" width={90} height={40} className="object-contain" />
-          <Image src="/images/university/course/5.png" alt="logo" width={90} height={40} className="object-contain" />
-          <Image src="/images/university/course/6.png" alt="logo" width={90} height={40} className="object-contain" />
+        <Swiper
+            modules={[Autoplay]}
+            spaceBetween={20}
+            slidesPerView={3}
+            loop={true}
+            autoplay={{
+              delay: 2000,
+              disableOnInteraction: false,
+            }}
+            className="w-full"
+          >
+            {logos.map((src, index) => (
+              <SwiperSlide key={index} className="flex justify-center items-center">
+                <img 
+                  src={src} 
+                  alt="university logo" 
+                  width={80} 
+                  height={30} 
+                  className="object-cover w-full" 
+                />
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
 
         <h3 className="font-[600] mb-6 text-[18px]">Enquire Now</h3>

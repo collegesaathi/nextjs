@@ -135,7 +135,7 @@ const UniversityApplyForm = () => {
     };
 
     return (
-        <div className="max-w-[1230px] mx-auto my-10 bg-white md:rounded-[40px] md:shadow-[0_20px_50px_rgba(0,0,0,0.1)] overflow-hidden md:border border-gray-100 md:px-4 md:p-6">
+        <div className="max-w-[1230px] mx-auto py-6 md:py-10 bg-white md:rounded-[40px] md:shadow-[0_20px_50px_rgba(0,0,0,0.1)] overflow-hidden md:border border-gray-100 md:px-4 md:p-6">
             <div className="flex flex-col lg:flex-row gap-8">
 
                 {/* LEFT SECTION: BRANDING & GRAPHIC (DESIGN UNCHANGED) */}

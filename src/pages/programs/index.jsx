@@ -46,7 +46,7 @@ export default function Index() {
                 <ProgramFuture />
                 <UniversityTable />
                 <ConnectExpertForm />
-                <CollegesathiAdvantages  bgColor="#FFFBE6" sideBgColor="#FFEDCC" />
+                <CollegesathiAdvantages  bgColor="#FFFBE6" sideBgColor="#FFEDCC" yellow />
                 <WorkExperienceRequirement />
                 <Durations />
                 <FinancialAidSection />

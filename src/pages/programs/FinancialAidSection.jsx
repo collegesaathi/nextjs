@@ -2,10 +2,10 @@ import React from 'react';
 
 const FinancialAidSection = () => {
   return (
-    <div className="max-w-[1230px] mx-auto font-poppins text-[#282529] py-6 loan md:px-4">
+    <div className="max-w-[1230px] mx-auto font-poppins text-[#282529] py-6 md:py-10 loan md:px-4">
       {/* Header Section */}
       <div className=" mb-2 md:mb-10">
-        <h2 className="text-[20px] md:tex-[28px] font-[600] mb-4">
+        <h2 className="text-[20px] md:text-[28px] font-[600] mb-4">
           Financial Aid & Scholarships for Online MBAs in India
         </h2>
         <p className="text-[#5c5c5c] text-[16px] leading-[28px]">

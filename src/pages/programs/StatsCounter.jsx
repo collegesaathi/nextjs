@@ -52,7 +52,7 @@ const CounterItem = ({ endValue, suffix, label }) => {
 
 export default function StatsCounter() {
   return (
-    <section className="w-full py-4 md:py-12 bg-white">
+    <section className="w-full py-6 md:py-10 bg-white">
       <div className="max-w-6xl mx-auto md:px-4">
         <div className="grid grid-cols-3 gap-8 md:gap-4">
           <CounterItem endValue={95} suffix="%" label="Growth In Career" />

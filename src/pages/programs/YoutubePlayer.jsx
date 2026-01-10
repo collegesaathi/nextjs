@@ -19,7 +19,7 @@ export const YoutubePlayer = ({ videoId }) => {
   const embedUrl = `https://www.youtube.com/embed/${videoId}?controls=1&showinfo=0&modestbranding=0&rel=0`;
 
   return (
-    <div className=' bg-white mx-auto lg:w-[1000px] p-6 shadow-lg rounded-[40px] '>
+    <div className=' bg-white mx-auto lg:w-[1000px] py-6 md:py-10 shadow-lg rounded-[40px] '>
     <div className="relative w-full  mx-auto h-0" style={{ paddingTop: "56.25%" }}>
       <iframe
         src={embedUrl}

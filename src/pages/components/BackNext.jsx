@@ -18,7 +18,7 @@ export default function BackNext({
   //     : "110px";
 
   return (
-    <div className="flex  justify-between items-center md:items-start  w-full">
+    <div className="flex  justify-between items-center md:items-start  w-full"  >
       <Heading title={title} midtitle={midtitle} />
 
       <div className="flex flex-wrap items-center justify-end md:space-x-4">

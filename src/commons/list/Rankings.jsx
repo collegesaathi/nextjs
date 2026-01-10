@@ -28,7 +28,7 @@ function Ranking({ rankings }) {
     return (
         <>
             {rankings?.title && (
-                <section className="w-full px-2 md:px-6 py-6 mx-auto" id="rankings-section">
+                <section className="w-full px-2 md:px-6 py-6 mx-auto" id="rankings-section" data-aos="fade-up">
                     <div className="max-w-[1230px]">
                         <Heading title={rankings?.title} />
                         {rankingItems.map((li, index) => (
