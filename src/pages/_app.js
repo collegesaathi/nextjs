@@ -20,8 +20,8 @@ export default function App({ Component, pageProps }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
         {/* 🔹 Indexing (ENABLE FOR SEO) */}
-        <meta name="robots" content="index, follow" />
-        <meta name="googlebot" content="index, follow" />
+        <meta name="robots" content="noindex, nofollow" />
+        <meta name="googlebot" content="noindex, nofollow" />
 
         {/* 🔹 Canonical */}
         <link rel="canonical" href="https://indiaprograms.com/" />
