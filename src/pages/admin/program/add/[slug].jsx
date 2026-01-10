@@ -21,6 +21,7 @@ import AddExperince from "@/commons/add/AddExperince";
 import AddOnline from "@/commons/add/AddOnline";
 import AdminOnlineMBA from "@/commons/add/AdminOnlineMBA";
 import AddPurpuse from "@/commons/add/AddPurpuse";
+import AddProgramVs from "@/commons/add/AddProgramVs";
 
 function Index() {
     const router = useRouter();
@@ -54,6 +55,11 @@ function Index() {
         { title: "", desc: "", salary: "" }
     ]);
 
+
+    const [addvs, setAddVs] = useState([
+        { title: "", content: "", desc: "" }
+    ]);
+
     const [PlacementAdd, setPlacementAdd] = useState([
         { name: "", description: "", image: "" }
     ]);
@@ -80,8 +86,8 @@ function Index() {
     const [loading, setLoading] = useState(false);
     const [preview, setPreview] = useState(null);
     const [icons, setIcons] = useState(null);
-       const [entrance, setEntrance] = useState(null);
-    const [academic,setAcademic]=useState(null)
+    const [entrance, setEntrance] = useState(null);
+    const [academic, setAcademic] = useState(null)
 
     // FEES STATE
     const [fees, setFees] = useState([
@@ -153,6 +159,8 @@ function Index() {
     const [formData, setFormData] = useState({
         slug: "",
         name: "",
+        addvstitle: "",
+        addvsdesc: "",
         title: "",
         icon: null,
         descriptions: "",
@@ -264,7 +272,7 @@ function Index() {
 
         if (field === "academic_cover_image") {
             setAcademic(URL.createObjectURL(file));
-        } else if(field === "entrace_cover_image"){
+        } else if (field === "entrace_cover_image") {
             setEntrance(URL.createObjectURL(file));
 
         }
@@ -274,7 +282,7 @@ function Index() {
         }
     };
 
-  
+
     console.log("selectedApprovals", selectedApprovals)
     // ✅ ADD UNIVERSITY
     const handleAdd = async (e) => {
@@ -291,6 +299,8 @@ function Index() {
             payload.append("categroy_id", formData.categroy_id || " ");
             payload.append("pdf_download", formData.pdf_download || "");
             payload.append("cover_image", formData.cover_image || " ");
+            payload.append("addvsdesc", formData.addvsdesc || " ");
+            payload.append("addvstitle", formData.addvstitle || " ");
             payload.append("audio", formData.audio || " ");
             payload.append("video", formData.video || " ");
             payload.append("specialization", formData.specialization || " ");
@@ -310,7 +320,7 @@ function Index() {
             payload.append("futuretitle", formData.futuretitle || " ")
             payload.append("futuredesc", formData.futuredesc || " ");
             payload.append("futurebtmdesc", formData.futurebtmdesc || " ");
-            payload.append("monthlyData", JSON.stringify(monthlyData || [] ));
+            payload.append("monthlyData", JSON.stringify(monthlyData || []));
             payload.append("universitytitle", formData.universitytitle || " ");
             payload.append("universitybtmdesc", formData.universitybtmdesc || " ");
             payload.append("universitydesc", formData.universitydesc || " ");
@@ -345,11 +355,12 @@ function Index() {
             payload.append("careername", formData.careername || " ");
             payload.append("careerdesc", formData.careerdesc || " ");
             payload.append("Careers", JSON.stringify(Careers || []));
+            payload.append("addvs", JSON.stringify(addvs || []));
             const fincalceAdds = fincalceAdd.map(item => ({
                 name: item.name || "",
                 desc: item.desc || ""
             }));
-            payload.append("fincalceAdds", JSON.stringify(fincalceAdds ||[]));
+            payload.append("fincalceAdds", JSON.stringify(fincalceAdds || []));
             fincalceAdd.forEach((item, index) => {
                 if (item.image) {
                     payload.append(`fincalceAddsimages[${index}]`, item.image);
@@ -368,14 +379,14 @@ function Index() {
                 }
             });
             payload.append("keyhight", JSON.stringify(facts || []))
-            payload.append("faqs", JSON.stringify(faqs || [] ))
+            payload.append("faqs", JSON.stringify(faqs || []))
             payload.append("instutudesc", formData.instutudesc || " ");
-            payload.append("instututitle", formData.instututitle || " " );
+            payload.append("instututitle", formData.instututitle || " ");
             payload.append("institutes", JSON.stringify(institutes || []))
-            payload.append("meta_title", formData.meta_title  || " ");
-            payload.append("meta_description", formData.meta_description  || " ");
-            payload.append("meta_keywords", formData.meta_keywords  || " ");
-            payload.append("canonical_url", formData.canonical_url  || " ");
+            payload.append("meta_title", formData.meta_title || " ");
+            payload.append("meta_description", formData.meta_description || " ");
+            payload.append("meta_keywords", formData.meta_keywords || " ");
+            payload.append("canonical_url", formData.canonical_url || " ");
             payload.append("purpusename", formData.purpusename || " ");
             payload.append("purpsedesc", formData.purpsedesc || " ");
             const chooses = choose.map(item => ({
@@ -425,6 +436,7 @@ function Index() {
 
     const tabsData = [
         { id: "card", label: "Card " },
+        { id: "vs", label: "VS" },
         { id: "purpuse", label: "Choose" },
         { id: "keyhighlight", label: "HighLights" },
         { id: "futures", label: "Graph" },
@@ -438,6 +450,7 @@ function Index() {
         { id: "institutes", label: "Institutes" },
         { id: "university", label: "University" },
         { id: "faq", label: "FAQ" },
+        { id: "vs", label: "VS" },
         { id: "seo", label: "SEO" },
 
     ];
@@ -483,8 +496,8 @@ function Index() {
     }, [Id])
 
     console.log(data)
-     console.log("categoryid",data?.category_id)
-     console.log("career",data?.careers?.title)
+    console.log("categoryid", data?.category_id)
+    console.log("career", data?.careers?.title)
 
     useEffect(() => {
 
@@ -538,7 +551,7 @@ function Index() {
             curriculum_description: data?.curriculum?.description,
             financialdescription: data?.financial?.description,
             financialname: data?.financial?.title,
-           durationname: data?.durationfees?.title,
+            durationname: data?.durationfees?.title,
             durationdesc: data?.durationfees?.description,
             experincedesc: data?.experience?.description,
             experincename: data?.experience?.title,
@@ -556,20 +569,15 @@ function Index() {
             academic_cover_image: data?.academic?.Image,
             academictitle: data?.academic?.title,
             academicdesc: data?.academic?.description,
-            faqs:data?.faqs?.faqs?.question
-
-
-
-            
-
+            faqs: data?.faqs?.faqs?.question
         })
-    
-   
-      
+
+
+
         setPreview(data?.bannerImage);
         // setIcons(data?.academic?.Image);
         setAcademic(data?.academic?.Image);
-          setEntrance(data?.academic?.entra_image);
+        setEntrance(data?.academic?.entra_image);
         setinstitutes(data?.institutes?.Institutes?.length ? data?.institutes?.Institutes : [{ name: "", content: "" }]);
         setPlacementAdd(data?.placement?.subplacement?.length ? data?.placement?.subplacement : [{ name: "", description: "", image: "" }]);
         setCareers(data?.careers?.career?.length ? data?.careers?.career : [{ title: "", desc: "", salary: "" }]);
@@ -585,11 +593,11 @@ function Index() {
         setSelectedPartners(data?.placement?.placement_ids);
         setFacts(data?.highlights?.Highlights?.length ? data?.highlights?.Highlights : [{ name: "", description: "" }]);
         setchoose(data?.choose?.choose?.length ? data?.choose?.choose : [{ title: "", image: "" }]);
-        setFaqs(data?.faqs?.faqs?.length ? data?.faqs?.faqs:[{question:"",answer:""}])
+        setFaqs(data?.faqs?.faqs?.length ? data?.faqs?.faqs : [{ question: "", answer: "" }])
         setpurpuse(data?.choose?.purpuse?.length ? data?.choose?.purpuse : [{ name: "", desc: "", image: "" }]);
 
 
-    
+
 
     }, [data])
 
@@ -704,31 +712,31 @@ function Index() {
                                     required
                                 />
 
-                            {formData?.pdf_download && (
-  <>
-    {formData.pdf_download instanceof File ? (
-      <p>
-        Selected: {formData.pdf_download.name} (
-        {(formData.pdf_download.size / 1024).toFixed(2)} KB)
-      </p>
-    ) : (
-      <p>
-        Current PDF:{" "}
-        <a
-          href={formData.pdf_download}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-blue-500 underline"
-        >
-          View PDF
-        </a>
-      </p>
-    )}
-  </>
-)}
+                                {formData?.pdf_download && (
+                                    <>
+                                        {formData.pdf_download instanceof File ? (
+                                            <p>
+                                                Selected: {formData.pdf_download.name} (
+                                                {(formData.pdf_download.size / 1024).toFixed(2)} KB)
+                                            </p>
+                                        ) : (
+                                            <p>
+                                                Current PDF:{" "}
+                                                <a
+                                                    href={formData.pdf_download}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="text-blue-500 underline"
+                                                >
+                                                    View PDF
+                                                </a>
+                                            </p>
+                                        )}
+                                    </>
+                                )}
 
 
-                                   
+
                             </div>
                             <div>
                                 <label className="flex justify-between text-[#FF1B1B] font-medium mb-1">
@@ -749,45 +757,45 @@ function Index() {
                                     }}
                                 />
 
-                           {formData?.audio && (
-  <>
-    {formData.audio instanceof File ? (
-      <>
-        <p>Selected: {formData.audio.name}</p>
+                                {formData?.audio && (
+                                    <>
+                                        {formData.audio instanceof File ? (
+                                            <>
+                                                <p>Selected: {formData.audio.name}</p>
 
-        {/* Audio preview */}
-        {formData.audio.type.startsWith("audio") && (
-          <audio
-            controls
-            src={URL.createObjectURL(formData.audio)}
-          />
-        )}
+                                                {/* Audio preview */}
+                                                {formData.audio.type.startsWith("audio") && (
+                                                    <audio
+                                                        controls
+                                                        src={URL.createObjectURL(formData.audio)}
+                                                    />
+                                                )}
 
-        {/* Video preview */}
-        {formData.audio.type === "video/mp4" && (
-          <video
-            controls
-            width={300}
-            src={URL.createObjectURL(formData.audio)}
-          />
-        )}
-      </>
-    ) : (
-      <>
-        <p>Current Media:</p>
+                                                {/* Video preview */}
+                                                {formData.audio.type === "video/mp4" && (
+                                                    <video
+                                                        controls
+                                                        width={300}
+                                                        src={URL.createObjectURL(formData.audio)}
+                                                    />
+                                                )}
+                                            </>
+                                        ) : (
+                                            <>
+                                                <p>Current Media:</p>
 
-        {/* Existing audio/video from API */}
-        {formData.audio.endsWith(".mp3") && (
-          <audio controls src={formData.audio} />
-        )}
+                                                {/* Existing audio/video from API */}
+                                                {formData.audio.endsWith(".mp3") && (
+                                                    <audio controls src={formData.audio} />
+                                                )}
 
-        {formData.audio.endsWith(".mp4") && (
-          <video controls width={300} src={formData.audio} />
-        )}
-      </>
-    )}
-  </>
-)}
+                                                {formData.audio.endsWith(".mp4") && (
+                                                    <video controls width={300} src={formData.audio} />
+                                                )}
+                                            </>
+                                        )}
+                                    </>
+                                )}
 
 
 
@@ -1229,6 +1237,9 @@ function Index() {
                         <>
                             <AllUniversity toggleApproval={toggleApproval} formData={formData} handleChange={handleChange} selectedApprovals={selectedApprovals} />
                         </>
+                    )}
+                    {activeTab === "vs" && (
+                        <AddProgramVs addvs={addvs} setAddVs={setAddVs} formData={formData} handleChange={handleChange} handleQuillChange={handleQuillChange}  />
                     )}
                     {activeTab === "faq" && (
                         <FaqAdd faqs={faqs} setFaqs={setFaqs} />

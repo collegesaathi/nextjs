@@ -37,7 +37,6 @@ export default function TermsConditions() {
         <Layout>
             <div className="mx-auto    px-2 md:px-4 py-4 md:mt-20 lg:mt-20 ">
                 {/* Breadcrumb */}
-
                 <ProgramHero />
                 <StatsCounter />
                 <UniversityApplyForm />

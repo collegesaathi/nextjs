@@ -21,10 +21,13 @@ import AddExperince from "@/commons/add/AddExperince";
 import AddOnline from "@/commons/add/AddOnline";
 import AdminOnlineMBA from "@/commons/add/AdminOnlineMBA";
 import AddPurpuse from "@/commons/add/AddPurpuse";
+import AddProgramVs from "@/commons/add/AddProgramVs";
 
 function Index() {
     const router = useRouter();
-
+  const [addvs, setAddVs] = useState([
+        { title: "", content: "", desc:"" }
+    ]);
 
     const [categroy, setCategroy] = useState([])
     const fetchData = async () => {
@@ -161,6 +164,8 @@ function Index() {
         audio: "",
         video: "",
         career_growth: "",
+        addvstitle :"",
+        addvsdesc:"",
         duration: "",
         specialization: "",
         shortDescription: "",
@@ -282,6 +287,8 @@ function Index() {
             const payload = new FormData();
             payload.append("slug", formData.slug || " " );
             payload.append("name", formData.name || " " );
+            payload.append("addvsdesc", formData.addvsdesc || " " );
+            payload.append("addvstitle", formData.addvstitle || " " );
             payload.append("descriptions", formData.descriptions || " " );
             payload.append("categroy_id", formData.categroy_id || " " );
             payload.append("pdf_download", formData.pdf_download);
@@ -299,6 +306,7 @@ function Index() {
             payload.append("specialisationtitle", formData.specialisationtitle || " " );
             payload.append("academictitle", formData.academictitle || " " );
             payload.append("academicdesc", formData.academicdesc || " " );
+              payload.append("addvs", JSON.stringify(addvs || []));
             payload.append("academic_cover_image", formData.academic_cover_image || " " );
             payload.append("entrace_cover_image", formData.entrace_cover_image || " " );
             payload.append("entracedesc", formData.entracedesc || " " );
@@ -431,7 +439,7 @@ function Index() {
         { id: "university", label: "University" },
         { id: "faq", label: "FAQ" },
         { id: "seo", label: "SEO" },
-
+        { id: "vs", label: "VS" },
     ];
 
     const currentIndex = tabsData.findIndex((tab) => tab.id === activeTab);
@@ -934,6 +942,10 @@ function Index() {
 
                     {activeTab === "onlines" && (
                         <AddOnline formData={formData} handleChange={handleChange} onlines={onlines} setOnlines={setOnlines} handleQuillChange={handleQuillChange} />
+                    )}
+
+                        {activeTab === "vs" && (
+                        <AddProgramVs addvs={addvs} setAddVs={setAddVs}  formData={formData} handleChange={handleChange} handleQuillChange={handleQuillChange} />
                     )}
 
                     {activeTab === "experince" && (

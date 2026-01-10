@@ -77,7 +77,7 @@ export default function AddPurpuse({ setchoose, choose, htitle, formData, handle
             </div>
 
 
-            {/* Header + Add Button */}
+            {/* Header + Add Button
             <div className="flex justify-between items-center mb-5">
                 <h2 className="text-xl font-semibold text-[#CC2828]">Why Choose Section</h2>
                 <button
@@ -90,12 +90,11 @@ export default function AddPurpuse({ setchoose, choose, htitle, formData, handle
             </div>
 
             {/* choose List */}
-            {choose?.map((adv, index) => (
+            {/* {choose?.map((adv, index) => (
                 <div
                     key={index}
                     className="grid grid-cols-12 gap-4 items-center mb-6 border-b border-gray-200 pb-4"
                 >
-                    {/* Title */}
                     <div className="col-span-12 md:col-span-5">
                         <label className="block text-[#CC2828] font-medium mb-2">
                             Title
@@ -111,7 +110,6 @@ export default function AddPurpuse({ setchoose, choose, htitle, formData, handle
                         />
                     </div>
 
-                    {/* Image Upload */}
                     <div className="col-span-12 md:col-span-4">
                         <label className="block text-[#CC2828] font-medium mb-2">
                             Image
@@ -126,7 +124,6 @@ export default function AddPurpuse({ setchoose, choose, htitle, formData, handle
                         />
                     </div>
 
-                    {/* Image Preview */}
                     <div className="col-span-8 md:col-span-2 flex items-center justify-center">
                         {adv.image && (
                             <img
@@ -141,7 +138,6 @@ export default function AddPurpuse({ setchoose, choose, htitle, formData, handle
                         )}
                     </div>
 
-                    {/* Delete Button */}
                     <div className="col-span-4 md:col-span-1 flex justify-end">
                         <button
                             type="button"
@@ -152,7 +148,7 @@ export default function AddPurpuse({ setchoose, choose, htitle, formData, handle
                         </button>
                     </div>
                 </div>
-            ))}
+            ))}  */}
 
 
 
